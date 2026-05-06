@@ -33,7 +33,7 @@ public class DefaultQuizSentenceConverterTest {
         converter = new DefaultQuizSentenceConverter(
                 new QuizSentenceSerializer(),
                 new QuizSentenceParser(),
-                new PlainSentenceDeriver()
+                new PlainSentenceDeriver(new WhitespaceNormalizer())
         );
     }
 

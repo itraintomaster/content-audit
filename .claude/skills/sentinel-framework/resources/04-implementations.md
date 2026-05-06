@@ -241,6 +241,12 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 **Visibility:** internal
 **Implements:** 
 
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `whitespaceNormalizer` | `WhitespaceNormalizer` |
+
 #### WhitespaceNormalizer (package: quizsentenceengine)
 
 **Package:** `com.learney.contentaudit.coursedomain.quizsentenceengine`
@@ -335,18 +341,18 @@ public CourseToAuditableMapper(NlpTokenizer nlpTokenizer, QuizSentenceConverter 
 |------|------|
 | `courseRepository` | `CourseRepository` |
 | `courseToAuditableMapper` | `CourseToAuditableMapper` |
-| `contentAudit` | `ContentAudit` |
-| `courseMapper` | `CourseMapper` |
 | `auditEngine` | `AuditEngine` |
+| `allAnalyzers` | `List<ContentAnalyzer>` |
+| `scoreAggregator` | `ScoreAggregator` |
 
 **Generated constructor:**
 ```java
-public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMapper courseToAuditableMapper, ContentAudit contentAudit, CourseMapper courseMapper, AuditEngine auditEngine) {
+public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMapper courseToAuditableMapper, AuditEngine auditEngine, List<ContentAnalyzer> allAnalyzers, ScoreAggregator scoreAggregator) {
     this.courseRepository = courseRepository;
     this.courseToAuditableMapper = courseToAuditableMapper;
-    this.contentAudit = contentAudit;
-    this.courseMapper = courseMapper;
     this.auditEngine = auditEngine;
+    this.allAnalyzers = allAnalyzers;
+    this.scoreAggregator = scoreAggregator;
 }
 ```
 
@@ -683,6 +689,12 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 **Visibility:** internal
 **Implements:** FormatterRegistry
 
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `formatters` | `Map<String, ReportFormatter>` |
+
 #### DefaultReportViewModelTransformer (package: formatting)
 
 **Package:** `com.learney.contentaudit.auditcli.formatting`
@@ -830,6 +842,19 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 
 **Framework types:** Repository
 
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `baseDir` | `Path` |
+
+**Generated constructor:**
+```java
+public FileSystemAuditReportStore(Path baseDir) {
+    this.baseDir = baseDir;
+}
+```
+
 #### FileSystemRefinementPlanStore
 
 **Package:** `com.learney.contentaudit.auditinfrastructure`
@@ -837,6 +862,19 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 **Implements:** RefinementPlanStore
 
 **Framework types:** Repository
+
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `baseDir` | `Path` |
+
+**Generated constructor:**
+```java
+public FileSystemRefinementPlanStore(Path baseDir) {
+    this.baseDir = baseDir;
+}
+```
 
 #### FileSystemRevisionArtifactStore
 
@@ -846,6 +884,19 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 
 **Framework types:** Repository
 
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `baseDir` | `Path` |
+
+**Generated constructor:**
+```java
+public FileSystemRevisionArtifactStore(Path baseDir) {
+    this.baseDir = baseDir;
+}
+```
+
 #### FileSystemImpactPreviewStore
 
 **Package:** `com.learney.contentaudit.auditinfrastructure`
@@ -853,6 +904,19 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 **Implements:** ImpactPreviewStore
 
 **Framework types:** Repository
+
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `baseDir` | `Path` |
+
+**Generated constructor:**
+```java
+public FileSystemImpactPreviewStore(Path baseDir) {
+    this.baseDir = baseDir;
+}
+```
 
 #### FileSystemActiveAnalysisSelectionStore
 
@@ -887,6 +951,13 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 **Package:** `com.learney.contentaudit.revisiondomain.engine`
 **Visibility:** internal
 **Implements:** RevisionValidatorResult
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `verdict` | `RevisionVerdict` |
+| `rejectionReason` | `Optional<String>` |
 
 #### DispatchingReviser (package: engine)
 
@@ -1019,6 +1090,13 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | Name | Type |
 |------|------|
 | `revisionArtifactStore` | `RevisionArtifactStore` |
+| `activeAnalysisSelectionStore` | `ActiveAnalysisSelectionStore` |
+| `auditReportStore` | `AuditReportStore` |
+| `refinementPlanStore` | `RefinementPlanStore` |
+| `courseRepository` | `CourseRepository` |
+| `courseElementLocator` | `CourseElementLocator` |
+| `courseMapper` | `CourseMapper` |
+| `auditEngine` | `AuditEngine` |
 
 #### LemmaAbsenceMvpStrategy (package: lemmaabsence)
 

@@ -32,7 +32,10 @@ public class FileSystemRefinementPlanStore implements RefinementPlanStore {
     private final Path baseDir;
     private final ObjectMapper objectMapper;
 
-
+public FileSystemRefinementPlanStore(Path baseDir) {
+    this.baseDir = baseDir;
+    this.objectMapper = createObjectMapper();
+}
 
     // -------------------------------------------------------------------------
     // RefinementPlanStore

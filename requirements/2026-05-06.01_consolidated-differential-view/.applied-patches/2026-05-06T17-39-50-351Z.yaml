@@ -1,0 +1,34 @@
+code: FEAT-CDIFF
+description: "Fix DefaultAuditRunner.requiresInject: delete bogus 'contentAudit: ContentAudit'\
+  \ (ContentAudit is the system name, not a Java type) and unused 'courseMapper: CourseMapper'\
+  \ (the body never references it; only courseToAuditableMapper is used). Add the\
+  \ two fields the body actually uses: 'allAnalyzers: List<ContentAnalyzer>' and 'scoreAggregator:\
+  \ ScoreAggregator'. Both are referenced in runAudit() and runDetailedAudit() and\
+  \ both call sites (Main.java:254 and DefaultAuditRunnerTest:37) already pass them\
+  \ as the 4th and 5th arguments to the constructor."
+modules:
+- name: audit-application
+  implementations:
+  - name: DefaultAuditRunner
+    requiresInject:
+    - name: contentAudit
+      type: ContentAudit
+      _change: delete
+    - name: courseMapper
+      type: CourseMapper
+      _change: delete
+    - name: allAnalyzers
+      type: List<ContentAnalyzer>
+      description: "Lista completa de analyzers disponibles. runAudit() y runDetailedAudit()\
+        \ filtran este set por nombre cuando el caller pide un subset; cuando analyzerNames\
+        \ es null o vacio, se delega al auditEngine inyectado (todos los analyzers\
+        \ del default)."
+      _change: add
+    - name: scoreAggregator
+      type: ScoreAggregator
+      description: Agregador de scores que se usa para construir IAuditEngine instances
+        ad-hoc cuando el caller filtra analyzers por nombre. Mismo aggregator que
+        el auditEngine principal usa internamente.
+      _change: add
+    _change: modify
+  _change: modify

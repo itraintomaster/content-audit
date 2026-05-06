@@ -2529,6 +2529,12 @@ modules:
     - name: QuizSentenceSerializer
     - name: QuizSentenceParser
     - name: PlainSentenceDeriver
+      requiresInject:
+      - name: whitespaceNormalizer
+        type: WhitespaceNormalizer
+        description: "Helper de normalizacion de whitespace (collapse runs, trim)\
+          \ usado al final de buildSentenceFromParts para cumplir R019 sobre la oracion\
+          \ derivada."
     - name: WhitespaceNormalizer
 - name: refiner-domain
   description: Domain module for the refinement workflow. Defines the plan/task model
@@ -3221,12 +3227,19 @@ modules:
       type: CourseRepository
     - name: courseToAuditableMapper
       type: CourseToAuditableMapper
-    - name: contentAudit
-      type: ContentAudit
-    - name: courseMapper
-      type: CourseMapper
     - name: auditEngine
       type: AuditEngine
+    - name: allAnalyzers
+      type: List<ContentAnalyzer>
+      description: "Lista completa de analyzers disponibles. runAudit() y runDetailedAudit()\
+        \ filtran este set por nombre cuando el caller pide un subset; cuando analyzerNames\
+        \ es null o vacio, se delega al auditEngine inyectado (todos los analyzers\
+        \ del default)."
+    - name: scoreAggregator
+      type: ScoreAggregator
+      description: Agregador de scores que se usa para construir IAuditEngine instances
+        ad-hoc cuando el caller filtra analyzers por nombre. Mismo aggregator que
+        el auditEngine principal usa internamente.
     types:
     - Service
     visibility: public
@@ -5468,6 +5481,11 @@ modules:
       implements:
       - ReportFormatter
     - name: DefaultFormatterRegistry
+      requiresInject:
+      - name: formatters
+        type: "Map<String, ReportFormatter>"
+        description: Mapa formato -> formatter (text / json / table). Lo construye
+          la composition root (audit-cli.Main:256-260) y lo inyecta como un solo argumento.
       types:
       - Component
       visibility: public
@@ -5948,6 +5966,12 @@ modules:
   - revision-domain
   implementations:
   - name: FileSystemAuditReportStore
+    requiresInject:
+    - name: baseDir
+      type: Path
+      description: Directorio raiz bajo el cual se resuelve .content-audit/audits/.
+        Lo provee la composition root (audit-cli.Main) tipicamente como Path.of(System.getProperty("user.dir"))
+        o el path del flag --course.
     types:
     - Repository
     visibility: public
@@ -5957,12 +5981,22 @@ modules:
     implements:
     - AuditReportStore
   - name: FileSystemRefinementPlanStore
+    requiresInject:
+    - name: baseDir
+      type: Path
+      description: Directorio raiz bajo el cual se resuelve .content-audit/refinement-plans/.
+        Lo provee la composition root (audit-cli.Main).
     types:
     - Repository
     visibility: public
     implements:
     - RefinementPlanStore
   - name: FileSystemRevisionArtifactStore
+    requiresInject:
+    - name: baseDir
+      type: Path
+      description: Directorio raiz bajo el cual se resuelve .content-audit/revisions/<planId>/.
+        Lo provee la composition root (audit-cli.Main).
     types:
     - Repository
     visibility: public
@@ -6042,6 +6076,11 @@ modules:
     implements:
     - RevisionArtifactStore
   - name: FileSystemImpactPreviewStore
+    requiresInject:
+    - name: baseDir
+      type: Path
+      description: Directorio raiz bajo el cual se resuelve .content-audit/revisions/<planId>/<proposalId>.preview.json.
+        Lo provee la composition root (audit-cli.Main).
     types:
     - Repository
     visibility: public
@@ -6600,6 +6639,15 @@ modules:
       implements:
       - RevisionValidator
     - name: DefaultRevisionValidatorResult
+      requiresInject:
+      - name: verdict
+        type: RevisionVerdict
+        description: Verdict resultante de evaluar la proposal (APPROVED / REJECTED
+          / PENDING_APPROVAL).
+      - name: rejectionReason
+        type: Optional<String>
+        description: Detalle textual cuando verdict=REJECTED; Optional.empty() cuando
+          APPROVED o PENDING_APPROVAL.
       implements:
       - RevisionValidatorResult
     - name: DispatchingReviser
@@ -7149,6 +7197,42 @@ modules:
           \ a pendingProjection y a NodeImpact.pendingProposalId, o cae en NonApplicablePending\
           \ si choca); REJECTED se descarta y no contribuye a ningun campo de la salida\
           \ (F-CDIFF-R005)."
+      - name: activeAnalysisSelectionStore
+        type: ActiveAnalysisSelectionStore
+        description: "Lee el par activo (auditId, planId). Si retorna Optional.empty,\
+          \ el builder produce ConsolidatedView con availability=UNAVAILABLE/reason=NO_ACTIVE_ANALYSIS\
+          \ y nodeImpacts/statisticImpacts vacios (F-CDIFF-R013)."
+      - name: auditReportStore
+        type: AuditReportStore
+        description: "Carga el AuditReport baseline correspondiente al activeAuditId.\
+          \ NUNCA se invoca .save sobre este store; el builder solo lee (F-CDIFF-R015).\
+          \ Si la carga falla por inconsistencia, contribuye a availability=UNAVAILABLE/reason=INCONSISTENT_PROPOSAL\
+          \ o REAGGREGATION_FAILED segun la causa."
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+        description: "Resuelve activePlanId dentro del activeAuditId. Si no se ubica,\
+          \ availability=UNAVAILABLE/reason=ACTIVE_PLAN_UNAVAILABLE (F-CDIFF-R013).\
+          \ NUNCA se invoca .save sobre este store (F-CDIFF-R015)."
+      - name: courseRepository
+        type: CourseRepository
+        description: Carga CourseEntity desde coursePath para que courseElementLocator
+          pueda resolver snapshots y replaces sobre el subarbol vigente.
+      - name: courseElementLocator
+        type: CourseElementLocator
+        description: "snapshot(courseEntity, nodeId) y replace(courseEntity, elementAfter)\
+          \ para aplicar aceptadas y simular pendientes en memoria. Si snapshot retorna\
+          \ empty para un nodeId referenciado por una pendiente, esa pendiente cae\
+          \ en NonApplicablePending con reason=NODE_ABSENT (F-CDIFF-R012)."
+      - name: courseMapper
+        type: CourseMapper
+        description: "Pure transformation CourseEntity -> AuditableCourse, requerido\
+          \ como input al re-correr AuditEngine sobre el subarbol modificado para\
+          \ re-agregar metricas de padres con la estrategia del analizador (F-CDIFF-R008)."
+      - name: auditEngine
+        type: AuditEngine
+        description: "Re-corre runAudit sobre AuditableCourse derivado del curso post-aceptadas\
+          \ (consolidated) y post-pendientes (pendingProjection). Si la re-agregacion\
+          \ falla, availability=UNAVAILABLE/reason=REAGGREGATION_FAILED (F-CDIFF-R013)."
       types:
       - Component
       handwrittenTests:

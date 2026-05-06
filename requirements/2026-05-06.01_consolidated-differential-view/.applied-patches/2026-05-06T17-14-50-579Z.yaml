@@ -1,0 +1,106 @@
+code: FEAT-CDIFF
+description: "Restore Path baseDir injection for the four FileSystem* stores in audit-infrastructure\
+  \ (FileSystemAuditReportStore, FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore,\
+  \ FileSystemImpactPreviewStore) and verdict/rejectionReason injection for DefaultRevisionValidatorResult.\
+  \ The previous scaffold regen (cc66adb) emitted these as @Generated files without\
+  \ requiresInject, so the field declarations remained but the constructors were dropped\
+  \ — these implementations are now uncompilable. The correct architectural state\
+  \ is: the generator owns the constructor; baseDir is injected; ObjectMapper stays\
+  \ hand-built internally inside each store via a private createObjectMapper() (infrastructural\
+  \ primitive, not a domain port). The four stores never received ObjectMapper from\
+  \ the outside (Main.java:281-284 instantiates each with a single Path argument).;\
+  \ Add requiresInject formatters(Map<String, ReportFormatter>) to DefaultFormatterRegistry.\
+  \ Same root cause as the four FileSystem* stores and DefaultRevisionValidatorResult:\
+  \ scaffold cc66adb regenerated the @Generated file with the field declared but no\
+  \ constructor because requiresInject was empty. Map<String, X> generics are already\
+  \ used as field types elsewhere in sentinel.yaml (e.g. DispatchingDetailedFormatter.formatters:\
+  \ Map<String, DetailedFormatter>) so the syntax is supported. Main.java:261 already\
+  \ instantiates with a single Map argument.; Add requiresInject whitespaceNormalizer(WhitespaceNormalizer)\
+  \ to PlainSentenceDeriver in course-domain.quizsentenceengine. Same root cause as\
+  \ the rest of the batch: scaffold cc66adb regenerated the @Generated file with the\
+  \ field declared but no constructor."
+modules:
+- name: audit-infrastructure
+  implementations:
+  - name: FileSystemAuditReportStore
+    requiresInject:
+    - name: baseDir
+      type: Path
+      description: Directorio raiz bajo el cual se resuelve .content-audit/audits/.
+        Lo provee la composition root (audit-cli.Main) tipicamente como Path.of(System.getProperty("user.dir"))
+        o el path del flag --course.
+      _change: add
+    _change: modify
+  - name: FileSystemRefinementPlanStore
+    requiresInject:
+    - name: baseDir
+      type: Path
+      description: Directorio raiz bajo el cual se resuelve .content-audit/refinement-plans/.
+        Lo provee la composition root (audit-cli.Main).
+      _change: add
+    _change: modify
+  - name: FileSystemRevisionArtifactStore
+    requiresInject:
+    - name: baseDir
+      type: Path
+      description: Directorio raiz bajo el cual se resuelve .content-audit/revisions/<planId>/.
+        Lo provee la composition root (audit-cli.Main).
+      _change: add
+    _change: modify
+  - name: FileSystemImpactPreviewStore
+    requiresInject:
+    - name: baseDir
+      type: Path
+      description: Directorio raiz bajo el cual se resuelve .content-audit/revisions/<planId>/<proposalId>.preview.json.
+        Lo provee la composition root (audit-cli.Main).
+      _change: add
+    _change: modify
+  _change: modify
+- name: revision-domain
+  packages:
+  - name: engine
+    implementations:
+    - name: DefaultRevisionValidatorResult
+      requiresInject:
+      - name: verdict
+        type: RevisionVerdict
+        description: Verdict resultante de evaluar la proposal (APPROVED / REJECTED
+          / PENDING_APPROVAL).
+        _change: add
+      - name: rejectionReason
+        type: Optional<String>
+        description: Detalle textual cuando verdict=REJECTED; Optional.empty() cuando
+          APPROVED o PENDING_APPROVAL.
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-cli
+  packages:
+  - name: formatting
+    implementations:
+    - name: DefaultFormatterRegistry
+      requiresInject:
+      - name: formatters
+        type: "Map<String, ReportFormatter>"
+        description: Mapa formato -> formatter (text / json / table). Lo construye
+          la composition root (audit-cli.Main:256-260) y lo inyecta como un solo argumento.
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+- name: course-domain
+  packages:
+  - name: quizsentenceengine
+    implementations:
+    - name: PlainSentenceDeriver
+      requiresInject:
+      - name: whitespaceNormalizer
+        type: WhitespaceNormalizer
+        description: "Helper de normalizacion de whitespace (collapse runs, trim)\
+          \ usado al final de buildSentenceFromParts para cumplir R019 sobre la oracion\
+          \ derivada."
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify

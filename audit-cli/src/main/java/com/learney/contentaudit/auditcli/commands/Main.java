@@ -101,8 +101,14 @@ import com.learney.contentaudit.auditcli.formatting.DefaultReportViewModelTransf
 import com.learney.contentaudit.auditcli.formatting.TableReportFormatter;
 import com.learney.contentaudit.auditcli.formatting.DefaultImpactPreviewFormatter;
 import com.learney.contentaudit.auditcli.formatting.TextReportFormatter;
+import com.learney.contentaudit.auditinfrastructure.FileSystemActiveAnalysisSelectionStore;
 import com.learney.contentaudit.auditinfrastructure.FileSystemImpactPreviewStore;
+import com.learney.contentaudit.auditdomain.ActiveAnalysisSelectionStore;
 import com.learney.contentaudit.revisiondomain.ImpactPreviewStore;
+import com.learney.contentaudit.revisiondomain.ConsolidatedViewBuilderConfig;
+import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewBuilder;
+import com.learney.contentaudit.revisiondomain.engine.DefaultConsolidatedViewBuilderFactory;
+import com.learney.contentaudit.auditcli.formatting.DefaultConsolidatedViewFormatter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -282,6 +288,8 @@ class Main {
         RefinementPlanStore refinementPlanStore = new FileSystemRefinementPlanStore(baseDir);
         RevisionArtifactStore revisionArtifactStore = new FileSystemRevisionArtifactStore(baseDir);
         ImpactPreviewStore impactPreviewStore = new FileSystemImpactPreviewStore(baseDir);
+        ActiveAnalysisSelectionStore activeAnalysisSelectionStore =
+                new FileSystemActiveAnalysisSelectionStore(baseDir);
 
         // ----------------------------------------------------------------
         // Step 7: Refiner + Revision engines
@@ -454,6 +462,26 @@ class Main {
         PruneCmd pruneCmd = new PruneCmd(auditReportStore, refinementPlanStore);
         pruneCmd.setBaseDir(baseDir);
         cmd.addSubcommand("prune", new picocli.CommandLine(pruneCmd));
+
+        // set-active — write/clear the active (auditId, planId) pair (F-CDIFF-R001, R002)
+        DefaultSetActiveAnalysisCommand setActiveCmd = new DefaultSetActiveAnalysisCommand(activeAnalysisSelectionStore);
+        cmd.addSubcommand("set-active", new picocli.CommandLine(new SetActiveCmd(setActiveCmd)));
+
+        // get-consolidated — build and format the consolidated view (F-CDIFF-R001, R013 detail 3)
+        ConsolidatedViewBuilderConfig builderConfig = new ConsolidatedViewBuilderConfig(
+                activeAnalysisSelectionStore,
+                auditReportStore,
+                refinementPlanStore,
+                revisionArtifactStore,
+                (com.learney.contentaudit.coursedomain.CourseRepository) courseRepository,
+                null, // factory creates DefaultCourseElementLocator internally (package-private)
+                courseToAuditableMapper,
+                auditEngine);
+        ConsolidatedViewBuilder consolidatedViewBuilder =
+                new DefaultConsolidatedViewBuilderFactory().create(builderConfig);
+        DefaultGetConsolidatedCommand getConsolidatedCmd = new DefaultGetConsolidatedCommand(
+                consolidatedViewBuilder, new DefaultConsolidatedViewFormatter());
+        cmd.addSubcommand("get-consolidated", new picocli.CommandLine(new GetConsolidatedCmd(getConsolidatedCmd)));
 
         // ----------------------------------------------------------------
         // Step 9: Execute

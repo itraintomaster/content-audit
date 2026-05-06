@@ -18,6 +18,18 @@ final class DefaultSetActiveAnalysisCommand implements SetActiveAnalysisCommand 
 
     @Override
     public Integer setActive(String auditId, String planId) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (auditId == null && planId == null) {
+            activeAnalysisSelectionStore.clear();
+            System.out.println("Active analysis selection cleared.");
+            return 0;
+        }
+        if (auditId == null || planId == null) {
+            System.err.println("Error: both auditId and planId must be provided together, or both must be omitted to clear.");
+            return 1;
+        }
+        activeAnalysisSelectionStore.write(
+                new com.learney.contentaudit.auditdomain.ActiveAnalysisSelection(auditId, planId));
+        System.out.println("Active analysis set to audit=" + auditId + " plan=" + planId);
+        return 0;
     }
 }

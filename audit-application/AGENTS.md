@@ -63,9 +63,9 @@ Methods:
 
 - `courseRepository`: `CourseRepository`
 - `courseToAuditableMapper`: `CourseToAuditableMapper`
-- `contentAudit`: `ContentAudit`
-- `courseMapper`: `CourseMapper`
 - `auditEngine`: `AuditEngine`
+- `allAnalyzers`: `List<ContentAnalyzer>`
+- `scoreAggregator`: `ScoreAggregator`
 
 **Tests that must pass:**
 

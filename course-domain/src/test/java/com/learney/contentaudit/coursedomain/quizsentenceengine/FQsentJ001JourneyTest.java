@@ -61,7 +61,7 @@ public class FQsentJ001JourneyTest {
         QuizSentenceConverter converter = new DefaultQuizSentenceConverter(
                 new QuizSentenceSerializer(),
                 new QuizSentenceParser(),
-                new PlainSentenceDeriver());
+                new PlainSentenceDeriver(new WhitespaceNormalizer()));
 
         FormEntity original = form(
                 text("He"),
@@ -147,7 +147,7 @@ public class FQsentJ001JourneyTest {
         QuizSentenceConverter converter = new DefaultQuizSentenceConverter(
                 new QuizSentenceSerializer(),
                 new QuizSentenceParser(),
-                new PlainSentenceDeriver());
+                new PlainSentenceDeriver(new WhitespaceNormalizer()));
 
         FormEntity invalidNullOptions = form(
                 text("He "),

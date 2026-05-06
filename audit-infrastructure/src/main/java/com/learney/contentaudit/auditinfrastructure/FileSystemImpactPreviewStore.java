@@ -35,7 +35,14 @@ public class FileSystemImpactPreviewStore implements ImpactPreviewStore {
     private final Path baseDir;
     private final ObjectMapper objectMapper;
 
+public FileSystemImpactPreviewStore() {
+    this(Path.of(System.getProperty("user.dir")));
+}
 
+public FileSystemImpactPreviewStore(Path baseDir) {
+    this.baseDir = baseDir;
+    this.objectMapper = createObjectMapper();
+}
 
     // -------------------------------------------------------------------------
     // ImpactPreviewStore

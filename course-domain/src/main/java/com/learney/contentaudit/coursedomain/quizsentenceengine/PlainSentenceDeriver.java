@@ -37,6 +37,10 @@ class PlainSentenceDeriver {
 
     private final WhitespaceNormalizer whitespaceNormalizer;
 
+public PlainSentenceDeriver(WhitespaceNormalizer whitespaceNormalizer) {
+    this.whitespaceNormalizer = whitespaceNormalizer;
+}
+
 
     /**
      * Derives all plain sentences from {@code form.sentenceParts}.

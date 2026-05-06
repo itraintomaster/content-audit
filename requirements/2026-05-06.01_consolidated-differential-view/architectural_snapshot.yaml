@@ -7,7 +7,38 @@ description: "FEAT-CDIFF: Estructura consolidada por AuditReport con propuestas 
   \ CourseElementLocator + CourseMapper + AuditEngine para re-agregar baseline ->\
   \ consolidated -> pendingProjection sin emitir AuditReport.; FEAT-CDIFF: Refinamiento\
   \ del texto del campo revisionArtifactStore en DefaultConsolidatedViewBuilder para\
-  \ hacer explicita la R005 (REJECTED se descarta, no contribuye a ningun consolidado)."
+  \ hacer explicita la R005 (REJECTED se descarta, no contribuye a ningun consolidado).;\
+  \ Add missing requiresInject entries to DefaultConsolidatedViewBuilder so build()\
+  \ can access activeAnalysisSelectionStore, auditReportStore, refinementPlanStore,\
+  \ courseRepository, courseElementLocator, courseMapper and auditEngine. The factory\
+  \ unpacks ConsolidatedViewBuilderConfig and passes each field individually to the\
+  \ builder constructor — same pattern as DefaultImpactPreviewComputer.; Restore Path\
+  \ baseDir injection for the four FileSystem* stores in audit-infrastructure (FileSystemAuditReportStore,\
+  \ FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore, FileSystemImpactPreviewStore)\
+  \ and verdict/rejectionReason injection for DefaultRevisionValidatorResult. The\
+  \ previous scaffold regen (cc66adb) emitted these as @Generated files without requiresInject,\
+  \ so the field declarations remained but the constructors were dropped — these implementations\
+  \ are now uncompilable. The correct architectural state is: the generator owns the\
+  \ constructor; baseDir is injected; ObjectMapper stays hand-built internally inside\
+  \ each store via a private createObjectMapper() (infrastructural primitive, not\
+  \ a domain port). The four stores never received ObjectMapper from the outside (Main.java:281-284\
+  \ instantiates each with a single Path argument).; Add requiresInject formatters(Map<String,\
+  \ ReportFormatter>) to DefaultFormatterRegistry. Same root cause as the four FileSystem*\
+  \ stores and DefaultRevisionValidatorResult: scaffold cc66adb regenerated the @Generated\
+  \ file with the field declared but no constructor because requiresInject was empty.\
+  \ Map<String, X> generics are already used as field types elsewhere in sentinel.yaml\
+  \ (e.g. DispatchingDetailedFormatter.formatters: Map<String, DetailedFormatter>)\
+  \ so the syntax is supported. Main.java:261 already instantiates with a single Map\
+  \ argument.; Add requiresInject whitespaceNormalizer(WhitespaceNormalizer) to PlainSentenceDeriver\
+  \ in course-domain.quizsentenceengine. Same root cause as the rest of the batch:\
+  \ scaffold cc66adb regenerated the @Generated file with the field declared but no\
+  \ constructor.; Fix DefaultAuditRunner.requiresInject: delete bogus 'contentAudit:\
+  \ ContentAudit' (ContentAudit is the system name, not a Java type) and unused 'courseMapper:\
+  \ CourseMapper' (the body never references it; only courseToAuditableMapper is used).\
+  \ Add the two fields the body actually uses: 'allAnalyzers: List<ContentAnalyzer>'\
+  \ and 'scoreAggregator: ScoreAggregator'. Both are referenced in runAudit() and\
+  \ runDetailedAudit() and both call sites (Main.java:254 and DefaultAuditRunnerTest:37)\
+  \ already pass them as the 4th and 5th arguments to the constructor."
 modules:
 - name: audit-domain
   models:
@@ -54,6 +85,39 @@ modules:
     implements:
     - ActiveAnalysisSelectionStore
     _change: add
+  - name: FileSystemAuditReportStore
+    requiresInject:
+    - name: baseDir
+      type: Path
+      description: Directorio raiz bajo el cual se resuelve .content-audit/audits/.
+        Lo provee la composition root (audit-cli.Main) tipicamente como Path.of(System.getProperty("user.dir"))
+        o el path del flag --course.
+      _change: add
+    _change: modify
+  - name: FileSystemRefinementPlanStore
+    requiresInject:
+    - name: baseDir
+      type: Path
+      description: Directorio raiz bajo el cual se resuelve .content-audit/refinement-plans/.
+        Lo provee la composition root (audit-cli.Main).
+      _change: add
+    _change: modify
+  - name: FileSystemRevisionArtifactStore
+    requiresInject:
+    - name: baseDir
+      type: Path
+      description: Directorio raiz bajo el cual se resuelve .content-audit/revisions/<planId>/.
+        Lo provee la composition root (audit-cli.Main).
+      _change: add
+    _change: modify
+  - name: FileSystemImpactPreviewStore
+    requiresInject:
+    - name: baseDir
+      type: Path
+      description: Directorio raiz bajo el cual se resuelve .content-audit/revisions/<planId>/<proposalId>.preview.json.
+        Lo provee la composition root (audit-cli.Main).
+      _change: add
+    _change: modify
   _change: modify
 - name: revision-domain
   description: "Domain module for the revision phase of the refinement pipeline. Consumes\
@@ -330,19 +394,67 @@ modules:
       _change: add
     - name: DefaultConsolidatedViewBuilder
       requiresInject:
-      - name: revisionArtifactStore
-        type: RevisionArtifactStore
-        description: "listByPlan(activePlanId) y particionado por verdict: APPROVED\
-          \ se aplica como aceptada (contribuye a consolidated y a NodeImpact.acceptedProposalIds);\
-          \ PENDING_APPROVAL se aplica como pendiente sobre el consolidated (contribuye\
-          \ a pendingProjection y a NodeImpact.pendingProposalId, o cae en NonApplicablePending\
-          \ si choca); REJECTED se descarta y no contribuye a ningun campo de la salida\
-          \ (F-CDIFF-R005)."
+      - name: activeAnalysisSelectionStore
+        type: ActiveAnalysisSelectionStore
+        description: "Lee el par activo (auditId, planId). Si retorna Optional.empty,\
+          \ el builder produce ConsolidatedView con availability=UNAVAILABLE/reason=NO_ACTIVE_ANALYSIS\
+          \ y nodeImpacts/statisticImpacts vacios (F-CDIFF-R013)."
+        _change: add
+      - name: auditReportStore
+        type: AuditReportStore
+        description: "Carga el AuditReport baseline correspondiente al activeAuditId.\
+          \ NUNCA se invoca .save sobre este store; el builder solo lee (F-CDIFF-R015).\
+          \ Si la carga falla por inconsistencia, contribuye a availability=UNAVAILABLE/reason=INCONSISTENT_PROPOSAL\
+          \ o REAGGREGATION_FAILED segun la causa."
+        _change: add
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+        description: "Resuelve activePlanId dentro del activeAuditId. Si no se ubica,\
+          \ availability=UNAVAILABLE/reason=ACTIVE_PLAN_UNAVAILABLE (F-CDIFF-R013).\
+          \ NUNCA se invoca .save sobre este store (F-CDIFF-R015)."
+        _change: add
+      - name: courseRepository
+        type: CourseRepository
+        description: Carga CourseEntity desde coursePath para que courseElementLocator
+          pueda resolver snapshots y replaces sobre el subarbol vigente.
+        _change: add
+      - name: courseElementLocator
+        type: CourseElementLocator
+        description: "snapshot(courseEntity, nodeId) y replace(courseEntity, elementAfter)\
+          \ para aplicar aceptadas y simular pendientes en memoria. Si snapshot retorna\
+          \ empty para un nodeId referenciado por una pendiente, esa pendiente cae\
+          \ en NonApplicablePending con reason=NODE_ABSENT (F-CDIFF-R012)."
+        _change: add
+      - name: courseMapper
+        type: CourseMapper
+        description: "Pure transformation CourseEntity -> AuditableCourse, requerido\
+          \ como input al re-correr AuditEngine sobre el subarbol modificado para\
+          \ re-agregar metricas de padres con la estrategia del analizador (F-CDIFF-R008)."
+        _change: add
+      - name: auditEngine
+        type: AuditEngine
+        description: "Re-corre runAudit sobre AuditableCourse derivado del curso post-aceptadas\
+          \ (consolidated) y post-pendientes (pendingProjection). Si la re-agregacion\
+          \ falla, availability=UNAVAILABLE/reason=REAGGREGATION_FAILED (F-CDIFF-R013)."
+        _change: add
       types:
       - Component
       implements:
       - ConsolidatedViewBuilder
       _change: add
+    - name: DefaultRevisionValidatorResult
+      requiresInject:
+      - name: verdict
+        type: RevisionVerdict
+        description: Verdict resultante de evaluar la proposal (APPROVED / REJECTED
+          / PENDING_APPROVAL).
+        _change: add
+      - name: rejectionReason
+        type: Optional<String>
+        description: Detalle textual cuando verdict=REJECTED; Optional.empty() cuando
+          APPROVED o PENDING_APPROVAL.
+        _change: add
+      _change: modify
     _change: modify
   _change: modify
 - name: audit-cli
@@ -402,6 +514,54 @@ modules:
       visibility: public
       implements:
       - ConsolidatedViewFormatter
+      _change: add
+    - name: DefaultFormatterRegistry
+      requiresInject:
+      - name: formatters
+        type: "Map<String, ReportFormatter>"
+        description: Mapa formato -> formatter (text / json / table). Lo construye
+          la composition root (audit-cli.Main:256-260) y lo inyecta como un solo argumento.
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+- name: course-domain
+  packages:
+  - name: quizsentenceengine
+    implementations:
+    - name: PlainSentenceDeriver
+      requiresInject:
+      - name: whitespaceNormalizer
+        type: WhitespaceNormalizer
+        description: "Helper de normalizacion de whitespace (collapse runs, trim)\
+          \ usado al final de buildSentenceFromParts para cumplir R019 sobre la oracion\
+          \ derivada."
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-application
+  implementations:
+  - name: DefaultAuditRunner
+    requiresInject:
+    - name: contentAudit
+      type: ContentAudit
+      _change: delete
+    - name: courseMapper
+      type: CourseMapper
+      _change: delete
+    - name: allAnalyzers
+      type: List<ContentAnalyzer>
+      description: "Lista completa de analyzers disponibles. runAudit() y runDetailedAudit()\
+        \ filtran este set por nombre cuando el caller pide un subset; cuando analyzerNames\
+        \ es null o vacio, se delega al auditEngine inyectado (todos los analyzers\
+        \ del default)."
+      _change: add
+    - name: scoreAggregator
+      type: ScoreAggregator
+      description: Agregador de scores que se usa para construir IAuditEngine instances
+        ad-hoc cuando el caller filtra analyzers por nombre. Mismo aggregator que
+        el auditEngine principal usa internamente.
       _change: add
     _change: modify
   _change: modify

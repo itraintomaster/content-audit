@@ -1,0 +1,59 @@
+code: FEAT-CDIFF
+description: "Add missing requiresInject entries to DefaultConsolidatedViewBuilder\
+  \ so build() can access activeAnalysisSelectionStore, auditReportStore, refinementPlanStore,\
+  \ courseRepository, courseElementLocator, courseMapper and auditEngine. The factory\
+  \ unpacks ConsolidatedViewBuilderConfig and passes each field individually to the\
+  \ builder constructor — same pattern as DefaultImpactPreviewComputer."
+modules:
+- name: revision-domain
+  packages:
+  - name: engine
+    implementations:
+    - name: DefaultConsolidatedViewBuilder
+      requiresInject:
+      - name: activeAnalysisSelectionStore
+        type: ActiveAnalysisSelectionStore
+        description: "Lee el par activo (auditId, planId). Si retorna Optional.empty,\
+          \ el builder produce ConsolidatedView con availability=UNAVAILABLE/reason=NO_ACTIVE_ANALYSIS\
+          \ y nodeImpacts/statisticImpacts vacios (F-CDIFF-R013)."
+        _change: add
+      - name: auditReportStore
+        type: AuditReportStore
+        description: "Carga el AuditReport baseline correspondiente al activeAuditId.\
+          \ NUNCA se invoca .save sobre este store; el builder solo lee (F-CDIFF-R015).\
+          \ Si la carga falla por inconsistencia, contribuye a availability=UNAVAILABLE/reason=INCONSISTENT_PROPOSAL\
+          \ o REAGGREGATION_FAILED segun la causa."
+        _change: add
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+        description: "Resuelve activePlanId dentro del activeAuditId. Si no se ubica,\
+          \ availability=UNAVAILABLE/reason=ACTIVE_PLAN_UNAVAILABLE (F-CDIFF-R013).\
+          \ NUNCA se invoca .save sobre este store (F-CDIFF-R015)."
+        _change: add
+      - name: courseRepository
+        type: CourseRepository
+        description: Carga CourseEntity desde coursePath para que courseElementLocator
+          pueda resolver snapshots y replaces sobre el subarbol vigente.
+        _change: add
+      - name: courseElementLocator
+        type: CourseElementLocator
+        description: "snapshot(courseEntity, nodeId) y replace(courseEntity, elementAfter)\
+          \ para aplicar aceptadas y simular pendientes en memoria. Si snapshot retorna\
+          \ empty para un nodeId referenciado por una pendiente, esa pendiente cae\
+          \ en NonApplicablePending con reason=NODE_ABSENT (F-CDIFF-R012)."
+        _change: add
+      - name: courseMapper
+        type: CourseMapper
+        description: "Pure transformation CourseEntity -> AuditableCourse, requerido\
+          \ como input al re-correr AuditEngine sobre el subarbol modificado para\
+          \ re-agregar metricas de padres con la estrategia del analizador (F-CDIFF-R008)."
+        _change: add
+      - name: auditEngine
+        type: AuditEngine
+        description: "Re-corre runAudit sobre AuditableCourse derivado del curso post-aceptadas\
+          \ (consolidated) y post-pendientes (pendingProjection). Si la re-agregacion\
+          \ falla, availability=UNAVAILABLE/reason=REAGGREGATION_FAILED (F-CDIFF-R013)."
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify

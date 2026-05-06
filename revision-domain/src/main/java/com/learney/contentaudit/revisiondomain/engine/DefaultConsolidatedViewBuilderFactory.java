@@ -12,6 +12,18 @@ import javax.annotation.processing.Generated;
 public class DefaultConsolidatedViewBuilderFactory implements ConsolidatedViewBuilderFactory {
     @Override
     public ConsolidatedViewBuilder create(ConsolidatedViewBuilderConfig config) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        com.learney.contentaudit.revisiondomain.CourseElementLocator locator =
+                config.getCourseElementLocator() != null
+                        ? config.getCourseElementLocator()
+                        : new DefaultCourseElementLocator();
+        return new DefaultConsolidatedViewBuilder(
+                config.getRevisionArtifactStore(),
+                config.getActiveAnalysisSelectionStore(),
+                config.getAuditReportStore(),
+                config.getRefinementPlanStore(),
+                config.getCourseRepository(),
+                locator,
+                config.getCourseMapper(),
+                config.getAuditEngine());
     }
 }

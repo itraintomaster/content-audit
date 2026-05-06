@@ -41,7 +41,10 @@ public class FileSystemAuditReportStore implements AuditReportStore {
     private final Path baseDir;
     private final ObjectMapper objectMapper;
 
-
+public FileSystemAuditReportStore(Path baseDir) {
+    this.baseDir = baseDir;
+    this.objectMapper = AuditReportObjectMapper.create();
+}
 
     // -------------------------------------------------------------------------
     // AuditReportStore

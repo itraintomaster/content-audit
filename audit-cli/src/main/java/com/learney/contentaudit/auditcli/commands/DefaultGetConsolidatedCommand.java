@@ -22,6 +22,19 @@ final class DefaultGetConsolidatedCommand implements GetConsolidatedCommand {
 
     @Override
     public Integer getConsolidated(String coursePath, String format) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (coursePath == null || coursePath.isBlank()) {
+            System.err.println("Error: course path is required.");
+            return 1;
+        }
+
+        java.nio.file.Path path = java.nio.file.Path.of(coursePath);
+        com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedView view =
+                consolidatedViewBuilder.build(path);
+
+        String output = formatter.format(view, format);
+        System.out.println(output);
+
+        // R013 detail 3: UNAVAILABLE does not block; exit 0 in all cases
+        return 0;
     }
 }

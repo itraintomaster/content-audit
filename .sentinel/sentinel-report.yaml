@@ -1,10 +1,10 @@
-generatedAt: 2026-05-06T13:50:08.416079Z
+generatedAt: 2026-05-06T18:21:39.340681Z
 system: ContentAudit
 version: 0.0.1
 features:
 - id: FEAT-DLABS
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
+  requirementFile: requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DLABS-R001
     state: NO_TESTS
@@ -206,7 +206,7 @@ features:
     - mutationScore 40% < 60%
 - id: FEAT-CLIRV
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md
+  requirementFile: requirements/2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLIRV-R001
     state: PASSING
@@ -771,29 +771,29 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 686
-      linesMissed: 537
-      linesTotal: 1223
-      lineCoveragePct: 56
+      linesMissed: 549
+      linesTotal: 1235
+      lineCoveragePct: 55
       branchesCovered: 330
       branchesMissed: 340
       branchesTotal: 670
       branchCoveragePct: 49
       blendPct: 52
     mutation:
-      totalMutants: 735
+      totalMutants: 738
       killed: 187
       survived: 223
-      noCoverage: 325
+      noCoverage: 328
       timedOut: 0
       other: 0
       mutationScorePct: 25
       testStrengthPct: 45
     crap:
-      totalMethods: 113
+      totalMethods: 114
       hotspots: 7
       maxCrap: 248.07379199999997
-      averageCrap: 12.512719690265486
-      simple: 86
+      averageCrap: 12.420502850877192
+      simple: 87
       moderate: 18
       high: 4
       veryHigh: 5
@@ -816,21 +816,21 @@ features:
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: printSnapshotSummary
         methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
-        line: 1081
+        line: 1104
         cyclomatic: 14
         lineCoveragePct: 13
         crap: 143.066588
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: renderSentence
         methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
-        line: 1111
+        line: 1134
         cyclomatic: 11
         lineCoveragePct: 0
         crap: 132.0
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: handleAnalyzers
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 1195
+        line: 1218
         cyclomatic: 7
         lineCoveragePct: 0
         crap: 56.0
@@ -851,13 +851,13 @@ features:
     healthScore: 48
     verdict: WARNED
     violations:
-    - lineCoverage 56% < 70%
+    - lineCoverage 55% < 70%
     - branchCoverage 49% < 60%
     - mutationScore 25% < 60%
     - crapHotspots 7 > 5
 - id: FEAT-LREC
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
+  requirementFile: requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LREC-R001
     state: NO_TESTS
@@ -1027,7 +1027,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCLAQS
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
+  requirementFile: requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLAQS-R001
     state: PASSING
@@ -1160,29 +1160,29 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 663
-      linesMissed: 302
-      linesTotal: 965
-      lineCoveragePct: 68
+      linesMissed: 314
+      linesTotal: 977
+      lineCoveragePct: 67
       branchesCovered: 317
       branchesMissed: 264
       branchesTotal: 581
       branchCoveragePct: 54
-      blendPct: 61
+      blendPct: 60
     mutation:
-      totalMutants: 521
+      totalMutants: 524
       killed: 180
       survived: 175
-      noCoverage: 166
+      noCoverage: 169
       timedOut: 0
       other: 0
       mutationScorePct: 34
       testStrengthPct: 50
     crap:
-      totalMethods: 80
+      totalMethods: 81
       hotspots: 5
       maxCrap: 143.066588
-      averageCrap: 10.781554537499998
-      simple: 59
+      averageCrap: 10.673140283950616
+      simple: 60
       moderate: 13
       high: 5
       veryHigh: 3
@@ -1191,21 +1191,21 @@ features:
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: printSnapshotSummary
         methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
-        line: 1081
+        line: 1104
         cyclomatic: 14
         lineCoveragePct: 13
         crap: 143.066588
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: renderSentence
         methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
-        line: 1111
+        line: 1134
         cyclomatic: 11
         lineCoveragePct: 0
         crap: 132.0
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: handleAnalyzers
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 1195
+        line: 1218
         cyclomatic: 7
         lineCoveragePct: 0
         crap: 56.0
@@ -1226,12 +1226,12 @@ features:
     healthScore: 54
     verdict: WARNED
     violations:
-    - lineCoverage 68% < 70%
+    - lineCoverage 67% < 70%
     - branchCoverage 54% < 60%
     - mutationScore 34% < 60%
 - id: FEAT-DCOCA
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
+  requirementFile: requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DCOCA-R001
     state: NO_TESTS
@@ -1330,7 +1330,7 @@ features:
     verdict: PASSED
 - id: FEAT-QSENT
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-22.01_quiz-sentence-dsl/REQUIREMENT.md
+  requirementFile: requirements/2026-04-22.01_quiz-sentence-dsl/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-QSENT-R001
     state: PASSING
@@ -1657,7 +1657,7 @@ features:
     - mutationScore 36% < 60%
 - id: FEAT-COURSE
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-15.01_course-structure/REQUIREMENT.md
+  requirementFile: requirements/2026-03-15.01_course-structure/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-COURSE-R001
     state: PASSING
@@ -1936,7 +1936,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCLALEN
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-28.02_rcla-length-aware-context/REQUIREMENT.md
+  requirementFile: requirements/2026-04-28.02_rcla-length-aware-context/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLALEN-R001
     state: PASSING
@@ -2164,29 +2164,29 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 624
-      linesMissed: 290
-      linesTotal: 914
-      lineCoveragePct: 68
+      linesMissed: 302
+      linesTotal: 926
+      lineCoveragePct: 67
       branchesCovered: 300
       branchesMissed: 249
       branchesTotal: 549
       branchCoveragePct: 54
-      blendPct: 61
+      blendPct: 60
     mutation:
-      totalMutants: 495
+      totalMutants: 498
       killed: 177
       survived: 156
-      noCoverage: 162
+      noCoverage: 165
       timedOut: 0
       other: 0
       mutationScorePct: 35
       testStrengthPct: 53
     crap:
-      totalMethods: 74
+      totalMethods: 75
       hotspots: 5
       maxCrap: 143.066588
-      averageCrap: 11.34845231081081
-      simple: 54
+      averageCrap: 11.223806279999998
+      simple: 55
       moderate: 12
       high: 5
       veryHigh: 3
@@ -2195,21 +2195,21 @@ features:
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: printSnapshotSummary
         methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
-        line: 1081
+        line: 1104
         cyclomatic: 14
         lineCoveragePct: 13
         crap: 143.066588
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: renderSentence
         methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
-        line: 1111
+        line: 1134
         cyclomatic: 11
         lineCoveragePct: 0
         crap: 132.0
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: handleAnalyzers
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 1195
+        line: 1218
         cyclomatic: 7
         lineCoveragePct: 0
         crap: 56.0
@@ -2230,12 +2230,12 @@ features:
     healthScore: 54
     verdict: WARNED
     violations:
-    - lineCoverage 68% < 70%
+    - lineCoverage 67% < 70%
     - branchCoverage 54% < 60%
     - mutationScore 35% < 60%
 - id: FEAT-COCA
   state: DRAFT
-  requirementFile: ./requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
+  requirementFile: requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-COCA-R001
     state: NO_TESTS
@@ -2358,7 +2358,7 @@ features:
     verdict: PASSED
 - id: FEAT-NLP
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
+  requirementFile: requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-NLP-R001
     state: NO_TESTS
@@ -2497,7 +2497,7 @@ features:
     - mutationScore 32% < 60%
 - id: FEAT-LABS
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
+  requirementFile: requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LABS-R001
     state: PASSING
@@ -3418,7 +3418,7 @@ features:
     - mutationScore 44% < 60%
 - id: FEAT-CLI
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
+  requirementFile: requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLI-R001
     state: PASSING
@@ -3541,7 +3541,7 @@ features:
     - mutationScore 18% < 60%
 - id: FEAT-PIPRE
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-05-03.01_proposal-impact-preview/REQUIREMENT.md
+  requirementFile: requirements/2026-05-03.01_proposal-impact-preview/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-PIPRE-R001
     state: PASSING
@@ -3818,29 +3818,29 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 694
-      linesMissed: 338
-      linesTotal: 1032
-      lineCoveragePct: 67
+      linesMissed: 350
+      linesTotal: 1044
+      lineCoveragePct: 66
       branchesCovered: 304
       branchesMissed: 251
       branchesTotal: 555
       branchCoveragePct: 54
       blendPct: 60
     mutation:
-      totalMutants: 550
-      killed: 191
-      survived: 183
-      noCoverage: 176
+      totalMutants: 553
+      killed: 193
+      survived: 181
+      noCoverage: 179
       timedOut: 0
       other: 0
       mutationScorePct: 34
       testStrengthPct: 51
     crap:
-      totalMethods: 94
+      totalMethods: 95
       hotspots: 5
       maxCrap: 143.066588
-      averageCrap: 9.255132819148937
-      simple: 74
+      averageCrap: 9.178763
+      simple: 75
       moderate: 13
       high: 4
       veryHigh: 3
@@ -3849,21 +3849,21 @@ features:
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: printSnapshotSummary
         methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
-        line: 1081
+        line: 1104
         cyclomatic: 14
         lineCoveragePct: 13
         crap: 143.066588
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: renderSentence
         methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
-        line: 1111
+        line: 1134
         cyclomatic: 11
         lineCoveragePct: 0
         crap: 132.0
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: handleAnalyzers
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 1195
+        line: 1218
         cyclomatic: 7
         lineCoveragePct: 0
         crap: 56.0
@@ -3884,12 +3884,12 @@ features:
     healthScore: 55
     verdict: WARNED
     violations:
-    - lineCoverage 67% < 70%
+    - lineCoverage 66% < 70%
     - branchCoverage 54% < 60%
     - mutationScore 34% < 60%
 - id: f0b4e57b-7c0f-4e3e-b9b3-843aef216a67
   state: DRAFT
-  requirementFile: ./requirements/2026-04-28.01_laps-engine-public-visibility/REQUIREMENT.md
+  requirementFile: requirements/2026-04-28.01_laps-engine-public-visibility/REQUIREMENT.md
   rulesCoverage:
   - ruleId: 27ac13c5-bc70-4e9b-96c3-3315542d6835
     state: NO_TESTS
@@ -3936,7 +3936,7 @@ features:
     verdict: PASSED
 - id: FEAT-KTLEN
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
+  requirementFile: requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-KTLEN-R001
     state: PASSING
@@ -4263,79 +4263,79 @@ features:
     verdict: PASSED
 - id: FEAT-CDIFF
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-05-06.01_consolidated-differential-view/REQUIREMENT.md
+  requirementFile: requirements/2026-05-06.01_consolidated-differential-view/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CDIFF-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un ConsolidatedView producido por el builder con activeAuditId y\
         \ activePlanId resueltos, cuando getConsolidated corre, entonces la salida\
         \ formateada incluye ambos identificadores en su raiz"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultGetConsolidatedCommand
     - name: "Dado un ConsolidatedView con activeAuditId y activePlanId no nulos, cuando\
         \ format corre, entonces ambos identificadores aparecen en la cadena de salida\
         \ en una posicion identificable como raiz del documento"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultConsolidatedViewFormatter
     - name: "Dado un ActiveAnalysisSelection escrito previamente con write, cuando\
         \ read corre, entonces retorna un Optional con esa misma seleccion (auditId\
         \ y planId)"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemActiveAnalysisSelectionStore
     - name: "Dado un store sin seleccion previa (archivo ausente), cuando read corre,\
         \ entonces retorna Optional.empty"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemActiveAnalysisSelectionStore
     - name: "Dado un store con una seleccion escrita, cuando clear corre, entonces\
         \ read posterior retorna Optional.empty"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemActiveAnalysisSelectionStore
     - name: "Dada una seleccion activa con auditId y planId resolubles, cuando build\
         \ corre, entonces ConsolidatedView.activeAuditId y activePlanId coinciden\
         \ con los identificadores leidos del ActiveAnalysisSelectionStore"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R002
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dada una invocacion setActive(auditId, planId) con valores no nulos,\
         \ cuando setActive corre, entonces ActiveAnalysisSelectionStore.write se invoca\
         \ con un ActiveAnalysisSelection que tiene esos auditId y planId"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultSetActiveAnalysisCommand
     - name: "Dada una invocacion setActive(null, null), cuando setActive corre, entonces\
         \ ActiveAnalysisSelectionStore.clear se invoca y write nunca se invoca"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultSetActiveAnalysisCommand
     - name: "Dada cualquier invocacion de setActive (con o sin valores), entonces\
         \ no se invoca save sobre AuditReportStore, RefinementPlanStore, RevisionArtifactStore\
         \ ni sobre el repositorio del curso"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultSetActiveAnalysisCommand
     - name: "Dado un store con una seleccion ya escrita, cuando write se invoca con\
         \ la misma seleccion, entonces el archivo no se reescribe (write idempotente\
         \ y no destructivo a nivel observable)"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemActiveAnalysisSelectionStore
     - name: "Dado un courseRoot con AuditReports y RefinementPlans persistidos, cuando\
@@ -4343,49 +4343,49 @@ features:
         \ ningun AuditReport, RefinementPlan, RevisionArtifact ni archivo del curso\
         \ se modifica"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemActiveAnalysisSelectionStore
   - ruleId: F-CDIFF-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un AuditReport recien creado cuyo plan activo no tiene propuestas\
         \ aceptadas ni pendientes, cuando build corre, entonces nodeImpacts y statisticImpacts\
         \ quedan vacios y los valores consolidados coinciden con el baseline del analisis"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R004
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un plan activo de un analisis viejo con propuestas pendientes y\
         \ un analisis mas nuevo cuyo plan no las contiene, cuando build corre apuntando\
         \ al analisis viejo, entonces sus pendientes dormidas aparecen en nodeImpacts/statisticImpacts\
         \ del consolidado"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R005
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un RevisionArtifact con verdict REJECTED en el plan activo, cuando\
         \ build corre, entonces ese proposalId no aparece en nodeImpacts, statisticImpacts\
         \ ni nonApplicablePendings y no contribuye a consolidated, acceptedDelta,\
         \ pendingProjection ni pendingDelta"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R006
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un nodo hoja sin aceptadas ni pendientes en el plan activo, cuando\
         \ build corre, entonces ese nodo no aparece en nodeImpacts (la salida solo\
         \ emite nodos afectados)"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dado un nodo hoja con una pendiente en el plan activo y sin aceptadas,\
@@ -4393,14 +4393,14 @@ features:
         \ del baseline y pendingProjection coincide con el snapshot resultante de\
         \ aplicar la pendiente sobre ese baseline"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dado un nodo hoja con una propuesta aceptada y sin pendientes, cuando\
         \ build corre, entonces NodeImpact.consolidated coincide con el elementAfter\
         \ de la aceptada y pendingProjection es null"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dado un nodo hoja con una aceptada y una pendiente sobre el mismo nodeId,\
@@ -4408,59 +4408,59 @@ features:
         \ sobre consolidated (es decir sobre el elementAfter de la aceptada) y no\
         \ sobre el snapshot original del baseline"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R007
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un nodo hoja con dos propuestas aceptadas que lo afectaron en orden\
         \ createdAt ascendente, cuando build corre, entonces NodeImpact.acceptedProposalIds\
         \ contiene ambos proposalId en orden createdAt ascendente"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dado un nodo hoja con una pendiente aplicable, cuando build corre, entonces\
         \ NodeImpact.pendingProposalId equivale al proposalId de la pendiente que\
         \ produjo pendingProjection"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R008
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un nodo padre cuyo subarbol contiene un quiz afectado por una aceptada,\
         \ cuando build corre, entonces aparece un NodeImpact para ese padre y los\
         \ valores consolidados de sus estadisticas resultan de re-agregar el subarbol\
         \ con la estrategia del analizador (no de sumar deltas individuales)"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dado un nodo padre cuyo subarbol no contiene aceptadas ni pendientes,\
         \ cuando build corre, entonces ese padre no aparece en nodeImpacts ni en statisticImpacts"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R009
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un StatisticImpact con original, consolidated y acceptedDelta poblados\
         \ (sin pendiente), cuando format corre, entonces los tres valores aparecen\
         \ en la salida con la misma magnitud en escala absoluta y pendingProjection/pendingDelta\
         \ no aparecen como campos numericos"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultConsolidatedViewFormatter
     - name: "Dado un StatisticImpact con pendingProjection y pendingDelta no nulos,\
         \ cuando format corre, entonces los cuatro valores numericos (original, consolidated,\
         \ acceptedDelta, pendingDelta) y pendingProjection aparecen en la salida"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultConsolidatedViewFormatter
     - name: "Dada una estadistica tocada solo por una aceptada en el plan activo,\
@@ -4468,7 +4468,7 @@ features:
         \ y consolidated distintos, acceptedDelta no nulo, y pendingProjection y pendingDelta\
         \ nulos"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dada una estadistica tocada solo por una pendiente en el plan activo,\
@@ -4476,57 +4476,57 @@ features:
         \ igual a original, acceptedDelta cero, y pendingProjection con pendingDelta\
         \ no nulos"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dada una estadistica del baseline no tocada por ninguna decision del\
         \ plan activo, cuando build corre, entonces ese par (nivel, dimension) no\
         \ aparece en statisticImpacts"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R010
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un StatisticImpact con cualquier valor de original y consolidated,\
         \ cuando format corre, entonces el valor textual de acceptedDelta en la salida\
         \ coincide con consolidated menos original sin conversion porcentual relativa"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultConsolidatedViewFormatter
     - name: "Dado cualquier StatisticImpact emitido por build, entonces acceptedDelta\
         \ es exactamente consolidated menos original, sin escalado relativo"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dado un StatisticImpact con pendingProjection no nulo, entonces pendingDelta\
         \ es exactamente pendingProjection menos consolidated, sin escalado relativo"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R011
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un AuditReport con pares (nivel, dimension) reportados por el motor\
         \ en el baseline, cuando build corre, entonces statisticImpacts solo contiene\
         \ pares presentes en el baseline (la salida no inventa pares ausentes ni reordena\
         \ la granularidad)"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R012
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un ConsolidatedView con nonApplicablePendings no vacio, cuando format\
         \ corre, entonces cada NonApplicablePending aparece en la salida con su proposalId,\
         \ su reason categorica y su detail"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultConsolidatedViewFormatter
     - name: "Dada una pendiente cuyo nodeId no se encuentra en el subarbol vigente,\
@@ -4534,7 +4534,7 @@ features:
         \ NODE_ABSENT y detail no vacio, y no contribuye a pendingProjection ni pendingDelta\
         \ de ningun nodo o estadistica"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dadas dos pendientes sobre el mismo nodeId aplicadas en orden createdAt\
@@ -4543,7 +4543,7 @@ features:
         \ en nonApplicablePendings con reason ELEMENT_BEFORE_MISMATCH y no contribuye\
         \ a pendingProjection ni pendingDelta"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dada una pendiente marcada como NOT_APPLICABLE y otras pendientes aplicables\
@@ -4551,18 +4551,18 @@ features:
         \ se entrega normalmente y solo la pendiente no aplicable queda excluida del\
         \ calculo de proyeccion"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R013
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un ConsolidatedView con availability UNAVAILABLE producido por el\
         \ builder, cuando getConsolidated corre, entonces el comando termina con exit\
         \ code cero y la salida formateada lleva la marca consolidatedAvailability=UNAVAILABLE\
         \ con su unavailabilityReason (no rellena con valores arbitrarios)"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultGetConsolidatedCommand
     - name: "Dado un ConsolidatedView con availability UNAVAILABLE y un unavailability\
@@ -4570,220 +4570,220 @@ features:
         \ con la categoria y el detalle, y nodeImpacts/statisticImpacts no se intentan\
         \ rendererizar como datos validos"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultConsolidatedViewFormatter
     - name: "Dado que el ActiveAnalysisSelectionStore retorna Optional.empty, cuando\
         \ build corre, entonces ConsolidatedView.availability es UNAVAILABLE con reason\
         \ NO_ACTIVE_ANALYSIS y nodeImpacts/statisticImpacts quedan vacios"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dado un par activo cuyo planId no se puede ubicar dentro del analisis\
         \ (RefinementPlanStore retorna empty), cuando build corre, entonces ConsolidatedView.availability\
         \ es UNAVAILABLE con reason ACTIVE_PLAN_UNAVAILABLE"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dada una propuesta aceptada que referencia un nodeId no encontrado por\
         \ CourseElementLocator al re-agregar, cuando build corre, entonces ConsolidatedView.availability\
         \ es UNAVAILABLE con reason INCONSISTENT_PROPOSAL"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dado que AuditEngine falla al recomputar agregaciones sobre el subarbol\
         \ modificado, cuando build corre, entonces ConsolidatedView.availability es\
         \ UNAVAILABLE con reason REAGGREGATION_FAILED"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R014
     state: NO_TESTS
   - ruleId: F-CDIFF-R015
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dada cualquier invocacion de getConsolidated, entonces no se invoca AuditReportStore.save,\
         \ RefinementPlanStore.save ni RevisionArtifactStore.save sobre los stores\
         \ inyectados al builder"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultGetConsolidatedCommand
     - name: "Dada cualquier invocacion de build (exitosa, UNAVAILABLE o con pendientes\
         \ no aplicables), entonces no se invoca AuditReportStore.save, RefinementPlanStore.save\
         \ ni RevisionArtifactStore.save sobre los stores inyectados"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R016
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un plan activo con varias aceptadas y varias pendientes que tocan\
         \ distintos nodos del curso, cuando build corre, entonces el ConsolidatedView\
         \ retornado combina baseline + aceptadas + pendientes en una unica estructura\
         \ con nodeImpacts y statisticImpacts agregados"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R017
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un plan activo asociado a un AuditReport y un plan ajeno con propuestas\
         \ distintas asociadas a otro analisis, cuando build corre, entonces solo se\
         \ consultan los RevisionArtifact via listByPlan(activePlanId) y las propuestas\
         \ del plan ajeno no aparecen en nodeImpacts ni statisticImpacts"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R018
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dada una RevisionProposal cuyo elementBefore y elementAfter referencian\
         \ el mismo nodeId estable, cuando build corre, entonces el NodeImpact resultante\
         \ conserva ese nodeId en consolidated y pendingProjection sin modelar renombres\
         \ ni reubicaciones"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   journeysCoverage:
   - journeyId: F-CDIFF-J001
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_elParActivoSeResuelveYElPlanSePuedeRecuperar_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: audit-cli
         implementation: FCdiffJ001JourneyTest
     - pathId: path-2
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path2_noSePuedeResolverElParActivoOElPlan_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: audit-cli
         implementation: FCdiffJ001JourneyTest
   - journeyId: F-CDIFF-J002
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FCdiffJ002JourneyTest
   - journeyId: F-CDIFF-J003
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_hayAlMenosUnaPendienteAplicable_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FCdiffJ003JourneyTest
     - pathId: path-2
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path2_noHayPendientesAplicablesEnElSubarbol_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FCdiffJ003JourneyTest
   - journeyId: F-CDIFF-J004
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_elParEstaTocadoPorAceptadasPendientesOAmbas_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FCdiffJ004JourneyTest
     - pathId: path-2
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path2_elParNoEstaTocado_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FCdiffJ004JourneyTest
   - journeyId: F-CDIFF-J005
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_laPendienteSePuedeAplicar_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FCdiffJ005JourneyTest
     - pathId: path-2
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path2_laPendienteNoSePuedeAplicar_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FCdiffJ005JourneyTest
   - journeyId: F-CDIFF-J006
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: audit-cli
         implementation: FCdiffJ006JourneyTest
   - journeyId: F-CDIFF-J007
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: audit-cli
         implementation: FCdiffJ007JourneyTest
   - journeyId: F-CDIFF-J008
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FCdiffJ008JourneyTest
   quality:
@@ -4800,39 +4800,41 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
-      lineCoveragePct: 0
-      branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
-      branchCoveragePct: 0
-      blendPct: 0
+      linesCovered: 275
+      linesMissed: 48
+      linesTotal: 323
+      lineCoveragePct: 85
+      branchesCovered: 96
+      branchesMissed: 44
+      branchesTotal: 140
+      branchCoveragePct: 68
+      blendPct: 76
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 106
+      killed: 61
+      survived: 30
+      noCoverage: 15
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 57
+      testStrengthPct: 67
     crap:
-      totalMethods: 0
+      totalMethods: 28
       hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
-      moderate: 0
-      high: 0
+      maxCrap: 28.690815999999998
+      averageCrap: 3.807415285714286
+      simple: 25
+      moderate: 1
+      high: 2
       veryHigh: 0
-      healthPct: 0
-    healthScore: 0
-    verdict: PASSED
+      healthPct: 91
+    healthScore: 71
+    verdict: WARNED
+    violations:
+    - mutationScore 57% < 60%
 - id: FEAT-REVAPR
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
+  requirementFile: requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVAPR-R001
     state: PASSING
@@ -5436,8 +5438,8 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 882
-      linesMissed: 422
-      linesTotal: 1304
+      linesMissed: 434
+      linesTotal: 1316
       lineCoveragePct: 67
       branchesCovered: 377
       branchesMissed: 292
@@ -5445,24 +5447,24 @@ features:
       branchCoveragePct: 56
       blendPct: 61
     mutation:
-      totalMutants: 720
-      killed: 250
-      survived: 224
-      noCoverage: 246
+      totalMutants: 723
+      killed: 253
+      survived: 221
+      noCoverage: 249
       timedOut: 0
       other: 0
       mutationScorePct: 34
-      testStrengthPct: 52
+      testStrengthPct: 53
     crap:
-      totalMethods: 122
+      totalMethods: 123
       hotspots: 6
       maxCrap: 248.07379199999997
-      averageCrap: 9.892074795081964
-      simple: 97
+      averageCrap: 9.82791158536585
+      simple: 98
       moderate: 17
       high: 4
       veryHigh: 4
-      healthPct: 86
+      healthPct: 87
       top:
       - className: com.learney.contentaudit.auditcli.commands.ReviseCmd
         methodName: handleOutcome
@@ -5474,21 +5476,21 @@ features:
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: printSnapshotSummary
         methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
-        line: 1081
+        line: 1104
         cyclomatic: 14
         lineCoveragePct: 13
         crap: 143.066588
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: renderSentence
         methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
-        line: 1111
+        line: 1134
         cyclomatic: 11
         lineCoveragePct: 0
         crap: 132.0
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: handleAnalyzers
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 1195
+        line: 1218
         cyclomatic: 7
         lineCoveragePct: 0
         crap: 56.0
@@ -5515,7 +5517,7 @@ features:
     - crapHotspots 6 > 5
 - id: FEAT-LAPS
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
+  requirementFile: requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LAPS-R001
     state: PASSING
@@ -5881,7 +5883,7 @@ features:
     verdict: PASSED
 - id: FEAT-DSLEN
   state: DRAFT
-  requirementFile: ./requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
+  requirementFile: requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DSLEN-R001
     state: NO_TESTS
@@ -5934,7 +5936,7 @@ features:
     verdict: PASSED
 - id: FEAT-SLEN
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
+  requirementFile: requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-SLEN-R001
     state: PASSING
@@ -6127,7 +6129,7 @@ features:
     - mutationScore 54% < 60%
 - id: FEAT-LCOUNT
   state: DRAFT
-  requirementFile: ./requirements/2026-03-28.02_lemma-count/REQUIREMENT.md
+  requirementFile: requirements/2026-03-28.02_lemma-count/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LCOUNT-R001
     state: NO_TESTS
@@ -6206,7 +6208,7 @@ features:
     verdict: PASSED
 - id: FEAT-REVBYP
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
+  requirementFile: requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVBYP-R001
     state: PASSING
@@ -6435,13 +6437,13 @@ features:
       blendPct: 77
     mutation:
       totalMutants: 93
-      killed: 56
-      survived: 22
+      killed: 59
+      survived: 19
       noCoverage: 15
       timedOut: 0
       other: 0
-      mutationScorePct: 60
-      testStrengthPct: 71
+      mutationScorePct: 63
+      testStrengthPct: 75
     crap:
       totalMethods: 33
       hotspots: 0
@@ -6452,11 +6454,11 @@ features:
       high: 0
       veryHigh: 0
       healthPct: 98
-    healthScore: 75
+    healthScore: 76
     verdict: PASSED
 - id: FEAT-LAGEN
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
+  requirementFile: requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LAGEN-R001
     state: PASSING
@@ -7144,7 +7146,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCLA
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
+  requirementFile: requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLA-R001
     state: PASSING
@@ -7476,52 +7478,52 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 647
-      linesMissed: 309
-      linesTotal: 956
-      lineCoveragePct: 67
+      linesMissed: 321
+      linesTotal: 968
+      lineCoveragePct: 66
       branchesCovered: 318
       branchesMissed: 270
       branchesTotal: 588
       branchCoveragePct: 54
       blendPct: 60
     mutation:
-      totalMutants: 539
+      totalMutants: 542
       killed: 191
       survived: 170
-      noCoverage: 178
+      noCoverage: 181
       timedOut: 0
       other: 0
       mutationScorePct: 35
       testStrengthPct: 52
     crap:
-      totalMethods: 87
+      totalMethods: 88
       hotspots: 5
       maxCrap: 143.066588
-      averageCrap: 10.294091942528734
-      simple: 66
+      averageCrap: 10.199840897727272
+      simple: 67
       moderate: 13
       high: 5
       veryHigh: 3
-      healthPct: 83
+      healthPct: 84
       top:
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: printSnapshotSummary
         methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
-        line: 1081
+        line: 1104
         cyclomatic: 14
         lineCoveragePct: 13
         crap: 143.066588
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: renderSentence
         methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
-        line: 1111
+        line: 1134
         cyclomatic: 11
         lineCoveragePct: 0
         crap: 132.0
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: handleAnalyzers
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 1195
+        line: 1218
         cyclomatic: 7
         lineCoveragePct: 0
         crap: 56.0
@@ -7542,13 +7544,13 @@ features:
     healthScore: 55
     verdict: WARNED
     violations:
-    - lineCoverage 67% < 70%
+    - lineCoverage 66% < 70%
     - branchCoverage 54% < 60%
     - mutationScore 35% < 60%
 - id: FEAT-RCSL
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
-  patchFile: ./requirements/2026-04-05.02_refiner-correction-context-slen/architectural_patch.yaml
+  requirementFile: requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
+  patchFile: requirements/2026-04-05.02_refiner-correction-context-slen/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-RCSL-R001
     state: PASSING
@@ -7892,29 +7894,29 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 546
-      linesMissed: 290
-      linesTotal: 836
-      lineCoveragePct: 65
+      linesMissed: 302
+      linesTotal: 848
+      lineCoveragePct: 64
       branchesCovered: 271
       branchesMissed: 242
       branchesTotal: 513
       branchCoveragePct: 52
       blendPct: 58
     mutation:
-      totalMutants: 476
+      totalMutants: 479
       killed: 159
       survived: 155
-      noCoverage: 162
+      noCoverage: 165
       timedOut: 0
       other: 0
       mutationScorePct: 33
       testStrengthPct: 50
     crap:
-      totalMethods: 71
+      totalMethods: 72
       hotspots: 5
       maxCrap: 143.066588
-      averageCrap: 11.532031084507041
-      simple: 51
+      averageCrap: 11.399641763888887
+      simple: 52
       moderate: 13
       high: 4
       veryHigh: 3
@@ -7923,21 +7925,21 @@ features:
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: printSnapshotSummary
         methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
-        line: 1081
+        line: 1104
         cyclomatic: 14
         lineCoveragePct: 13
         crap: 143.066588
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: renderSentence
         methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
-        line: 1111
+        line: 1134
         cyclomatic: 11
         lineCoveragePct: 0
         crap: 132.0
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: handleAnalyzers
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 1195
+        line: 1218
         cyclomatic: 7
         lineCoveragePct: 0
         crap: 56.0
@@ -7958,7 +7960,7 @@ features:
     healthScore: 53
     verdict: WARNED
     violations:
-    - lineCoverage 65% < 70%
+    - lineCoverage 64% < 70%
     - branchCoverage 52% < 60%
     - mutationScore 33% < 60%
 elements:
@@ -12741,31 +12743,31 @@ elements:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 939
-      linesMissed: 1447
-      linesTotal: 2386
+      linesMissed: 1465
+      linesTotal: 2404
       lineCoveragePct: 39
       branchesCovered: 303
-      branchesMissed: 868
-      branchesTotal: 1171
+      branchesMissed: 878
+      branchesTotal: 1181
       branchCoveragePct: 25
       blendPct: 32
     mutation:
-      totalMutants: 1157
+      totalMutants: 1167
       killed: 222
       survived: 150
-      noCoverage: 785
+      noCoverage: 795
       timedOut: 0
       other: 0
       mutationScorePct: 19
       testStrengthPct: 59
     crap:
-      totalMethods: 658
-      hotspots: 46
+      totalMethods: 666
+      hotspots: 47
       maxCrap: 462.0
-      averageCrap: 8.662150635258358
-      simple: 591
+      averageCrap: 8.642184861861862
+      simple: 598
       moderate: 20
-      high: 12
+      high: 13
       veryHigh: 35
       healthPct: 91
       top:
@@ -12845,7 +12847,7 @@ elements:
     - lineCoverage 39% < 70%
     - branchCoverage 25% < 60%
     - mutationScore 19% < 60%
-    - crapHotspots 46 > 5
+    - crapHotspots 47 > 5
 - module: course-domain
   status: EXISTS
   models:
@@ -13527,9 +13529,9 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 207
+      linesCovered: 205
       linesMissed: 423
-      linesTotal: 630
+      linesTotal: 628
       lineCoveragePct: 32
       branchesCovered: 84
       branchesMissed: 218
@@ -13546,15 +13548,15 @@ elements:
       mutationScorePct: 24
       testStrengthPct: 74
     crap:
-      totalMethods: 212
+      totalMethods: 211
       hotspots: 8
       maxCrap: 600.0
-      averageCrap: 9.727129301886793
-      simple: 201
+      averageCrap: 9.768490104265403
+      simple: 200
       moderate: 3
       high: 0
       veryHigh: 8
-      healthPct: 96
+      healthPct: 95
       top:
       - className: com.learney.contentaudit.coursedomain.QuizTemplateEntity
         methodName: equals
@@ -13612,7 +13614,7 @@ elements:
         cyclomatic: 7
         lineCoveragePct: 0
         crap: 56.0
-    healthScore: 44
+    healthScore: 43
     verdict: WARNED
     violations:
     - lineCoverage 32% < 70%
@@ -16975,7 +16977,7 @@ elements:
       methods:
       - name: <init>
         desc: (Lcom/learney/contentaudit/coursedomain/CourseRepository;Lcom/learney/contentaudit/auditapplication/CourseToAuditableMapper;Lcom/learney/contentaudit/auditdomain/AuditEngine;Ljava/util/List;Lcom/learney/contentaudit/auditdomain/ScoreAggregator;)V
-        line: 35
+        line: 32
         cyclomatic: 1
         linesCovered: 7
         linesMissed: 0
@@ -16990,7 +16992,7 @@ elements:
         crap: 1.0
       - name: runAudit
         desc: (Ljava/nio/file/Path;Ljava/util/Set;)Lcom/learney/contentaudit/auditdomain/AuditReport;
-        line: 45
+        line: 42
         cyclomatic: 3
         linesCovered: 3
         linesMissed: 5
@@ -17005,7 +17007,7 @@ elements:
         crap: 5.250423
       - name: runDetailedAudit
         desc: (Ljava/nio/file/Path;Ljava/lang/String;)Lcom/learney/contentaudit/auditdomain/AuditNode;
-        line: 60
+        line: 57
         cyclomatic: 2
         linesCovered: 0
         linesMissed: 9
@@ -17020,7 +17022,7 @@ elements:
         crap: 6.0
       - name: loadCourse
         desc: (Ljava/nio/file/Path;)Lcom/learney/contentaudit/auditdomain/AuditableCourse;
-        line: 75
+        line: 72
         cyclomatic: 1
         linesCovered: 2
         linesMissed: 0
@@ -17035,7 +17037,7 @@ elements:
         crap: 1.0
       - name: lambda$runDetailedAudit$0
         desc: (Ljava/lang/String;Lcom/learney/contentaudit/auditdomain/ContentAnalyzer;)Z
-        line: 63
+        line: 60
         cyclomatic: 1
         linesCovered: 0
         linesMissed: 1
@@ -17050,7 +17052,7 @@ elements:
         crap: 2.0
       - name: lambda$runAudit$0
         desc: (Ljava/util/Set;Lcom/learney/contentaudit/auditdomain/ContentAnalyzer;)Z
-        line: 52
+        line: 49
         cyclomatic: 1
         linesCovered: 0
         linesMissed: 1
@@ -22182,6 +22184,61 @@ elements:
         \ inyectados al builder"
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DefaultGetConsolidatedCommandTest.java
+    testCleanViews:
+    - |
+      test: "Dado un ConsolidatedView producido por el builder con activeAuditId y activePlanId resueltos, cuando getConsolidated corre, entonces la salida formateada incluye ambos identificadores en su raiz"
+      trace: FEAT-CDIFF / F-CDIFF-R001
+
+      given:
+        view = ConsolidatedView("audit-001", "plan-001", ConsolidatedViewAvailability.AVAILABLE, null, null, List.of(), List.of(), List.of())
+        expectedOutput = "{\"activeAuditId\":\"audit-001\",\"activePlanId\":\"plan-001\"}"
+        command = DefaultGetConsolidatedCommand(consolidatedViewBuilder, formatter)
+
+      mock:
+        consolidatedViewBuilder.build(any(Path.class)) -> view
+        formatter.format(eq(view), any()) -> expectedOutput
+
+      when:
+        sut.getConsolidated("/some/course", "json")
+
+      then:
+        verify: formatter.format(eq(view), any())
+    - |
+      test: "Dado un ConsolidatedView con availability UNAVAILABLE producido por el builder, cuando getConsolidated corre, entonces el comando termina con exit code cero y la salida formateada lleva la marca consolidatedAvailability=UNAVAILABLE con su unavailabilityReason (no rellena con valores arbitrarios)"
+      trace: FEAT-CDIFF / F-CDIFF-R013
+
+      given:
+        unavailability = ConsolidatedViewUnavailability(ConsolidatedViewUnavailabilityReason.NO_ACTIVE_ANALYSIS, "No hay par activo seleccionado para este curso")
+        unavailableView = ConsolidatedView(null, null, ConsolidatedViewAvailability.UNAVAILABLE, unavailability, null, List.of(), List.of(), List.of())
+        unavailableOutput = "{\"consolidatedAvailability\":\"UNAVAILABLE\",\"unavailabilityReason\":\"NO_ACTIVE_ANALYSIS\"}"
+        command = DefaultGetConsolidatedCommand(consolidatedViewBuilder, formatter)
+        exitCode = command.getConsolidated("/some/course", "json")
+
+      mock:
+        consolidatedViewBuilder.build(any(Path.class)) -> unavailableView
+        formatter.format(eq(unavailableView), any()) -> unavailableOutput
+
+      then:
+        exitCode == 0
+        verify: formatter.format(eq(unavailableView), any())
+    - |
+      test: "Dada cualquier invocacion de getConsolidated, entonces no se invoca AuditReportStore.save, RefinementPlanStore.save ni RevisionArtifactStore.save sobre los stores inyectados al builder"
+      trace: FEAT-CDIFF / F-CDIFF-R015
+
+      given:
+        view = ConsolidatedView("audit-001", "plan-001", ConsolidatedViewAvailability.AVAILABLE, null, null, List.of(), List.of(), List.of())
+        command = DefaultGetConsolidatedCommand(consolidatedViewBuilder, formatter)
+
+      mock:
+        consolidatedViewBuilder.build(any(Path.class)) -> view
+        formatter.format(any(), any()) -> "{}"
+
+      when:
+        sut.getConsolidated("/some/course", "json")
+
+      then:
+        verify: consolidatedViewBuilder.build(any(Path.class))
+        verify: formatter.format(any(), any())
   - name: DefaultSetActiveAnalysisCommand
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/DefaultSetActiveAnalysisCommand.java
@@ -22200,6 +22257,48 @@ elements:
         \ ni sobre el repositorio del curso"
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DefaultSetActiveAnalysisCommandTest.java
+    testCleanViews:
+    - |
+      test: "Dada una invocacion setActive(auditId, planId) con valores no nulos, cuando setActive corre, entonces ActiveAnalysisSelectionStore.write se invoca con un ActiveAnalysisSelection que tiene esos auditId y planId"
+      trace: FEAT-CDIFF / F-CDIFF-R002
+
+      given:
+        command = DefaultSetActiveAnalysisCommand(activeAnalysisSelectionStore)
+        captor = ArgumentCaptor.forClass(ActiveAnalysisSelection.class)
+
+      when:
+        sut.setActive("audit-001", "plan-001")
+
+      then:
+        captor.getValue().getAuditId() == "audit-001"
+        captor.getValue().getPlanId() == "plan-001"
+        verify: activeAnalysisSelectionStore.write(captor.capture())
+        verify: activeAnalysisSelectionStore.clear() x 0
+    - |
+      test: "Dada una invocacion setActive(null, null), cuando setActive corre, entonces ActiveAnalysisSelectionStore.clear se invoca y write nunca se invoca"
+      trace: FEAT-CDIFF / F-CDIFF-R002
+
+      given:
+        command = DefaultSetActiveAnalysisCommand(activeAnalysisSelectionStore)
+
+      when:
+        sut.setActive(null, null)
+
+      then:
+        verify: activeAnalysisSelectionStore.clear()
+        verify: activeAnalysisSelectionStore.write(org.mockito.ArgumentMatchers.any()) x 0
+    - |
+      test: "Dada cualquier invocacion de setActive (con o sin valores), entonces no se invoca save sobre AuditReportStore, RefinementPlanStore, RevisionArtifactStore ni sobre el repositorio del curso"
+      trace: FEAT-CDIFF / F-CDIFF-R002
+
+      given:
+        command = DefaultSetActiveAnalysisCommand(activeAnalysisSelectionStore)
+
+      when:
+        sut.setActive("audit-abc", "plan-xyz")
+
+      then:
+        verify: activeAnalysisSelectionStore.write(org.mockito.ArgumentMatchers.any())
   - name: TextReportFormatter
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/TextReportFormatter.java
@@ -22511,6 +22610,94 @@ elements:
         \ su reason categorica y su detail"
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/DefaultConsolidatedViewFormatterTest.java
+    testCleanViews:
+    - |
+      test: "Dado un ConsolidatedView con activeAuditId y activePlanId no nulos, cuando format corre, entonces ambos identificadores aparecen en la cadena de salida en una posicion identificable como raiz del documento"
+      trace: FEAT-CDIFF / F-CDIFF-R001
+
+      given:
+        view = ConsolidatedView("audit-123", "plan-456", ConsolidatedViewAvailability.AVAILABLE, null, null, List.of(), List.of(), List.of())
+        formatter = DefaultConsolidatedViewFormatter()
+        output = formatter.format(view, "json")
+
+      then:
+        output.contains("audit-123") is true
+        output.contains("plan-456") is true
+    - |
+      test: "Dado un StatisticImpact con original, consolidated y acceptedDelta poblados (sin pendiente), cuando format corre, entonces los tres valores aparecen en la salida con la misma magnitud en escala absoluta y pendingProjection/pendingDelta no aparecen como campos numericos"
+      trace: FEAT-CDIFF / F-CDIFF-R009
+
+      given:
+        stat = StatisticImpact(AuditTarget.QUIZ, "quiz-001", "lemma-absence", 0.60, 0.75, 0.15, null, null)
+        view = ConsolidatedView("audit-001", "plan-001", ConsolidatedViewAvailability.AVAILABLE, null, null, List.of(), List.of(stat), List.of())
+        formatter = DefaultConsolidatedViewFormatter()
+        output = formatter.format(view, "json")
+
+      then:
+        output.contains("0.6") || output.contains("0.60") is true
+        output.contains("0.75") is true
+        output.contains("0.15") is true
+        output.contains("pendingProjection") && output.matches(".*pendingProjection[^:]*:[^\\]\\}]*[0-9].*") is false
+    - |
+      test: "Dado un StatisticImpact con pendingProjection y pendingDelta no nulos, cuando format corre, entonces los cuatro valores numericos (original, consolidated, acceptedDelta, pendingDelta) y pendingProjection aparecen en la salida"
+      trace: FEAT-CDIFF / F-CDIFF-R009
+
+      given:
+        stat = StatisticImpact(AuditTarget.QUIZ, "quiz-001", "lemma-absence", 0.60, 0.75, 0.15, 0.85, 0.10)
+        view = ConsolidatedView("audit-001", "plan-001", ConsolidatedViewAvailability.AVAILABLE, null, null, List.of(), List.of(stat), List.of())
+        formatter = DefaultConsolidatedViewFormatter()
+        output = formatter.format(view, "json")
+
+      then:
+        output.contains("0.6") || output.contains("0.60") is true
+        output.contains("0.75") is true
+        output.contains("0.15") is true
+        output.contains("0.85") is true
+        output.contains("0.1") || output.contains("0.10") is true
+    - |
+      test: "Dado un StatisticImpact con cualquier valor de original y consolidated, cuando format corre, entonces el valor textual de acceptedDelta en la salida coincide con consolidated menos original sin conversion porcentual relativa"
+      trace: FEAT-CDIFF / F-CDIFF-R010
+
+      given:
+        stat = StatisticImpact(AuditTarget.KNOWLEDGE, "know-001", "sentence-length", 0.50, 0.70, 0.20, null, null)
+        view = ConsolidatedView("audit-001", "plan-001", ConsolidatedViewAvailability.AVAILABLE, null, null, List.of(), List.of(stat), List.of())
+        formatter = DefaultConsolidatedViewFormatter()
+        output = formatter.format(view, "json")
+
+      then:
+        output.contains("0.2") || output.contains("0.20") is true
+        output.contains("40.0") || output.contains("40%") is false
+    - |
+      test: "Dado un ConsolidatedView con availability UNAVAILABLE y un unavailability con reason y detail, cuando format corre, entonces la salida incluye consolidatedAvailability=UNAVAILABLE con la categoria y el detalle, y nodeImpacts/statisticImpacts no se intentan rendererizar como datos validos"
+      trace: FEAT-CDIFF / F-CDIFF-R013
+
+      given:
+        unavailability = ConsolidatedViewUnavailability(ConsolidatedViewUnavailabilityReason.NO_ACTIVE_ANALYSIS, "Curso sin par activo configurado")
+        view = ConsolidatedView(null, null, ConsolidatedViewAvailability.UNAVAILABLE, unavailability, null, List.of(), List.of(), List.of())
+        formatter = DefaultConsolidatedViewFormatter()
+        output = formatter.format(view, "json")
+
+      then:
+        output.contains("UNAVAILABLE") is true
+        output.contains("NO_ACTIVE_ANALYSIS") is true
+        output.contains("Curso sin par activo configurado") is true
+    - |
+      test: "Dado un ConsolidatedView con nonApplicablePendings no vacio, cuando format corre, entonces cada NonApplicablePending aparece en la salida con su proposalId, su reason categorica y su detail"
+      trace: FEAT-CDIFF / F-CDIFF-R012
+
+      given:
+        pending1 = NonApplicablePending("proposal-001", NonApplicablePendingReason.NODE_ABSENT, "El nodeId quiz-xyz no existe en el subarbol vigente")
+        pending2 = NonApplicablePending("proposal-002", NonApplicablePendingReason.ELEMENT_BEFORE_MISMATCH, "El elementBefore de la propuesta no coincide con el consolidated del nodo")
+        view = ConsolidatedView("audit-001", "plan-001", ConsolidatedViewAvailability.AVAILABLE, null, null, List.of(), List.of(), List.of(pending1, pending2))
+        formatter = DefaultConsolidatedViewFormatter()
+        output = formatter.format(view, "json")
+
+      then:
+        output.contains("proposal-001") is true
+        output.contains("NODE_ABSENT") is true
+        output.contains("quiz-xyz") is true
+        output.contains("proposal-002") is true
+        output.contains("ELEMENT_BEFORE_MISMATCH") is true
   - name: DefaultWorkdirResolver
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/bootstrap/DefaultWorkdirResolver.java
@@ -23058,32 +23245,32 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 1530
-      linesMissed: 1803
-      linesTotal: 3333
-      lineCoveragePct: 45
-      branchesCovered: 710
-      branchesMissed: 1206
-      branchesTotal: 1916
+      linesCovered: 1610
+      linesMissed: 1857
+      linesTotal: 3467
+      lineCoveragePct: 46
+      branchesCovered: 737
+      branchesMissed: 1239
+      branchesTotal: 1976
       branchCoveragePct: 37
       blendPct: 41
     mutation:
-      totalMutants: 1774
-      killed: 392
-      survived: 431
-      noCoverage: 951
+      totalMutants: 1823
+      killed: 409
+      survived: 440
+      noCoverage: 974
       timedOut: 0
       other: 0
       mutationScorePct: 22
-      testStrengthPct: 47
+      testStrengthPct: 48
     crap:
-      totalMethods: 472
+      totalMethods: 486
       hotspots: 47
       maxCrap: 306.0
-      averageCrap: 12.524316095338984
-      simple: 377
-      moderate: 44
-      high: 18
+      averageCrap: 12.310243372427982
+      simple: 389
+      moderate: 45
+      high: 19
       veryHigh: 33
       healthPct: 85
       top:
@@ -23139,7 +23326,7 @@ elements:
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: printSnapshotSummary
         methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
-        line: 1081
+        line: 1104
         cyclomatic: 14
         lineCoveragePct: 13
         crap: 143.066588
@@ -23153,14 +23340,14 @@ elements:
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: renderSentence
         methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
-        line: 1111
+        line: 1134
         cyclomatic: 11
         lineCoveragePct: 0
         crap: 132.0
     healthScore: 43
     verdict: WARNED
     violations:
-    - lineCoverage 45% < 70%
+    - lineCoverage 46% < 70%
     - branchCoverage 37% < 60%
     - mutationScore 22% < 60%
     - crapHotspots 47 > 5
@@ -23505,14 +23692,14 @@ elements:
     quality:
       coverage:
         linesCovered: 72
-        linesMissed: 19
-        linesTotal: 91
-        lineCoveragePct: 79
+        linesMissed: 17
+        linesTotal: 89
+        lineCoveragePct: 80
         branchesCovered: 20
         branchesMissed: 12
         branchesTotal: 32
         branchCoveragePct: 62
-        blendPct: 70
+        blendPct: 71
       mutation:
         totalMutants: 34
         killed: 24
@@ -23523,34 +23710,19 @@ elements:
         mutationScorePct: 70
         testStrengthPct: 77
       crap:
-        totalMethods: 18
+        totalMethods: 17
         hotspots: 0
         maxCrap: 6.0
-        averageCrap: 2.144344222222222
-        simple: 18
+        averageCrap: 2.1528350588235297
+        simple: 17
         moderate: 0
         high: 0
         veryHigh: 0
         healthPct: 100
       methods:
       - name: <init>
-        desc: ()V
-        line: 48
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 2
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: <init>
         desc: (Ljava/nio/file/Path;)V
-        line: 56
+        line: 44
         cyclomatic: 1
         linesCovered: 4
         linesMissed: 0
@@ -23565,7 +23737,7 @@ elements:
         crap: 1.0
       - name: save
         desc: (Lcom/learney/contentaudit/auditdomain/AuditReport;)Ljava/lang/String;
-        line: 67
+        line: 55
         cyclomatic: 1
         linesCovered: 8
         linesMissed: 4
@@ -23580,7 +23752,7 @@ elements:
         crap: 1.039304
       - name: load
         desc: (Ljava/lang/String;)Ljava/util/Optional;
-        line: 87
+        line: 75
         cyclomatic: 2
         linesCovered: 4
         linesMissed: 0
@@ -23595,7 +23767,7 @@ elements:
         crap: 2.0
       - name: loadLatest
         desc: ()Ljava/util/Optional;
-        line: 96
+        line: 84
         cyclomatic: 2
         linesCovered: 8
         linesMissed: 2
@@ -23610,7 +23782,7 @@ elements:
         crap: 2.032
       - name: list
         desc: ()Ljava/util/List;
-        line: 115
+        line: 103
         cyclomatic: 3
         linesCovered: 20
         linesMissed: 3
@@ -23625,7 +23797,7 @@ elements:
         crap: 3.024696
       - name: resolveAuditsDir
         desc: ()Ljava/nio/file/Path;
-        line: 152
+        line: 140
         cyclomatic: 1
         linesCovered: 1
         linesMissed: 0
@@ -23640,7 +23812,7 @@ elements:
         crap: 1.0
       - name: loadFromFile
         desc: (Ljava/nio/file/Path;)Lcom/learney/contentaudit/auditdomain/AuditReport;
-        line: 157
+        line: 145
         cyclomatic: 2
         linesCovered: 4
         linesMissed: 2
@@ -23655,7 +23827,7 @@ elements:
         crap: 2.157216
       - name: rebuildParentReferences
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Lcom/learney/contentaudit/auditdomain/AuditNode;)V
-        line: 172
+        line: 160
         cyclomatic: 3
         linesCovered: 6
         linesMissed: 0
@@ -23670,7 +23842,7 @@ elements:
         crap: 3.0
       - name: extractIdFromFilename
         desc: (Ljava/lang/String;)Ljava/lang/String;
-        line: 182
+        line: 170
         cyclomatic: 1
         linesCovered: 2
         linesMissed: 0
@@ -23685,7 +23857,7 @@ elements:
         crap: 1.0
       - name: parseTimestampFromId
         desc: (Ljava/lang/String;)Ljava/time/Instant;
-        line: 188
+        line: 176
         cyclomatic: 1
         linesCovered: 1
         linesMissed: 2
@@ -23700,7 +23872,7 @@ elements:
         crap: 1.300763
       - name: extractCourseName
         desc: (Lcom/learney/contentaudit/auditdomain/AuditReport;)Ljava/lang/String;
-        line: 195
+        line: 183
         cyclomatic: 4
         linesCovered: 2
         linesMissed: 2
@@ -23715,7 +23887,7 @@ elements:
         crap: 6.0
       - name: extractOverallScore
         desc: (Lcom/learney/contentaudit/auditdomain/AuditReport;)D
-        line: 203
+        line: 191
         cyclomatic: 3
         linesCovered: 5
         linesMissed: 1
@@ -23730,7 +23902,7 @@ elements:
         crap: 3.044217
       - name: lambda$list$1
         desc: (Ljava/nio/file/Path;)Ljava/lang/String;
-        line: 125
+        line: 113
         cyclomatic: 1
         linesCovered: 0
         linesMissed: 1
@@ -23745,7 +23917,7 @@ elements:
         crap: 2.0
       - name: lambda$list$0
         desc: (Ljava/nio/file/Path;)Z
-        line: 123
+        line: 111
         cyclomatic: 3
         linesCovered: 2
         linesMissed: 0
@@ -23760,7 +23932,7 @@ elements:
         crap: 3.0
       - name: lambda$loadLatest$1
         desc: (Ljava/nio/file/Path;)Ljava/lang/String;
-        line: 105
+        line: 93
         cyclomatic: 1
         linesCovered: 1
         linesMissed: 0
@@ -23775,7 +23947,7 @@ elements:
         crap: 1.0
       - name: lambda$loadLatest$0
         desc: (Ljava/nio/file/Path;)Z
-        line: 103
+        line: 91
         cyclomatic: 3
         linesCovered: 2
         linesMissed: 0
@@ -23809,8 +23981,8 @@ elements:
     quality:
       coverage:
         linesCovered: 0
-        linesMissed: 48
-        linesTotal: 48
+        linesMissed: 46
+        linesTotal: 46
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 8
@@ -23827,34 +23999,19 @@ elements:
         mutationScorePct: 0
         testStrengthPct: 0
       crap:
-        totalMethods: 10
+        totalMethods: 9
         hotspots: 0
         maxCrap: 12.0
-        averageCrap: 3.8
-        simple: 9
+        averageCrap: 4.0
+        simple: 8
         moderate: 1
         high: 0
         veryHigh: 0
-        healthPct: 95
+        healthPct: 94
       methods:
       - name: <init>
-        desc: ()V
-        line: 39
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 2
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: <init>
         desc: (Ljava/nio/file/Path;)V
-        line: 47
+        line: 35
         cyclomatic: 1
         linesCovered: 0
         linesMissed: 4
@@ -23869,7 +24026,7 @@ elements:
         crap: 2.0
       - name: save
         desc: (Lcom/learney/contentaudit/refinerdomain/RefinementPlan;)Ljava/lang/String;
-        line: 58
+        line: 46
         cyclomatic: 1
         linesCovered: 0
         linesMissed: 14
@@ -23884,7 +24041,7 @@ elements:
         crap: 2.0
       - name: load
         desc: (Ljava/lang/String;)Ljava/util/Optional;
-        line: 80
+        line: 68
         cyclomatic: 2
         linesCovered: 0
         linesMissed: 4
@@ -23899,7 +24056,7 @@ elements:
         crap: 6.0
       - name: loadLatest
         desc: ()Ljava/util/Optional;
-        line: 89
+        line: 77
         cyclomatic: 2
         linesCovered: 0
         linesMissed: 11
@@ -23914,7 +24071,7 @@ elements:
         crap: 6.0
       - name: resolvePlansDir
         desc: ()Ljava/nio/file/Path;
-        line: 112
+        line: 100
         cyclomatic: 1
         linesCovered: 0
         linesMissed: 1
@@ -23929,7 +24086,7 @@ elements:
         crap: 2.0
       - name: loadFromFile
         desc: (Ljava/nio/file/Path;)Lcom/learney/contentaudit/refinerdomain/RefinementPlan;
-        line: 117
+        line: 105
         cyclomatic: 1
         linesCovered: 0
         linesMissed: 4
@@ -23944,7 +24101,7 @@ elements:
         crap: 2.0
       - name: createObjectMapper
         desc: ()Lcom/fasterxml/jackson/databind/ObjectMapper;
-        line: 125
+        line: 113
         cyclomatic: 1
         linesCovered: 0
         linesMissed: 5
@@ -23959,7 +24116,7 @@ elements:
         crap: 2.0
       - name: lambda$loadLatest$1
         desc: (Ljava/nio/file/Path;)Ljava/lang/String;
-        line: 98
+        line: 86
         cyclomatic: 1
         linesCovered: 0
         linesMissed: 1
@@ -23974,7 +24131,7 @@ elements:
         crap: 2.0
       - name: lambda$loadLatest$0
         desc: (Ljava/nio/file/Path;)Z
-        line: 96
+        line: 84
         cyclomatic: 3
         linesCovered: 0
         linesMissed: 2
@@ -24295,13 +24452,13 @@ elements:
         blendPct: 82
       mutation:
         totalMutants: 32
-        killed: 24
-        survived: 7
+        killed: 27
+        survived: 4
         noCoverage: 1
         timedOut: 0
         other: 0
-        mutationScorePct: 75
-        testStrengthPct: 77
+        mutationScorePct: 84
+        testStrengthPct: 87
       crap:
         totalMethods: 15
         hotspots: 0
@@ -24315,7 +24472,7 @@ elements:
       methods:
       - name: <init>
         desc: ()V
-        line: 47
+        line: 44
         cyclomatic: 1
         linesCovered: 2
         linesMissed: 0
@@ -24330,7 +24487,7 @@ elements:
         crap: 1.0
       - name: <init>
         desc: (Ljava/nio/file/Path;)V
-        line: 55
+        line: 47
         cyclomatic: 1
         linesCovered: 4
         linesMissed: 0
@@ -24345,7 +24502,7 @@ elements:
         crap: 1.0
       - name: save
         desc: (Lcom/learney/contentaudit/revisiondomain/RevisionArtifact;)Ljava/lang/String;
-        line: 66
+        line: 58
         cyclomatic: 1
         linesCovered: 9
         linesMissed: 6
@@ -24360,7 +24517,7 @@ elements:
         crap: 1.064
       - name: load
         desc: (Ljava/lang/String;Ljava/lang/String;)Ljava/util/Optional;
-        line: 89
+        line: 81
         cyclomatic: 2
         linesCovered: 4
         linesMissed: 0
@@ -24375,7 +24532,7 @@ elements:
         crap: 2.0
       - name: listByPlan
         desc: (Ljava/lang/String;)Ljava/util/List;
-        line: 98
+        line: 90
         cyclomatic: 3
         linesCovered: 13
         linesMissed: 4
@@ -24383,14 +24540,14 @@ elements:
         branchesCovered: 3
         branchesMissed: 1
         mutantsTotal: 3
-        mutantsKilled: 1
-        mutantsSurvived: 1
+        mutantsKilled: 2
+        mutantsSurvived: 0
         mutantsNoCoverage: 1
-        mutationScorePct: 33
+        mutationScorePct: 66
         crap: 3.124416
       - name: resolveRevisionsDir
         desc: ()Ljava/nio/file/Path;
-        line: 126
+        line: 118
         cyclomatic: 1
         linesCovered: 1
         linesMissed: 0
@@ -24405,7 +24562,7 @@ elements:
         crap: 1.0
       - name: loadFromFile
         desc: (Ljava/nio/file/Path;)Lcom/learney/contentaudit/revisiondomain/RevisionArtifact;
-        line: 131
+        line: 123
         cyclomatic: 1
         linesCovered: 1
         linesMissed: 3
@@ -24420,7 +24577,7 @@ elements:
         crap: 1.421875
       - name: createObjectMapper
         desc: ()Lcom/fasterxml/jackson/databind/ObjectMapper;
-        line: 139
+        line: 131
         cyclomatic: 1
         linesCovered: 5
         linesMissed: 0
@@ -24435,7 +24592,7 @@ elements:
         crap: 1.0
       - name: findByProposalId
         desc: (Ljava/lang/String;Ljava/util/Optional;)Ljava/util/Optional;
-        line: 155
+        line: 147
         cyclomatic: 5
         linesCovered: 13
         linesMissed: 4
@@ -24443,14 +24600,14 @@ elements:
         branchesCovered: 7
         branchesMissed: 1
         mutantsTotal: 5
-        mutantsKilled: 4
-        mutantsSurvived: 1
+        mutantsKilled: 5
+        mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 80
+        mutationScorePct: 100
         crap: 5.3456
       - name: hasPendingProposalForTask
         desc: (Ljava/lang/String;Ljava/lang/String;)Z
-        line: 186
+        line: 178
         cyclomatic: 5
         linesCovered: 13
         linesMissed: 3
@@ -24465,7 +24622,7 @@ elements:
         crap: 5.171475
       - name: list
         desc: ()Ljava/util/List;
-        line: 212
+        line: 204
         cyclomatic: 3
         linesCovered: 12
         linesMissed: 3
@@ -24473,14 +24630,14 @@ elements:
         branchesCovered: 4
         branchesMissed: 0
         mutantsTotal: 3
-        mutantsKilled: 2
-        mutantsSurvived: 1
+        mutantsKilled: 3
+        mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 66
+        mutationScorePct: 100
         crap: 3.072
       - name: lambda$list$0
         desc: (Ljava/nio/file/Path;)Z
-        line: 219
+        line: 211
         cyclomatic: 1
         linesCovered: 1
         linesMissed: 0
@@ -24495,7 +24652,7 @@ elements:
         crap: 1.0
       - name: lambda$hasPendingProposalForTask$0
         desc: (Ljava/nio/file/Path;)Z
-        line: 193
+        line: 185
         cyclomatic: 1
         linesCovered: 1
         linesMissed: 0
@@ -24510,7 +24667,7 @@ elements:
         crap: 1.0
       - name: lambda$findByProposalId$0
         desc: (Ljava/nio/file/Path;)Z
-        line: 168
+        line: 160
         cyclomatic: 1
         linesCovered: 1
         linesMissed: 0
@@ -24525,7 +24682,7 @@ elements:
         crap: 1.0
       - name: lambda$listByPlan$0
         desc: (Ljava/nio/file/Path;)Z
-        line: 106
+        line: 98
         cyclomatic: 1
         linesCovered: 1
         linesMissed: 0
@@ -24610,13 +24767,13 @@ elements:
         blendPct: 70
       mutation:
         totalMutants: 16
-        killed: 9
-        survived: 6
+        killed: 11
+        survived: 4
         noCoverage: 1
         timedOut: 0
         other: 0
-        mutationScorePct: 56
-        testStrengthPct: 60
+        mutationScorePct: 68
+        testStrengthPct: 73
       crap:
         totalMethods: 10
         hotspots: 0
@@ -24630,7 +24787,7 @@ elements:
       methods:
       - name: <init>
         desc: ()V
-        line: 42
+        line: 39
         cyclomatic: 1
         linesCovered: 2
         linesMissed: 0
@@ -24645,7 +24802,7 @@ elements:
         crap: 1.0
       - name: <init>
         desc: (Ljava/nio/file/Path;)V
-        line: 50
+        line: 42
         cyclomatic: 1
         linesCovered: 4
         linesMissed: 0
@@ -24660,7 +24817,7 @@ elements:
         crap: 1.0
       - name: save
         desc: (Lcom/learney/contentaudit/revisiondomain/impactpreview/ImpactPreview;)V
-        line: 69
+        line: 61
         cyclomatic: 3
         linesCovered: 12
         linesMissed: 6
@@ -24675,7 +24832,7 @@ elements:
         crap: 3.353736
       - name: findByProposalId
         desc: (Ljava/lang/String;)Ljava/util/Optional;
-        line: 109
+        line: 101
         cyclomatic: 4
         linesCovered: 10
         linesMissed: 6
@@ -24683,14 +24840,14 @@ elements:
         branchesCovered: 3
         branchesMissed: 3
         mutantsTotal: 3
-        mutantsKilled: 2
-        mutantsSurvived: 1
+        mutantsKilled: 3
+        mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 66
+        mutationScorePct: 100
         crap: 4.8779520000000005
       - name: resolveRevisionsDir
         desc: ()Ljava/nio/file/Path;
-        line: 138
+        line: 130
         cyclomatic: 1
         linesCovered: 1
         linesMissed: 0
@@ -24705,7 +24862,7 @@ elements:
         crap: 1.0
       - name: resolvePlanDirForProposal
         desc: (Ljava/lang/String;)Ljava/nio/file/Path;
-        line: 146
+        line: 138
         cyclomatic: 4
         linesCovered: 11
         linesMissed: 3
@@ -24713,14 +24870,14 @@ elements:
         branchesCovered: 5
         branchesMissed: 1
         mutantsTotal: 3
-        mutantsKilled: 0
-        mutantsSurvived: 2
+        mutantsKilled: 1
+        mutantsSurvived: 1
         mutantsNoCoverage: 1
-        mutationScorePct: 0
+        mutationScorePct: 33
         crap: 4.170368
       - name: loadFromFile
         desc: (Ljava/nio/file/Path;)Lcom/learney/contentaudit/revisiondomain/impactpreview/ImpactPreview;
-        line: 170
+        line: 162
         cyclomatic: 1
         linesCovered: 1
         linesMissed: 3
@@ -24735,7 +24892,7 @@ elements:
         crap: 1.421875
       - name: createObjectMapper
         desc: ()Lcom/fasterxml/jackson/databind/ObjectMapper;
-        line: 178
+        line: 170
         cyclomatic: 1
         linesCovered: 5
         linesMissed: 0
@@ -24750,7 +24907,7 @@ elements:
         crap: 1.0
       - name: lambda$resolvePlanDirForProposal$0
         desc: (Ljava/nio/file/Path;)Z
-        line: 153
+        line: 145
         cyclomatic: 1
         linesCovered: 1
         linesMissed: 0
@@ -24765,7 +24922,7 @@ elements:
         crap: 1.0
       - name: lambda$findByProposalId$0
         desc: (Ljava/nio/file/Path;)Z
-        line: 116
+        line: 108
         cyclomatic: 1
         linesCovered: 1
         linesMissed: 0
@@ -24806,6 +24963,222 @@ elements:
         \ se modifica"
       status: EXISTS
       testFilePath: audit-infrastructure/src/test/java/com/learney/contentaudit/auditinfrastructure/FileSystemActiveAnalysisSelectionStoreTest.java
+    testCleanViews:
+    - |
+      test: "Dado un ActiveAnalysisSelection escrito previamente con write, cuando read corre, entonces retorna un Optional con esa misma seleccion (auditId y planId)"
+      trace: FEAT-CDIFF / F-CDIFF-R001
+
+      given:
+        store = storeFor(tempDir)
+        selection = ActiveAnalysisSelection("audit-001", "plan-001")
+        result = store.read()
+
+      when:
+        sut.write(selection)
+
+      then:
+        result.isPresent() is true
+        result.get().getAuditId() == "audit-001"
+        result.get().getPlanId() == "plan-001"
+    - |
+      test: "Dado un store sin seleccion previa (archivo ausente), cuando read corre, entonces retorna Optional.empty"
+      trace: FEAT-CDIFF / F-CDIFF-R001
+
+      given:
+        store = storeFor(tempDir)
+        result = store.read()
+
+      then:
+        result.isPresent() is false
+    - |
+      test: "Dado un store con una seleccion ya escrita, cuando write se invoca con la misma seleccion, entonces el archivo no se reescribe (write idempotente y no destructivo a nivel observable)"
+      trace: FEAT-CDIFF / F-CDIFF-R002
+
+      given:
+        store = storeFor(tempDir)
+        selection = ActiveAnalysisSelection("audit-abc", "plan-xyz")
+        activeFile = tempDir.resolve(".content-audit/active-analysis.json")
+        lastModifiedAfterFirstWrite = Files.getLastModifiedTime(activeFile).toMillis()
+        lastModifiedAfterSecondWrite = Files.getLastModifiedTime(activeFile).toMillis()
+        read = store.read()
+
+      when:
+        sut.write(selection)
+
+      then:
+        lastModifiedAfterSecondWrite == lastModifiedAfterFirstWrite
+        read.isPresent() is true
+        read.get() == selection
+    - |
+      test: "Dado un store con una seleccion escrita, cuando clear corre, entonces read posterior retorna Optional.empty"
+      trace: FEAT-CDIFF / F-CDIFF-R001
+
+      given:
+        store = storeFor(tempDir)
+
+      when:
+        sut.write(new ActiveAnalysisSelection("audit-001", "plan-001"))
+
+      then:
+        store.read().isPresent() is false
+    - |
+      test: "Dado un courseRoot con AuditReports y RefinementPlans persistidos, cuando write y clear se invocan sobre el ActiveAnalysisSelectionStore, entonces ningun AuditReport, RefinementPlan, RevisionArtifact ni archivo del curso se modifica"
+      trace: FEAT-CDIFF / F-CDIFF-R002
+
+      given:
+        auditsDir = tempDir.resolve(".content-audit/audits")
+        auditFile = auditsDir.resolve("audit-2026-01-01T00:00:00Z.json")
+        revisionsDir = tempDir.resolve(".content-audit/revisions/plan-001")
+        revisionFile = revisionsDir.resolve("proposal-001.json")
+        courseFile = tempDir.resolve("_course.json")
+        auditFileModified = Files.getLastModifiedTime(auditFile).toMillis()
+        revisionFileModified = Files.getLastModifiedTime(revisionFile).toMillis()
+        courseFileModified = Files.getLastModifiedTime(courseFile).toMillis()
+        store = storeFor(tempDir)
+
+      when:
+        sut.createDirectories(auditsDir)
+
+      then:
+        Files.getLastModifiedTime(auditFile).toMillis() == auditFileModified
+        Files.getLastModifiedTime(revisionFile).toMillis() == revisionFileModified
+        Files.getLastModifiedTime(courseFile).toMillis() == courseFileModified
+    quality:
+      coverage:
+        linesCovered: 31
+        linesMissed: 13
+        linesTotal: 44
+        lineCoveragePct: 70
+        branchesCovered: 5
+        branchesMissed: 1
+        branchesTotal: 6
+        branchCoveragePct: 83
+        blendPct: 76
+      mutation:
+        totalMutants: 7
+        killed: 7
+        survived: 0
+        noCoverage: 0
+        timedOut: 0
+        other: 0
+        mutationScorePct: 100
+        testStrengthPct: 100
+      crap:
+        totalMethods: 7
+        hotspots: 0
+        maxCrap: 3.533871
+        averageCrap: 1.5616294285714285
+        simple: 7
+        moderate: 0
+        high: 0
+        veryHigh: 0
+        healthPct: 100
+      methods:
+      - name: <init>
+        desc: ()V
+        line: 27
+        cyclomatic: 1
+        linesCovered: 2
+        linesMissed: 0
+        lineCoveragePct: 100
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 1.0
+      - name: <init>
+        desc: (Ljava/nio/file/Path;)V
+        line: 30
+        cyclomatic: 1
+        linesCovered: 4
+        linesMissed: 0
+        lineCoveragePct: 100
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 1.0
+      - name: read
+        desc: ()Ljava/util/Optional;
+        line: 37
+        cyclomatic: 2
+        linesCovered: 4
+        linesMissed: 3
+        lineCoveragePct: 57
+        branchesCovered: 2
+        branchesMissed: 0
+        mutantsTotal: 2
+        mutantsKilled: 2
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 100
+        crap: 2.318028
+      - name: write
+        desc: (Lcom/learney/contentaudit/auditdomain/ActiveAnalysisSelection;)V
+        line: 52
+        cyclomatic: 3
+        linesCovered: 11
+        linesMissed: 7
+        lineCoveragePct: 61
+        branchesCovered: 3
+        branchesMissed: 1
+        mutantsTotal: 3
+        mutantsKilled: 3
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 100
+        crap: 3.533871
+      - name: clear
+        desc: ()V
+        line: 78
+        cyclomatic: 1
+        linesCovered: 4
+        linesMissed: 3
+        lineCoveragePct: 57
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 1.079507
+      - name: resolveFile
+        desc: ()Ljava/nio/file/Path;
+        line: 88
+        cyclomatic: 1
+        linesCovered: 1
+        linesMissed: 0
+        lineCoveragePct: 100
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 1
+        mutantsKilled: 1
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 100
+        crap: 1.0
+      - name: createObjectMapper
+        desc: ()Lcom/fasterxml/jackson/databind/ObjectMapper;
+        line: 92
+        cyclomatic: 1
+        linesCovered: 5
+        linesMissed: 0
+        lineCoveragePct: 100
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 1
+        mutantsKilled: 1
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 100
+        crap: 1.0
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -24815,38 +25188,38 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 210
-      linesMissed: 113
-      linesTotal: 323
-      lineCoveragePct: 65
-      branchesCovered: 54
-      branchesMissed: 28
-      branchesTotal: 82
-      branchCoveragePct: 65
-      blendPct: 65
+      linesCovered: 241
+      linesMissed: 122
+      linesTotal: 363
+      lineCoveragePct: 66
+      branchesCovered: 59
+      branchesMissed: 29
+      branchesTotal: 88
+      branchCoveragePct: 67
+      blendPct: 66
     mutation:
-      totalMutants: 96
-      killed: 58
-      survived: 20
+      totalMutants: 103
+      killed: 70
+      survived: 15
       noCoverage: 18
       timedOut: 0
       other: 0
-      mutationScorePct: 60
-      testStrengthPct: 74
+      mutationScorePct: 67
+      testStrengthPct: 82
     crap:
-      totalMethods: 58
+      totalMethods: 63
       hotspots: 0
       maxCrap: 12.0
-      averageCrap: 2.321060224137931
-      simple: 57
+      averageCrap: 2.2468714126984133
+      simple: 62
       moderate: 1
       high: 0
       veryHigh: 0
       healthPct: 99
-    healthScore: 71
+    healthScore: 75
     verdict: WARNED
     violations:
-    - lineCoverage 65% < 70%
+    - lineCoverage 66% < 70%
 - module: revision-domain
   status: EXISTS
   models:
@@ -27496,6 +27869,788 @@ elements:
         \ con nodeImpacts y statisticImpacts agregados"
       status: EXISTS
       testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    testCleanViews:
+    - |
+      test: "Dada una seleccion activa con auditId y planId resolubles, cuando build corre, entonces ConsolidatedView.activeAuditId y activePlanId coinciden con los identificadores leidos del ActiveAnalysisSelectionStore"
+      trace: FEAT-CDIFF / F-CDIFF-R001
+
+      given:
+        root = quizNode("quiz-001", Map.of("lemma-absence", 0.80))
+        course = mock(CourseEntity.class)
+        view = builder().build(COURSE_PATH)
+
+      mock:
+        refinementPlanStore.load("plan-r001") -> Optional.of(plan("plan-r001", "audit-r001"))
+        auditReportStore.load("audit-r001") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r001") -> List.of()
+        courseRepository.load(COURSE_PATH) -> course
+        courseMapper.map(course) -> mock(AuditableCourse.class)
+        auditEngine.runAudit(any()) -> report(root)
+
+      then:
+        view.getActiveAuditId() == "audit-r001"
+        view.getActivePlanId() == "plan-r001"
+        view.getAvailability() == ConsolidatedViewAvailability.AVAILABLE
+    - |
+      test: "Dado un AuditReport recien creado cuyo plan activo no tiene propuestas aceptadas ni pendientes, cuando build corre, entonces nodeImpacts y statisticImpacts quedan vacios y los valores consolidados coinciden con el baseline del analisis"
+      trace: FEAT-CDIFF / F-CDIFF-R003
+
+      given:
+        root = quizNode("quiz-001", Map.of("lemma-absence", 0.75))
+        course = mock(CourseEntity.class)
+        view = builder().build(COURSE_PATH)
+
+      mock:
+        refinementPlanStore.load("plan-r003") -> Optional.of(plan("plan-r003", "audit-r003"))
+        auditReportStore.load("audit-r003") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r003") -> List.of()
+        courseRepository.load(COURSE_PATH) -> course
+        courseMapper.map(course) -> mock(AuditableCourse.class)
+        auditEngine.runAudit(any()) -> report(root)
+
+      then:
+        view.getAvailability() == ConsolidatedViewAvailability.AVAILABLE
+        view.getNodeImpacts().isEmpty() is true
+        view.getStatisticImpacts().isEmpty() is true
+    - |
+      test: "Dado un plan activo de un analisis viejo con propuestas pendientes y un analisis mas nuevo cuyo plan no las contiene, cuando build corre apuntando al analisis viejo, entonces sus pendientes dormidas aparecen en nodeImpacts/statisticImpacts del consolidado"
+      trace: FEAT-CDIFF / F-CDIFF-R004
+
+      given:
+        snapBefore = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        snapAfter = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        dormant = pendingArtifact("proposal-dormant", "plan-old", "audit-old", "quiz-001", snapBefore, snapAfter, Instant.parse("2026-01-01T00:00:00Z"))
+        root = quizNode("quiz-001", Map.of("lemma-absence", 0.60))
+        course = mock(CourseEntity.class)
+        courseWithPend = mock(CourseEntity.class)
+        audBase = mock(AuditableCourse.class)
+        audPend = mock(AuditableCourse.class)
+        rootPend = quizNode("quiz-001", Map.of("lemma-absence", 0.75))
+        view = builder().build(COURSE_PATH)
+
+      mock:
+        refinementPlanStore.load("plan-old") -> Optional.of(plan("plan-old", "audit-old"))
+        auditReportStore.load("audit-old") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-old") -> List.of(dormant)
+        courseRepository.load(COURSE_PATH) -> course
+        courseElementLocator.snapshot(eq(course), eq(AuditTarget.QUIZ), eq("quiz-001")) -> Optional.of(snapBefore)
+        courseElementLocator.replace(eq(course), eq(snapAfter)) -> courseWithPend
+        courseMapper.map(course) -> audBase
+        courseMapper.map(courseWithPend) -> audPend
+        auditEngine.runAudit(eq(audBase)) -> report(root)
+        auditEngine.runAudit(eq(audPend)) -> report(rootPend)
+
+      then:
+        view.getAvailability() == ConsolidatedViewAvailability.AVAILABLE
+        view.getNodeImpacts().isEmpty() is false
+    - |
+      test: "Dado un RevisionArtifact con verdict REJECTED en el plan activo, cuando build corre, entonces ese proposalId no aparece en nodeImpacts, statisticImpacts ni nonApplicablePendings y no contribuye a consolidated, acceptedDelta, pendingProjection ni pendingDelta"
+      trace: FEAT-CDIFF / F-CDIFF-R005
+
+      given:
+        snap = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        rejected = rejectedArtifact("proposal-rejected", "plan-r005", "audit-r005", "quiz-001", snap)
+        root = quizNode("quiz-001", Map.of("lemma-absence", 0.70))
+        course = mock(CourseEntity.class)
+        view = builder().build(COURSE_PATH)
+
+      mock:
+        refinementPlanStore.load("plan-r005") -> Optional.of(plan("plan-r005", "audit-r005"))
+        auditReportStore.load("audit-r005") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r005") -> List.of(rejected)
+        courseRepository.load(COURSE_PATH) -> course
+        courseMapper.map(course) -> mock(AuditableCourse.class)
+        auditEngine.runAudit(any()) -> report(root)
+
+      then:
+        view.getNodeImpacts().isEmpty() is true
+        view.getStatisticImpacts().isEmpty() is true
+        view.getNonApplicablePendings().isEmpty() is true
+    - |
+      test: "Dado un nodo hoja sin aceptadas ni pendientes en el plan activo, cuando build corre, entonces ese nodo no aparece en nodeImpacts (la salida solo emite nodos afectados)"
+      trace: FEAT-CDIFF / F-CDIFF-R006
+
+      given:
+        root = quizNode("quiz-unaffected", Map.of("lemma-absence", 0.80))
+        course = mock(CourseEntity.class)
+        view = builder().build(COURSE_PATH)
+
+      mock:
+        refinementPlanStore.load("plan-r006a") -> Optional.of(plan("plan-r006a", "audit-r006a"))
+        auditReportStore.load("audit-r006a") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r006a") -> List.of()
+        courseRepository.load(COURSE_PATH) -> course
+        courseMapper.map(course) -> mock(AuditableCourse.class)
+        auditEngine.runAudit(any()) -> report(root)
+
+      then:
+        view.getNodeImpacts().isEmpty() is true
+    - |
+      test: "Dado un nodo hoja con una pendiente en el plan activo y sin aceptadas, cuando build corre, entonces NodeImpact.consolidated coincide con el snapshot del baseline y pendingProjection coincide con el snapshot resultante de aplicar la pendiente sobre ese baseline"
+      trace: FEAT-CDIFF / F-CDIFF-R006
+
+      given:
+        snapBase = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        snapPend = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        pending = pendingArtifact("proposal-pend", "plan-r006b", "audit-r006b", "quiz-001", snapBase, snapPend, Instant.parse("2026-01-01T00:00:00Z"))
+        root = quizNode("quiz-001", Map.of("lemma-absence", 0.60))
+        course = mock(CourseEntity.class)
+        courseWithPend = mock(CourseEntity.class)
+        audBase = mock(AuditableCourse.class)
+        audPend = mock(AuditableCourse.class)
+        rootPend = quizNode("quiz-001", Map.of("lemma-absence", 0.75))
+        view = builder().build(COURSE_PATH)
+        ni = view.getNodeImpacts().stream().filter(n -> "quiz-001".equals(n.getNodeId())).findFirst().orElseThrow(() -> new AssertionError("NodeImpact para quiz-001 no encontrado"))
+
+      mock:
+        refinementPlanStore.load("plan-r006b") -> Optional.of(plan("plan-r006b", "audit-r006b"))
+        auditReportStore.load("audit-r006b") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r006b") -> List.of(pending)
+        courseRepository.load(COURSE_PATH) -> course
+        courseElementLocator.snapshot(eq(course), eq(AuditTarget.QUIZ), eq("quiz-001")) -> Optional.of(snapBase)
+        courseElementLocator.replace(eq(course), eq(snapPend)) -> courseWithPend
+        courseMapper.map(course) -> audBase
+        courseMapper.map(courseWithPend) -> audPend
+        auditEngine.runAudit(eq(audBase)) -> report(root)
+        auditEngine.runAudit(eq(audPend)) -> report(rootPend)
+
+      then:
+        ni.getConsolidated() == snapBase
+        ni.getPendingProjection() is not null
+        ni.getPendingProposalId() == "proposal-pend"
+    - |
+      test: "Dado un nodo hoja con una propuesta aceptada y sin pendientes, cuando build corre, entonces NodeImpact.consolidated coincide con el elementAfter de la aceptada y pendingProjection es null"
+      trace: FEAT-CDIFF / F-CDIFF-R006
+
+      given:
+        snapBefore = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        snapAfter = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        approved = approvedArtifact("proposal-acc", "plan-r006c", "audit-r006c", "quiz-001", snapBefore, snapAfter, Instant.parse("2026-01-01T00:00:00Z"))
+        root = quizNode("quiz-001", Map.of("lemma-absence", 0.60))
+        course = mock(CourseEntity.class)
+        courseAfter = mock(CourseEntity.class)
+        audAfter = mock(AuditableCourse.class)
+        rootAfter = quizNode("quiz-001", Map.of("lemma-absence", 0.80))
+        view = builder().build(COURSE_PATH)
+        ni = view.getNodeImpacts().stream().filter(n -> "quiz-001".equals(n.getNodeId())).findFirst().orElseThrow(() -> new AssertionError("NodeImpact para quiz-001 no encontrado"))
+
+      mock:
+        refinementPlanStore.load("plan-r006c") -> Optional.of(plan("plan-r006c", "audit-r006c"))
+        auditReportStore.load("audit-r006c") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r006c") -> List.of(approved)
+        courseRepository.load(COURSE_PATH) -> course
+        courseElementLocator.replace(eq(course), eq(snapAfter)) -> courseAfter
+        courseMapper.map(courseAfter) -> audAfter
+        auditEngine.runAudit(eq(audAfter)) -> report(rootAfter)
+
+      then:
+        ni.getConsolidated() == snapAfter
+        ni.getPendingProjection() is null
+    - |
+      test: "Dado un nodo hoja con una aceptada y una pendiente sobre el mismo nodeId, cuando build corre, entonces pendingProjection se calcula aplicando la pendiente sobre consolidated (es decir sobre el elementAfter de la aceptada) y no sobre el snapshot original del baseline"
+      trace: FEAT-CDIFF / F-CDIFF-R006
+
+      given:
+        snapBase = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        snapAfterAcc = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        snapAfterPend = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        approved = approvedArtifact("proposal-acc", "plan-r006d", "audit-r006d", "quiz-001", snapBase, snapAfterAcc, Instant.parse("2026-01-01T00:00:00Z"))
+        pending = pendingArtifact("proposal-pend", "plan-r006d", "audit-r006d", "quiz-001", snapAfterAcc, snapAfterPend, Instant.parse("2026-01-02T00:00:00Z"))
+        root = quizNode("quiz-001", Map.of("lemma-absence", 0.50))
+        course = mock(CourseEntity.class)
+        courseAfterAcc = mock(CourseEntity.class)
+        courseAfterPend = mock(CourseEntity.class)
+        audAcc = mock(AuditableCourse.class)
+        audPend = mock(AuditableCourse.class)
+        view = builder().build(COURSE_PATH)
+        ni = view.getNodeImpacts().stream().filter(n -> "quiz-001".equals(n.getNodeId())).findFirst().orElseThrow(() -> new AssertionError("NodeImpact para quiz-001 no encontrado"))
+
+      mock:
+        refinementPlanStore.load("plan-r006d") -> Optional.of(plan("plan-r006d", "audit-r006d"))
+        auditReportStore.load("audit-r006d") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r006d") -> List.of(approved, pending)
+        courseRepository.load(COURSE_PATH) -> course
+        courseElementLocator.replace(eq(course), eq(snapAfterAcc)) -> courseAfterAcc
+        courseElementLocator.snapshot(eq(courseAfterAcc), eq(AuditTarget.QUIZ), eq("quiz-001")) -> Optional.of(snapAfterAcc)
+        courseElementLocator.replace(eq(courseAfterAcc), eq(snapAfterPend)) -> courseAfterPend
+        courseMapper.map(courseAfterAcc) -> audAcc
+        courseMapper.map(courseAfterPend) -> audPend
+        auditEngine.runAudit(eq(audAcc)) -> report(quizNode("quiz-001", Map.of("lemma-absence", 0.70)))
+        auditEngine.runAudit(eq(audPend)) -> report(quizNode("quiz-001", Map.of("lemma-absence", 0.85)))
+
+      then:
+        ni.getConsolidated() == snapAfterAcc
+        ni.getPendingProjection() is not null
+    - |
+      test: "Dado un nodo hoja con dos propuestas aceptadas que lo afectaron en orden createdAt ascendente, cuando build corre, entonces NodeImpact.acceptedProposalIds contiene ambos proposalId en orden createdAt ascendente"
+      trace: FEAT-CDIFF / F-CDIFF-R007
+
+      given:
+        snap1 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        snap2 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        snap3 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        acc1 = approvedArtifact("proposal-first", "plan-r007a", "audit-r007a", "quiz-001", snap1, snap2, Instant.parse("2026-01-01T00:00:00Z"))
+        acc2 = approvedArtifact("proposal-second", "plan-r007a", "audit-r007a", "quiz-001", snap2, snap3, Instant.parse("2026-01-02T00:00:00Z"))
+        root = quizNode("quiz-001", Map.of("lemma-absence", 0.50))
+        course = mock(CourseEntity.class)
+        course2 = mock(CourseEntity.class)
+        course3 = mock(CourseEntity.class)
+        audFinal = mock(AuditableCourse.class)
+        view = builder().build(COURSE_PATH)
+        ni = view.getNodeImpacts().stream().filter(n -> "quiz-001".equals(n.getNodeId())).findFirst().orElseThrow(() -> new AssertionError("NodeImpact para quiz-001 no encontrado"))
+        ids = ni.getAcceptedProposalIds()
+
+      mock:
+        refinementPlanStore.load("plan-r007a") -> Optional.of(plan("plan-r007a", "audit-r007a"))
+        auditReportStore.load("audit-r007a") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r007a") -> List.of(acc1, acc2)
+        courseRepository.load(COURSE_PATH) -> course
+        courseElementLocator.replace(eq(course), eq(snap2)) -> course2
+        courseElementLocator.replace(eq(course2), eq(snap3)) -> course3
+        courseMapper.map(course3) -> audFinal
+        auditEngine.runAudit(eq(audFinal)) -> report(quizNode("quiz-001", Map.of("lemma-absence", 0.90)))
+
+      then:
+        ids.size() == 2
+        ids.get(0) == "proposal-first"
+        ids.get(1) == "proposal-second"
+    - |
+      test: "Dado un nodo hoja con una pendiente aplicable, cuando build corre, entonces NodeImpact.pendingProposalId equivale al proposalId de la pendiente que produjo pendingProjection"
+      trace: FEAT-CDIFF / F-CDIFF-R007
+
+      given:
+        snapBefore = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        snapAfter = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        pending = pendingArtifact("proposal-pend-r007", "plan-r007b", "audit-r007b", "quiz-001", snapBefore, snapAfter, Instant.parse("2026-01-01T00:00:00Z"))
+        root = quizNode("quiz-001", Map.of("lemma-absence", 0.60))
+        course = mock(CourseEntity.class)
+        courseWithPend = mock(CourseEntity.class)
+        audBase = mock(AuditableCourse.class)
+        audPend = mock(AuditableCourse.class)
+        view = builder().build(COURSE_PATH)
+        ni = view.getNodeImpacts().stream().filter(n -> "quiz-001".equals(n.getNodeId())).findFirst().orElseThrow(() -> new AssertionError("NodeImpact para quiz-001 no encontrado"))
+
+      mock:
+        refinementPlanStore.load("plan-r007b") -> Optional.of(plan("plan-r007b", "audit-r007b"))
+        auditReportStore.load("audit-r007b") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r007b") -> List.of(pending)
+        courseRepository.load(COURSE_PATH) -> course
+        courseElementLocator.snapshot(eq(course), eq(AuditTarget.QUIZ), eq("quiz-001")) -> Optional.of(snapBefore)
+        courseElementLocator.replace(eq(course), eq(snapAfter)) -> courseWithPend
+        courseMapper.map(course) -> audBase
+        courseMapper.map(courseWithPend) -> audPend
+        auditEngine.runAudit(eq(audBase)) -> report(root)
+        auditEngine.runAudit(eq(audPend)) -> report(quizNode("quiz-001", Map.of("lemma-absence", 0.75)))
+
+      then:
+        ni.getPendingProposalId() == "proposal-pend-r007"
+    - |
+      test: "Dado un nodo padre cuyo subarbol contiene un quiz afectado por una aceptada, cuando build corre, entonces aparece un NodeImpact para ese padre y los valores consolidados de sus estadisticas resultan de re-agregar el subarbol con la estrategia del analizador (no de sumar deltas individuales)"
+      trace: FEAT-CDIFF / F-CDIFF-R008
+
+      given:
+        snap1 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        snap2 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        approved = approvedArtifact("proposal-r008", "plan-r008a", "audit-r008a", "quiz-001", snap1, snap2, Instant.parse("2026-01-01T00:00:00Z"))
+        quizChild = quizNode("quiz-001", Map.of("lemma-absence", 0.50))
+        topicRoot = AuditNode()
+        topicEnt = FakeEntity("topic-001")
+        course = mock(CourseEntity.class)
+        courseAfter = mock(CourseEntity.class)
+        audAfter = mock(AuditableCourse.class)
+        quizAfter = quizNode("quiz-001", Map.of("lemma-absence", 0.80))
+        topicAfter = AuditNode()
+        view = builder().build(COURSE_PATH)
+        topicInStats = view.getStatisticImpacts().stream().anyMatch(s -> "topic-001".equals(s.getNodeId()))
+        topicStat = view.getStatisticImpacts().stream().filter(s -> "topic-001".equals(s.getNodeId()) && "lemma-absence".equals(s.getDimension())).findFirst().orElseThrow()
+
+      mock:
+        refinementPlanStore.load("plan-r008a") -> Optional.of(plan("plan-r008a", "audit-r008a"))
+        auditReportStore.load("audit-r008a") -> Optional.of(report(topicRoot))
+        revisionArtifactStore.listByPlan("plan-r008a") -> List.of(approved)
+        courseRepository.load(COURSE_PATH) -> course
+        courseElementLocator.replace(eq(course), eq(snap2)) -> courseAfter
+        courseMapper.map(courseAfter) -> audAfter
+        auditEngine.runAudit(eq(audAfter)) -> report(topicAfter)
+
+      when:
+        sut.setTarget(AuditTarget.TOPIC)
+
+      then:
+        topicInStats is true
+        topicStat.getConsolidated() == 0.80
+    - |
+      test: "Dado un nodo padre cuyo subarbol no contiene aceptadas ni pendientes, cuando build corre, entonces ese padre no aparece en nodeImpacts ni en statisticImpacts"
+      trace: FEAT-CDIFF / F-CDIFF-R008
+
+      given:
+        quizChild = quizNode("quiz-unaffected", Map.of("lemma-absence", 0.70))
+        topicRoot = AuditNode()
+        course = mock(CourseEntity.class)
+        view = builder().build(COURSE_PATH)
+
+      mock:
+        refinementPlanStore.load("plan-r008b") -> Optional.of(plan("plan-r008b", "audit-r008b"))
+        auditReportStore.load("audit-r008b") -> Optional.of(report(topicRoot))
+        revisionArtifactStore.listByPlan("plan-r008b") -> List.of()
+        courseRepository.load(COURSE_PATH) -> course
+        courseMapper.map(course) -> mock(AuditableCourse.class)
+        auditEngine.runAudit(any()) -> report(topicRoot)
+
+      when:
+        sut.setTarget(AuditTarget.TOPIC)
+
+      then:
+        view.getNodeImpacts().isEmpty() is true
+        view.getStatisticImpacts().isEmpty() is true
+    - |
+      test: "Dada una estadistica tocada solo por una aceptada en el plan activo, cuando build corre, entonces el StatisticImpact correspondiente expone original y consolidated distintos, acceptedDelta no nulo, y pendingProjection y pendingDelta nulos"
+      trace: FEAT-CDIFF / F-CDIFF-R009
+
+      given:
+        snap1 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        snap2 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        approved = approvedArtifact("proposal-acc-r009a", "plan-r009a", "audit-r009a", "quiz-001", snap1, snap2, Instant.parse("2026-01-01T00:00:00Z"))
+        root = quizNode("quiz-001", Map.of("lemma-absence", 0.60))
+        course = mock(CourseEntity.class)
+        courseAfter = mock(CourseEntity.class)
+        audAfter = mock(AuditableCourse.class)
+        view = builder().build(COURSE_PATH)
+        stat = view.getStatisticImpacts().stream().filter(s -> "quiz-001".equals(s.getNodeId()) && "lemma-absence".equals(s.getDimension())).findFirst().orElseThrow(() -> new AssertionError("StatisticImpact no encontrado"))
+
+      mock:
+        refinementPlanStore.load("plan-r009a") -> Optional.of(plan("plan-r009a", "audit-r009a"))
+        auditReportStore.load("audit-r009a") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r009a") -> List.of(approved)
+        courseRepository.load(COURSE_PATH) -> course
+        courseElementLocator.replace(eq(course), eq(snap2)) -> courseAfter
+        courseMapper.map(courseAfter) -> audAfter
+        auditEngine.runAudit(eq(audAfter)) -> report(quizNode("quiz-001", Map.of("lemma-absence", 0.80)))
+
+      then:
+        stat.getOriginal() == 0.60
+        stat.getConsolidated() == 0.80
+        stat.getAcceptedDelta() == 0.0 is false
+        stat.getPendingProjection() is null
+        stat.getPendingDelta() is null
+    - |
+      test: "Dada una estadistica tocada solo por una pendiente en el plan activo, cuando build corre, entonces el StatisticImpact correspondiente expone consolidated igual a original, acceptedDelta cero, y pendingProjection con pendingDelta no nulos"
+      trace: FEAT-CDIFF / F-CDIFF-R009
+
+      given:
+        snapBefore = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        snapAfter = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        pending = pendingArtifact("proposal-pend-r009b", "plan-r009b", "audit-r009b", "quiz-001", snapBefore, snapAfter, Instant.parse("2026-01-01T00:00:00Z"))
+        root = quizNode("quiz-001", Map.of("lemma-absence", 0.60))
+        course = mock(CourseEntity.class)
+        courseWithPend = mock(CourseEntity.class)
+        audBase = mock(AuditableCourse.class)
+        audPend = mock(AuditableCourse.class)
+        view = builder().build(COURSE_PATH)
+        stat = view.getStatisticImpacts().stream().filter(s -> "quiz-001".equals(s.getNodeId()) && "lemma-absence".equals(s.getDimension())).findFirst().orElseThrow(() -> new AssertionError("StatisticImpact no encontrado"))
+
+      mock:
+        refinementPlanStore.load("plan-r009b") -> Optional.of(plan("plan-r009b", "audit-r009b"))
+        auditReportStore.load("audit-r009b") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r009b") -> List.of(pending)
+        courseRepository.load(COURSE_PATH) -> course
+        courseElementLocator.snapshot(eq(course), eq(AuditTarget.QUIZ), eq("quiz-001")) -> Optional.of(snapBefore)
+        courseElementLocator.replace(eq(course), eq(snapAfter)) -> courseWithPend
+        courseMapper.map(course) -> audBase
+        courseMapper.map(courseWithPend) -> audPend
+        auditEngine.runAudit(eq(audBase)) -> report(root)
+        auditEngine.runAudit(eq(audPend)) -> report(quizNode("quiz-001", Map.of("lemma-absence", 0.80)))
+
+      then:
+        stat.getOriginal() == 0.60
+        stat.getConsolidated() == 0.60
+        stat.getAcceptedDelta() == 0.0
+        stat.getPendingProjection() is not null
+        stat.getPendingDelta() is not null
+    - |
+      test: "Dada una estadistica del baseline no tocada por ninguna decision del plan activo, cuando build corre, entonces ese par (nivel, dimension) no aparece en statisticImpacts"
+      trace: FEAT-CDIFF / F-CDIFF-R009
+
+      given:
+        scores = HashMap<>()
+        root = quizNode("quiz-001", scores)
+        course = mock(CourseEntity.class)
+        view = builder().build(COURSE_PATH)
+
+      mock:
+        refinementPlanStore.load("plan-r009c") -> Optional.of(plan("plan-r009c", "audit-r009c"))
+        auditReportStore.load("audit-r009c") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r009c") -> List.of()
+        courseRepository.load(COURSE_PATH) -> course
+        courseMapper.map(course) -> mock(AuditableCourse.class)
+        auditEngine.runAudit(any()) -> report(root)
+
+      when:
+        sut.put("lemma-absence", 0.70)
+
+      then:
+        view.getStatisticImpacts().isEmpty() is true
+    - |
+      test: "Dado cualquier StatisticImpact emitido por build, entonces acceptedDelta es exactamente consolidated menos original, sin escalado relativo"
+      trace: FEAT-CDIFF / F-CDIFF-R010
+
+      given:
+        snap1 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        snap2 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        approved = approvedArtifact("proposal-r010a", "plan-r010a", "audit-r010a", "quiz-001", snap1, snap2, Instant.parse("2026-01-01T00:00:00Z"))
+        root = quizNode("quiz-001", Map.of("lemma-absence", 0.50))
+        course = mock(CourseEntity.class)
+        courseAfter = mock(CourseEntity.class)
+        audAfter = mock(AuditableCourse.class)
+        view = builder().build(COURSE_PATH)
+
+      mock:
+        refinementPlanStore.load("plan-r010a") -> Optional.of(plan("plan-r010a", "audit-r010a"))
+        auditReportStore.load("audit-r010a") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r010a") -> List.of(approved)
+        courseRepository.load(COURSE_PATH) -> course
+        courseElementLocator.replace(eq(course), eq(snap2)) -> courseAfter
+        courseMapper.map(courseAfter) -> audAfter
+        auditEngine.runAudit(eq(audAfter)) -> report(quizNode("quiz-001", Map.of("lemma-absence", 0.75)))
+    - |
+      test: "Dado un StatisticImpact con pendingProjection no nulo, entonces pendingDelta es exactamente pendingProjection menos consolidated, sin escalado relativo"
+      trace: FEAT-CDIFF / F-CDIFF-R010
+
+      given:
+        snapBase = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        snapPend = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        pending = pendingArtifact("proposal-pend-r010b", "plan-r010b", "audit-r010b", "quiz-001", snapBase, snapPend, Instant.parse("2026-01-01T00:00:00Z"))
+        root = quizNode("quiz-001", Map.of("lemma-absence", 0.60))
+        course = mock(CourseEntity.class)
+        courseWithPend = mock(CourseEntity.class)
+        audBase = mock(AuditableCourse.class)
+        audPend = mock(AuditableCourse.class)
+        view = builder().build(COURSE_PATH)
+
+      mock:
+        refinementPlanStore.load("plan-r010b") -> Optional.of(plan("plan-r010b", "audit-r010b"))
+        auditReportStore.load("audit-r010b") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r010b") -> List.of(pending)
+        courseRepository.load(COURSE_PATH) -> course
+        courseElementLocator.snapshot(eq(course), eq(AuditTarget.QUIZ), eq("quiz-001")) -> Optional.of(snapBase)
+        courseElementLocator.replace(eq(course), eq(snapPend)) -> courseWithPend
+        courseMapper.map(course) -> audBase
+        courseMapper.map(courseWithPend) -> audPend
+        auditEngine.runAudit(eq(audBase)) -> report(root)
+        auditEngine.runAudit(eq(audPend)) -> report(quizNode("quiz-001", Map.of("lemma-absence", 0.85)))
+    - |
+      test: "Dado un AuditReport con pares (nivel, dimension) reportados por el motor en el baseline, cuando build corre, entonces statisticImpacts solo contiene pares presentes en el baseline (la salida no inventa pares ausentes ni reordena la granularidad)"
+      trace: FEAT-CDIFF / F-CDIFF-R011
+
+      given:
+        snap1 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        snap2 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        approved = approvedArtifact("proposal-r011", "plan-r011", "audit-r011", "quiz-001", snap1, snap2, Instant.parse("2026-01-01T00:00:00Z"))
+        root = quizNode("quiz-001", Map.of("lemma-absence", 0.60))
+        course = mock(CourseEntity.class)
+        courseAfter = mock(CourseEntity.class)
+        audAfter = mock(AuditableCourse.class)
+        view = builder().build(COURSE_PATH)
+
+      mock:
+        refinementPlanStore.load("plan-r011") -> Optional.of(plan("plan-r011", "audit-r011"))
+        auditReportStore.load("audit-r011") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r011") -> List.of(approved)
+        courseRepository.load(COURSE_PATH) -> course
+        courseElementLocator.replace(eq(course), eq(snap2)) -> courseAfter
+        courseMapper.map(courseAfter) -> audAfter
+        auditEngine.runAudit(eq(audAfter)) -> report(quizNode("quiz-001", Map.of("lemma-absence", 0.80)))
+
+      then:
+        view.getStatisticImpacts().stream().noneMatch(s -> "coca-buckets".equals(s.getDimension())) is true
+    - |
+      test: "Dada una pendiente cuyo nodeId no se encuentra en el subarbol vigente, cuando build corre, entonces aparece en nonApplicablePendings con reason NODE_ABSENT y detail no vacio, y no contribuye a pendingProjection ni pendingDelta de ningun nodo o estadistica"
+      trace: FEAT-CDIFF / F-CDIFF-R012
+
+      given:
+        snapGhost = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-ghost", null)
+        pending = pendingArtifact("proposal-absent", "plan-r012a", "audit-r012a", "quiz-ghost", snapGhost, snapGhost, Instant.parse("2026-01-01T00:00:00Z"))
+        root = quizNode("quiz-other", Map.of("lemma-absence", 0.60))
+        course = mock(CourseEntity.class)
+        view = builder().build(COURSE_PATH)
+
+      mock:
+        refinementPlanStore.load("plan-r012a") -> Optional.of(plan("plan-r012a", "audit-r012a"))
+        auditReportStore.load("audit-r012a") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r012a") -> List.of(pending)
+        courseRepository.load(COURSE_PATH) -> course
+        courseElementLocator.snapshot(eq(course), eq(AuditTarget.QUIZ), eq("quiz-ghost")) -> Optional.empty()
+        courseMapper.map(course) -> mock(AuditableCourse.class)
+        auditEngine.runAudit(any()) -> report(root)
+
+      then:
+        view.getNonApplicablePendings().size() == 1
+        view.getNonApplicablePendings().get(0).getProposalId() == "proposal-absent"
+        view.getNonApplicablePendings().get(0).getReason() == NonApplicablePendingReason.NODE_ABSENT
+        view.getNonApplicablePendings().get(0).getDetail().isBlank() is false
+        view.getNodeImpacts().stream().noneMatch(n -> n.getPendingProjection() != null) is true
+    - |
+      test: "Dadas dos pendientes sobre el mismo nodeId aplicadas en orden createdAt ascendente cuyo elementBefore de la segunda no coincide con el consolidated tras aplicar la primera, cuando build corre, entonces la segunda aparece en nonApplicablePendings con reason ELEMENT_BEFORE_MISMATCH y no contribuye a pendingProjection ni pendingDelta"
+      trace: FEAT-CDIFF / F-CDIFF-R012
+
+      given:
+        snapOrig = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        snapAfter1 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001-v2", null)
+        snapMismatch = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001-stale", null)
+        snapAfter2 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001-v3", null)
+        pend1 = pendingArtifact("proposal-pend1", "plan-r012b", "audit-r012b", "quiz-001", snapOrig, snapAfter1, Instant.parse("2026-01-01T00:00:00Z"))
+        pend2 = pendingArtifact("proposal-pend2", "plan-r012b", "audit-r012b", "quiz-001", snapMismatch, snapAfter2, Instant.parse("2026-01-02T00:00:00Z"))
+        root = quizNode("quiz-001", Map.of("lemma-absence", 0.60))
+        course = mock(CourseEntity.class)
+        courseAfter1 = mock(CourseEntity.class)
+        audPend1 = mock(AuditableCourse.class)
+        view = builder().build(COURSE_PATH)
+
+      mock:
+        refinementPlanStore.load("plan-r012b") -> Optional.of(plan("plan-r012b", "audit-r012b"))
+        auditReportStore.load("audit-r012b") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r012b") -> List.of(pend1, pend2)
+        courseRepository.load(COURSE_PATH) -> course
+        courseElementLocator.snapshot(eq(course), eq(AuditTarget.QUIZ), eq("quiz-001")) -> Optional.of(snapOrig)
+        courseElementLocator.replace(eq(course), eq(snapAfter1)) -> courseAfter1
+        courseElementLocator.snapshot(eq(courseAfter1), eq(AuditTarget.QUIZ), eq("quiz-001")) -> Optional.of(snapAfter1)
+        courseMapper.map(courseAfter1) -> audPend1
+        courseMapper.map(course) -> mock(AuditableCourse.class)
+        auditEngine.runAudit(any()) -> report(root)
+
+      then:
+        view.getNonApplicablePendings().stream().anyMatch(n -> "proposal-pend2".equals(n.getProposalId()) && NonApplicablePendingReason.ELEMENT_BEFORE_MISMATCH == n.getReason()) is true
+    - |
+      test: "Dada una pendiente marcada como NOT_APPLICABLE y otras pendientes aplicables en el mismo plan activo, cuando build corre, entonces el resto del consolidado se entrega normalmente y solo la pendiente no aplicable queda excluida del calculo de proyeccion"
+      trace: FEAT-CDIFF / F-CDIFF-R012
+
+      given:
+        snapAbsent = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-absent", null)
+        notApplicable = pendingArtifact("proposal-absent", "plan-r012c", "audit-r012c", "quiz-absent", snapAbsent, snapAbsent, Instant.parse("2026-01-01T00:00:00Z"))
+        snapOk = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-ok", null)
+        snapOkAfter = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-ok", null)
+        applicable = pendingArtifact("proposal-ok", "plan-r012c", "audit-r012c", "quiz-ok", snapOk, snapOkAfter, Instant.parse("2026-01-02T00:00:00Z"))
+        root = quizNode("quiz-ok", Map.of("lemma-absence", 0.60))
+        course = mock(CourseEntity.class)
+        courseAfterOk = mock(CourseEntity.class)
+        audBase = mock(AuditableCourse.class)
+        audOk = mock(AuditableCourse.class)
+        view = builder().build(COURSE_PATH)
+
+      mock:
+        refinementPlanStore.load("plan-r012c") -> Optional.of(plan("plan-r012c", "audit-r012c"))
+        auditReportStore.load("audit-r012c") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r012c") -> List.of(notApplicable, applicable)
+        courseRepository.load(COURSE_PATH) -> course
+        courseElementLocator.snapshot(eq(course), eq(AuditTarget.QUIZ), eq("quiz-absent")) -> Optional.empty()
+        courseElementLocator.snapshot(eq(course), eq(AuditTarget.QUIZ), eq("quiz-ok")) -> Optional.of(snapOk)
+        courseElementLocator.replace(eq(course), eq(snapOkAfter)) -> courseAfterOk
+        courseMapper.map(course) -> audBase
+        courseMapper.map(courseAfterOk) -> audOk
+        auditEngine.runAudit(eq(audBase)) -> report(root)
+        auditEngine.runAudit(eq(audOk)) -> report(quizNode("quiz-ok", Map.of("lemma-absence", 0.80)))
+
+      then:
+        view.getAvailability() == ConsolidatedViewAvailability.AVAILABLE
+        view.getNonApplicablePendings().size() == 1
+        view.getNonApplicablePendings().get(0).getProposalId() == "proposal-absent"
+        view.getNodeImpacts().stream().anyMatch(n -> "quiz-ok".equals(n.getNodeId()) && n.getPendingProjection() != null) is true
+    - |
+      test: "Dado que el ActiveAnalysisSelectionStore retorna Optional.empty, cuando build corre, entonces ConsolidatedView.availability es UNAVAILABLE con reason NO_ACTIVE_ANALYSIS y nodeImpacts/statisticImpacts quedan vacios"
+      trace: FEAT-CDIFF / F-CDIFF-R013
+
+      given:
+        view = builder().build(COURSE_PATH)
+
+      mock:
+        activeAnalysisSelectionStore.read() -> Optional.empty()
+
+      then:
+        view.getAvailability() == ConsolidatedViewAvailability.UNAVAILABLE
+        view.getUnavailability().getReason() == ConsolidatedViewUnavailabilityReason.NO_ACTIVE_ANALYSIS
+        view.getNodeImpacts().isEmpty() is true
+        view.getStatisticImpacts().isEmpty() is true
+    - |
+      test: "Dado un par activo cuyo planId no se puede ubicar dentro del analisis (RefinementPlanStore retorna empty), cuando build corre, entonces ConsolidatedView.availability es UNAVAILABLE con reason ACTIVE_PLAN_UNAVAILABLE"
+      trace: FEAT-CDIFF / F-CDIFF-R013
+
+      given:
+        view = builder().build(COURSE_PATH)
+
+      mock:
+        refinementPlanStore.load("plan-missing") -> Optional.empty()
+
+      then:
+        view.getAvailability() == ConsolidatedViewAvailability.UNAVAILABLE
+        view.getUnavailability().getReason() == ConsolidatedViewUnavailabilityReason.ACTIVE_PLAN_UNAVAILABLE
+    - |
+      test: "Dada una propuesta aceptada que referencia un nodeId no encontrado por CourseElementLocator al re-agregar, cuando build corre, entonces ConsolidatedView.availability es UNAVAILABLE con reason INCONSISTENT_PROPOSAL"
+      trace: FEAT-CDIFF / F-CDIFF-R013
+
+      given:
+        snap1 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-ghost", null)
+        snap2 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-ghost", null)
+        approved = approvedArtifact("proposal-ghost", "plan-r013c", "audit-r013c", "quiz-ghost", snap1, snap2, Instant.parse("2026-01-01T00:00:00Z"))
+        root = quizNode("quiz-other", Map.of("lemma-absence", 0.60))
+        course = mock(CourseEntity.class)
+        view = builder().build(COURSE_PATH)
+
+      mock:
+        refinementPlanStore.load("plan-r013c") -> Optional.of(plan("plan-r013c", "audit-r013c"))
+        auditReportStore.load("audit-r013c") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r013c") -> List.of(approved)
+        courseRepository.load(COURSE_PATH) -> course
+        courseElementLocator.replace(any(), any()) -> throws IllegalArgumentException("nodeId quiz-ghost not found in course tree")
+
+      then:
+        view.getAvailability() == ConsolidatedViewAvailability.UNAVAILABLE
+        view.getUnavailability().getReason() == ConsolidatedViewUnavailabilityReason.INCONSISTENT_PROPOSAL
+    - |
+      test: "Dado que AuditEngine falla al recomputar agregaciones sobre el subarbol modificado, cuando build corre, entonces ConsolidatedView.availability es UNAVAILABLE con reason REAGGREGATION_FAILED"
+      trace: FEAT-CDIFF / F-CDIFF-R013
+
+      given:
+        snap1 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        snap2 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        approved = approvedArtifact("proposal-r013d", "plan-r013d", "audit-r013d", "quiz-001", snap1, snap2, Instant.parse("2026-01-01T00:00:00Z"))
+        root = quizNode("quiz-001", Map.of("lemma-absence", 0.60))
+        course = mock(CourseEntity.class)
+        courseAfter = mock(CourseEntity.class)
+        audAfter = mock(AuditableCourse.class)
+        view = builder().build(COURSE_PATH)
+
+      mock:
+        refinementPlanStore.load("plan-r013d") -> Optional.of(plan("plan-r013d", "audit-r013d"))
+        auditReportStore.load("audit-r013d") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r013d") -> List.of(approved)
+        courseRepository.load(COURSE_PATH) -> course
+        courseElementLocator.replace(eq(course), eq(snap2)) -> courseAfter
+        courseMapper.map(courseAfter) -> audAfter
+        auditEngine.runAudit(eq(audAfter)) -> throws RuntimeException("Motor de auditoria fallo al re-agregar")
+
+      then:
+        view.getAvailability() == ConsolidatedViewAvailability.UNAVAILABLE
+        view.getUnavailability().getReason() == ConsolidatedViewUnavailabilityReason.REAGGREGATION_FAILED
+    - |
+      test: "Dada cualquier invocacion de build (exitosa, UNAVAILABLE o con pendientes no aplicables), entonces no se invoca AuditReportStore.save, RefinementPlanStore.save ni RevisionArtifactStore.save sobre los stores inyectados"
+      trace: FEAT-CDIFF / F-CDIFF-R015
+
+      given:
+        root = quizNode("quiz-001", Map.of("lemma-absence", 0.70))
+        course = mock(CourseEntity.class)
+
+      mock:
+        refinementPlanStore.load("plan-r015") -> Optional.of(plan("plan-r015", "audit-r015"))
+        auditReportStore.load("audit-r015") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r015") -> List.of()
+        courseRepository.load(COURSE_PATH) -> course
+        courseMapper.map(course) -> mock(AuditableCourse.class)
+        auditEngine.runAudit(any()) -> report(root)
+
+      when:
+        sut.build(COURSE_PATH)
+
+      then:
+        verify: auditReportStore.save(any()) x 0
+        verify: refinementPlanStore.save(any()) x 0
+        verify: revisionArtifactStore.save(any()) x 0
+    - |
+      test: "Dado un plan activo asociado a un AuditReport y un plan ajeno con propuestas distintas asociadas a otro analisis, cuando build corre, entonces solo se consultan los RevisionArtifact via listByPlan(activePlanId) y las propuestas del plan ajeno no aparecen en nodeImpacts ni statisticImpacts"
+      trace: FEAT-CDIFF / F-CDIFF-R017
+
+      given:
+        activePlanId = "plan-active"
+        foreignPlanId = "plan-foreign"
+        root = quizNode("quiz-001", Map.of("lemma-absence", 0.70))
+        course = mock(CourseEntity.class)
+
+      mock:
+        refinementPlanStore.load(activePlanId) -> Optional.of(plan(activePlanId, "audit-active"))
+        revisionArtifactStore.listByPlan(activePlanId) -> List.of()
+        auditReportStore.load("audit-active") -> Optional.of(report(root))
+        courseRepository.load(COURSE_PATH) -> course
+        courseMapper.map(course) -> mock(AuditableCourse.class)
+        auditEngine.runAudit(any()) -> report(root)
+
+      when:
+        sut.build(COURSE_PATH)
+
+      then:
+        verify: revisionArtifactStore.listByPlan(activePlanId)
+        verify: revisionArtifactStore.listByPlan(foreignPlanId) x 0
+    - |
+      test: "Dada una RevisionProposal cuyo elementBefore y elementAfter referencian el mismo nodeId estable, cuando build corre, entonces el NodeImpact resultante conserva ese nodeId en consolidated y pendingProjection sin modelar renombres ni reubicaciones"
+      trace: FEAT-CDIFF / F-CDIFF-R018
+
+      given:
+        stableNodeId = "quiz-stable-id"
+        snapBefore = CourseElementSnapshot(AuditTarget.QUIZ, stableNodeId, null)
+        snapAfter = CourseElementSnapshot(AuditTarget.QUIZ, stableNodeId, null)
+        approved = approvedArtifact("proposal-r018", "plan-r018", "audit-r018", stableNodeId, snapBefore, snapAfter, Instant.parse("2026-01-01T00:00:00Z"))
+        root = quizNode(stableNodeId, Map.of("lemma-absence", 0.60))
+        course = mock(CourseEntity.class)
+        courseAfter = mock(CourseEntity.class)
+        audAfter = mock(AuditableCourse.class)
+        view = builder().build(COURSE_PATH)
+        ni = view.getNodeImpacts().stream().filter(n -> stableNodeId.equals(n.getNodeId())).findFirst().orElseThrow(() -> new AssertionError("NodeImpact para " + stableNodeId + " no encontrado"))
+
+      mock:
+        refinementPlanStore.load("plan-r018") -> Optional.of(plan("plan-r018", "audit-r018"))
+        auditReportStore.load("audit-r018") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r018") -> List.of(approved)
+        courseRepository.load(COURSE_PATH) -> course
+        courseElementLocator.replace(eq(course), eq(snapAfter)) -> courseAfter
+        courseMapper.map(courseAfter) -> audAfter
+        auditEngine.runAudit(eq(audAfter)) -> report(quizNode(stableNodeId, Map.of("lemma-absence", 0.80)))
+
+      then:
+        ni.getConsolidated().getNodeId() == stableNodeId
+    - |
+      test: "Dado un plan activo con varias aceptadas y varias pendientes que tocan distintos nodos del curso, cuando build corre, entonces el ConsolidatedView retornado combina baseline + aceptadas + pendientes en una unica estructura con nodeImpacts y statisticImpacts agregados"
+      trace: FEAT-CDIFF / F-CDIFF-R016
+
+      given:
+        snapQ1B = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        snapQ1A = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        snapQ2B = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-002", null)
+        snapQ2A = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-002", null)
+        approved = approvedArtifact("proposal-acc", "plan-r016", "audit-r016", "quiz-001", snapQ1B, snapQ1A, Instant.parse("2026-01-01T00:00:00Z"))
+        pending = pendingArtifact("proposal-pend", "plan-r016", "audit-r016", "quiz-002", snapQ2B, snapQ2A, Instant.parse("2026-01-02T00:00:00Z"))
+        quiz1 = quizNode("quiz-001", Map.of("lemma-absence", 0.60))
+        quiz2 = quizNode("quiz-002", Map.of("lemma-absence", 0.55))
+        root = AuditNode()
+        courseEnt = FakeEntity("course-001")
+        course = mock(CourseEntity.class)
+        courseAfterAcc = mock(CourseEntity.class)
+        courseAfterPend = mock(CourseEntity.class)
+        audAcc = mock(AuditableCourse.class)
+        audPend = mock(AuditableCourse.class)
+        rootAfterAcc = AuditNode()
+        rootAfterPend = AuditNode()
+        view = builder().build(COURSE_PATH)
+
+      mock:
+        refinementPlanStore.load("plan-r016") -> Optional.of(plan("plan-r016", "audit-r016"))
+        auditReportStore.load("audit-r016") -> Optional.of(report(root))
+        revisionArtifactStore.listByPlan("plan-r016") -> List.of(approved, pending)
+        courseRepository.load(COURSE_PATH) -> course
+        courseElementLocator.replace(eq(course), eq(snapQ1A)) -> courseAfterAcc
+        courseElementLocator.snapshot(eq(courseAfterAcc), eq(AuditTarget.QUIZ), eq("quiz-002")) -> Optional.of(snapQ2B)
+        courseElementLocator.replace(eq(courseAfterAcc), eq(snapQ2A)) -> courseAfterPend
+        courseMapper.map(courseAfterAcc) -> audAcc
+        courseMapper.map(courseAfterPend) -> audPend
+        auditEngine.runAudit(eq(audAcc)) -> report(rootAfterAcc)
+        auditEngine.runAudit(eq(audPend)) -> report(rootAfterPend)
+
+      when:
+        sut.setTarget(AuditTarget.COURSE)
+
+      then:
+        view.getAvailability() == ConsolidatedViewAvailability.AVAILABLE
+        view.getNodeImpacts().isEmpty() is false
+        view.getStatisticImpacts().isEmpty() is false
+        view.getNodeImpacts().stream().anyMatch(n -> "quiz-001".equals(n.getNodeId())) is true
+        view.getNodeImpacts().stream().anyMatch(n -> "quiz-002".equals(n.getNodeId())) is true
   - name: LemmaAbsenceMvpStrategy
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/lemmaabsence/LemmaAbsenceMvpStrategy.java
@@ -27623,33 +28778,33 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 616
-      linesMissed: 482
-      linesTotal: 1098
-      lineCoveragePct: 56
-      branchesCovered: 94
-      branchesMissed: 328
-      branchesTotal: 422
-      branchCoveragePct: 22
-      blendPct: 39
+      linesCovered: 853
+      linesMissed: 671
+      linesTotal: 1524
+      lineCoveragePct: 55
+      branchesCovered: 159
+      branchesMissed: 451
+      branchesTotal: 610
+      branchCoveragePct: 26
+      blendPct: 40
     mutation:
-      totalMutants: 440
-      killed: 141
-      survived: 52
-      noCoverage: 247
+      totalMutants: 609
+      killed: 202
+      survived: 72
+      noCoverage: 335
       timedOut: 0
       other: 0
-      mutationScorePct: 32
+      mutationScorePct: 33
       testStrengthPct: 73
     crap:
-      totalMethods: 289
-      hotspots: 16
+      totalMethods: 400
+      hotspots: 22
       maxCrap: 342.0
-      averageCrap: 7.918482380622836
-      simple: 268
-      moderate: 5
-      high: 6
-      veryHigh: 10
+      averageCrap: 7.939541370000001
+      simple: 371
+      moderate: 6
+      high: 8
+      veryHigh: 15
       healthPct: 94
       top:
       - className: com.learney.contentaudit.revisiondomain.engine.DefaultCourseElementLocator
@@ -27673,10 +28828,38 @@ elements:
         cyclomatic: 17
         lineCoveragePct: 0
         crap: 306.0
+      - className: com.learney.contentaudit.revisiondomain.ConsolidatedViewBuilderConfig
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 118
+        cyclomatic: 12
+        lineCoveragePct: 0
+        crap: 156.0
+      - className: com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedView
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 113
+        cyclomatic: 12
+        lineCoveragePct: 0
+        crap: 156.0
+      - className: com.learney.contentaudit.revisiondomain.consolidatedview.StatisticImpact
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 110
+        cyclomatic: 12
+        lineCoveragePct: 0
+        crap: 156.0
       - className: com.learney.contentaudit.revisiondomain.RevisionArtifact
         methodName: equals
         methodDesc: (Ljava/lang/Object;)Z
         line: 88
+        cyclomatic: 10
+        lineCoveragePct: 0
+        crap: 110.0
+      - className: com.learney.contentaudit.revisiondomain.consolidatedview.NodeImpact
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 90
         cyclomatic: 10
         lineCoveragePct: 0
         crap: 110.0
@@ -27694,41 +28877,13 @@ elements:
         cyclomatic: 9
         lineCoveragePct: 0
         crap: 90.0
-      - className: com.learney.contentaudit.revisiondomain.impactpreview.LevelImpact
-        methodName: equals
-        methodDesc: (Ljava/lang/Object;)Z
-        line: 66
-        cyclomatic: 8
-        lineCoveragePct: 0
-        crap: 72.0
-      - className: com.learney.contentaudit.revisiondomain.ProposalDecisionOutcome
-        methodName: equals
-        methodDesc: (Ljava/lang/Object;)Z
-        line: 53
-        cyclomatic: 7
-        lineCoveragePct: 0
-        crap: 56.0
-      - className: com.learney.contentaudit.revisiondomain.RevisionOutcome
-        methodName: equals
-        methodDesc: (Ljava/lang/Object;)Z
-        line: 53
-        cyclomatic: 7
-        lineCoveragePct: 0
-        crap: 56.0
-      - className: com.learney.contentaudit.revisiondomain.impactpreview.ScoreDelta
-        methodName: equals
-        methodDesc: (Ljava/lang/Object;)Z
-        line: 52
-        cyclomatic: 7
-        lineCoveragePct: 0
-        crap: 56.0
     healthScore: 50
     verdict: WARNED
     violations:
-    - lineCoverage 56% < 70%
-    - branchCoverage 22% < 60%
-    - mutationScore 32% < 60%
-    - crapHotspots 16 > 5
+    - lineCoverage 55% < 70%
+    - branchCoverage 26% < 60%
+    - mutationScore 33% < 60%
+    - crapHotspots 22 > 5
 - module: revision-infrastructure
   status: EXISTS
   implementations:
@@ -28923,33 +30078,33 @@ qualitySummary:
     crapHotspotThreshold: 30
     crapHotspotsMax: 5
   coverage:
-    linesCovered: 4725
-    linesMissed: 4883
-    linesTotal: 9608
+    linesCovered: 5071
+    linesMissed: 5153
+    linesTotal: 10224
     lineCoveragePct: 49
-    branchesCovered: 1628
-    branchesMissed: 3082
-    branchesTotal: 4710
+    branchesCovered: 1725
+    branchesMissed: 3249
+    branchesTotal: 4974
     branchCoveragePct: 34
     blendPct: 41
   mutation:
-    totalMutants: 4482
-    killed: 1197
-    survived: 824
-    noCoverage: 2461
+    totalMutants: 4717
+    killed: 1287
+    survived: 848
+    noCoverage: 2582
     timedOut: 0
     other: 0
-    mutationScorePct: 26
-    testStrengthPct: 59
+    mutationScorePct: 27
+    testStrengthPct: 60
   crap:
-    totalMethods: 2031
-    hotspots: 128
+    totalMethods: 2168
+    hotspots: 135
     maxCrap: 600.0
-    averageCrap: 9.122930646479567
-    simple: 1813
-    moderate: 84
-    high: 37
-    veryHigh: 97
+    averageCrap: 9.017195466328413
+    simple: 1939
+    moderate: 86
+    high: 41
+    veryHigh: 102
     healthPct: 91
     top:
     - className: com.learney.contentaudit.coursedomain.QuizTemplateEntity
@@ -29027,8 +30182,8 @@ qualitySummary:
   violations:
   - lineCoverage 49% < 70%
   - branchCoverage 34% < 60%
-  - mutationScore 26% < 60%
-  - crapHotspots 128 > 5
+  - mutationScore 27% < 60%
+  - crapHotspots 135 > 5
 patterns:
 - id: declared-1
   pattern: Strategy

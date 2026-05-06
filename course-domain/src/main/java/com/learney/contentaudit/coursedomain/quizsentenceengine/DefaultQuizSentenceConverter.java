@@ -34,7 +34,7 @@ public class DefaultQuizSentenceConverter implements QuizSentenceConverter {
         return new DefaultQuizSentenceConverter(
                 new QuizSentenceSerializer(),
                 new QuizSentenceParser(),
-                new PlainSentenceDeriver());
+                new PlainSentenceDeriver(new WhitespaceNormalizer()));
     }
 
     /**

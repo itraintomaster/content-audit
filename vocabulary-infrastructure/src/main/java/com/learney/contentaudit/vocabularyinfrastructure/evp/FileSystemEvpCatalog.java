@@ -28,6 +28,13 @@ public class FileSystemEvpCatalog implements EvpCatalogPort {
     private final Map<LemmaAndPos, String> semanticCategories = new HashMap<>();
     private final Set<String> phrases = new HashSet<>();
 
+    public FileSystemEvpCatalog(Path catalogPath) {
+        for (CefrLevel level : CefrLevel.values()) {
+            expectedByLevel.put(level, new HashSet<>());
+        }
+        loadCatalog(catalogPath);
+    }
+
     private void loadCatalog(Path catalogPath) {
         ObjectMapper mapper = new ObjectMapper();
         try {

@@ -13,6 +13,10 @@ Filesystem persistence adapters for audit reports, refinement plans, revision ar
 
 **Types:** Repository
 
+**Dependencies (constructor injection):**
+
+- `baseDir`: `Path`
+
 **Tests that must pass:**
 
 - should save an AuditReport and load it back with identical content
@@ -23,11 +27,19 @@ Filesystem persistence adapters for audit reports, refinement plans, revision ar
 
 **Types:** Repository
 
+**Dependencies (constructor injection):**
+
+- `baseDir`: `Path`
+
 ### FileSystemRevisionArtifactStore
 
 **Implements:** RevisionArtifactStore
 
 **Types:** Repository
+
+**Dependencies (constructor injection):**
+
+- `baseDir`: `Path`
 
 **Tests that must pass:**
 
@@ -51,6 +63,10 @@ Filesystem persistence adapters for audit reports, refinement plans, revision ar
 **Implements:** ImpactPreviewStore
 
 **Types:** Repository
+
+**Dependencies (constructor injection):**
+
+- `baseDir`: `Path`
 
 **Tests that must pass:**
 
