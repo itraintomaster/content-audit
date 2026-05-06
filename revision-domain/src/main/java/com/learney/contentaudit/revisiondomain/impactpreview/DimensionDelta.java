@@ -36,11 +36,6 @@ public class DimensionDelta {
         this.delta = delta;
     }
 
-    /** Record-style accessor alias for tests (F-PIPRE). */
-    public String dimension() { return this.dimension; }
-    /** Record-style accessor alias for tests (F-PIPRE). */
-    public ScoreDelta delta() { return this.delta; }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

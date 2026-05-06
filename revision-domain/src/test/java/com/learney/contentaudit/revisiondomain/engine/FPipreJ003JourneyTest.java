@@ -109,23 +109,23 @@ public class FPipreJ003JourneyTest {
         //   Gate: R004 (deltas by level), R005 (deltas by dimension), R006 (before/after/difference).
         //   Result: AVAILABLE preview with levelImpacts populated.
         assertNotNull(preview, "Preview must not be null");
-        assertEquals(ImpactPreviewAvailability.AVAILABLE, preview.availability(),
+        assertEquals(ImpactPreviewAvailability.AVAILABLE, preview.getAvailability(),
                 "path-1 (node found): preview must be AVAILABLE — R004/R005/R006 gates satisfied");
 
         // R004 gate: levelImpacts must not be empty
-        assertFalse(preview.levelImpacts().isEmpty(),
+        assertFalse(preview.getLevelImpacts().isEmpty(),
                 "levelImpacts must be populated when node is found (R004)");
 
         // R005 gate: at least one level must have dimensionDeltas
-        boolean hasDimensionDeltas = preview.levelImpacts().stream()
-                .anyMatch(li -> !li.dimensionDeltas().isEmpty());
+        boolean hasDimensionDeltas = preview.getLevelImpacts().stream()
+                .anyMatch(li -> !li.getDimensionDeltas().isEmpty());
         assertTrue(hasDimensionDeltas,
                 "At least one level must have dimensionDeltas (R005 — discrimina por dimension)");
 
         // R006 gate: every ScoreDelta must have difference == after - before
-        preview.levelImpacts().forEach(li -> {
-            var agg = li.aggregateDelta();
-            assertEquals(agg.after() - agg.before(), agg.difference(), 0.0001,
+        preview.getLevelImpacts().forEach(li -> {
+            var agg = li.getAggregateDelta();
+            assertEquals(agg.getAfter() - agg.getBefore(), agg.getDifference(), 0.0001,
                     "aggregateDelta.difference must equal after-before (R006)");
         });
     }
@@ -172,16 +172,16 @@ public class FPipreJ003JourneyTest {
         //         this is the computer-level test; the engine-level test covers R010).
         //   Result: UNAVAILABLE with TARGET_NODE_ABSENT cause.
         assertNotNull(preview, "compute must never return null (R009)");
-        assertEquals(ImpactPreviewAvailability.UNAVAILABLE, preview.availability(),
+        assertEquals(ImpactPreviewAvailability.UNAVAILABLE, preview.getAvailability(),
                 "path-2 (node absent): preview must be UNAVAILABLE (R009)");
-        assertNotNull(preview.unavailability(), "unavailability must be populated (R009)");
+        assertNotNull(preview.getUnavailability(), "unavailability must be populated (R009)");
         assertEquals(ImpactPreviewUnavailabilityReason.TARGET_NODE_ABSENT,
-                preview.unavailability().reason(),
+                preview.getUnavailability().getReason(),
                 "reason must be TARGET_NODE_ABSENT when nodeId is not found in the simulated course (R009)");
-        assertNotNull(preview.unavailability().detail(), "detail must not be null (R009)");
-        assertFalse(preview.unavailability().detail().isBlank(),
+        assertNotNull(preview.getUnavailability().getDetail(), "detail must not be null (R009)");
+        assertFalse(preview.getUnavailability().getDetail().isBlank(),
                 "detail must be a non-blank human-readable cause (R009)");
-        assertTrue(preview.levelImpacts().isEmpty(),
+        assertTrue(preview.getLevelImpacts().isEmpty(),
                 "levelImpacts must be empty for UNAVAILABLE preview");
     }
 }

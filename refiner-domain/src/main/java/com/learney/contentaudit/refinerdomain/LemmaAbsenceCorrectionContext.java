@@ -43,16 +43,6 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
     public LemmaAbsenceCorrectionContext() {
     }
 
-    /** Constructor de compatibilidad para tests anteriores a FEAT-RCLALEN (sin campos de longitud). */
-    public LemmaAbsenceCorrectionContext(String taskId, String sentence, String translation,
-            String knowledgeTitle, String knowledgeInstructions, String topicLabel,
-            CefrLevel cefrLevel, List<MisplacedLemmaContext> misplacedLemmas,
-            List<SuggestedLemma> suggestedLemmas, String quizSentence) {
-        this(taskId, sentence, translation, knowledgeTitle, knowledgeInstructions, topicLabel,
-                cefrLevel, misplacedLemmas, suggestedLemmas, quizSentence,
-                null, null, null, null, null);
-    }
-
     public LemmaAbsenceCorrectionContext(String taskId, String sentence, String translation,
             String knowledgeTitle, String knowledgeInstructions, String topicLabel,
             CefrLevel cefrLevel, List<MisplacedLemmaContext> misplacedLemmas,

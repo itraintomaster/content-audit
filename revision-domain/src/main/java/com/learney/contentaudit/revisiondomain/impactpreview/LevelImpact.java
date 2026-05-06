@@ -61,15 +61,6 @@ public class LevelImpact {
         this.dimensionDeltas = dimensionDeltas;
     }
 
-    /** Record-style accessor alias for tests (F-PIPRE). */
-    public AuditTarget nodeTarget() { return this.nodeTarget; }
-    /** Record-style accessor alias for tests (F-PIPRE). */
-    public String nodeId() { return this.nodeId; }
-    /** Record-style accessor alias for tests (F-PIPRE). */
-    public ScoreDelta aggregateDelta() { return this.aggregateDelta; }
-    /** Record-style accessor alias for tests (F-PIPRE). */
-    public List<DimensionDelta> dimensionDeltas() { return this.dimensionDeltas; }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

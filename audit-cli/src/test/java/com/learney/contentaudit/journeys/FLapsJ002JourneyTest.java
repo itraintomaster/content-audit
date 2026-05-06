@@ -206,7 +206,7 @@ public class FLapsJ002JourneyTest {
         LemmaAbsenceQuizCandidateGenerator happyGenerator = ctx ->
                 new LemmaAbsenceGeneratorResponse(AFTER_DSL, "Ella estudia cada manana.");
 
-        LemmaAbsenceMvpStrategy strategy = new LemmaAbsenceMvpStrategy(happyGenerator);
+        LemmaAbsenceMvpStrategy strategy = new LemmaAbsenceMvpStrategy(happyGenerator, null);
         LemmaAbsenceProposalStrategyRegistryConfig regConfig =
                 new LemmaAbsenceProposalStrategyRegistryConfig(List.of(strategy), "lemma-absence-llm");
         DefaultLemmaAbsenceProposalStrategyRegistry registry =

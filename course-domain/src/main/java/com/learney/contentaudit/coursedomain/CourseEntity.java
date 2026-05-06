@@ -71,9 +71,6 @@ public class CourseEntity {
         this.slug = slug;
     }
 
-    /** Record-style accessor alias for tests (F-PIPRE). */
-    public String id() { return this.id; }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

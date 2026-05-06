@@ -265,7 +265,7 @@ public class FLapsJ001JourneyTest {
         LemmaAbsenceQuizCandidateGenerator happyGenerator = ctx ->
                 new LemmaAbsenceGeneratorResponse(AFTER_QUIZ_SENTENCE, "Ella estudia libros cada dia.");
 
-        LemmaAbsenceMvpStrategy strategy = new LemmaAbsenceMvpStrategy(happyGenerator);
+        LemmaAbsenceMvpStrategy strategy = new LemmaAbsenceMvpStrategy(happyGenerator, null);
         LemmaAbsenceProposalStrategyRegistryConfig registryConfig =
                 new LemmaAbsenceProposalStrategyRegistryConfig(List.of(strategy), "lemma-absence-llm");
         DefaultLemmaAbsenceProposalStrategyRegistry registry =
@@ -483,7 +483,7 @@ public class FLapsJ001JourneyTest {
             throw new ProposalStrategyFailedException(
                     "lemma-absence-llm", TASK_ID, "provider down");
         };
-        LemmaAbsenceMvpStrategy strategy = new LemmaAbsenceMvpStrategy(failingGenerator);
+        LemmaAbsenceMvpStrategy strategy = new LemmaAbsenceMvpStrategy(failingGenerator, null);
         LemmaAbsenceProposalStrategyRegistryConfig registryConfig =
                 new LemmaAbsenceProposalStrategyRegistryConfig(List.of(strategy), "lemma-absence-llm");
         DefaultLemmaAbsenceProposalStrategyRegistry registry =

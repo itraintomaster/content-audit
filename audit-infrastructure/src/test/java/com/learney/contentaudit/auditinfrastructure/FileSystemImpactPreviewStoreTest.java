@@ -98,15 +98,15 @@ public class FileSystemImpactPreviewStoreTest {
         Optional<ImpactPreview> found = store.findByProposalId(proposalId);
         assertTrue(found.isPresent(), "findByProposalId must return the persisted preview");
         ImpactPreview persisted = found.get();
-        assertEquals(proposalId, persisted.proposalId(),
+        assertEquals(proposalId, persisted.getProposalId(),
                 "proposalId must match the stored proposal");
         // The original levelImpacts had before=0.70 and after=0.80 at the quiz level
-        assertFalse(persisted.levelImpacts().isEmpty(),
+        assertFalse(persisted.getLevelImpacts().isEmpty(),
                 "Original preview levelImpacts must not be empty");
-        ScoreDelta storedAggregateDelta = persisted.levelImpacts().get(0).aggregateDelta();
-        assertEquals(0.70, storedAggregateDelta.before(), 0.001,
+        ScoreDelta storedAggregateDelta = persisted.getLevelImpacts().get(0).getAggregateDelta();
+        assertEquals(0.70, storedAggregateDelta.getBefore(), 0.001,
                 "Stored 'before' must be 0.70 from the original preview, not 0.60 from the update");
-        assertEquals(0.80, storedAggregateDelta.after(), 0.001,
+        assertEquals(0.80, storedAggregateDelta.getAfter(), 0.001,
                 "Stored 'after' must be 0.80 from the original preview, not 0.95 from the update");
     }
 
@@ -133,22 +133,22 @@ public class FileSystemImpactPreviewStoreTest {
         ImpactPreview persisted = found.get();
 
         // availability
-        assertEquals(ImpactPreviewAvailability.UNAVAILABLE, persisted.availability(),
+        assertEquals(ImpactPreviewAvailability.UNAVAILABLE, persisted.getAvailability(),
                 "availability must survive disk serialization as UNAVAILABLE");
 
         // levelImpacts empty for UNAVAILABLE
-        assertTrue(persisted.levelImpacts().isEmpty(),
+        assertTrue(persisted.getLevelImpacts().isEmpty(),
                 "levelImpacts must be empty for UNAVAILABLE preview after round-trip");
 
         // unavailability populated with reason and detail
-        assertNotNull(persisted.unavailability(),
+        assertNotNull(persisted.getUnavailability(),
                 "unavailability must not be null for UNAVAILABLE preview");
         assertEquals(ImpactPreviewUnavailabilityReason.TARGET_NODE_ABSENT,
-                persisted.unavailability().reason(),
+                persisted.getUnavailability().getReason(),
                 "unavailability.reason must survive disk serialization");
-        assertNotNull(persisted.unavailability().detail(),
+        assertNotNull(persisted.getUnavailability().getDetail(),
                 "unavailability.detail must survive disk serialization");
-        assertFalse(persisted.unavailability().detail().isBlank(),
+        assertFalse(persisted.getUnavailability().getDetail().isBlank(),
                 "unavailability.detail must not be blank after round-trip");
     }
 }

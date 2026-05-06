@@ -42,7 +42,8 @@ public class FLagenJ004JourneyTest {
                 CefrLevel.A1,
                 List.of(new MisplacedLemmaContext("run", "VERB", CefrLevel.B1, CefrLevel.A1, 150)),
                 List.of(new SuggestedLemma("walk", "VERB", "A1 level synonym", 80)),
-                "She ____[runs|walks] every morning."
+                "She ____[runs|walks] every morning.",
+                null, null, null, null, null
         );
     }
 
@@ -68,7 +69,7 @@ public class FLagenJ004JourneyTest {
         LemmaAbsenceResponseParser responseParser = new DefaultLemmaAbsenceResponseParser();
         LangChainErrorClassifier errorClassifier = new DefaultLangChainErrorClassifier();
         LemmaAbsenceLlmGenerator generator = new LemmaAbsenceLlmGenerator(
-                mockModel, promptBuilder, responseParser, errorClassifier, "lemma-absence-llm");
+                null, promptBuilder, responseParser, errorClassifier, "lemma-absence-llm", mockModel);
 
         // node: fallar_auth (gate: F-LAGEN-R006, F-LAGEN-R007) → result: failure
         ProposalStrategyFailedException thrown = assertThrows(

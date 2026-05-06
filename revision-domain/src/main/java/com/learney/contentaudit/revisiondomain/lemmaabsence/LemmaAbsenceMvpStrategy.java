@@ -19,12 +19,7 @@ public class LemmaAbsenceMvpStrategy implements LemmaAbsenceProposalStrategy {
     private final LemmaAbsenceQuizCandidateGenerator generator;
     private final String providerId;
 
-    public LemmaAbsenceMvpStrategy(LemmaAbsenceQuizCandidateGenerator generator) {
-        this(generator, null);
-    }
-
-    public LemmaAbsenceMvpStrategy(LemmaAbsenceQuizCandidateGenerator generator,
-            String providerId) {
+    public LemmaAbsenceMvpStrategy(LemmaAbsenceQuizCandidateGenerator generator, String providerId) {
         this.generator = generator;
         this.providerId = providerId;
     }

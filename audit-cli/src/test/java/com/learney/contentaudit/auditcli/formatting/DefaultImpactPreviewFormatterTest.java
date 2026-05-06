@@ -48,9 +48,9 @@ public class DefaultImpactPreviewFormatterTest {
 
         // Assert — R013: aggregateText must be '72% -> 81% (+9 pp)' with explicit sign
         assertNotNull(view);
-        assertNotNull(view.levels());
-        assertEquals(1, view.levels().size());
-        String aggregateText = view.levels().get(0).aggregateText();
+        assertNotNull(view.getLevels());
+        assertEquals(1, view.getLevels().size());
+        String aggregateText = view.getLevels().get(0).getAggregateText();
         assertTrue(aggregateText.contains("72%"),
                 "Expected aggregateText to contain '72%', got: " + aggregateText);
         assertTrue(aggregateText.contains("81%"),
@@ -87,9 +87,9 @@ public class DefaultImpactPreviewFormatterTest {
 
         // Assert — R013: explicit '-' sign present in the delta text (pp notation)
         assertNotNull(view);
-        assertNotNull(view.levels());
-        assertEquals(1, view.levels().size());
-        String aggregateText = view.levels().get(0).aggregateText();
+        assertNotNull(view.getLevels());
+        assertEquals(1, view.getLevels().size());
+        String aggregateText = view.getLevels().get(0).getAggregateText();
         assertTrue(aggregateText.contains("-"),
                 "Expected explicit '-' sign for negative difference, got: " + aggregateText);
         assertTrue(aggregateText.contains("pp"),
@@ -125,11 +125,11 @@ public class DefaultImpactPreviewFormatterTest {
 
         // Assert — R013: unavailabilityText carries the cause; levels is empty (no percentage conversion)
         assertNotNull(view);
-        assertEquals(ImpactPreviewAvailability.UNAVAILABLE, view.availability(),
+        assertEquals(ImpactPreviewAvailability.UNAVAILABLE, view.getAvailability(),
                 "View availability must mirror UNAVAILABLE from the domain model");
-        assertTrue(view.levels().isEmpty(),
-                "levels must be empty for UNAVAILABLE preview, got: " + view.levels());
-        String unavailabilityText = view.unavailabilityText();
+        assertTrue(view.getLevels().isEmpty(),
+                "levels must be empty for UNAVAILABLE preview, got: " + view.getLevels());
+        String unavailabilityText = view.getUnavailabilityText();
         assertNotNull(unavailabilityText, "unavailabilityText must not be null for UNAVAILABLE preview");
         assertTrue(!unavailabilityText.isBlank(),
                 "unavailabilityText must not be blank for UNAVAILABLE preview");

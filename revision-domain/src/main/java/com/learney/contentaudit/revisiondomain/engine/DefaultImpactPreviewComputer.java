@@ -65,8 +65,8 @@ class DefaultImpactPreviewComputer implements ImpactPreviewComputer {
         String proposalId = proposal.getProposalId();
 
         // Paso 1: Cargar el AuditReport baseline
-        // Usamos course.id() para identificar el curso en el mensaje de error (F-PIPRE-R009)
-        String courseId = currentCourse.id();
+        // Usamos course.getId() para identificar el curso en el mensaje de error (F-PIPRE-R009)
+        String courseId = currentCourse.getId();
         Optional<AuditReport> baselineOpt = auditReportStore.loadLatest();
         if (baselineOpt.isEmpty()) {
             return unavailable(proposalId,

@@ -23,6 +23,7 @@ class CachedNlpTokenizer implements NlpTokenizer {
         this.delegate = delegate;
     }
 
+
     @Override
     public List<String> tokenize(String text) {
         return tokenizeCache.computeIfAbsent(text, delegate::tokenize);

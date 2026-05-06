@@ -129,25 +129,20 @@ final class GetCmd implements GetCommand, Callable<Integer> {
             description = "For 'tasks': filter by DiagnosisKind enum: SENTENCE_LENGTH, LEMMA_ABSENCE, COCA_BUCKETS, etc.")
     private String diagnosisArg;
 
-private ImpactPreviewStore impactPreviewStore;
+    private ImpactPreviewStore impactPreviewStore;
 
-private ImpactPreviewFormatter impactPreviewFormatter;
+    private ImpactPreviewFormatter impactPreviewFormatter;
 
-/** Constructor de compatibilidad para tests anteriores a FEAT-PIPRE (sin impactPreviewStore ni formatter). */
-GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore,
-        AnalyzerRegistry analyzerRegistry, CorrectionContextResolver correctionContextResolver) {
-    this(auditReportStore, refinementPlanStore, analyzerRegistry, correctionContextResolver,
-            null, null);
-}
-
-public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore, AnalyzerRegistry analyzerRegistry, CorrectionContextResolver correctionContextResolver, ImpactPreviewStore impactPreviewStore, ImpactPreviewFormatter impactPreviewFormatter) {
-    this.auditReportStore = auditReportStore;
-    this.refinementPlanStore = refinementPlanStore;
-    this.analyzerRegistry = analyzerRegistry;
-    this.correctionContextResolver = correctionContextResolver;
-    this.impactPreviewStore = impactPreviewStore;
-    this.impactPreviewFormatter = impactPreviewFormatter;
-}
+    public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore,
+            AnalyzerRegistry analyzerRegistry, CorrectionContextResolver correctionContextResolver,
+            ImpactPreviewStore impactPreviewStore, ImpactPreviewFormatter impactPreviewFormatter) {
+        this.auditReportStore = auditReportStore;
+        this.refinementPlanStore = refinementPlanStore;
+        this.analyzerRegistry = analyzerRegistry;
+        this.correctionContextResolver = correctionContextResolver;
+        this.impactPreviewStore = impactPreviewStore;
+        this.impactPreviewFormatter = impactPreviewFormatter;
+    }
 
     /** Called by Main to inject the resolved working directory (needed for plan listing). */
     void setBaseDir(Path baseDir) {

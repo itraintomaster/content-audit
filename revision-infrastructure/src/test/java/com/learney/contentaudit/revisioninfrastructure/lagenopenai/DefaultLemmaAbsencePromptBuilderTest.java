@@ -45,7 +45,8 @@ public class DefaultLemmaAbsencePromptBuilderTest {
                         new SuggestedLemma("walk", "VERB", "A1 level synonym", 80),
                         new SuggestedLemma("go", "VERB", "A1 common verb", 50)
                 ),
-                "She ____[runs|walks] every morning."
+                "She ____[runs|walks] every morning.",
+                null, null, null, null, null
         );
     }
 
@@ -269,7 +270,8 @@ public class DefaultLemmaAbsencePromptBuilderTest {
                 CefrLevel.A1,
                 List.of(),   // no misplacedLemmas
                 List.of(),   // no suggestedLemmas
-                "She ____[walks|runs]."
+                "She ____[walks|runs].",
+                null, null, null, null, null
         );
 
         // Must not throw — builds without consulting any external source (R003)

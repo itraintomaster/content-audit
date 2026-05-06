@@ -36,11 +36,6 @@ public class ImpactPreviewUnavailability {
         this.detail = detail;
     }
 
-    /** Record-style accessor alias for tests (F-PIPRE). */
-    public ImpactPreviewUnavailabilityReason reason() { return this.reason; }
-    /** Record-style accessor alias for tests (F-PIPRE). */
-    public String detail() { return this.detail; }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -99,10 +99,12 @@ public class FRevaprJ005JourneyTest {
                 AuditReportStore.class,
                 RefinementPlanStore.class,
                 AnalyzerRegistry.class,
-                CorrectionContextResolver.class);
+                CorrectionContextResolver.class,
+                Class.forName("com.learney.contentaudit.revisiondomain.ImpactPreviewStore"),
+                Class.forName("com.learney.contentaudit.auditcli.formatting.ImpactPreviewFormatter"));
         ctor.setAccessible(true);
         Object getCmdInstance = ctor.newInstance(
-                auditReportStore, refinementPlanStore, analyzerRegistry, contextResolver);
+                auditReportStore, refinementPlanStore, analyzerRegistry, contextResolver, null, null);
 
         // Inject formatName (picocli @Option default)
         try {

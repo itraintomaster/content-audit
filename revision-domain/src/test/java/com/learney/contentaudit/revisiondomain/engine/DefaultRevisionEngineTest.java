@@ -602,7 +602,7 @@ public class DefaultRevisionEngineTest {
         ArgumentCaptor<ImpactPreview> previewCaptor = ArgumentCaptor.forClass(ImpactPreview.class);
         verify(impactPreviewStore).save(previewCaptor.capture());
         ImpactPreview savedPreview = previewCaptor.getValue();
-        assertEquals(proposal.getProposalId(), savedPreview.proposalId(),
+        assertEquals(proposal.getProposalId(), savedPreview.getProposalId(),
                 "The saved ImpactPreview must be associated with the proposal's proposalId");
     }
 

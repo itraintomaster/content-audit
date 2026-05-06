@@ -160,7 +160,7 @@ public class FPipreJ001JourneyTest {
         // R008 gate: preview was saved to the store (immutable once written)
         ArgumentCaptor<ImpactPreview> previewCaptor = ArgumentCaptor.forClass(ImpactPreview.class);
         verify(impactPreviewStore).save(previewCaptor.capture());
-        assertEquals(ImpactPreviewAvailability.AVAILABLE, previewCaptor.getValue().availability(),
+        assertEquals(ImpactPreviewAvailability.AVAILABLE, previewCaptor.getValue().getAvailability(),
                 "The persisted preview must be AVAILABLE (path-1 happy path)");
 
         // The artifact was also persisted
@@ -251,9 +251,9 @@ public class FPipreJ001JourneyTest {
         // R009 gate: the UNAVAILABLE preview (with cause) is also persisted
         ArgumentCaptor<ImpactPreview> previewCaptor = ArgumentCaptor.forClass(ImpactPreview.class);
         verify(impactPreviewStore).save(previewCaptor.capture());
-        assertEquals(ImpactPreviewAvailability.UNAVAILABLE, previewCaptor.getValue().availability(),
+        assertEquals(ImpactPreviewAvailability.UNAVAILABLE, previewCaptor.getValue().getAvailability(),
                 "The UNAVAILABLE preview must be persisted alongside the artifact (R009/R010)");
-        assertNotNull(previewCaptor.getValue().unavailability(),
+        assertNotNull(previewCaptor.getValue().getUnavailability(),
                 "unavailability must carry the cause (R009)");
     }
 }

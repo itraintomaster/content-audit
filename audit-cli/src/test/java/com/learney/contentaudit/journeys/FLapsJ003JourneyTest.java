@@ -222,7 +222,7 @@ public class FLapsJ003JourneyTest {
             throw new ProposalStrategyFailedException(
                     "lemma-absence-llm", TASK_ID, "provider not available");
         };
-        LemmaAbsenceMvpStrategy strategy = new LemmaAbsenceMvpStrategy(failingGenerator);
+        LemmaAbsenceMvpStrategy strategy = new LemmaAbsenceMvpStrategy(failingGenerator, null);
         LemmaAbsenceProposalStrategyRegistryConfig regConfig =
                 new LemmaAbsenceProposalStrategyRegistryConfig(List.of(strategy), "lemma-absence-llm");
         DefaultLemmaAbsenceProposalStrategyRegistry registry =

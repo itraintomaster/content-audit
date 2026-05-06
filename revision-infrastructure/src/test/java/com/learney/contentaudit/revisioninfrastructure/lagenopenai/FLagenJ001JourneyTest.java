@@ -50,7 +50,8 @@ public class FLagenJ001JourneyTest {
                 CefrLevel.A1,
                 List.of(new MisplacedLemmaContext("run", "VERB", CefrLevel.B1, CefrLevel.A1, 150)),
                 List.of(new SuggestedLemma("walk", "VERB", "A1 level synonym", 80)),
-                "She ____[runs|walks] every morning."
+                "She ____[runs|walks] every morning.",
+                null, null, null, null, null
         );
     }
 
@@ -84,7 +85,7 @@ public class FLagenJ001JourneyTest {
         LemmaAbsenceResponseParser responseParser = new DefaultLemmaAbsenceResponseParser();
         LangChainErrorClassifier errorClassifier = new DefaultLangChainErrorClassifier();
         LemmaAbsenceLlmGenerator generator = new LemmaAbsenceLlmGenerator(
-                mockModel, promptBuilder, responseParser, errorClassifier, "lemma-absence-llm");
+                null, promptBuilder, responseParser, errorClassifier, "lemma-absence-llm", mockModel);
 
         // node: evaluar_respuesta (gate: F-LAGEN-R005)
         //   The system evaluates whether the response is a JSON object with quizSentence + translation.
@@ -119,7 +120,7 @@ public class FLagenJ001JourneyTest {
         LemmaAbsenceResponseParser responseParser = new DefaultLemmaAbsenceResponseParser();
         LangChainErrorClassifier errorClassifier = new DefaultLangChainErrorClassifier();
         LemmaAbsenceLlmGenerator generator = new LemmaAbsenceLlmGenerator(
-                mockModel, promptBuilder, responseParser, errorClassifier, "lemma-absence-llm");
+                null, promptBuilder, responseParser, errorClassifier, "lemma-absence-llm", mockModel);
 
         // node: evaluar_respuesta (gate: F-LAGEN-R005)
         //   [La respuesta NO cumple la estructura exigida]

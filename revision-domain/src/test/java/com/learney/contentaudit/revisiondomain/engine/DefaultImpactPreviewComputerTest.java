@@ -61,7 +61,7 @@ public class DefaultImpactPreviewComputerTest {
      */
     private static CourseEntity minimalCourse(String courseId) {
         CourseEntity course = mock(CourseEntity.class);
-        when(course.id()).thenReturn(courseId);
+        when(course.getId()).thenReturn(courseId);
         return course;
     }
 
@@ -117,7 +117,7 @@ public class DefaultImpactPreviewComputerTest {
         AuditReport simulatedReport = singleNodeReport("course-001", Map.of("lemma-absence", 0.80));
 
         when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
-        when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.elementAfter()));
+        when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.getElementAfter()));
         when(elementLocator.replace(any(), any())).thenReturn(course);
         when(courseMapper.map(any())).thenReturn(auditableCourse);
         when(auditEngine.runAudit(any())).thenReturn(simulatedReport);
@@ -150,7 +150,7 @@ public class DefaultImpactPreviewComputerTest {
         AuditReport simulatedReport = singleNodeReport("course-001", Map.of("lemma-absence", 0.75));
 
         when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
-        when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.elementAfter()));
+        when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.getElementAfter()));
         when(elementLocator.replace(any(), any())).thenReturn(course);
         when(courseMapper.map(any())).thenReturn(auditableCourse);
         when(auditEngine.runAudit(any())).thenReturn(simulatedReport);
@@ -161,14 +161,14 @@ public class DefaultImpactPreviewComputerTest {
         ImpactPreview preview = computer.compute(course, prop);
 
         // Assert — R003: the preview is AVAILABLE and the baseline score (0.60) appears as 'before'
-        assertEquals(ImpactPreviewAvailability.AVAILABLE, preview.availability(),
+        assertEquals(ImpactPreviewAvailability.AVAILABLE, preview.getAvailability(),
                 "Preview must be AVAILABLE when baseline and simulation succeed");
-        assertFalse(preview.levelImpacts().isEmpty(),
+        assertFalse(preview.getLevelImpacts().isEmpty(),
                 "levelImpacts must not be empty for AVAILABLE preview");
         // At least one LevelImpact must have a dimensionDelta with before = 0.60 (baseline)
-        boolean baselineFound = preview.levelImpacts().stream()
-                .flatMap(li -> li.dimensionDeltas().stream())
-                .anyMatch(dd -> Math.abs(dd.delta().before() - 0.60) < 0.001);
+        boolean baselineFound = preview.getLevelImpacts().stream()
+                .flatMap(li -> li.getDimensionDeltas().stream())
+                .anyMatch(dd -> Math.abs(dd.getDelta().getBefore() - 0.60) < 0.001);
         assertTrue(baselineFound,
                 "At least one DimensionDelta must have before=0.60 (baseline score from loadLatest)");
     }
@@ -214,7 +214,7 @@ public class DefaultImpactPreviewComputerTest {
         AuditableCourse auditableCourse = mock(AuditableCourse.class);
 
         when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
-        when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.elementAfter()));
+        when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.getElementAfter()));
         when(elementLocator.replace(any(), any())).thenReturn(course);
         when(courseMapper.map(any())).thenReturn(auditableCourse);
         when(auditEngine.runAudit(any())).thenReturn(simulatedReport);
@@ -225,10 +225,10 @@ public class DefaultImpactPreviewComputerTest {
         ImpactPreview preview = computer.compute(course, prop);
 
         // Assert — R004: levelImpacts must cover QUIZ, KNOWLEDGE, TOPIC, MILESTONE, COURSE
-        assertEquals(ImpactPreviewAvailability.AVAILABLE, preview.availability(),
+        assertEquals(ImpactPreviewAvailability.AVAILABLE, preview.getAvailability(),
                 "Preview must be AVAILABLE with full hierarchy");
-        List<AuditTarget> targets = preview.levelImpacts().stream()
-                .map(li -> li.nodeTarget())
+        List<AuditTarget> targets = preview.getLevelImpacts().stream()
+                .map(li -> li.getNodeTarget())
                 .toList();
         assertTrue(targets.contains(AuditTarget.QUIZ),
                 "levelImpacts must include QUIZ level, got: " + targets);
@@ -279,7 +279,7 @@ public class DefaultImpactPreviewComputerTest {
         AuditableCourse auditableCourse = mock(AuditableCourse.class);
 
         when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
-        when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.elementAfter()));
+        when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.getElementAfter()));
         when(elementLocator.replace(any(), any())).thenReturn(course);
         when(courseMapper.map(any())).thenReturn(auditableCourse);
         when(auditEngine.runAudit(any())).thenReturn(simulatedReport);
@@ -290,10 +290,10 @@ public class DefaultImpactPreviewComputerTest {
         ImpactPreview preview = computer.compute(course, prop);
 
         // Assert — R004: absent levels (MILESTONE, TOPIC) must not appear in levelImpacts
-        assertEquals(ImpactPreviewAvailability.AVAILABLE, preview.availability(),
+        assertEquals(ImpactPreviewAvailability.AVAILABLE, preview.getAvailability(),
                 "Preview must be AVAILABLE even with flat hierarchy");
-        List<AuditTarget> targets = preview.levelImpacts().stream()
-                .map(li -> li.nodeTarget())
+        List<AuditTarget> targets = preview.getLevelImpacts().stream()
+                .map(li -> li.getNodeTarget())
                 .toList();
         assertFalse(targets.contains(AuditTarget.MILESTONE),
                 "MILESTONE must not appear when the node tree has no MILESTONE level, got: " + targets);
@@ -337,7 +337,7 @@ public class DefaultImpactPreviewComputerTest {
         AuditableCourse auditableCourse = mock(AuditableCourse.class);
 
         when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
-        when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.elementAfter()));
+        when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.getElementAfter()));
         when(elementLocator.replace(any(), any())).thenReturn(course);
         when(courseMapper.map(any())).thenReturn(auditableCourse);
         when(auditEngine.runAudit(any())).thenReturn(simulatedReport);
@@ -348,19 +348,19 @@ public class DefaultImpactPreviewComputerTest {
         ImpactPreview preview = computer.compute(course, prop);
 
         // Assert — R005: QUIZ-level LevelImpact must have DimensionDelta for each analyzer
-        assertEquals(ImpactPreviewAvailability.AVAILABLE, preview.availability());
-        var quizImpact = preview.levelImpacts().stream()
-                .filter(li -> li.nodeTarget() == AuditTarget.QUIZ)
+        assertEquals(ImpactPreviewAvailability.AVAILABLE, preview.getAvailability());
+        var quizImpact = preview.getLevelImpacts().stream()
+                .filter(li -> li.getNodeTarget() == AuditTarget.QUIZ)
                 .findFirst()
                 .orElseThrow(() -> new AssertionError("QUIZ level impact not found"));
-        List<String> dimensions = quizImpact.dimensionDeltas().stream()
-                .map(dd -> dd.dimension())
+        List<String> dimensions = quizImpact.getDimensionDeltas().stream()
+                .map(dd -> dd.getDimension())
                 .toList();
         assertTrue(dimensions.contains("lemma-absence"),
                 "DimensionDeltas must include 'lemma-absence', got: " + dimensions);
         assertTrue(dimensions.contains("sentence-length"),
                 "DimensionDeltas must include 'sentence-length', got: " + dimensions);
-        assertEquals(2, quizImpact.dimensionDeltas().size(),
+        assertEquals(2, quizImpact.getDimensionDeltas().size(),
                 "Must have exactly 2 DimensionDeltas (one per evaluated analyzer)");
     }
 
@@ -393,7 +393,7 @@ public class DefaultImpactPreviewComputerTest {
         AuditableCourse auditableCourse = mock(AuditableCourse.class);
 
         when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
-        when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.elementAfter()));
+        when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.getElementAfter()));
         when(elementLocator.replace(any(), any())).thenReturn(course);
         when(courseMapper.map(any())).thenReturn(auditableCourse);
         when(auditEngine.runAudit(any())).thenReturn(simulatedReport);
@@ -404,13 +404,13 @@ public class DefaultImpactPreviewComputerTest {
         ImpactPreview preview = computer.compute(course, prop);
 
         // Assert — R005: QUIZ-level must NOT have "coca-buckets" in dimensionDeltas
-        assertEquals(ImpactPreviewAvailability.AVAILABLE, preview.availability());
-        var quizImpact = preview.levelImpacts().stream()
-                .filter(li -> li.nodeTarget() == AuditTarget.QUIZ)
+        assertEquals(ImpactPreviewAvailability.AVAILABLE, preview.getAvailability());
+        var quizImpact = preview.getLevelImpacts().stream()
+                .filter(li -> li.getNodeTarget() == AuditTarget.QUIZ)
                 .findFirst()
                 .orElseThrow(() -> new AssertionError("QUIZ level impact not found"));
-        List<String> quizDimensions = quizImpact.dimensionDeltas().stream()
-                .map(dd -> dd.dimension())
+        List<String> quizDimensions = quizImpact.getDimensionDeltas().stream()
+                .map(dd -> dd.getDimension())
                 .toList();
         assertFalse(quizDimensions.contains("coca-buckets"),
                 "QUIZ level must NOT include 'coca-buckets' (not evaluated at QUIZ), got: " + quizDimensions);
@@ -447,7 +447,7 @@ public class DefaultImpactPreviewComputerTest {
         AuditableCourse auditableCourse = mock(AuditableCourse.class);
 
         when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
-        when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.elementAfter()));
+        when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.getElementAfter()));
         when(elementLocator.replace(any(), any())).thenReturn(course);
         when(courseMapper.map(any())).thenReturn(auditableCourse);
         when(auditEngine.runAudit(any())).thenReturn(simulatedReport);
@@ -458,35 +458,35 @@ public class DefaultImpactPreviewComputerTest {
         ImpactPreview preview = computer.compute(course, prop);
 
         // Assert — R006: for every ScoreDelta in the preview, difference == after - before
-        assertEquals(ImpactPreviewAvailability.AVAILABLE, preview.availability());
-        assertFalse(preview.levelImpacts().isEmpty());
-        preview.levelImpacts().forEach(li -> {
+        assertEquals(ImpactPreviewAvailability.AVAILABLE, preview.getAvailability());
+        assertFalse(preview.getLevelImpacts().isEmpty());
+        preview.getLevelImpacts().forEach(li -> {
             // Check aggregateDelta
-            var agg = li.aggregateDelta();
-            assertEquals(agg.after() - agg.before(), agg.difference(), 0.0001,
-                    "aggregateDelta.difference must equal after-before at level " + li.nodeTarget());
+            var agg = li.getAggregateDelta();
+            assertEquals(agg.getAfter() - agg.getBefore(), agg.getDifference(), 0.0001,
+                    "aggregateDelta.difference must equal after-before at level " + li.getNodeTarget());
             // Check each dimensionDelta
-            li.dimensionDeltas().forEach(dd -> {
-                var d = dd.delta();
-                assertEquals(d.after() - d.before(), d.difference(), 0.0001,
-                        "DimensionDelta.difference must equal after-before for dimension " + dd.dimension());
+            li.getDimensionDeltas().forEach(dd -> {
+                var d = dd.getDelta();
+                assertEquals(d.getAfter() - d.getBefore(), d.getDifference(), 0.0001,
+                        "DimensionDelta.difference must equal after-before for dimension " + dd.getDimension());
             });
         });
 
         // Specifically verify the QUIZ-level lemma-absence delta has the expected values
-        var quizImpact = preview.levelImpacts().stream()
-                .filter(li -> li.nodeTarget() == AuditTarget.QUIZ)
+        var quizImpact = preview.getLevelImpacts().stream()
+                .filter(li -> li.getNodeTarget() == AuditTarget.QUIZ)
                 .findFirst()
                 .orElseThrow(() -> new AssertionError("QUIZ not found in levelImpacts"));
-        var lemmaAbsenceDelta = quizImpact.dimensionDeltas().stream()
-                .filter(dd -> "lemma-absence".equals(dd.dimension()))
+        var lemmaAbsenceDelta = quizImpact.getDimensionDeltas().stream()
+                .filter(dd -> "lemma-absence".equals(dd.getDimension()))
                 .findFirst()
                 .orElseThrow(() -> new AssertionError("lemma-absence dimension not found"));
-        assertEquals(baselineLemmaScore, lemmaAbsenceDelta.delta().before(), 0.0001,
+        assertEquals(baselineLemmaScore, lemmaAbsenceDelta.getDelta().getBefore(), 0.0001,
                 "before must equal baseline score");
-        assertEquals(simulatedLemmaScore, lemmaAbsenceDelta.delta().after(), 0.0001,
+        assertEquals(simulatedLemmaScore, lemmaAbsenceDelta.getDelta().getAfter(), 0.0001,
                 "after must equal simulated score");
-        assertEquals(expectedDifference, lemmaAbsenceDelta.delta().difference(), 0.0001,
+        assertEquals(expectedDifference, lemmaAbsenceDelta.getDelta().getDifference(), 0.0001,
                 "difference must be exactly after-before");
     }
 
@@ -515,16 +515,16 @@ public class DefaultImpactPreviewComputerTest {
 
         // Assert — R009: UNAVAILABLE with TARGET_NODE_ABSENT and non-empty detail
         assertNotNull(preview, "compute must never return null (R009: returns UNAVAILABLE instead)");
-        assertEquals(ImpactPreviewAvailability.UNAVAILABLE, preview.availability(),
+        assertEquals(ImpactPreviewAvailability.UNAVAILABLE, preview.getAvailability(),
                 "availability must be UNAVAILABLE when node is absent");
-        assertNotNull(preview.unavailability(), "unavailability must not be null when UNAVAILABLE");
+        assertNotNull(preview.getUnavailability(), "unavailability must not be null when UNAVAILABLE");
         assertEquals(com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewUnavailabilityReason.TARGET_NODE_ABSENT,
-                preview.unavailability().reason(),
+                preview.getUnavailability().getReason(),
                 "reason must be TARGET_NODE_ABSENT");
-        assertNotNull(preview.unavailability().detail(), "detail must not be null");
-        assertFalse(preview.unavailability().detail().isBlank(),
+        assertNotNull(preview.getUnavailability().getDetail(), "detail must not be null");
+        assertFalse(preview.getUnavailability().getDetail().isBlank(),
                 "detail must not be blank (must identify the absent nodeId)");
-        assertTrue(preview.levelImpacts().isEmpty(),
+        assertTrue(preview.getLevelImpacts().isEmpty(),
                 "levelImpacts must be empty for UNAVAILABLE preview");
     }
 
@@ -548,16 +548,16 @@ public class DefaultImpactPreviewComputerTest {
 
         // Assert — R009: UNAVAILABLE with BASE_AUDIT_UNAVAILABLE
         assertNotNull(preview, "compute must never return null");
-        assertEquals(ImpactPreviewAvailability.UNAVAILABLE, preview.availability(),
+        assertEquals(ImpactPreviewAvailability.UNAVAILABLE, preview.getAvailability(),
                 "availability must be UNAVAILABLE when baseline audit is not retrievable");
-        assertNotNull(preview.unavailability(), "unavailability must not be null");
+        assertNotNull(preview.getUnavailability(), "unavailability must not be null");
         assertEquals(com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewUnavailabilityReason.BASE_AUDIT_UNAVAILABLE,
-                preview.unavailability().reason(),
+                preview.getUnavailability().getReason(),
                 "reason must be BASE_AUDIT_UNAVAILABLE");
-        assertNotNull(preview.unavailability().detail(), "detail must not be null");
-        assertFalse(preview.unavailability().detail().isBlank(),
+        assertNotNull(preview.getUnavailability().getDetail(), "detail must not be null");
+        assertFalse(preview.getUnavailability().getDetail().isBlank(),
                 "detail must explain why the baseline audit is unavailable");
-        assertTrue(preview.levelImpacts().isEmpty(),
+        assertTrue(preview.getLevelImpacts().isEmpty(),
                 "levelImpacts must be empty for UNAVAILABLE preview");
     }
 
@@ -575,7 +575,7 @@ public class DefaultImpactPreviewComputerTest {
         AuditableCourse auditableCourse = mock(AuditableCourse.class);
 
         when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
-        when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.elementAfter()));
+        when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.getElementAfter()));
         when(elementLocator.replace(any(), any())).thenReturn(course);
         when(courseMapper.map(any())).thenReturn(auditableCourse);
         // auditEngine.runAudit throws a RuntimeException during simulation
@@ -588,16 +588,16 @@ public class DefaultImpactPreviewComputerTest {
 
         // Assert — R009: UNAVAILABLE with SIMULATION_FAILED
         assertNotNull(preview, "compute must never throw; it must return UNAVAILABLE instead");
-        assertEquals(ImpactPreviewAvailability.UNAVAILABLE, preview.availability(),
+        assertEquals(ImpactPreviewAvailability.UNAVAILABLE, preview.getAvailability(),
                 "availability must be UNAVAILABLE when AuditEngine fails");
-        assertNotNull(preview.unavailability(), "unavailability must not be null");
+        assertNotNull(preview.getUnavailability(), "unavailability must not be null");
         assertEquals(com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewUnavailabilityReason.SIMULATION_FAILED,
-                preview.unavailability().reason(),
+                preview.getUnavailability().getReason(),
                 "reason must be SIMULATION_FAILED when AuditEngine throws");
-        assertNotNull(preview.unavailability().detail(), "detail must not be null");
-        assertFalse(preview.unavailability().detail().isBlank(),
+        assertNotNull(preview.getUnavailability().getDetail(), "detail must not be null");
+        assertFalse(preview.getUnavailability().getDetail().isBlank(),
                 "detail must explain the simulation failure cause");
-        assertTrue(preview.levelImpacts().isEmpty(),
+        assertTrue(preview.getLevelImpacts().isEmpty(),
                 "levelImpacts must be empty for UNAVAILABLE preview");
     }
 
@@ -628,7 +628,7 @@ public class DefaultImpactPreviewComputerTest {
         AuditableCourse auditableCourse = mock(AuditableCourse.class);
 
         when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
-        when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop1.elementAfter()));
+        when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop1.getElementAfter()));
         when(elementLocator.replace(any(), any())).thenReturn(course);
         when(courseMapper.map(any())).thenReturn(auditableCourse);
         when(auditEngine.runAudit(any())).thenReturn(simulatedReport);
@@ -642,14 +642,14 @@ public class DefaultImpactPreviewComputerTest {
         // Assert — R011: two independent previews with different proposalIds
         assertNotNull(preview1, "First preview must not be null");
         assertNotNull(preview2, "Second preview must not be null");
-        assertEquals("proposal-r011-A", preview1.proposalId(),
+        assertEquals("proposal-r011-A", preview1.getProposalId(),
                 "First preview must be associated with proposal-r011-A");
-        assertEquals("proposal-r011-B", preview2.proposalId(),
+        assertEquals("proposal-r011-B", preview2.getProposalId(),
                 "Second preview must be associated with proposal-r011-B");
-        assertNotEquals(preview1.proposalId(), preview2.proposalId(),
+        assertNotEquals(preview1.getProposalId(), preview2.getProposalId(),
                 "Each preview must have a distinct proposalId");
         // They do not share levelImpacts instances
-        assertTrue(preview1.levelImpacts() != preview2.levelImpacts(),
+        assertTrue(preview1.getLevelImpacts() != preview2.getLevelImpacts(),
                 "levelImpacts lists must be independent (not the same object reference)");
     }
 
@@ -700,12 +700,12 @@ public class DefaultImpactPreviewComputerTest {
         ImpactPreview preview = computer.compute(course, prop);
 
         // Assert — R012: the target-node-level LevelImpact has the stable nodeId
-        assertEquals(ImpactPreviewAvailability.AVAILABLE, preview.availability());
-        var quizImpact = preview.levelImpacts().stream()
-                .filter(li -> li.nodeTarget() == AuditTarget.QUIZ)
+        assertEquals(ImpactPreviewAvailability.AVAILABLE, preview.getAvailability());
+        var quizImpact = preview.getLevelImpacts().stream()
+                .filter(li -> li.getNodeTarget() == AuditTarget.QUIZ)
                 .findFirst()
                 .orElseThrow(() -> new AssertionError("QUIZ LevelImpact not found"));
-        assertEquals(stableNodeId, quizImpact.nodeId(),
+        assertEquals(stableNodeId, quizImpact.getNodeId(),
                 "LevelImpact.nodeId must equal the stable nodeId from elementBefore/elementAfter");
     }
 }

@@ -42,6 +42,8 @@ public LemmaRecurrenceAnalyzer(ContentWordFilter contentWordFilter, LemmaRecurre
 }
 
 
+
+
     @Override
     public Void onKnowledge(AuditNode node) {
         return null;
