@@ -981,11 +981,34 @@ final class GetCmd implements GetCommand, Callable<Integer> {
         }
 
         if ("json".equals(formatName)) {
-            return printProposalsJson(List.of(artifactOpt.get()));
+            return printProposalOneJson(artifactOpt.get(), previewView);
         }
         printProposalOne(artifactOpt.get());
         printImpactPreviewView(previewView);
         return 0;
+    }
+
+    /**
+     * JSON output del comando get proposal &lt;id&gt;: serializa el artifact junto al
+     * preview de impacto en un solo objeto, manteniendo R007 (preview visible junto
+     * a la propuesta) en formato JSON.
+     */
+    private int printProposalOneJson(RevisionArtifact artifact,
+            com.learney.contentaudit.auditcli.formatting.ImpactPreviewView previewView) {
+        try {
+            ObjectMapper om = new ObjectMapper();
+            om.registerModule(new JavaTimeModule());
+            om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+            om.enable(SerializationFeature.INDENT_OUTPUT);
+            Map<String, Object> output = new LinkedHashMap<>();
+            output.put("proposal", artifact);
+            output.put("impactPreview", previewView);
+            System.out.println(om.writeValueAsString(output));
+            return 0;
+        } catch (Exception e) {
+            System.err.println("Error formatting JSON: " + e.getMessage());
+            return 1;
+        }
     }
 
     private RevisionVerdict mapStatusToVerdict(String status) {
