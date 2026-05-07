@@ -1,4 +1,5 @@
 package com.learney.contentaudit.revisiondomain.engine;
+import com.learney.contentaudit.revisiondomain.consolidatedview.NodeFieldDiffer;
 import com.learney.contentaudit.auditdomain.ActiveAnalysisSelectionStore;
 import com.learney.contentaudit.auditdomain.AuditEngine;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
@@ -34,7 +35,9 @@ private final CourseMapper courseMapper;
 
 private final AuditEngine auditEngine;
 
-public DefaultConsolidatedViewBuilder(RevisionArtifactStore revisionArtifactStore, ActiveAnalysisSelectionStore activeAnalysisSelectionStore, AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore, CourseRepository courseRepository, CourseElementLocator courseElementLocator, CourseMapper courseMapper, AuditEngine auditEngine) {
+private final NodeFieldDiffer nodeFieldDiffer;
+
+public DefaultConsolidatedViewBuilder(RevisionArtifactStore revisionArtifactStore, ActiveAnalysisSelectionStore activeAnalysisSelectionStore, AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore, CourseRepository courseRepository, CourseElementLocator courseElementLocator, CourseMapper courseMapper, AuditEngine auditEngine, NodeFieldDiffer nodeFieldDiffer) {
     this.revisionArtifactStore = revisionArtifactStore;
     this.activeAnalysisSelectionStore = activeAnalysisSelectionStore;
     this.auditReportStore = auditReportStore;
@@ -43,6 +46,7 @@ public DefaultConsolidatedViewBuilder(RevisionArtifactStore revisionArtifactStor
     this.courseElementLocator = courseElementLocator;
     this.courseMapper = courseMapper;
     this.auditEngine = auditEngine;
+    this.nodeFieldDiffer = nodeFieldDiffer;
 }
 
     @Override

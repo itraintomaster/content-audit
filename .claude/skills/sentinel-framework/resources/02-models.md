@@ -1772,10 +1772,11 @@ new ProposalDerivationException(String strategyName, String taskId, String reaso
 | `courseElementLocator` | `CourseElementLocator` |  |
 | `courseMapper` | `CourseMapper` |  |
 | `auditEngine` | `AuditEngine` |  |
+| `nodeFieldDiffer` | `NodeFieldDiffer` |  |
 
 **Generated constructor:**
 ```java
-new ConsolidatedViewBuilderConfig(ActiveAnalysisSelectionStore activeAnalysisSelectionStore, AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore, RevisionArtifactStore revisionArtifactStore, CourseRepository courseRepository, CourseElementLocator courseElementLocator, CourseMapper courseMapper, AuditEngine auditEngine)
+new ConsolidatedViewBuilderConfig(ActiveAnalysisSelectionStore activeAnalysisSelectionStore, AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore, RevisionArtifactStore revisionArtifactStore, CourseRepository courseRepository, CourseElementLocator courseElementLocator, CourseMapper courseMapper, AuditEngine auditEngine, NodeFieldDiffer nodeFieldDiffer)
 ```
 
 #### LemmaAbsenceProposalStrategyRegistryConfig (package: engine)
@@ -1955,27 +1956,9 @@ new ConsolidatedViewBuilderConfig(ActiveAnalysisSelectionStore activeAnalysisSel
 |-------|------|
 | `nodeTarget` | `AuditTarget` |
 | `nodeId` | `String` |
-| `consolidated` | `CourseElementSnapshot` |
-| `pendingProjection` | `CourseElementSnapshot` |
 | `acceptedProposalIds` | `List<String>` |
-| `pendingProposalId` | `String` |
-
-#### StatisticImpact (package: consolidatedview)
-
-**Package:** `com.learney.contentaudit.revisiondomain.consolidatedview`
-**Visibility:** public
-**Type:** record
-
-| Field | Type |
-|-------|------|
-| `nodeTarget` | `AuditTarget` |
-| `nodeId` | `String` |
-| `dimension` | `String` |
-| `original` | `double` |
-| `consolidated` | `double` |
-| `acceptedDelta` | `double` |
-| `pendingProjection` | `Double` |
-| `pendingDelta` | `Double` |
+| `fieldChanges` | `Map<String,FieldChange>` |
+| `pendingProposalIds` | `List<String>` |
 
 #### ConsolidatedView (package: consolidatedview)
 
@@ -1991,8 +1974,77 @@ new ConsolidatedViewBuilderConfig(ActiveAnalysisSelectionStore activeAnalysisSel
 | `unavailability` | `ConsolidatedViewUnavailability` |
 | `computedAt` | `Instant` |
 | `nodeImpacts` | `List<NodeImpact>` |
-| `statisticImpacts` | `List<StatisticImpact>` |
 | `nonApplicablePendings` | `List<NonApplicablePending>` |
+
+#### FieldChange (package: consolidatedview)
+
+**Package:** `com.learney.contentaudit.revisiondomain.consolidatedview`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `original` | `Object` |
+| `consolidated` | `Object` |
+| `pendingProjection` | `Object` |
+
+#### FieldPath (package: consolidatedview)
+
+**Package:** `com.learney.contentaudit.revisiondomain.consolidatedview`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `raw` | `String` |
+
+#### FieldExclusionRole (package: consolidatedview)
+
+**Package:** `com.learney.contentaudit.revisiondomain.consolidatedview`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `OPAQUE_PERSISTENCE_ID` | `null` |
+| `STRUCTURAL_REFERENCE` | `null` |
+| `TIMESTAMP` | `null` |
+| `INTERNAL_ORDER` | `null` |
+| `NON_SEMANTIC` | `null` |
+
+#### FieldExclusionRule (package: fielddiff)
+
+**Package:** `com.learney.contentaudit.revisiondomain.fielddiff`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `declaringTypeName` | `String` |
+| `fieldName` | `String` |
+| `role` | `FieldExclusionRole` |
+
+#### ListIdentityKeySpec (package: fielddiff)
+
+**Package:** `com.learney.contentaudit.revisiondomain.fielddiff`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `fieldNames` | `List<String>` |
+
+#### ListIdentityRule (package: fielddiff)
+
+**Package:** `com.learney.contentaudit.revisiondomain.fielddiff`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `declaringTypeName` | `String` |
+| `fieldName` | `String` |
+| `keySpec` | `ListIdentityKeySpec` |
 
 ### Module: revision-infrastructure
 

@@ -864,6 +864,7 @@ Methods:
 | courseElementLocator | `CourseElementLocator` |
 | courseMapper | `CourseMapper` |
 | auditEngine | `AuditEngine` |
+| nodeFieldDiffer | `NodeFieldDiffer` |
 
 ### Reviser (port)
 

@@ -460,7 +460,7 @@ See the **Discovering versions and types** section in the `sentinel-dsl-ref` ski
 | nlp-infrastructure | audit-domain | NlpTokenizerFactory | — | spacy [public] |
 | vocabulary-infrastructure | audit-domain | — | — | evp [internal], coca [internal] |
 | audit-infrastructure | audit-domain, refiner-domain, revision-domain | — | FileSystemAuditReportStore, FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore, FileSystemImpactPreviewStore, FileSystemActiveAnalysisSelectionStore | — |
-| revision-domain | audit-domain, refiner-domain, course-domain | Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore | — | engine [internal], lemmaabsence [public], impactpreview [public], consolidatedview [public] |
+| revision-domain | audit-domain, refiner-domain, course-domain | Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore | — | engine [internal], lemmaabsence [public], impactpreview [public], consolidatedview [public], fielddiff [internal] |
 | revision-infrastructure | revision-domain, refiner-domain | — | — | lagen [public], lagenopenai [internal] |
 
 ### Boundaries

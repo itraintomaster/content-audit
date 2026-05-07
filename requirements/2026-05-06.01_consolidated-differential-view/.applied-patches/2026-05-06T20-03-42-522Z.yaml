@@ -1,0 +1,8 @@
+code: FEAT-CDIFF
+description: "Test patch: try to delete F-CDIFF-J007 journey via _change: delete on\
+  \ a features block."
+features:
+- id: FEAT-CDIFF
+  journeys:
+  - id: F-CDIFF-J007
+    validation: AUTO_VALIDATED

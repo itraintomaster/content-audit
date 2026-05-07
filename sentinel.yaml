@@ -5556,27 +5556,6 @@ modules:
         traceability:
           feature: FEAT-CDIFF
           rule: F-CDIFF-R001
-      - name: "Dado un StatisticImpact con original, consolidated y acceptedDelta\
-          \ poblados (sin pendiente), cuando format corre, entonces los tres valores\
-          \ aparecen en la salida con la misma magnitud en escala absoluta y pendingProjection/pendingDelta\
-          \ no aparecen como campos numericos"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R009
-      - name: "Dado un StatisticImpact con pendingProjection y pendingDelta no nulos,\
-          \ cuando format corre, entonces los cuatro valores numericos (original,\
-          \ consolidated, acceptedDelta, pendingDelta) y pendingProjection aparecen\
-          \ en la salida"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R009
-      - name: "Dado un StatisticImpact con cualquier valor de original y consolidated,\
-          \ cuando format corre, entonces el valor textual de acceptedDelta en la\
-          \ salida coincide con consolidated menos original sin conversion porcentual\
-          \ relativa"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R010
       - name: "Dado un ConsolidatedView con availability UNAVAILABLE y un unavailability\
           \ con reason y detail, cuando format corre, entonces la salida incluye consolidatedAvailability=UNAVAILABLE\
           \ con la categoria y el detalle, y nodeImpacts/statisticImpacts no se intentan\
@@ -6143,10 +6122,13 @@ modules:
     \ / AuditEngine / ActiveAnalysisSelectionStore for the eager what-if simulation\
     \ that powers the impact preview and the consolidated view). Exposes Reviser/RevisionValidator/RevisionArtifactStore/CourseElementLocator/ImpactPreviewStore\
     \ ports plus the RevisionEngineFactory seam, the lemmaabsence proposal-strategy\
-    \ SPI, the impactpreview SPI (FEAT-PIPRE) and the consolidatedview SPI (FEAT-CDIFF).\
-    \ The bypass baseline, the impact-preview internals and the consolidated-view\
-    \ internals live behind the engine package; external modules only see factories,\
-    \ ports and carrier records."
+    \ SPI, the impactpreview SPI (FEAT-PIPRE) and the consolidatedview SPI (FEAT-CDIFF)\
+    \ — including the dynamic field-diff engine that powers FEAT-CDIFF v3 (recursive\
+    \ walker + central role-based exclusion registry + central list-identity registry,\
+    \ all inside the fielddiff package). The bypass baseline, the impact-preview internals,\
+    \ the consolidated-view internals and the field-diff internals live behind their\
+    \ respective internal packages; external modules only see factories, ports and\
+    \ carrier records."
   dependsOn:
   - audit-domain
   - refiner-domain
@@ -6460,6 +6442,11 @@ modules:
     - name: auditEngine
       type: AuditEngine
       description: "Required. AuditableCourse -> AuditReport (in-memory, no persistido)."
+    - name: nodeFieldDiffer
+      type: NodeFieldDiffer
+      description: F-CDIFF v3. Required. Motor de descubrimiento dinamico inyectado
+        por la composition root via DefaultNodeFieldDifferFactory.create(). El factory
+        de ConsolidatedViewBuilder lo unpackea del config y lo pasa a DefaultConsolidatedViewBuilder.
     visibility: public
   interfaces:
   - name: Reviser
@@ -7233,6 +7220,15 @@ modules:
         description: "Re-corre runAudit sobre AuditableCourse derivado del curso post-aceptadas\
           \ (consolidated) y post-pendientes (pendingProjection). Si la re-agregacion\
           \ falla, availability=UNAVAILABLE/reason=REAGGREGATION_FAILED (F-CDIFF-R013)."
+      - name: nodeFieldDiffer
+        type: NodeFieldDiffer
+        description: "F-CDIFF-R019/R020/R022/R023: el motor de descubrimiento dinamico\
+          \ que reemplaza la logica v2 de snapshots crudos + collectStatisticImpacts.\
+          \ El builder le pasa los tres AuditNode (baseline / consolidated / pendingProjection)\
+          \ por cada nodeTarget+nodeId tocado, y obtiene el mapa { fieldPath → FieldChange\
+          \ } que copia tal cual a NodeImpact.fieldChanges. El builder NO interpreta\
+          \ el contenido del mapa; es la frontera entre 'que campos cambiaron' (R019)\
+          \ y 'que decisiones del plan los provocaron' (R011)."
       types:
       - Component
       handwrittenTests:
@@ -7263,116 +7259,12 @@ modules:
         traceability:
           feature: FEAT-CDIFF
           rule: F-CDIFF-R005
-      - name: "Dado un nodo hoja sin aceptadas ni pendientes en el plan activo, cuando\
-          \ build corre, entonces ese nodo no aparece en nodeImpacts (la salida solo\
-          \ emite nodos afectados)"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R006
-      - name: "Dado un nodo hoja con una pendiente en el plan activo y sin aceptadas,\
-          \ cuando build corre, entonces NodeImpact.consolidated coincide con el snapshot\
-          \ del baseline y pendingProjection coincide con el snapshot resultante de\
-          \ aplicar la pendiente sobre ese baseline"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R006
-      - name: "Dado un nodo hoja con una propuesta aceptada y sin pendientes, cuando\
-          \ build corre, entonces NodeImpact.consolidated coincide con el elementAfter\
-          \ de la aceptada y pendingProjection es null"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R006
-      - name: "Dado un nodo hoja con una aceptada y una pendiente sobre el mismo nodeId,\
-          \ cuando build corre, entonces pendingProjection se calcula aplicando la\
-          \ pendiente sobre consolidated (es decir sobre el elementAfter de la aceptada)\
-          \ y no sobre el snapshot original del baseline"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R006
       - name: "Dado un nodo hoja con dos propuestas aceptadas que lo afectaron en\
           \ orden createdAt ascendente, cuando build corre, entonces NodeImpact.acceptedProposalIds\
           \ contiene ambos proposalId en orden createdAt ascendente"
         traceability:
           feature: FEAT-CDIFF
           rule: F-CDIFF-R007
-      - name: "Dado un nodo hoja con una pendiente aplicable, cuando build corre,\
-          \ entonces NodeImpact.pendingProposalId equivale al proposalId de la pendiente\
-          \ que produjo pendingProjection"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R007
-      - name: "Dado un nodo padre cuyo subarbol contiene un quiz afectado por una\
-          \ aceptada, cuando build corre, entonces aparece un NodeImpact para ese\
-          \ padre y los valores consolidados de sus estadisticas resultan de re-agregar\
-          \ el subarbol con la estrategia del analizador (no de sumar deltas individuales)"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R008
-      - name: "Dado un nodo padre cuyo subarbol no contiene aceptadas ni pendientes,\
-          \ cuando build corre, entonces ese padre no aparece en nodeImpacts ni en\
-          \ statisticImpacts"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R008
-      - name: "Dada una estadistica tocada solo por una aceptada en el plan activo,\
-          \ cuando build corre, entonces el StatisticImpact correspondiente expone\
-          \ original y consolidated distintos, acceptedDelta no nulo, y pendingProjection\
-          \ y pendingDelta nulos"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R009
-      - name: "Dada una estadistica tocada solo por una pendiente en el plan activo,\
-          \ cuando build corre, entonces el StatisticImpact correspondiente expone\
-          \ consolidated igual a original, acceptedDelta cero, y pendingProjection\
-          \ con pendingDelta no nulos"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R009
-      - name: "Dada una estadistica del baseline no tocada por ninguna decision del\
-          \ plan activo, cuando build corre, entonces ese par (nivel, dimension) no\
-          \ aparece en statisticImpacts"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R009
-      - name: "Dado cualquier StatisticImpact emitido por build, entonces acceptedDelta\
-          \ es exactamente consolidated menos original, sin escalado relativo"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R010
-      - name: "Dado un StatisticImpact con pendingProjection no nulo, entonces pendingDelta\
-          \ es exactamente pendingProjection menos consolidated, sin escalado relativo"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R010
-      - name: "Dado un AuditReport con pares (nivel, dimension) reportados por el\
-          \ motor en el baseline, cuando build corre, entonces statisticImpacts solo\
-          \ contiene pares presentes en el baseline (la salida no inventa pares ausentes\
-          \ ni reordena la granularidad)"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R011
-      - name: "Dada una pendiente cuyo nodeId no se encuentra en el subarbol vigente,\
-          \ cuando build corre, entonces aparece en nonApplicablePendings con reason\
-          \ NODE_ABSENT y detail no vacio, y no contribuye a pendingProjection ni\
-          \ pendingDelta de ningun nodo o estadistica"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R012
-      - name: "Dadas dos pendientes sobre el mismo nodeId aplicadas en orden createdAt\
-          \ ascendente cuyo elementBefore de la segunda no coincide con el consolidated\
-          \ tras aplicar la primera, cuando build corre, entonces la segunda aparece\
-          \ en nonApplicablePendings con reason ELEMENT_BEFORE_MISMATCH y no contribuye\
-          \ a pendingProjection ni pendingDelta"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R012
-      - name: "Dada una pendiente marcada como NOT_APPLICABLE y otras pendientes aplicables\
-          \ en el mismo plan activo, cuando build corre, entonces el resto del consolidado\
-          \ se entrega normalmente y solo la pendiente no aplicable queda excluida\
-          \ del calculo de proyeccion"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R012
       - name: "Dado que el ActiveAnalysisSelectionStore retorna Optional.empty, cuando\
           \ build corre, entonces ConsolidatedView.availability es UNAVAILABLE con\
           \ reason NO_ACTIVE_ANALYSIS y nodeImpacts/statisticImpacts quedan vacios"
@@ -7410,20 +7302,6 @@ modules:
         traceability:
           feature: FEAT-CDIFF
           rule: F-CDIFF-R017
-      - name: "Dada una RevisionProposal cuyo elementBefore y elementAfter referencian\
-          \ el mismo nodeId estable, cuando build corre, entonces el NodeImpact resultante\
-          \ conserva ese nodeId en consolidated y pendingProjection sin modelar renombres\
-          \ ni reubicaciones"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R018
-      - name: "Dado un plan activo con varias aceptadas y varias pendientes que tocan\
-          \ distintos nodos del curso, cuando build corre, entonces el ConsolidatedView\
-          \ retornado combina baseline + aceptadas + pendientes en una unica estructura\
-          \ con nodeImpacts y statisticImpacts agregados"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R016
       implements:
       - ConsolidatedViewBuilder
   - name: lemmaabsence
@@ -7688,21 +7566,17 @@ modules:
         rationale: |
           FEAT-PIPRE introduces the simulated 'what-if' projection of a proposal as a first-class capability of the revision domain. Worth adopting as a canonical term once the analyst has reviewed the language.
   - name: consolidatedview
-    description: "FEAT-CDIFF. Public SPI for the consolidated structure that combines\
+    description: "FEAT-CDIFF v3. Public SPI for the consolidated structure that combines\
       \ the baseline of an AuditReport with the effects of accepted and pending proposals\
       \ of its active plan. Houses the builder port (ConsolidatedViewBuilder) plus\
       \ its factory (ConsolidatedViewBuilderFactory) and every carrier the CLI rendering\
-      \ needs to read: the root document (ConsolidatedView), the per-node impact (NodeImpact),\
-      \ the per-statistic impact (StatisticImpact), the non-applicable pending list\
-      \ (NonApplicablePending), the availability tagging (ConsolidatedViewAvailability\
-      \ + ConsolidatedViewUnavailability) and the closed taxonomy of unavailability\
-      \ causes (ConsolidatedViewUnavailabilityReason) plus the closed taxonomy of\
-      \ non-applicability causes (NonApplicablePendingReason). Public so audit-cli\
-      \ can serialize the document; the implementation lives behind revision-domain.engine.\
-      \ The builder is on-demand (DOUBT-MATERIALIZATION Opcion A): every invocation\
-      \ recomputes the consolidated and the projection by replaying the proposals\
-      \ over the loaded course; future iterations may add cache without breaking the\
-      \ contract."
+      \ needs to read: the root document (ConsolidatedView), the per-node impact (NodeImpact\
+      \ carrying a uniform map of field-level changes), the field-change carrier (FieldChange\
+      \ triple), the field path (FieldPath), the non-applicable pending list (NonApplicablePending),\
+      \ the availability tagging (ConsolidatedViewAvailability + ConsolidatedViewUnavailability)\
+      \ and the closed taxonomies (ConsolidatedViewUnavailabilityReason, NonApplicablePendingReason).\
+      \ The previous StatisticImpact carrier disappeared in v3 (R009: scores are just\
+      \ fields of the map)."
     visibility: public
     models:
     - name: ConsolidatedViewAvailability
@@ -7779,63 +7653,27 @@ modules:
       - name: nodeId
         type: String
         description: Identificador del nodo afectado.
-      - name: consolidated
-        type: CourseElementSnapshot
-        description: "F-CDIFF-R006 detail 1: snapshot del nodo en su estado vigente.\
-          \ Si una aceptada toco este nodo, es el elementAfter de la aceptada; si\
-          \ no, es el snapshot del baseline. Solo poblado para hojas (nodeTarget=QUIZ);\
-          \ null para padres (su 'consolidated' agregado vive en StatisticImpact)."
-      - name: pendingProjection
-        type: CourseElementSnapshot
-        description: "F-CDIFF-R006 detail 1: snapshot del nodo si la pendiente del\
-          \ plan activo se aceptara, computado sobre el consolidated. Solo poblado\
-          \ para hojas con pendiente aplicable; null en cualquier otro caso (sin pendiente,\
-          \ padre, o pendiente NOT_APPLICABLE)."
       - name: acceptedProposalIds
         type: List<String>
         description: "F-CDIFF-R007 detail 1. Lista de proposalId aceptados que afectaron\
           \ al nodo, ordenados por createdAt ascendente. Vacia si no hay aceptadas\
           \ sobre el nodo."
-      - name: pendingProposalId
-        type: String
-        description: F-CDIFF-R007 detail 2. proposalId de la pendiente que produjo
-          pendingProjection. null cuando pendingProjection es null.
-      visibility: public
-    - name: StatisticImpact
-      type: record
-      fields:
-      - name: nodeTarget
-        type: AuditTarget
-        description: Nivel jerarquico al que aplica la estadistica.
-      - name: nodeId
-        type: String
-        description: Identificador del nodo en ese nivel; coincide con el nodeId del
-          NodeImpact correspondiente cuando aplica.
-      - name: dimension
-        type: String
-        description: "Nombre del analizador (la misma key que usa AuditNode.scores:\
-          \ 'lemma-absence', 'sentence-length', 'coca-buckets-distribution', etc.).\
-          \ String abierto porque las dimensiones crecen con cada FEAT-D*."
-      - name: original
-        type: double
-        description: "F-CDIFF-R009. Valor en el baseline del analisis, en la escala\
-          \ interna del dominio."
-      - name: consolidated
-        type: double
-        description: "F-CDIFF-R009. Valor con las aceptadas aplicadas, recomputado\
-          \ con la misma estrategia de agregacion."
-      - name: acceptedDelta
-        type: double
-        description: "F-CDIFF-R010 ecuacion literal: consolidated - original. Puntos\
-          \ absolutos."
-      - name: pendingProjection
-        type: Double
-        description: F-CDIFF-R009. Valor con aceptadas + pendientes aplicadas. null
-          si no hay pendientes que toquen la estadistica.
-      - name: pendingDelta
-        type: Double
-        description: "F-CDIFF-R010 ecuacion literal: pendingProjection - consolidated.\
-          \ Puntos absolutos. null si pendingProjection es null."
+      - name: fieldChanges
+        type: "Map<String,FieldChange>"
+        description: "F-CDIFF-R006/R019/R023. Mapa de hojas escalares con cambio.\
+          \ Clave: path estable producido por FieldPath (R023). Valor: tripleta (original,\
+          \ consolidated, pendingProjection) producida por NodeFieldDiffer recorriendo\
+          \ los tres AuditNode (R007 invariantes 1-3). Vacio si el nodo no tiene fields\
+          \ que difieran entre al menos dos fotos modulo R020 — en ese caso el nodo\
+          \ no se incluye en ConsolidatedView.nodeImpacts (R006 invariante 3)."
+      - name: pendingProposalIds
+        type: List<String>
+        description: F-CDIFF-R011 invariante 2. Lista de proposalId con veredicto
+          PENDING_APPROVAL aplicable del plan activo que afectaron al nodo (al contenido
+          propio o al subarbol que contribuye a sus fotos). Vacia o nula si no hay
+          pendientes aplicables que toquen este nodo. Reemplaza al campo singular
+          pendingProposalId de v2 porque ahora un mismo nodo puede acumular varias
+          pendientes aplicables sobre fields distintos.
       visibility: public
     - name: ConsolidatedView
       type: record
@@ -7865,15 +7703,61 @@ modules:
           menos una aceptada o pendiente del plan activo. Vacio cuando availability=UNAVAILABLE;
           vacio tambien (pero AVAILABLE) cuando hay par activo pero ninguna propuesta
           afecta nodos.
-      - name: statisticImpacts
-        type: List<StatisticImpact>
-        description: "F-CDIFF-R009/R011. Un entry por par (nivel, dimension) del baseline\
-          \ tocado por al menos una propuesta. Vacio cuando availability=UNAVAILABLE."
       - name: nonApplicablePendings
         type: List<NonApplicablePending>
         description: "F-CDIFF-R012. Lista de pendientes que no se pudieron aplicar;\
           \ cada una con (proposalId, reason, detail). Se entrega aunque availability=AVAILABLE:\
           \ la presencia de pendientes no aplicables NO degrada la salida a UNAVAILABLE."
+      visibility: public
+    - name: FieldChange
+      type: record
+      fields:
+      - name: original
+        type: Object
+        description: "F-CDIFF-R007.1. Valor de la hoja en el baseline del AuditReport,\
+          \ copiado sin transformacion. null si la hoja no existe en el baseline."
+      - name: consolidated
+        type: Object
+        description: "F-CDIFF-R007.2. Valor de la hoja en el AuditReport del subarbol\
+          \ con-aceptadas, copiado sin transformacion. null si la hoja no existe en\
+          \ el consolidated."
+      - name: pendingProjection
+        type: Object
+        description: "F-CDIFF-R007.3. Valor de la hoja en el AuditReport del subarbol\
+          \ con aceptadas+pendientes aplicables, copiado sin transformacion. null\
+          \ si la hoja no existe en pendingProjection."
+      visibility: public
+    - name: FieldPath
+      type: record
+      fields:
+      - name: raw
+        type: String
+        description: Representacion textual canonica de la clave del field. Es el
+          valor que aparece como llave en NodeImpact.fieldChanges.
+      visibility: public
+    - name: FieldExclusionRole
+      type: enum
+      fields:
+      - name: OPAQUE_PERSISTENCE_ID
+        description: "F-CDIFF-R020.1. Identificadores opacos generados por la persistencia\
+          \ (_id, $oid, formas equivalentes)."
+      - name: STRUCTURAL_REFERENCE
+        description: "F-CDIFF-R020.2. Referencias estructurales que el dominio mantiene\
+          \ para navegacion (parentId, courseId, milestoneId, topicId, knowledgeId,\
+          \ quizId cuando aparecen como referencia dentro de otro nodo, no como identidad\
+          \ propia)."
+      - name: TIMESTAMP
+        description: "F-CDIFF-R020.3. Timestamps de creacion / actualizacion de cualquier\
+          \ nivel del modelo (Instant, LocalDateTime sobre campos createdAt/updatedAt\
+          \ y similares)."
+      - name: INTERNAL_ORDER
+        description: "F-CDIFF-R020.4. Ordenes derivados de la posicion en disco /\
+          \ serializacion (indices de array de JSON, claves de orden, contadores que\
+          \ el almacenamiento gestiona)."
+      - name: NON_SEMANTIC
+        description: "F-CDIFF-R020.5. Categoria escape: cualquier valor cuya diferencia\
+          \ entre versiones no represente un cambio semantico observable y que no\
+          \ caiga en las cuatro anteriores."
       visibility: public
     interfaces:
     - name: ConsolidatedViewBuilder
@@ -7888,6 +7772,112 @@ modules:
       exposes:
       - signature: "create(ConsolidatedViewBuilderConfig config): ConsolidatedViewBuilder"
       visibility: public
+    - name: NodeFieldDiffer
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "diff(AuditNode original, AuditNode consolidated, AuditNode pendingProjection):\
+          \ Map<String,FieldChange>"
+      visibility: public
+  - name: fielddiff
+    description: "F-CDIFF v3. Motor interno del descubrimiento dinamico de fields\
+      \ cambiados que NodeFieldDiffer expone en su contrato publico. Aloja la implementacion\
+      \ recursiva (RecursiveNodeFieldDiffer), los dos registros centrales que materializan\
+      \ R020 y R022 sin contaminar los records de audit-domain / course-domain (FieldExclusionRegistry,\
+      \ ListIdentityRegistry) y los carriers internos del recorrido (FieldExclusionRule,\
+      \ ListIdentityRule, ListIdentityKeySpec). Solo la factory publica del motor\
+      \ cruza la frontera; el resto es package-private. Empaquetado aparte de consolidatedview\
+      \ porque la mecanica de diff es reutilizable: un futuro consumidor (p.ej. un\
+      \ validador estructural de cursos, otro analizador) puede pedir el mismo NodeFieldDiffer\
+      \ sin arrastrar la maquinaria del consolidado entero. El nombre fielddiff describe\
+      \ el concepto (diferenciacion a nivel de field) y no un patron GoF."
+    visibility: internal
+    models:
+    - name: FieldExclusionRule
+      type: record
+      fields:
+      - name: declaringTypeName
+        type: String
+        description: "Nombre simple del tipo Java que declara el campo (p.ej. 'AuditableQuiz',\
+          \ 'AuditNode', 'MisplacedLemma'). El motor matchea por nombre simple para\
+          \ no acoplar el registry al package layout."
+      - name: fieldName
+        type: String
+        description: "Nombre del campo a excluir (p.ej. 'id', 'parentId', 'createdAt')."
+      - name: role
+        type: FieldExclusionRole
+        description: Rol funcional asignado. Sirve a tooling de auditoria del registry
+          para revisar la coherencia de las exclusiones; el motor solo pregunta 'esta
+          excluido?'.
+      visibility: internal
+    - name: ListIdentityKeySpec
+      type: record
+      fields:
+      - name: fieldNames
+        type: List<String>
+        description: "Nombres de los campos que conforman la identidad natural del\
+          \ elemento. Si la lista es vacia, el match no aplica y el motor cae en diff\
+          \ posicional (R022 caso 2)."
+      visibility: internal
+    - name: ListIdentityRule
+      type: record
+      fields:
+      - name: declaringTypeName
+        type: String
+        description: "Nombre simple del tipo Java que declara el campo lista (p.ej.\
+          \ 'LemmaAbsenceLevelDiagnosis', 'CocaBucketsLevelDiagnosis')."
+      - name: fieldName
+        type: String
+        description: "Nombre del campo lista (p.ej. 'absentLemmas', 'buckets', 'progressionAssessments')."
+      - name: keySpec
+        type: ListIdentityKeySpec
+        description: Definicion de la clave natural a usar para diff por elemento.
+      visibility: internal
+    interfaces:
+    - name: FieldExclusionRegistry
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "isExcluded(String declaringTypeName, String fieldName): boolean"
+      - signature: "getRole(String declaringTypeName, String fieldName): Optional<FieldExclusionRole>"
+      visibility: internal
+    - name: ListIdentityRegistry
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "getKeySpec(String declaringTypeName, String fieldName): Optional<ListIdentityKeySpec>"
+      visibility: internal
+    - name: NodeFieldDifferFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(): NodeFieldDiffer"
+      visibility: public
+    implementations:
+    - name: RecursiveNodeFieldDiffer
+      requiresInject:
+      - name: exclusionRegistry
+        type: FieldExclusionRegistry
+        description: Consultado para cada hoja antes de emitirla. R020.
+      - name: identityRegistry
+        type: ListIdentityRegistry
+        description: Consultado al alcanzar cada lista para decidir entre diff por
+          elemento o posicional. R022.
+      visibility: internal
+      implements:
+      - NodeFieldDiffer
+    - name: DefaultFieldExclusionRegistry
+      visibility: internal
+      implements:
+      - FieldExclusionRegistry
+    - name: DefaultListIdentityRegistry
+      visibility: internal
+      implements:
+      - ListIdentityRegistry
+    - name: DefaultNodeFieldDifferFactory
+      visibility: public
+      implements:
+      - NodeFieldDifferFactory
 - name: revision-infrastructure
   description: "Infrastructure adapter for the revision phase. Provides the LLM-backed\
     \ implementation of LemmaAbsenceQuizCandidateGenerator (revision-domain.lemmaabsence\
@@ -17697,248 +17687,464 @@ features:
 - id: FEAT-CDIFF
   name: Estructura consolidada de un analisis con sus propuestas aceptadas y pendientes
   description: |-
-    **Que**: El CLI de content-audit expone, para cada `AuditReport`, una **estructura consolidada** que combina el baseline del analisis con los efectos de las propuestas aceptadas y pendientes de su plan activo. La salida agrega, sobre cada nodo del arbol y sobre cada estadistica afectada, los campos `consolidated`, `acceptedDelta`, `pendingProjection` y `pendingDelta` con semantica precisa, de modo que cualquier consumidor pueda reconstruir el efecto de las decisiones del operador sin recomputar la auditoria.
+    **Que**: El CLI de content-audit expone, para cada `AuditReport`, una **estructura consolidada** que combina el baseline del analisis con los efectos de las propuestas aceptadas y pendientes de su plan activo. Para cada nodo afectado del arbol del curso, la salida emite un **mapa de fields cambiados** donde cada entrada lleva tres "fotos" del mismo field a lo largo del stack `original` (baseline) → `consolidated` (con aceptadas) → `pendingProjection` (con aceptadas + pendientes). El conjunto de fields candidatos se descubre **dinamicamente** caminando recursivamente las estructuras del modelo de auditoria y del contenido del nodo: cualquier hoja escalar cuyo valor difiera entre al menos dos fotos aparece como field, sin enumerar tipos de fields posibles en el contrato.
 
-    **Por que**: Hoy, para reflejar el efecto de aceptar una propuesta hay que correr un nuevo analisis. Esto no escala (potencialmente miles de analisis por curso) y obliga a cada consumidor a recomputar el cruce baseline/decisiones por su cuenta. Esta feature define el contrato de datos canonico que content-audit emite para que un consumidor cualquiera (la UI actual o cualquier otra) lo lea directo.
+    **Por que**: Hoy la salida expone solo un snapshot crudo del nodo afectado y, por estadistica, escalares precomputados. Los diagnosticos tipados que el motor calcula sobre el arbol consolidado y el arbol con pendientes (token count, listas de lemas ausentes, distribucion COCA, etc.) se descartan antes de salir. La forma `field → tripleta` con descubrimiento dinamico corrige ese gap y deja el contrato **extensible sin tocarlo**: cuando aparece un analizador nuevo, un componente nuevo en un registro existente, o un campo nuevo en el contenido del nodo, sus hojas escalares empiezan a participar del diff automaticamente. La defensa contra ruido (timestamps, identificadores opacos, metadatos de persistencia) se hace por exclusiones declaradas a nivel funcional, no por whitelists positivas que requieran mantenimiento por feature.
   code: F-CDIFF
   rules:
   - id: F-CDIFF-R001
-    name: "El sistema expone un par activo `(auditId, planId)` consultable"
+    name: "El par activo `(auditId, planId)` es observable en la raiz de la salida"
     severity: critical
-    description: "El sistema mantiene un par activo `(auditId, planId)` por curso\
-      \ y lo expone en la salida del CLI. Cualquier consumidor puede consultar cual\
-      \ es el activo en una sola operacion, sin tener que inferirlo a partir de timestamps\
-      \ o del orden de creacion de los analisis. 1. La estructura consolidada se construye\
-      \ en funcion del par activo (Grupo C en adelante). Sin par activo, no hay consolidado.\
-      \ 2. La salida CLI que entrega la estructura consolidada incluye, en su raiz,\
-      \ los campos `activeAuditId` y `activePlanId` con los identificadores resueltos\
-      \ al momento de servir la peticion. 3. Como se persiste o resuelve el par activo\
-      \ (archivo dedicado, parametro de comando, etc.) es decision de arquitectura\
-      \ ([DOUBT-ACTIVE-PERSISTENCE](#DOUBT-ACTIVE-PERSISTENCE)). 4. Si no hay par\
-      \ activo resoluble, la salida sigue las reglas del Grupo G (no-disponibilidad)."
+    description: "Cuando el CLI entrega una estructura consolidada construible, su\
+      \ raiz expone los identificadores del par activo `(activeAuditId, activePlanId)`\
+      \ resueltos al momento de servir la peticion. Un consumidor obtiene esos dos\
+      \ identificadores leyendo directamente la raiz, sin tener que inferirlos a partir\
+      \ de timestamps, orden de creacion de los analisis u otra heuristica. Cuando\
+      \ no hay par activo resoluble, no hay estructura consolidada construible y la\
+      \ salida sigue [F-CDIFF-R013](#F-CDIFF-R013). 1. La estructura consolidada se\
+      \ construye en funcion del par activo (Grupo C en adelante). Sin par activo,\
+      \ no hay consolidado. 2. Como se persiste o resuelve el par activo (archivo\
+      \ dedicado, parametro de comando, etc.) es decision de arquitectura ([DOUBT-ACTIVE-PERSISTENCE](#DOUBT-ACTIVE-PERSISTENCE))."
     validation: VALIDATED
   - id: F-CDIFF-R002
     name: Cambiar el par activo es idempotente y no destructivo
     severity: major
-    description: "La operacion del CLI que cambia el par activo no modifica ningun\
-      \ `AuditReport`, ningun plan, ningun artefacto de propuesta y ningun archivo\
-      \ del curso. Es una seleccion de cual estructura consolidada el CLI debe servir\
-      \ cuando se la pidan; nada mas. Apuntar al activo actual es un no-op. 1. La\
-      \ regla habilita que el operador (o un consumidor automatizado) navegue libremente\
-      \ entre analisis -incluido un analisis viejo con sus pendientes dormidas- sin\
-      \ riesgo de alterar el estado del sistema. 2. La forma concreta del verbo CLI\
-      \ (nombre, sintaxis, flags) y de la persistencia es decision de arquitectura.\
-      \ Lo que esta regla obliga es la idempotencia y la no-destructividad observables.\
-      \ ---"
+    description: "Despues de invocar la operacion del CLI que cambia el par activo,\
+      \ dos invariantes se observan: 1. **No destructivo**: ningun `AuditReport`,\
+      \ plan, artefacto de propuesta o archivo del curso fue modificado por la operacion\
+      \ (sus contenidos y timestamps de modificacion permanecen iguales a antes de\
+      \ la invocacion). 2. **Idempotente**: invocar la operacion apuntando al par\
+      \ activo ya vigente es un no-op observable: ningun archivo cambia, y la salida\
+      \ posterior al cambio es indistinguible de la anterior. 1. La regla habilita\
+      \ que el operador (o un consumidor automatizado) navegue libremente entre analisis\
+      \ -incluido un analisis viejo con sus pendientes dormidas- sin riesgo de alterar\
+      \ el estado del sistema. 2. La forma concreta del verbo CLI (nombre, sintaxis,\
+      \ flags) y de la persistencia es decision de arquitectura. Lo que esta regla\
+      \ obliga es la no-destructividad y la idempotencia **observables** sobre el\
+      \ sistema de archivos. ---"
     validation: VALIDATED
   - id: F-CDIFF-R003
-    name: Un nuevo `AuditReport` corre contra el estado del curso real (con aceptadas
-      ya materializadas)
+    name: Un analisis sin decisiones nuevas no marca nodos como afectados
     severity: critical
-    description: "Cuando el CLI genera un `AuditReport` nuevo, su baseline se computa\
-      \ sobre el curso tal como esta en disco al momento de correr el analisis. Las\
-      \ propuestas aceptadas en analisis anteriores ya estan aplicadas al curso por\
-      \ [F-REVAPR-R011](../2026-04-20.01_refiner-revision-approval/REQUIREMENT.md#F-REVAPR-R011),\
-      \ por lo que el nuevo baseline las refleja como contenido normal del curso.\
-      \ La estructura consolidada de ese analisis recien creado, en consecuencia,\
-      \ tiene `acceptedDelta` y `pendingDelta` ausentes (no hay decisiones propias\
-      \ todavia) y su `consolidated` es igual al baseline. 1. La regla establece que\
-      \ **el curso es la fuente de verdad** entre analisis. El historial de aceptadas\
-      \ no se \"replica\" sobre el nuevo analisis: ya quedo materializado en el curso\
-      \ y reaparece como parte del baseline. 2. Esta regla habilita la **equivalencia\
-      \ post-stack** que cubre [F-CDIFF-R014](#F-CDIFF-R014). 3. La regla no obliga\
-      \ a que el nuevo `AuditReport` herede deltas del anterior. La estructura consolidada\
-      \ de cada analisis se construye exclusivamente con su propio baseline y su propio\
-      \ plan activo."
+    description: "Para un `AuditReport` cuyo plan activo no contiene propuestas con\
+      \ veredicto `APPROVED` ni `PENDING_APPROVAL` aplicables, la estructura consolidada\
+      \ de ese analisis emite la lista de nodos afectados **vacia**. No hay fields\
+      \ cambiados que reportar porque no hay decisiones que produzcan diferencia entre\
+      \ las tres fotos. 1. La consecuencia practica es que un `AuditReport` recien\
+      \ creado, antes de cualquier decision sobre su plan, devuelve un consolidado\
+      \ vacio (lista de afectados vacia, `pendingApplicability` vacio). El consumidor\
+      \ distingue ese caso del `consolidatedAvailability: UNAVAILABLE` por la simple\
+      \ presencia de la raiz construida. 2. Esta regla depende de la propiedad heredada\
+      \ de [F-REVAPR-R011](../2026-04-20.01_refiner-revision-approval/REQUIREMENT.md#F-REVAPR-R011):\
+      \ las propuestas aceptadas en analisis anteriores ya estan materializadas en\
+      \ el curso al momento de correr el analisis nuevo, por lo que reaparecen como\
+      \ contenido normal del baseline en lugar de generar nuevas decisiones sobre\
+      \ el plan nuevo. 3. La equivalencia post-stack entre el baseline del analisis\
+      \ nuevo y la foto `consolidated` de los fields del anterior es una propiedad\
+      \ emergente del sistema (motor deterministico + materializacion de aceptadas)\
+      \ y no un contrato que el consolidador pueda enforced por si mismo. La regla\
+      \ testeable propia de FEAT-CDIFF es la primera oracion: sin decisiones aplicables,\
+      \ lista de afectados vacia."
     validation: VALIDATED
   - id: F-CDIFF-R004
-    name: "Las propuestas pendientes del plan anterior quedan dormidas, ligadas a\
-      \ su `auditId` original"
+    name: Las pendientes dormidas se recuperan al apuntar el par activo a su analisis
+      original
     severity: critical
-    description: "Cuando se crea un nuevo `AuditReport`, las propuestas con veredicto\
-      \ `PENDING_APPROVAL` que pertenezcan a planes de analisis anteriores **no se\
-      \ borran ni se migran**: siguen asociadas a su `auditId` y `planId` originales\
-      \ y siguen siendo visibles si el consumidor pide la estructura consolidada de\
-      \ aquel analisis (cambiando el par activo). El plan del analisis nuevo no las\
-      \ contiene. 1. La pendiente conserva su `proposalId`, su `planId`, su `sourceAuditId`\
-      \ ([F-REVBYP-R001](../2026-04-20.01_refiner-revision-approval/REQUIREMENT.md))\
-      \ y su veredicto. Es informacion historica recuperable. 2. La estructura consolidada\
-      \ de un analisis solo combina el baseline de **ese** analisis con las propuestas\
-      \ de **su** plan activo ([F-CDIFF-R017](#F-CDIFF-R017)). No se mezclan planes\
-      \ de analisis distintos."
+    description: "Una propuesta con veredicto `PENDING_APPROVAL` perteneciente al\
+      \ plan de un analisis anterior es observable en la estructura consolidada **si\
+      \ y solo si** el par activo apunta a ese `(auditId, planId)` original. Dos invariantes\
+      \ derivadas: 1. **Persistencia de la pendiente dormida**: crear un `AuditReport`\
+      \ nuevo no borra ni migra las pendientes de planes anteriores: conservan su\
+      \ `proposalId`, su `planId`, su `sourceAuditId` y su veredicto en el sistema\
+      \ de archivos. 2. **Recuperacion por seleccion del activo**: cambiar el par\
+      \ activo a `(auditId_anterior, planId_anterior)` y pedir la estructura consolidada\
+      \ hace aparecer las pendientes dormidas como contribuciones a la foto `pendingProjection`\
+      \ de los fields tocados; volver a cambiar el activo a un analisis distinto las\
+      \ hace desaparecer de la salida (sin tocar los archivos donde viven). 1. Combinada\
+      \ con [F-CDIFF-R017](#F-CDIFF-R017) (el consolidado se construye sobre el plan\
+      \ activo, no combina planes), esta regla garantiza que pendientes de planes\
+      \ ajenos no contaminen la salida del analisis activo. 2. La forma concreta de\
+      \ almacenamiento de la pendiente y la mecanica de descubrimiento por `(auditId,\
+      \ planId)` son decision de arquitectura. La regla obliga la **observable presencia/ausencia**\
+      \ segun el par activo."
     validation: VALIDATED
   - id: F-CDIFF-R005
-    name: Las propuestas rechazadas no aparecen en la estructura consolidada
+    name: Las propuestas rechazadas no contribuyen a ninguna foto y no aparecen en
+      trazabilidad
     severity: major
-    description: "Una propuesta con veredicto `REJECTED` ([F-REVAPR-R012](../2026-04-20.01_refiner-revision-approval/REQUIREMENT.md#F-REVAPR-R012))\
-      \ no contribuye a `consolidated`, `acceptedDelta`, `pendingProjection` ni `pendingDelta`\
-      \ de ningun nodo o estadistica. Para todos los efectos del contrato, es como\
-      \ si esa propuesta no existiera. 1. La trazabilidad del rechazo (quien rechazo,\
-      \ cuando, por que) se mantiene en el artefacto de la propuesta segun [F-REVAPR-R013](../2026-04-20.01_refiner-revision-approval/REQUIREMENT.md#F-REVAPR-R013),\
+    description: "Para una propuesta con veredicto `REJECTED` ([F-REVAPR-R012](../2026-04-20.01_refiner-revision-approval/REQUIREMENT.md#F-REVAPR-R012))\
+      \ en el plan activo, dos invariantes se observan en la salida: 1. La propuesta\
+      \ no contribuye a ningun valor de la tripleta `(original, consolidated, pendingProjection)`\
+      \ de ningun field, en ningun nodo. La salida emitida es identica a la que se\
+      \ obtendria si esa propuesta no existiera. 2. Su `proposalId` no aparece ni\
+      \ en `acceptedProposalIds`, ni en `pendingProposalIds`, ni en `pendingApplicability`\
+      \ de ningun nodo. La estructura consolidada no expone propuestas rechazadas\
+      \ en ninguna seccion. 1. La trazabilidad del rechazo (quien rechazo, cuando,\
+      \ por que) se mantiene en el artefacto de la propuesta segun [F-REVAPR-R013](../2026-04-20.01_refiner-revision-approval/REQUIREMENT.md#F-REVAPR-R013),\
       \ pero **no es visible en la estructura consolidada**: este contrato describe\
-      \ el estado vigente del curso, no el historial de decisiones. ---"
+      \ el estado vigente del curso y los movimientos en curso, no el historial de\
+      \ decisiones. ---"
     validation: VALIDATED
   - id: F-CDIFF-R006
-    name: "Cada nodo hoja afectado se emite con `consolidated` y, opcionalmente, `pendingProjection`"
+    name: Cada nodo afectado expone un mapa de fields cambiados
     severity: critical
-    description: "Para cada nodo hoja del curso (tipicamente un quiz) que esta tocado\
-      \ por al menos una propuesta aceptada o pendiente del plan activo, la estructura\
-      \ consolidada incluye: | Campo | Presencia | Significado | |-------|-----------|-------------|\
-      \ | `consolidated` | siempre | Snapshot del nodo en su estado vigente: si una\
-      \ aceptada toco este nodo, es el `elementAfter` de la aceptada; si no, es el\
-      \ snapshot original del baseline. | | `pendingProjection` | solo si hay pendiente\
-      \ | Snapshot del nodo si la propuesta pendiente del plan activo se aceptara,\
-      \ computado sobre el `consolidated`. | La salida nunca incluye un tercer snapshot\
-      \ que represente el baseline original \"previo a la aceptada\": si hay aceptada,\
-      \ el original ya quedo desplazado por ella y no se reexpone. 1. Casos cubiertos\
-      \ por la combinacion de `consolidated` + `pendingProjection`: | Caso | `consolidated`\
-      \ | `pendingProjection` | |------|----------------|---------------------| |\
-      \ Sin aceptada, sin pendiente | snapshot del baseline | ausente | | Sin aceptada,\
-      \ con pendiente | snapshot del baseline | snapshot con la pendiente aplicada\
-      \ | | Con aceptada, sin pendiente | snapshot de la aceptada | ausente | | Con\
-      \ aceptada y pendiente sobre el mismo nodo | snapshot de la aceptada | snapshot\
-      \ con la pendiente aplicada sobre la aceptada | 2. La pendiente del cuarto caso\
-      \ se compara contra el `consolidated` (que ya tiene la aceptada aplicada), no\
-      \ contra el snapshot original del baseline. Es la unica decision coherente con\
-      \ que el curso real ya tiene la aceptada materializada. 3. La granularidad de\
-      \ \"nodo afectado\" la define el patron de propuesta vigente: si una propuesta\
-      \ sustituye un `elementBefore` por un `elementAfter` sobre un `nodeId` ([F-REVBYP-R001](../2026-04-20.01_refiner-revision-approval/REQUIREMENT.md)),\
-      \ el nodo hoja afectado es el identificado por ese `nodeId` y el campo emitido\
-      \ es el snapshot completo del nodo. La distincion campo-a-campo dentro del snapshot\
-      \ queda fuera de alcance ([DOUBT-FIELD-IDENTITY](#DOUBT-FIELD-IDENTITY))."
+    description: "Para cada nodo del arbol del curso (hoja o padre) cuyo subarbol\
+      \ contiene **al menos un field cuyo valor difiere entre al menos dos de las\
+      \ tres fotos** (`original`, `consolidated`, `pendingProjection`), la estructura\
+      \ consolidada incluye una entrada con la identidad del nodo (tipo de nodo +\
+      \ identificador) y un mapa donde cada clave identifica un field y el valor es\
+      \ la tripleta `(original, consolidated, pendingProjection)`. Tres invariantes\
+      \ derivadas: 1. **Solo fields con cambio**: el mapa contiene exclusivamente\
+      \ fields cuyas tres fotos no son todas iguales. Un field cuyas tres fotos coinciden\
+      \ no se emite. 2. **Forma uniforme**: todos los fields del mapa se serializan\
+      \ bajo la misma estructura clave-valor; el consumidor recorre el mapa con un\
+      \ unico iterador y no necesita ramas separadas por origen del field. 3. **Nodo\
+      \ sin cambios no aparece**: un nodo cuyo subarbol no produce ningun field cambiado\
+      \ no aparece en la lista de afectados. 1. La presencia del nodo padre en la\
+      \ lista responde a tener al menos un field cambiado propio (un componente re-agregado\
+      \ del subarbol, una estadistica del nivel) o, si el padre no tiene cambios propios,\
+      \ a ser contenedor estructural para hijos afectados; esa decision de incluirlo\
+      \ solo como contenedor es de presentacion JSON y no afecta la semantica testeable\
+      \ de la regla, que opera sobre nodos con fields cambiados. 2. La identidad del\
+      \ nodo (tipo + identificador) y la estabilidad de las claves de los fields permiten\
+      \ al consumidor cruzar la salida con el baseline sin ambigüedad."
     validation: VALIDATED
   - id: F-CDIFF-R007
-    name: Las referencias a las propuestas que produjeron `consolidated` y `pendingProjection`
-      estan en la salida
-    severity: major
-    description: "Cuando la estructura consolidada de un nodo emite `consolidated`\
-      \ o `pendingProjection`, debe incluir tambien la lista de `proposalId` cuyas\
-      \ decisiones produjeron cada uno de esos snapshots. Esto permite al consumidor\
-      \ enlazar la salida consolidada con los artefactos individuales de propuesta\
-      \ (FEAT-REVAPR R002). 1. `consolidated` lleva un campo `acceptedProposalIds`\
-      \ con la lista de `proposalId` aceptados que afectaron al nodo (ordenados por\
-      \ `createdAt` ascendente, para que la cadena de aplicacion sea reconstruible).\
-      \ Si no hay aceptadas sobre el nodo, la lista esta vacia o el campo se omite\
-      \ -decision de arquitectura, ambas alternativas cumplen el contrato siempre\
-      \ que el comportamiento sea uniforme-. 2. `pendingProjection`, si esta presente,\
-      \ lleva un campo `pendingProposalId` con el `proposalId` de la pendiente que\
-      \ produjo la proyeccion. 3. La regla hace explicita la **trazabilidad** que\
-      \ evita que el consumidor tenga que recompilar el cruce de propuestas por su\
-      \ cuenta. ---"
-    validation: AUTO_VALIDATED
-  - id: F-CDIFF-R008
-    name: "Cada nodo padre afectado se emite con `consolidated` y, opcionalmente,\
-      \ `pendingProjection`"
+    name: Invariantes de las tres fotos por field
     severity: critical
-    description: "Para cada nodo padre (knowledge, topic, milestone, course) cuyo\
-      \ subarbol contiene al menos un nodo hoja afectado, la estructura consolidada\
-      \ emite: | Campo | Presencia | Significado | |-------|-----------|-------------|\
-      \ | `consolidated` | siempre que el padre tenga aceptadas o pendientes en su\
-      \ subarbol | Valor agregado del padre re-computado sobre el subarbol con las\
-      \ aceptadas aplicadas e ignorando las pendientes. | | `pendingProjection` |\
-      \ solo si el subarbol tiene al menos una pendiente aplicable | Valor agregado\
-      \ del padre re-computado sobre el subarbol con aceptadas + pendientes aplicadas.\
-      \ | Si un padre solo tiene pendientes en su subarbol (sin aceptadas), `consolidated`\
-      \ coincide numericamente con el baseline del analisis para ese padre y se sigue\
-      \ emitiendo, para que el consumidor pueda comparar consolidated vs proyeccion\
-      \ sin pedir el baseline aparte. 1. Si el subarbol no tiene aceptadas ni pendientes,\
-      \ el padre **no aparece** como afectado: el consumidor que lo necesite lo lee\
-      \ del baseline directamente. 2. La re-agregacion se hace respetando la **estrategia\
-      \ de agregacion** declarada por el analizador correspondiente (promedio simple\
-      \ para sentence-length, acumulacion de conteos para coca-buckets, etc., conforme\
-      \ a `F-COCA-R029` de FEAT-COCA). En particular, `pendingProjection(padre)` no\
-      \ es la suma ni el promedio de `pendingProjection` de los hijos: se obtiene\
-      \ re-agregando el subarbol con las pendientes aplicadas. 3. Esta regla se traduce,\
-      \ en la salida JSON del CLI, en que el padre lleva los mismos dos campos (`consolidated`,\
-      \ `pendingProjection`) que cualquier nodo afectado, mas los campos del Grupo\
-      \ E si tiene estadisticas afectadas. ---"
+    description: "Para cada field cambiado de un nodo, la tripleta `(original, consolidated,\
+      \ pendingProjection)` cumple cinco invariantes verificables: 1. **Fidelidad\
+      \ de `original`**: la foto `original` de un field es **identica** al valor que\
+      \ el motor de auditoria dejo en el baseline del `AuditReport` para ese field\
+      \ y ese nodo. El consolidador **no** la recomputa, **no** la redondea, **no**\
+      \ la deriva: la lee del baseline tal cual y la propaga sin transformacion. 2.\
+      \ **Determinacion de `consolidated`**: la foto `consolidated` es el valor que\
+      \ el motor de auditoria produce sobre el subarbol con **solo las propuestas\
+      \ aceptadas** del plan activo aplicadas; FEAT-CDIFF lee ese valor del `AuditReport`\
+      \ correspondiente y lo copia a la foto sin transformacion. Las pendientes no\
+      \ entran en ese calculo; un field cuya foto `consolidated` se obtiene de un\
+      \ calculo donde algun pendiente fue considerado infringe la invariante. 3. **Determinacion\
+      \ de `pendingProjection`**: la foto `pendingProjection` es el valor que el motor\
+      \ de auditoria produce sobre el subarbol con **aceptadas y pendientes aplicables**\
+      \ del plan activo aplicadas; FEAT-CDIFF lee ese valor del `AuditReport` correspondiente\
+      \ y lo copia a la foto sin transformacion. Las pendientes marcadas como no aplicables\
+      \ ([F-CDIFF-R012](#F-CDIFF-R012)) no entran en ese calculo. 4. **Orden de stacking**:\
+      \ las pendientes se aplican **encima** del estado consolidado, no del original.\
+      \ Si una aceptada precedente desplazo el contenido de un nodo, el `pendingProjection`\
+      \ de un field de ese nodo se construye sobre la foto `consolidated`, no sobre\
+      \ la `original`. Esta invariante es directamente observable en el caso \"aceptada\
+      \ y pendiente sobre el mismo `nodeId`\": la pendiente debe partir del `elementBefore\
+      \ = consolidated`, no del `elementBefore = original`. 5. **Las tres fotos provienen\
+      \ del motor, no de FEAT-CDIFF**: las invariantes 1-3 aplican igual a nodos hoja\
+      \ y nodos padre. Para un padre, FEAT-CDIFF lee el valor que el motor dejo en\
+      \ el `AuditNode` correspondiente del `AuditReport` re-corrido sobre el arbol\
+      \ respectivo y lo propaga a la foto, sin recomputar ni reagregarlo. Como el\
+      \ motor decide ese valor (estrategia de agregacion del analizador) es alcance\
+      \ del propio analizador, **no** de este contrato; un test que verifique \"FEAT-CDIFF\
+      \ no recomputa\" puede afirmar que la foto del padre es identica al valor que\
+      \ el `AuditReport` correspondiente expone para ese nodo. Las cinco invariantes\
+      \ son **observables sobre la tripleta emitida**: dado un baseline, un plan activo\
+      \ y los `AuditReport` que el motor produce sobre los arboles modificados, un\
+      \ test puede construir el escenario y verificar la igualdad / inecuacion correspondiente\
+      \ sobre cada foto de cada field. 1. Glosario de las tres fotos como apoyo al\
+      \ lector (no es el statement testeable; las invariantes 1-4 lo son): | Foto\
+      \ | Significado | |------|-------------| | `original` | Valor del field en el\
+      \ baseline del `AuditReport`, tal como el motor lo computo cuando se escribio\
+      \ el analisis. | | `consolidated` | Valor del field con las propuestas aceptadas\
+      \ del plan activo aplicadas al subarbol y los analizadores re-corridos / re-agregados\
+      \ sobre ese estado. | | `pendingProjection` | Valor del field con aceptadas\
+      \ + pendientes aplicables del plan activo aplicadas al subarbol y los analizadores\
+      \ re-corridos / re-agregados. | 2. Casos comunes de la tripleta (consecuencia\
+      \ de las cuatro invariantes, no una invariante adicional): | Caso | `original`\
+      \ | `consolidated` | `pendingProjection` | |------|------------|----------------|---------------------|\
+      \ | Sin aceptada, sin pendiente que cambie el field | (no se emite el field)\
+      \ | | | | Sin aceptada, con pendiente que lo cambia | valor baseline | igual\
+      \ a `original` | valor con la pendiente aplicada | | Con aceptada que lo cambia,\
+      \ sin pendiente | valor baseline | valor post-aceptada | igual a `consolidated`\
+      \ | | Con aceptada y pendiente que lo cambian | valor baseline | valor post-aceptada\
+      \ | valor post-aceptada-y-pendiente | 3. Cuando `pendingProjection` coincide\
+      \ con `consolidated` (no hay pendiente que cambie ese field) la salida puede\
+      \ emitir las tres fotos por uniformidad o omitir la tercera; ambas decisiones\
+      \ son admisibles a nivel de presentacion siempre que el consumidor pueda distinguir\
+      \ \"no hay pendiente\" de \"pendiente con valor identico al consolidado\". El\
+      \ contrato funcional obliga la **disponibilidad** de la informacion, no su forma\
+      \ exacta de serializacion. 4. La invariante 1 (fidelidad de `original`) es lo\
+      \ que permite al consumidor confiar en que `consolidated - original` y `pendingProjection\
+      \ - consolidated` son comparables a lo que veria leyendo el baseline directamente:\
+      \ si el consolidador re-procesara `original`, los deltas computables de [F-CDIFF-R010](#F-CDIFF-R010)\
+      \ podrian no coincidir con la lectura directa del `AuditReport`. 5. Las invariantes\
+      \ 2 y 3 distinguen claramente dos calculos independientes del motor sobre dos\
+      \ arboles modificados distintos. La consecuencia practica es que `consolidated`\
+      \ y `pendingProjection` **no son derivables uno del otro** sin volver a correr\
+      \ el motor; cada uno proviene de su propia ejecucion sobre su arbol respectivo.\
+      \ 6. La invariante 5 cierra explicitamente el limite de scope: cualquier \"\
+      como se agrega\" (promedio, suma, acumulacion por banda, etc.) es alcance del\
+      \ motor de auditoria y de las features de cada analizador (p.ej. `F-COCA-R029`\
+      \ de FEAT-COCA, las reglas de FEAT-DSLEN para sentence-length). Si el motor\
+      \ produjera un valor incorrecto en un padre, lo que falla es la regla del analizador\
+      \ correspondiente; FEAT-CDIFF se limita a copiar el valor que el motor dejo\
+      \ en el `AuditReport` y no asume responsabilidad sobre como se calculo. ---"
+    validation: VALIDATED
+  - id: F-CDIFF-R019
+    name: Cualquier hoja escalar con cambio entre fotos aparece como field
+    severity: critical
+    description: "Para producir el mapa de un nodo, el sistema **camina recursivamente**\
+      \ todos los valores estructurados expuestos por el modelo del nodo (registros\
+      \ tipados de diagnostico que el motor produjo, contenido del nodo, mapas de\
+      \ scores, listas anidadas) en cada una de las tres fotos. Cualquier **hoja escalar**\
+      \ (primitivo, string, enum o equivalente sin sub-estructura) cuyo valor difiera\
+      \ entre al menos dos fotos aparece como un field del mapa, con clave derivada\
+      \ del path al que se llego en el recorrido y la tripleta `(original, consolidated,\
+      \ pendingProjection)` correspondiente. El descubrimiento es **dinamico**: el\
+      \ conjunto de fields candidatos no esta enumerado en este requerimiento ni en\
+      \ ningun otro lado del contrato. Dos invariantes derivadas: 1. **Cobertura por\
+      \ construccion**: si una estructura accesible al recorrido contiene en una de\
+      \ sus fotos una hoja escalar con valor distinto al de la misma hoja en otra\
+      \ foto, esa hoja aparece como field del mapa. La regla testeable es: un test\
+      \ que construye un escenario con una hoja con valor distinto entre fotos puede\
+      \ afirmar que el field correspondiente aparece, sin tener que registrar previamente\
+      \ la existencia de ese field en ningun catalogo. 2. **Aparicion automatica de\
+      \ cosas nuevas**: introducir un analizador nuevo (con un registro de diagnostico\
+      \ nuevo y componentes nuevos), un componente nuevo en un registro de diagnostico\
+      \ existente, o un campo nuevo en el contenido del nodo, hace aparecer sus hojas\
+      \ escalares como fields del mapa **sin requerir cambios en este requerimiento\
+      \ ni en el motor de generacion del consolidado**. La cobertura es por construccion\
+      \ del recorrido, no por enumeracion. 1. La regla cierra el problema historico\
+      \ que [DOUBT-FIELD-IDENTITY](#DOUBT-FIELD-IDENTITY) habia dejado y reemplaza\
+      \ la version anterior basada en \"tres clases enumeradas\" (diagnosticos tipados\
+      \ / contenido crudo whitelist / estadisticas escalares). Esa version requeria\
+      \ mantenimiento por feature y se rompia con cualquier analizador nuevo. 2. Las\
+      \ **estructuras anidadas** se gobiernan por [F-CDIFF-R023](#F-CDIFF-R023) (path\
+      \ estable como clave del field). Las **listas con identidad** se gobiernan por\
+      \ [F-CDIFF-R022](#F-CDIFF-R022) (diff por elemento usando clave natural). 3.\
+      \ Las **exclusiones por rol funcional** que evitan emitir fields ruidosos (timestamps,\
+      \ identificadores opacos, metadatos de persistencia, etc.) se gobiernan por\
+      \ [F-CDIFF-R020](#F-CDIFF-R020). Esta regla R019 obliga la disciplina del recorrido\
+      \ **completo** modulo R020. 4. Ejemplos ilustrativos del recorrido: en un quiz\
+      \ cubierto por sentence-length, las hojas alcanzables incluyen el texto de la\
+      \ oracion (string) y los componentes de `SentenceLengthDiagnosis` (`tokenCount`,\
+      \ `targetMin`, `targetMax`, `cefrLevel`, `delta`, `toleranceMargin`); cualquiera\
+      \ que difiera entre fotos aparece como field. En un milestone cubierto por lemma-absence,\
+      \ las hojas alcanzables incluyen los componentes de `LemmaAbsenceLevelDiagnosis`\
+      \ (`absencePercentage`, `totalExpected`, `totalAbsent`, scores ponderados) y\
+      \ los elementos de la lista `absentLemmas` (gobernada por R022). La salida no\
+      \ enumera estas hojas: el recorrido las descubre."
+    validation: VALIDATED
+  - id: F-CDIFF-R020
+    name: "Exclusiones por rol funcional, no por whitelist de campos"
+    severity: critical
+    description: "Durante el recorrido recursivo de [F-CDIFF-R019](#F-CDIFF-R019),\
+      \ una hoja **no** se emite como field cambiado, aunque su valor difiera entre\
+      \ fotos, si el rol funcional del campo cae en una de estas categorias: 1. **Identificadores\
+      \ opacos de persistencia** (`_id`, `$oid` y formas equivalentes generadas por\
+      \ el almacenamiento, no por el dominio). 2. **Referencias estructurales** que\
+      \ el dominio mantiene para navegacion: identificadores de parent, child, course,\
+      \ milestone, topic, knowledge, quiz cuando aparecen como campo de referencia\
+      \ dentro de otro nodo, no como identidad propia del nodo en cuestion. 3. **Timestamps\
+      \ de creacion / actualizacion** de cualquier nivel del modelo. 4. **Ordenes\
+      \ internos derivados de la posicion en disco / serializacion**: indices de array\
+      \ de JSON, claves de orden de inserción, contadores que el almacenamiento gestiona.\
+      \ 5. **Cualquier valor cuya diferencia entre versiones no represente un cambio\
+      \ semantico observable** para el consumidor (la categoria escape para casos\
+      \ no enumerados arriba). La invariante observable: dado un escenario donde la\
+      \ unica diferencia entre las fotos de un nodo es un campo en una de las cinco\
+      \ categorias, el mapa de fields cambiados de ese nodo **esta vacio** y el nodo\
+      \ no aparece en la lista de afectados ([F-CDIFF-R006](#F-CDIFF-R006)). Reciprocamente,\
+      \ dado un escenario donde la unica diferencia es una hoja **fuera** de las cinco\
+      \ categorias, esa hoja aparece como field del mapa. 1. La regla reemplaza la\
+      \ version anterior basada en whitelist por tipo de nodo. Bajo la version nueva,\
+      \ agregar un analizador o un campo de contenido nuevo no requiere actualizar\
+      \ este requerimiento; agregar una **categoria de exclusion** nueva si lo requiere,\
+      \ pero las cinco arriba cubren los roles ruidosos conocidos. 2. La forma concreta\
+      \ de declarar / detectar la categoria de un campo (anotacion en el modelo, convencion\
+      \ de nombre, lista funcional centralizada en el dominio, inferencia por tipo)\
+      \ es decision de arquitectura. 3. Esta regla coopera con [F-CDIFF-R019](#F-CDIFF-R019)\
+      \ para preservar la **disciplina anti-ruido**: sin las exclusiones, el descubrimiento\
+      \ dinamico arrastraria diffs de timestamps y ordenes triviales que no son cambios\
+      \ semanticos."
+    validation: VALIDATED
+  - id: F-CDIFF-R023
+    name: "Anidamiento: hojas profundas se identifican por path estable"
+    severity: critical
+    description: "Para una hoja escalar alcanzable a traves de una secuencia de campos\
+      \ anidados desde la raiz del modelo del nodo, el field cambiado correspondiente\
+      \ lleva una clave que codifica esa secuencia y que es **estable** en dos sentidos\
+      \ verificables: 1. **Estabilidad entre fotos**: la misma hoja, alcanzada por\
+      \ el mismo path en las tres fotos, produce **una sola entrada** en el mapa con\
+      \ la tripleta `(original, consolidated, pendingProjection)` agrupada bajo esa\
+      \ clave. La salida no emite tres entradas separadas (una por foto) ni dos entradas\
+      \ separadas si la hoja aparece en dos fotos. 2. **Estabilidad entre nodos del\
+      \ mismo tipo**: dos nodos del mismo tipo donde la misma hoja anidada cambia\
+      \ bajo el mismo path emiten la **misma clave** en sus respectivos mapas. Un\
+      \ consumidor puede correlacionar fields entre nodos comparables sin tener que\
+      \ adivinar variantes del path. Adicionalmente, la profundidad del anidamiento\
+      \ no esta acotada por el contrato: una hoja a profundidad N produce una unica\
+      \ clave que codifica las N etapas. La forma exacta del separador y de la representacion\
+      \ de los pasos (incluyendo el caso de listas con identidad, gobernado por [F-CDIFF-R022](#F-CDIFF-R022))\
+      \ es decision de arquitectura. 1. La regla evita dos formas de ruido posibles\
+      \ bajo descubrimiento dinamico: emitir el mismo dato bajo dos claves distintas\
+      \ en distintas fotos, y emitir tantos fields como fotos existan en lugar de\
+      \ una sola tripleta. 2. La estabilidad entre nodos habilita al consumidor a,\
+      \ por ejemplo, listar todos los quizzes donde el `tokenCount` del diagnostico\
+      \ de longitud de oracion cambio entre `consolidated` y `pendingProjection`:\
+      \ la consulta es directa porque la clave es la misma en todos los quizzes. 3.\
+      \ La regla no impone una sintaxis de clave concreta (puntos, slashes, brackets\
+      \ para listas, etc.). Lo unico que obliga es la estabilidad observable."
+    validation: VALIDATED
+  - id: F-CDIFF-R021
+    name: El descubrimiento es agnostico a la dimension que origino la propuesta
+    severity: major
+    description: "El recorrido recursivo de [F-CDIFF-R019](#F-CDIFF-R019) no filtra\
+      \ hojas por la dimension del analizador que origino una propuesta: si la aplicacion\
+      \ de una propuesta de la dimension X mueve hojas escalares de la dimension Y\
+      \ o Z (o de cualquier otra parte del modelo), esas hojas aparecen como fields\
+      \ del mapa con sus tripletas. La invariante testeable: dada una propuesta cuyo\
+      \ origen funcional es la dimension X y cuyo `elementAfter` provoca cambios sobre\
+      \ hojas alcanzables tras correr el motor (en cualquier dimension presente en\
+      \ el baseline, no solo X), todas esas hojas aparecen en el mapa de fields cambiados\
+      \ del nodo correspondiente. Reciprocamente, ninguna dimension reportada por\
+      \ el baseline queda oculta en el consolidado porque no fue la dimension que\
+      \ origino la propuesta. 1. Esta regla preserva el espiritu de **paridad estructural**\
+      \ entre baseline y consolidado: cualquier dimension que el baseline expone permanece\
+      \ observable en el consolidado a traves del descubrimiento dinamico, sin enumerarla\
+      \ en el contrato. 2. Mismo principio que [F-PIPRE-R005](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R005)\
+      \ generalizado al consolidado: una pendiente de `LEMMA_ABSENCE` puede mover\
+      \ hojas de `SENTENCE_LENGTH` (porque cambiar un lema cambia el largo de la oracion)\
+      \ y esos cambios se reflejan automaticamente."
+    validation: AUTO_VALIDATED
+  - id: F-CDIFF-R022
+    name: "Listas: diff por elemento si tienen identidad declarada, posicional si\
+      \ no"
+    severity: major
+    description: "Para cada lista alcanzada durante el recorrido de [F-CDIFF-R019](#F-CDIFF-R019):\
+      \ 1. **Lista con identidad declarada**: si el dominio declara una clave natural\
+      \ de identidad para los elementos de la lista, el diff de la lista se hace **por\
+      \ elemento** usando esa identidad. Cada cambio observable produce un field derivado\
+      \ con clave estable basada en la identidad. Casos: el mismo elemento (misma\
+      \ identidad) presente en mas de una foto con propiedades no-clave distintas;\
+      \ un elemento con identidad presente en alguna foto y ausente en otras. 2. **Lista\
+      \ sin identidad declarada**: el diff de la lista se hace **posicionalmente**:\
+      \ el elemento en el indice `i` de una foto se compara con el elemento en el\
+      \ indice `i` de otra. Cada hoja escalar dentro del elemento posicional que difiera\
+      \ entre fotos sigue las reglas [F-CDIFF-R019](#F-CDIFF-R019), [F-CDIFF-R020](#F-CDIFF-R020)\
+      \ y [F-CDIFF-R023](#F-CDIFF-R023) del descubrimiento normal. Como el dominio\
+      \ declara la identidad de una lista (anotacion, convencion, registro centralizado)\
+      \ es decision de arquitectura. La invariante testeable de R022: dado un escenario\
+      \ con una lista cuya identidad esta declarada y un elemento agregado / removido\
+      \ / modificado en propiedad no-clave, los fields derivados aparecen con clave\
+      \ basada en la identidad; dado un escenario con una lista sin identidad declarada\
+      \ y un elemento posicional con hojas distintas, los fields aparecen bajo path\
+      \ posicional. La regla mantiene el diff **deterministico**: dos ejecuciones\
+      \ sobre el mismo input producen el mismo conjunto de fields cambiados. 1. Ejemplos\
+      \ ilustrativos (no exhaustivos) de listas conocidas hoy que tienen identidad\
+      \ natural: `AbsentLemma` y `MisplacedLemma` por `(lemma, pos)`; `BucketResult`,\
+      \ `BucketSummary` y `ProgressionAssessment` por `bandName`; `QuarterResult`\
+      \ por `index`; `ImprovementDirective` por `(type, bandName, levelName)`. Una\
+      \ lista nueva con identidad solo necesita declarar su clave en el dominio para\
+      \ que el diff se acomode automaticamente. 2. Una lista sin identidad declarada\
+      \ que cambia de orden entre fotos puede generar diffs posicionales falsos. Si\
+      \ una iteracion futura observa este caso como ruido, la respuesta es declarar\
+      \ identidad natural para esa lista, no agregar una excepcion al contrato. 3.\
+      \ La forma exacta de las claves derivadas para listas con identidad (concatenar\
+      \ la clave natural al path, usar paréntesis, etc.) es decision de arquitectura.\
+      \ La regla obliga la disciplina: clave estable que permite al consumidor identificar\
+      \ de que elemento se habla. ---"
     validation: VALIDATED
   - id: F-CDIFF-R009
-    name: "Cada estadistica afectada se emite con cuatro campos: `original`, `consolidated`,\
-      \ `acceptedDelta`, `pendingDelta`"
+    name: La salida no tiene una seccion paralela de "estadisticas afectadas"
     severity: critical
-    description: "Para cada estadistica del `AuditReport` que se vea tocada por al\
-      \ menos una propuesta aceptada o pendiente del plan activo, la salida del CLI\
-      \ emite cuatro campos numericos: | Campo | Presencia | Definicion | |-------|-----------|------------|\
-      \ | `original` | siempre | Valor de la estadistica en el baseline del analisis\
-      \ (lo que el motor reporto cuando se computo el `AuditReport`). | | `consolidated`\
-      \ | siempre | Valor con las aceptadas aplicadas, recomputado con la misma estrategia\
-      \ de agregacion. | | `acceptedDelta` | siempre | Diferencia `consolidated -\
-      \ original`, en puntos absolutos sobre la escala de la estadistica. | | `pendingDelta`\
-      \ | solo si hay pendientes que tocan la estadistica | Diferencia `pendingProjection\
-      \ - consolidated`, en puntos absolutos sobre la escala de la estadistica. |\
-      \ Adicionalmente, si la estadistica tiene `pendingDelta`, la salida tambien\
-      \ incluye `pendingProjection` (el valor que tendria si se aceptaran las pendientes).\
-      \ 1. Una estadistica que no esta tocada por ninguna decision **no se emite**\
-      \ en la lista de afectadas. El consumidor que la quiera leer la obtiene del\
-      \ baseline del `AuditReport` como hasta hoy. 2. Una estadistica solo tocada\
-      \ por pendientes (sin aceptadas) tiene `consolidated == original` y `acceptedDelta\
-      \ == 0`. Aun asi se emite, porque tiene `pendingDelta` no nulo. 3. Una estadistica\
-      \ solo tocada por aceptadas (sin pendientes) tiene `pendingDelta` y `pendingProjection`\
-      \ ausentes. Se emite con `original`, `consolidated` y `acceptedDelta`. 4. Si\
-      \ la estadistica tiene granularidad por nivel jerarquico (curso, milestone,\
-      \ topic, knowledge, quiz) y por dimension de diagnostico, los cuatro campos\
-      \ se emiten **por cada par `(nivel, dimension)` afectado**, no como un unico\
-      \ bloque agregado. Esto preserva la granularidad que el baseline ya expone."
+    description: "La estructura consolidada **no incluye** una seccion separada de\
+      \ \"estadisticas afectadas\" con campos numericos precomputados (en particular,\
+      \ `acceptedDelta` y `pendingDelta` no son campos del contrato; ver [F-CDIFF-R010](#F-CDIFF-R010)).\
+      \ Cualquier valor de score / estadistica escalar tocado por aceptadas o pendientes\
+      \ se observa exclusivamente como un field mas del mapa del nodo del nivel correspondiente,\
+      \ descubierto por el recorrido de [F-CDIFF-R019](#F-CDIFF-R019), con su tripleta\
+      \ `(original, consolidated, pendingProjection)`. La invariante testeable: dado\
+      \ un escenario donde una dimension de score cambia por efecto de aceptadas o\
+      \ pendientes, el unico lugar de la salida donde ese cambio aparece es el mapa\
+      \ de fields del nodo del nivel; ningun otro contenedor (lista paralela, seccion\
+      \ dedicada, etc.) lo expone. 1. Esta regla reemplaza el contrato anterior, donde\
+      \ cada estadistica afectada llevaba sus propios cuatro escalares (`original`,\
+      \ `consolidated`, `acceptedDelta`, `pendingDelta`). Esa forma era una rama paralela\
+      \ del contrato y obligaba al consumidor a tener dos rutas de lectura distintas\
+      \ (snapshots de nodos vs. estadisticas). La forma uniforme las unifica. 2. Como\
+      \ consecuencia directa, los conceptos `acceptedDelta` y `pendingDelta` salen\
+      \ del contrato como fields propios. Quedan disponibles, **derivados**, como\
+      \ diferencias aritmeticas sobre la tripleta del field correspondiente ([F-CDIFF-R010](#F-CDIFF-R010))."
     validation: VALIDATED
   - id: F-CDIFF-R010
-    name: "Los deltas son **puntos absolutos** sobre la escala del dominio, no variaciones\
-      \ relativas"
-    severity: critical
-    description: "Los campos `acceptedDelta` y `pendingDelta` se calculan como **diferencias\
-      \ aritmeticas absolutas** sobre la escala interna de la estadistica: - `acceptedDelta\
-      \ = consolidated - original` - `pendingDelta = pendingProjection - consolidated`\
-      \ El CLI **no calcula** `(consolidated - original) / original` ni ninguna variante\
-      \ porcentual / relativa. Si la escala interna del dominio es 0..1, los deltas\
-      \ son numeros entre -1 y 1; si la escala es porcentual (0..100), los deltas\
-      \ son puntos porcentuales. La presentacion `+5%` o `+5 pp` que un consumidor\
-      \ tipo UI pueda renderizar es decision del consumidor, no del contrato. 1. Esta\
-      \ regla evita la ambiguedad clasica entre \"5% mas\" (relativo: 1.05x el original)\
-      \ y \"5 puntos porcentuales mas\" (absoluto: original + 5 sobre la misma escala).\
-      \ El contrato es siempre el segundo. 2. La regla es testeable de forma directa:\
-      \ dado `original` y `consolidated`, el `acceptedDelta` emitido por el CLI debe\
-      \ coincidir aritmeticamente con `consolidated - original` con la precision de\
-      \ la escala. Lo mismo para `pendingDelta`. 3. La separacion entre datos del\
-      \ dominio y notacion de presentacion es identica a la de [F-PIPRE-R013](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R013).\
+    name: Los deltas no son parte del contrato; son computables por el consumidor
+    severity: major
+    description: "Ningun valor \"delta\" es campo del contrato. La estructura consolidada\
+      \ emite **solo** la tripleta de fotos `(original, consolidated, pendingProjection)`\
+      \ por field cambiado. Cualquier resta o ratio entre fotos es responsabilidad\
+      \ del consumidor, que puede computarlas en su propia capa con la semantica que\
+      \ le convenga. 1. La regla evita la ambiguedad clasica entre \"5% mas\" (relativo:\
+      \ 1.05x el original) y \"5 puntos porcentuales mas\" (absoluto: original + 5\
+      \ sobre la misma escala). Sin deltas en el contrato, la decision queda integramente\
+      \ del lado del consumidor. 2. Para cualquier consumidor que quiera reproducir\
+      \ la semantica del contrato anterior, las equivalencias son: `acceptedDelta\
+      \ = consolidated - original`, `pendingDelta = pendingProjection - consolidated`.\
+      \ Las dos restas se hacen sobre la misma escala interna del dominio, sin reescalar.\
+      \ 3. La separacion entre datos del dominio y notacion de presentacion es identica\
+      \ a la de [F-PIPRE-R013](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R013).\
       \ Aquella regla aplica a la presentacion textual del preview por-propuesta;\
       \ aqui la analoga corre por cuenta del consumidor del contrato."
     validation: VALIDATED
   - id: F-CDIFF-R011
-    name: "La salida cubre los mismos pares `(nivel, dimension)` que el baseline expone"
+    name: Trazabilidad de propuestas por nodo afectado
     severity: major
-    description: "Para cada par `(nivel, dimension)` que el motor de auditoria reporta\
-      \ en el baseline del `AuditReport` (las dimensiones tipicas: `LEMMA_ABSENCE`,\
-      \ `SENTENCE_LENGTH`, `COCA_BUCKETS`, `LEMMA_RECURRENCE`, etc.), la estructura\
-      \ consolidada lo incluye en la misma granularidad si esta tocado. La salida\
-      \ no inventa pares que el baseline no tenga, ni omite pares que el baseline\
-      \ si tenga, salvo por la regla de \"no tocado -> no emitido\" de [F-CDIFF-R009](#F-CDIFF-R009).1.\
-      \ 1. La regla establece la **paridad estructural** entre el baseline del `AuditReport`\
-      \ y el consolidado: cualquier consumidor que sepa leer el primero sabe leer\
-      \ el segundo. La forma del par `(nivel, dimension)` en la salida JSON del CLI\
-      \ es la misma que la de FEAT-PIPRE F-PIPRE-R005. 2. La feature es agnostica\
-      \ de la dimension que origino la propuesta. Una pendiente de `LEMMA_ABSENCE`\
-      \ puede mover `SENTENCE_LENGTH` y la salida debe reflejar ese cruce, igual que\
-      \ [F-PIPRE-R005](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R005).\
-      \ ---"
+    description: "Para cada nodo presente en la lista de afectados, la salida adjunta\
+      \ dos listas: `acceptedProposalIds` y `pendingProposalIds`. Cuatro invariantes:\
+      \ 1. **Cobertura `accepted`**: si una propuesta con veredicto `APPROVED` del\
+      \ plan activo afecta al nodo (porque toca su contenido o el de algun hijo de\
+      \ su subarbol que contribuye a las fotos del nodo), su `proposalId` aparece\
+      \ en `acceptedProposalIds` del nodo. Reciprocamente, ninguna propuesta no aceptada\
+      \ o que no afecta al nodo aparece en esa lista. 2. **Cobertura `pending`**:\
+      \ si una propuesta con veredicto `PENDING_APPROVAL` y aplicable del plan activo\
+      \ afecta al nodo, su `proposalId` aparece en `pendingProposalIds` del nodo.\
+      \ Reciprocamente, ninguna propuesta no pendiente, no aplicable o que no afecta\
+      \ al nodo aparece en esa lista. 3. **Orden estable en `acceptedProposalIds`**:\
+      \ los `proposalId` aparecen ordenados por `createdAt` ascendente, para que la\
+      \ cadena de aplicacion sea reconstruible. 4. **Trazabilidad por nodo, no por\
+      \ field**: la regla obliga la presencia de la lista a nivel de nodo. Que cada\
+      \ `proposalId` se atribuya a un field especifico dentro del nodo no es parte\
+      \ del contrato y es derivable por el consumidor. 1. Si un mismo nodo tiene aceptadas\
+      \ que tocan algunos de sus fields y pendientes que tocan otros, ambas listas\
+      \ estan presentes con sus respectivos `proposalId` y el consumidor sabe que\
+      \ decisiones contribuyen al cuadro completo del nodo. 2. Para nodos padre afectados\
+      \ solo por re-agregacion (su contenido propio no se toca, pero alguno de sus\
+      \ hijos si), las listas reflejan las propuestas que tocaron a los hijos contribuyentes:\
+      \ \"que decisiones afectaron al subarbol de este padre\". 3. La salida puede\
+      \ emitir una lista vacia o omitir el campo cuando no hay aceptadas (resp. pendientes)\
+      \ que afecten al nodo; ambas formas cumplen las invariantes mientras el comportamiento\
+      \ sea uniforme. ---"
     validation: AUTO_VALIDATED
   - id: F-CDIFF-R012
-    name: "Una pendiente que no se puede aplicar se emite con `pendingApplicability:\
-      \ NOT_APPLICABLE` y causa"
+    name: "Una pendiente no aplicable se marca, se identifica con causa y se excluye\
+      \ de pendingProjection"
     severity: major
-    description: "Si al construir las proyecciones una propuesta pendiente individual\
-      \ no puede aplicarse (su `nodeId` no existe en el subarbol vigente, o su `elementBefore`\
-      \ ya no coincide con el `consolidated` porque otra aceptada lo desplazo), la\
-      \ salida del CLI incluye esa propuesta en una lista `pendingApplicability` con\
-      \ campos: | Campo | Significado | |-------|-------------| | `proposalId` | Identificador\
-      \ de la propuesta. | | `status` | `NOT_APPLICABLE`. | | `reason` | Causa legible\
-      \ (categoria + detalle). | La pendiente no aplicable **no contribuye** a `pendingProjection`\
-      \ ni a `pendingDelta` de ningun nodo o estadistica. 1. El resto de la estructura\
-      \ consolidada se entrega normalmente. Una pendiente conflictiva no rompe la\
-      \ salida. 2. La gestion del ciclo de vida de la pendiente (rechazar, regenerar)\
-      \ corresponde a FEAT-REVAPR; este requerimiento solo cubre que el contrato la\
-      \ marque y siga sirviendo el resto de los datos. 3. Esta regla se distingue\
-      \ de [F-CDIFF-R013](#F-CDIFF-R013) en que aca la salida **se entrega** con la\
-      \ pendiente marcada; en R013 la salida entera se considera no-disponible. ---"
+    description: "Si una propuesta pendiente individual no puede aplicarse al construir\
+      \ las proyecciones (porque su `nodeId` no existe en el subarbol vigente, o porque\
+      \ su `elementBefore` ya no coincide con el `consolidated` debido a una aceptada\
+      \ precedente), tres invariantes se observan en la salida: 1. **Marcado**: la\
+      \ propuesta aparece como una entrada de la lista `pendingApplicability` de la\
+      \ salida, identificada por `proposalId`, con `status: NOT_APPLICABLE` y un `reason`\
+      \ que combina categoria y detalle textual. 2. **No contribucion a `pendingProjection`**:\
+      \ la propuesta no contribuye a la foto `pendingProjection` de ningun field,\
+      \ en ningun nodo. Esta es la diferencia testeable con una pendiente aplicable:\
+      \ dado el mismo escenario, removiendo la pendiente no aplicable, las fotos `pendingProjection`\
+      \ de la salida son identicas. 3. **Resto del consolidado intacto**: la salida\
+      \ sigue entregando el resto de la estructura (nodos afectados por aceptadas\
+      \ y por pendientes aplicables, trazabilidad, etc.) sin degradarse a `consolidatedAvailability:\
+      \ UNAVAILABLE` por culpa de la pendiente no aplicable. 1. La gestion del ciclo\
+      \ de vida de la pendiente (rechazar, regenerar) corresponde a FEAT-REVAPR; este\
+      \ requerimiento solo cubre que el contrato la marque y siga sirviendo el resto\
+      \ de los datos. 2. Esta regla se distingue de [F-CDIFF-R013](#F-CDIFF-R013)\
+      \ en que aca la salida **se entrega** con la pendiente marcada; en R013 la salida\
+      \ entera se considera no-disponible. 3. Las propuestas estructurales (creacion/eliminacion/reordenamiento)\
+      \ **no** caen en R012: por [F-CDIFF-R018](#F-CDIFF-R018) no aparecen en `pendingApplicability`\
+      \ ni contribuyen a las fotos. ---"
     validation: AUTO_VALIDATED
   - id: F-CDIFF-R013
     name: "Si la estructura consolidada no se puede construir, el CLI emite `consolidatedAvailability:\
@@ -17962,92 +18168,101 @@ features:
       \ otra causa, con detalle textual obligatorio. | 2. La salida con `consolidatedAvailability:\
       \ UNAVAILABLE` es de primera clase: el consumidor debe poder distinguirla de\
       \ \"consolidado vacio\" (cuando si hay par activo pero ninguna propuesta aceptada\
-      \ o pendiente, en cuyo caso el consolidado se emite con todos los nodos del\
-      \ baseline sin afectar y sin lista de afectados)."
+      \ o pendiente, en cuyo caso el consolidado se emite con la lista de afectados\
+      \ vacia)."
     errorMessage: "Estructura consolidada no disponible para el analisis '<auditId>':\
       \ <categoria> - <detalle>"
     validation: AUTO_VALIDATED
-  - id: F-CDIFF-R014
-    name: El baseline de un analisis nuevo coincide con el `consolidated` del analisis
-      anterior
-    severity: major
-    description: "Si el operador genera un nuevo `AuditReport` justo despues de aceptar\
-      \ propuestas en el analisis vigente, sin haber introducido cambios externos\
-      \ al curso entre medio, los valores del baseline del nuevo analisis coinciden,\
-      \ nodo por nodo y dimension por dimension, con los valores del campo `consolidated`\
-      \ del analisis anterior. La unica diferencia visible en la salida del CLI es\
-      \ estructural: el nuevo analisis emite los nodos del baseline sin lista de afectados,\
-      \ sin campos `acceptedDelta` ni `pendingDelta`, porque las decisiones anteriores\
-      \ ya estan materializadas en el curso y este analisis empieza limpio. 1. Esta\
-      \ regla es la consecuencia funcional de [F-CDIFF-R003](#F-CDIFF-R003) y [F-REVAPR-R011](../2026-04-20.01_refiner-revision-approval/REQUIREMENT.md#F-REVAPR-R011):\
-      \ si las aceptadas se materializan en el curso, el siguiente analisis las ve\
-      \ como contenido normal. 2. La regla es **una propiedad del contrato** observable\
-      \ en una secuencia \"aceptar -> generar nuevo analisis -> comparar\". Es testeable\
-      \ end-to-end ejecutando esa secuencia sobre un curso fixture. 3. La equivalencia\
-      \ se rompe si entre la aceptacion y el nuevo analisis se modifico el curso por\
-      \ otros caminos (edicion manual, importacion, etc.). En ese caso el nuevo baseline\
-      \ refleja el curso al momento de correr el analisis y la diferencia con el `consolidated`\
-      \ anterior se debe a esos cambios externos, no a la feature. ---"
-    validation: VALIDATED
   - id: F-CDIFF-R015
-    name: El consolidado no es un nuevo `AuditReport` ni emite uno
+    name: Servir el consolidado no escribe ningun artefacto persistido
     severity: critical
-    description: "Servir la estructura consolidada **no genera** un nuevo `auditId`,\
-      \ **no persiste** un `AuditReport` y **no modifica** el plan ni los artefactos\
-      \ de propuesta. Es una proyeccion derivada del par `(AuditReport, propuestas\
-      \ del plan activo)` que vive el tiempo necesario para entregarsela al consumidor\
-      \ del CLI. 1. La regla preserva la separacion entre **historia oficial** (los\
-      \ `AuditReport` que el motor escribio) y **vista derivada** (lo que el contrato\
-      \ consolidado emite). Es la misma logica de [F-PIPRE-R002](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R002)\
+    description: "Despues de invocar la operacion del CLI que entrega la estructura\
+      \ consolidada (haya sido construida con exito o con `consolidatedAvailability:\
+      \ UNAVAILABLE`), tres invariantes se observan sobre el sistema de archivos:\
+      \ 1. **No se persiste un `AuditReport` nuevo**: ningun archivo de `AuditReport`\
+      \ aparece, cambia de contenido o cambia de timestamp de modificacion como consecuencia\
+      \ de la operacion. La operacion no asigna un `auditId` nuevo. 2. **No se modifican\
+      \ planes ni propuestas**: ningun archivo de plan, propuesta o preview por-propuesta\
+      \ de FEAT-PIPRE cambia de contenido o de timestamp como consecuencia de la operacion.\
+      \ 3. **No se modifican archivos del curso**: ningun archivo de contenido del\
+      \ curso (course, milestone, topic, knowledge, quiz) cambia de contenido o de\
+      \ timestamp como consecuencia de la operacion. 1. La regla preserva la separacion\
+      \ entre **historia oficial** (los `AuditReport` que el motor escribio) y **vista\
+      \ derivada** (lo que el contrato consolidado emite). Es la misma logica de [F-PIPRE-R002](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R002)\
       \ generalizada al curso entero y a multiples propuestas. 2. La forma exacta\
       \ en que el sistema construye la salida (calculo on-demand, materializada con\
       \ cache, etc.) es decision de arquitectura ([DOUBT-MATERIALIZATION](#DOUBT-MATERIALIZATION)).\
-      \ Lo que esta regla prohibe es que el calculo escriba un `AuditReport` o cambie\
-      \ cualquier artefacto persistido. 3. Aceptar o rechazar propuestas no se hace\
+      \ La regla deja explicitamente abierta la posibilidad de caches internos no\
+      \ oficiales; lo que prohibe es escribir cualquiera de los artefactos enumerados\
+      \ arriba como efecto observable. 3. Aceptar o rechazar propuestas no se hace\
       \ via el contrato consolidado: esas operaciones siguen siendo las de FEAT-REVAPR\
       \ y operan sobre los artefactos de propuesta."
     validation: AUTO_VALIDATED
   - id: F-CDIFF-R016
-    name: "El consolidado supersede el caso de \"preview combinado\" que [F-PIPRE-R011](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R011)\
-      \ dejo abierto"
+    name: El consolidado combina varias propuestas en un documento; los previews por-propuesta
+      de FEAT-PIPRE permanecen accesibles
     severity: major
-    description: "[F-PIPRE-R011](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R011)\
+    description: "Cuando un plan activo contiene multiples propuestas (aceptadas,\
+      \ pendientes, o ambas), dos invariantes se observan: 1. **Combinacion en un\
+      \ documento**: la estructura consolidada del analisis correspondiente expone\
+      \ los efectos de **todas** esas propuestas en una unica salida, contribuyendo\
+      \ a las fotos `consolidated` (aceptadas) y `pendingProjection` (aceptadas +\
+      \ pendientes aplicables) de los fields tocados. El consumidor obtiene la lectura\
+      \ agregada sin invocar un mecanismo distinto del que usa para una sola propuesta.\
+      \ 2. **Preservacion de los previews por-propuesta**: cada `RevisionProposal`\
+      \ que tenia su preview persistido por [F-PIPRE-R001](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R001)\
+      \ sigue accesible a traves del verbo del CLI de FEAT-PIPRE, sin alteracion de\
+      \ contenido ni de timestamp como consecuencia de servir el consolidado (cubierto\
+      \ tambien por [F-CDIFF-R015](#F-CDIFF-R015).2). Esta regla supersede explicitamente\
+      \ el caso \"preview combinado de varias propuestas\" que [F-PIPRE-R011](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R011)\
       \ y [DOUBT-BATCH-PREVIEW](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#DOUBT-BATCH-PREVIEW)\
-      \ marcaron como fuera de alcance el caso \"varias propuestas combinadas, ver\
-      \ impacto agregado\". Esta feature lo cubre por la via de la estructura consolidada:\
-      \ la salida ya combina baseline + aceptadas + pendientes del plan activo en\
-      \ un unico documento. FEAT-PIPRE sigue siendo el contrato del preview por-propuesta-individual\
-      \ (la foto del impacto al momento de generar la propuesta, [F-PIPRE-R008](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R008));\
-      \ FEAT-CDIFF aporta el contrato de la lectura agregada. 1. Las dos features\
-      \ no se pisan: el preview por-propuesta sigue produciendose y persistiendose\
-      \ en cada generacion de `RevisionProposal` y conserva su rol historico. El consolidado\
-      \ se construye al momento de servir la salida y combina muchas propuestas a\
-      \ la vez. 2. La diferencia operativa: el preview por-propuesta es **eager y\
-      \ por-`proposalId`** ([F-PIPRE-R001](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R001));\
-      \ el consolidado es **derivado al momento de la peticion** ([F-CDIFF-R015](#F-CDIFF-R015))."
+      \ habian dejado fuera. 1. Las dos features no se pisan: el preview por-propuesta\
+      \ es **eager y por-`proposalId`** ([F-PIPRE-R001](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R001));\
+      \ el consolidado es **derivado al momento de la peticion** ([F-CDIFF-R015](#F-CDIFF-R015)).\
+      \ 2. La regla testea la coexistencia: tras servir el consolidado de un plan\
+      \ con N propuestas, los N previews individuales siguen accesibles y devuelven\
+      \ exactamente lo que devolvian antes."
     validation: VALIDATED
   - id: F-CDIFF-R017
-    name: "El consolidado se construye sobre el plan activo, no combina planes"
+    name: Ninguna foto contiene efecto de propuestas de planes ajenos
     severity: major
-    description: "El consolidado de un `AuditReport` solo combina su baseline con\
-      \ las propuestas (aceptadas y pendientes) del **plan activo** asociado a ese\
-      \ mismo analisis. No mezcla propuestas de planes ajenos, ni combina varios analisis\
-      \ en una sola salida. Una pendiente dormida de un analisis viejo solo se incorpora\
-      \ a la salida si el operador hace activo a ese analisis. 1. Esta restriccion\
-      \ es deliberada y simplifica la semantica: para cada `AuditReport`, hay como\
-      \ mucho un plan activo y un consolidado bien definido. 2. Combinar varios analisis\
-      \ en una sola salida queda fuera de alcance ([DOUBT-MULTI-ANALYSIS-VIEW](#DOUBT-MULTI-ANALYSIS-VIEW))."
+    description: "Para una estructura consolidada construida sobre el par activo `(activeAuditId,\
+      \ activePlanId)`, las fotos `consolidated` y `pendingProjection` de cualquier\
+      \ field se calculan **exclusivamente** con propuestas cuyo `planId` coincide\
+      \ con `activePlanId`. La invariante testeable: dado un escenario con propuestas\
+      \ pertenecientes a dos planes distintos, el consolidado del analisis cuyo plan\
+      \ es activo es **identico** al consolidado que se obtendria si las propuestas\
+      \ del otro plan no existieran (mismas fotos, mismos `acceptedProposalIds`/`pendingProposalIds`,\
+      \ misma `pendingApplicability`). Reciprocamente, un `proposalId` que pertenece\
+      \ a un plan distinto del activo no aparece en ninguna seccion del consolidado.\
+      \ 1. La regla simplifica la semantica: para cada `AuditReport`, hay como mucho\
+      \ un plan activo y un consolidado bien definido. 2. Combinar varios analisis\
+      \ en una sola salida queda fuera de alcance ([DOUBT-MULTI-ANALYSIS-VIEW](#DOUBT-MULTI-ANALYSIS-VIEW)).\
+      \ Una pendiente dormida de un analisis viejo se observa en el consolidado solo\
+      \ si el operador hace activo a ese analisis ([F-CDIFF-R004](#F-CDIFF-R004))."
     validation: VALIDATED
   - id: F-CDIFF-R018
-    name: El consolidado cubre solo cambios sobre nodos existentes
+    name: Las propuestas estructurales no contribuyen a ninguna foto y no aparecen
+      en pendingApplicability
     severity: minor
-    description: "El contrato asume el patron actual de propuesta (sustitucion de\
-      \ un `elementBefore` por un `elementAfter` sobre un `nodeId` que existe en el\
-      \ curso). No modela el efecto de propuestas que crearian, eliminarian o reordenarian\
-      \ nodos. Heredado de [F-PIPRE-R012](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R012)\
+    description: "Si el plan activo contiene una propuesta cuyo efecto seria crear,\
+      \ eliminar o reordenar nodos del arbol del curso (en lugar del patron actual\
+      \ de sustituir `elementBefore` por `elementAfter` sobre un `nodeId` existente),\
+      \ dos invariantes se observan: 1. La propuesta no contribuye a ninguna foto\
+      \ (`original`, `consolidated`, `pendingProjection`) de ningun field, en ningun\
+      \ nodo del consolidado. 2. La propuesta no aparece en la lista `pendingApplicability`\
+      \ del consolidado: la lista de [F-CDIFF-R012](#F-CDIFF-R012) reporta pendientes\
+      \ que el contrato modela pero no puede aplicar; las propuestas estructurales\
+      \ son pendientes que el contrato no modela en absoluto, y por lo tanto no entran\
+      \ en R012. El resto del consolidado (sus otros nodos afectados, la trazabilidad\
+      \ de propuestas, las pendientes aplicables y no aplicables modeladas) se entrega\
+      \ normalmente. 1. Heredado del scope de [F-PIPRE-R012](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R012)\
       \ y [F-LAPS-R014](../2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md#F-LAPS-R014).\
-      \ Si una iteracion futura introduce propuestas estructurales (creacion / eliminacion\
-      \ / reordenamiento), el contrato de salida se revisa. ---"
+      \ 2. Si una iteracion futura introduce propuestas estructurales (creacion /\
+      \ eliminacion / reordenamiento), esta regla se revisa para decidir entre cubrirlas\
+      \ o continuar excluyendolas explicitamente. Hoy todas las propuestas que el\
+      \ sistema produce son sustituciones, por lo que la invariante es vacuamente\
+      \ verdadera mas alla de servir como contrato hacia consumidores futuros. ---"
     validation: AUTO_VALIDATED
   journeys:
   - id: F-CDIFF-J001
@@ -18068,18 +18283,21 @@ features:
       gate:
       - F-CDIFF-R001
     - id: combinar_y_emitir
-      action: "El CLI emite la estructura consolidada con consolidated/pendingProjection\
-        \ por nodo afectado, original/consolidated/acceptedDelta/pendingDelta por\
-        \ estadistica afectada y la trazabilidad de propuestas"
+      action: "El CLI emite la estructura consolidada con la lista de nodos afectados;\
+        \ cada nodo lleva su mapa de fields cambiados con la tripleta (original, consolidated,\
+        \ pendingProjection), su trazabilidad de propuestas, y la lista de pendientes\
+        \ no aplicables"
       result: success
       gate:
       - F-CDIFF-R006
       - F-CDIFF-R007
-      - F-CDIFF-R008
       - F-CDIFF-R009
       - F-CDIFF-R010
       - F-CDIFF-R011
       - F-CDIFF-R015
+      - F-CDIFF-R019
+      - F-CDIFF-R020
+      - F-CDIFF-R023
     - id: emitir_no_disponible
       action: "El CLI emite consolidatedAvailability: UNAVAILABLE con unavailabilityReason\
         \ (categoria + detalle); el AuditReport sigue accesible por las operaciones\
@@ -18090,100 +18308,126 @@ features:
     testModule: audit-cli
     testPackage: com.learney.contentaudit.auditcli.commands
   - id: F-CDIFF-J002
-    name: Nodo hoja con aceptada y pendiente sobre el mismo `nodeId`
+    name: "Nodo hoja con aceptada y pendiente sobre el mismo nodeId, tripleta completa\
+      \ por field"
     validation: VALIDATED
     flow:
     - id: situacion_inicial
-      action: El plan activo tiene una propuesta aceptada que toco un nodo y una propuesta
-        pendiente sobre el mismo nodeId
+      action: El plan activo tiene una propuesta aceptada que cambio la oracion de
+        un quiz y una propuesta pendiente sobre el mismo nodeId que la cambiaria de
+        nuevo
       then: pedir_salida_del_nodo
     - id: pedir_salida_del_nodo
       action: El consumidor pide la estructura consolidada del curso (que incluye
-        al nodo)
-      then: emitir_consolidated
-    - id: emitir_consolidated
-      action: El CLI emite consolidated igual al snapshot de la aceptada y registra
-        el proposalId aceptado en acceptedProposalIds
-      then: emitir_proyeccion
+        al quiz)
+      then: emitir_mapa_fields
+    - id: emitir_mapa_fields
+      action: "El CLI emite el quiz con un mapa de fields cambiados producido por\
+        \ el recorrido recursivo; las hojas escalares con valor distinto entre fotos\
+        \ (texto de la oracion, componentes de diagnostico tipado como tokenCount)\
+        \ aparecen con clave de path estable y tripleta original/consolidated/pendingProjection;\
+        \ las hojas excluidas por rol funcional (timestamps, identificadores opacos)\
+        \ no aparecen; la pendiente se aplica sobre el consolidated, no sobre el original"
+      then: emitir_trazabilidad
       gate:
       - F-CDIFF-R006
       - F-CDIFF-R007
-    - id: emitir_proyeccion
-      action: "El CLI emite pendingProjection igual al snapshot que se obtendria aplicando\
-        \ la pendiente sobre el consolidated, con pendingProposalId; no se incluye\
-        \ un tercer snapshot del baseline original"
+      - F-CDIFF-R019
+      - F-CDIFF-R020
+      - F-CDIFF-R023
+    - id: emitir_trazabilidad
+      action: El CLI emite acceptedProposalIds con el proposalId aceptado y pendingProposalIds
+        con el proposalId pendiente que afectan al nodo
       result: success
       gate:
-      - F-CDIFF-R006
-      - F-CDIFF-R007
+      - F-CDIFF-R011
     testModule: revision-domain
     testPackage: com.learney.contentaudit.revisiondomain.engine
   - id: F-CDIFF-J003
-    name: Padre con aceptadas y pendientes en su subarbol
+    name: "Padre con aceptadas y pendientes en su subarbol, descubrimiento dinamico\
+      \ de hojas y diff de listas"
     validation: VALIDATED
     flow:
     - id: situacion_inicial
-      action: Un topic tiene aceptadas aplicadas en algunos quizzes del subarbol y
-        pendientes en otros
-      then: emitir_consolidated_padre
-    - id: emitir_consolidated_padre
-      action: El CLI emite consolidated del topic re-agregando el subarbol con las
-        aceptadas aplicadas e ignorando las pendientes
-      then: decidir_proyeccion
+      action: "Un milestone tiene aceptadas aplicadas en algunos quizzes del subarbol\
+        \ y pendientes en otros; el motor produjo los valores re-agregados del milestone\
+        \ para los arboles original, con-aceptadas y con-aceptadas-y-pendientes"
+      then: emitir_mapa_padre
+    - id: emitir_mapa_padre
+      action: "El CLI emite el milestone con un mapa de fields cambiados; las hojas\
+        \ escalares cuyas fotos difieren entre al menos dos arboles aparecen como\
+        \ fields con sus tripletas, sin que este contrato decida como se agrega (la\
+        \ estrategia vive en el motor)"
+      then: decidir_diff_listas
       gate:
-      - F-CDIFF-R008
-    - id: decidir_proyeccion
-      action: El sistema verifica si el subarbol tiene al menos una pendiente aplicable
+      - F-CDIFF-R006
+      - F-CDIFF-R007
+      - F-CDIFF-R019
+      - F-CDIFF-R021
+    - id: decidir_diff_listas
+      action: El sistema clasifica las listas alcanzadas por el recorrido segun si
+        el dominio les declara identidad natural
       outcomes:
-      - when: Hay al menos una pendiente aplicable
-        then: emitir_pending_projection
-      - when: No hay pendientes aplicables en el subarbol
-        then: omitir_pending_projection
-    - id: emitir_pending_projection
-      action: "El CLI emite pendingProjection del topic re-agregando con aceptadas\
-        \ + pendientes, respetando la estrategia del analizador (sin sumar deltas\
-        \ de hijos)"
+      - when: Una lista tiene identidad declarada y elementos cambiados entre fotos
+        then: emitir_fields_por_elemento
+      - when: Las listas alcanzadas no presentan cambios entre fotos o no son relevantes
+          para este milestone
+        then: emitir_fields_escalares
+    - id: emitir_fields_por_elemento
+      action: "El CLI emite, por cada cambio observado en la lista (elemento agregado,\
+        \ removido, o con propiedad no-clave cambiada), un field derivado con clave\
+        \ estable basada en la identidad declarada del elemento; la lista entera no\
+        \ se trata como un solo valor opaco"
       result: success
       gate:
-      - F-CDIFF-R008
-      - F-CDIFF-R011
-    - id: omitir_pending_projection
-      action: El CLI emite el padre con consolidated solamente; pendingProjection
-        esta ausente
+      - F-CDIFF-R022
+    - id: emitir_fields_escalares
+      action: El CLI emite los fields escalares con sus tripletas; las hojas cuyas
+        tres fotos coinciden no se emiten
       result: success
       gate:
-      - F-CDIFF-R008
+      - F-CDIFF-R006
     testModule: revision-domain
     testPackage: com.learney.contentaudit.revisiondomain.engine
   - id: F-CDIFF-J004
-    name: Estadistica afectada con cuatro campos numericos y deltas absolutos
+    name: El contrato emite la tripleta y deja los deltas al consumidor
     validation: VALIDATED
     flow:
     - id: pedir_estadisticas
-      action: El consumidor lee la lista de estadisticas afectadas en la salida
-      then: resolver_estadistica
-    - id: resolver_estadistica
-      action: "El sistema selecciona los pares (nivel, dimension) reportados por el\
-        \ baseline que esten tocados por aceptadas o pendientes del plan activo"
+      action: El consumidor recorre el mapa de fields de los nodos afectados buscando
+        hojas escalares de score que hayan cambiado
+      then: resolver_par
+    - id: resolver_par
+      action: "El sistema descubrio, durante el recorrido recursivo, las hojas escalares\
+        \ de score con valor distinto entre fotos, sin filtrar por la dimension que\
+        \ origino la propuesta"
       outcomes:
-      - when: "El par esta tocado por aceptadas, pendientes o ambas"
-        then: emitir_campos
-      - when: El par no esta tocado
+      - when: Hay al menos una hoja escalar de score con cambio entre fotos
+        then: emitir_tripleta
+      - when: Ninguna hoja escalar de score cambio
         then: omitir_par
       gate:
       - F-CDIFF-R009
-      - F-CDIFF-R011
-    - id: emitir_campos
-      action: "El CLI emite original (baseline), consolidated (con aceptadas), acceptedDelta\
-        \ (consolidated - original), y, si hay pendientes, pendingProjection y pendingDelta\
-        \ (pendingProjection - consolidated). Todos los deltas son puntos absolutos\
-        \ sobre la escala de la estadistica"
-      result: success
+      - F-CDIFF-R019
+      - F-CDIFF-R021
+    - id: emitir_tripleta
+      action: "El CLI emite el field correspondiente con sus tres fotos (original,\
+        \ consolidated, pendingProjection); ningun delta forma parte del contrato\
+        \ y la salida no contiene una seccion paralela de estadisticas afectadas"
+      then: consumidor_computa_deltas
       gate:
       - F-CDIFF-R009
       - F-CDIFF-R010
+    - id: consumidor_computa_deltas
+      action: El consumidor que necesita acceptedDelta lo computa como consolidated
+        - original sobre la tripleta; el que necesita pendingDelta lo computa como
+        pendingProjection - consolidated; ambas restas son sobre la escala interna
+        del dominio
+      result: success
+      gate:
+      - F-CDIFF-R010
     - id: omitir_par
-      action: El CLI no incluye el par en la lista de afectados; sigue disponible
+      action: El CLI no incluye el par en el mapa de ningun nodo afectado; sigue disponible
         al leer el baseline directamente
       result: success
       gate:
@@ -18196,7 +18440,7 @@ features:
     flow:
     - id: situacion_inicial
       action: El plan activo tiene una pendiente cuyo elementBefore no coincide con
-        el consolidated del nodo (porque otra aceptada lo desplazo) o cuyo nodeId
+        la foto consolidated del nodo (porque otra aceptada lo desplazo) o cuyo nodeId
         no se encuentra
       then: intentar_aplicar
     - id: intentar_aplicar
@@ -18207,15 +18451,16 @@ features:
       - when: La pendiente no se puede aplicar
         then: marcar_no_aplicable
     - id: incluir_en_proyeccion
-      action: La pendiente contribuye a pendingProjection y pendingDelta donde corresponda
+      action: La pendiente contribuye a la foto pendingProjection de los fields tocados
+        en el nodo correspondiente
       result: success
       gate:
-      - F-CDIFF-R008
-      - F-CDIFF-R009
+      - F-CDIFF-R007
     - id: marcar_no_aplicable
       action: "El CLI agrega un entry { proposalId, status: NOT_APPLICABLE, reason\
-        \ } en pendingApplicability; la pendiente se excluye del calculo de proyeccion\
-        \ pero el resto del consolidado se entrega normalmente"
+        \ } en pendingApplicability; la pendiente se excluye del calculo de la foto\
+        \ pendingProjection en cualquier field; el resto del consolidado se entrega\
+        \ normalmente"
       result: success
       gate:
       - F-CDIFF-R012
@@ -18244,16 +18489,40 @@ features:
       - F-CDIFF-R002
     - id: pedir_salida_a
       action: El consumidor pide la estructura consolidada; ahora corresponde a A
-        y las pendientes dormidas de A aparecen como pendingProjection/pendingDelta
-        sobre los nodos y estadisticas tocadas
+        y las pendientes dormidas de A aparecen como tercera foto pendingProjection
+        en los fields tocados de los nodos afectados
       result: success
       gate:
       - F-CDIFF-R001
       - F-CDIFF-R004
       - F-CDIFF-R006
-      - F-CDIFF-R009
+      - F-CDIFF-R007
     testModule: audit-cli
     testPackage: com.learney.contentaudit.auditcli.commands
+  - id: F-CDIFF-J008
+    name: Supersesion explicita del preview combinado de FEAT-PIPRE
+    validation: VALIDATED
+    flow:
+    - id: situacion_inicial
+      action: Existen varias propuestas (aceptadas y pendientes) en el plan activo;
+        cada una de ellas tiene su preview eager por-propuesta producido por FEAT-PIPRE
+        al ser generada
+      then: pedir_salida_consolidada
+    - id: pedir_salida_consolidada
+      action: El consumidor que querria 'ver el impacto si acepto todas estas pendientes
+        juntas' pide la estructura consolidada en lugar de un preview combinado
+      then: emitir_combinacion
+    - id: emitir_combinacion
+      action: "El CLI emite una unica salida que combina baseline + aceptadas + pendientes\
+        \ del plan activo bajo la forma uniforme field → (original, consolidated,\
+        \ pendingProjection); los previews por-propuesta de FEAT-PIPRE quedan disponibles\
+        \ como antes (no se borran ni se modifican)"
+      result: success
+      gate:
+      - F-CDIFF-R015
+      - F-CDIFF-R016
+    testModule: revision-domain
+    testPackage: com.learney.contentaudit.revisiondomain.engine
   - id: F-CDIFF-J007
     name: Equivalencia post-stack entre analisis sucesivos
     validation: VALIDATED
@@ -18284,45 +18553,45 @@ features:
       - F-CDIFF-R014
     testModule: audit-cli
     testPackage: com.learney.contentaudit.auditcli.commands
-  - id: F-CDIFF-J008
-    name: Supersesion explicita del preview combinado de FEAT-PIPRE
-    validation: VALIDATED
-    flow:
-    - id: situacion_inicial
-      action: Existen varias propuestas (aceptadas y pendientes) en el plan activo;
-        cada una de ellas tiene su preview eager por-propuesta producido por FEAT-PIPRE
-        al ser generada
-      then: pedir_salida_consolidada
-    - id: pedir_salida_consolidada
-      action: El consumidor que querria 'ver el impacto si acepto todas estas pendientes
-        juntas' pide la estructura consolidada en lugar de un preview combinado
-      then: emitir_combinacion
-    - id: emitir_combinacion
-      action: El CLI emite una unica salida que combina baseline + aceptadas + pendientes
-        del plan activo en consolidated/pendingProjection/acceptedDelta/pendingDelta;
-        los previews por-propuesta de FEAT-PIPRE quedan disponibles como antes (no
-        se borran ni se modifican)
-      result: success
-      gate:
-      - F-CDIFF-R015
-      - F-CDIFF-R016
-    testModule: revision-domain
-    testPackage: com.learney.contentaudit.revisiondomain.engine
   doubts:
   - id: DOUBT-FIELD-IDENTITY
-    question: Granularidad del "campo afectado" dentro del snapshot
+    question: Granularidad del "campo afectado" dentro del nodo
     options:
-    - label: "Opcion A: Diff sobre el snapshot completo del nodo, comparando campo\
-        \ a campo. Requiere identidad de campo segun el esquema del snapshot."
-    - label: "Opcion B: La propuesta lleva un descriptor explicito de los campos tocados."
-    - label: "Opcion C: Granularidad coarse al nivel del nodo entero (no se distingue\
-        \ campo a campo). El consumidor que necesite un diff fino lo computa por su\
-        \ cuenta comparando `consolidated` con `pendingProjection`."
-    answer: "Opcion C. Hoy el snapshot solo carga `quiz: QuizTemplateEntity` para\
-      \ QUIZ; los demas niveles tienen snapshot vacio. Sin propuestas multi-campo\
-      \ reales, distinguir \"campo dentro del nodo\" es ingenieria especulativa. Si\
-      \ una iteracion futura introduce propuestas con descriptores de campo, [F-CDIFF-R006](#F-CDIFF-R006)\
-      \ se revisa para emitir granularidad fina."
+    - label: "Opcion A: Granularidad coarse al nivel del nodo entero (no se distingue\
+        \ campo a campo). El consumidor que necesite diff fino lo computa por su cuenta\
+        \ comparando snapshots completos. *Limitacion: descarta los diagnosticos tipados\
+        \ que el motor calcula sobre el arbol con pendientes (token count proyectado,\
+        \ listas de absentLemmas tipadas, etc.); el consumidor solo ve el snapshot\
+        \ crudo y los escalares de score.*"
+    - label: "Opcion B: La propuesta lleva un descriptor explicito de los campos tocados.\
+        \ *Limitacion: ata el contrato de salida a la forma de la propuesta y obliga\
+        \ a que cada strategy de propuesta declare la lista de campos que afecta.\
+        \ No extensible a fields derivados que el motor calcula a partir del nuevo\
+        \ contenido (token count tras cambiar la oracion no es un \"campo de la propuesta\"\
+        ).*"
+    - label: "Opcion C: Tres clases de fields enumeradas en el contrato (diagnosticos\
+        \ tipados / contenido crudo whitelist / estadisticas escalares). *Limitacion:\
+        \ requiere mantenimiento del contrato cada vez que aparece un analizador nuevo\
+        \ o un campo nuevo en el contenido del nodo. La whitelist por tipo de nodo\
+        \ no escala con la cantidad de tipos de cambio que el sistema empieza a producir.*"
+    - label: "Opcion D: **Descubrimiento dinamico**. Un field es cualquier hoja escalar\
+        \ alcanzable por el recorrido recursivo del modelo del nodo cuyo valor difiera\
+        \ entre al menos dos fotos ([F-CDIFF-R019](#F-CDIFF-R019)). Las exclusiones\
+        \ contra ruido se hacen por **rol funcional** (identidad / referencia / metadato\
+        \ de persistencia) en [F-CDIFF-R020](#F-CDIFF-R020), no por whitelist positiva.\
+        \ El anidamiento se gobierna por path estable ([F-CDIFF-R023](#F-CDIFF-R023))\
+        \ y el diff de listas por identidad declarada o posicional ([F-CDIFF-R022](#F-CDIFF-R022))."
+    answer: "Opcion D. El gap concreto que motivo descartar la opcion C original:\
+      \ requeria modificar este requerimiento cada vez que apareciera un analizador\
+      \ nuevo o un campo nuevo en el contenido del nodo, y la whitelist no expresaba\
+      \ la regla observable real (que es \"el motor calculo una hoja distinta entre\
+      \ fotos\"). La opcion D delega el \"que campo aparece\" al recorrido recursivo\
+      \ del modelo y reduce la responsabilidad del contrato a dos invariantes: cualquier\
+      \ hoja escalar con cambio aparece, ningun campo cuyo rol funcional es ruido\
+      \ aparece. Trade-off aceptado por el usuario: el consumidor interpreta hojas\
+      \ crudas (token count, percentage, listas con identidad) en lugar de leer un\
+      \ contrato precocido por dimension; el trabajo del CLI es uniforme y no escala\
+      \ con la cantidad de analizadores."
   - id: DOUBT-PENDING-CONFLICT
     question: Que pasa si dos pendientes del plan activo se pisan entre si?
     options:

@@ -41,6 +41,12 @@ public class SentinelArchitectureTest {
   }
 
   @Test
+  public void enforcePackageFielddiffVisibility() {
+    JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
+    ArchRuleDefinition.noClasses().that().resideOutsideOfPackages("..revisiondomain..", "java..").should().dependOnClassesThat().resideInAPackage("..revisiondomain.fielddiff..").allowEmptyShould(true).check(classes);
+  }
+
+  @Test
   public void enforceAllDeclaredClassesExist() {
     try {
       Class.forName("com.learney.contentaudit.revisiondomain.RevisionVerdict");
@@ -363,14 +369,24 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: NodeImpact - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.revisiondomain.consolidatedview.StatisticImpact");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: StatisticImpact - " + e.getMessage());
-    }
-    try {
       Class.forName("com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedView");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: ConsolidatedView - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.consolidatedview.FieldChange");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FieldChange - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.consolidatedview.FieldPath");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FieldPath - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.consolidatedview.FieldExclusionRole");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FieldExclusionRole - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewBuilder");
@@ -381,6 +397,61 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewBuilderFactory");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: ConsolidatedViewBuilderFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.consolidatedview.NodeFieldDiffer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: NodeFieldDiffer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.fielddiff.FieldExclusionRule");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FieldExclusionRule - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.fielddiff.ListIdentityKeySpec");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ListIdentityKeySpec - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.fielddiff.ListIdentityRule");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ListIdentityRule - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.fielddiff.FieldExclusionRegistry");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FieldExclusionRegistry - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.fielddiff.ListIdentityRegistry");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ListIdentityRegistry - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.fielddiff.NodeFieldDifferFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: NodeFieldDifferFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.fielddiff.RecursiveNodeFieldDiffer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: RecursiveNodeFieldDiffer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.fielddiff.DefaultFieldExclusionRegistry");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultFieldExclusionRegistry - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.fielddiff.DefaultListIdentityRegistry");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultListIdentityRegistry - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.fielddiff.DefaultNodeFieldDifferFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultNodeFieldDifferFactory - " + e.getMessage());
     }
   }
 }

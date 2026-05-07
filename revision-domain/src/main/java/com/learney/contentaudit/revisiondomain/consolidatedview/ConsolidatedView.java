@@ -22,8 +22,6 @@ public class ConsolidatedView {
 
     private List<NodeImpact> nodeImpacts;
 
-    private List<StatisticImpact> statisticImpacts;
-
     private List<NonApplicablePending> nonApplicablePendings;
 
     public ConsolidatedView() {
@@ -32,15 +30,13 @@ public class ConsolidatedView {
     public ConsolidatedView(String activeAuditId, String activePlanId,
             ConsolidatedViewAvailability availability,
             ConsolidatedViewUnavailability unavailability, Instant computedAt,
-            List<NodeImpact> nodeImpacts, List<StatisticImpact> statisticImpacts,
-            List<NonApplicablePending> nonApplicablePendings) {
+            List<NodeImpact> nodeImpacts, List<NonApplicablePending> nonApplicablePendings) {
         this.activeAuditId = activeAuditId;
         this.activePlanId = activePlanId;
         this.availability = availability;
         this.unavailability = unavailability;
         this.computedAt = computedAt;
         this.nodeImpacts = nodeImpacts;
-        this.statisticImpacts = statisticImpacts;
         this.nonApplicablePendings = nonApplicablePendings;
     }
 
@@ -92,14 +88,6 @@ public class ConsolidatedView {
         this.nodeImpacts = nodeImpacts;
     }
 
-    public List<StatisticImpact> getStatisticImpacts() {
-        return this.statisticImpacts;
-    }
-
-    public void setStatisticImpacts(List<StatisticImpact> statisticImpacts) {
-        this.statisticImpacts = statisticImpacts;
-    }
-
     public List<NonApplicablePending> getNonApplicablePendings() {
         return this.nonApplicablePendings;
     }
@@ -119,12 +107,11 @@ public class ConsolidatedView {
                     && Objects.equals(this.unavailability, that.unavailability)
                     && Objects.equals(this.computedAt, that.computedAt)
                     && Objects.equals(this.nodeImpacts, that.nodeImpacts)
-                    && Objects.equals(this.statisticImpacts, that.statisticImpacts)
                     && Objects.equals(this.nonApplicablePendings, that.nonApplicablePendings);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(activeAuditId, activePlanId, availability, unavailability, computedAt, nodeImpacts, statisticImpacts, nonApplicablePendings);
+        return Objects.hash(activeAuditId, activePlanId, availability, unavailability, computedAt, nodeImpacts, nonApplicablePendings);
     }
 }

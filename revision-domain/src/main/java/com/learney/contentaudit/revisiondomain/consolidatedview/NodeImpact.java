@@ -1,8 +1,8 @@
 package com.learney.contentaudit.revisiondomain.consolidatedview;
 
 import com.learney.contentaudit.auditdomain.AuditTarget;
-import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
 
@@ -15,26 +15,22 @@ public class NodeImpact {
 
     private String nodeId;
 
-    private CourseElementSnapshot consolidated;
-
-    private CourseElementSnapshot pendingProjection;
-
     private List<String> acceptedProposalIds;
 
-    private String pendingProposalId;
+    private Map<String, FieldChange> fieldChanges;
+
+    private List<String> pendingProposalIds;
 
     public NodeImpact() {
     }
 
-    public NodeImpact(AuditTarget nodeTarget, String nodeId, CourseElementSnapshot consolidated,
-            CourseElementSnapshot pendingProjection, List<String> acceptedProposalIds,
-            String pendingProposalId) {
+    public NodeImpact(AuditTarget nodeTarget, String nodeId, List<String> acceptedProposalIds,
+            Map<String, FieldChange> fieldChanges, List<String> pendingProposalIds) {
         this.nodeTarget = nodeTarget;
         this.nodeId = nodeId;
-        this.consolidated = consolidated;
-        this.pendingProjection = pendingProjection;
         this.acceptedProposalIds = acceptedProposalIds;
-        this.pendingProposalId = pendingProposalId;
+        this.fieldChanges = fieldChanges;
+        this.pendingProposalIds = pendingProposalIds;
     }
 
     public AuditTarget getNodeTarget() {
@@ -53,22 +49,6 @@ public class NodeImpact {
         this.nodeId = nodeId;
     }
 
-    public CourseElementSnapshot getConsolidated() {
-        return this.consolidated;
-    }
-
-    public void setConsolidated(CourseElementSnapshot consolidated) {
-        this.consolidated = consolidated;
-    }
-
-    public CourseElementSnapshot getPendingProjection() {
-        return this.pendingProjection;
-    }
-
-    public void setPendingProjection(CourseElementSnapshot pendingProjection) {
-        this.pendingProjection = pendingProjection;
-    }
-
     public List<String> getAcceptedProposalIds() {
         return this.acceptedProposalIds;
     }
@@ -77,12 +57,20 @@ public class NodeImpact {
         this.acceptedProposalIds = acceptedProposalIds;
     }
 
-    public String getPendingProposalId() {
-        return this.pendingProposalId;
+    public Map<String, FieldChange> getFieldChanges() {
+        return this.fieldChanges;
     }
 
-    public void setPendingProposalId(String pendingProposalId) {
-        this.pendingProposalId = pendingProposalId;
+    public void setFieldChanges(Map<String, FieldChange> fieldChanges) {
+        this.fieldChanges = fieldChanges;
+    }
+
+    public List<String> getPendingProposalIds() {
+        return this.pendingProposalIds;
+    }
+
+    public void setPendingProposalIds(List<String> pendingProposalIds) {
+        this.pendingProposalIds = pendingProposalIds;
     }
 
     @Override
@@ -92,14 +80,13 @@ public class NodeImpact {
         NodeImpact that = (NodeImpact) o;
         return Objects.equals(this.nodeTarget, that.nodeTarget)
                     && Objects.equals(this.nodeId, that.nodeId)
-                    && Objects.equals(this.consolidated, that.consolidated)
-                    && Objects.equals(this.pendingProjection, that.pendingProjection)
                     && Objects.equals(this.acceptedProposalIds, that.acceptedProposalIds)
-                    && Objects.equals(this.pendingProposalId, that.pendingProposalId);
+                    && Objects.equals(this.fieldChanges, that.fieldChanges)
+                    && Objects.equals(this.pendingProposalIds, that.pendingProposalIds);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nodeTarget, nodeId, consolidated, pendingProjection, acceptedProposalIds, pendingProposalId);
+        return Objects.hash(nodeTarget, nodeId, acceptedProposalIds, fieldChanges, pendingProposalIds);
     }
 }

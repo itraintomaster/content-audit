@@ -175,6 +175,7 @@ The following models and interfaces are available from dependencies. You can use
 | courseElementLocator | `CourseElementLocator` |
 | courseMapper | `CourseMapper` |
 | auditEngine | `AuditEngine` |
+| nodeFieldDiffer | `NodeFieldDiffer` |
 
 ### Reviser (port)
 

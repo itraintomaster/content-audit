@@ -827,6 +827,43 @@ Examples:
 |--------|--------|
 | `create(ConsolidatedViewBuilderConfig config): ConsolidatedViewBuilder` | (none) |
 
+#### NodeFieldDiffer (package: consolidatedview)
+
+**Package:** `com.learney.contentaudit.revisiondomain.consolidatedview`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `diff(AuditNode original, AuditNode consolidated, AuditNode pendingProjection): Map<String,FieldChange>` | (none) |
+
+#### FieldExclusionRegistry (package: fielddiff)
+
+**Package:** `com.learney.contentaudit.revisiondomain.fielddiff`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `isExcluded(String declaringTypeName, String fieldName): boolean` | (none) |
+| `getRole(String declaringTypeName, String fieldName): Optional<FieldExclusionRole>` | (none) |
+
+#### ListIdentityRegistry (package: fielddiff)
+
+**Package:** `com.learney.contentaudit.revisiondomain.fielddiff`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `getKeySpec(String declaringTypeName, String fieldName): Optional<ListIdentityKeySpec>` | (none) |
+
+#### NodeFieldDifferFactory (package: fielddiff)
+
+**Package:** `com.learney.contentaudit.revisiondomain.fielddiff`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `create(): NodeFieldDiffer` | (none) |
+
 ### Module: revision-infrastructure
 
 #### LemmaAbsenceLlmGeneratorFactory (package: lagen)

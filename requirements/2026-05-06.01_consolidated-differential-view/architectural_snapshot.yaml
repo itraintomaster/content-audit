@@ -38,7 +38,8 @@ description: "FEAT-CDIFF: Estructura consolidada por AuditReport con propuestas 
   \ Add the two fields the body actually uses: 'allAnalyzers: List<ContentAnalyzer>'\
   \ and 'scoreAggregator: ScoreAggregator'. Both are referenced in runAudit() and\
   \ runDetailedAudit() and both call sites (Main.java:254 and DefaultAuditRunnerTest:37)\
-  \ already pass them as the 4th and 5th arguments to the constructor."
+  \ already pass them as the 4th and 5th arguments to the constructor.; Test patch:\
+  \ try to delete F-CDIFF-J007 journey via _change: delete on a features block."
 modules:
 - name: audit-domain
   models:
@@ -594,8 +595,6 @@ features:
     testPackage: com.learney.contentaudit.auditcli.commands
   - id: F-CDIFF-J007
     validation: AUTO_VALIDATED
-    testModule: audit-cli
-    testPackage: com.learney.contentaudit.auditcli.commands
   - id: F-CDIFF-J008
     validation: AUTO_VALIDATED
     testModule: revision-domain

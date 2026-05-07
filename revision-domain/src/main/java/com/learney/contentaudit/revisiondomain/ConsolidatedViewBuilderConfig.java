@@ -6,6 +6,7 @@ import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.auditdomain.CourseMapper;
 import com.learney.contentaudit.coursedomain.CourseRepository;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
+import com.learney.contentaudit.revisiondomain.consolidatedview.NodeFieldDiffer;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
 
@@ -30,6 +31,8 @@ public class ConsolidatedViewBuilderConfig {
 
     private AuditEngine auditEngine;
 
+    private NodeFieldDiffer nodeFieldDiffer;
+
     public ConsolidatedViewBuilderConfig() {
     }
 
@@ -37,7 +40,7 @@ public class ConsolidatedViewBuilderConfig {
             AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore,
             RevisionArtifactStore revisionArtifactStore, CourseRepository courseRepository,
             CourseElementLocator courseElementLocator, CourseMapper courseMapper,
-            AuditEngine auditEngine) {
+            AuditEngine auditEngine, NodeFieldDiffer nodeFieldDiffer) {
         this.activeAnalysisSelectionStore = activeAnalysisSelectionStore;
         this.auditReportStore = auditReportStore;
         this.refinementPlanStore = refinementPlanStore;
@@ -46,6 +49,7 @@ public class ConsolidatedViewBuilderConfig {
         this.courseElementLocator = courseElementLocator;
         this.courseMapper = courseMapper;
         this.auditEngine = auditEngine;
+        this.nodeFieldDiffer = nodeFieldDiffer;
     }
 
     public ActiveAnalysisSelectionStore getActiveAnalysisSelectionStore() {
@@ -113,6 +117,14 @@ public class ConsolidatedViewBuilderConfig {
         this.auditEngine = auditEngine;
     }
 
+    public NodeFieldDiffer getNodeFieldDiffer() {
+        return this.nodeFieldDiffer;
+    }
+
+    public void setNodeFieldDiffer(NodeFieldDiffer nodeFieldDiffer) {
+        this.nodeFieldDiffer = nodeFieldDiffer;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -125,11 +137,12 @@ public class ConsolidatedViewBuilderConfig {
                     && Objects.equals(this.courseRepository, that.courseRepository)
                     && Objects.equals(this.courseElementLocator, that.courseElementLocator)
                     && Objects.equals(this.courseMapper, that.courseMapper)
-                    && Objects.equals(this.auditEngine, that.auditEngine);
+                    && Objects.equals(this.auditEngine, that.auditEngine)
+                    && Objects.equals(this.nodeFieldDiffer, that.nodeFieldDiffer);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(activeAnalysisSelectionStore, auditReportStore, refinementPlanStore, revisionArtifactStore, courseRepository, courseElementLocator, courseMapper, auditEngine);
+        return Objects.hash(activeAnalysisSelectionStore, auditReportStore, refinementPlanStore, revisionArtifactStore, courseRepository, courseElementLocator, courseMapper, auditEngine, nodeFieldDiffer);
     }
 }

@@ -1,0 +1,398 @@
+code: FEAT-CDIFF
+description: "FEAT-CDIFF v3 (refactor uniforme field → tripleta). NodeImpact deja\
+  \ de exponer snapshots crudos por nodo y lleva un mapa dinamico de fields cambiados\
+  \ con su tripleta (original, consolidated, pendingProjection). StatisticImpact se\
+  \ elimina; los scores son fields del mapa. Se introduce el motor de descubrimiento\
+  \ dinamico (NodeFieldDiffer) en un nuevo package fielddiff con sus dos registros\
+  \ centrales (FieldExclusionRegistry + ListIdentityRegistry) que materializan R020/R022\
+  \ sin contaminar los records existentes. R023 (path) queda capturado en el record\
+  \ FieldPath. El builder se refactoriza para invocar el nuevo motor. El formatter\
+  \ se adapta a la nueva forma de salida.; FEAT-CDIFF v3 (continuacion del refactor\
+  \ field → tripleta): extender ConsolidatedViewBuilderConfig con nodeFieldDiffer\
+  \ (la factory lo unpackea para pasarlo al builder), y rehacer DefaultConsolidatedViewFormatter\
+  \ para serializar la nueva NodeImpact (mapa de fields + acceptedProposalIds + pendingProposalIds)\
+  \ y reflejar la eliminacion de StatisticImpact y de los snapshots crudos. Los handwrittenTests\
+  \ del formatter de v2 que asumian StatisticImpact se borran.; FEAT-CDIFF v3: re-add\
+  \ carriers en consolidatedview (StatisticImpact delete + FieldChange/FieldPath/FieldExclusionRole\
+  \ add) que se perdieron en el merge anterior."
+modules:
+- name: revision-domain
+  description: "Domain module for the revision phase of the refinement pipeline. Consumes\
+    \ refiner-domain (task and CorrectionContext), course-domain (course entities\
+    \ and the CourseRepository port owned by the caller) and audit-domain (AuditReport\
+    \ / AuditEngine / ActiveAnalysisSelectionStore for the eager what-if simulation\
+    \ that powers the impact preview and the consolidated view). Exposes Reviser/RevisionValidator/RevisionArtifactStore/CourseElementLocator/ImpactPreviewStore\
+    \ ports plus the RevisionEngineFactory seam, the lemmaabsence proposal-strategy\
+    \ SPI, the impactpreview SPI (FEAT-PIPRE) and the consolidatedview SPI (FEAT-CDIFF)\
+    \ — including the dynamic field-diff engine that powers FEAT-CDIFF v3 (recursive\
+    \ walker + central role-based exclusion registry + central list-identity registry,\
+    \ all inside the fielddiff package). The bypass baseline, the impact-preview internals,\
+    \ the consolidated-view internals and the field-diff internals live behind their\
+    \ respective internal packages; external modules only see factories, ports and\
+    \ carrier records."
+  models:
+  - name: ConsolidatedViewBuilderConfig
+    type: record
+    fields:
+    - name: nodeFieldDiffer
+      type: NodeFieldDiffer
+      description: F-CDIFF v3. Required. Motor de descubrimiento dinamico inyectado
+        por la composition root via DefaultNodeFieldDifferFactory.create(). El factory
+        de ConsolidatedViewBuilder lo unpackea del config y lo pasa a DefaultConsolidatedViewBuilder.
+      _change: add
+    visibility: public
+    _change: modify
+  packages:
+  - name: consolidatedview
+    description: "FEAT-CDIFF v3. Public SPI for the consolidated structure that combines\
+      \ the baseline of an AuditReport with the effects of accepted and pending proposals\
+      \ of its active plan. Houses the builder port (ConsolidatedViewBuilder) plus\
+      \ its factory (ConsolidatedViewBuilderFactory) and every carrier the CLI rendering\
+      \ needs to read: the root document (ConsolidatedView), the per-node impact (NodeImpact\
+      \ carrying a uniform map of field-level changes), the field-change carrier (FieldChange\
+      \ triple), the field path (FieldPath), the non-applicable pending list (NonApplicablePending),\
+      \ the availability tagging (ConsolidatedViewAvailability + ConsolidatedViewUnavailability)\
+      \ and the closed taxonomies (ConsolidatedViewUnavailabilityReason, NonApplicablePendingReason).\
+      \ The previous StatisticImpact carrier disappeared in v3 (R009: scores are just\
+      \ fields of the map)."
+    models:
+    - name: NodeImpact
+      type: record
+      fields:
+      - name: consolidated
+        type: CourseElementSnapshot
+        _change: delete
+      - name: pendingProjection
+        type: CourseElementSnapshot
+        _change: delete
+      - name: pendingProposalId
+        type: String
+        _change: delete
+      - name: fieldChanges
+        type: "Map<String,FieldChange>"
+        description: "F-CDIFF-R006/R019/R023. Mapa de hojas escalares con cambio.\
+          \ Clave: path estable producido por FieldPath (R023). Valor: tripleta (original,\
+          \ consolidated, pendingProjection) producida por NodeFieldDiffer recorriendo\
+          \ los tres AuditNode (R007 invariantes 1-3). Vacio si el nodo no tiene fields\
+          \ que difieran entre al menos dos fotos modulo R020 — en ese caso el nodo\
+          \ no se incluye en ConsolidatedView.nodeImpacts (R006 invariante 3)."
+        _change: add
+      - name: pendingProposalIds
+        type: List<String>
+        description: F-CDIFF-R011 invariante 2. Lista de proposalId con veredicto
+          PENDING_APPROVAL aplicable del plan activo que afectaron al nodo (al contenido
+          propio o al subarbol que contribuye a sus fotos). Vacia o nula si no hay
+          pendientes aplicables que toquen este nodo. Reemplaza al campo singular
+          pendingProposalId de v2 porque ahora un mismo nodo puede acumular varias
+          pendientes aplicables sobre fields distintos.
+        _change: add
+      visibility: public
+      _change: modify
+    - name: ConsolidatedView
+      type: record
+      fields:
+      - name: statisticImpacts
+        type: List<StatisticImpact>
+        _change: delete
+      visibility: public
+      _change: modify
+    - name: StatisticImpact
+      type: record
+      _change: delete
+    - name: FieldChange
+      type: record
+      fields:
+      - name: original
+        type: Object
+        description: "F-CDIFF-R007.1. Valor de la hoja en el baseline del AuditReport,\
+          \ copiado sin transformacion. null si la hoja no existe en el baseline."
+      - name: consolidated
+        type: Object
+        description: "F-CDIFF-R007.2. Valor de la hoja en el AuditReport del subarbol\
+          \ con-aceptadas, copiado sin transformacion. null si la hoja no existe en\
+          \ el consolidated."
+      - name: pendingProjection
+        type: Object
+        description: "F-CDIFF-R007.3. Valor de la hoja en el AuditReport del subarbol\
+          \ con aceptadas+pendientes aplicables, copiado sin transformacion. null\
+          \ si la hoja no existe en pendingProjection."
+      visibility: public
+      _change: add
+    - name: FieldPath
+      type: record
+      fields:
+      - name: raw
+        type: String
+        description: Representacion textual canonica de la clave del field. Es el
+          valor que aparece como llave en NodeImpact.fieldChanges.
+      visibility: public
+      _change: add
+    - name: FieldExclusionRole
+      type: enum
+      fields:
+      - name: OPAQUE_PERSISTENCE_ID
+        description: "F-CDIFF-R020.1. Identificadores opacos generados por la persistencia\
+          \ (_id, $oid, formas equivalentes)."
+      - name: STRUCTURAL_REFERENCE
+        description: "F-CDIFF-R020.2. Referencias estructurales que el dominio mantiene\
+          \ para navegacion (parentId, courseId, milestoneId, topicId, knowledgeId,\
+          \ quizId cuando aparecen como referencia dentro de otro nodo, no como identidad\
+          \ propia)."
+      - name: TIMESTAMP
+        description: "F-CDIFF-R020.3. Timestamps de creacion / actualizacion de cualquier\
+          \ nivel del modelo (Instant, LocalDateTime sobre campos createdAt/updatedAt\
+          \ y similares)."
+      - name: INTERNAL_ORDER
+        description: "F-CDIFF-R020.4. Ordenes derivados de la posicion en disco /\
+          \ serializacion (indices de array de JSON, claves de orden, contadores que\
+          \ el almacenamiento gestiona)."
+      - name: NON_SEMANTIC
+        description: "F-CDIFF-R020.5. Categoria escape: cualquier valor cuya diferencia\
+          \ entre versiones no represente un cambio semantico observable y que no\
+          \ caiga en las cuatro anteriores."
+      visibility: public
+      _change: add
+    interfaces:
+    - name: NodeFieldDiffer
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "diff(AuditNode original, AuditNode consolidated, AuditNode pendingProjection):\
+          \ Map<String,FieldChange>"
+      visibility: public
+      _change: add
+    _change: modify
+  - name: engine
+    implementations:
+    - name: DefaultConsolidatedViewBuilder
+      requiresInject:
+      - name: nodeFieldDiffer
+        type: NodeFieldDiffer
+        description: "F-CDIFF-R019/R020/R022/R023: el motor de descubrimiento dinamico\
+          \ que reemplaza la logica v2 de snapshots crudos + collectStatisticImpacts.\
+          \ El builder le pasa los tres AuditNode (baseline / consolidated / pendingProjection)\
+          \ por cada nodeTarget+nodeId tocado, y obtiene el mapa { fieldPath → FieldChange\
+          \ } que copia tal cual a NodeImpact.fieldChanges. El builder NO interpreta\
+          \ el contenido del mapa; es la frontera entre 'que campos cambiaron' (R019)\
+          \ y 'que decisiones del plan los provocaron' (R011)."
+        _change: add
+      handwrittenTests:
+      - name: "Dado un nodo hoja sin aceptadas ni pendientes en el plan activo, cuando\
+          \ build corre, entonces ese nodo no aparece en nodeImpacts (la salida solo\
+          \ emite nodos afectados)"
+        _change: delete
+      - name: "Dado un nodo hoja con una pendiente en el plan activo y sin aceptadas,\
+          \ cuando build corre, entonces NodeImpact.consolidated coincide con el snapshot\
+          \ del baseline y pendingProjection coincide con el snapshot resultante de\
+          \ aplicar la pendiente sobre ese baseline"
+        _change: delete
+      - name: "Dado un nodo hoja con una propuesta aceptada y sin pendientes, cuando\
+          \ build corre, entonces NodeImpact.consolidated coincide con el elementAfter\
+          \ de la aceptada y pendingProjection es null"
+        _change: delete
+      - name: "Dado un nodo hoja con una aceptada y una pendiente sobre el mismo nodeId,\
+          \ cuando build corre, entonces pendingProjection se calcula aplicando la\
+          \ pendiente sobre consolidated (es decir sobre el elementAfter de la aceptada)\
+          \ y no sobre el snapshot original del baseline"
+        _change: delete
+      - name: "Dado un nodo hoja con una pendiente aplicable, cuando build corre,\
+          \ entonces NodeImpact.pendingProposalId equivale al proposalId de la pendiente\
+          \ que produjo pendingProjection"
+        _change: delete
+      - name: "Dado un nodo padre cuyo subarbol contiene un quiz afectado por una\
+          \ aceptada, cuando build corre, entonces aparece un NodeImpact para ese\
+          \ padre y los valores consolidados de sus estadisticas resultan de re-agregar\
+          \ el subarbol con la estrategia del analizador (no de sumar deltas individuales)"
+        _change: delete
+      - name: "Dado un nodo padre cuyo subarbol no contiene aceptadas ni pendientes,\
+          \ cuando build corre, entonces ese padre no aparece en nodeImpacts ni en\
+          \ statisticImpacts"
+        _change: delete
+      - name: "Dada una estadistica tocada solo por una aceptada en el plan activo,\
+          \ cuando build corre, entonces el StatisticImpact correspondiente expone\
+          \ original y consolidated distintos, acceptedDelta no nulo, y pendingProjection\
+          \ y pendingDelta nulos"
+        _change: delete
+      - name: "Dada una estadistica tocada solo por una pendiente en el plan activo,\
+          \ cuando build corre, entonces el StatisticImpact correspondiente expone\
+          \ consolidated igual a original, acceptedDelta cero, y pendingProjection\
+          \ con pendingDelta no nulos"
+        _change: delete
+      - name: "Dada una estadistica del baseline no tocada por ninguna decision del\
+          \ plan activo, cuando build corre, entonces ese par (nivel, dimension) no\
+          \ aparece en statisticImpacts"
+        _change: delete
+      - name: "Dado cualquier StatisticImpact emitido por build, entonces acceptedDelta\
+          \ es exactamente consolidated menos original, sin escalado relativo"
+        _change: delete
+      - name: "Dado un StatisticImpact con pendingProjection no nulo, entonces pendingDelta\
+          \ es exactamente pendingProjection menos consolidated, sin escalado relativo"
+        _change: delete
+      - name: "Dado un AuditReport con pares (nivel, dimension) reportados por el\
+          \ motor en el baseline, cuando build corre, entonces statisticImpacts solo\
+          \ contiene pares presentes en el baseline (la salida no inventa pares ausentes\
+          \ ni reordena la granularidad)"
+        _change: delete
+      - name: "Dada una pendiente cuyo nodeId no se encuentra en el subarbol vigente,\
+          \ cuando build corre, entonces aparece en nonApplicablePendings con reason\
+          \ NODE_ABSENT y detail no vacio, y no contribuye a pendingProjection ni\
+          \ pendingDelta de ningun nodo o estadistica"
+        _change: delete
+      - name: "Dadas dos pendientes sobre el mismo nodeId aplicadas en orden createdAt\
+          \ ascendente cuyo elementBefore de la segunda no coincide con el consolidated\
+          \ tras aplicar la primera, cuando build corre, entonces la segunda aparece\
+          \ en nonApplicablePendings con reason ELEMENT_BEFORE_MISMATCH y no contribuye\
+          \ a pendingProjection ni pendingDelta"
+        _change: delete
+      - name: "Dada una pendiente marcada como NOT_APPLICABLE y otras pendientes aplicables\
+          \ en el mismo plan activo, cuando build corre, entonces el resto del consolidado\
+          \ se entrega normalmente y solo la pendiente no aplicable queda excluida\
+          \ del calculo de proyeccion"
+        _change: delete
+      - name: "Dada una RevisionProposal cuyo elementBefore y elementAfter referencian\
+          \ el mismo nodeId estable, cuando build corre, entonces el NodeImpact resultante\
+          \ conserva ese nodeId en consolidated y pendingProjection sin modelar renombres\
+          \ ni reubicaciones"
+        _change: delete
+      - name: "Dado un plan activo con varias aceptadas y varias pendientes que tocan\
+          \ distintos nodos del curso, cuando build corre, entonces el ConsolidatedView\
+          \ retornado combina baseline + aceptadas + pendientes en una unica estructura\
+          \ con nodeImpacts y statisticImpacts agregados"
+        _change: delete
+      _change: modify
+    _change: modify
+  - name: fielddiff
+    description: "F-CDIFF v3. Motor interno del descubrimiento dinamico de fields\
+      \ cambiados que NodeFieldDiffer expone en su contrato publico. Aloja la implementacion\
+      \ recursiva (RecursiveNodeFieldDiffer), los dos registros centrales que materializan\
+      \ R020 y R022 sin contaminar los records de audit-domain / course-domain (FieldExclusionRegistry,\
+      \ ListIdentityRegistry) y los carriers internos del recorrido (FieldExclusionRule,\
+      \ ListIdentityRule, ListIdentityKeySpec). Solo la factory publica del motor\
+      \ cruza la frontera; el resto es package-private. Empaquetado aparte de consolidatedview\
+      \ porque la mecanica de diff es reutilizable: un futuro consumidor (p.ej. un\
+      \ validador estructural de cursos, otro analizador) puede pedir el mismo NodeFieldDiffer\
+      \ sin arrastrar la maquinaria del consolidado entero. El nombre fielddiff describe\
+      \ el concepto (diferenciacion a nivel de field) y no un patron GoF."
+    visibility: internal
+    models:
+    - name: FieldExclusionRule
+      type: record
+      fields:
+      - name: declaringTypeName
+        type: String
+        description: "Nombre simple del tipo Java que declara el campo (p.ej. 'AuditableQuiz',\
+          \ 'AuditNode', 'MisplacedLemma'). El motor matchea por nombre simple para\
+          \ no acoplar el registry al package layout."
+      - name: fieldName
+        type: String
+        description: "Nombre del campo a excluir (p.ej. 'id', 'parentId', 'createdAt')."
+      - name: role
+        type: FieldExclusionRole
+        description: Rol funcional asignado. Sirve a tooling de auditoria del registry
+          para revisar la coherencia de las exclusiones; el motor solo pregunta 'esta
+          excluido?'.
+      visibility: internal
+      _change: add
+    - name: ListIdentityKeySpec
+      type: record
+      fields:
+      - name: fieldNames
+        type: List<String>
+        description: "Nombres de los campos que conforman la identidad natural del\
+          \ elemento. Si la lista es vacia, el match no aplica y el motor cae en diff\
+          \ posicional (R022 caso 2)."
+      visibility: internal
+      _change: add
+    - name: ListIdentityRule
+      type: record
+      fields:
+      - name: declaringTypeName
+        type: String
+        description: "Nombre simple del tipo Java que declara el campo lista (p.ej.\
+          \ 'LemmaAbsenceLevelDiagnosis', 'CocaBucketsLevelDiagnosis')."
+      - name: fieldName
+        type: String
+        description: "Nombre del campo lista (p.ej. 'absentLemmas', 'buckets', 'progressionAssessments')."
+      - name: keySpec
+        type: ListIdentityKeySpec
+        description: Definicion de la clave natural a usar para diff por elemento.
+      visibility: internal
+      _change: add
+    interfaces:
+    - name: FieldExclusionRegistry
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "isExcluded(String declaringTypeName, String fieldName): boolean"
+      - signature: "getRole(String declaringTypeName, String fieldName): Optional<FieldExclusionRole>"
+      visibility: internal
+      _change: add
+    - name: ListIdentityRegistry
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "getKeySpec(String declaringTypeName, String fieldName): Optional<ListIdentityKeySpec>"
+      visibility: internal
+      _change: add
+    - name: NodeFieldDifferFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(): NodeFieldDiffer"
+      visibility: public
+      _change: add
+    implementations:
+    - name: RecursiveNodeFieldDiffer
+      requiresInject:
+      - name: exclusionRegistry
+        type: FieldExclusionRegistry
+        description: Consultado para cada hoja antes de emitirla. R020.
+      - name: identityRegistry
+        type: ListIdentityRegistry
+        description: Consultado al alcanzar cada lista para decidir entre diff por
+          elemento o posicional. R022.
+      visibility: internal
+      implements:
+      - NodeFieldDiffer
+      _change: add
+    - name: DefaultFieldExclusionRegistry
+      visibility: internal
+      implements:
+      - FieldExclusionRegistry
+      _change: add
+    - name: DefaultListIdentityRegistry
+      visibility: internal
+      implements:
+      - ListIdentityRegistry
+      _change: add
+    - name: DefaultNodeFieldDifferFactory
+      visibility: public
+      implements:
+      - NodeFieldDifferFactory
+      _change: add
+    _change: add
+  _change: modify
+- name: audit-cli
+  packages:
+  - name: formatting
+    implementations:
+    - name: DefaultConsolidatedViewFormatter
+      handwrittenTests:
+      - name: "Dado un StatisticImpact con original, consolidated y acceptedDelta\
+          \ poblados (sin pendiente), cuando format corre, entonces los tres valores\
+          \ aparecen en la salida con la misma magnitud en escala absoluta y pendingProjection/pendingDelta\
+          \ no aparecen como campos numericos"
+        _change: delete
+      - name: "Dado un StatisticImpact con pendingProjection y pendingDelta no nulos,\
+          \ cuando format corre, entonces los cuatro valores numericos (original,\
+          \ consolidated, acceptedDelta, pendingDelta) y pendingProjection aparecen\
+          \ en la salida"
+        _change: delete
+      - name: "Dado un StatisticImpact con cualquier valor de original y consolidated,\
+          \ cuando format corre, entonces el valor textual de acceptedDelta en la\
+          \ salida coincide con consolidated menos original sin conversion porcentual\
+          \ relativa"
+        _change: delete
+      _change: modify
+    _change: modify
+  _change: modify

@@ -1,10 +1,10 @@
-generatedAt: 2026-05-06T18:21:39.340681Z
+generatedAt: 2026-05-07T01:00:54.471224Z
 system: ContentAudit
 version: 0.0.1
 features:
 - id: FEAT-DLABS
   state: IMPLEMENTING
-  requirementFile: requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DLABS-R001
     state: NO_TESTS
@@ -206,7 +206,7 @@ features:
     - mutationScore 40% < 60%
 - id: FEAT-CLIRV
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLIRV-R001
     state: PASSING
@@ -857,7 +857,7 @@ features:
     - crapHotspots 7 > 5
 - id: FEAT-LREC
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LREC-R001
     state: NO_TESTS
@@ -1027,7 +1027,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCLAQS
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLAQS-R001
     state: PASSING
@@ -1231,7 +1231,7 @@ features:
     - mutationScore 34% < 60%
 - id: FEAT-DCOCA
   state: IMPLEMENTING
-  requirementFile: requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DCOCA-R001
     state: NO_TESTS
@@ -1330,7 +1330,7 @@ features:
     verdict: PASSED
 - id: FEAT-QSENT
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-22.01_quiz-sentence-dsl/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-22.01_quiz-sentence-dsl/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-QSENT-R001
     state: PASSING
@@ -1623,15 +1623,15 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 89
-      linesMissed: 13
-      linesTotal: 102
-      lineCoveragePct: 87
+      linesCovered: 81
+      linesMissed: 24
+      linesTotal: 105
+      lineCoveragePct: 77
       branchesCovered: 31
       branchesMissed: 17
       branchesTotal: 48
       branchCoveragePct: 64
-      blendPct: 75
+      blendPct: 70
     mutation:
       totalMutants: 38
       killed: 14
@@ -1645,19 +1645,19 @@ features:
       totalMethods: 14
       hotspots: 0
       maxCrap: 11.408375
-      averageCrap: 2.8384922857142856
+      averageCrap: 3.1242065714285716
       simple: 13
       moderate: 1
       high: 0
       veryHigh: 0
       healthPct: 96
-    healthScore: 63
+    healthScore: 61
     verdict: WARNED
     violations:
     - mutationScore 36% < 60%
 - id: FEAT-COURSE
   state: IMPLEMENTED
-  requirementFile: requirements/2026-03-15.01_course-structure/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-15.01_course-structure/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-COURSE-R001
     state: PASSING
@@ -1936,7 +1936,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCLALEN
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-28.02_rcla-length-aware-context/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-28.02_rcla-length-aware-context/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLALEN-R001
     state: PASSING
@@ -2235,7 +2235,7 @@ features:
     - mutationScore 35% < 60%
 - id: FEAT-COCA
   state: DRAFT
-  requirementFile: requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-COCA-R001
     state: NO_TESTS
@@ -2358,7 +2358,7 @@ features:
     verdict: PASSED
 - id: FEAT-NLP
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-NLP-R001
     state: NO_TESTS
@@ -2497,7 +2497,7 @@ features:
     - mutationScore 32% < 60%
 - id: FEAT-LABS
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LABS-R001
     state: PASSING
@@ -3418,7 +3418,7 @@ features:
     - mutationScore 44% < 60%
 - id: FEAT-CLI
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLI-R001
     state: PASSING
@@ -3541,7 +3541,7 @@ features:
     - mutationScore 18% < 60%
 - id: FEAT-PIPRE
   state: IMPLEMENTED
-  requirementFile: requirements/2026-05-03.01_proposal-impact-preview/REQUIREMENT.md
+  requirementFile: ./requirements/2026-05-03.01_proposal-impact-preview/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-PIPRE-R001
     state: PASSING
@@ -3889,7 +3889,7 @@ features:
     - mutationScore 34% < 60%
 - id: f0b4e57b-7c0f-4e3e-b9b3-843aef216a67
   state: DRAFT
-  requirementFile: requirements/2026-04-28.01_laps-engine-public-visibility/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-28.01_laps-engine-public-visibility/REQUIREMENT.md
   rulesCoverage:
   - ruleId: 27ac13c5-bc70-4e9b-96c3-3315542d6835
     state: NO_TESTS
@@ -3936,7 +3936,7 @@ features:
     verdict: PASSED
 - id: FEAT-KTLEN
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-KTLEN-R001
     state: PASSING
@@ -4262,8 +4262,9 @@ features:
     healthScore: 86
     verdict: PASSED
 - id: FEAT-CDIFF
-  state: IMPLEMENTING
-  requirementFile: requirements/2026-05-06.01_consolidated-differential-view/REQUIREMENT.md
+  state: ANALYSED
+  requirementFile: ./requirements/2026-05-06.01_consolidated-differential-view/REQUIREMENT.md
+  patchFile: ./requirements/2026-05-06.01_consolidated-differential-view/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-CDIFF-R001
     state: PASSING
@@ -4379,38 +4380,7 @@ features:
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R006
-    state: PASSING
-    tests:
-    - name: "Dado un nodo hoja sin aceptadas ni pendientes en el plan activo, cuando\
-        \ build corre, entonces ese nodo no aparece en nodeImpacts (la salida solo\
-        \ emite nodos afectados)"
-      implemented: true
-      passing: true
-      module: revision-domain
-      implementation: DefaultConsolidatedViewBuilder
-    - name: "Dado un nodo hoja con una pendiente en el plan activo y sin aceptadas,\
-        \ cuando build corre, entonces NodeImpact.consolidated coincide con el snapshot\
-        \ del baseline y pendingProjection coincide con el snapshot resultante de\
-        \ aplicar la pendiente sobre ese baseline"
-      implemented: true
-      passing: true
-      module: revision-domain
-      implementation: DefaultConsolidatedViewBuilder
-    - name: "Dado un nodo hoja con una propuesta aceptada y sin pendientes, cuando\
-        \ build corre, entonces NodeImpact.consolidated coincide con el elementAfter\
-        \ de la aceptada y pendingProjection es null"
-      implemented: true
-      passing: true
-      module: revision-domain
-      implementation: DefaultConsolidatedViewBuilder
-    - name: "Dado un nodo hoja con una aceptada y una pendiente sobre el mismo nodeId,\
-        \ cuando build corre, entonces pendingProjection se calcula aplicando la pendiente\
-        \ sobre consolidated (es decir sobre el elementAfter de la aceptada) y no\
-        \ sobre el snapshot original del baseline"
-      implemented: true
-      passing: true
-      module: revision-domain
-      implementation: DefaultConsolidatedViewBuilder
+    state: NO_TESTS
   - ruleId: F-CDIFF-R007
     state: PASSING
     tests:
@@ -4421,104 +4391,22 @@ features:
       passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
-    - name: "Dado un nodo hoja con una pendiente aplicable, cuando build corre, entonces\
-        \ NodeImpact.pendingProposalId equivale al proposalId de la pendiente que\
-        \ produjo pendingProjection"
-      implemented: true
-      passing: true
-      module: revision-domain
-      implementation: DefaultConsolidatedViewBuilder
-  - ruleId: F-CDIFF-R008
-    state: PASSING
-    tests:
-    - name: "Dado un nodo padre cuyo subarbol contiene un quiz afectado por una aceptada,\
-        \ cuando build corre, entonces aparece un NodeImpact para ese padre y los\
-        \ valores consolidados de sus estadisticas resultan de re-agregar el subarbol\
-        \ con la estrategia del analizador (no de sumar deltas individuales)"
-      implemented: true
-      passing: true
-      module: revision-domain
-      implementation: DefaultConsolidatedViewBuilder
-    - name: "Dado un nodo padre cuyo subarbol no contiene aceptadas ni pendientes,\
-        \ cuando build corre, entonces ese padre no aparece en nodeImpacts ni en statisticImpacts"
-      implemented: true
-      passing: true
-      module: revision-domain
-      implementation: DefaultConsolidatedViewBuilder
+  - ruleId: F-CDIFF-R019
+    state: NO_TESTS
+  - ruleId: F-CDIFF-R020
+    state: NO_TESTS
+  - ruleId: F-CDIFF-R023
+    state: NO_TESTS
+  - ruleId: F-CDIFF-R021
+    state: NO_TESTS
+  - ruleId: F-CDIFF-R022
+    state: NO_TESTS
   - ruleId: F-CDIFF-R009
-    state: PASSING
-    tests:
-    - name: "Dado un StatisticImpact con original, consolidated y acceptedDelta poblados\
-        \ (sin pendiente), cuando format corre, entonces los tres valores aparecen\
-        \ en la salida con la misma magnitud en escala absoluta y pendingProjection/pendingDelta\
-        \ no aparecen como campos numericos"
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: DefaultConsolidatedViewFormatter
-    - name: "Dado un StatisticImpact con pendingProjection y pendingDelta no nulos,\
-        \ cuando format corre, entonces los cuatro valores numericos (original, consolidated,\
-        \ acceptedDelta, pendingDelta) y pendingProjection aparecen en la salida"
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: DefaultConsolidatedViewFormatter
-    - name: "Dada una estadistica tocada solo por una aceptada en el plan activo,\
-        \ cuando build corre, entonces el StatisticImpact correspondiente expone original\
-        \ y consolidated distintos, acceptedDelta no nulo, y pendingProjection y pendingDelta\
-        \ nulos"
-      implemented: true
-      passing: true
-      module: revision-domain
-      implementation: DefaultConsolidatedViewBuilder
-    - name: "Dada una estadistica tocada solo por una pendiente en el plan activo,\
-        \ cuando build corre, entonces el StatisticImpact correspondiente expone consolidated\
-        \ igual a original, acceptedDelta cero, y pendingProjection con pendingDelta\
-        \ no nulos"
-      implemented: true
-      passing: true
-      module: revision-domain
-      implementation: DefaultConsolidatedViewBuilder
-    - name: "Dada una estadistica del baseline no tocada por ninguna decision del\
-        \ plan activo, cuando build corre, entonces ese par (nivel, dimension) no\
-        \ aparece en statisticImpacts"
-      implemented: true
-      passing: true
-      module: revision-domain
-      implementation: DefaultConsolidatedViewBuilder
+    state: NO_TESTS
   - ruleId: F-CDIFF-R010
-    state: PASSING
-    tests:
-    - name: "Dado un StatisticImpact con cualquier valor de original y consolidated,\
-        \ cuando format corre, entonces el valor textual de acceptedDelta en la salida\
-        \ coincide con consolidated menos original sin conversion porcentual relativa"
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: DefaultConsolidatedViewFormatter
-    - name: "Dado cualquier StatisticImpact emitido por build, entonces acceptedDelta\
-        \ es exactamente consolidated menos original, sin escalado relativo"
-      implemented: true
-      passing: true
-      module: revision-domain
-      implementation: DefaultConsolidatedViewBuilder
-    - name: "Dado un StatisticImpact con pendingProjection no nulo, entonces pendingDelta\
-        \ es exactamente pendingProjection menos consolidated, sin escalado relativo"
-      implemented: true
-      passing: true
-      module: revision-domain
-      implementation: DefaultConsolidatedViewBuilder
+    state: NO_TESTS
   - ruleId: F-CDIFF-R011
-    state: PASSING
-    tests:
-    - name: "Dado un AuditReport con pares (nivel, dimension) reportados por el motor\
-        \ en el baseline, cuando build corre, entonces statisticImpacts solo contiene\
-        \ pares presentes en el baseline (la salida no inventa pares ausentes ni reordena\
-        \ la granularidad)"
-      implemented: true
-      passing: true
-      module: revision-domain
-      implementation: DefaultConsolidatedViewBuilder
+    state: NO_TESTS
   - ruleId: F-CDIFF-R012
     state: PASSING
     tests:
@@ -4529,31 +4417,6 @@ features:
       passing: true
       module: audit-cli
       implementation: DefaultConsolidatedViewFormatter
-    - name: "Dada una pendiente cuyo nodeId no se encuentra en el subarbol vigente,\
-        \ cuando build corre, entonces aparece en nonApplicablePendings con reason\
-        \ NODE_ABSENT y detail no vacio, y no contribuye a pendingProjection ni pendingDelta\
-        \ de ningun nodo o estadistica"
-      implemented: true
-      passing: true
-      module: revision-domain
-      implementation: DefaultConsolidatedViewBuilder
-    - name: "Dadas dos pendientes sobre el mismo nodeId aplicadas en orden createdAt\
-        \ ascendente cuyo elementBefore de la segunda no coincide con el consolidated\
-        \ tras aplicar la primera, cuando build corre, entonces la segunda aparece\
-        \ en nonApplicablePendings con reason ELEMENT_BEFORE_MISMATCH y no contribuye\
-        \ a pendingProjection ni pendingDelta"
-      implemented: true
-      passing: true
-      module: revision-domain
-      implementation: DefaultConsolidatedViewBuilder
-    - name: "Dada una pendiente marcada como NOT_APPLICABLE y otras pendientes aplicables\
-        \ en el mismo plan activo, cuando build corre, entonces el resto del consolidado\
-        \ se entrega normalmente y solo la pendiente no aplicable queda excluida del\
-        \ calculo de proyeccion"
-      implemented: true
-      passing: true
-      module: revision-domain
-      implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R013
     state: PASSING
     tests:
@@ -4601,8 +4464,6 @@ features:
       passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
-  - ruleId: F-CDIFF-R014
-    state: NO_TESTS
   - ruleId: F-CDIFF-R015
     state: PASSING
     tests:
@@ -4621,16 +4482,7 @@ features:
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R016
-    state: PASSING
-    tests:
-    - name: "Dado un plan activo con varias aceptadas y varias pendientes que tocan\
-        \ distintos nodos del curso, cuando build corre, entonces el ConsolidatedView\
-        \ retornado combina baseline + aceptadas + pendientes en una unica estructura\
-        \ con nodeImpacts y statisticImpacts agregados"
-      implemented: true
-      passing: true
-      module: revision-domain
-      implementation: DefaultConsolidatedViewBuilder
+    state: NO_TESTS
   - ruleId: F-CDIFF-R017
     state: PASSING
     tests:
@@ -4643,16 +4495,7 @@ features:
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R018
-    state: PASSING
-    tests:
-    - name: "Dada una RevisionProposal cuyo elementBefore y elementAfter referencian\
-        \ el mismo nodeId estable, cuando build corre, entonces el NodeImpact resultante\
-        \ conserva ese nodeId en consolidated y pendingProjection sin modelar renombres\
-        \ ni reubicaciones"
-      implemented: true
-      passing: true
-      module: revision-domain
-      implementation: DefaultConsolidatedViewBuilder
+    state: NO_TESTS
   journeysCoverage:
   - journeyId: F-CDIFF-J001
     state: PASSING
@@ -4688,45 +4531,45 @@ features:
         module: revision-domain
         implementation: FCdiffJ002JourneyTest
   - journeyId: F-CDIFF-J003
-    state: PASSING
+    state: DECLARED
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: PASSING
+      state: DECLARED
       tests:
-      - name: path1_hayAlMenosUnaPendienteAplicable_success
-        implemented: true
-        passing: true
+      - name: path1_unaListaTieneIdentidadDeclaradaYElementosCambiadosEntreFotos_success
+        implemented: false
+        passing: false
         module: revision-domain
         implementation: FCdiffJ003JourneyTest
     - pathId: path-2
       result: success
-      state: PASSING
+      state: DECLARED
       tests:
-      - name: path2_noHayPendientesAplicablesEnElSubarbol_success
-        implemented: true
-        passing: true
+      - name: path2_lasListasAlcanzadasNoPresentanCambiosEntreFotosONoSonRelevantesParaEsteMilestone_success
+        implemented: false
+        passing: false
         module: revision-domain
         implementation: FCdiffJ003JourneyTest
   - journeyId: F-CDIFF-J004
-    state: PASSING
+    state: DECLARED
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: PASSING
+      state: DECLARED
       tests:
-      - name: path1_elParEstaTocadoPorAceptadasPendientesOAmbas_success
-        implemented: true
-        passing: true
+      - name: path1_hayAlMenosUnaHojaEscalarDeScoreConCambioEntreFotos_success
+        implemented: false
+        passing: false
         module: revision-domain
         implementation: FCdiffJ004JourneyTest
     - pathId: path-2
       result: success
-      state: PASSING
+      state: DECLARED
       tests:
-      - name: path2_elParNoEstaTocado_success
-        implemented: true
-        passing: true
+      - name: path2_ningunaHojaEscalarDeScoreCambio_success
+        implemented: false
+        passing: false
         module: revision-domain
         implementation: FCdiffJ004JourneyTest
   - journeyId: F-CDIFF-J005
@@ -4762,18 +4605,6 @@ features:
         passing: true
         module: audit-cli
         implementation: FCdiffJ006JourneyTest
-  - journeyId: F-CDIFF-J007
-    state: PASSING
-    pathsCoverage:
-    - pathId: path-1
-      result: success
-      state: PASSING
-      tests:
-      - name: path1_success
-        implemented: true
-        passing: true
-        module: audit-cli
-        implementation: FCdiffJ007JourneyTest
   - journeyId: F-CDIFF-J008
     state: PASSING
     pathsCoverage:
@@ -4786,6 +4617,18 @@ features:
         passing: true
         module: revision-domain
         implementation: FCdiffJ008JourneyTest
+  - journeyId: F-CDIFF-J007
+    state: PASSING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: PASSING
+      tests:
+      - name: path1_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FCdiffJ007JourneyTest
   quality:
     classes:
     - com.learney.contentaudit.auditcli.commands.DefaultGetConsolidatedCommand
@@ -4834,7 +4677,7 @@ features:
     - mutationScore 57% < 60%
 - id: FEAT-REVAPR
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVAPR-R001
     state: PASSING
@@ -5437,34 +5280,34 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 882
-      linesMissed: 434
-      linesTotal: 1316
-      lineCoveragePct: 67
-      branchesCovered: 377
-      branchesMissed: 292
-      branchesTotal: 669
-      branchCoveragePct: 56
-      blendPct: 61
+      linesCovered: 801
+      linesMissed: 505
+      linesTotal: 1306
+      lineCoveragePct: 61
+      branchesCovered: 354
+      branchesMissed: 319
+      branchesTotal: 673
+      branchCoveragePct: 52
+      blendPct: 56
     mutation:
-      totalMutants: 723
-      killed: 253
-      survived: 221
+      totalMutants: 715
+      killed: 249
+      survived: 217
       noCoverage: 249
       timedOut: 0
       other: 0
       mutationScorePct: 34
       testStrengthPct: 53
     crap:
-      totalMethods: 123
-      hotspots: 6
+      totalMethods: 122
+      hotspots: 8
       maxCrap: 248.07379199999997
-      averageCrap: 9.82791158536585
-      simple: 98
-      moderate: 17
-      high: 4
+      averageCrap: 10.636342286885242
+      simple: 92
+      moderate: 20
+      high: 6
       veryHigh: 4
-      healthPct: 87
+      healthPct: 84
       top:
       - className: com.learney.contentaudit.auditcli.commands.ReviseCmd
         methodName: handleOutcome
@@ -5508,16 +5351,30 @@ features:
         cyclomatic: 5
         lineCoveragePct: 0
         crap: 30.0
-    healthScore: 55
+      - className: com.learney.contentaudit.auditinfrastructure.FileSystemRevisionArtifactStore
+        methodName: findByProposalId
+        methodDesc: (Ljava/lang/String;Ljava/util/Optional;)Ljava/util/Optional;
+        line: 153
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+      - className: com.learney.contentaudit.auditinfrastructure.FileSystemRevisionArtifactStore
+        methodName: hasPendingProposalForTask
+        methodDesc: (Ljava/lang/String;Ljava/lang/String;)Z
+        line: 184
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+    healthScore: 53
     verdict: WARNED
     violations:
-    - lineCoverage 67% < 70%
-    - branchCoverage 56% < 60%
+    - lineCoverage 61% < 70%
+    - branchCoverage 52% < 60%
     - mutationScore 34% < 60%
-    - crapHotspots 6 > 5
+    - crapHotspots 8 > 5
 - id: FEAT-LAPS
   state: IMPLEMENTING
-  requirementFile: requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LAPS-R001
     state: PASSING
@@ -5883,7 +5740,7 @@ features:
     verdict: PASSED
 - id: FEAT-DSLEN
   state: DRAFT
-  requirementFile: requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DSLEN-R001
     state: NO_TESTS
@@ -5936,7 +5793,7 @@ features:
     verdict: PASSED
 - id: FEAT-SLEN
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-SLEN-R001
     state: PASSING
@@ -6129,7 +5986,7 @@ features:
     - mutationScore 54% < 60%
 - id: FEAT-LCOUNT
   state: DRAFT
-  requirementFile: requirements/2026-03-28.02_lemma-count/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-28.02_lemma-count/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LCOUNT-R001
     state: NO_TESTS
@@ -6208,7 +6065,7 @@ features:
     verdict: PASSED
 - id: FEAT-REVBYP
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVBYP-R001
     state: PASSING
@@ -6426,39 +6283,57 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 236
-      linesMissed: 62
-      linesTotal: 298
-      lineCoveragePct: 79
-      branchesCovered: 56
-      branchesMissed: 18
-      branchesTotal: 74
-      branchCoveragePct: 75
-      blendPct: 77
+      linesCovered: 155
+      linesMissed: 133
+      linesTotal: 288
+      lineCoveragePct: 53
+      branchesCovered: 33
+      branchesMissed: 45
+      branchesTotal: 78
+      branchCoveragePct: 42
+      blendPct: 47
     mutation:
-      totalMutants: 93
-      killed: 59
-      survived: 19
+      totalMutants: 85
+      killed: 55
+      survived: 15
       noCoverage: 15
       timedOut: 0
       other: 0
-      mutationScorePct: 63
-      testStrengthPct: 75
+      mutationScorePct: 64
+      testStrengthPct: 78
     crap:
-      totalMethods: 33
-      hotspots: 0
-      maxCrap: 12.120581
-      averageCrap: 2.399105151515151
-      simple: 32
-      moderate: 1
-      high: 0
+      totalMethods: 32
+      hotspots: 2
+      maxCrap: 30.0
+      averageCrap: 5.249097
+      simple: 26
+      moderate: 4
+      high: 2
       veryHigh: 0
-      healthPct: 98
-    healthScore: 76
-    verdict: PASSED
+      healthPct: 88
+      top:
+      - className: com.learney.contentaudit.auditinfrastructure.FileSystemRevisionArtifactStore
+        methodName: findByProposalId
+        methodDesc: (Ljava/lang/String;Ljava/util/Optional;)Ljava/util/Optional;
+        line: 153
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+      - className: com.learney.contentaudit.auditinfrastructure.FileSystemRevisionArtifactStore
+        methodName: hasPendingProposalForTask
+        methodDesc: (Ljava/lang/String;Ljava/lang/String;)Z
+        line: 184
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+    healthScore: 65
+    verdict: WARNED
+    violations:
+    - lineCoverage 53% < 70%
+    - branchCoverage 42% < 60%
 - id: FEAT-LAGEN
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LAGEN-R001
     state: PASSING
@@ -7146,7 +7021,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCLA
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLA-R001
     state: PASSING
@@ -7549,8 +7424,8 @@ features:
     - mutationScore 35% < 60%
 - id: FEAT-RCSL
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
-  patchFile: requirements/2026-04-05.02_refiner-correction-context-slen/architectural_patch.yaml
+  requirementFile: ./requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
+  patchFile: ./requirements/2026-04-05.02_refiner-correction-context-slen/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-RCSL-R001
     state: PASSING
@@ -13529,15 +13404,15 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 205
-      linesMissed: 423
-      linesTotal: 628
-      lineCoveragePct: 32
-      branchesCovered: 84
-      branchesMissed: 218
+      linesCovered: 0
+      linesMissed: 641
+      linesTotal: 641
+      lineCoveragePct: 0
+      branchesCovered: 0
+      branchesMissed: 302
       branchesTotal: 302
-      branchCoveragePct: 27
-      blendPct: 29
+      branchCoveragePct: 0
+      blendPct: 0
     mutation:
       totalMutants: 290
       killed: 71
@@ -13549,14 +13424,14 @@ elements:
       testStrengthPct: 74
     crap:
       totalMethods: 211
-      hotspots: 8
+      hotspots: 13
       maxCrap: 600.0
-      averageCrap: 9.768490104265403
-      simple: 200
-      moderate: 3
-      high: 0
-      veryHigh: 8
-      healthPct: 95
+      averageCrap: 12.606635071090047
+      simple: 193
+      moderate: 5
+      high: 1
+      veryHigh: 12
+      healthPct: 93
       top:
       - className: com.learney.contentaudit.coursedomain.QuizTemplateEntity
         methodName: equals
@@ -13579,6 +13454,13 @@ elements:
         cyclomatic: 15
         lineCoveragePct: 0
         crap: 240.0
+      - className: com.learney.contentaudit.coursedomain.quizsentenceengine.PlainSentenceDeriver
+        methodName: derive
+        methodDesc: (Lcom/learney/contentaudit/coursedomain/FormEntity;)Ljava/util/List;
+        line: 53
+        cyclomatic: 14
+        lineCoveragePct: 0
+        crap: 210.0
       - className: com.learney.contentaudit.coursedomain.MilestoneEntity
         methodName: equals
         methodDesc: (Ljava/lang/Object;)Z
@@ -13586,6 +13468,20 @@ elements:
         cyclomatic: 14
         lineCoveragePct: 0
         crap: 210.0
+      - className: com.learney.contentaudit.coursedomain.quizsentenceengine.QuizSentenceSerializer
+        methodName: serialize
+        methodDesc: (Lcom/learney/contentaudit/coursedomain/FormEntity;)Ljava/lang/String;
+        line: 44
+        cyclomatic: 12
+        lineCoveragePct: 0
+        crap: 156.0
+      - className: com.learney.contentaudit.coursedomain.quizsentenceengine.QuizSentenceParser
+        methodName: parse
+        methodDesc: (Ljava/lang/String;)Lcom/learney/contentaudit/coursedomain/FormEntity;
+        line: 58
+        cyclomatic: 10
+        lineCoveragePct: 0
+        crap: 110.0
       - className: com.learney.contentaudit.coursedomain.RootNodeEntity
         methodName: equals
         methodDesc: (Ljava/lang/Object;)Z
@@ -13607,20 +13503,13 @@ elements:
         cyclomatic: 9
         lineCoveragePct: 0
         crap: 90.0
-      - className: com.learney.contentaudit.coursedomain.SentencePartEntity
-        methodName: equals
-        methodDesc: (Ljava/lang/Object;)Z
-        line: 53
-        cyclomatic: 7
-        lineCoveragePct: 0
-        crap: 56.0
-    healthScore: 43
+    healthScore: 34
     verdict: WARNED
     violations:
-    - lineCoverage 32% < 70%
-    - branchCoverage 27% < 60%
+    - lineCoverage 0% < 70%
+    - branchCoverage 0% < 60%
     - mutationScore 24% < 60%
-    - crapHotspots 8 > 5
+    - crapHotspots 13 > 5
 - module: refiner-domain
   status: EXISTS
   models:
@@ -22583,22 +22472,6 @@ elements:
         \ en una posicion identificable como raiz del documento"
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/DefaultConsolidatedViewFormatterTest.java
-    - name: "Dado un StatisticImpact con original, consolidated y acceptedDelta poblados\
-        \ (sin pendiente), cuando format corre, entonces los tres valores aparecen\
-        \ en la salida con la misma magnitud en escala absoluta y pendingProjection/pendingDelta\
-        \ no aparecen como campos numericos"
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/DefaultConsolidatedViewFormatterTest.java
-    - name: "Dado un StatisticImpact con pendingProjection y pendingDelta no nulos,\
-        \ cuando format corre, entonces los cuatro valores numericos (original, consolidated,\
-        \ acceptedDelta, pendingDelta) y pendingProjection aparecen en la salida"
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/DefaultConsolidatedViewFormatterTest.java
-    - name: "Dado un StatisticImpact con cualquier valor de original y consolidated,\
-        \ cuando format corre, entonces el valor textual de acceptedDelta en la salida\
-        \ coincide con consolidated menos original sin conversion porcentual relativa"
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/DefaultConsolidatedViewFormatterTest.java
     - name: "Dado un ConsolidatedView con availability UNAVAILABLE y un unavailability\
         \ con reason y detail, cuando format corre, entonces la salida incluye consolidatedAvailability=UNAVAILABLE\
         \ con la categoria y el detalle, y nodeImpacts/statisticImpacts no se intentan\
@@ -24441,42 +24314,72 @@ elements:
         Files.isDirectory(userDirRevisions) is false
     quality:
       coverage:
-        linesCovered: 81
-        linesMissed: 23
-        linesTotal: 104
-        lineCoveragePct: 77
-        branchesCovered: 23
-        branchesMissed: 3
-        branchesTotal: 26
-        branchCoveragePct: 88
-        blendPct: 82
+        linesCovered: 0
+        linesMissed: 94
+        linesTotal: 94
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 30
+        branchesTotal: 30
+        branchCoveragePct: 0
+        blendPct: 0
       mutation:
-        totalMutants: 32
-        killed: 27
-        survived: 4
+        totalMutants: 24
+        killed: 23
+        survived: 0
         noCoverage: 1
         timedOut: 0
         other: 0
-        mutationScorePct: 84
-        testStrengthPct: 87
+        mutationScorePct: 95
+        testStrengthPct: 100
       crap:
-        totalMethods: 15
-        hotspots: 0
-        maxCrap: 5.3456
-        averageCrap: 1.9466244000000001
-        simple: 15
-        moderate: 0
-        high: 0
+        totalMethods: 14
+        hotspots: 2
+        maxCrap: 30.0
+        averageCrap: 8.428571428571429
+        simple: 9
+        moderate: 3
+        high: 2
         veryHigh: 0
-        healthPct: 100
+        healthPct: 75
+        top:
+        - className: com.learney.contentaudit.auditinfrastructure.FileSystemRevisionArtifactStore
+          methodName: findByProposalId
+          methodDesc: (Ljava/lang/String;Ljava/util/Optional;)Ljava/util/Optional;
+          line: 153
+          cyclomatic: 5
+          lineCoveragePct: 0
+          crap: 30.0
+        - className: com.learney.contentaudit.auditinfrastructure.FileSystemRevisionArtifactStore
+          methodName: hasPendingProposalForTask
+          methodDesc: (Ljava/lang/String;Ljava/lang/String;)Z
+          line: 184
+          cyclomatic: 5
+          lineCoveragePct: 0
+          crap: 30.0
       methods:
+      - name: isArtifactFile
+        desc: (Ljava/nio/file/Path;)Z
+        line: 42
+        cyclomatic: 3
+        linesCovered: 0
+        linesMissed: 2
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 4
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 12.0
       - name: <init>
         desc: ()V
-        line: 44
+        line: 50
         cyclomatic: 1
-        linesCovered: 2
-        linesMissed: 0
-        lineCoveragePct: 100
+        linesCovered: 0
+        linesMissed: 2
+        lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 0
@@ -24484,14 +24387,14 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 0
-        crap: 1.0
+        crap: 2.0
       - name: <init>
         desc: (Ljava/nio/file/Path;)V
-        line: 47
+        line: 53
         cyclomatic: 1
-        linesCovered: 4
-        linesMissed: 0
-        lineCoveragePct: 100
+        linesCovered: 0
+        linesMissed: 4
+        lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 0
@@ -24499,30 +24402,15 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 0
-        crap: 1.0
+        crap: 2.0
       - name: save
         desc: (Lcom/learney/contentaudit/revisiondomain/RevisionArtifact;)Ljava/lang/String;
-        line: 58
+        line: 64
         cyclomatic: 1
-        linesCovered: 9
-        linesMissed: 6
-        lineCoveragePct: 60
+        linesCovered: 0
+        linesMissed: 13
+        lineCoveragePct: 0
         branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 2
-        mutantsKilled: 2
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
-        crap: 1.064
-      - name: load
-        desc: (Ljava/lang/String;Ljava/lang/String;)Ljava/util/Optional;
-        line: 81
-        cyclomatic: 2
-        linesCovered: 4
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 2
         branchesMissed: 0
         mutantsTotal: 2
         mutantsKilled: 2
@@ -24530,28 +24418,43 @@ elements:
         mutantsNoCoverage: 0
         mutationScorePct: 100
         crap: 2.0
+      - name: load
+        desc: (Ljava/lang/String;Ljava/lang/String;)Ljava/util/Optional;
+        line: 87
+        cyclomatic: 2
+        linesCovered: 0
+        linesMissed: 4
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 2
+        mutantsTotal: 2
+        mutantsKilled: 2
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 100
+        crap: 6.0
       - name: listByPlan
         desc: (Ljava/lang/String;)Ljava/util/List;
-        line: 90
+        line: 96
         cyclomatic: 3
-        linesCovered: 13
-        linesMissed: 4
-        lineCoveragePct: 76
-        branchesCovered: 3
-        branchesMissed: 1
+        linesCovered: 0
+        linesMissed: 15
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 4
         mutantsTotal: 3
         mutantsKilled: 2
         mutantsSurvived: 0
         mutantsNoCoverage: 1
         mutationScorePct: 66
-        crap: 3.124416
+        crap: 12.0
       - name: resolveRevisionsDir
         desc: ()Ljava/nio/file/Path;
-        line: 118
+        line: 124
         cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
@@ -24559,14 +24462,14 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 100
-        crap: 1.0
+        crap: 2.0
       - name: loadFromFile
         desc: (Ljava/nio/file/Path;)Lcom/learney/contentaudit/revisiondomain/RevisionArtifact;
-        line: 123
+        line: 129
         cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 3
-        lineCoveragePct: 25
+        linesCovered: 0
+        linesMissed: 4
+        lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
@@ -24574,14 +24477,14 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 100
-        crap: 1.421875
+        crap: 2.0
       - name: createObjectMapper
         desc: ()Lcom/fasterxml/jackson/databind/ObjectMapper;
-        line: 131
+        line: 137
         cyclomatic: 1
-        linesCovered: 5
-        linesMissed: 0
-        lineCoveragePct: 100
+        linesCovered: 0
+        linesMissed: 7
+        lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
@@ -24589,112 +24492,82 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 100
-        crap: 1.0
+        crap: 2.0
       - name: findByProposalId
         desc: (Ljava/lang/String;Ljava/util/Optional;)Ljava/util/Optional;
-        line: 147
+        line: 153
         cyclomatic: 5
-        linesCovered: 13
-        linesMissed: 4
-        lineCoveragePct: 76
-        branchesCovered: 7
-        branchesMissed: 1
+        linesCovered: 0
+        linesMissed: 15
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 8
         mutantsTotal: 5
         mutantsKilled: 5
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 100
-        crap: 5.3456
+        crap: 30.0
       - name: hasPendingProposalForTask
         desc: (Ljava/lang/String;Ljava/lang/String;)Z
-        line: 178
+        line: 184
         cyclomatic: 5
-        linesCovered: 13
-        linesMissed: 3
-        lineCoveragePct: 81
-        branchesCovered: 7
-        branchesMissed: 1
+        linesCovered: 0
+        linesMissed: 14
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 8
         mutantsTotal: 6
         mutantsKilled: 6
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 100
-        crap: 5.171475
+        crap: 30.0
       - name: list
         desc: ()Ljava/util/List;
-        line: 204
+        line: 210
         cyclomatic: 3
-        linesCovered: 12
-        linesMissed: 3
-        lineCoveragePct: 80
-        branchesCovered: 4
-        branchesMissed: 0
+        linesCovered: 0
+        linesMissed: 13
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 4
         mutantsTotal: 3
         mutantsKilled: 3
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 100
-        crap: 3.072
-      - name: lambda$list$0
+        crap: 12.0
+      - name: lambda$4
         desc: (Ljava/nio/file/Path;)Z
-        line: 211
+        line: 0
         cyclomatic: 1
-        linesCovered: 1
+        linesCovered: 0
         linesMissed: 0
-        lineCoveragePct: 100
+        lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 2
-        mutantsKilled: 1
-        mutantsSurvived: 1
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 50
-        crap: 1.0
-      - name: lambda$hasPendingProposalForTask$0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: lambda$5
         desc: (Ljava/nio/file/Path;)Z
-        line: 185
+        line: 0
         cyclomatic: 1
-        linesCovered: 1
+        linesCovered: 0
         linesMissed: 0
-        lineCoveragePct: 100
+        lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 2
-        mutantsKilled: 1
-        mutantsSurvived: 1
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 50
-        crap: 1.0
-      - name: lambda$findByProposalId$0
-        desc: (Ljava/nio/file/Path;)Z
-        line: 160
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 2
-        mutantsKilled: 1
-        mutantsSurvived: 1
-        mutantsNoCoverage: 0
-        mutationScorePct: 50
-        crap: 1.0
-      - name: lambda$listByPlan$0
-        desc: (Ljava/nio/file/Path;)Z
-        line: 98
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 2
-        mutantsKilled: 1
-        mutantsSurvived: 1
-        mutantsNoCoverage: 0
-        mutationScorePct: 50
-        crap: 1.0
+        mutationScorePct: 0
+        crap: 2.0
   - name: FileSystemImpactPreviewStore
     status: EXISTS
     filePath: audit-infrastructure/src/main/java/com/learney/contentaudit/auditinfrastructure/FileSystemImpactPreviewStore.java
@@ -25188,38 +25061,54 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 241
-      linesMissed: 122
-      linesTotal: 363
-      lineCoveragePct: 66
-      branchesCovered: 59
-      branchesMissed: 29
-      branchesTotal: 88
-      branchCoveragePct: 67
-      blendPct: 66
+      linesCovered: 160
+      linesMissed: 193
+      linesTotal: 353
+      lineCoveragePct: 45
+      branchesCovered: 36
+      branchesMissed: 56
+      branchesTotal: 92
+      branchCoveragePct: 39
+      blendPct: 42
     mutation:
-      totalMutants: 103
-      killed: 70
-      survived: 15
+      totalMutants: 95
+      killed: 66
+      survived: 11
       noCoverage: 18
       timedOut: 0
       other: 0
-      mutationScorePct: 67
-      testStrengthPct: 82
+      mutationScorePct: 69
+      testStrengthPct: 85
     crap:
-      totalMethods: 63
-      hotspots: 0
-      maxCrap: 12.0
-      averageCrap: 2.2468714126984133
-      simple: 62
-      moderate: 1
-      high: 0
+      totalMethods: 62
+      hotspots: 2
+      maxCrap: 30.0
+      averageCrap: 3.7153795645161294
+      simple: 56
+      moderate: 4
+      high: 2
       veryHigh: 0
-      healthPct: 99
-    healthScore: 75
+      healthPct: 94
+      top:
+      - className: com.learney.contentaudit.auditinfrastructure.FileSystemRevisionArtifactStore
+        methodName: findByProposalId
+        methodDesc: (Ljava/lang/String;Ljava/util/Optional;)Ljava/util/Optional;
+        line: 153
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+      - className: com.learney.contentaudit.auditinfrastructure.FileSystemRevisionArtifactStore
+        methodName: hasPendingProposalForTask
+        methodDesc: (Ljava/lang/String;Ljava/lang/String;)Z
+        line: 184
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+    healthScore: 67
     verdict: WARNED
     violations:
-    - lineCoverage 66% < 70%
+    - lineCoverage 45% < 70%
+    - branchCoverage 39% < 60%
 - module: revision-domain
   status: EXISTS
   models:
@@ -25442,6 +25331,8 @@ elements:
     - name: courseMapper
       status: EXISTS
     - name: auditEngine
+      status: EXISTS
+    - name: nodeFieldDiffer
       status: EXISTS
   interfaces:
   - name: Reviser
@@ -27734,96 +27625,9 @@ elements:
         \ pendingProjection ni pendingDelta"
       status: EXISTS
       testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dado un nodo hoja sin aceptadas ni pendientes en el plan activo, cuando\
-        \ build corre, entonces ese nodo no aparece en nodeImpacts (la salida solo\
-        \ emite nodos afectados)"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dado un nodo hoja con una pendiente en el plan activo y sin aceptadas,\
-        \ cuando build corre, entonces NodeImpact.consolidated coincide con el snapshot\
-        \ del baseline y pendingProjection coincide con el snapshot resultante de\
-        \ aplicar la pendiente sobre ese baseline"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dado un nodo hoja con una propuesta aceptada y sin pendientes, cuando\
-        \ build corre, entonces NodeImpact.consolidated coincide con el elementAfter\
-        \ de la aceptada y pendingProjection es null"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dado un nodo hoja con una aceptada y una pendiente sobre el mismo nodeId,\
-        \ cuando build corre, entonces pendingProjection se calcula aplicando la pendiente\
-        \ sobre consolidated (es decir sobre el elementAfter de la aceptada) y no\
-        \ sobre el snapshot original del baseline"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
     - name: "Dado un nodo hoja con dos propuestas aceptadas que lo afectaron en orden\
         \ createdAt ascendente, cuando build corre, entonces NodeImpact.acceptedProposalIds\
         \ contiene ambos proposalId en orden createdAt ascendente"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dado un nodo hoja con una pendiente aplicable, cuando build corre, entonces\
-        \ NodeImpact.pendingProposalId equivale al proposalId de la pendiente que\
-        \ produjo pendingProjection"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dado un nodo padre cuyo subarbol contiene un quiz afectado por una aceptada,\
-        \ cuando build corre, entonces aparece un NodeImpact para ese padre y los\
-        \ valores consolidados de sus estadisticas resultan de re-agregar el subarbol\
-        \ con la estrategia del analizador (no de sumar deltas individuales)"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dado un nodo padre cuyo subarbol no contiene aceptadas ni pendientes,\
-        \ cuando build corre, entonces ese padre no aparece en nodeImpacts ni en statisticImpacts"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dada una estadistica tocada solo por una aceptada en el plan activo,\
-        \ cuando build corre, entonces el StatisticImpact correspondiente expone original\
-        \ y consolidated distintos, acceptedDelta no nulo, y pendingProjection y pendingDelta\
-        \ nulos"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dada una estadistica tocada solo por una pendiente en el plan activo,\
-        \ cuando build corre, entonces el StatisticImpact correspondiente expone consolidated\
-        \ igual a original, acceptedDelta cero, y pendingProjection con pendingDelta\
-        \ no nulos"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dada una estadistica del baseline no tocada por ninguna decision del\
-        \ plan activo, cuando build corre, entonces ese par (nivel, dimension) no\
-        \ aparece en statisticImpacts"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dado cualquier StatisticImpact emitido por build, entonces acceptedDelta\
-        \ es exactamente consolidated menos original, sin escalado relativo"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dado un StatisticImpact con pendingProjection no nulo, entonces pendingDelta\
-        \ es exactamente pendingProjection menos consolidated, sin escalado relativo"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dado un AuditReport con pares (nivel, dimension) reportados por el motor\
-        \ en el baseline, cuando build corre, entonces statisticImpacts solo contiene\
-        \ pares presentes en el baseline (la salida no inventa pares ausentes ni reordena\
-        \ la granularidad)"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dada una pendiente cuyo nodeId no se encuentra en el subarbol vigente,\
-        \ cuando build corre, entonces aparece en nonApplicablePendings con reason\
-        \ NODE_ABSENT y detail no vacio, y no contribuye a pendingProjection ni pendingDelta\
-        \ de ningun nodo o estadistica"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dadas dos pendientes sobre el mismo nodeId aplicadas en orden createdAt\
-        \ ascendente cuyo elementBefore de la segunda no coincide con el consolidated\
-        \ tras aplicar la primera, cuando build corre, entonces la segunda aparece\
-        \ en nonApplicablePendings con reason ELEMENT_BEFORE_MISMATCH y no contribuye\
-        \ a pendingProjection ni pendingDelta"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dada una pendiente marcada como NOT_APPLICABLE y otras pendientes aplicables\
-        \ en el mismo plan activo, cuando build corre, entonces el resto del consolidado\
-        \ se entrega normalmente y solo la pendiente no aplicable queda excluida del\
-        \ calculo de proyeccion"
       status: EXISTS
       testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
     - name: "Dado que el ActiveAnalysisSelectionStore retorna Optional.empty, cuando\
@@ -27855,18 +27659,6 @@ elements:
         \ distintas asociadas a otro analisis, cuando build corre, entonces solo se\
         \ consultan los RevisionArtifact via listByPlan(activePlanId) y las propuestas\
         \ del plan ajeno no aparecen en nodeImpacts ni statisticImpacts"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dada una RevisionProposal cuyo elementBefore y elementAfter referencian\
-        \ el mismo nodeId estable, cuando build corre, entonces el NodeImpact resultante\
-        \ conserva ese nodeId en consolidated y pendingProjection sin modelar renombres\
-        \ ni reubicaciones"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dado un plan activo con varias aceptadas y varias pendientes que tocan\
-        \ distintos nodos del curso, cuando build corre, entonces el ConsolidatedView\
-        \ retornado combina baseline + aceptadas + pendientes en una unica estructura\
-        \ con nodeImpacts y statisticImpacts agregados"
       status: EXISTS
       testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
     testCleanViews:
@@ -28769,6 +28561,18 @@ elements:
       then:
         response.getQuizSentence() == CANNED_QUIZ
         response.getTranslation() == CANNED_TRANSLATION
+  - name: RecursiveNodeFieldDiffer
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/fielddiff/RecursiveNodeFieldDiffer.java
+  - name: DefaultFieldExclusionRegistry
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/fielddiff/DefaultFieldExclusionRegistry.java
+  - name: DefaultListIdentityRegistry
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/fielddiff/DefaultListIdentityRegistry.java
+  - name: DefaultNodeFieldDifferFactory
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/fielddiff/DefaultNodeFieldDifferFactory.java
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -30065,8 +29869,8 @@ elements:
     - branchCoverage 52% < 60%
     - mutationScore 47% < 60%
 testSummary:
-  total: 756
-  passing: 755
+  total: 735
+  passing: 734
   failing: 0
   notImplemented: 1
 qualitySummary:
@@ -30078,33 +29882,33 @@ qualitySummary:
     crapHotspotThreshold: 30
     crapHotspotsMax: 5
   coverage:
-    linesCovered: 5071
-    linesMissed: 5153
-    linesTotal: 10224
-    lineCoveragePct: 49
-    branchesCovered: 1725
-    branchesMissed: 3249
-    branchesTotal: 4974
-    branchCoveragePct: 34
-    blendPct: 41
+    linesCovered: 4785
+    linesMissed: 5442
+    linesTotal: 10227
+    lineCoveragePct: 46
+    branchesCovered: 1618
+    branchesMissed: 3360
+    branchesTotal: 4978
+    branchCoveragePct: 32
+    blendPct: 39
   mutation:
-    totalMutants: 4717
-    killed: 1287
-    survived: 848
+    totalMutants: 4709
+    killed: 1283
+    survived: 844
     noCoverage: 2582
     timedOut: 0
     other: 0
     mutationScorePct: 27
     testStrengthPct: 60
   crap:
-    totalMethods: 2168
-    hotspots: 135
+    totalMethods: 2167
+    hotspots: 142
     maxCrap: 600.0
-    averageCrap: 9.017195466328413
-    simple: 1939
-    moderate: 86
-    high: 41
-    veryHigh: 102
+    averageCrap: 9.338684353022613
+    simple: 1926
+    moderate: 91
+    high: 44
+    veryHigh: 106
     healthPct: 91
     top:
     - className: com.learney.contentaudit.coursedomain.QuizTemplateEntity
@@ -30180,10 +29984,10 @@ qualitySummary:
   healthScore: 47
   verdict: WARNED
   violations:
-  - lineCoverage 49% < 70%
-  - branchCoverage 34% < 60%
+  - lineCoverage 46% < 70%
+  - branchCoverage 32% < 60%
   - mutationScore 27% < 60%
-  - crapHotspots 135 > 5
+  - crapHotspots 142 > 5
 patterns:
 - id: declared-1
   pattern: Strategy

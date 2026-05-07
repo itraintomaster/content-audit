@@ -198,7 +198,7 @@ project-root/
 
 ### revision-domain
 
-> Domain module for the revision phase of the refinement pipeline. Consumes refiner-domain (task and CorrectionContext), course-domain (course entities and the CourseRepository port owned by the caller) and audit-domain (AuditReport / AuditEngine / ActiveAnalysisSelectionStore for the eager what-if simulation that powers the impact preview and the consolidated view). Exposes Reviser/RevisionValidator/RevisionArtifactStore/CourseElementLocator/ImpactPreviewStore ports plus the RevisionEngineFactory seam, the lemmaabsence proposal-strategy SPI, the impactpreview SPI (FEAT-PIPRE) and the consolidatedview SPI (FEAT-CDIFF). The bypass baseline, the impact-preview internals and the consolidated-view internals live behind the engine package; external modules only see factories, ports and carrier records.
+> Domain module for the revision phase of the refinement pipeline. Consumes refiner-domain (task and CorrectionContext), course-domain (course entities and the CourseRepository port owned by the caller) and audit-domain (AuditReport / AuditEngine / ActiveAnalysisSelectionStore for the eager what-if simulation that powers the impact preview and the consolidated view). Exposes Reviser/RevisionValidator/RevisionArtifactStore/CourseElementLocator/ImpactPreviewStore ports plus the RevisionEngineFactory seam, the lemmaabsence proposal-strategy SPI, the impactpreview SPI (FEAT-PIPRE) and the consolidatedview SPI (FEAT-CDIFF) — including the dynamic field-diff engine that powers FEAT-CDIFF v3 (recursive walker + central role-based exclusion registry + central list-identity registry, all inside the fielddiff package). The bypass baseline, the impact-preview internals, the consolidated-view internals and the field-diff internals live behind their respective internal packages; external modules only see factories, ports and carrier records.
 
 | Property | Value |
 |----------|-------|
@@ -209,7 +209,7 @@ project-root/
 | Models | 15 (RevisionVerdict, RevisionOutcomeKind, CourseElementSnapshot, RevisionProposal, RevisionArtifact, RevisionOutcome, RevisionEngineConfig, ApprovalMode, ProposalDecisionOutcomeKind, ProposalDecisionOutcome, StrategyId, LemmaAbsenceQuizCandidate, ProposalStrategyFailedException, ProposalDerivationException, ConsolidatedViewBuilderConfig) |
 | Interfaces | 14 (Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore) |
 | Implementations | 0 |
-| Packages | 4 (engine [internal], lemmaabsence [public], impactpreview [public], consolidatedview [public]) |
+| Packages | 5 (engine [internal], lemmaabsence [public], impactpreview [public], consolidatedview [public], fielddiff [internal]) |
 
 ### revision-infrastructure
 

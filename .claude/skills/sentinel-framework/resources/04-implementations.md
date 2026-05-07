@@ -1097,6 +1097,7 @@ public FileSystemImpactPreviewStore(Path baseDir) {
 | `courseElementLocator` | `CourseElementLocator` |
 | `courseMapper` | `CourseMapper` |
 | `auditEngine` | `AuditEngine` |
+| `nodeFieldDiffer` | `NodeFieldDiffer` |
 
 #### LemmaAbsenceMvpStrategy (package: lemmaabsence)
 
@@ -1123,6 +1124,37 @@ public FileSystemImpactPreviewStore(Path baseDir) {
 |------|------|
 | `cannedQuizSentence` | `String` |
 | `cannedTranslation` | `String` |
+
+#### RecursiveNodeFieldDiffer (package: fielddiff)
+
+**Package:** `com.learney.contentaudit.revisiondomain.fielddiff`
+**Visibility:** internal
+**Implements:** NodeFieldDiffer
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `exclusionRegistry` | `FieldExclusionRegistry` |
+| `identityRegistry` | `ListIdentityRegistry` |
+
+#### DefaultFieldExclusionRegistry (package: fielddiff)
+
+**Package:** `com.learney.contentaudit.revisiondomain.fielddiff`
+**Visibility:** internal
+**Implements:** FieldExclusionRegistry
+
+#### DefaultListIdentityRegistry (package: fielddiff)
+
+**Package:** `com.learney.contentaudit.revisiondomain.fielddiff`
+**Visibility:** internal
+**Implements:** ListIdentityRegistry
+
+#### DefaultNodeFieldDifferFactory (package: fielddiff)
+
+**Package:** `com.learney.contentaudit.revisiondomain.fielddiff`
+**Visibility:** internal
+**Implements:** NodeFieldDifferFactory
 
 ### Module: revision-infrastructure
 

@@ -3,7 +3,7 @@
 
 **This module is isolated.** Your scope is limited to this module and the contracts (models and interfaces) of its dependencies. Do not access information from other modules.
 
-Domain module for the revision phase of the refinement pipeline. Consumes refiner-domain (task and CorrectionContext), course-domain (course entities and the CourseRepository port owned by the caller) and audit-domain (AuditReport / AuditEngine / ActiveAnalysisSelectionStore for the eager what-if simulation that powers the impact preview and the consolidated view). Exposes Reviser/RevisionValidator/RevisionArtifactStore/CourseElementLocator/ImpactPreviewStore ports plus the RevisionEngineFactory seam, the lemmaabsence proposal-strategy SPI, the impactpreview SPI (FEAT-PIPRE) and the consolidatedview SPI (FEAT-CDIFF). The bypass baseline, the impact-preview internals and the consolidated-view internals live behind the engine package; external modules only see factories, ports and carrier records.
+Domain module for the revision phase of the refinement pipeline. Consumes refiner-domain (task and CorrectionContext), course-domain (course entities and the CourseRepository port owned by the caller) and audit-domain (AuditReport / AuditEngine / ActiveAnalysisSelectionStore for the eager what-if simulation that powers the impact preview and the consolidated view). Exposes Reviser/RevisionValidator/RevisionArtifactStore/CourseElementLocator/ImpactPreviewStore ports plus the RevisionEngineFactory seam, the lemmaabsence proposal-strategy SPI, the impactpreview SPI (FEAT-PIPRE) and the consolidatedview SPI (FEAT-CDIFF) — including the dynamic field-diff engine that powers FEAT-CDIFF v3 (recursive walker + central role-based exclusion registry + central list-identity registry, all inside the fielddiff package). The bypass baseline, the impact-preview internals, the consolidated-view internals and the field-diff internals live behind their respective internal packages; external modules only see factories, ports and carrier records.
 
 ## Models
 
@@ -169,6 +169,7 @@ Domain module for the revision phase of the refinement pipeline. Consumes refine
 | courseElementLocator | `CourseElementLocator` |
 | courseMapper | `CourseMapper` |
 | auditEngine | `AuditEngine` |
+| nodeFieldDiffer | `NodeFieldDiffer` |
 
 ## Interfaces
 

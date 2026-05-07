@@ -1047,48 +1047,51 @@ Este micro-requerimiento es un delta aislado: agrega el campo `quizSentence` al 
 
 ### FEAT-CDIFF: Estructura consolidada de un analisis con sus propuestas aceptadas y pendientes [F-CDIFF]
 
-> **Que**: El CLI de content-audit expone, para cada `AuditReport`, una **estructura consolidada** que combina el baseline del analisis con los efectos de las propuestas aceptadas y pendientes de su plan activo. La salida agrega, sobre cada nodo del arbol y sobre cada estadistica afectada, los campos `consolidated`, `acceptedDelta`, `pendingProjection` y `pendingDelta` con semantica precisa, de modo que cualquier consumidor pueda reconstruir el efecto de las decisiones del operador sin recomputar la auditoria.
+> **Que**: El CLI de content-audit expone, para cada `AuditReport`, una **estructura consolidada** que combina el baseline del analisis con los efectos de las propuestas aceptadas y pendientes de su plan activo. Para cada nodo afectado del arbol del curso, la salida emite un **mapa de fields cambiados** donde cada entrada lleva tres "fotos" del mismo field a lo largo del stack `original` (baseline) → `consolidated` (con aceptadas) → `pendingProjection` (con aceptadas + pendientes). El conjunto de fields candidatos se descubre **dinamicamente** caminando recursivamente las estructuras del modelo de auditoria y del contenido del nodo: cualquier hoja escalar cuyo valor difiera entre al menos dos fotos aparece como field, sin enumerar tipos de fields posibles en el contrato.
 
-**Por que**: Hoy, para reflejar el efecto de aceptar una propuesta hay que correr un nuevo analisis. Esto no escala (potencialmente miles de analisis por curso) y obliga a cada consumidor a recomputar el cruce baseline/decisiones por su cuenta. Esta feature define el contrato de datos canonico que content-audit emite para que un consumidor cualquiera (la UI actual o cualquier otra) lo lea directo.
+**Por que**: Hoy la salida expone solo un snapshot crudo del nodo afectado y, por estadistica, escalares precomputados. Los diagnosticos tipados que el motor calcula sobre el arbol consolidado y el arbol con pendientes (token count, listas de lemas ausentes, distribucion COCA, etc.) se descartan antes de salir. La forma `field → tripleta` con descubrimiento dinamico corrige ese gap y deja el contrato **extensible sin tocarlo**: cuando aparece un analizador nuevo, un componente nuevo en un registro existente, o un campo nuevo en el contenido del nodo, sus hojas escalares empiezan a participar del diff automaticamente. La defensa contra ruido (timestamps, identificadores opacos, metadatos de persistencia) se hace por exclusiones declaradas a nivel funcional, no por whitelists positivas que requieran mantenimiento por feature.
 
 **Business Rules:**
 
 | ID | Rule | Severity | Error Message |
 |----|------|----------|---------------|
-| F-CDIFF-R001 | El sistema expone un par activo `(auditId, planId)` consultable | critical | - |
+| F-CDIFF-R001 | El par activo `(auditId, planId)` es observable en la raiz de la salida | critical | - |
 | F-CDIFF-R002 | Cambiar el par activo es idempotente y no destructivo | major | - |
-| F-CDIFF-R003 | Un nuevo `AuditReport` corre contra el estado del curso real (con aceptadas ya materializadas) | critical | - |
-| F-CDIFF-R004 | Las propuestas pendientes del plan anterior quedan dormidas, ligadas a su `auditId` original | critical | - |
-| F-CDIFF-R005 | Las propuestas rechazadas no aparecen en la estructura consolidada | major | - |
-| F-CDIFF-R006 | Cada nodo hoja afectado se emite con `consolidated` y, opcionalmente, `pendingProjection` | critical | - |
-| F-CDIFF-R007 | Las referencias a las propuestas que produjeron `consolidated` y `pendingProjection` estan en la salida | major | - |
-| F-CDIFF-R008 | Cada nodo padre afectado se emite con `consolidated` y, opcionalmente, `pendingProjection` | critical | - |
-| F-CDIFF-R009 | Cada estadistica afectada se emite con cuatro campos: `original`, `consolidated`, `acceptedDelta`, `pendingDelta` | critical | - |
-| F-CDIFF-R010 | Los deltas son **puntos absolutos** sobre la escala del dominio, no variaciones relativas | critical | - |
-| F-CDIFF-R011 | La salida cubre los mismos pares `(nivel, dimension)` que el baseline expone | major | - |
-| F-CDIFF-R012 | Una pendiente que no se puede aplicar se emite con `pendingApplicability: NOT_APPLICABLE` y causa | major | - |
+| F-CDIFF-R003 | Un analisis sin decisiones nuevas no marca nodos como afectados | critical | - |
+| F-CDIFF-R004 | Las pendientes dormidas se recuperan al apuntar el par activo a su analisis original | critical | - |
+| F-CDIFF-R005 | Las propuestas rechazadas no contribuyen a ninguna foto y no aparecen en trazabilidad | major | - |
+| F-CDIFF-R006 | Cada nodo afectado expone un mapa de fields cambiados | critical | - |
+| F-CDIFF-R007 | Invariantes de las tres fotos por field | critical | - |
+| F-CDIFF-R019 | Cualquier hoja escalar con cambio entre fotos aparece como field | critical | - |
+| F-CDIFF-R020 | Exclusiones por rol funcional, no por whitelist de campos | critical | - |
+| F-CDIFF-R023 | Anidamiento: hojas profundas se identifican por path estable | critical | - |
+| F-CDIFF-R021 | El descubrimiento es agnostico a la dimension que origino la propuesta | major | - |
+| F-CDIFF-R022 | Listas: diff por elemento si tienen identidad declarada, posicional si no | major | - |
+| F-CDIFF-R009 | La salida no tiene una seccion paralela de "estadisticas afectadas" | critical | - |
+| F-CDIFF-R010 | Los deltas no son parte del contrato; son computables por el consumidor | major | - |
+| F-CDIFF-R011 | Trazabilidad de propuestas por nodo afectado | major | - |
+| F-CDIFF-R012 | Una pendiente no aplicable se marca, se identifica con causa y se excluye de pendingProjection | major | - |
 | F-CDIFF-R013 | Si la estructura consolidada no se puede construir, el CLI emite `consolidatedAvailability: UNAVAILABLE` con causa | critical | Estructura consolidada no disponible para el analisis '<auditId>': <categoria> - <detalle> |
-| F-CDIFF-R014 | El baseline de un analisis nuevo coincide con el `consolidated` del analisis anterior | major | - |
-| F-CDIFF-R015 | El consolidado no es un nuevo `AuditReport` ni emite uno | critical | - |
-| F-CDIFF-R016 | El consolidado supersede el caso de "preview combinado" que [F-PIPRE-R011](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R011) dejo abierto | major | - |
-| F-CDIFF-R017 | El consolidado se construye sobre el plan activo, no combina planes | major | - |
-| F-CDIFF-R018 | El consolidado cubre solo cambios sobre nodos existentes | minor | - |
+| F-CDIFF-R015 | Servir el consolidado no escribe ningun artefacto persistido | critical | - |
+| F-CDIFF-R016 | El consolidado combina varias propuestas en un documento; los previews por-propuesta de FEAT-PIPRE permanecen accesibles | major | - |
+| F-CDIFF-R017 | Ninguna foto contiene efecto de propuestas de planes ajenos | major | - |
+| F-CDIFF-R018 | Las propuestas estructurales no contribuyen a ninguna foto y no aparecen en pendingApplicability | minor | - |
 
 **User Journeys:**
 
 - **F-CDIFF-J001**: El CLI emite el consolidado del par activo
 
-- **F-CDIFF-J002**: Nodo hoja con aceptada y pendiente sobre el mismo `nodeId`
+- **F-CDIFF-J002**: Nodo hoja con aceptada y pendiente sobre el mismo nodeId, tripleta completa por field
 
-- **F-CDIFF-J003**: Padre con aceptadas y pendientes en su subarbol
+- **F-CDIFF-J003**: Padre con aceptadas y pendientes en su subarbol, descubrimiento dinamico de hojas y diff de listas
 
-- **F-CDIFF-J004**: Estadistica afectada con cuatro campos numericos y deltas absolutos
+- **F-CDIFF-J004**: El contrato emite la tripleta y deja los deltas al consumidor
 
 - **F-CDIFF-J005**: Pendiente no aplicable: la salida la marca y sigue sirviendo
 
 - **F-CDIFF-J006**: Cambio de par activo: idempotente y no destructivo
 
-- **F-CDIFF-J007**: Equivalencia post-stack entre analisis sucesivos
-
 - **F-CDIFF-J008**: Supersesion explicita del preview combinado de FEAT-PIPRE
+
+- **F-CDIFF-J007**: Equivalencia post-stack entre analisis sucesivos
 
