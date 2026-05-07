@@ -5556,19 +5556,51 @@ modules:
         traceability:
           feature: FEAT-CDIFF
           rule: F-CDIFF-R001
-      - name: "Dado un ConsolidatedView con availability UNAVAILABLE y un unavailability\
-          \ con reason y detail, cuando format corre, entonces la salida incluye consolidatedAvailability=UNAVAILABLE\
-          \ con la categoria y el detalle, y nodeImpacts/statisticImpacts no se intentan\
-          \ rendererizar como datos validos"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R013
       - name: "Dado un ConsolidatedView con nonApplicablePendings no vacio, cuando\
           \ format corre, entonces cada NonApplicablePending aparece en la salida\
           \ con su proposalId, su reason categorica y su detail"
         traceability:
           feature: FEAT-CDIFF
           rule: F-CDIFF-R012
+      - name: "Dado un ConsolidatedView con availability UNAVAILABLE y un unavailability\
+          \ con reason y detail, cuando format corre, entonces la salida incluye consolidatedAvailability=UNAVAILABLE\
+          \ con la categoria y el detalle, y nodeImpacts no se intenta rendererizar\
+          \ como datos validos — R013 (v3 cleanup)"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R013
+      - name: "Dado un ConsolidatedView con un NodeImpact que lleva fieldChanges no\
+          \ vacio (varias entradas con FieldChange tripleta) mas acceptedProposalIds\
+          \ y pendingProposalIds, cuando format corre, entonces la salida emite el\
+          \ nodo con su mapa de fieldChanges (cada entrada bajo su clave estable de\
+          \ path con sus tres valores) y con las dos listas de proposalIds adjuntas;\
+          \ NO emite ningun campo equivalente al deprecado consolidated/pendingProjection\
+          \ como CourseElementSnapshot crudo — R006 nueva forma uniforme"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R006
+      - name: "Dado un ConsolidatedView con varios nodeImpacts cuyos fieldChanges\
+          \ incluyen scores escalares cambiados, cuando format corre, entonces la\
+          \ salida NO contiene una seccion paralela 'statisticImpacts' ni equivalente;\
+          \ los scores cambiados solo aparecen como entradas del mapa fieldChanges\
+          \ del nodo correspondiente — R009"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R009
+      - name: "Dado un ConsolidatedView con cualquier conjunto de fieldChanges, cuando\
+          \ format corre, entonces la salida NO contiene campos numericos precomputados\
+          \ acceptedDelta ni pendingDelta en ningun lugar; cada FieldChange se serializa\
+          \ como tripleta (original, consolidated, pendingProjection) sin restas —\
+          \ R010"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R010
+      - name: "Dado un ConsolidatedView con un NodeImpact cuyo acceptedProposalIds\
+          \ y pendingProposalIds estan poblados, cuando format corre, entonces la\
+          \ salida del nodo incluye ambas listas con sus proposalIds — R011"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R011
       implements:
       - ConsolidatedViewFormatter
   - name: bootstrap
@@ -7238,39 +7270,6 @@ modules:
         traceability:
           feature: FEAT-CDIFF
           rule: F-CDIFF-R001
-      - name: "Dado un AuditReport recien creado cuyo plan activo no tiene propuestas\
-          \ aceptadas ni pendientes, cuando build corre, entonces nodeImpacts y statisticImpacts\
-          \ quedan vacios y los valores consolidados coinciden con el baseline del\
-          \ analisis"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R003
-      - name: "Dado un plan activo de un analisis viejo con propuestas pendientes\
-          \ y un analisis mas nuevo cuyo plan no las contiene, cuando build corre\
-          \ apuntando al analisis viejo, entonces sus pendientes dormidas aparecen\
-          \ en nodeImpacts/statisticImpacts del consolidado"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R004
-      - name: "Dado un RevisionArtifact con verdict REJECTED en el plan activo, cuando\
-          \ build corre, entonces ese proposalId no aparece en nodeImpacts, statisticImpacts\
-          \ ni nonApplicablePendings y no contribuye a consolidated, acceptedDelta,\
-          \ pendingProjection ni pendingDelta"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R005
-      - name: "Dado un nodo hoja con dos propuestas aceptadas que lo afectaron en\
-          \ orden createdAt ascendente, cuando build corre, entonces NodeImpact.acceptedProposalIds\
-          \ contiene ambos proposalId en orden createdAt ascendente"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R007
-      - name: "Dado que el ActiveAnalysisSelectionStore retorna Optional.empty, cuando\
-          \ build corre, entonces ConsolidatedView.availability es UNAVAILABLE con\
-          \ reason NO_ACTIVE_ANALYSIS y nodeImpacts/statisticImpacts quedan vacios"
-        traceability:
-          feature: FEAT-CDIFF
-          rule: F-CDIFF-R013
       - name: "Dado un par activo cuyo planId no se puede ubicar dentro del analisis\
           \ (RefinementPlanStore retorna empty), cuando build corre, entonces ConsolidatedView.availability\
           \ es UNAVAILABLE con reason ACTIVE_PLAN_UNAVAILABLE"
@@ -7295,13 +7294,161 @@ modules:
         traceability:
           feature: FEAT-CDIFF
           rule: F-CDIFF-R015
+      - name: "Dado un AuditReport cuyo plan activo no tiene propuestas aceptadas\
+          \ ni pendientes, cuando build corre, entonces nodeImpacts queda vacio (no\
+          \ hay nodos afectados que reportar) — R003"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R003
+      - name: "Dado un plan activo de un analisis viejo con propuestas pendientes\
+          \ y un analisis mas nuevo cuyo plan no las contiene, cuando build corre\
+          \ apuntando al analisis viejo, entonces sus pendientes dormidas aparecen\
+          \ como pendingProposalIds y como contribuciones a la foto pendingProjection\
+          \ de los fields tocados en nodeImpacts — R004"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R004
+      - name: "Dado un RevisionArtifact con verdict REJECTED en el plan activo, cuando\
+          \ build corre, entonces ese proposalId no aparece en nodeImpacts (ni en\
+          \ acceptedProposalIds ni en pendingProposalIds de ningun nodo) ni en nonApplicablePendings,\
+          \ y no contribuye a las fotos original/consolidated/pendingProjection de\
+          \ ningun field — R005"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R005
+      - name: "Dado que el ActiveAnalysisSelectionStore retorna Optional.empty, cuando\
+          \ build corre, entonces ConsolidatedView.availability es UNAVAILABLE con\
+          \ reason NO_ACTIVE_ANALYSIS y nodeImpacts queda vacio — R013"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R013
       - name: "Dado un plan activo asociado a un AuditReport y un plan ajeno con propuestas\
           \ distintas asociadas a otro analisis, cuando build corre, entonces solo\
           \ se consultan los RevisionArtifact via listByPlan(activePlanId) y las propuestas\
-          \ del plan ajeno no aparecen en nodeImpacts ni statisticImpacts"
+          \ del plan ajeno no aparecen en nodeImpacts (ni como acceptedProposalIds,\
+          \ pendingProposalIds, ni como contribuciones a las fotos de fields) — R017"
         traceability:
           feature: FEAT-CDIFF
           rule: F-CDIFF-R017
+      - name: "Dado un nodo hoja con un field cuyas tres fotos son identicas y otro\
+          \ field cuya foto consolidated difiere de original, cuando build corre,\
+          \ entonces el mapa fieldChanges del NodeImpact contiene SOLO la entrada\
+          \ del segundo field — R006 invariante 1: solo fields con cambio"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R006
+      - name: "Dado un NodeImpact con varios fields cambiados de origenes distintos\
+          \ (componente de diagnostico tipado, contenido del nodo, score escalar),\
+          \ cuando build corre, entonces todas las entradas del mapa fieldChanges\
+          \ siguen la misma forma clave-valor con FieldChange(original, consolidated,\
+          \ pendingProjection) sin ramas separadas por origen del field — R006 invariante\
+          \ 2: forma uniforme"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R006
+      - name: "Dado un nodo cuyo subarbol no produce ningun field cambiado entre las\
+          \ tres fotos, cuando build corre, entonces ese nodo NO aparece en ConsolidatedView.nodeImpacts\
+          \ — R006 invariante 3: nodo sin cambios no aparece"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R006
+      - name: "Dado un field cambiado de un nodo hoja, cuando build corre, entonces\
+          \ FieldChange.original es identico al valor que el AuditReport baseline\
+          \ expone para ese field y ese nodo (sin recomputar, sin redondear, sin derivar)\
+          \ — R007 invariante 1: fidelidad de original"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R007
+      - name: "Dado un escenario donde el AuditEngine es invocado dos veces (una sobre\
+          \ el arbol con-aceptadas y otra sobre el arbol con-aceptadas-y-pendientes),\
+          \ cuando build corre, entonces FieldChange.consolidated coincide identicamente\
+          \ con el valor que el AuditReport del primer runAudit dejo en el AuditNode\
+          \ correspondiente, sin que el builder lo recompute o transforme — R007 invariante\
+          \ 2: determinacion de consolidated"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R007
+      - name: "Dado un escenario donde el AuditEngine es invocado dos veces (una sobre\
+          \ el arbol con-aceptadas y otra sobre el arbol con-aceptadas-y-pendientes),\
+          \ cuando build corre, entonces FieldChange.pendingProjection coincide identicamente\
+          \ con el valor que el AuditReport del segundo runAudit dejo en el AuditNode\
+          \ correspondiente, sin que el builder lo recompute o derive desde consolidated\
+          \ — R007 invariante 3: determinacion de pendingProjection"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R007
+      - name: "Dado un nodo hoja con una aceptada (que cambia el field) y una pendiente\
+          \ sobre el mismo nodeId (que lo cambia de nuevo), cuando build corre, entonces\
+          \ el AuditEngine es invocado para pendingProjection sobre el arbol que YA\
+          \ tiene la aceptada aplicada (no sobre el original) — R007 invariante 4:\
+          \ orden de stacking, pendientes sobre consolidated, no sobre original"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R007
+      - name: "Dado un nodo padre cuyo subarbol contiene cambios y para el cual el\
+          \ AuditEngine produjo un valor agregado en el AuditReport del arbol con-aceptadas,\
+          \ cuando build corre, entonces FieldChange.consolidated del field del padre\
+          \ es identico a ese valor leido del AuditReport y NO el resultado de re-agregar\
+          \ deltas de hijos en el builder — R007 invariante 5: las tres fotos provienen\
+          \ del motor"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R007
+      - name: "Dado un escenario donde varias dimensiones de score cambian por aceptadas\
+          \ o pendientes, cuando build corre, entonces ConsolidatedView devuelto NO\
+          \ expone ningun campo statisticImpacts ni ninguna lista paralela de estadisticas\
+          \ afectadas; los scores cambiados solo aparecen como entradas del mapa fieldChanges\
+          \ del nodo correspondiente — R009"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R009
+      - name: "Dado cualquier ConsolidatedView producido por build, entonces ningun\
+          \ NodeImpact expone campos acceptedDelta o pendingDelta precomputados; el\
+          \ contrato emitido contiene exclusivamente las tripletas (original, consolidated,\
+          \ pendingProjection) por field — R010"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R010
+      - name: "Dada una propuesta APPROVED del plan activo que cambia el contenido\
+          \ de un nodo y otra APPROVED del plan activo que NO afecta a ese nodo, cuando\
+          \ build corre, entonces NodeImpact.acceptedProposalIds del nodo afectado\
+          \ contiene SOLO el proposalId de la primera (R011 invariante 1: cobertura\
+          \ accepted, recíproca incluida)"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R011
+      - name: "Dada una propuesta PENDING_APPROVAL aplicable del plan activo que cambia\
+          \ un nodo y otra PENDING_APPROVAL aplicable que NO afecta a ese nodo, cuando\
+          \ build corre, entonces NodeImpact.pendingProposalIds del nodo afectado\
+          \ contiene SOLO el proposalId de la primera (R011 invariante 2: cobertura\
+          \ pending, recíproca incluida)"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R011
+      - name: "Dado un nodo hoja con dos propuestas aceptadas que lo afectaron en\
+          \ orden createdAt ascendente, cuando build corre, entonces NodeImpact.acceptedProposalIds\
+          \ contiene ambos proposalId en orden createdAt ascendente — R011 invariante\
+          \ 3: orden estable"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R011
+      - name: "Dado un nodo afectado con varias aceptadas y varias pendientes que\
+          \ tocan distintos fields, cuando build corre, entonces NodeImpact expone\
+          \ acceptedProposalIds y pendingProposalIds a nivel del NODO (no asocia un\
+          \ proposalId a un field especifico dentro de fieldChanges) — R011 invariante\
+          \ 4: trazabilidad por nodo, no por field"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R011
+      - name: "Dado un plan activo con multiples propuestas (varias APPROVED y varias\
+          \ PENDING_APPROVAL) que tocan distintos nodos, cuando build corre una sola\
+          \ vez, entonces ConsolidatedView retornado expone los efectos de TODAS esas\
+          \ propuestas en una unica salida (acceptadas en las fotos consolidated y\
+          \ pendientes aplicables en las fotos pendingProjection) sin requerir invocaciones\
+          \ adicionales del builder — R016 invariante 1: combinacion en un documento"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R016
       implements:
       - ConsolidatedViewBuilder
   - name: lemmaabsence
@@ -7864,18 +8011,188 @@ modules:
         description: Consultado al alcanzar cada lista para decidir entre diff por
           elemento o posicional. R022.
       visibility: internal
+      handwrittenTests:
+      - name: "Dados tres AuditNode donde una hoja escalar accesible por el recorrido\
+          \ recursivo tiene valores distintos entre la foto original y la foto consolidated,\
+          \ cuando diff corre, entonces el mapa retornado contiene una entrada cuya\
+          \ clave codifica el path a esa hoja y cuyo FieldChange lleva los tres valores\
+          \ — R019 invariante 1: cobertura por construccion, sin enumeracion previa"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R019
+      - name: "Dados tres AuditNode donde una de las hojas escalares pertenece a un\
+          \ tipo de diagnostico no enumerado en seed alguna del exclusionRegistry,\
+          \ cuando diff corre y los valores de esa hoja difieren entre fotos, entonces\
+          \ la hoja aparece como field del mapa SIN requerir registro previo en ningun\
+          \ catalogo — R019 invariante 2: aparicion automatica de cosas nuevas"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R019
+      - name: "Dados tres AuditNode donde la unica diferencia entre fotos es un campo\
+          \ cuyo nombre el exclusionRegistry clasifica como OPAQUE_PERSISTENCE_ID,\
+          \ cuando diff corre, entonces el mapa retornado esta vacio: la hoja no se\
+          \ emite aunque difiera — R020 categoria 1"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R020
+      - name: "Dados tres AuditNode donde la unica diferencia entre fotos es un campo\
+          \ cuyo nombre el exclusionRegistry clasifica como STRUCTURAL_REFERENCE,\
+          \ cuando diff corre, entonces el mapa retornado esta vacio: la referencia\
+          \ estructural no se emite aunque difiera — R020 categoria 2"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R020
+      - name: "Dados tres AuditNode donde la unica diferencia entre fotos es un campo\
+          \ cuyo nombre el exclusionRegistry clasifica como TIMESTAMP, cuando diff\
+          \ corre, entonces el mapa retornado esta vacio: el timestamp no se emite\
+          \ aunque difiera — R020 categoria 3"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R020
+      - name: "Dados tres AuditNode donde la unica diferencia entre fotos es un campo\
+          \ cuyo nombre el exclusionRegistry clasifica como INTERNAL_ORDER, cuando\
+          \ diff corre, entonces el mapa retornado esta vacio: el orden interno no\
+          \ se emite aunque difiera — R020 categoria 4"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R020
+      - name: "Dados tres AuditNode donde la unica diferencia entre fotos es un campo\
+          \ cuyo nombre el exclusionRegistry clasifica como NON_SEMANTIC, cuando diff\
+          \ corre, entonces el mapa retornado esta vacio: el campo no semantico no\
+          \ se emite aunque difiera — R020 categoria 5"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R020
+      - name: "Dados tres AuditNode con una lista cuyo tipo de elemento tiene identidad\
+          \ declarada en identityRegistry (p.ej. List<AbsentLemma> con clave (lemma,pos)),\
+          \ donde un elemento existe en la foto original con propiedades no-clave\
+          \ distintas a las de la foto consolidated, cuando diff corre, entonces el\
+          \ mapa retornado contiene fields derivados con clave estable basada en la\
+          \ identidad del elemento (no en su indice posicional) — R022 invariante\
+          \ 1: lista con identidad"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R022
+      - name: "Dados tres AuditNode con una lista cuyo tipo de elemento NO tiene identidad\
+          \ declarada en identityRegistry y donde el elemento en el indice i de la\
+          \ foto original tiene una hoja escalar distinta al elemento en el indice\
+          \ i de la foto consolidated, cuando diff corre, entonces el mapa retornado\
+          \ contiene fields con clave de path posicional ([i]) — R022 invariante 2:\
+          \ diff posicional sin identidad"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R022
+      - name: "Dados tres AuditNode donde la misma hoja escalar profunda es alcanzable\
+          \ por la misma secuencia de campos anidados en las tres fotos con valores\
+          \ distintos, cuando diff corre, entonces el mapa retornado contiene UNA\
+          \ SOLA entrada cuya clave codifica esa secuencia y cuyo FieldChange agrupa\
+          \ los tres valores (no tres entradas separadas, una por foto) — R023 invariante\
+          \ 1: estabilidad entre fotos"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R023
+      - name: "Dadas dos invocaciones independientes de diff sobre dos pares de AuditNode\
+          \ del mismo tipo donde la misma hoja anidada cambia bajo el mismo path,\
+          \ cuando diff corre en cada par, entonces ambos mapas retornados contienen\
+          \ la MISMA clave para identificar el field correspondiente (sin variantes\
+          \ del path por nodo) — R023 invariante 2: estabilidad entre nodos del mismo\
+          \ tipo"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R023
       implements:
       - NodeFieldDiffer
     - name: DefaultFieldExclusionRegistry
       visibility: internal
+      handwrittenTests:
+      - name: "Dada una invocacion de isExcluded sobre un campo seed del registry\
+          \ cuyo rol funcional es OPAQUE_PERSISTENCE_ID, entonces retorna true y getRole\
+          \ retorna OPAQUE_PERSISTENCE_ID — R020 categoria 1: seed de identificadores\
+          \ opacos de persistencia"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R020
+      - name: "Dada una invocacion de isExcluded sobre un campo seed del registry\
+          \ cuyo rol funcional es STRUCTURAL_REFERENCE (parentId, courseId, milestoneId,\
+          \ topicId, knowledgeId o quizId como referencia dentro de otro nodo), entonces\
+          \ retorna true y getRole retorna STRUCTURAL_REFERENCE — R020 categoria 2:\
+          \ seed de referencias estructurales"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R020
+      - name: "Dada una invocacion de isExcluded sobre un campo seed del registry\
+          \ cuyo rol funcional es TIMESTAMP (createdAt, updatedAt sobre cualquier\
+          \ nivel del modelo), entonces retorna true y getRole retorna TIMESTAMP —\
+          \ R020 categoria 3: seed de timestamps"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R020
+      - name: "Dada una invocacion de isExcluded sobre un campo seed del registry\
+          \ cuyo rol funcional es INTERNAL_ORDER (indice de orden de insercion gestionado\
+          \ por el almacenamiento), entonces retorna true y getRole retorna INTERNAL_ORDER\
+          \ — R020 categoria 4: seed de ordenes internos"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R020
+      - name: "Dada una invocacion de isExcluded sobre un campo seed del registry\
+          \ cuyo rol funcional cae en la categoria escape NON_SEMANTIC, entonces retorna\
+          \ true y getRole retorna NON_SEMANTIC — R020 categoria 5: seed de la categoria\
+          \ escape"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R020
       implements:
       - FieldExclusionRegistry
     - name: DefaultListIdentityRegistry
       visibility: internal
+      handwrittenTests:
+      - name: "Dada una invocacion de getKeySpec sobre el campo lista de tipo List<AbsentLemma>\
+          \ dentro de LemmaAbsenceLevelDiagnosis (declaringTypeName='LemmaAbsenceLevelDiagnosis',\
+          \ fieldName='absentLemmas'), entonces retorna un Optional poblado con un\
+          \ ListIdentityKeySpec cuyos fieldNames son ['lemma','pos'] — R022 seed AbsentLemma"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R022
+      - name: "Dada una invocacion de getKeySpec sobre el campo lista de tipo List<MisplacedLemma>\
+          \ dentro de su record contenedor, entonces retorna un Optional poblado con\
+          \ un ListIdentityKeySpec cuyos fieldNames son ['lemma','pos'] — R022 seed\
+          \ MisplacedLemma"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R022
+      - name: "Dada una invocacion de getKeySpec sobre el campo lista de tipo List<BucketResult>\
+          \ (p.ej. dentro de CocaBucketsLevelDiagnosis), entonces retorna un Optional\
+          \ poblado con un ListIdentityKeySpec cuyos fieldNames son ['bandName'] —\
+          \ R022 seed BucketResult"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R022
+      - name: "Dada una invocacion de getKeySpec sobre el campo lista de tipo List<QuarterResult>,\
+          \ entonces retorna un Optional poblado con un ListIdentityKeySpec cuyos\
+          \ fieldNames son ['index'] — R022 seed QuarterResult"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R022
+      - name: "Dada una invocacion de getKeySpec sobre el campo lista de tipo List<ImprovementDirective>,\
+          \ entonces retorna un Optional poblado con un ListIdentityKeySpec cuyos\
+          \ fieldNames son ['type','bandName','levelName'] — R022 seed ImprovementDirective"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R022
       implements:
       - ListIdentityRegistry
     - name: DefaultNodeFieldDifferFactory
       visibility: public
+      handwrittenTests:
+      - name: "Dada una invocacion de create() sobre la factory, entonces retorna\
+          \ un NodeFieldDiffer cuya implementacion es RecursiveNodeFieldDiffer compuesta\
+          \ con DefaultFieldExclusionRegistry (para R020) y DefaultListIdentityRegistry\
+          \ (para R022); el motor producido honra ambas politicas en una invocacion\
+          \ de diff sobre AuditNode con cambios en hojas excluibles y en listas con\
+          \ identidad — composicion del motor"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R019
       implements:
       - NodeFieldDifferFactory
 - name: revision-infrastructure

@@ -1,4 +1,4 @@
-generatedAt: 2026-05-07T01:00:54.471224Z
+generatedAt: 2026-05-07T01:30:54.960347Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -4348,65 +4348,412 @@ features:
       module: audit-infrastructure
       implementation: FileSystemActiveAnalysisSelectionStore
   - ruleId: F-CDIFF-R003
-    state: PASSING
+    state: FAILING
     tests:
-    - name: "Dado un AuditReport recien creado cuyo plan activo no tiene propuestas\
-        \ aceptadas ni pendientes, cuando build corre, entonces nodeImpacts y statisticImpacts\
-        \ quedan vacios y los valores consolidados coinciden con el baseline del analisis"
+    - name: "Dado un AuditReport cuyo plan activo no tiene propuestas aceptadas ni\
+        \ pendientes, cuando build corre, entonces nodeImpacts queda vacio (no hay\
+        \ nodos afectados que reportar) — R003"
       implemented: true
-      passing: true
+      passing: false
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R004
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Dado un plan activo de un analisis viejo con propuestas pendientes y\
         \ un analisis mas nuevo cuyo plan no las contiene, cuando build corre apuntando\
-        \ al analisis viejo, entonces sus pendientes dormidas aparecen en nodeImpacts/statisticImpacts\
-        \ del consolidado"
+        \ al analisis viejo, entonces sus pendientes dormidas aparecen como pendingProposalIds\
+        \ y como contribuciones a la foto pendingProjection de los fields tocados\
+        \ en nodeImpacts — R004"
       implemented: true
-      passing: true
+      passing: false
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R005
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Dado un RevisionArtifact con verdict REJECTED en el plan activo, cuando\
-        \ build corre, entonces ese proposalId no aparece en nodeImpacts, statisticImpacts\
-        \ ni nonApplicablePendings y no contribuye a consolidated, acceptedDelta,\
-        \ pendingProjection ni pendingDelta"
+        \ build corre, entonces ese proposalId no aparece en nodeImpacts (ni en acceptedProposalIds\
+        \ ni en pendingProposalIds de ningun nodo) ni en nonApplicablePendings, y\
+        \ no contribuye a las fotos original/consolidated/pendingProjection de ningun\
+        \ field — R005"
       implemented: true
-      passing: true
+      passing: false
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R006
-    state: NO_TESTS
-  - ruleId: F-CDIFF-R007
-    state: PASSING
+    state: FAILING
     tests:
-    - name: "Dado un nodo hoja con dos propuestas aceptadas que lo afectaron en orden\
-        \ createdAt ascendente, cuando build corre, entonces NodeImpact.acceptedProposalIds\
-        \ contiene ambos proposalId en orden createdAt ascendente"
+    - name: "Dado un ConsolidatedView con un NodeImpact que lleva fieldChanges no\
+        \ vacio (varias entradas con FieldChange tripleta) mas acceptedProposalIds\
+        \ y pendingProposalIds, cuando format corre, entonces la salida emite el nodo\
+        \ con su mapa de fieldChanges (cada entrada bajo su clave estable de path\
+        \ con sus tres valores) y con las dos listas de proposalIds adjuntas; NO emite\
+        \ ningun campo equivalente al deprecado consolidated/pendingProjection como\
+        \ CourseElementSnapshot crudo — R006 nueva forma uniforme"
       implemented: true
-      passing: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultConsolidatedViewFormatter
+    - name: "Dado un nodo hoja con un field cuyas tres fotos son identicas y otro\
+        \ field cuya foto consolidated difiere de original, cuando build corre, entonces\
+        \ el mapa fieldChanges del NodeImpact contiene SOLO la entrada del segundo\
+        \ field — R006 invariante 1: solo fields con cambio"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+    - name: "Dado un NodeImpact con varios fields cambiados de origenes distintos\
+        \ (componente de diagnostico tipado, contenido del nodo, score escalar), cuando\
+        \ build corre, entonces todas las entradas del mapa fieldChanges siguen la\
+        \ misma forma clave-valor con FieldChange(original, consolidated, pendingProjection)\
+        \ sin ramas separadas por origen del field — R006 invariante 2: forma uniforme"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+    - name: "Dado un nodo cuyo subarbol no produce ningun field cambiado entre las\
+        \ tres fotos, cuando build corre, entonces ese nodo NO aparece en ConsolidatedView.nodeImpacts\
+        \ — R006 invariante 3: nodo sin cambios no aparece"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+  - ruleId: F-CDIFF-R007
+    state: FAILING
+    tests:
+    - name: "Dado un field cambiado de un nodo hoja, cuando build corre, entonces\
+        \ FieldChange.original es identico al valor que el AuditReport baseline expone\
+        \ para ese field y ese nodo (sin recomputar, sin redondear, sin derivar) —\
+        \ R007 invariante 1: fidelidad de original"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+    - name: "Dado un escenario donde el AuditEngine es invocado dos veces (una sobre\
+        \ el arbol con-aceptadas y otra sobre el arbol con-aceptadas-y-pendientes),\
+        \ cuando build corre, entonces FieldChange.consolidated coincide identicamente\
+        \ con el valor que el AuditReport del primer runAudit dejo en el AuditNode\
+        \ correspondiente, sin que el builder lo recompute o transforme — R007 invariante\
+        \ 2: determinacion de consolidated"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+    - name: "Dado un escenario donde el AuditEngine es invocado dos veces (una sobre\
+        \ el arbol con-aceptadas y otra sobre el arbol con-aceptadas-y-pendientes),\
+        \ cuando build corre, entonces FieldChange.pendingProjection coincide identicamente\
+        \ con el valor que el AuditReport del segundo runAudit dejo en el AuditNode\
+        \ correspondiente, sin que el builder lo recompute o derive desde consolidated\
+        \ — R007 invariante 3: determinacion de pendingProjection"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+    - name: "Dado un nodo hoja con una aceptada (que cambia el field) y una pendiente\
+        \ sobre el mismo nodeId (que lo cambia de nuevo), cuando build corre, entonces\
+        \ el AuditEngine es invocado para pendingProjection sobre el arbol que YA\
+        \ tiene la aceptada aplicada (no sobre el original) — R007 invariante 4: orden\
+        \ de stacking, pendientes sobre consolidated, no sobre original"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+    - name: "Dado un nodo padre cuyo subarbol contiene cambios y para el cual el AuditEngine\
+        \ produjo un valor agregado en el AuditReport del arbol con-aceptadas, cuando\
+        \ build corre, entonces FieldChange.consolidated del field del padre es identico\
+        \ a ese valor leido del AuditReport y NO el resultado de re-agregar deltas\
+        \ de hijos en el builder — R007 invariante 5: las tres fotos provienen del\
+        \ motor"
+      implemented: true
+      passing: false
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R019
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: "Dados tres AuditNode donde una hoja escalar accesible por el recorrido\
+        \ recursivo tiene valores distintos entre la foto original y la foto consolidated,\
+        \ cuando diff corre, entonces el mapa retornado contiene una entrada cuya\
+        \ clave codifica el path a esa hoja y cuyo FieldChange lleva los tres valores\
+        \ — R019 invariante 1: cobertura por construccion, sin enumeracion previa"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: RecursiveNodeFieldDiffer
+    - name: "Dados tres AuditNode donde una de las hojas escalares pertenece a un\
+        \ tipo de diagnostico no enumerado en seed alguna del exclusionRegistry, cuando\
+        \ diff corre y los valores de esa hoja difieren entre fotos, entonces la hoja\
+        \ aparece como field del mapa SIN requerir registro previo en ningun catalogo\
+        \ — R019 invariante 2: aparicion automatica de cosas nuevas"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: RecursiveNodeFieldDiffer
+    - name: "Dada una invocacion de create() sobre la factory, entonces retorna un\
+        \ NodeFieldDiffer cuya implementacion es RecursiveNodeFieldDiffer compuesta\
+        \ con DefaultFieldExclusionRegistry (para R020) y DefaultListIdentityRegistry\
+        \ (para R022); el motor producido honra ambas politicas en una invocacion\
+        \ de diff sobre AuditNode con cambios en hojas excluibles y en listas con\
+        \ identidad — composicion del motor"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultNodeFieldDifferFactory
   - ruleId: F-CDIFF-R020
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: "Dados tres AuditNode donde la unica diferencia entre fotos es un campo\
+        \ cuyo nombre el exclusionRegistry clasifica como OPAQUE_PERSISTENCE_ID, cuando\
+        \ diff corre, entonces el mapa retornado esta vacio: la hoja no se emite aunque\
+        \ difiera — R020 categoria 1"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: RecursiveNodeFieldDiffer
+    - name: "Dados tres AuditNode donde la unica diferencia entre fotos es un campo\
+        \ cuyo nombre el exclusionRegistry clasifica como STRUCTURAL_REFERENCE, cuando\
+        \ diff corre, entonces el mapa retornado esta vacio: la referencia estructural\
+        \ no se emite aunque difiera — R020 categoria 2"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: RecursiveNodeFieldDiffer
+    - name: "Dados tres AuditNode donde la unica diferencia entre fotos es un campo\
+        \ cuyo nombre el exclusionRegistry clasifica como TIMESTAMP, cuando diff corre,\
+        \ entonces el mapa retornado esta vacio: el timestamp no se emite aunque difiera\
+        \ — R020 categoria 3"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: RecursiveNodeFieldDiffer
+    - name: "Dados tres AuditNode donde la unica diferencia entre fotos es un campo\
+        \ cuyo nombre el exclusionRegistry clasifica como INTERNAL_ORDER, cuando diff\
+        \ corre, entonces el mapa retornado esta vacio: el orden interno no se emite\
+        \ aunque difiera — R020 categoria 4"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: RecursiveNodeFieldDiffer
+    - name: "Dados tres AuditNode donde la unica diferencia entre fotos es un campo\
+        \ cuyo nombre el exclusionRegistry clasifica como NON_SEMANTIC, cuando diff\
+        \ corre, entonces el mapa retornado esta vacio: el campo no semantico no se\
+        \ emite aunque difiera — R020 categoria 5"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: RecursiveNodeFieldDiffer
+    - name: "Dada una invocacion de isExcluded sobre un campo seed del registry cuyo\
+        \ rol funcional es OPAQUE_PERSISTENCE_ID, entonces retorna true y getRole\
+        \ retorna OPAQUE_PERSISTENCE_ID — R020 categoria 1: seed de identificadores\
+        \ opacos de persistencia"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultFieldExclusionRegistry
+    - name: "Dada una invocacion de isExcluded sobre un campo seed del registry cuyo\
+        \ rol funcional es STRUCTURAL_REFERENCE (parentId, courseId, milestoneId,\
+        \ topicId, knowledgeId o quizId como referencia dentro de otro nodo), entonces\
+        \ retorna true y getRole retorna STRUCTURAL_REFERENCE — R020 categoria 2:\
+        \ seed de referencias estructurales"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultFieldExclusionRegistry
+    - name: "Dada una invocacion de isExcluded sobre un campo seed del registry cuyo\
+        \ rol funcional es TIMESTAMP (createdAt, updatedAt sobre cualquier nivel del\
+        \ modelo), entonces retorna true y getRole retorna TIMESTAMP — R020 categoria\
+        \ 3: seed de timestamps"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultFieldExclusionRegistry
+    - name: "Dada una invocacion de isExcluded sobre un campo seed del registry cuyo\
+        \ rol funcional es INTERNAL_ORDER (indice de orden de insercion gestionado\
+        \ por el almacenamiento), entonces retorna true y getRole retorna INTERNAL_ORDER\
+        \ — R020 categoria 4: seed de ordenes internos"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultFieldExclusionRegistry
+    - name: "Dada una invocacion de isExcluded sobre un campo seed del registry cuyo\
+        \ rol funcional cae en la categoria escape NON_SEMANTIC, entonces retorna\
+        \ true y getRole retorna NON_SEMANTIC — R020 categoria 5: seed de la categoria\
+        \ escape"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultFieldExclusionRegistry
   - ruleId: F-CDIFF-R023
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: "Dados tres AuditNode donde la misma hoja escalar profunda es alcanzable\
+        \ por la misma secuencia de campos anidados en las tres fotos con valores\
+        \ distintos, cuando diff corre, entonces el mapa retornado contiene UNA SOLA\
+        \ entrada cuya clave codifica esa secuencia y cuyo FieldChange agrupa los\
+        \ tres valores (no tres entradas separadas, una por foto) — R023 invariante\
+        \ 1: estabilidad entre fotos"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: RecursiveNodeFieldDiffer
+    - name: "Dadas dos invocaciones independientes de diff sobre dos pares de AuditNode\
+        \ del mismo tipo donde la misma hoja anidada cambia bajo el mismo path, cuando\
+        \ diff corre en cada par, entonces ambos mapas retornados contienen la MISMA\
+        \ clave para identificar el field correspondiente (sin variantes del path\
+        \ por nodo) — R023 invariante 2: estabilidad entre nodos del mismo tipo"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: RecursiveNodeFieldDiffer
   - ruleId: F-CDIFF-R021
     state: NO_TESTS
   - ruleId: F-CDIFF-R022
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: "Dados tres AuditNode con una lista cuyo tipo de elemento tiene identidad\
+        \ declarada en identityRegistry (p.ej. List<AbsentLemma> con clave (lemma,pos)),\
+        \ donde un elemento existe en la foto original con propiedades no-clave distintas\
+        \ a las de la foto consolidated, cuando diff corre, entonces el mapa retornado\
+        \ contiene fields derivados con clave estable basada en la identidad del elemento\
+        \ (no en su indice posicional) — R022 invariante 1: lista con identidad"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: RecursiveNodeFieldDiffer
+    - name: "Dados tres AuditNode con una lista cuyo tipo de elemento NO tiene identidad\
+        \ declarada en identityRegistry y donde el elemento en el indice i de la foto\
+        \ original tiene una hoja escalar distinta al elemento en el indice i de la\
+        \ foto consolidated, cuando diff corre, entonces el mapa retornado contiene\
+        \ fields con clave de path posicional ([i]) — R022 invariante 2: diff posicional\
+        \ sin identidad"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: RecursiveNodeFieldDiffer
+    - name: "Dada una invocacion de getKeySpec sobre el campo lista de tipo List<AbsentLemma>\
+        \ dentro de LemmaAbsenceLevelDiagnosis (declaringTypeName='LemmaAbsenceLevelDiagnosis',\
+        \ fieldName='absentLemmas'), entonces retorna un Optional poblado con un ListIdentityKeySpec\
+        \ cuyos fieldNames son ['lemma','pos'] — R022 seed AbsentLemma"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultListIdentityRegistry
+    - name: "Dada una invocacion de getKeySpec sobre el campo lista de tipo List<MisplacedLemma>\
+        \ dentro de su record contenedor, entonces retorna un Optional poblado con\
+        \ un ListIdentityKeySpec cuyos fieldNames son ['lemma','pos'] — R022 seed\
+        \ MisplacedLemma"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultListIdentityRegistry
+    - name: "Dada una invocacion de getKeySpec sobre el campo lista de tipo List<BucketResult>\
+        \ (p.ej. dentro de CocaBucketsLevelDiagnosis), entonces retorna un Optional\
+        \ poblado con un ListIdentityKeySpec cuyos fieldNames son ['bandName'] — R022\
+        \ seed BucketResult"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultListIdentityRegistry
+    - name: "Dada una invocacion de getKeySpec sobre el campo lista de tipo List<QuarterResult>,\
+        \ entonces retorna un Optional poblado con un ListIdentityKeySpec cuyos fieldNames\
+        \ son ['index'] — R022 seed QuarterResult"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultListIdentityRegistry
+    - name: "Dada una invocacion de getKeySpec sobre el campo lista de tipo List<ImprovementDirective>,\
+        \ entonces retorna un Optional poblado con un ListIdentityKeySpec cuyos fieldNames\
+        \ son ['type','bandName','levelName'] — R022 seed ImprovementDirective"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultListIdentityRegistry
   - ruleId: F-CDIFF-R009
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: "Dado un ConsolidatedView con varios nodeImpacts cuyos fieldChanges incluyen\
+        \ scores escalares cambiados, cuando format corre, entonces la salida NO contiene\
+        \ una seccion paralela 'statisticImpacts' ni equivalente; los scores cambiados\
+        \ solo aparecen como entradas del mapa fieldChanges del nodo correspondiente\
+        \ — R009"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultConsolidatedViewFormatter
+    - name: "Dado un escenario donde varias dimensiones de score cambian por aceptadas\
+        \ o pendientes, cuando build corre, entonces ConsolidatedView devuelto NO\
+        \ expone ningun campo statisticImpacts ni ninguna lista paralela de estadisticas\
+        \ afectadas; los scores cambiados solo aparecen como entradas del mapa fieldChanges\
+        \ del nodo correspondiente — R009"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R010
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: "Dado un ConsolidatedView con cualquier conjunto de fieldChanges, cuando\
+        \ format corre, entonces la salida NO contiene campos numericos precomputados\
+        \ acceptedDelta ni pendingDelta en ningun lugar; cada FieldChange se serializa\
+        \ como tripleta (original, consolidated, pendingProjection) sin restas — R010"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultConsolidatedViewFormatter
+    - name: "Dado cualquier ConsolidatedView producido por build, entonces ningun\
+        \ NodeImpact expone campos acceptedDelta o pendingDelta precomputados; el\
+        \ contrato emitido contiene exclusivamente las tripletas (original, consolidated,\
+        \ pendingProjection) por field — R010"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R011
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: "Dado un ConsolidatedView con un NodeImpact cuyo acceptedProposalIds y\
+        \ pendingProposalIds estan poblados, cuando format corre, entonces la salida\
+        \ del nodo incluye ambas listas con sus proposalIds — R011"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultConsolidatedViewFormatter
+    - name: "Dada una propuesta APPROVED del plan activo que cambia el contenido de\
+        \ un nodo y otra APPROVED del plan activo que NO afecta a ese nodo, cuando\
+        \ build corre, entonces NodeImpact.acceptedProposalIds del nodo afectado contiene\
+        \ SOLO el proposalId de la primera (R011 invariante 1: cobertura accepted,\
+        \ recíproca incluida)"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+    - name: "Dada una propuesta PENDING_APPROVAL aplicable del plan activo que cambia\
+        \ un nodo y otra PENDING_APPROVAL aplicable que NO afecta a ese nodo, cuando\
+        \ build corre, entonces NodeImpact.pendingProposalIds del nodo afectado contiene\
+        \ SOLO el proposalId de la primera (R011 invariante 2: cobertura pending,\
+        \ recíproca incluida)"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+    - name: "Dado un nodo hoja con dos propuestas aceptadas que lo afectaron en orden\
+        \ createdAt ascendente, cuando build corre, entonces NodeImpact.acceptedProposalIds\
+        \ contiene ambos proposalId en orden createdAt ascendente — R011 invariante\
+        \ 3: orden estable"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+    - name: "Dado un nodo afectado con varias aceptadas y varias pendientes que tocan\
+        \ distintos fields, cuando build corre, entonces NodeImpact expone acceptedProposalIds\
+        \ y pendingProposalIds a nivel del NODO (no asocia un proposalId a un field\
+        \ especifico dentro de fieldChanges) — R011 invariante 4: trazabilidad por\
+        \ nodo, no por field"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R012
     state: PASSING
     tests:
@@ -4418,7 +4765,7 @@ features:
       module: audit-cli
       implementation: DefaultConsolidatedViewFormatter
   - ruleId: F-CDIFF-R013
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Dado un ConsolidatedView con availability UNAVAILABLE producido por el\
         \ builder, cuando getConsolidated corre, entonces el comando termina con exit\
@@ -4430,19 +4777,12 @@ features:
       implementation: DefaultGetConsolidatedCommand
     - name: "Dado un ConsolidatedView con availability UNAVAILABLE y un unavailability\
         \ con reason y detail, cuando format corre, entonces la salida incluye consolidatedAvailability=UNAVAILABLE\
-        \ con la categoria y el detalle, y nodeImpacts/statisticImpacts no se intentan\
-        \ rendererizar como datos validos"
+        \ con la categoria y el detalle, y nodeImpacts no se intenta rendererizar\
+        \ como datos validos — R013 (v3 cleanup)"
       implemented: true
-      passing: true
+      passing: false
       module: audit-cli
       implementation: DefaultConsolidatedViewFormatter
-    - name: "Dado que el ActiveAnalysisSelectionStore retorna Optional.empty, cuando\
-        \ build corre, entonces ConsolidatedView.availability es UNAVAILABLE con reason\
-        \ NO_ACTIVE_ANALYSIS y nodeImpacts/statisticImpacts quedan vacios"
-      implemented: true
-      passing: true
-      module: revision-domain
-      implementation: DefaultConsolidatedViewBuilder
     - name: "Dado un par activo cuyo planId no se puede ubicar dentro del analisis\
         \ (RefinementPlanStore retorna empty), cuando build corre, entonces ConsolidatedView.availability\
         \ es UNAVAILABLE con reason ACTIVE_PLAN_UNAVAILABLE"
@@ -4464,6 +4804,13 @@ features:
       passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
+    - name: "Dado que el ActiveAnalysisSelectionStore retorna Optional.empty, cuando\
+        \ build corre, entonces ConsolidatedView.availability es UNAVAILABLE con reason\
+        \ NO_ACTIVE_ANALYSIS y nodeImpacts queda vacio — R013"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R015
     state: PASSING
     tests:
@@ -4482,16 +4829,28 @@ features:
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R016
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: "Dado un plan activo con multiples propuestas (varias APPROVED y varias\
+        \ PENDING_APPROVAL) que tocan distintos nodos, cuando build corre una sola\
+        \ vez, entonces ConsolidatedView retornado expone los efectos de TODAS esas\
+        \ propuestas en una unica salida (acceptadas en las fotos consolidated y pendientes\
+        \ aplicables en las fotos pendingProjection) sin requerir invocaciones adicionales\
+        \ del builder — R016 invariante 1: combinacion en un documento"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R017
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Dado un plan activo asociado a un AuditReport y un plan ajeno con propuestas\
         \ distintas asociadas a otro analisis, cuando build corre, entonces solo se\
         \ consultan los RevisionArtifact via listByPlan(activePlanId) y las propuestas\
-        \ del plan ajeno no aparecen en nodeImpacts ni statisticImpacts"
+        \ del plan ajeno no aparecen en nodeImpacts (ni como acceptedProposalIds,\
+        \ pendingProposalIds, ni como contribuciones a las fotos de fields) — R017"
       implemented: true
-      passing: true
+      passing: false
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R018
@@ -4636,6 +4995,10 @@ features:
     - com.learney.contentaudit.auditcli.formatting.DefaultConsolidatedViewFormatter
     - com.learney.contentaudit.auditinfrastructure.FileSystemActiveAnalysisSelectionStore
     - com.learney.contentaudit.revisiondomain.engine.DefaultConsolidatedViewBuilder
+    - com.learney.contentaudit.revisiondomain.fielddiff.DefaultFieldExclusionRegistry
+    - com.learney.contentaudit.revisiondomain.fielddiff.DefaultListIdentityRegistry
+    - com.learney.contentaudit.revisiondomain.fielddiff.DefaultNodeFieldDifferFactory
+    - com.learney.contentaudit.revisiondomain.fielddiff.RecursiveNodeFieldDiffer
     thresholds:
       lineCoverage: 70
       branchCoverage: 60
@@ -22472,105 +22835,44 @@ elements:
         \ en una posicion identificable como raiz del documento"
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/DefaultConsolidatedViewFormatterTest.java
-    - name: "Dado un ConsolidatedView con availability UNAVAILABLE y un unavailability\
-        \ con reason y detail, cuando format corre, entonces la salida incluye consolidatedAvailability=UNAVAILABLE\
-        \ con la categoria y el detalle, y nodeImpacts/statisticImpacts no se intentan\
-        \ rendererizar como datos validos"
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/DefaultConsolidatedViewFormatterTest.java
     - name: "Dado un ConsolidatedView con nonApplicablePendings no vacio, cuando format\
         \ corre, entonces cada NonApplicablePending aparece en la salida con su proposalId,\
         \ su reason categorica y su detail"
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/DefaultConsolidatedViewFormatterTest.java
-    testCleanViews:
-    - |
-      test: "Dado un ConsolidatedView con activeAuditId y activePlanId no nulos, cuando format corre, entonces ambos identificadores aparecen en la cadena de salida en una posicion identificable como raiz del documento"
-      trace: FEAT-CDIFF / F-CDIFF-R001
-
-      given:
-        view = ConsolidatedView("audit-123", "plan-456", ConsolidatedViewAvailability.AVAILABLE, null, null, List.of(), List.of(), List.of())
-        formatter = DefaultConsolidatedViewFormatter()
-        output = formatter.format(view, "json")
-
-      then:
-        output.contains("audit-123") is true
-        output.contains("plan-456") is true
-    - |
-      test: "Dado un StatisticImpact con original, consolidated y acceptedDelta poblados (sin pendiente), cuando format corre, entonces los tres valores aparecen en la salida con la misma magnitud en escala absoluta y pendingProjection/pendingDelta no aparecen como campos numericos"
-      trace: FEAT-CDIFF / F-CDIFF-R009
-
-      given:
-        stat = StatisticImpact(AuditTarget.QUIZ, "quiz-001", "lemma-absence", 0.60, 0.75, 0.15, null, null)
-        view = ConsolidatedView("audit-001", "plan-001", ConsolidatedViewAvailability.AVAILABLE, null, null, List.of(), List.of(stat), List.of())
-        formatter = DefaultConsolidatedViewFormatter()
-        output = formatter.format(view, "json")
-
-      then:
-        output.contains("0.6") || output.contains("0.60") is true
-        output.contains("0.75") is true
-        output.contains("0.15") is true
-        output.contains("pendingProjection") && output.matches(".*pendingProjection[^:]*:[^\\]\\}]*[0-9].*") is false
-    - |
-      test: "Dado un StatisticImpact con pendingProjection y pendingDelta no nulos, cuando format corre, entonces los cuatro valores numericos (original, consolidated, acceptedDelta, pendingDelta) y pendingProjection aparecen en la salida"
-      trace: FEAT-CDIFF / F-CDIFF-R009
-
-      given:
-        stat = StatisticImpact(AuditTarget.QUIZ, "quiz-001", "lemma-absence", 0.60, 0.75, 0.15, 0.85, 0.10)
-        view = ConsolidatedView("audit-001", "plan-001", ConsolidatedViewAvailability.AVAILABLE, null, null, List.of(), List.of(stat), List.of())
-        formatter = DefaultConsolidatedViewFormatter()
-        output = formatter.format(view, "json")
-
-      then:
-        output.contains("0.6") || output.contains("0.60") is true
-        output.contains("0.75") is true
-        output.contains("0.15") is true
-        output.contains("0.85") is true
-        output.contains("0.1") || output.contains("0.10") is true
-    - |
-      test: "Dado un StatisticImpact con cualquier valor de original y consolidated, cuando format corre, entonces el valor textual de acceptedDelta en la salida coincide con consolidated menos original sin conversion porcentual relativa"
-      trace: FEAT-CDIFF / F-CDIFF-R010
-
-      given:
-        stat = StatisticImpact(AuditTarget.KNOWLEDGE, "know-001", "sentence-length", 0.50, 0.70, 0.20, null, null)
-        view = ConsolidatedView("audit-001", "plan-001", ConsolidatedViewAvailability.AVAILABLE, null, null, List.of(), List.of(stat), List.of())
-        formatter = DefaultConsolidatedViewFormatter()
-        output = formatter.format(view, "json")
-
-      then:
-        output.contains("0.2") || output.contains("0.20") is true
-        output.contains("40.0") || output.contains("40%") is false
-    - |
-      test: "Dado un ConsolidatedView con availability UNAVAILABLE y un unavailability con reason y detail, cuando format corre, entonces la salida incluye consolidatedAvailability=UNAVAILABLE con la categoria y el detalle, y nodeImpacts/statisticImpacts no se intentan rendererizar como datos validos"
-      trace: FEAT-CDIFF / F-CDIFF-R013
-
-      given:
-        unavailability = ConsolidatedViewUnavailability(ConsolidatedViewUnavailabilityReason.NO_ACTIVE_ANALYSIS, "Curso sin par activo configurado")
-        view = ConsolidatedView(null, null, ConsolidatedViewAvailability.UNAVAILABLE, unavailability, null, List.of(), List.of(), List.of())
-        formatter = DefaultConsolidatedViewFormatter()
-        output = formatter.format(view, "json")
-
-      then:
-        output.contains("UNAVAILABLE") is true
-        output.contains("NO_ACTIVE_ANALYSIS") is true
-        output.contains("Curso sin par activo configurado") is true
-    - |
-      test: "Dado un ConsolidatedView con nonApplicablePendings no vacio, cuando format corre, entonces cada NonApplicablePending aparece en la salida con su proposalId, su reason categorica y su detail"
-      trace: FEAT-CDIFF / F-CDIFF-R012
-
-      given:
-        pending1 = NonApplicablePending("proposal-001", NonApplicablePendingReason.NODE_ABSENT, "El nodeId quiz-xyz no existe en el subarbol vigente")
-        pending2 = NonApplicablePending("proposal-002", NonApplicablePendingReason.ELEMENT_BEFORE_MISMATCH, "El elementBefore de la propuesta no coincide con el consolidated del nodo")
-        view = ConsolidatedView("audit-001", "plan-001", ConsolidatedViewAvailability.AVAILABLE, null, null, List.of(), List.of(), List.of(pending1, pending2))
-        formatter = DefaultConsolidatedViewFormatter()
-        output = formatter.format(view, "json")
-
-      then:
-        output.contains("proposal-001") is true
-        output.contains("NODE_ABSENT") is true
-        output.contains("quiz-xyz") is true
-        output.contains("proposal-002") is true
-        output.contains("ELEMENT_BEFORE_MISMATCH") is true
+    - name: "Dado un ConsolidatedView con availability UNAVAILABLE y un unavailability\
+        \ con reason y detail, cuando format corre, entonces la salida incluye consolidatedAvailability=UNAVAILABLE\
+        \ con la categoria y el detalle, y nodeImpacts no se intenta rendererizar\
+        \ como datos validos — R013 (v3 cleanup)"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/DefaultConsolidatedViewFormatterTest.java
+    - name: "Dado un ConsolidatedView con un NodeImpact que lleva fieldChanges no\
+        \ vacio (varias entradas con FieldChange tripleta) mas acceptedProposalIds\
+        \ y pendingProposalIds, cuando format corre, entonces la salida emite el nodo\
+        \ con su mapa de fieldChanges (cada entrada bajo su clave estable de path\
+        \ con sus tres valores) y con las dos listas de proposalIds adjuntas; NO emite\
+        \ ningun campo equivalente al deprecado consolidated/pendingProjection como\
+        \ CourseElementSnapshot crudo — R006 nueva forma uniforme"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/DefaultConsolidatedViewFormatterTest.java
+    - name: "Dado un ConsolidatedView con varios nodeImpacts cuyos fieldChanges incluyen\
+        \ scores escalares cambiados, cuando format corre, entonces la salida NO contiene\
+        \ una seccion paralela 'statisticImpacts' ni equivalente; los scores cambiados\
+        \ solo aparecen como entradas del mapa fieldChanges del nodo correspondiente\
+        \ — R009"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/DefaultConsolidatedViewFormatterTest.java
+    - name: "Dado un ConsolidatedView con cualquier conjunto de fieldChanges, cuando\
+        \ format corre, entonces la salida NO contiene campos numericos precomputados\
+        \ acceptedDelta ni pendingDelta en ningun lugar; cada FieldChange se serializa\
+        \ como tripleta (original, consolidated, pendingProjection) sin restas — R010"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/DefaultConsolidatedViewFormatterTest.java
+    - name: "Dado un ConsolidatedView con un NodeImpact cuyo acceptedProposalIds y\
+        \ pendingProposalIds estan poblados, cuando format corre, entonces la salida\
+        \ del nodo incluye ambas listas con sus proposalIds — R011"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/DefaultConsolidatedViewFormatterTest.java
   - name: DefaultWorkdirResolver
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/bootstrap/DefaultWorkdirResolver.java
@@ -27608,33 +27910,6 @@ elements:
         \ con los identificadores leidos del ActiveAnalysisSelectionStore"
       status: EXISTS
       testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dado un AuditReport recien creado cuyo plan activo no tiene propuestas\
-        \ aceptadas ni pendientes, cuando build corre, entonces nodeImpacts y statisticImpacts\
-        \ quedan vacios y los valores consolidados coinciden con el baseline del analisis"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dado un plan activo de un analisis viejo con propuestas pendientes y\
-        \ un analisis mas nuevo cuyo plan no las contiene, cuando build corre apuntando\
-        \ al analisis viejo, entonces sus pendientes dormidas aparecen en nodeImpacts/statisticImpacts\
-        \ del consolidado"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dado un RevisionArtifact con verdict REJECTED en el plan activo, cuando\
-        \ build corre, entonces ese proposalId no aparece en nodeImpacts, statisticImpacts\
-        \ ni nonApplicablePendings y no contribuye a consolidated, acceptedDelta,\
-        \ pendingProjection ni pendingDelta"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dado un nodo hoja con dos propuestas aceptadas que lo afectaron en orden\
-        \ createdAt ascendente, cuando build corre, entonces NodeImpact.acceptedProposalIds\
-        \ contiene ambos proposalId en orden createdAt ascendente"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    - name: "Dado que el ActiveAnalysisSelectionStore retorna Optional.empty, cuando\
-        \ build corre, entonces ConsolidatedView.availability es UNAVAILABLE con reason\
-        \ NO_ACTIVE_ANALYSIS y nodeImpacts/statisticImpacts quedan vacios"
-      status: EXISTS
-      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
     - name: "Dado un par activo cuyo planId no se puede ubicar dentro del analisis\
         \ (RefinementPlanStore retorna empty), cuando build corre, entonces ConsolidatedView.availability\
         \ es UNAVAILABLE con reason ACTIVE_PLAN_UNAVAILABLE"
@@ -27655,794 +27930,140 @@ elements:
         \ ni RevisionArtifactStore.save sobre los stores inyectados"
       status: EXISTS
       testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un AuditReport cuyo plan activo no tiene propuestas aceptadas ni\
+        \ pendientes, cuando build corre, entonces nodeImpacts queda vacio (no hay\
+        \ nodos afectados que reportar) — R003"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un plan activo de un analisis viejo con propuestas pendientes y\
+        \ un analisis mas nuevo cuyo plan no las contiene, cuando build corre apuntando\
+        \ al analisis viejo, entonces sus pendientes dormidas aparecen como pendingProposalIds\
+        \ y como contribuciones a la foto pendingProjection de los fields tocados\
+        \ en nodeImpacts — R004"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un RevisionArtifact con verdict REJECTED en el plan activo, cuando\
+        \ build corre, entonces ese proposalId no aparece en nodeImpacts (ni en acceptedProposalIds\
+        \ ni en pendingProposalIds de ningun nodo) ni en nonApplicablePendings, y\
+        \ no contribuye a las fotos original/consolidated/pendingProjection de ningun\
+        \ field — R005"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado que el ActiveAnalysisSelectionStore retorna Optional.empty, cuando\
+        \ build corre, entonces ConsolidatedView.availability es UNAVAILABLE con reason\
+        \ NO_ACTIVE_ANALYSIS y nodeImpacts queda vacio — R013"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
     - name: "Dado un plan activo asociado a un AuditReport y un plan ajeno con propuestas\
         \ distintas asociadas a otro analisis, cuando build corre, entonces solo se\
         \ consultan los RevisionArtifact via listByPlan(activePlanId) y las propuestas\
-        \ del plan ajeno no aparecen en nodeImpacts ni statisticImpacts"
+        \ del plan ajeno no aparecen en nodeImpacts (ni como acceptedProposalIds,\
+        \ pendingProposalIds, ni como contribuciones a las fotos de fields) — R017"
       status: EXISTS
       testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
-    testCleanViews:
-    - |
-      test: "Dada una seleccion activa con auditId y planId resolubles, cuando build corre, entonces ConsolidatedView.activeAuditId y activePlanId coinciden con los identificadores leidos del ActiveAnalysisSelectionStore"
-      trace: FEAT-CDIFF / F-CDIFF-R001
-
-      given:
-        root = quizNode("quiz-001", Map.of("lemma-absence", 0.80))
-        course = mock(CourseEntity.class)
-        view = builder().build(COURSE_PATH)
-
-      mock:
-        refinementPlanStore.load("plan-r001") -> Optional.of(plan("plan-r001", "audit-r001"))
-        auditReportStore.load("audit-r001") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r001") -> List.of()
-        courseRepository.load(COURSE_PATH) -> course
-        courseMapper.map(course) -> mock(AuditableCourse.class)
-        auditEngine.runAudit(any()) -> report(root)
-
-      then:
-        view.getActiveAuditId() == "audit-r001"
-        view.getActivePlanId() == "plan-r001"
-        view.getAvailability() == ConsolidatedViewAvailability.AVAILABLE
-    - |
-      test: "Dado un AuditReport recien creado cuyo plan activo no tiene propuestas aceptadas ni pendientes, cuando build corre, entonces nodeImpacts y statisticImpacts quedan vacios y los valores consolidados coinciden con el baseline del analisis"
-      trace: FEAT-CDIFF / F-CDIFF-R003
-
-      given:
-        root = quizNode("quiz-001", Map.of("lemma-absence", 0.75))
-        course = mock(CourseEntity.class)
-        view = builder().build(COURSE_PATH)
-
-      mock:
-        refinementPlanStore.load("plan-r003") -> Optional.of(plan("plan-r003", "audit-r003"))
-        auditReportStore.load("audit-r003") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r003") -> List.of()
-        courseRepository.load(COURSE_PATH) -> course
-        courseMapper.map(course) -> mock(AuditableCourse.class)
-        auditEngine.runAudit(any()) -> report(root)
-
-      then:
-        view.getAvailability() == ConsolidatedViewAvailability.AVAILABLE
-        view.getNodeImpacts().isEmpty() is true
-        view.getStatisticImpacts().isEmpty() is true
-    - |
-      test: "Dado un plan activo de un analisis viejo con propuestas pendientes y un analisis mas nuevo cuyo plan no las contiene, cuando build corre apuntando al analisis viejo, entonces sus pendientes dormidas aparecen en nodeImpacts/statisticImpacts del consolidado"
-      trace: FEAT-CDIFF / F-CDIFF-R004
-
-      given:
-        snapBefore = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        snapAfter = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        dormant = pendingArtifact("proposal-dormant", "plan-old", "audit-old", "quiz-001", snapBefore, snapAfter, Instant.parse("2026-01-01T00:00:00Z"))
-        root = quizNode("quiz-001", Map.of("lemma-absence", 0.60))
-        course = mock(CourseEntity.class)
-        courseWithPend = mock(CourseEntity.class)
-        audBase = mock(AuditableCourse.class)
-        audPend = mock(AuditableCourse.class)
-        rootPend = quizNode("quiz-001", Map.of("lemma-absence", 0.75))
-        view = builder().build(COURSE_PATH)
-
-      mock:
-        refinementPlanStore.load("plan-old") -> Optional.of(plan("plan-old", "audit-old"))
-        auditReportStore.load("audit-old") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-old") -> List.of(dormant)
-        courseRepository.load(COURSE_PATH) -> course
-        courseElementLocator.snapshot(eq(course), eq(AuditTarget.QUIZ), eq("quiz-001")) -> Optional.of(snapBefore)
-        courseElementLocator.replace(eq(course), eq(snapAfter)) -> courseWithPend
-        courseMapper.map(course) -> audBase
-        courseMapper.map(courseWithPend) -> audPend
-        auditEngine.runAudit(eq(audBase)) -> report(root)
-        auditEngine.runAudit(eq(audPend)) -> report(rootPend)
-
-      then:
-        view.getAvailability() == ConsolidatedViewAvailability.AVAILABLE
-        view.getNodeImpacts().isEmpty() is false
-    - |
-      test: "Dado un RevisionArtifact con verdict REJECTED en el plan activo, cuando build corre, entonces ese proposalId no aparece en nodeImpacts, statisticImpacts ni nonApplicablePendings y no contribuye a consolidated, acceptedDelta, pendingProjection ni pendingDelta"
-      trace: FEAT-CDIFF / F-CDIFF-R005
-
-      given:
-        snap = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        rejected = rejectedArtifact("proposal-rejected", "plan-r005", "audit-r005", "quiz-001", snap)
-        root = quizNode("quiz-001", Map.of("lemma-absence", 0.70))
-        course = mock(CourseEntity.class)
-        view = builder().build(COURSE_PATH)
-
-      mock:
-        refinementPlanStore.load("plan-r005") -> Optional.of(plan("plan-r005", "audit-r005"))
-        auditReportStore.load("audit-r005") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r005") -> List.of(rejected)
-        courseRepository.load(COURSE_PATH) -> course
-        courseMapper.map(course) -> mock(AuditableCourse.class)
-        auditEngine.runAudit(any()) -> report(root)
-
-      then:
-        view.getNodeImpacts().isEmpty() is true
-        view.getStatisticImpacts().isEmpty() is true
-        view.getNonApplicablePendings().isEmpty() is true
-    - |
-      test: "Dado un nodo hoja sin aceptadas ni pendientes en el plan activo, cuando build corre, entonces ese nodo no aparece en nodeImpacts (la salida solo emite nodos afectados)"
-      trace: FEAT-CDIFF / F-CDIFF-R006
-
-      given:
-        root = quizNode("quiz-unaffected", Map.of("lemma-absence", 0.80))
-        course = mock(CourseEntity.class)
-        view = builder().build(COURSE_PATH)
-
-      mock:
-        refinementPlanStore.load("plan-r006a") -> Optional.of(plan("plan-r006a", "audit-r006a"))
-        auditReportStore.load("audit-r006a") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r006a") -> List.of()
-        courseRepository.load(COURSE_PATH) -> course
-        courseMapper.map(course) -> mock(AuditableCourse.class)
-        auditEngine.runAudit(any()) -> report(root)
-
-      then:
-        view.getNodeImpacts().isEmpty() is true
-    - |
-      test: "Dado un nodo hoja con una pendiente en el plan activo y sin aceptadas, cuando build corre, entonces NodeImpact.consolidated coincide con el snapshot del baseline y pendingProjection coincide con el snapshot resultante de aplicar la pendiente sobre ese baseline"
-      trace: FEAT-CDIFF / F-CDIFF-R006
-
-      given:
-        snapBase = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        snapPend = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        pending = pendingArtifact("proposal-pend", "plan-r006b", "audit-r006b", "quiz-001", snapBase, snapPend, Instant.parse("2026-01-01T00:00:00Z"))
-        root = quizNode("quiz-001", Map.of("lemma-absence", 0.60))
-        course = mock(CourseEntity.class)
-        courseWithPend = mock(CourseEntity.class)
-        audBase = mock(AuditableCourse.class)
-        audPend = mock(AuditableCourse.class)
-        rootPend = quizNode("quiz-001", Map.of("lemma-absence", 0.75))
-        view = builder().build(COURSE_PATH)
-        ni = view.getNodeImpacts().stream().filter(n -> "quiz-001".equals(n.getNodeId())).findFirst().orElseThrow(() -> new AssertionError("NodeImpact para quiz-001 no encontrado"))
-
-      mock:
-        refinementPlanStore.load("plan-r006b") -> Optional.of(plan("plan-r006b", "audit-r006b"))
-        auditReportStore.load("audit-r006b") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r006b") -> List.of(pending)
-        courseRepository.load(COURSE_PATH) -> course
-        courseElementLocator.snapshot(eq(course), eq(AuditTarget.QUIZ), eq("quiz-001")) -> Optional.of(snapBase)
-        courseElementLocator.replace(eq(course), eq(snapPend)) -> courseWithPend
-        courseMapper.map(course) -> audBase
-        courseMapper.map(courseWithPend) -> audPend
-        auditEngine.runAudit(eq(audBase)) -> report(root)
-        auditEngine.runAudit(eq(audPend)) -> report(rootPend)
-
-      then:
-        ni.getConsolidated() == snapBase
-        ni.getPendingProjection() is not null
-        ni.getPendingProposalId() == "proposal-pend"
-    - |
-      test: "Dado un nodo hoja con una propuesta aceptada y sin pendientes, cuando build corre, entonces NodeImpact.consolidated coincide con el elementAfter de la aceptada y pendingProjection es null"
-      trace: FEAT-CDIFF / F-CDIFF-R006
-
-      given:
-        snapBefore = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        snapAfter = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        approved = approvedArtifact("proposal-acc", "plan-r006c", "audit-r006c", "quiz-001", snapBefore, snapAfter, Instant.parse("2026-01-01T00:00:00Z"))
-        root = quizNode("quiz-001", Map.of("lemma-absence", 0.60))
-        course = mock(CourseEntity.class)
-        courseAfter = mock(CourseEntity.class)
-        audAfter = mock(AuditableCourse.class)
-        rootAfter = quizNode("quiz-001", Map.of("lemma-absence", 0.80))
-        view = builder().build(COURSE_PATH)
-        ni = view.getNodeImpacts().stream().filter(n -> "quiz-001".equals(n.getNodeId())).findFirst().orElseThrow(() -> new AssertionError("NodeImpact para quiz-001 no encontrado"))
-
-      mock:
-        refinementPlanStore.load("plan-r006c") -> Optional.of(plan("plan-r006c", "audit-r006c"))
-        auditReportStore.load("audit-r006c") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r006c") -> List.of(approved)
-        courseRepository.load(COURSE_PATH) -> course
-        courseElementLocator.replace(eq(course), eq(snapAfter)) -> courseAfter
-        courseMapper.map(courseAfter) -> audAfter
-        auditEngine.runAudit(eq(audAfter)) -> report(rootAfter)
-
-      then:
-        ni.getConsolidated() == snapAfter
-        ni.getPendingProjection() is null
-    - |
-      test: "Dado un nodo hoja con una aceptada y una pendiente sobre el mismo nodeId, cuando build corre, entonces pendingProjection se calcula aplicando la pendiente sobre consolidated (es decir sobre el elementAfter de la aceptada) y no sobre el snapshot original del baseline"
-      trace: FEAT-CDIFF / F-CDIFF-R006
-
-      given:
-        snapBase = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        snapAfterAcc = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        snapAfterPend = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        approved = approvedArtifact("proposal-acc", "plan-r006d", "audit-r006d", "quiz-001", snapBase, snapAfterAcc, Instant.parse("2026-01-01T00:00:00Z"))
-        pending = pendingArtifact("proposal-pend", "plan-r006d", "audit-r006d", "quiz-001", snapAfterAcc, snapAfterPend, Instant.parse("2026-01-02T00:00:00Z"))
-        root = quizNode("quiz-001", Map.of("lemma-absence", 0.50))
-        course = mock(CourseEntity.class)
-        courseAfterAcc = mock(CourseEntity.class)
-        courseAfterPend = mock(CourseEntity.class)
-        audAcc = mock(AuditableCourse.class)
-        audPend = mock(AuditableCourse.class)
-        view = builder().build(COURSE_PATH)
-        ni = view.getNodeImpacts().stream().filter(n -> "quiz-001".equals(n.getNodeId())).findFirst().orElseThrow(() -> new AssertionError("NodeImpact para quiz-001 no encontrado"))
-
-      mock:
-        refinementPlanStore.load("plan-r006d") -> Optional.of(plan("plan-r006d", "audit-r006d"))
-        auditReportStore.load("audit-r006d") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r006d") -> List.of(approved, pending)
-        courseRepository.load(COURSE_PATH) -> course
-        courseElementLocator.replace(eq(course), eq(snapAfterAcc)) -> courseAfterAcc
-        courseElementLocator.snapshot(eq(courseAfterAcc), eq(AuditTarget.QUIZ), eq("quiz-001")) -> Optional.of(snapAfterAcc)
-        courseElementLocator.replace(eq(courseAfterAcc), eq(snapAfterPend)) -> courseAfterPend
-        courseMapper.map(courseAfterAcc) -> audAcc
-        courseMapper.map(courseAfterPend) -> audPend
-        auditEngine.runAudit(eq(audAcc)) -> report(quizNode("quiz-001", Map.of("lemma-absence", 0.70)))
-        auditEngine.runAudit(eq(audPend)) -> report(quizNode("quiz-001", Map.of("lemma-absence", 0.85)))
-
-      then:
-        ni.getConsolidated() == snapAfterAcc
-        ni.getPendingProjection() is not null
-    - |
-      test: "Dado un nodo hoja con dos propuestas aceptadas que lo afectaron en orden createdAt ascendente, cuando build corre, entonces NodeImpact.acceptedProposalIds contiene ambos proposalId en orden createdAt ascendente"
-      trace: FEAT-CDIFF / F-CDIFF-R007
-
-      given:
-        snap1 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        snap2 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        snap3 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        acc1 = approvedArtifact("proposal-first", "plan-r007a", "audit-r007a", "quiz-001", snap1, snap2, Instant.parse("2026-01-01T00:00:00Z"))
-        acc2 = approvedArtifact("proposal-second", "plan-r007a", "audit-r007a", "quiz-001", snap2, snap3, Instant.parse("2026-01-02T00:00:00Z"))
-        root = quizNode("quiz-001", Map.of("lemma-absence", 0.50))
-        course = mock(CourseEntity.class)
-        course2 = mock(CourseEntity.class)
-        course3 = mock(CourseEntity.class)
-        audFinal = mock(AuditableCourse.class)
-        view = builder().build(COURSE_PATH)
-        ni = view.getNodeImpacts().stream().filter(n -> "quiz-001".equals(n.getNodeId())).findFirst().orElseThrow(() -> new AssertionError("NodeImpact para quiz-001 no encontrado"))
-        ids = ni.getAcceptedProposalIds()
-
-      mock:
-        refinementPlanStore.load("plan-r007a") -> Optional.of(plan("plan-r007a", "audit-r007a"))
-        auditReportStore.load("audit-r007a") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r007a") -> List.of(acc1, acc2)
-        courseRepository.load(COURSE_PATH) -> course
-        courseElementLocator.replace(eq(course), eq(snap2)) -> course2
-        courseElementLocator.replace(eq(course2), eq(snap3)) -> course3
-        courseMapper.map(course3) -> audFinal
-        auditEngine.runAudit(eq(audFinal)) -> report(quizNode("quiz-001", Map.of("lemma-absence", 0.90)))
-
-      then:
-        ids.size() == 2
-        ids.get(0) == "proposal-first"
-        ids.get(1) == "proposal-second"
-    - |
-      test: "Dado un nodo hoja con una pendiente aplicable, cuando build corre, entonces NodeImpact.pendingProposalId equivale al proposalId de la pendiente que produjo pendingProjection"
-      trace: FEAT-CDIFF / F-CDIFF-R007
-
-      given:
-        snapBefore = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        snapAfter = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        pending = pendingArtifact("proposal-pend-r007", "plan-r007b", "audit-r007b", "quiz-001", snapBefore, snapAfter, Instant.parse("2026-01-01T00:00:00Z"))
-        root = quizNode("quiz-001", Map.of("lemma-absence", 0.60))
-        course = mock(CourseEntity.class)
-        courseWithPend = mock(CourseEntity.class)
-        audBase = mock(AuditableCourse.class)
-        audPend = mock(AuditableCourse.class)
-        view = builder().build(COURSE_PATH)
-        ni = view.getNodeImpacts().stream().filter(n -> "quiz-001".equals(n.getNodeId())).findFirst().orElseThrow(() -> new AssertionError("NodeImpact para quiz-001 no encontrado"))
-
-      mock:
-        refinementPlanStore.load("plan-r007b") -> Optional.of(plan("plan-r007b", "audit-r007b"))
-        auditReportStore.load("audit-r007b") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r007b") -> List.of(pending)
-        courseRepository.load(COURSE_PATH) -> course
-        courseElementLocator.snapshot(eq(course), eq(AuditTarget.QUIZ), eq("quiz-001")) -> Optional.of(snapBefore)
-        courseElementLocator.replace(eq(course), eq(snapAfter)) -> courseWithPend
-        courseMapper.map(course) -> audBase
-        courseMapper.map(courseWithPend) -> audPend
-        auditEngine.runAudit(eq(audBase)) -> report(root)
-        auditEngine.runAudit(eq(audPend)) -> report(quizNode("quiz-001", Map.of("lemma-absence", 0.75)))
-
-      then:
-        ni.getPendingProposalId() == "proposal-pend-r007"
-    - |
-      test: "Dado un nodo padre cuyo subarbol contiene un quiz afectado por una aceptada, cuando build corre, entonces aparece un NodeImpact para ese padre y los valores consolidados de sus estadisticas resultan de re-agregar el subarbol con la estrategia del analizador (no de sumar deltas individuales)"
-      trace: FEAT-CDIFF / F-CDIFF-R008
-
-      given:
-        snap1 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        snap2 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        approved = approvedArtifact("proposal-r008", "plan-r008a", "audit-r008a", "quiz-001", snap1, snap2, Instant.parse("2026-01-01T00:00:00Z"))
-        quizChild = quizNode("quiz-001", Map.of("lemma-absence", 0.50))
-        topicRoot = AuditNode()
-        topicEnt = FakeEntity("topic-001")
-        course = mock(CourseEntity.class)
-        courseAfter = mock(CourseEntity.class)
-        audAfter = mock(AuditableCourse.class)
-        quizAfter = quizNode("quiz-001", Map.of("lemma-absence", 0.80))
-        topicAfter = AuditNode()
-        view = builder().build(COURSE_PATH)
-        topicInStats = view.getStatisticImpacts().stream().anyMatch(s -> "topic-001".equals(s.getNodeId()))
-        topicStat = view.getStatisticImpacts().stream().filter(s -> "topic-001".equals(s.getNodeId()) && "lemma-absence".equals(s.getDimension())).findFirst().orElseThrow()
-
-      mock:
-        refinementPlanStore.load("plan-r008a") -> Optional.of(plan("plan-r008a", "audit-r008a"))
-        auditReportStore.load("audit-r008a") -> Optional.of(report(topicRoot))
-        revisionArtifactStore.listByPlan("plan-r008a") -> List.of(approved)
-        courseRepository.load(COURSE_PATH) -> course
-        courseElementLocator.replace(eq(course), eq(snap2)) -> courseAfter
-        courseMapper.map(courseAfter) -> audAfter
-        auditEngine.runAudit(eq(audAfter)) -> report(topicAfter)
-
-      when:
-        sut.setTarget(AuditTarget.TOPIC)
-
-      then:
-        topicInStats is true
-        topicStat.getConsolidated() == 0.80
-    - |
-      test: "Dado un nodo padre cuyo subarbol no contiene aceptadas ni pendientes, cuando build corre, entonces ese padre no aparece en nodeImpacts ni en statisticImpacts"
-      trace: FEAT-CDIFF / F-CDIFF-R008
-
-      given:
-        quizChild = quizNode("quiz-unaffected", Map.of("lemma-absence", 0.70))
-        topicRoot = AuditNode()
-        course = mock(CourseEntity.class)
-        view = builder().build(COURSE_PATH)
-
-      mock:
-        refinementPlanStore.load("plan-r008b") -> Optional.of(plan("plan-r008b", "audit-r008b"))
-        auditReportStore.load("audit-r008b") -> Optional.of(report(topicRoot))
-        revisionArtifactStore.listByPlan("plan-r008b") -> List.of()
-        courseRepository.load(COURSE_PATH) -> course
-        courseMapper.map(course) -> mock(AuditableCourse.class)
-        auditEngine.runAudit(any()) -> report(topicRoot)
-
-      when:
-        sut.setTarget(AuditTarget.TOPIC)
-
-      then:
-        view.getNodeImpacts().isEmpty() is true
-        view.getStatisticImpacts().isEmpty() is true
-    - |
-      test: "Dada una estadistica tocada solo por una aceptada en el plan activo, cuando build corre, entonces el StatisticImpact correspondiente expone original y consolidated distintos, acceptedDelta no nulo, y pendingProjection y pendingDelta nulos"
-      trace: FEAT-CDIFF / F-CDIFF-R009
-
-      given:
-        snap1 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        snap2 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        approved = approvedArtifact("proposal-acc-r009a", "plan-r009a", "audit-r009a", "quiz-001", snap1, snap2, Instant.parse("2026-01-01T00:00:00Z"))
-        root = quizNode("quiz-001", Map.of("lemma-absence", 0.60))
-        course = mock(CourseEntity.class)
-        courseAfter = mock(CourseEntity.class)
-        audAfter = mock(AuditableCourse.class)
-        view = builder().build(COURSE_PATH)
-        stat = view.getStatisticImpacts().stream().filter(s -> "quiz-001".equals(s.getNodeId()) && "lemma-absence".equals(s.getDimension())).findFirst().orElseThrow(() -> new AssertionError("StatisticImpact no encontrado"))
-
-      mock:
-        refinementPlanStore.load("plan-r009a") -> Optional.of(plan("plan-r009a", "audit-r009a"))
-        auditReportStore.load("audit-r009a") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r009a") -> List.of(approved)
-        courseRepository.load(COURSE_PATH) -> course
-        courseElementLocator.replace(eq(course), eq(snap2)) -> courseAfter
-        courseMapper.map(courseAfter) -> audAfter
-        auditEngine.runAudit(eq(audAfter)) -> report(quizNode("quiz-001", Map.of("lemma-absence", 0.80)))
-
-      then:
-        stat.getOriginal() == 0.60
-        stat.getConsolidated() == 0.80
-        stat.getAcceptedDelta() == 0.0 is false
-        stat.getPendingProjection() is null
-        stat.getPendingDelta() is null
-    - |
-      test: "Dada una estadistica tocada solo por una pendiente en el plan activo, cuando build corre, entonces el StatisticImpact correspondiente expone consolidated igual a original, acceptedDelta cero, y pendingProjection con pendingDelta no nulos"
-      trace: FEAT-CDIFF / F-CDIFF-R009
-
-      given:
-        snapBefore = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        snapAfter = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        pending = pendingArtifact("proposal-pend-r009b", "plan-r009b", "audit-r009b", "quiz-001", snapBefore, snapAfter, Instant.parse("2026-01-01T00:00:00Z"))
-        root = quizNode("quiz-001", Map.of("lemma-absence", 0.60))
-        course = mock(CourseEntity.class)
-        courseWithPend = mock(CourseEntity.class)
-        audBase = mock(AuditableCourse.class)
-        audPend = mock(AuditableCourse.class)
-        view = builder().build(COURSE_PATH)
-        stat = view.getStatisticImpacts().stream().filter(s -> "quiz-001".equals(s.getNodeId()) && "lemma-absence".equals(s.getDimension())).findFirst().orElseThrow(() -> new AssertionError("StatisticImpact no encontrado"))
-
-      mock:
-        refinementPlanStore.load("plan-r009b") -> Optional.of(plan("plan-r009b", "audit-r009b"))
-        auditReportStore.load("audit-r009b") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r009b") -> List.of(pending)
-        courseRepository.load(COURSE_PATH) -> course
-        courseElementLocator.snapshot(eq(course), eq(AuditTarget.QUIZ), eq("quiz-001")) -> Optional.of(snapBefore)
-        courseElementLocator.replace(eq(course), eq(snapAfter)) -> courseWithPend
-        courseMapper.map(course) -> audBase
-        courseMapper.map(courseWithPend) -> audPend
-        auditEngine.runAudit(eq(audBase)) -> report(root)
-        auditEngine.runAudit(eq(audPend)) -> report(quizNode("quiz-001", Map.of("lemma-absence", 0.80)))
-
-      then:
-        stat.getOriginal() == 0.60
-        stat.getConsolidated() == 0.60
-        stat.getAcceptedDelta() == 0.0
-        stat.getPendingProjection() is not null
-        stat.getPendingDelta() is not null
-    - |
-      test: "Dada una estadistica del baseline no tocada por ninguna decision del plan activo, cuando build corre, entonces ese par (nivel, dimension) no aparece en statisticImpacts"
-      trace: FEAT-CDIFF / F-CDIFF-R009
-
-      given:
-        scores = HashMap<>()
-        root = quizNode("quiz-001", scores)
-        course = mock(CourseEntity.class)
-        view = builder().build(COURSE_PATH)
-
-      mock:
-        refinementPlanStore.load("plan-r009c") -> Optional.of(plan("plan-r009c", "audit-r009c"))
-        auditReportStore.load("audit-r009c") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r009c") -> List.of()
-        courseRepository.load(COURSE_PATH) -> course
-        courseMapper.map(course) -> mock(AuditableCourse.class)
-        auditEngine.runAudit(any()) -> report(root)
-
-      when:
-        sut.put("lemma-absence", 0.70)
-
-      then:
-        view.getStatisticImpacts().isEmpty() is true
-    - |
-      test: "Dado cualquier StatisticImpact emitido por build, entonces acceptedDelta es exactamente consolidated menos original, sin escalado relativo"
-      trace: FEAT-CDIFF / F-CDIFF-R010
-
-      given:
-        snap1 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        snap2 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        approved = approvedArtifact("proposal-r010a", "plan-r010a", "audit-r010a", "quiz-001", snap1, snap2, Instant.parse("2026-01-01T00:00:00Z"))
-        root = quizNode("quiz-001", Map.of("lemma-absence", 0.50))
-        course = mock(CourseEntity.class)
-        courseAfter = mock(CourseEntity.class)
-        audAfter = mock(AuditableCourse.class)
-        view = builder().build(COURSE_PATH)
-
-      mock:
-        refinementPlanStore.load("plan-r010a") -> Optional.of(plan("plan-r010a", "audit-r010a"))
-        auditReportStore.load("audit-r010a") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r010a") -> List.of(approved)
-        courseRepository.load(COURSE_PATH) -> course
-        courseElementLocator.replace(eq(course), eq(snap2)) -> courseAfter
-        courseMapper.map(courseAfter) -> audAfter
-        auditEngine.runAudit(eq(audAfter)) -> report(quizNode("quiz-001", Map.of("lemma-absence", 0.75)))
-    - |
-      test: "Dado un StatisticImpact con pendingProjection no nulo, entonces pendingDelta es exactamente pendingProjection menos consolidated, sin escalado relativo"
-      trace: FEAT-CDIFF / F-CDIFF-R010
-
-      given:
-        snapBase = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        snapPend = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        pending = pendingArtifact("proposal-pend-r010b", "plan-r010b", "audit-r010b", "quiz-001", snapBase, snapPend, Instant.parse("2026-01-01T00:00:00Z"))
-        root = quizNode("quiz-001", Map.of("lemma-absence", 0.60))
-        course = mock(CourseEntity.class)
-        courseWithPend = mock(CourseEntity.class)
-        audBase = mock(AuditableCourse.class)
-        audPend = mock(AuditableCourse.class)
-        view = builder().build(COURSE_PATH)
-
-      mock:
-        refinementPlanStore.load("plan-r010b") -> Optional.of(plan("plan-r010b", "audit-r010b"))
-        auditReportStore.load("audit-r010b") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r010b") -> List.of(pending)
-        courseRepository.load(COURSE_PATH) -> course
-        courseElementLocator.snapshot(eq(course), eq(AuditTarget.QUIZ), eq("quiz-001")) -> Optional.of(snapBase)
-        courseElementLocator.replace(eq(course), eq(snapPend)) -> courseWithPend
-        courseMapper.map(course) -> audBase
-        courseMapper.map(courseWithPend) -> audPend
-        auditEngine.runAudit(eq(audBase)) -> report(root)
-        auditEngine.runAudit(eq(audPend)) -> report(quizNode("quiz-001", Map.of("lemma-absence", 0.85)))
-    - |
-      test: "Dado un AuditReport con pares (nivel, dimension) reportados por el motor en el baseline, cuando build corre, entonces statisticImpacts solo contiene pares presentes en el baseline (la salida no inventa pares ausentes ni reordena la granularidad)"
-      trace: FEAT-CDIFF / F-CDIFF-R011
-
-      given:
-        snap1 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        snap2 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        approved = approvedArtifact("proposal-r011", "plan-r011", "audit-r011", "quiz-001", snap1, snap2, Instant.parse("2026-01-01T00:00:00Z"))
-        root = quizNode("quiz-001", Map.of("lemma-absence", 0.60))
-        course = mock(CourseEntity.class)
-        courseAfter = mock(CourseEntity.class)
-        audAfter = mock(AuditableCourse.class)
-        view = builder().build(COURSE_PATH)
-
-      mock:
-        refinementPlanStore.load("plan-r011") -> Optional.of(plan("plan-r011", "audit-r011"))
-        auditReportStore.load("audit-r011") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r011") -> List.of(approved)
-        courseRepository.load(COURSE_PATH) -> course
-        courseElementLocator.replace(eq(course), eq(snap2)) -> courseAfter
-        courseMapper.map(courseAfter) -> audAfter
-        auditEngine.runAudit(eq(audAfter)) -> report(quizNode("quiz-001", Map.of("lemma-absence", 0.80)))
-
-      then:
-        view.getStatisticImpacts().stream().noneMatch(s -> "coca-buckets".equals(s.getDimension())) is true
-    - |
-      test: "Dada una pendiente cuyo nodeId no se encuentra en el subarbol vigente, cuando build corre, entonces aparece en nonApplicablePendings con reason NODE_ABSENT y detail no vacio, y no contribuye a pendingProjection ni pendingDelta de ningun nodo o estadistica"
-      trace: FEAT-CDIFF / F-CDIFF-R012
-
-      given:
-        snapGhost = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-ghost", null)
-        pending = pendingArtifact("proposal-absent", "plan-r012a", "audit-r012a", "quiz-ghost", snapGhost, snapGhost, Instant.parse("2026-01-01T00:00:00Z"))
-        root = quizNode("quiz-other", Map.of("lemma-absence", 0.60))
-        course = mock(CourseEntity.class)
-        view = builder().build(COURSE_PATH)
-
-      mock:
-        refinementPlanStore.load("plan-r012a") -> Optional.of(plan("plan-r012a", "audit-r012a"))
-        auditReportStore.load("audit-r012a") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r012a") -> List.of(pending)
-        courseRepository.load(COURSE_PATH) -> course
-        courseElementLocator.snapshot(eq(course), eq(AuditTarget.QUIZ), eq("quiz-ghost")) -> Optional.empty()
-        courseMapper.map(course) -> mock(AuditableCourse.class)
-        auditEngine.runAudit(any()) -> report(root)
-
-      then:
-        view.getNonApplicablePendings().size() == 1
-        view.getNonApplicablePendings().get(0).getProposalId() == "proposal-absent"
-        view.getNonApplicablePendings().get(0).getReason() == NonApplicablePendingReason.NODE_ABSENT
-        view.getNonApplicablePendings().get(0).getDetail().isBlank() is false
-        view.getNodeImpacts().stream().noneMatch(n -> n.getPendingProjection() != null) is true
-    - |
-      test: "Dadas dos pendientes sobre el mismo nodeId aplicadas en orden createdAt ascendente cuyo elementBefore de la segunda no coincide con el consolidated tras aplicar la primera, cuando build corre, entonces la segunda aparece en nonApplicablePendings con reason ELEMENT_BEFORE_MISMATCH y no contribuye a pendingProjection ni pendingDelta"
-      trace: FEAT-CDIFF / F-CDIFF-R012
-
-      given:
-        snapOrig = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        snapAfter1 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001-v2", null)
-        snapMismatch = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001-stale", null)
-        snapAfter2 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001-v3", null)
-        pend1 = pendingArtifact("proposal-pend1", "plan-r012b", "audit-r012b", "quiz-001", snapOrig, snapAfter1, Instant.parse("2026-01-01T00:00:00Z"))
-        pend2 = pendingArtifact("proposal-pend2", "plan-r012b", "audit-r012b", "quiz-001", snapMismatch, snapAfter2, Instant.parse("2026-01-02T00:00:00Z"))
-        root = quizNode("quiz-001", Map.of("lemma-absence", 0.60))
-        course = mock(CourseEntity.class)
-        courseAfter1 = mock(CourseEntity.class)
-        audPend1 = mock(AuditableCourse.class)
-        view = builder().build(COURSE_PATH)
-
-      mock:
-        refinementPlanStore.load("plan-r012b") -> Optional.of(plan("plan-r012b", "audit-r012b"))
-        auditReportStore.load("audit-r012b") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r012b") -> List.of(pend1, pend2)
-        courseRepository.load(COURSE_PATH) -> course
-        courseElementLocator.snapshot(eq(course), eq(AuditTarget.QUIZ), eq("quiz-001")) -> Optional.of(snapOrig)
-        courseElementLocator.replace(eq(course), eq(snapAfter1)) -> courseAfter1
-        courseElementLocator.snapshot(eq(courseAfter1), eq(AuditTarget.QUIZ), eq("quiz-001")) -> Optional.of(snapAfter1)
-        courseMapper.map(courseAfter1) -> audPend1
-        courseMapper.map(course) -> mock(AuditableCourse.class)
-        auditEngine.runAudit(any()) -> report(root)
-
-      then:
-        view.getNonApplicablePendings().stream().anyMatch(n -> "proposal-pend2".equals(n.getProposalId()) && NonApplicablePendingReason.ELEMENT_BEFORE_MISMATCH == n.getReason()) is true
-    - |
-      test: "Dada una pendiente marcada como NOT_APPLICABLE y otras pendientes aplicables en el mismo plan activo, cuando build corre, entonces el resto del consolidado se entrega normalmente y solo la pendiente no aplicable queda excluida del calculo de proyeccion"
-      trace: FEAT-CDIFF / F-CDIFF-R012
-
-      given:
-        snapAbsent = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-absent", null)
-        notApplicable = pendingArtifact("proposal-absent", "plan-r012c", "audit-r012c", "quiz-absent", snapAbsent, snapAbsent, Instant.parse("2026-01-01T00:00:00Z"))
-        snapOk = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-ok", null)
-        snapOkAfter = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-ok", null)
-        applicable = pendingArtifact("proposal-ok", "plan-r012c", "audit-r012c", "quiz-ok", snapOk, snapOkAfter, Instant.parse("2026-01-02T00:00:00Z"))
-        root = quizNode("quiz-ok", Map.of("lemma-absence", 0.60))
-        course = mock(CourseEntity.class)
-        courseAfterOk = mock(CourseEntity.class)
-        audBase = mock(AuditableCourse.class)
-        audOk = mock(AuditableCourse.class)
-        view = builder().build(COURSE_PATH)
-
-      mock:
-        refinementPlanStore.load("plan-r012c") -> Optional.of(plan("plan-r012c", "audit-r012c"))
-        auditReportStore.load("audit-r012c") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r012c") -> List.of(notApplicable, applicable)
-        courseRepository.load(COURSE_PATH) -> course
-        courseElementLocator.snapshot(eq(course), eq(AuditTarget.QUIZ), eq("quiz-absent")) -> Optional.empty()
-        courseElementLocator.snapshot(eq(course), eq(AuditTarget.QUIZ), eq("quiz-ok")) -> Optional.of(snapOk)
-        courseElementLocator.replace(eq(course), eq(snapOkAfter)) -> courseAfterOk
-        courseMapper.map(course) -> audBase
-        courseMapper.map(courseAfterOk) -> audOk
-        auditEngine.runAudit(eq(audBase)) -> report(root)
-        auditEngine.runAudit(eq(audOk)) -> report(quizNode("quiz-ok", Map.of("lemma-absence", 0.80)))
-
-      then:
-        view.getAvailability() == ConsolidatedViewAvailability.AVAILABLE
-        view.getNonApplicablePendings().size() == 1
-        view.getNonApplicablePendings().get(0).getProposalId() == "proposal-absent"
-        view.getNodeImpacts().stream().anyMatch(n -> "quiz-ok".equals(n.getNodeId()) && n.getPendingProjection() != null) is true
-    - |
-      test: "Dado que el ActiveAnalysisSelectionStore retorna Optional.empty, cuando build corre, entonces ConsolidatedView.availability es UNAVAILABLE con reason NO_ACTIVE_ANALYSIS y nodeImpacts/statisticImpacts quedan vacios"
-      trace: FEAT-CDIFF / F-CDIFF-R013
-
-      given:
-        view = builder().build(COURSE_PATH)
-
-      mock:
-        activeAnalysisSelectionStore.read() -> Optional.empty()
-
-      then:
-        view.getAvailability() == ConsolidatedViewAvailability.UNAVAILABLE
-        view.getUnavailability().getReason() == ConsolidatedViewUnavailabilityReason.NO_ACTIVE_ANALYSIS
-        view.getNodeImpacts().isEmpty() is true
-        view.getStatisticImpacts().isEmpty() is true
-    - |
-      test: "Dado un par activo cuyo planId no se puede ubicar dentro del analisis (RefinementPlanStore retorna empty), cuando build corre, entonces ConsolidatedView.availability es UNAVAILABLE con reason ACTIVE_PLAN_UNAVAILABLE"
-      trace: FEAT-CDIFF / F-CDIFF-R013
-
-      given:
-        view = builder().build(COURSE_PATH)
-
-      mock:
-        refinementPlanStore.load("plan-missing") -> Optional.empty()
-
-      then:
-        view.getAvailability() == ConsolidatedViewAvailability.UNAVAILABLE
-        view.getUnavailability().getReason() == ConsolidatedViewUnavailabilityReason.ACTIVE_PLAN_UNAVAILABLE
-    - |
-      test: "Dada una propuesta aceptada que referencia un nodeId no encontrado por CourseElementLocator al re-agregar, cuando build corre, entonces ConsolidatedView.availability es UNAVAILABLE con reason INCONSISTENT_PROPOSAL"
-      trace: FEAT-CDIFF / F-CDIFF-R013
-
-      given:
-        snap1 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-ghost", null)
-        snap2 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-ghost", null)
-        approved = approvedArtifact("proposal-ghost", "plan-r013c", "audit-r013c", "quiz-ghost", snap1, snap2, Instant.parse("2026-01-01T00:00:00Z"))
-        root = quizNode("quiz-other", Map.of("lemma-absence", 0.60))
-        course = mock(CourseEntity.class)
-        view = builder().build(COURSE_PATH)
-
-      mock:
-        refinementPlanStore.load("plan-r013c") -> Optional.of(plan("plan-r013c", "audit-r013c"))
-        auditReportStore.load("audit-r013c") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r013c") -> List.of(approved)
-        courseRepository.load(COURSE_PATH) -> course
-        courseElementLocator.replace(any(), any()) -> throws IllegalArgumentException("nodeId quiz-ghost not found in course tree")
-
-      then:
-        view.getAvailability() == ConsolidatedViewAvailability.UNAVAILABLE
-        view.getUnavailability().getReason() == ConsolidatedViewUnavailabilityReason.INCONSISTENT_PROPOSAL
-    - |
-      test: "Dado que AuditEngine falla al recomputar agregaciones sobre el subarbol modificado, cuando build corre, entonces ConsolidatedView.availability es UNAVAILABLE con reason REAGGREGATION_FAILED"
-      trace: FEAT-CDIFF / F-CDIFF-R013
-
-      given:
-        snap1 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        snap2 = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        approved = approvedArtifact("proposal-r013d", "plan-r013d", "audit-r013d", "quiz-001", snap1, snap2, Instant.parse("2026-01-01T00:00:00Z"))
-        root = quizNode("quiz-001", Map.of("lemma-absence", 0.60))
-        course = mock(CourseEntity.class)
-        courseAfter = mock(CourseEntity.class)
-        audAfter = mock(AuditableCourse.class)
-        view = builder().build(COURSE_PATH)
-
-      mock:
-        refinementPlanStore.load("plan-r013d") -> Optional.of(plan("plan-r013d", "audit-r013d"))
-        auditReportStore.load("audit-r013d") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r013d") -> List.of(approved)
-        courseRepository.load(COURSE_PATH) -> course
-        courseElementLocator.replace(eq(course), eq(snap2)) -> courseAfter
-        courseMapper.map(courseAfter) -> audAfter
-        auditEngine.runAudit(eq(audAfter)) -> throws RuntimeException("Motor de auditoria fallo al re-agregar")
-
-      then:
-        view.getAvailability() == ConsolidatedViewAvailability.UNAVAILABLE
-        view.getUnavailability().getReason() == ConsolidatedViewUnavailabilityReason.REAGGREGATION_FAILED
-    - |
-      test: "Dada cualquier invocacion de build (exitosa, UNAVAILABLE o con pendientes no aplicables), entonces no se invoca AuditReportStore.save, RefinementPlanStore.save ni RevisionArtifactStore.save sobre los stores inyectados"
-      trace: FEAT-CDIFF / F-CDIFF-R015
-
-      given:
-        root = quizNode("quiz-001", Map.of("lemma-absence", 0.70))
-        course = mock(CourseEntity.class)
-
-      mock:
-        refinementPlanStore.load("plan-r015") -> Optional.of(plan("plan-r015", "audit-r015"))
-        auditReportStore.load("audit-r015") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r015") -> List.of()
-        courseRepository.load(COURSE_PATH) -> course
-        courseMapper.map(course) -> mock(AuditableCourse.class)
-        auditEngine.runAudit(any()) -> report(root)
-
-      when:
-        sut.build(COURSE_PATH)
-
-      then:
-        verify: auditReportStore.save(any()) x 0
-        verify: refinementPlanStore.save(any()) x 0
-        verify: revisionArtifactStore.save(any()) x 0
-    - |
-      test: "Dado un plan activo asociado a un AuditReport y un plan ajeno con propuestas distintas asociadas a otro analisis, cuando build corre, entonces solo se consultan los RevisionArtifact via listByPlan(activePlanId) y las propuestas del plan ajeno no aparecen en nodeImpacts ni statisticImpacts"
-      trace: FEAT-CDIFF / F-CDIFF-R017
-
-      given:
-        activePlanId = "plan-active"
-        foreignPlanId = "plan-foreign"
-        root = quizNode("quiz-001", Map.of("lemma-absence", 0.70))
-        course = mock(CourseEntity.class)
-
-      mock:
-        refinementPlanStore.load(activePlanId) -> Optional.of(plan(activePlanId, "audit-active"))
-        revisionArtifactStore.listByPlan(activePlanId) -> List.of()
-        auditReportStore.load("audit-active") -> Optional.of(report(root))
-        courseRepository.load(COURSE_PATH) -> course
-        courseMapper.map(course) -> mock(AuditableCourse.class)
-        auditEngine.runAudit(any()) -> report(root)
-
-      when:
-        sut.build(COURSE_PATH)
-
-      then:
-        verify: revisionArtifactStore.listByPlan(activePlanId)
-        verify: revisionArtifactStore.listByPlan(foreignPlanId) x 0
-    - |
-      test: "Dada una RevisionProposal cuyo elementBefore y elementAfter referencian el mismo nodeId estable, cuando build corre, entonces el NodeImpact resultante conserva ese nodeId en consolidated y pendingProjection sin modelar renombres ni reubicaciones"
-      trace: FEAT-CDIFF / F-CDIFF-R018
-
-      given:
-        stableNodeId = "quiz-stable-id"
-        snapBefore = CourseElementSnapshot(AuditTarget.QUIZ, stableNodeId, null)
-        snapAfter = CourseElementSnapshot(AuditTarget.QUIZ, stableNodeId, null)
-        approved = approvedArtifact("proposal-r018", "plan-r018", "audit-r018", stableNodeId, snapBefore, snapAfter, Instant.parse("2026-01-01T00:00:00Z"))
-        root = quizNode(stableNodeId, Map.of("lemma-absence", 0.60))
-        course = mock(CourseEntity.class)
-        courseAfter = mock(CourseEntity.class)
-        audAfter = mock(AuditableCourse.class)
-        view = builder().build(COURSE_PATH)
-        ni = view.getNodeImpacts().stream().filter(n -> stableNodeId.equals(n.getNodeId())).findFirst().orElseThrow(() -> new AssertionError("NodeImpact para " + stableNodeId + " no encontrado"))
-
-      mock:
-        refinementPlanStore.load("plan-r018") -> Optional.of(plan("plan-r018", "audit-r018"))
-        auditReportStore.load("audit-r018") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r018") -> List.of(approved)
-        courseRepository.load(COURSE_PATH) -> course
-        courseElementLocator.replace(eq(course), eq(snapAfter)) -> courseAfter
-        courseMapper.map(courseAfter) -> audAfter
-        auditEngine.runAudit(eq(audAfter)) -> report(quizNode(stableNodeId, Map.of("lemma-absence", 0.80)))
-
-      then:
-        ni.getConsolidated().getNodeId() == stableNodeId
-    - |
-      test: "Dado un plan activo con varias aceptadas y varias pendientes que tocan distintos nodos del curso, cuando build corre, entonces el ConsolidatedView retornado combina baseline + aceptadas + pendientes en una unica estructura con nodeImpacts y statisticImpacts agregados"
-      trace: FEAT-CDIFF / F-CDIFF-R016
-
-      given:
-        snapQ1B = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        snapQ1A = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
-        snapQ2B = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-002", null)
-        snapQ2A = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-002", null)
-        approved = approvedArtifact("proposal-acc", "plan-r016", "audit-r016", "quiz-001", snapQ1B, snapQ1A, Instant.parse("2026-01-01T00:00:00Z"))
-        pending = pendingArtifact("proposal-pend", "plan-r016", "audit-r016", "quiz-002", snapQ2B, snapQ2A, Instant.parse("2026-01-02T00:00:00Z"))
-        quiz1 = quizNode("quiz-001", Map.of("lemma-absence", 0.60))
-        quiz2 = quizNode("quiz-002", Map.of("lemma-absence", 0.55))
-        root = AuditNode()
-        courseEnt = FakeEntity("course-001")
-        course = mock(CourseEntity.class)
-        courseAfterAcc = mock(CourseEntity.class)
-        courseAfterPend = mock(CourseEntity.class)
-        audAcc = mock(AuditableCourse.class)
-        audPend = mock(AuditableCourse.class)
-        rootAfterAcc = AuditNode()
-        rootAfterPend = AuditNode()
-        view = builder().build(COURSE_PATH)
-
-      mock:
-        refinementPlanStore.load("plan-r016") -> Optional.of(plan("plan-r016", "audit-r016"))
-        auditReportStore.load("audit-r016") -> Optional.of(report(root))
-        revisionArtifactStore.listByPlan("plan-r016") -> List.of(approved, pending)
-        courseRepository.load(COURSE_PATH) -> course
-        courseElementLocator.replace(eq(course), eq(snapQ1A)) -> courseAfterAcc
-        courseElementLocator.snapshot(eq(courseAfterAcc), eq(AuditTarget.QUIZ), eq("quiz-002")) -> Optional.of(snapQ2B)
-        courseElementLocator.replace(eq(courseAfterAcc), eq(snapQ2A)) -> courseAfterPend
-        courseMapper.map(courseAfterAcc) -> audAcc
-        courseMapper.map(courseAfterPend) -> audPend
-        auditEngine.runAudit(eq(audAcc)) -> report(rootAfterAcc)
-        auditEngine.runAudit(eq(audPend)) -> report(rootAfterPend)
-
-      when:
-        sut.setTarget(AuditTarget.COURSE)
-
-      then:
-        view.getAvailability() == ConsolidatedViewAvailability.AVAILABLE
-        view.getNodeImpacts().isEmpty() is false
-        view.getStatisticImpacts().isEmpty() is false
-        view.getNodeImpacts().stream().anyMatch(n -> "quiz-001".equals(n.getNodeId())) is true
-        view.getNodeImpacts().stream().anyMatch(n -> "quiz-002".equals(n.getNodeId())) is true
+    - name: "Dado un nodo hoja con un field cuyas tres fotos son identicas y otro\
+        \ field cuya foto consolidated difiere de original, cuando build corre, entonces\
+        \ el mapa fieldChanges del NodeImpact contiene SOLO la entrada del segundo\
+        \ field — R006 invariante 1: solo fields con cambio"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un NodeImpact con varios fields cambiados de origenes distintos\
+        \ (componente de diagnostico tipado, contenido del nodo, score escalar), cuando\
+        \ build corre, entonces todas las entradas del mapa fieldChanges siguen la\
+        \ misma forma clave-valor con FieldChange(original, consolidated, pendingProjection)\
+        \ sin ramas separadas por origen del field — R006 invariante 2: forma uniforme"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un nodo cuyo subarbol no produce ningun field cambiado entre las\
+        \ tres fotos, cuando build corre, entonces ese nodo NO aparece en ConsolidatedView.nodeImpacts\
+        \ — R006 invariante 3: nodo sin cambios no aparece"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un field cambiado de un nodo hoja, cuando build corre, entonces\
+        \ FieldChange.original es identico al valor que el AuditReport baseline expone\
+        \ para ese field y ese nodo (sin recomputar, sin redondear, sin derivar) —\
+        \ R007 invariante 1: fidelidad de original"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un escenario donde el AuditEngine es invocado dos veces (una sobre\
+        \ el arbol con-aceptadas y otra sobre el arbol con-aceptadas-y-pendientes),\
+        \ cuando build corre, entonces FieldChange.consolidated coincide identicamente\
+        \ con el valor que el AuditReport del primer runAudit dejo en el AuditNode\
+        \ correspondiente, sin que el builder lo recompute o transforme — R007 invariante\
+        \ 2: determinacion de consolidated"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un escenario donde el AuditEngine es invocado dos veces (una sobre\
+        \ el arbol con-aceptadas y otra sobre el arbol con-aceptadas-y-pendientes),\
+        \ cuando build corre, entonces FieldChange.pendingProjection coincide identicamente\
+        \ con el valor que el AuditReport del segundo runAudit dejo en el AuditNode\
+        \ correspondiente, sin que el builder lo recompute o derive desde consolidated\
+        \ — R007 invariante 3: determinacion de pendingProjection"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un nodo hoja con una aceptada (que cambia el field) y una pendiente\
+        \ sobre el mismo nodeId (que lo cambia de nuevo), cuando build corre, entonces\
+        \ el AuditEngine es invocado para pendingProjection sobre el arbol que YA\
+        \ tiene la aceptada aplicada (no sobre el original) — R007 invariante 4: orden\
+        \ de stacking, pendientes sobre consolidated, no sobre original"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un nodo padre cuyo subarbol contiene cambios y para el cual el AuditEngine\
+        \ produjo un valor agregado en el AuditReport del arbol con-aceptadas, cuando\
+        \ build corre, entonces FieldChange.consolidated del field del padre es identico\
+        \ a ese valor leido del AuditReport y NO el resultado de re-agregar deltas\
+        \ de hijos en el builder — R007 invariante 5: las tres fotos provienen del\
+        \ motor"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un escenario donde varias dimensiones de score cambian por aceptadas\
+        \ o pendientes, cuando build corre, entonces ConsolidatedView devuelto NO\
+        \ expone ningun campo statisticImpacts ni ninguna lista paralela de estadisticas\
+        \ afectadas; los scores cambiados solo aparecen como entradas del mapa fieldChanges\
+        \ del nodo correspondiente — R009"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado cualquier ConsolidatedView producido por build, entonces ningun\
+        \ NodeImpact expone campos acceptedDelta o pendingDelta precomputados; el\
+        \ contrato emitido contiene exclusivamente las tripletas (original, consolidated,\
+        \ pendingProjection) por field — R010"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dada una propuesta APPROVED del plan activo que cambia el contenido de\
+        \ un nodo y otra APPROVED del plan activo que NO afecta a ese nodo, cuando\
+        \ build corre, entonces NodeImpact.acceptedProposalIds del nodo afectado contiene\
+        \ SOLO el proposalId de la primera (R011 invariante 1: cobertura accepted,\
+        \ recíproca incluida)"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dada una propuesta PENDING_APPROVAL aplicable del plan activo que cambia\
+        \ un nodo y otra PENDING_APPROVAL aplicable que NO afecta a ese nodo, cuando\
+        \ build corre, entonces NodeImpact.pendingProposalIds del nodo afectado contiene\
+        \ SOLO el proposalId de la primera (R011 invariante 2: cobertura pending,\
+        \ recíproca incluida)"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un nodo hoja con dos propuestas aceptadas que lo afectaron en orden\
+        \ createdAt ascendente, cuando build corre, entonces NodeImpact.acceptedProposalIds\
+        \ contiene ambos proposalId en orden createdAt ascendente — R011 invariante\
+        \ 3: orden estable"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un nodo afectado con varias aceptadas y varias pendientes que tocan\
+        \ distintos fields, cuando build corre, entonces NodeImpact expone acceptedProposalIds\
+        \ y pendingProposalIds a nivel del NODO (no asocia un proposalId a un field\
+        \ especifico dentro de fieldChanges) — R011 invariante 4: trazabilidad por\
+        \ nodo, no por field"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un plan activo con multiples propuestas (varias APPROVED y varias\
+        \ PENDING_APPROVAL) que tocan distintos nodos, cuando build corre una sola\
+        \ vez, entonces ConsolidatedView retornado expone los efectos de TODAS esas\
+        \ propuestas en una unica salida (acceptadas en las fotos consolidated y pendientes\
+        \ aplicables en las fotos pendingProjection) sin requerir invocaciones adicionales\
+        \ del builder — R016 invariante 1: combinacion en un documento"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
   - name: LemmaAbsenceMvpStrategy
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/lemmaabsence/LemmaAbsenceMvpStrategy.java
@@ -28564,15 +28185,161 @@ elements:
   - name: RecursiveNodeFieldDiffer
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/fielddiff/RecursiveNodeFieldDiffer.java
+    tests:
+    - name: "Dados tres AuditNode donde una hoja escalar accesible por el recorrido\
+        \ recursivo tiene valores distintos entre la foto original y la foto consolidated,\
+        \ cuando diff corre, entonces el mapa retornado contiene una entrada cuya\
+        \ clave codifica el path a esa hoja y cuyo FieldChange lleva los tres valores\
+        \ — R019 invariante 1: cobertura por construccion, sin enumeracion previa"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/fielddiff/RecursiveNodeFieldDifferTest.java
+    - name: "Dados tres AuditNode donde una de las hojas escalares pertenece a un\
+        \ tipo de diagnostico no enumerado en seed alguna del exclusionRegistry, cuando\
+        \ diff corre y los valores de esa hoja difieren entre fotos, entonces la hoja\
+        \ aparece como field del mapa SIN requerir registro previo en ningun catalogo\
+        \ — R019 invariante 2: aparicion automatica de cosas nuevas"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/fielddiff/RecursiveNodeFieldDifferTest.java
+    - name: "Dados tres AuditNode donde la unica diferencia entre fotos es un campo\
+        \ cuyo nombre el exclusionRegistry clasifica como OPAQUE_PERSISTENCE_ID, cuando\
+        \ diff corre, entonces el mapa retornado esta vacio: la hoja no se emite aunque\
+        \ difiera — R020 categoria 1"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/fielddiff/RecursiveNodeFieldDifferTest.java
+    - name: "Dados tres AuditNode donde la unica diferencia entre fotos es un campo\
+        \ cuyo nombre el exclusionRegistry clasifica como STRUCTURAL_REFERENCE, cuando\
+        \ diff corre, entonces el mapa retornado esta vacio: la referencia estructural\
+        \ no se emite aunque difiera — R020 categoria 2"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/fielddiff/RecursiveNodeFieldDifferTest.java
+    - name: "Dados tres AuditNode donde la unica diferencia entre fotos es un campo\
+        \ cuyo nombre el exclusionRegistry clasifica como TIMESTAMP, cuando diff corre,\
+        \ entonces el mapa retornado esta vacio: el timestamp no se emite aunque difiera\
+        \ — R020 categoria 3"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/fielddiff/RecursiveNodeFieldDifferTest.java
+    - name: "Dados tres AuditNode donde la unica diferencia entre fotos es un campo\
+        \ cuyo nombre el exclusionRegistry clasifica como INTERNAL_ORDER, cuando diff\
+        \ corre, entonces el mapa retornado esta vacio: el orden interno no se emite\
+        \ aunque difiera — R020 categoria 4"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/fielddiff/RecursiveNodeFieldDifferTest.java
+    - name: "Dados tres AuditNode donde la unica diferencia entre fotos es un campo\
+        \ cuyo nombre el exclusionRegistry clasifica como NON_SEMANTIC, cuando diff\
+        \ corre, entonces el mapa retornado esta vacio: el campo no semantico no se\
+        \ emite aunque difiera — R020 categoria 5"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/fielddiff/RecursiveNodeFieldDifferTest.java
+    - name: "Dados tres AuditNode con una lista cuyo tipo de elemento tiene identidad\
+        \ declarada en identityRegistry (p.ej. List<AbsentLemma> con clave (lemma,pos)),\
+        \ donde un elemento existe en la foto original con propiedades no-clave distintas\
+        \ a las de la foto consolidated, cuando diff corre, entonces el mapa retornado\
+        \ contiene fields derivados con clave estable basada en la identidad del elemento\
+        \ (no en su indice posicional) — R022 invariante 1: lista con identidad"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/fielddiff/RecursiveNodeFieldDifferTest.java
+    - name: "Dados tres AuditNode con una lista cuyo tipo de elemento NO tiene identidad\
+        \ declarada en identityRegistry y donde el elemento en el indice i de la foto\
+        \ original tiene una hoja escalar distinta al elemento en el indice i de la\
+        \ foto consolidated, cuando diff corre, entonces el mapa retornado contiene\
+        \ fields con clave de path posicional ([i]) — R022 invariante 2: diff posicional\
+        \ sin identidad"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/fielddiff/RecursiveNodeFieldDifferTest.java
+    - name: "Dados tres AuditNode donde la misma hoja escalar profunda es alcanzable\
+        \ por la misma secuencia de campos anidados en las tres fotos con valores\
+        \ distintos, cuando diff corre, entonces el mapa retornado contiene UNA SOLA\
+        \ entrada cuya clave codifica esa secuencia y cuyo FieldChange agrupa los\
+        \ tres valores (no tres entradas separadas, una por foto) — R023 invariante\
+        \ 1: estabilidad entre fotos"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/fielddiff/RecursiveNodeFieldDifferTest.java
+    - name: "Dadas dos invocaciones independientes de diff sobre dos pares de AuditNode\
+        \ del mismo tipo donde la misma hoja anidada cambia bajo el mismo path, cuando\
+        \ diff corre en cada par, entonces ambos mapas retornados contienen la MISMA\
+        \ clave para identificar el field correspondiente (sin variantes del path\
+        \ por nodo) — R023 invariante 2: estabilidad entre nodos del mismo tipo"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/fielddiff/RecursiveNodeFieldDifferTest.java
   - name: DefaultFieldExclusionRegistry
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/fielddiff/DefaultFieldExclusionRegistry.java
+    tests:
+    - name: "Dada una invocacion de isExcluded sobre un campo seed del registry cuyo\
+        \ rol funcional es OPAQUE_PERSISTENCE_ID, entonces retorna true y getRole\
+        \ retorna OPAQUE_PERSISTENCE_ID — R020 categoria 1: seed de identificadores\
+        \ opacos de persistencia"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/fielddiff/DefaultFieldExclusionRegistryTest.java
+    - name: "Dada una invocacion de isExcluded sobre un campo seed del registry cuyo\
+        \ rol funcional es STRUCTURAL_REFERENCE (parentId, courseId, milestoneId,\
+        \ topicId, knowledgeId o quizId como referencia dentro de otro nodo), entonces\
+        \ retorna true y getRole retorna STRUCTURAL_REFERENCE — R020 categoria 2:\
+        \ seed de referencias estructurales"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/fielddiff/DefaultFieldExclusionRegistryTest.java
+    - name: "Dada una invocacion de isExcluded sobre un campo seed del registry cuyo\
+        \ rol funcional es TIMESTAMP (createdAt, updatedAt sobre cualquier nivel del\
+        \ modelo), entonces retorna true y getRole retorna TIMESTAMP — R020 categoria\
+        \ 3: seed de timestamps"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/fielddiff/DefaultFieldExclusionRegistryTest.java
+    - name: "Dada una invocacion de isExcluded sobre un campo seed del registry cuyo\
+        \ rol funcional es INTERNAL_ORDER (indice de orden de insercion gestionado\
+        \ por el almacenamiento), entonces retorna true y getRole retorna INTERNAL_ORDER\
+        \ — R020 categoria 4: seed de ordenes internos"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/fielddiff/DefaultFieldExclusionRegistryTest.java
+    - name: "Dada una invocacion de isExcluded sobre un campo seed del registry cuyo\
+        \ rol funcional cae en la categoria escape NON_SEMANTIC, entonces retorna\
+        \ true y getRole retorna NON_SEMANTIC — R020 categoria 5: seed de la categoria\
+        \ escape"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/fielddiff/DefaultFieldExclusionRegistryTest.java
   - name: DefaultListIdentityRegistry
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/fielddiff/DefaultListIdentityRegistry.java
+    tests:
+    - name: "Dada una invocacion de getKeySpec sobre el campo lista de tipo List<AbsentLemma>\
+        \ dentro de LemmaAbsenceLevelDiagnosis (declaringTypeName='LemmaAbsenceLevelDiagnosis',\
+        \ fieldName='absentLemmas'), entonces retorna un Optional poblado con un ListIdentityKeySpec\
+        \ cuyos fieldNames son ['lemma','pos'] — R022 seed AbsentLemma"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/fielddiff/DefaultListIdentityRegistryTest.java
+    - name: "Dada una invocacion de getKeySpec sobre el campo lista de tipo List<MisplacedLemma>\
+        \ dentro de su record contenedor, entonces retorna un Optional poblado con\
+        \ un ListIdentityKeySpec cuyos fieldNames son ['lemma','pos'] — R022 seed\
+        \ MisplacedLemma"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/fielddiff/DefaultListIdentityRegistryTest.java
+    - name: "Dada una invocacion de getKeySpec sobre el campo lista de tipo List<BucketResult>\
+        \ (p.ej. dentro de CocaBucketsLevelDiagnosis), entonces retorna un Optional\
+        \ poblado con un ListIdentityKeySpec cuyos fieldNames son ['bandName'] — R022\
+        \ seed BucketResult"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/fielddiff/DefaultListIdentityRegistryTest.java
+    - name: "Dada una invocacion de getKeySpec sobre el campo lista de tipo List<QuarterResult>,\
+        \ entonces retorna un Optional poblado con un ListIdentityKeySpec cuyos fieldNames\
+        \ son ['index'] — R022 seed QuarterResult"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/fielddiff/DefaultListIdentityRegistryTest.java
+    - name: "Dada una invocacion de getKeySpec sobre el campo lista de tipo List<ImprovementDirective>,\
+        \ entonces retorna un Optional poblado con un ListIdentityKeySpec cuyos fieldNames\
+        \ son ['type','bandName','levelName'] — R022 seed ImprovementDirective"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/fielddiff/DefaultListIdentityRegistryTest.java
   - name: DefaultNodeFieldDifferFactory
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/fielddiff/DefaultNodeFieldDifferFactory.java
+    tests:
+    - name: "Dada una invocacion de create() sobre la factory, entonces retorna un\
+        \ NodeFieldDiffer cuya implementacion es RecursiveNodeFieldDiffer compuesta\
+        \ con DefaultFieldExclusionRegistry (para R020) y DefaultListIdentityRegistry\
+        \ (para R022); el motor producido honra ambas politicas en una invocacion\
+        \ de diff sobre AuditNode con cambios en hojas excluibles y en listas con\
+        \ identidad — composicion del motor"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/fielddiff/DefaultNodeFieldDifferFactoryTest.java
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -29869,8 +29636,8 @@ elements:
     - branchCoverage 52% < 60%
     - mutationScore 47% < 60%
 testSummary:
-  total: 735
-  passing: 734
+  total: 775
+  passing: 774
   failing: 0
   notImplemented: 1
 qualitySummary:
