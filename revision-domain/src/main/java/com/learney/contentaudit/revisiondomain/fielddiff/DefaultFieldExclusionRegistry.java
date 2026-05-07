@@ -15,7 +15,7 @@ class DefaultFieldExclusionRegistry implements FieldExclusionRegistry {
     // Key: "declaringTypeName::fieldName" → role
     private final Map<String, FieldExclusionRole> rules = new HashMap<>();
 
-    DefaultFieldExclusionRegistry() {
+    public DefaultFieldExclusionRegistry() {
         seedRules();
     }
 

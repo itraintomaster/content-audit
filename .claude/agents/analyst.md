@@ -188,6 +188,32 @@ Every rule has, in order:
 
 **Self-test for the blockquote**: read only the title + blockquote of every rule in the document — can a stakeholder understand the feature? If not, tighten the blockquotes.
 
+### Rules Are Testable Invariants
+
+A rule is a behavioral contract. The blockquote must state **observable behavior** the system either guarantees or violates — never what a term *means* or what a value *represents*. If the blockquote describes meaning instead of behavior, it is not a rule, it is a glossary entry, and a test cannot pass or fail against it.
+
+**Pattern that works.** Subject + verb + observable outcome, in imperative or conditional form:
+
+- "Dado X, el sistema emite Y."
+- "Para cada X que cumple Z, la salida contiene W."
+- "Cambiar X no modifica Y, Z, W."
+- "X cumple las invariantes 1, 2, 3..." — when a single concept unifies several observable assertions, list them as numbered invariants inside the blockquote. Each numbered item must be independently testable.
+
+**Anti-patterns.** If the body of a rule looks like any of these, it is descriptive, not testable. Rewrite it.
+
+- A table whose only content is `Term | Significado` / `Field | Description`. Glossaries are not rules.
+- Sentences of the form "X representa Y", "X significa Y", "X es el campo que contiene Z" — these explain meaning.
+- "El sistema debe ser capaz de..." / "el contrato modela..." with no statement of what becomes observable.
+- A list of options the system supports, without saying what happens when each is exercised.
+- Coverage / scope statements ("this feature covers the case X that FEAT-Y left open") with no invariant about output. Restate as: "when [scenario], the output [observable property]".
+- Anything that, read in isolation, a tester could not turn into a `then ...` clause of a journey or an assertion of a unit test.
+
+**Self-test before closing a rule.** Read **only** title + blockquote and answer in one breath: *"what concrete observation would a test make to declare this rule failed?"* If you cannot answer in one sentence, the rule is descriptive. Rewrite it.
+
+**Where descriptive content goes.** Tables of definitions, glossaries, casuistics, illustrative examples, error message catalogs and cross-feature notes are valuable but they are **reader support**, never the statement. They live inside `<details><summary>Detail</summary>...</details>` and, when needed, are explicitly marked there as "glossary / illustration, not the testable statement". The body of the rule (the blockquote) must remain a verifiable invariant even with `<details>` collapsed.
+
+**Single concept, multiple invariants.** When a rule conceptually unifies several observable assertions, keep it as one rule but enumerate the invariants in the blockquote (numbered list inside the `> ...`). Do not split into separate rules unless the assertions are truly orthogonal — fragmentation hurts comprehension. Conversely, do not pack two unrelated invariants into one rule just because they share a noun — split them so each can be cited and tested independently.
+
 ### Inline Citations
 
 When prose cites another rule (in this requirement or another), use a markdown link with the rule ID as the anchor:
@@ -413,7 +439,7 @@ If a feature does not produce any change observable through a declared contract,
 ## Key Principles
 
 1. **Business language only** — write as if explaining to a product owner
-2. **Atomic rules** — each rule should be independently testable
+2. **Atomic, testable rules** — each rule blockquote must state an **observable invariant** (subject + verb + observable outcome), not what a term means or represents. Definitional / descriptive content belongs in `<details>`. See the *Rules Are Testable Invariants* section for the self-test and anti-patterns.
 3. **Testable journey steps** — each step maps to a setup, a contract invocation, or an observable assertion (see the Journey Step Testability section). Never steps that happen outside the system boundary.
 4. **Explicit assumptions** — when information is missing, assume and mark it clearly
 5. **Rich prose** — the REQUIREMENT.md is a living functional specification, not just a data file

@@ -49,7 +49,7 @@ public class FCdiffJ001JourneyTest {
         ConsolidatedView availableView = new ConsolidatedView(
                 "audit-001", "plan-001",
                 ConsolidatedViewAvailability.AVAILABLE, null,
-                null, List.of(), List.of(), List.of());
+                null, List.of(), List.of());
         String formattedOutput = "{\"activeAuditId\":\"audit-001\",\"activePlanId\":\"plan-001\",\"availability\":\"AVAILABLE\"}";
 
         when(consolidatedViewBuilder.build(any(Path.class))).thenReturn(availableView);
@@ -78,7 +78,7 @@ public class FCdiffJ001JourneyTest {
         ConsolidatedView unavailableView = new ConsolidatedView(
                 null, null,
                 ConsolidatedViewAvailability.UNAVAILABLE, unavailability,
-                null, List.of(), List.of(), List.of());
+                null, List.of(), List.of());
         String unavailableOutput = "{\"availability\":\"UNAVAILABLE\",\"unavailabilityReason\":\"NO_ACTIVE_ANALYSIS\"}";
 
         when(consolidatedViewBuilder.build(any(Path.class))).thenReturn(unavailableView);

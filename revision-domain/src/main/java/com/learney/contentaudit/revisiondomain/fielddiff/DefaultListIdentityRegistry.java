@@ -15,7 +15,7 @@ class DefaultListIdentityRegistry implements ListIdentityRegistry {
     // Key: "declaringTypeName::fieldName" → key-spec
     private final Map<String, ListIdentityKeySpec> rules = new HashMap<>();
 
-    DefaultListIdentityRegistry() {
+    public DefaultListIdentityRegistry() {
         seedRules();
     }
 

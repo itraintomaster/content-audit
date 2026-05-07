@@ -44,7 +44,7 @@ public class DefaultGetConsolidatedCommandTest {
         ConsolidatedView view = new ConsolidatedView(
                 "audit-001", "plan-001",
                 ConsolidatedViewAvailability.AVAILABLE, null,
-                null, List.of(), List.of(), List.of());
+                null, List.of(), List.of());
         String expectedOutput = "{\"activeAuditId\":\"audit-001\",\"activePlanId\":\"plan-001\"}";
 
         when(consolidatedViewBuilder.build(any(Path.class))).thenReturn(view);
@@ -67,7 +67,7 @@ public class DefaultGetConsolidatedCommandTest {
         ConsolidatedView unavailableView = new ConsolidatedView(
                 null, null,
                 ConsolidatedViewAvailability.UNAVAILABLE, unavailability,
-                null, List.of(), List.of(), List.of());
+                null, List.of(), List.of());
         String unavailableOutput = "{\"consolidatedAvailability\":\"UNAVAILABLE\",\"unavailabilityReason\":\"NO_ACTIVE_ANALYSIS\"}";
 
         when(consolidatedViewBuilder.build(any(Path.class))).thenReturn(unavailableView);
@@ -88,7 +88,7 @@ public class DefaultGetConsolidatedCommandTest {
         ConsolidatedView view = new ConsolidatedView(
                 "audit-001", "plan-001",
                 ConsolidatedViewAvailability.AVAILABLE, null,
-                null, List.of(), List.of(), List.of());
+                null, List.of(), List.of());
 
         when(consolidatedViewBuilder.build(any(Path.class))).thenReturn(view);
         when(formatter.format(any(), any())).thenReturn("{}");

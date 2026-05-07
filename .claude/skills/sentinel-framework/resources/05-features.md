@@ -1093,5 +1093,3 @@ Este micro-requerimiento es un delta aislado: agrega el campo `quizSentence` al 
 
 - **F-CDIFF-J008**: Supersesion explicita del preview combinado de FEAT-PIPRE
 
-- **F-CDIFF-J007**: Equivalencia post-stack entre analisis sucesivos
-
