@@ -24,6 +24,7 @@ public class DefaultConsolidatedViewBuilderFactory implements ConsolidatedViewBu
                 config.getCourseRepository(),
                 locator,
                 config.getCourseMapper(),
-                config.getAuditEngine());
+                config.getAuditEngine(),
+                config.getNodeFieldDiffer());
     }
 }

@@ -107,7 +107,9 @@ import com.learney.contentaudit.auditdomain.ActiveAnalysisSelectionStore;
 import com.learney.contentaudit.revisiondomain.ImpactPreviewStore;
 import com.learney.contentaudit.revisiondomain.ConsolidatedViewBuilderConfig;
 import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewBuilder;
+import com.learney.contentaudit.revisiondomain.consolidatedview.NodeFieldDiffer;
 import com.learney.contentaudit.revisiondomain.engine.DefaultConsolidatedViewBuilderFactory;
+import com.learney.contentaudit.revisiondomain.fielddiff.DefaultNodeFieldDifferFactory;
 import com.learney.contentaudit.auditcli.formatting.DefaultConsolidatedViewFormatter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -468,6 +470,7 @@ class Main {
         cmd.addSubcommand("set-active", new picocli.CommandLine(new SetActiveCmd(setActiveCmd)));
 
         // get-consolidated — build and format the consolidated view (F-CDIFF-R001, R013 detail 3)
+        NodeFieldDiffer nodeFieldDiffer = new DefaultNodeFieldDifferFactory().create();
         ConsolidatedViewBuilderConfig builderConfig = new ConsolidatedViewBuilderConfig(
                 activeAnalysisSelectionStore,
                 auditReportStore,
@@ -476,7 +479,8 @@ class Main {
                 (com.learney.contentaudit.coursedomain.CourseRepository) courseRepository,
                 null, // factory creates DefaultCourseElementLocator internally (package-private)
                 courseToAuditableMapper,
-                auditEngine);
+                auditEngine,
+                nodeFieldDiffer);
         ConsolidatedViewBuilder consolidatedViewBuilder =
                 new DefaultConsolidatedViewBuilderFactory().create(builderConfig);
         DefaultGetConsolidatedCommand getConsolidatedCmd = new DefaultGetConsolidatedCommand(

@@ -6,9 +6,9 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedView;
 import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewAvailability;
-import com.learney.contentaudit.revisiondomain.consolidatedview.NonApplicablePending;
+import com.learney.contentaudit.revisiondomain.consolidatedview.FieldChange;
 import com.learney.contentaudit.revisiondomain.consolidatedview.NodeImpact;
-import com.learney.contentaudit.revisiondomain.consolidatedview.StatisticImpact;
+import com.learney.contentaudit.revisiondomain.consolidatedview.NonApplicablePending;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -50,48 +50,44 @@ public class DefaultConsolidatedViewFormatter implements ConsolidatedViewFormatt
             doc.put("computedAt", view.getComputedAt().toString());
         }
 
+        // ── nodeImpacts ──────────────────────────────────────────────────────
+        // Each NodeImpact emits: nodeTarget, nodeId, acceptedProposalIds,
+        // pendingProposalIds, fieldChanges (map of path → tripleta).
+        // NO statisticImpacts section. NO acceptedDelta/pendingDelta fields. (R009, R010)
         List<Map<String, Object>> nodeImpactList = new ArrayList<>();
         if (view.getNodeImpacts() != null) {
             for (NodeImpact ni : view.getNodeImpacts()) {
                 Map<String, Object> n = new LinkedHashMap<>();
                 n.put("nodeTarget", ni.getNodeTarget() != null ? ni.getNodeTarget().name() : null);
                 n.put("nodeId", ni.getNodeId());
-                if (ni.getConsolidated() != null) {
-                    n.put("consolidated", ni.getConsolidated());
-                }
-                if (ni.getPendingProjection() != null) {
-                    n.put("pendingProjection", ni.getPendingProjection());
-                }
+
                 if (ni.getAcceptedProposalIds() != null && !ni.getAcceptedProposalIds().isEmpty()) {
                     n.put("acceptedProposalIds", ni.getAcceptedProposalIds());
                 }
-                if (ni.getPendingProposalId() != null) {
-                    n.put("pendingProposalId", ni.getPendingProposalId());
+                if (ni.getPendingProposalIds() != null && !ni.getPendingProposalIds().isEmpty()) {
+                    n.put("pendingProposalIds", ni.getPendingProposalIds());
                 }
+
+                // fieldChanges: Map<path, {original, consolidated, pendingProjection}>
+                if (ni.getFieldChanges() != null && !ni.getFieldChanges().isEmpty()) {
+                    Map<String, Object> fieldChangesMap = new LinkedHashMap<>();
+                    for (Map.Entry<String, FieldChange> entry : ni.getFieldChanges().entrySet()) {
+                        FieldChange fc = entry.getValue();
+                        Map<String, Object> tripleta = new LinkedHashMap<>();
+                        tripleta.put("original", fc.getOriginal());
+                        tripleta.put("consolidated", fc.getConsolidated());
+                        tripleta.put("pendingProjection", fc.getPendingProjection());
+                        fieldChangesMap.put(entry.getKey(), tripleta);
+                    }
+                    n.put("fieldChanges", fieldChangesMap);
+                }
+
                 nodeImpactList.add(n);
             }
         }
         doc.put("nodeImpacts", nodeImpactList);
 
-        List<Map<String, Object>> statImpactList = new ArrayList<>();
-        if (view.getStatisticImpacts() != null) {
-            for (StatisticImpact si : view.getStatisticImpacts()) {
-                Map<String, Object> s = new LinkedHashMap<>();
-                s.put("nodeTarget", si.getNodeTarget() != null ? si.getNodeTarget().name() : null);
-                s.put("nodeId", si.getNodeId());
-                s.put("dimension", si.getDimension());
-                s.put("original", si.getOriginal());
-                s.put("consolidated", si.getConsolidated());
-                s.put("acceptedDelta", si.getAcceptedDelta());
-                if (si.getPendingProjection() != null) {
-                    s.put("pendingProjection", si.getPendingProjection());
-                    s.put("pendingDelta", si.getPendingDelta());
-                }
-                statImpactList.add(s);
-            }
-        }
-        doc.put("statisticImpacts", statImpactList);
-
+        // ── pendingApplicability ─────────────────────────────────────────────
         List<Map<String, Object>> napList = new ArrayList<>();
         if (view.getNonApplicablePendings() != null) {
             for (NonApplicablePending nap : view.getNonApplicablePendings()) {

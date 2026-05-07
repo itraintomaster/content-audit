@@ -11,7 +11,9 @@ import com.learney.contentaudit.revisiondomain.CourseElementLocator;
 import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
 import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedView;
 import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewBuilder;
+import com.learney.contentaudit.revisiondomain.consolidatedview.FieldChange;
 import java.nio.file.Path;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -71,7 +73,7 @@ public DefaultConsolidatedViewBuilder(RevisionArtifactStore revisionArtifactStor
                     "RefinementPlan '" + planId + "' not found");
         }
 
-        // Step 3: load audit report
+        // Step 3: load audit report (baseline)
         java.util.Optional<com.learney.contentaudit.auditdomain.AuditReport> auditOpt =
                 auditReportStore.load(auditId);
         if (auditOpt.isEmpty()) {
@@ -79,7 +81,6 @@ public DefaultConsolidatedViewBuilder(RevisionArtifactStore revisionArtifactStor
                     com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewUnavailabilityReason.NO_ACTIVE_ANALYSIS,
                     "AuditReport '" + auditId + "' not found");
         }
-        com.learney.contentaudit.auditdomain.AuditReport baseline = auditOpt.get();
 
         // Step 4: load and partition artifacts by verdict (REJECTED discarded - F-CDIFF-R005)
         java.util.List<com.learney.contentaudit.revisiondomain.RevisionArtifact> allArtifacts = revisionArtifactStore.listByPlan(planId);
@@ -106,8 +107,7 @@ public DefaultConsolidatedViewBuilder(RevisionArtifactStore revisionArtifactStor
                     "Failed to load course: " + e.getMessage());
         }
 
-        // Apply accepted proposals in order, tracking nodeId → consolidated snapshot and proposalId list
-        java.util.Map<String, com.learney.contentaudit.revisiondomain.CourseElementSnapshot> consolidatedSnapshots = new java.util.LinkedHashMap<>();
+        // Track accepted proposal IDs per nodeId
         java.util.Map<String, java.util.List<String>> acceptedProposalIds = new java.util.LinkedHashMap<>();
         java.util.Map<String, com.learney.contentaudit.auditdomain.AuditTarget> nodeTargets = new java.util.LinkedHashMap<>();
 
@@ -125,23 +125,23 @@ public DefaultConsolidatedViewBuilder(RevisionArtifactStore revisionArtifactStor
                         "Accepted proposal '" + proposal.getProposalId() + "' could not be applied to node '" + nodeId + "': " + e.getMessage());
             }
 
-            consolidatedSnapshots.put(nodeId, proposal.getElementAfter());
             acceptedProposalIds.computeIfAbsent(nodeId, k -> new java.util.ArrayList<>()).add(proposal.getProposalId());
             nodeTargets.put(nodeId, target);
         }
 
         // Step 6: apply PENDING proposals on top of consolidated, collecting non-applicable ones
-        java.util.Map<String, com.learney.contentaudit.revisiondomain.CourseElementSnapshot> pendingSnapshots = new java.util.LinkedHashMap<>();
-        java.util.Map<String, String> pendingProposalIds = new java.util.LinkedHashMap<>();
+        java.util.Map<String, java.util.List<String>> pendingProposalIds = new java.util.LinkedHashMap<>();
         java.util.List<com.learney.contentaudit.revisiondomain.consolidatedview.NonApplicablePending> nonApplicablePendings = new java.util.ArrayList<>();
 
         com.learney.contentaudit.coursedomain.CourseEntity pendingCourse = consolidatedCourse;
+        java.util.Set<String> pendingApplicableNodeIds = new java.util.LinkedHashSet<>();
+
         for (com.learney.contentaudit.revisiondomain.RevisionArtifact artifact : pending) {
             com.learney.contentaudit.revisiondomain.RevisionProposal proposal = artifact.getProposal();
             String nodeId = proposal.getNodeId();
             com.learney.contentaudit.auditdomain.AuditTarget target = proposal.getNodeTarget();
 
-            // Check node exists
+            // Check node exists in consolidated course
             java.util.Optional<com.learney.contentaudit.revisiondomain.CourseElementSnapshot> currentOpt =
                     courseElementLocator.snapshot(pendingCourse, target, nodeId);
             if (currentOpt.isEmpty()) {
@@ -173,12 +173,12 @@ public DefaultConsolidatedViewBuilder(RevisionArtifactStore revisionArtifactStor
                 continue;
             }
 
-            pendingSnapshots.put(nodeId, proposal.getElementAfter());
-            pendingProposalIds.put(nodeId, proposal.getProposalId());
+            pendingProposalIds.computeIfAbsent(nodeId, k -> new java.util.ArrayList<>()).add(proposal.getProposalId());
             nodeTargets.put(nodeId, target);
+            pendingApplicableNodeIds.add(nodeId);
         }
 
-        // Step 7: run audit engine to get consolidated and pending audit reports
+        // Step 7: run audit engine to get consolidated and pending audit reports (R007 invariante 2+3)
         com.learney.contentaudit.auditdomain.AuditReport consolidatedReport;
         try {
             com.learney.contentaudit.auditdomain.AuditableCourse auditableConsolidated = courseMapper.map(consolidatedCourse);
@@ -190,7 +190,7 @@ public DefaultConsolidatedViewBuilder(RevisionArtifactStore revisionArtifactStor
         }
 
         com.learney.contentaudit.auditdomain.AuditReport pendingReport = null;
-        boolean hasPendingApplicable = !pendingSnapshots.isEmpty();
+        boolean hasPendingApplicable = !pendingApplicableNodeIds.isEmpty();
         if (hasPendingApplicable) {
             try {
                 com.learney.contentaudit.auditdomain.AuditableCourse auditablePending = courseMapper.map(pendingCourse);
@@ -202,37 +202,51 @@ public DefaultConsolidatedViewBuilder(RevisionArtifactStore revisionArtifactStor
             }
         }
 
-        // Step 8: build NodeImpact list (only affected nodes — R006, R008)
+        // Step 8: build NodeImpact list using nodeFieldDiffer (R006, R007, R019, R023)
+        // For each (nodeTarget, nodeId) touched by APPROVED or PENDING_APPROVAL proposals,
+        // locate the AuditNode in baseline, consolidated, and pending reports, then diff.
         java.util.List<com.learney.contentaudit.revisiondomain.consolidatedview.NodeImpact> nodeImpacts = new java.util.ArrayList<>();
         java.util.Set<String> affectedNodeIds = new java.util.LinkedHashSet<>();
-        affectedNodeIds.addAll(consolidatedSnapshots.keySet());
-        affectedNodeIds.addAll(pendingSnapshots.keySet());
+        affectedNodeIds.addAll(acceptedProposalIds.keySet());
+        affectedNodeIds.addAll(pendingApplicableNodeIds);
+
+        // Build a lookup map for AuditNodes by nodeId in each report
+        // We use the entity id to identify nodes within the AuditReport tree
+        java.util.Map<String, com.learney.contentaudit.auditdomain.AuditNode> baselineNodes =
+                indexAuditNodes(auditOpt.get().getRoot());
+        java.util.Map<String, com.learney.contentaudit.auditdomain.AuditNode> consolidatedNodes =
+                indexAuditNodes(consolidatedReport.getRoot());
+        java.util.Map<String, com.learney.contentaudit.auditdomain.AuditNode> pendingNodes =
+                pendingReport != null ? indexAuditNodes(pendingReport.getRoot()) : java.util.Map.of();
 
         for (String nodeId : affectedNodeIds) {
-            com.learney.contentaudit.revisiondomain.CourseElementSnapshot consolidatedSnapshot = consolidatedSnapshots.get(nodeId);
-            if (consolidatedSnapshot == null) {
-                // Only has pending, no accepted: consolidated = baseline snapshot for this node
-                java.util.Optional<com.learney.contentaudit.revisiondomain.CourseElementSnapshot> baseSnapshotOpt =
-                        courseElementLocator.snapshot(baseCourse, nodeTargets.get(nodeId), nodeId);
-                consolidatedSnapshot = baseSnapshotOpt.orElse(null);
+            com.learney.contentaudit.auditdomain.AuditTarget target = nodeTargets.get(nodeId);
+
+            // Locate the AuditNode in each photo (null = absent in that photo)
+            com.learney.contentaudit.auditdomain.AuditNode origNode = baselineNodes.get(nodeId);
+            com.learney.contentaudit.auditdomain.AuditNode consNode = consolidatedNodes.get(nodeId);
+            com.learney.contentaudit.auditdomain.AuditNode pendNode = pendingNodes.get(nodeId);
+
+            // R007 invariante 5: we read what the engine put in the AuditReport — no recompute
+            Map<String, FieldChange> fieldChanges = nodeFieldDiffer.diff(origNode, consNode, pendNode);
+
+            // R006 invariante 1: only emit if there is at least one changed field
+            if (fieldChanges.isEmpty()
+                    && !acceptedProposalIds.containsKey(nodeId)
+                    && !pendingApplicableNodeIds.contains(nodeId)) {
+                continue;
             }
 
-            com.learney.contentaudit.revisiondomain.CourseElementSnapshot pendingSnap = pendingSnapshots.get(nodeId);
             java.util.List<String> acceptedIds = acceptedProposalIds.getOrDefault(nodeId, java.util.List.of());
-            String pendingProposalId = pendingProposalIds.get(nodeId);
+            java.util.List<String> pendingIds = pendingProposalIds.getOrDefault(nodeId, java.util.List.of());
 
             nodeImpacts.add(new com.learney.contentaudit.revisiondomain.consolidatedview.NodeImpact(
-                    nodeTargets.get(nodeId),
+                    target,
                     nodeId,
-                    consolidatedSnapshot,
-                    pendingSnap,
-                    acceptedIds.isEmpty() ? null : acceptedIds,
-                    pendingProposalId));
+                    acceptedIds,
+                    fieldChanges,
+                    pendingIds));
         }
-
-        // Step 9: build StatisticImpact list by comparing baseline vs consolidated vs pending (R009, R010, R011)
-        java.util.List<com.learney.contentaudit.revisiondomain.consolidatedview.StatisticImpact> statisticImpacts =
-                buildStatisticImpacts(baseline, consolidatedReport, pendingReport);
 
         return new com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedView(
                 auditId,
@@ -241,96 +255,39 @@ public DefaultConsolidatedViewBuilder(RevisionArtifactStore revisionArtifactStor
                 null,
                 java.time.Instant.now(),
                 nodeImpacts,
-                statisticImpacts,
                 nonApplicablePendings);
     }
 
-    // -------------------------------------------------------------------------
-    // Statistics delta computation
-    // -------------------------------------------------------------------------
+    // ─────────────────────────────────────────────────────────────────────────
+    // Helper: index AuditNode tree by entity id
+    // ─────────────────────────────────────────────────────────────────────────
 
-    private java.util.List<com.learney.contentaudit.revisiondomain.consolidatedview.StatisticImpact> buildStatisticImpacts(
-            com.learney.contentaudit.auditdomain.AuditReport baseline,
-            com.learney.contentaudit.auditdomain.AuditReport consolidated,
-            com.learney.contentaudit.auditdomain.AuditReport pending) {
-
-        java.util.List<com.learney.contentaudit.revisiondomain.consolidatedview.StatisticImpact> result = new java.util.ArrayList<>();
-        collectStatisticImpacts(baseline.getRoot(), consolidated.getRoot(),
-                pending != null ? pending.getRoot() : null, result);
-        return result;
+    private static java.util.Map<String, com.learney.contentaudit.auditdomain.AuditNode> indexAuditNodes(
+            com.learney.contentaudit.auditdomain.AuditNode root) {
+        java.util.Map<String, com.learney.contentaudit.auditdomain.AuditNode> index = new java.util.LinkedHashMap<>();
+        if (root != null) {
+            collectAuditNodes(root, index);
+        }
+        return index;
     }
 
-    private void collectStatisticImpacts(
-            com.learney.contentaudit.auditdomain.AuditNode baseNode,
-            com.learney.contentaudit.auditdomain.AuditNode consoNode,
-            com.learney.contentaudit.auditdomain.AuditNode pendNode,
-            java.util.List<com.learney.contentaudit.revisiondomain.consolidatedview.StatisticImpact> result) {
-
-        if (baseNode == null || consoNode == null) {
-            return;
+    private static void collectAuditNodes(
+            com.learney.contentaudit.auditdomain.AuditNode node,
+            java.util.Map<String, com.learney.contentaudit.auditdomain.AuditNode> index) {
+        if (node == null) return;
+        if (node.getEntity() != null && node.getEntity().getId() != null) {
+            index.put(node.getEntity().getId(), node);
         }
-
-        java.util.Map<String, Double> baseScores = baseNode.getScores() != null ? baseNode.getScores() : java.util.Map.of();
-        java.util.Map<String, Double> consoScores = consoNode.getScores() != null ? consoNode.getScores() : java.util.Map.of();
-        java.util.Map<String, Double> pendScores = pendNode != null && pendNode.getScores() != null ? pendNode.getScores() : java.util.Map.of();
-
-        String nodeId = baseNode.getEntity() != null ? baseNode.getEntity().getId() : null;
-        com.learney.contentaudit.auditdomain.AuditTarget nodeTarget = baseNode.getTarget();
-
-        for (String dimension : baseScores.keySet()) {
-            if (!consoScores.containsKey(dimension)) {
-                continue; // dimension not in consolidated — skip (R011: only emit what baseline has)
-            }
-            double original = baseScores.get(dimension);
-            double consolidatedVal = consoScores.get(dimension);
-            double acceptedDelta = consolidatedVal - original;
-
-            Double pendingProjection = null;
-            Double pendingDelta = null;
-            if (!pendScores.isEmpty() && pendScores.containsKey(dimension)) {
-                pendingProjection = pendScores.get(dimension);
-                pendingDelta = pendingProjection - consolidatedVal;
-            }
-
-            // Only emit if touched (R009: only emit stats touched by at least one proposal)
-            boolean touched = Math.abs(acceptedDelta) > 1e-10
-                    || (pendingDelta != null && Math.abs(pendingDelta) > 1e-10)
-                    || pendingProjection != null;
-            if (!touched) {
-                continue;
-            }
-
-            result.add(new com.learney.contentaudit.revisiondomain.consolidatedview.StatisticImpact(
-                    nodeTarget,
-                    nodeId,
-                    dimension,
-                    original,
-                    consolidatedVal,
-                    acceptedDelta,
-                    pendingProjection,
-                    pendingDelta));
-        }
-
-        // Recurse into children
-        if (baseNode.getChildren() != null && consoNode.getChildren() != null) {
-            int childCount = Math.min(baseNode.getChildren().size(), consoNode.getChildren().size());
-            for (int i = 0; i < childCount; i++) {
-                com.learney.contentaudit.auditdomain.AuditNode pendChild = (pendNode != null
-                        && pendNode.getChildren() != null
-                        && i < pendNode.getChildren().size())
-                        ? pendNode.getChildren().get(i) : null;
-                collectStatisticImpacts(
-                        baseNode.getChildren().get(i),
-                        consoNode.getChildren().get(i),
-                        pendChild,
-                        result);
+        if (node.getChildren() != null) {
+            for (com.learney.contentaudit.auditdomain.AuditNode child : node.getChildren()) {
+                collectAuditNodes(child, index);
             }
         }
     }
 
-    // -------------------------------------------------------------------------
+    // ─────────────────────────────────────────────────────────────────────────
     // Helper: build UNAVAILABLE view
-    // -------------------------------------------------------------------------
+    // ─────────────────────────────────────────────────────────────────────────
 
     private static com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedView unavailable(
             String auditId, String planId,
@@ -342,7 +299,6 @@ public DefaultConsolidatedViewBuilder(RevisionArtifactStore revisionArtifactStor
                 com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewAvailability.UNAVAILABLE,
                 new com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewUnavailability(reason, detail),
                 java.time.Instant.now(),
-                java.util.List.of(),
                 java.util.List.of(),
                 java.util.List.of());
     }
