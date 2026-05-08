@@ -59,22 +59,27 @@ final class PlanCmd implements PlanCommand, Callable<Integer> {
             defaultValue = "text")
     private String formatName;
 
-private final EphemeralPlanRenderer ephemeralPlanRenderer;
+    @Option(names = {"--storage"},
+            description = "Storage mode: DISK (default, persists plan) or EPHEMERAL (emits JSON to stdout, no disk write)",
+            defaultValue = "DISK")
+    private PlanStorageMode storageMode;
 
-public PlanCmd(AuditReportStore auditReportStore, RefinerEngine refinerEngine, RefinementPlanStore refinementPlanStore, EphemeralPlanRenderer ephemeralPlanRenderer) {
-    this.auditReportStore = auditReportStore;
-    this.refinerEngine = refinerEngine;
-    this.refinementPlanStore = refinementPlanStore;
-    this.ephemeralPlanRenderer = ephemeralPlanRenderer;
-}
+    private final EphemeralPlanRenderer ephemeralPlanRenderer;
 
-    @Override
-    public Integer call() {
-        return plan(this.auditId);
+    public PlanCmd(AuditReportStore auditReportStore, RefinerEngine refinerEngine, RefinementPlanStore refinementPlanStore, EphemeralPlanRenderer ephemeralPlanRenderer) {
+        this.auditReportStore = auditReportStore;
+        this.refinerEngine = refinerEngine;
+        this.refinementPlanStore = refinementPlanStore;
+        this.ephemeralPlanRenderer = ephemeralPlanRenderer;
     }
 
     @Override
-    public Integer plan(String auditId) {
+    public Integer call() {
+        return plan(this.auditId, this.storageMode);
+    }
+
+    @Override
+    public Integer plan(String auditId, PlanStorageMode storageMode) {
         Optional<AuditReport> reportOpt;
         String resolvedAuditId;
 
@@ -101,6 +106,11 @@ public PlanCmd(AuditReportStore auditReportStore, RefinerEngine refinerEngine, R
 
         AuditReport report = reportOpt.get();
         RefinementPlan plan = refinerEngine.plan(report, resolvedAuditId);
+
+        if (storageMode == PlanStorageMode.EPHEMERAL) {
+            return ephemeralPlanRenderer.render(plan);
+        }
+
         String planId = refinementPlanStore.save(plan);
 
         List<RefinementTask> tasks = plan.getTasks() != null ? plan.getTasks() : List.of();

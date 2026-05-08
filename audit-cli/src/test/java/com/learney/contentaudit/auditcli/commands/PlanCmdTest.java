@@ -1,8 +1,12 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.learney.contentaudit.auditcli.PlanStorageMode;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditReportSummary;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
@@ -40,6 +44,9 @@ public class PlanCmdTest {
 
     @Mock
     RefinementPlanStore refinementPlanStore;
+
+    @Mock
+    EphemeralPlanRenderer ephemeralPlanRenderer;
 
     @InjectMocks
     PlanCmd planCmd;
@@ -82,7 +89,7 @@ public class PlanCmdTest {
         when(refinementPlanStore.save(plan)).thenReturn("plan-001");
 
         // Act
-        int exit = planCmd.plan(null);
+        int exit = planCmd.plan(null, PlanStorageMode.DISK);
 
         // Assert — R014: success exits 0; plan must be persisted
         assertEquals(0, exit, "plan(null) should exit 0 on success");
@@ -105,7 +112,7 @@ public class PlanCmdTest {
         when(refinementPlanStore.save(plan)).thenReturn("plan-002");
 
         // Act
-        int exit = planCmd.plan(auditId);
+        int exit = planCmd.plan(auditId, PlanStorageMode.DISK);
 
         // Assert — R014: explicit --audit <id> uses that audit; exits 0 on success
         assertEquals(0, exit, "plan(auditId) should exit 0 on success");
@@ -129,7 +136,7 @@ public class PlanCmdTest {
         System.setErr(new PrintStream(errBuf));
         try {
             // Act
-            int exit = planCmd.plan(null);
+            int exit = planCmd.plan(null, PlanStorageMode.DISK);
 
             // Assert — R014: "No audits available. Run 'content-audit analyze' first."
             assertNotEquals(0, exit, "plan(null) with no audits must exit non-zero");
@@ -155,7 +162,7 @@ public class PlanCmdTest {
         System.setErr(new PrintStream(errBuf));
         try {
             // Act
-            int exit = planCmd.plan(unknownAuditId);
+            int exit = planCmd.plan(unknownAuditId, PlanStorageMode.DISK);
 
             // Assert — R014: "Audit '<id>' not found"
             assertNotEquals(0, exit, "plan(unknownId) must exit non-zero");
@@ -188,11 +195,173 @@ public class PlanCmdTest {
         when(refinementPlanStore.save(plan)).thenReturn("plan-r004");
 
         // Act
-        int exit = planCmd.plan(auditId);
+        int exit = planCmd.plan(auditId, PlanStorageMode.DISK);
 
         // Assert — semantics unchanged: refinerEngine delegates the plan, store persists it
         assertEquals(0, exit, "plan with valid auditId must exit 0 (semantics unchanged under new placement)");
         verify(refinerEngine).plan(report, auditId);
         verify(refinementPlanStore).save(plan);
+    }
+
+    @Test
+    @DisplayName("Dado un auditId valido y storageMode EPHEMERAL, cuando plan se invoca, entonces RefinementPlanStore.save no se invoca — R001 invariante 1: no escribe en disco")
+    @Tag("FEAT-PLANEF")
+    @Tag("F-PLANEF-R001")
+    public void dadoUnAuditIdValidoYStorageModeEPHEMERALCuandoPlanSeInvocaEntoncesRefinementPlanStoresaveNoSeInvocaR001Invariante1NoEscribeEnDisco() {
+        // Arrange — audit exists, engine returns a plan, renderer succeeds
+        String auditId = "2026-05-08T10-00-00";
+        AuditReport report = new AuditReport(null);
+
+        when(auditReportStore.load(auditId)).thenReturn(Optional.of(report));
+
+        RefinementPlan plan = new RefinementPlan("plan-eph-001", auditId, Instant.now(), List.of());
+        when(refinerEngine.plan(report, auditId)).thenReturn(plan);
+        when(ephemeralPlanRenderer.render(plan)).thenReturn(0);
+
+        // Act
+        int exit = planCmd.plan(auditId, PlanStorageMode.EPHEMERAL);
+
+        // Assert — R001 invariante 1: modo efimero nunca escribe en disco
+        assertEquals(0, exit, "plan en modo EPHEMERAL debe salir con codigo 0");
+        verify(refinementPlanStore, never()).save(any());
+    }
+
+    @Test
+    @DisplayName("Dado un auditId valido y storageMode DISK, cuando plan se invoca, entonces RefinementPlanStore.save se invoca con el plan derivado por RefinerEngine — R001 invariante 1: control negativo, el path persistente sigue persistiendo")
+    @Tag("FEAT-PLANEF")
+    @Tag("F-PLANEF-R001")
+    public void dadoUnAuditIdValidoYStorageModeDISKCuandoPlanSeInvocaEntoncesRefinementPlanStoresaveSeInvocaConElPlanDerivadoPorRefinerEngineR001Invariante1ControlNegativoElPathPersistenteSiguePersistiendo() {
+        // Arrange — audit exists, engine returns a plan, store persists it
+        String auditId = "2026-05-08T11-00-00";
+        AuditReport report = new AuditReport(null);
+
+        when(auditReportStore.load(auditId)).thenReturn(Optional.of(report));
+
+        RefinementPlan plan = new RefinementPlan("plan-disk-001", auditId, Instant.now(), List.of());
+        when(refinerEngine.plan(report, auditId)).thenReturn(plan);
+        when(refinementPlanStore.save(plan)).thenReturn("plan-disk-001");
+
+        // Act
+        int exit = planCmd.plan(auditId, PlanStorageMode.DISK);
+
+        // Assert — R001 invariante 1 control negativo: modo DISK persiste el plan y no llama al renderer
+        assertEquals(0, exit, "plan en modo DISK debe salir con codigo 0");
+        verify(refinementPlanStore).save(plan);
+        verify(ephemeralPlanRenderer, never()).render(any());
+    }
+
+    @Test
+    @DisplayName("Dado un auditId valido y storageMode EPHEMERAL, cuando plan se invoca, entonces EphemeralPlanRenderer.render se invoca con el plan derivado por RefinerEngine — R001 invariante 2: el plan efimero se entrega via el renderer")
+    @Tag("FEAT-PLANEF")
+    @Tag("F-PLANEF-R001")
+    public void dadoUnAuditIdValidoYStorageModeEPHEMERALCuandoPlanSeInvocaEntoncesEphemeralPlanRendererrenderSeInvocaConElPlanDerivadoPorRefinerEngineR001Invariante2ElPlanEfimeroSeEntregaViaElRenderer() {
+        // Arrange — audit exists, engine returns a plan, renderer receives that exact plan
+        String auditId = "2026-05-08T12-00-00";
+        AuditReport report = new AuditReport(null);
+
+        when(auditReportStore.load(auditId)).thenReturn(Optional.of(report));
+
+        RefinementPlan plan = new RefinementPlan("plan-eph-002", auditId, Instant.now(), List.of());
+        when(refinerEngine.plan(report, auditId)).thenReturn(plan);
+        when(ephemeralPlanRenderer.render(plan)).thenReturn(0);
+
+        // Act
+        planCmd.plan(auditId, PlanStorageMode.EPHEMERAL);
+
+        // Assert — R001 invariante 2: el renderer recibe el plan derivado por el engine
+        verify(ephemeralPlanRenderer).render(plan);
+        verify(refinementPlanStore, never()).save(any());
+    }
+
+    @Test
+    @DisplayName("Dado un auditId valido y storageMode DISK, cuando plan se invoca, entonces EphemeralPlanRenderer.render no se invoca — R001 invariante 2: control negativo, el path persistente no consume el renderer")
+    @Tag("FEAT-PLANEF")
+    @Tag("F-PLANEF-R001")
+    public void dadoUnAuditIdValidoYStorageModeDISKCuandoPlanSeInvocaEntoncesEphemeralPlanRendererrenderNoSeInvocaR001Invariante2ControlNegativoElPathPersistenteNoConsumeElRenderer() {
+        // Arrange — audit exists, engine returns a plan, store persists it
+        String auditId = "2026-05-08T13-00-00";
+        AuditReport report = new AuditReport(null);
+
+        when(auditReportStore.load(auditId)).thenReturn(Optional.of(report));
+
+        RefinementPlan plan = new RefinementPlan("plan-disk-002", auditId, Instant.now(), List.of());
+        when(refinerEngine.plan(report, auditId)).thenReturn(plan);
+        when(refinementPlanStore.save(plan)).thenReturn("plan-disk-002");
+
+        // Act
+        planCmd.plan(auditId, PlanStorageMode.DISK);
+
+        // Assert — R001 invariante 2 control negativo: modo DISK no toca el renderer efimero
+        verify(ephemeralPlanRenderer, never()).render(any());
+        verify(refinementPlanStore).save(plan);
+    }
+
+    @Test
+    @DisplayName("Dado el mismo auditId resuelto al mismo AuditReport, cuando plan se invoca primero con storageMode DISK y luego con EPHEMERAL, entonces RefinerEngine.plan se invoca en ambos casos con los mismos argumentos (mismo AuditReport y mismo auditId) — R001 invariante 3: la opcion es ortogonal al input, el plan calculado es el mismo modulo dispatch del resultado")
+    @Tag("FEAT-PLANEF")
+    @Tag("F-PLANEF-R001")
+    public void dadoElMismoAuditIdResueltoAlMismoAuditReportCuandoPlanSeInvocaPrimeroConStorageModeDISKYLuegoConEPHEMERALEntoncesRefinerEngineplanSeInvocaEnAmbosCasosConLosMismosArgumentosMismoAuditReportYMismoAuditIdR001Invariante3LaOpcionEsOrtogonalAlInputElPlanCalculadoEsElMismoModuloDispatchDelResultado() {
+        // Arrange — el mismo auditId resuelve siempre al mismo AuditReport
+        String auditId = "2026-05-08T14-00-00";
+        AuditReport report = new AuditReport(null);
+
+        when(auditReportStore.load(auditId)).thenReturn(Optional.of(report));
+
+        RefinementPlan planDisk = new RefinementPlan("plan-disk-inv3", auditId, Instant.now(), List.of());
+        RefinementPlan planEph = new RefinementPlan("plan-eph-inv3", auditId, Instant.now(), List.of());
+        when(refinerEngine.plan(report, auditId))
+                .thenReturn(planDisk)
+                .thenReturn(planEph);
+        when(refinementPlanStore.save(planDisk)).thenReturn("plan-disk-inv3");
+        when(ephemeralPlanRenderer.render(planEph)).thenReturn(0);
+
+        // Act — primera invocacion con DISK, segunda con EPHEMERAL
+        planCmd.plan(auditId, PlanStorageMode.DISK);
+        planCmd.plan(auditId, PlanStorageMode.EPHEMERAL);
+
+        // Assert — R001 invariante 3: el engine recibe exactamente los mismos argumentos en ambas invocaciones
+        verify(refinerEngine, times(2)).plan(report, auditId);
+    }
+
+    @Test
+    @DisplayName("Dado un auditId valido y storageMode EPHEMERAL, cuando plan se invoca, entonces stdout contiene unicamente el JSON parseable como RefinementPlan (sin lineas adicionales mezcladas que rompan el parseo, los mensajes auxiliares van por stderr) — R001 invariante 2: stdout reservado al JSON")
+    @Tag("FEAT-PLANEF")
+    @Tag("F-PLANEF-R001")
+    public void dadoUnAuditIdValidoYStorageModeEPHEMERALCuandoPlanSeInvocaEntoncesStdoutContieneUnicamenteElJSONParseableComoRefinementPlanSinLineasAdicionalesMezcladasQueRompanElParseoLosMensajesAuxiliaresVanPorStderrR001Invariante2StdoutReservadoAlJSON() throws Exception {
+        // Arrange — capturar stdout antes de invocar
+        String auditId = "2026-05-08T15-00-00";
+        AuditReport report = new AuditReport(null);
+
+        when(auditReportStore.load(auditId)).thenReturn(Optional.of(report));
+
+        RefinementPlan plan = new RefinementPlan("plan-eph-stdout", auditId, Instant.now(), List.of());
+        when(refinerEngine.plan(report, auditId)).thenReturn(plan);
+
+        // El mock del renderer simula el output real del DefaultEphemeralPlanRenderer:
+        // escribe el JSON del plan a stdout y retorna 0.
+        ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
+        String expectedJson = mapper.writeValueAsString(plan);
+        ByteArrayOutputStream stdoutBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(stdoutBuf));
+        try {
+            doAnswer(inv -> {
+                System.out.print(expectedJson);
+                return 0;
+            }).when(ephemeralPlanRenderer).render(plan);
+
+            // Act
+            planCmd.plan(auditId, PlanStorageMode.EPHEMERAL);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — R001 invariante 2: stdout contiene unicamente JSON parseable como RefinementPlan
+        String stdoutContent = stdoutBuf.toString().trim();
+        assertFalse(stdoutContent.isEmpty(), "stdout no debe estar vacio en modo EPHEMERAL");
+        // Si hay contenido extra mezclado con el JSON, parsearlo fallara con JsonParseException
+        RefinementPlan parsed = mapper.readValue(stdoutContent, RefinementPlan.class);
+        assertEquals(plan.getId(), parsed.getId(), "El JSON en stdout debe corresponder al plan derivado");
+        assertEquals(plan.getSourceAuditId(), parsed.getSourceAuditId());
     }
 }

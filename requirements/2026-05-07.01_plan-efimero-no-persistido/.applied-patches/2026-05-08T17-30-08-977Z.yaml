@@ -1,0 +1,79 @@
+code: FEAT-PLANEF
+modules:
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: PlanCmd
+      handwrittenTests:
+      - name: "Dado un auditId valido y storageMode EPHEMERAL, cuando plan se invoca,\
+          \ entonces RefinementPlanStore.save no se invoca — R001 invariante 1: no\
+          \ escribe en disco"
+        traceability:
+          feature: FEAT-PLANEF
+          rule: F-PLANEF-R001
+      - name: "Dado un auditId valido y storageMode DISK, cuando plan se invoca, entonces\
+          \ RefinementPlanStore.save se invoca con el plan derivado por RefinerEngine\
+          \ — R001 invariante 1: control negativo, el path persistente sigue persistiendo"
+        traceability:
+          feature: FEAT-PLANEF
+          rule: F-PLANEF-R001
+      - name: "Dado un auditId valido y storageMode EPHEMERAL, cuando plan se invoca,\
+          \ entonces EphemeralPlanRenderer.render se invoca con el plan derivado por\
+          \ RefinerEngine — R001 invariante 2: el plan efimero se entrega via el renderer"
+        traceability:
+          feature: FEAT-PLANEF
+          rule: F-PLANEF-R001
+      - name: "Dado un auditId valido y storageMode DISK, cuando plan se invoca, entonces\
+          \ EphemeralPlanRenderer.render no se invoca — R001 invariante 2: control\
+          \ negativo, el path persistente no consume el renderer"
+        traceability:
+          feature: FEAT-PLANEF
+          rule: F-PLANEF-R001
+      - name: "Dado el mismo auditId resuelto al mismo AuditReport, cuando plan se\
+          \ invoca primero con storageMode DISK y luego con EPHEMERAL, entonces RefinerEngine.plan\
+          \ se invoca en ambos casos con los mismos argumentos (mismo AuditReport\
+          \ y mismo auditId) — R001 invariante 3: la opcion es ortogonal al input,\
+          \ el plan calculado es el mismo modulo dispatch del resultado"
+        traceability:
+          feature: FEAT-PLANEF
+          rule: F-PLANEF-R001
+      - name: "Dado un auditId valido y storageMode EPHEMERAL, cuando plan se invoca,\
+          \ entonces stdout contiene unicamente el JSON parseable como RefinementPlan\
+          \ (sin lineas adicionales mezcladas que rompan el parseo, los mensajes auxiliares\
+          \ van por stderr) — R001 invariante 2: stdout reservado al JSON"
+        traceability:
+          feature: FEAT-PLANEF
+          rule: F-PLANEF-R001
+    - name: DefaultEphemeralPlanRenderer
+      handwrittenTests:
+      - name: "Dado un RefinementPlan con tasks no vacias, cuando render se invoca,\
+          \ entonces el JSON emitido tiene las mismas claves top-level (id, sourceAuditId,\
+          \ createdAt, tasks) y dentro de cada task las mismas claves (id, nodeTarget,\
+          \ nodeId, nodeLabel, diagnosisKind, priority, status) que el JSON producido\
+          \ por FileSystemRefinementPlanStore.save sobre el mismo plan — R001 invariante\
+          \ 2: schema-equivalencia con el plan persistido"
+        traceability:
+          feature: FEAT-PLANEF
+          rule: F-PLANEF-R001
+      - name: "Dado un RefinementPlan, cuando render escribe a stdout y el JSON emitido\
+          \ se vuelve a deserializar con el ObjectMapper estandar (JavaTimeModule),\
+          \ entonces el RefinementPlan deserializado es igual al original (mismo id,\
+          \ sourceAuditId, createdAt y tasks) — R001 invariante 2: round-trip JSON,\
+          \ un cliente que parsea planes persistidos parsea planes efimeros sin cambios"
+        traceability:
+          feature: FEAT-PLANEF
+          rule: F-PLANEF-R001
+      - name: "Dado un RefinementPlan, cuando render se invoca, entonces el JSON se\
+          \ emite por la salida estandar (stdout) y stderr permanece vacio — R001\
+          \ invariante 2: el canal del plan es stdout, no stderr"
+        traceability:
+          feature: FEAT-PLANEF
+          rule: F-PLANEF-R001
+features:
+- id: FEAT-PLANEF
+  journeys:
+  - id: F-PLANEF-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands

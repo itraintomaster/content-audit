@@ -422,8 +422,9 @@ class Main {
                         auditReportStore)));
 
         // plan
+        EphemeralPlanRenderer ephemeralPlanRenderer = new DefaultEphemeralPlanRenderer();
         cmd.addSubcommand("plan", new picocli.CommandLine(
-                new PlanCmd(auditReportStore, refinerEngine, refinementPlanStore)));
+                new PlanCmd(auditReportStore, refinerEngine, refinementPlanStore, ephemeralPlanRenderer)));
 
         // revise
         ReviseCmd reviseCmd = new ReviseCmd(revisionEngine, refinementPlanStore);

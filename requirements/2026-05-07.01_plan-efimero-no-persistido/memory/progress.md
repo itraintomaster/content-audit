@@ -19,3 +19,51 @@
   `2026-05-07.01_plan-efimero-no-persistido/`.
   why: el nombre del feature ya no es sobre suggestedWords; el efecto sobre
   esa estructura es un side-effect natural y no aparece como regla.
+
+2026-05-08 — qa-tester — Patch de handwrittenTests propuesto y validado para
+  FEAT-PLANEF (architectural_patch.yaml). 9 tests en total: 6 sobre PlanCmd
+  (3 invariantes x 2 path con control negativo) y 3 sobre
+  DefaultEphemeralPlanRenderer (schema-equivalencia, round-trip JSON, canal
+  stdout). Todos tageados a F-PLANEF-R001. Journey J001 recibe testModule
+  audit-cli y testPackage com.learney.contentaudit.auditcli.commands para
+  package-private access a PlanCmd, EphemeralPlanRenderer y
+  DefaultEphemeralPlanRenderer. Listo para sentinel patch apply +
+  sentinel generate -> @test-writer.
+  why: la regla unica R001 expone tres invariantes observables y cada uno
+  apunta directamente a una de las dos implementaciones; el cruce DISK vs
+  EPHEMERAL del invariante 3 se testea sobre PlanCmd con mocks de RefinerEngine
+  observando que la firma sealed (auditId, storageMode) entrega el mismo plan
+  pre-dispatch en ambos modos. La schema-equivalencia del invariante 2 se
+  ancla a FileSystemRefinementPlanStore como referencia del contrato de
+  serializacion; round-trip via ObjectMapper(JavaTimeModule) garantiza que un
+  cliente que parsea persistidos parsea efimeros sin cambios.
+
+2026-05-08 — test-writer — PlanCmdTest.java actualizado: 5 tests F-CLIRV adaptados a firma
+  plan(auditId, PlanStorageMode.DISK), 6 stubs F-PLANEF-R001 implementados, @Mock
+  EphemeralPlanRenderer agregado al fixture. Tests no compilan aun por produccion blocker.
+  why: produccion PlanCmd.java tiene metodo plan(String) (firma vieja) y Main.java
+  instancia PlanCmd sin EphemeralPlanRenderer — @developer debe corregirlos.
+
+2026-05-08 — test-writer — FPlanefJ001JourneyTest implementado (path-1 success + path-2 failure).
+  Path-1: arrange auditReportStore.load + refinerEngine.plan exitoso, verifica exitCode=0,
+  ephemeralPlanRenderer.render invocado con el plan, refinementPlanStore sin interacciones.
+  Path-2: auditReportStore.load retorna Optional.empty() (auditoria no encontrada), verifica
+  exitCode!=0, ni save ni render invocados. Produccion aun incompleta: PlanCmd.plan(String, PlanStorageMode)
+  no sobreescribe la firma sealed (tiene plan(String) con signature vieja). Compilation falla en
+  produccion — blocker para @developer.
+
+2026-05-08 — test-writer — DefaultEphemeralPlanRendererTest: 3 cuerpos implementados.
+  Test 1 (schema-equiv): render() -> captura stdout -> ObjectMapper parse -> fieldNames()
+  comparados con FileSystemRefinementPlanStore.save() -> fichero json -> fieldNames(). Por tarea idem.
+  Test 2 (round-trip): render() -> stdout -> ObjectMapper+JavaTimeModule.readValue -> assertEquals(original, deserialized).
+  Test 3 (canal): stdout no blank, stderr empty.
+  Captura/restauracion en @BeforeEach/@AfterEach para todos los tests.
+  Estado: tests NO pueden correr aun porque audit-cli no compila (PlanCmd firma vieja + Main sin EphemeralPlanRenderer).
+  Blocker: @developer debe completar PlanCmd.plan(String, PlanStorageMode) + Main.java.
+
+2026-05-08 — developer — Produccion implementada: PlanCmd.plan(String, PlanStorageMode),
+  @Option --storage, call() actualizado, DefaultEphemeralPlanRenderer.render() con ObjectMapper
+  identico a FileSystemRefinementPlanStore, Main.java instancia EphemeralPlanRenderer y lo inyecta.
+  Compilacion OK. Blocker remanente: PlanCmdTest lineas 364-365 llaman plan.id() y plan.sourceAuditId()
+  (record-style), pero RefinementPlan @Generated usa getId()/getSourceAuditId() (JavaBean). Escalacion
+  necesaria: @architect debe agregar metodos id() / sourceAuditId() al modelo o regenerarlo como record.

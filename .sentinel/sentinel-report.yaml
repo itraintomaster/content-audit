@@ -1,4 +1,4 @@
-generatedAt: 2026-05-08T14:28:26.609766Z
+generatedAt: 2026-05-08T17:30:20.230493Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -5189,15 +5189,109 @@ features:
     - branchCoverage 42% < 60%
     - mutationScore 53% < 60%
 - id: FEAT-PLANEF
-  state: DRAFT
+  state: IMPLEMENTING
   requirementFile: ./requirements/2026-05-07.01_plan-efimero-no-persistido/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-PLANEF-R001
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: "Dado un auditId valido y storageMode EPHEMERAL, cuando plan se invoca,\
+        \ entonces RefinementPlanStore.save no se invoca — R001 invariante 1: no escribe\
+        \ en disco"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: PlanCmd
+    - name: "Dado un auditId valido y storageMode DISK, cuando plan se invoca, entonces\
+        \ RefinementPlanStore.save se invoca con el plan derivado por RefinerEngine\
+        \ — R001 invariante 1: control negativo, el path persistente sigue persistiendo"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: PlanCmd
+    - name: "Dado un auditId valido y storageMode EPHEMERAL, cuando plan se invoca,\
+        \ entonces EphemeralPlanRenderer.render se invoca con el plan derivado por\
+        \ RefinerEngine — R001 invariante 2: el plan efimero se entrega via el renderer"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: PlanCmd
+    - name: "Dado un auditId valido y storageMode DISK, cuando plan se invoca, entonces\
+        \ EphemeralPlanRenderer.render no se invoca — R001 invariante 2: control negativo,\
+        \ el path persistente no consume el renderer"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: PlanCmd
+    - name: "Dado el mismo auditId resuelto al mismo AuditReport, cuando plan se invoca\
+        \ primero con storageMode DISK y luego con EPHEMERAL, entonces RefinerEngine.plan\
+        \ se invoca en ambos casos con los mismos argumentos (mismo AuditReport y\
+        \ mismo auditId) — R001 invariante 3: la opcion es ortogonal al input, el\
+        \ plan calculado es el mismo modulo dispatch del resultado"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: PlanCmd
+    - name: "Dado un auditId valido y storageMode EPHEMERAL, cuando plan se invoca,\
+        \ entonces stdout contiene unicamente el JSON parseable como RefinementPlan\
+        \ (sin lineas adicionales mezcladas que rompan el parseo, los mensajes auxiliares\
+        \ van por stderr) — R001 invariante 2: stdout reservado al JSON"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: PlanCmd
+    - name: "Dado un RefinementPlan con tasks no vacias, cuando render se invoca,\
+        \ entonces el JSON emitido tiene las mismas claves top-level (id, sourceAuditId,\
+        \ createdAt, tasks) y dentro de cada task las mismas claves (id, nodeTarget,\
+        \ nodeId, nodeLabel, diagnosisKind, priority, status) que el JSON producido\
+        \ por FileSystemRefinementPlanStore.save sobre el mismo plan — R001 invariante\
+        \ 2: schema-equivalencia con el plan persistido"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultEphemeralPlanRenderer
+    - name: "Dado un RefinementPlan, cuando render escribe a stdout y el JSON emitido\
+        \ se vuelve a deserializar con el ObjectMapper estandar (JavaTimeModule),\
+        \ entonces el RefinementPlan deserializado es igual al original (mismo id,\
+        \ sourceAuditId, createdAt y tasks) — R001 invariante 2: round-trip JSON,\
+        \ un cliente que parsea planes persistidos parsea planes efimeros sin cambios"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultEphemeralPlanRenderer
+    - name: "Dado un RefinementPlan, cuando render se invoca, entonces el JSON se\
+        \ emite por la salida estandar (stdout) y stderr permanece vacio — R001 invariante\
+        \ 2: el canal del plan es stdout, no stderr"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultEphemeralPlanRenderer
   journeysCoverage:
   - journeyId: F-PLANEF-J001
-    state: NO_TESTS
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: DECLARED
+      tests:
+      - name: path1_laPlanificacionSeCompletaConExito_success
+        implemented: false
+        passing: false
+        module: audit-cli
+        implementation: FPlanefJ001JourneyTest
+    - pathId: path-2
+      result: failure
+      state: DECLARED
+      tests:
+      - name: path2_laPlanificacionFallaAuditoriaFuenteNoEncontradaUOtraFallaDelComando_failure
+        implemented: false
+        passing: false
+        module: audit-cli
+        implementation: FPlanefJ001JourneyTest
   quality:
+    classes:
+    - com.learney.contentaudit.auditcli.commands.DefaultEphemeralPlanRenderer
+    - com.learney.contentaudit.auditcli.commands.PlanCmd
     thresholds:
       lineCoverage: 70
       branchCoverage: 60
@@ -5206,12 +5300,12 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
+      linesMissed: 101
+      linesTotal: 101
       lineCoveragePct: 0
       branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
+      branchesMissed: 41
+      branchesTotal: 41
       branchCoveragePct: 0
       blendPct: 0
     mutation:
@@ -5224,17 +5318,28 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 0
-      hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
-      moderate: 0
+      totalMethods: 10
+      hotspots: 1
+      maxCrap: 90.0
+      averageCrap: 17.4
+      simple: 4
+      moderate: 5
       high: 0
-      veryHigh: 0
-      healthPct: 0
-    healthScore: 0
-    verdict: PASSED
+      veryHigh: 1
+      healthPct: 65
+      top:
+      - className: com.learney.contentaudit.auditcli.commands.PlanCmd
+        methodName: plan
+        methodDesc: (Ljava/lang/String;)Ljava/lang/Integer;
+        line: 78
+        cyclomatic: 9
+        lineCoveragePct: 0
+        crap: 90.0
+    healthScore: 16
+    verdict: WARNED
+    violations:
+    - lineCoverage 0% < 70%
+    - branchCoverage 0% < 60%
 - id: FEAT-REVAPR
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
@@ -9247,58 +9352,6 @@ elements:
       then:
         node.getScores().get("knowledge-title-length") == 1.0
     - |
-      test: "should score 0.5 for title of weighted length 28.5"
-      trace: F-KTLEN / F-KTLEN-R003
-
-      given:
-        analyzer = KnowledgeTitleLengthAnalyzer()
-        node = buildKnowledgeNode(knowledge(titleOfWeight(28) + "i"))
-
-      when:
-        sut.onKnowledge(node)
-
-      then:
-        node.getScores().get("knowledge-title-length") == 0.5
-    - |
-      test: "should score 0.0 for title of weighted length 29"
-      trace: F-KTLEN / F-KTLEN-R003
-
-      given:
-        analyzer = KnowledgeTitleLengthAnalyzer()
-        node = buildKnowledgeNode(knowledge(titleOfWeight(29)))
-
-      when:
-        sut.onKnowledge(node)
-
-      then:
-        node.getScores().get("knowledge-title-length") == 0.0
-    - |
-      test: "should score 0.0 for title of weighted length 35"
-      trace: F-KTLEN / F-KTLEN-R003
-
-      given:
-        analyzer = KnowledgeTitleLengthAnalyzer()
-        node = buildKnowledgeNode(knowledge(titleOfWeight(35)))
-
-      when:
-        sut.onKnowledge(node)
-
-      then:
-        node.getScores().get("knowledge-title-length") == 0.0
-    - |
-      test: "should score 0.0 for title well beyond limit at weighted length 70"
-      trace: F-KTLEN / F-KTLEN-R003
-
-      given:
-        analyzer = KnowledgeTitleLengthAnalyzer()
-        node = buildKnowledgeNode(knowledge(titleOfWeight(70)))
-
-      when:
-        sut.onKnowledge(node)
-
-      then:
-        node.getScores().get("knowledge-title-length") == 0.0
-    - |
       test: "should complete without error when onQuiz is called"
       trace: F-KTLEN / F-KTLEN-R008
 
@@ -9842,20 +9895,6 @@ elements:
       then:
         node.getScores().get("knowledge-instructions-length") == 0.0
     - |
-      test: "should use weighted character length not plain string length for scoring instructions"
-      trace: F-KTLEN / F-KTLEN-R005
-
-      given:
-        instructions = ",".repeat(80)
-        node = buildKnowledgeNode(knowledgeWithInstructions(instructions))
-
-      when:
-        sut.onKnowledge(node)
-
-      then:
-        instructions.length() == 80
-        node.getScores().get("knowledge-instructions-length") == 1.0
-    - |
       test: "should complete without error when onQuiz is called"
       trace: F-KTLEN
 
@@ -9891,15 +9930,6 @@ elements:
 
       when:
         sut.setTarget(AuditTarget.COURSE)
-    - |
-      test: "should return empty list when getResults is called without prior processing"
-      trace: F-KTLEN
-
-      given:
-        node = buildKnowledgeNode(knowledgeWithInstructions("test"))
-
-      then:
-        node.getScores().containsKey("knowledge-instructions-length") is false
     - |
       test: "should produce correct scores for three knowledges with different instruction lengths"
       trace: F-KTLEN / F-KTLEN-R006
@@ -10820,42 +10850,6 @@ elements:
 
       then:
         sut.getTarget() == AuditTarget.COURSE
-    - |
-      test: "Given no quizzes have been processed, when onCourseComplete is called, then score is 0"
-      trace: F-LREC
-
-      given:
-        root = makeNode(AuditTarget.COURSE, null)
-
-      when:
-        sut.onCourseComplete(root)
-
-      then:
-        root.getScores().getOrDefault("lemma-recurrence", 0.0) == 0.0
-    - |
-      test: "Given an AuditableKnowledge, when onKnowledge is called, then completes without error"
-
-      given:
-        k = AuditableKnowledge(null, "t", "i", true, "k1", "l", "c")
-
-      when:
-        doesNotThrow: sut.onKnowledge(makeNode(AuditTarget.KNOWLEDGE, k))
-    - |
-      test: "Given an AuditableTopic, when onTopic is called, then completes without error"
-
-      given:
-        t = AuditableTopic(null, "t1", "l", "c")
-
-      when:
-        doesNotThrow: sut.onTopic(makeNode(AuditTarget.TOPIC, t))
-    - |
-      test: "Given an AuditableMilestone, when onMilestone is called, then completes without error"
-
-      given:
-        m = AuditableMilestone(null, "m1", "A1", "c")
-
-      when:
-        doesNotThrow: sut.onMilestone(makeNode(AuditTarget.MILESTONE, m))
   - name: DefaultContentWordFilter
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/lrec/DefaultContentWordFilter.java
@@ -22071,6 +22065,39 @@ elements:
         \ placement (verb relocated, semantics unchanged)"
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PlanCmdTest.java
+    - name: "Dado un auditId valido y storageMode EPHEMERAL, cuando plan se invoca,\
+        \ entonces RefinementPlanStore.save no se invoca — R001 invariante 1: no escribe\
+        \ en disco"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PlanCmdTest.java
+    - name: "Dado un auditId valido y storageMode DISK, cuando plan se invoca, entonces\
+        \ RefinementPlanStore.save se invoca con el plan derivado por RefinerEngine\
+        \ — R001 invariante 1: control negativo, el path persistente sigue persistiendo"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PlanCmdTest.java
+    - name: "Dado un auditId valido y storageMode EPHEMERAL, cuando plan se invoca,\
+        \ entonces EphemeralPlanRenderer.render se invoca con el plan derivado por\
+        \ RefinerEngine — R001 invariante 2: el plan efimero se entrega via el renderer"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PlanCmdTest.java
+    - name: "Dado un auditId valido y storageMode DISK, cuando plan se invoca, entonces\
+        \ EphemeralPlanRenderer.render no se invoca — R001 invariante 2: control negativo,\
+        \ el path persistente no consume el renderer"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PlanCmdTest.java
+    - name: "Dado el mismo auditId resuelto al mismo AuditReport, cuando plan se invoca\
+        \ primero con storageMode DISK y luego con EPHEMERAL, entonces RefinerEngine.plan\
+        \ se invoca en ambos casos con los mismos argumentos (mismo AuditReport y\
+        \ mismo auditId) — R001 invariante 3: la opcion es ortogonal al input, el\
+        \ plan calculado es el mismo modulo dispatch del resultado"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PlanCmdTest.java
+    - name: "Dado un auditId valido y storageMode EPHEMERAL, cuando plan se invoca,\
+        \ entonces stdout contiene unicamente el JSON parseable como RefinementPlan\
+        \ (sin lineas adicionales mezcladas que rompan el parseo, los mensajes auxiliares\
+        \ van por stderr) — R001 invariante 2: stdout reservado al JSON"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PlanCmdTest.java
     testCleanViews:
     - |
       test: "should derive a plan from the most recent audit and print the new plan id when 'plan' is invoked without --audit"
@@ -22893,6 +22920,27 @@ elements:
   - name: DefaultEphemeralPlanRenderer
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/DefaultEphemeralPlanRenderer.java
+    tests:
+    - name: "Dado un RefinementPlan con tasks no vacias, cuando render se invoca,\
+        \ entonces el JSON emitido tiene las mismas claves top-level (id, sourceAuditId,\
+        \ createdAt, tasks) y dentro de cada task las mismas claves (id, nodeTarget,\
+        \ nodeId, nodeLabel, diagnosisKind, priority, status) que el JSON producido\
+        \ por FileSystemRefinementPlanStore.save sobre el mismo plan — R001 invariante\
+        \ 2: schema-equivalencia con el plan persistido"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DefaultEphemeralPlanRendererTest.java
+    - name: "Dado un RefinementPlan, cuando render escribe a stdout y el JSON emitido\
+        \ se vuelve a deserializar con el ObjectMapper estandar (JavaTimeModule),\
+        \ entonces el RefinementPlan deserializado es igual al original (mismo id,\
+        \ sourceAuditId, createdAt y tasks) — R001 invariante 2: round-trip JSON,\
+        \ un cliente que parsea planes persistidos parsea planes efimeros sin cambios"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DefaultEphemeralPlanRendererTest.java
+    - name: "Dado un RefinementPlan, cuando render se invoca, entonces el JSON se\
+        \ emite por la salida estandar (stdout) y stderr permanece vacio — R001 invariante\
+        \ 2: el canal del plan es stdout, no stderr"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DefaultEphemeralPlanRendererTest.java
   - name: TextReportFormatter
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/TextReportFormatter.java
@@ -23537,20 +23585,6 @@ elements:
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultProposalStrategySelectorTest.java
     testCleanViews:
-    - |
-      test: "Given CONTENT_AUDIT_LAPS_STRATEGY unset (null or blank), when select is called with any registry, then it returns the default strategy name 'lemma-absence-llm'"
-      trace: FEAT-LAPS / F-LAPS-R004
-
-      given:
-        registry = registryWithNames("lemma-absence-llm", "lemma-absence-experimental")
-        resultForNull = selector.select(null, registry)
-        resultForBlank = selector.select("", registry)
-        resultForWhitespace = selector.select("   ", registry)
-
-      then:
-        resultForNull == "lemma-absence-llm"
-        resultForBlank == "lemma-absence-llm"
-        resultForWhitespace == "lemma-absence-llm"
     - |
       test: "Given CONTENT_AUDIT_LAPS_STRATEGY set to the name of a registered strategy, when select is called, then it returns that exact name (picking one among several registered)"
       trace: FEAT-LAPS / F-LAPS-R004
@@ -24250,64 +24284,6 @@ elements:
         loadedQD.getLemmaAbsenceDiagnosis().get().getMisplacedLemmaCount() == 0
         loadedQuiz.getMetadata().get("tokenCount") == "7"
         loadedKnowledge.getMetadata().get("quizCount") == "1"
-    - |
-      test: "should return empty Optional when loading a non-existent ID"
-
-      given:
-        store = FileSystemAuditReportStore(tempDir)
-        result = store.load("nonexistent-id")
-
-      then:
-        result.isPresent() is false
-    - |
-      test: "should return empty Optional when loadLatest is called on an empty store"
-
-      given:
-        store = FileSystemAuditReportStore(tempDir)
-        result = store.loadLatest()
-
-      then:
-        result.isPresent() is false
-    - |
-      test: "should return an empty list when listing an empty store"
-
-      given:
-        store = FileSystemAuditReportStore(tempDir)
-        summaries = store.list()
-
-      then:
-        summaries is not null
-        summaries.isEmpty() is true
-    - |
-      test: "should list saved reports with correct summary information"
-
-      given:
-        store = FileSystemAuditReportStore(tempDir)
-        scores = Map.of("sentence-length", 0.75)
-        root = AuditNode(null, AuditTarget.COURSE, null, List.of(), scores, Map.of(), null)
-        report = AuditReport(root)
-        id = store.save(report)
-        summaries = store.list()
-
-      then:
-        summaries.size() == 1
-        summaries.get(0).getId() == id
-        summaries.get(0).getOverallScore() == 0.75
-    - |
-      test: "should load the most recent report via loadLatest"
-
-      given:
-        store = FileSystemAuditReportStore(tempDir)
-        root1 = AuditNode(null, AuditTarget.COURSE, null, List.of(), Map.of("sentence-length", 0.5), Map.of(), null)
-        root2 = AuditNode(null, AuditTarget.COURSE, null, List.of(), Map.of("sentence-length", 0.9), Map.of(), null)
-        latest = store.loadLatest()
-
-      when:
-        sut.save(new AuditReport(root1))
-
-      then:
-        latest.isPresent() is true
-        latest.get().getRoot().getScores().get("sentence-length") == 0.9
     quality:
       coverage:
         linesCovered: 72
@@ -30987,17 +30963,6 @@ elements:
       then:
         result == LlmGenerationFailureCategory.LLM_TIMEOUT
     - |
-      test: "classify returns LLM_TIMEOUT for an InterruptedIOException anywhere in the cause chain (OkHttp call/read timeout)"
-      trace: FEAT-LAGEN / F-LAGEN-R006
-
-      given:
-        root = java.io.InterruptedIOException("timeout")
-        wrapper = RuntimeException(root)
-        result = classifier.classify(wrapper)
-
-      then:
-        result == LlmGenerationFailureCategory.LLM_TIMEOUT
-    - |
       test: "classify returns LLM_AUTH_FAILED for an OpenAiHttpException whose statusCode is 401"
       trace: FEAT-LAGEN / F-LAGEN-R006
 
@@ -31115,8 +31080,8 @@ elements:
     - mutationScore 47% < 60%
     - crapHotspots 6 > 5
 testSummary:
-  total: 776
-  passing: 775
+  total: 785
+  passing: 784
   failing: 0
   notImplemented: 1
 qualitySummary:
