@@ -1,4 +1,4 @@
-generatedAt: 2026-05-08T00:06:58.524398Z
+generatedAt: 2026-05-08T00:19:42.037136Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -4387,7 +4387,7 @@ features:
     healthScore: 86
     verdict: PASSED
 - id: FEAT-CDIFF
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: requirements/2026-05-06.01_consolidated-differential-view/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CDIFF-R001
@@ -4741,8 +4741,6 @@ features:
       passing: true
       module: revision-domain
       implementation: RecursiveNodeFieldDiffer
-  - ruleId: F-CDIFF-R021
-    state: NO_TESTS
   - ruleId: F-CDIFF-R022
     state: PASSING
     tests:
@@ -4988,8 +4986,6 @@ features:
       passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
-  - ruleId: F-CDIFF-R018
-    state: NO_TESTS
   journeysCoverage:
   - journeyId: F-CDIFF-J001
     state: PASSING

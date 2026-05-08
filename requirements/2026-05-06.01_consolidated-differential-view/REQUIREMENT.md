@@ -167,17 +167,19 @@ Las reglas de este grupo definen el contrato observable: **cada nodo afectado ex
 ### Rule[F-CDIFF-R019] - Cualquier hoja escalar con cambio entre fotos aparece como field
 **Severity**: critical | **Validation**: VALIDATED
 
-> Para producir el mapa de un nodo, el sistema **camina recursivamente** todos los valores estructurados expuestos por el modelo del nodo (registros tipados de diagnostico que el motor produjo, contenido del nodo, mapas de scores, listas anidadas) en cada una de las tres fotos. Cualquier **hoja escalar** (primitivo, string, enum o equivalente sin sub-estructura) cuyo valor difiera entre al menos dos fotos aparece como un field del mapa, con clave derivada del path al que se llego en el recorrido y la tripleta `(original, consolidated, pendingProjection)` correspondiente. El descubrimiento es **dinamico**: el conjunto de fields candidatos no esta enumerado en este requerimiento ni en ningun otro lado del contrato. Dos invariantes derivadas:
+> Para producir el mapa de un nodo, el sistema **camina recursivamente** todos los valores estructurados expuestos por el modelo del nodo (registros tipados de diagnostico que el motor produjo, contenido del nodo, mapas de scores, listas anidadas) en cada una de las tres fotos. Cualquier **hoja escalar** (primitivo, string, enum o equivalente sin sub-estructura) cuyo valor difiera entre al menos dos fotos aparece como un field del mapa, con clave derivada del path al que se llego en el recorrido y la tripleta `(original, consolidated, pendingProjection)` correspondiente. El descubrimiento es **dinamico**: el conjunto de fields candidatos no esta enumerado en este requerimiento ni en ningun otro lado del contrato. Tres invariantes derivadas:
 >
 > 1. **Cobertura por construccion**: si una estructura accesible al recorrido contiene en una de sus fotos una hoja escalar con valor distinto al de la misma hoja en otra foto, esa hoja aparece como field del mapa. La regla testeable es: un test que construye un escenario con una hoja con valor distinto entre fotos puede afirmar que el field correspondiente aparece, sin tener que registrar previamente la existencia de ese field en ningun catalogo.
 > 2. **Aparicion automatica de cosas nuevas**: introducir un analizador nuevo (con un registro de diagnostico nuevo y componentes nuevos), un componente nuevo en un registro de diagnostico existente, o un campo nuevo en el contenido del nodo, hace aparecer sus hojas escalares como fields del mapa **sin requerir cambios en este requerimiento ni en el motor de generacion del consolidado**. La cobertura es por construccion del recorrido, no por enumeracion.
+> 3. **Agnostico a la dimension que origino la propuesta**: el recorrido **no filtra** hojas por la dimension del analizador que origino una propuesta. Si la aplicacion de una propuesta de la dimension X mueve hojas escalares de la dimension Y o Z (o de cualquier otra parte del modelo) tras correr el motor, esas hojas aparecen como fields con sus tripletas. Reciprocamente, ninguna dimension reportada por el baseline queda oculta en el consolidado porque no fue la dimension que origino la propuesta. La regla testeable: dada una propuesta cuyo origen funcional es la dimension X y cuyo `elementAfter` provoca cambios sobre hojas alcanzables en cualquier dimension presente en el baseline (no solo X), todas esas hojas aparecen en el mapa de fields cambiados del nodo correspondiente.
 
 <details><summary>Detail</summary>
 
 1. La regla cierra el problema historico que [DOUBT-FIELD-IDENTITY](#DOUBT-FIELD-IDENTITY) habia dejado y reemplaza la version anterior basada en "tres clases enumeradas" (diagnosticos tipados / contenido crudo whitelist / estadisticas escalares). Esa version requeria mantenimiento por feature y se rompia con cualquier analizador nuevo.
 2. Las **estructuras anidadas** se gobiernan por [F-CDIFF-R023](#F-CDIFF-R023) (path estable como clave del field). Las **listas con identidad** se gobiernan por [F-CDIFF-R022](#F-CDIFF-R022) (diff por elemento usando clave natural).
 3. Las **exclusiones por rol funcional** que evitan emitir fields ruidosos (timestamps, identificadores opacos, metadatos de persistencia, etc.) se gobiernan por [F-CDIFF-R020](#F-CDIFF-R020). Esta regla R019 obliga la disciplina del recorrido **completo** modulo R020.
-4. Ejemplos ilustrativos del recorrido: en un quiz cubierto por sentence-length, las hojas alcanzables incluyen el texto de la oracion (string) y los componentes de `SentenceLengthDiagnosis` (`tokenCount`, `targetMin`, `targetMax`, `cefrLevel`, `delta`, `toleranceMargin`); cualquiera que difiera entre fotos aparece como field. En un milestone cubierto por lemma-absence, las hojas alcanzables incluyen los componentes de `LemmaAbsenceLevelDiagnosis` (`absencePercentage`, `totalExpected`, `totalAbsent`, scores ponderados) y los elementos de la lista `absentLemmas` (gobernada por R022). La salida no enumera estas hojas: el recorrido las descubre.
+4. La invariante 3 preserva el espiritu de **paridad estructural** entre baseline y consolidado: cualquier dimension que el baseline expone permanece observable en el consolidado a traves del descubrimiento dinamico, sin enumerarla en el contrato. Mismo principio que [F-PIPRE-R005](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R005) generalizado al consolidado: una pendiente de `LEMMA_ABSENCE` puede mover hojas de `SENTENCE_LENGTH` (porque cambiar un lema cambia el largo de la oracion) y esos cambios se reflejan automaticamente.
+5. Ejemplos ilustrativos del recorrido: en un quiz cubierto por sentence-length, las hojas alcanzables incluyen el texto de la oracion (string) y los componentes de `SentenceLengthDiagnosis` (`tokenCount`, `targetMin`, `targetMax`, `cefrLevel`, `delta`, `toleranceMargin`); cualquiera que difiera entre fotos aparece como field. En un milestone cubierto por lemma-absence, las hojas alcanzables incluyen los componentes de `LemmaAbsenceLevelDiagnosis` (`absencePercentage`, `totalExpected`, `totalAbsent`, scores ponderados) y los elementos de la lista `absentLemmas` (gobernada por R022). La salida no enumera estas hojas: el recorrido las descubre.
 
 </details>
 
@@ -219,19 +221,6 @@ Las reglas de este grupo definen el contrato observable: **cada nodo afectado ex
 1. La regla evita dos formas de ruido posibles bajo descubrimiento dinamico: emitir el mismo dato bajo dos claves distintas en distintas fotos, y emitir tantos fields como fotos existan en lugar de una sola tripleta.
 2. La estabilidad entre nodos habilita al consumidor a, por ejemplo, listar todos los quizzes donde el `tokenCount` del diagnostico de longitud de oracion cambio entre `consolidated` y `pendingProjection`: la consulta es directa porque la clave es la misma en todos los quizzes.
 3. La regla no impone una sintaxis de clave concreta (puntos, slashes, brackets para listas, etc.). Lo unico que obliga es la estabilidad observable.
-
-</details>
-
-<a id="F-CDIFF-R021"></a>
-### Rule[F-CDIFF-R021] - El descubrimiento es agnostico a la dimension que origino la propuesta
-**Severity**: major | **Validation**: AUTO_VALIDATED
-
-> El recorrido recursivo de [F-CDIFF-R019](#F-CDIFF-R019) no filtra hojas por la dimension del analizador que origino una propuesta: si la aplicacion de una propuesta de la dimension X mueve hojas escalares de la dimension Y o Z (o de cualquier otra parte del modelo), esas hojas aparecen como fields del mapa con sus tripletas. La invariante testeable: dada una propuesta cuyo origen funcional es la dimension X y cuyo `elementAfter` provoca cambios sobre hojas alcanzables tras correr el motor (en cualquier dimension presente en el baseline, no solo X), todas esas hojas aparecen en el mapa de fields cambiados del nodo correspondiente. Reciprocamente, ninguna dimension reportada por el baseline queda oculta en el consolidado porque no fue la dimension que origino la propuesta.
-
-<details><summary>Detail</summary>
-
-1. Esta regla preserva el espiritu de **paridad estructural** entre baseline y consolidado: cualquier dimension que el baseline expone permanece observable en el consolidado a traves del descubrimiento dinamico, sin enumerarla en el contrato.
-2. Mismo principio que [F-PIPRE-R005](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R005) generalizado al consolidado: una pendiente de `LEMMA_ABSENCE` puede mover hojas de `SENTENCE_LENGTH` (porque cambiar un lema cambia el largo de la oracion) y esos cambios se reflejan automaticamente.
 
 </details>
 
@@ -322,7 +311,7 @@ Las reglas de este grupo definen el contrato observable: **cada nodo afectado ex
 
 1. La gestion del ciclo de vida de la pendiente (rechazar, regenerar) corresponde a FEAT-REVAPR; este requerimiento solo cubre que el contrato la marque y siga sirviendo el resto de los datos.
 2. Esta regla se distingue de [F-CDIFF-R013](#F-CDIFF-R013) en que aca la salida **se entrega** con la pendiente marcada; en R013 la salida entera se considera no-disponible.
-3. Las propuestas estructurales (creacion/eliminacion/reordenamiento) **no** caen en R012: por [F-CDIFF-R018](#F-CDIFF-R018) no aparecen en `pendingApplicability` ni contribuyen a las fotos.
+3. Las propuestas estructurales (creacion/eliminacion/reordenamiento) **no** caen en R012: son pendientes que el contrato no modela en absoluto y, por estar fuera del alcance de FEAT-CDIFF (ver `## Alcance`), tampoco aparecen en `pendingApplicability` ni contribuyen a las fotos.
 
 </details>
 
@@ -411,24 +400,6 @@ Las reglas de este grupo definen el contrato observable: **cada nodo afectado ex
 
 </details>
 
-<a id="F-CDIFF-R018"></a>
-### Rule[F-CDIFF-R018] - Las propuestas estructurales no contribuyen a ninguna foto y no aparecen en pendingApplicability
-**Severity**: minor | **Validation**: AUTO_VALIDATED
-
-> Si el plan activo contiene una propuesta cuyo efecto seria crear, eliminar o reordenar nodos del arbol del curso (en lugar del patron actual de sustituir `elementBefore` por `elementAfter` sobre un `nodeId` existente), dos invariantes se observan:
->
-> 1. La propuesta no contribuye a ninguna foto (`original`, `consolidated`, `pendingProjection`) de ningun field, en ningun nodo del consolidado.
-> 2. La propuesta no aparece en la lista `pendingApplicability` del consolidado: la lista de [F-CDIFF-R012](#F-CDIFF-R012) reporta pendientes que el contrato modela pero no puede aplicar; las propuestas estructurales son pendientes que el contrato no modela en absoluto, y por lo tanto no entran en R012.
->
-> El resto del consolidado (sus otros nodos afectados, la trazabilidad de propuestas, las pendientes aplicables y no aplicables modeladas) se entrega normalmente.
-
-<details><summary>Detail</summary>
-
-1. Heredado del scope de [F-PIPRE-R012](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R012) y [F-LAPS-R014](../2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md#F-LAPS-R014).
-2. Si una iteracion futura introduce propuestas estructurales (creacion / eliminacion / reordenamiento), esta regla se revisa para decidir entre cubrirlas o continuar excluyendolas explicitamente. Hoy todas las propuestas que el sistema produce son sustituciones, por lo que la invariante es vacuamente verdadera mas alla de servir como contrato hacia consumidores futuros.
-
-</details>
-
 ---
 
 ## Contexto
@@ -497,6 +468,7 @@ Las dos features conviven: el preview por-propuesta sigue siendo la foto histori
 
 - **En alcance**: Contrato de datos del CLI que expone el consolidado por `AuditReport` con la forma uniforme `field → (original, consolidated, pendingProjection)` por nodo afectado. Descubrimiento dinamico de fields por recorrido recursivo del modelo ([F-CDIFF-R019](#F-CDIFF-R019)) con exclusiones por rol funcional ([F-CDIFF-R020](#F-CDIFF-R020)). Anidamiento con clave de path estable ([F-CDIFF-R023](#F-CDIFF-R023)). Diff de listas por identidad declarada o posicional ([F-CDIFF-R022](#F-CDIFF-R022)). Identificacion del par activo `(auditId, planId)`. Trazabilidad de propuestas (`acceptedProposalIds`, `pendingProposalIds`) por nodo. Marcado de pendientes no aplicables. Marcado de no-disponibilidad. Supersesion explicita de [F-PIPRE-R011](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R011) / [DOUBT-BATCH-PREVIEW](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#DOUBT-BATCH-PREVIEW).
 - **Fuera de alcance**: Calculo de deltas dentro del contrato ([F-CDIFF-R010](#F-CDIFF-R010)). Enumeracion estatica de los fields posibles del mapa (queda gobernada por el descubrimiento dinamico de [F-CDIFF-R019](#F-CDIFF-R019)). Diff de campos cuyo rol funcional es identidad / referencia / metadato de persistencia ([F-CDIFF-R020](#F-CDIFF-R020)). Decisiones de presentacion del consumidor (colores, tamanos, posicionamiento). Operaciones de aceptar / rechazar / regenerar (siguen siendo de FEAT-REVAPR). Persistencia automatica del consolidado como nuevo `AuditReport` ([F-CDIFF-R015](#F-CDIFF-R015)). Combinacion de varios analisis o planes en una unica salida ([F-CDIFF-R017](#F-CDIFF-R017), [DOUBT-MULTI-ANALYSIS-VIEW](#DOUBT-MULTI-ANALYSIS-VIEW)). Cambios a la forma del `AuditReport` en disco. La sintaxis exacta del verbo CLI, la forma exacta de las claves de fields (incluyendo el separador del path) y la estructura JSON detallada quedan como decision de arquitectura, mientras se respete la semantica de los campos.
+- **Propuestas estructurales fuera de alcance**: las propuestas cuyo efecto seria crear, eliminar o reordenar nodos del arbol del curso (en lugar del patron de sustitucion `elementBefore` -> `elementAfter` sobre un `nodeId` existente) **no se modelan** en este contrato: no contribuyen a ninguna foto y no aparecen en `pendingApplicability`. Hereda el scope de [F-PIPRE-R012](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R012) y [F-LAPS-R014](../2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md#F-LAPS-R014). Hoy todas las propuestas que el sistema produce son sustituciones, por lo que la exclusion es vacuamente verdadera; si una iteracion futura introduce propuestas estructurales, este alcance se revisa.
 
 ---
 
@@ -562,7 +534,7 @@ journeys:
 ### Journey[F-CDIFF-J003] - Padre con aceptadas y pendientes en su subarbol, descubrimiento dinamico de hojas y diff de listas
 **Validation**: VALIDATED
 
-Cubre [F-CDIFF-R006](#F-CDIFF-R006), [F-CDIFF-R007](#F-CDIFF-R007), [F-CDIFF-R019](#F-CDIFF-R019), [F-CDIFF-R021](#F-CDIFF-R021) y [F-CDIFF-R022](#F-CDIFF-R022): un milestone con aceptadas y pendientes en sus quizzes. El milestone aparece en la lista de afectados; el recorrido recursivo descubre las hojas escalares cuyas fotos `consolidated` y `pendingProjection` (producidas por el motor sobre el arbol con-aceptadas y con-aceptadas-y-pendientes, R007 invariantes 2 y 3) difieren del baseline. Si alguna estructura es una lista con identidad declarada, los elementos agregados / removidos / con propiedad cambiada se diff-ean por identidad y aparecen como fields derivados.
+Cubre [F-CDIFF-R006](#F-CDIFF-R006), [F-CDIFF-R007](#F-CDIFF-R007), [F-CDIFF-R019](#F-CDIFF-R019) y [F-CDIFF-R022](#F-CDIFF-R022): un milestone con aceptadas y pendientes en sus quizzes. El milestone aparece en la lista de afectados; el recorrido recursivo descubre las hojas escalares cuyas fotos `consolidated` y `pendingProjection` (producidas por el motor sobre el arbol con-aceptadas y con-aceptadas-y-pendientes, R007 invariantes 2 y 3) difieren del baseline, sin filtrar por la dimension del analizador que origino una propuesta (invariante 3 de R019). Si alguna estructura es una lista con identidad declarada, los elementos agregados / removidos / con propiedad cambiada se diff-ean por identidad y aparecen como fields derivados.
 
 ```yaml
 journeys:
@@ -574,7 +546,7 @@ journeys:
         then: emitir_mapa_padre
       - id: emitir_mapa_padre
         action: "El CLI emite el milestone con un mapa de fields cambiados; las hojas escalares cuyas fotos difieren entre al menos dos arboles aparecen como fields con sus tripletas, sin que este contrato decida como se agrega (la estrategia vive en el motor)"
-        gate: [F-CDIFF-R006, F-CDIFF-R007, F-CDIFF-R019, F-CDIFF-R021]
+        gate: [F-CDIFF-R006, F-CDIFF-R007, F-CDIFF-R019]
         then: decidir_diff_listas
       - id: decidir_diff_listas
         action: "El sistema clasifica las listas alcanzadas por el recorrido segun si el dominio les declara identidad natural"
@@ -596,7 +568,7 @@ journeys:
 ### Journey[F-CDIFF-J004] - El contrato emite la tripleta y deja los deltas al consumidor
 **Validation**: VALIDATED
 
-Cubre [F-CDIFF-R009](#F-CDIFF-R009), [F-CDIFF-R010](#F-CDIFF-R010) y [F-CDIFF-R021](#F-CDIFF-R021): el consumidor lee, para una hoja escalar de score que cambio por efecto de las decisiones, el field correspondiente con su tripleta. El contrato no incluye `acceptedDelta` ni `pendingDelta`; el consumidor los computa por su cuenta como diferencias aritmeticas sobre la tripleta. El descubrimiento es agnostico a la dimension que origino la propuesta.
+Cubre [F-CDIFF-R009](#F-CDIFF-R009), [F-CDIFF-R010](#F-CDIFF-R010) y [F-CDIFF-R019](#F-CDIFF-R019): el consumidor lee, para una hoja escalar de score que cambio por efecto de las decisiones, el field correspondiente con su tripleta. El contrato no incluye `acceptedDelta` ni `pendingDelta`; el consumidor los computa por su cuenta como diferencias aritmeticas sobre la tripleta. El descubrimiento es agnostico a la dimension que origino la propuesta (invariante 3 de R019).
 
 ```yaml
 journeys:
@@ -608,7 +580,7 @@ journeys:
         then: resolver_par
       - id: resolver_par
         action: "El sistema descubrio, durante el recorrido recursivo, las hojas escalares de score con valor distinto entre fotos, sin filtrar por la dimension que origino la propuesta"
-        gate: [F-CDIFF-R009, F-CDIFF-R019, F-CDIFF-R021]
+        gate: [F-CDIFF-R009, F-CDIFF-R019]
         outcomes:
           - when: "Hay al menos una hoja escalar de score con cambio entre fotos"
             then: emitir_tripleta
@@ -775,8 +747,8 @@ Definir que cuenta como "field" en el mapa por nodo afectado. Opciones considera
 1. **Existe el concepto de "plan activo" asociado a un `AuditReport` y es uno solo por analisis.** [F-CDIFF-R001](#F-CDIFF-R001) y [F-CDIFF-R017](#F-CDIFF-R017) asumen que la relacion analisis -> plan activo es 1:1. La forma concreta de seleccionarlo (default, multiples planes posibles, etc.) es decision de arquitectura.
 2. **El curso es la fuente de verdad entre analisis sucesivos: las aceptadas se materializan ahi.** Heredado de [F-REVAPR-R011](../2026-04-20.01_refiner-revision-approval/REQUIREMENT.md#F-REVAPR-R011). [F-CDIFF-R003](#F-CDIFF-R003) depende directamente de esta propiedad; la equivalencia post-stack que ese assumption habilita es una propiedad emergente del sistema y no se contractualiza dentro del scope del consolidador.
 3. **El motor de auditoria puede recomputar diagnosticos tipados y agregaciones sobre un subarbol modificado en memoria sin emitir un `AuditReport` oficial.** Heredado de FEAT-PIPRE (assumption 1). FEAT-CDIFF amplia el alcance: ahora se aplican varias propuestas a la vez (aceptadas + pendientes) y el motor produce las dos fotos derivadas (`consolidated`, `pendingProjection`) sobre los respectivos arboles modificados.
-4. **El recorrido recursivo del modelo accede al mismo conjunto de hojas que el baseline expone.** [F-CDIFF-R021](#F-CDIFF-R021). El motor de auditoria sobre el subarbol con aceptadas y sobre el subarbol con aceptadas+pendientes produce estructuras de la misma forma que el baseline; el descubrimiento dinamico recorre las tres y compara hoja-a-hoja.
-5. **Las propuestas siguen el patron de sustitucion sobre `nodeId` estable.** Heredado de [F-LAPS-R014](../2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md#F-LAPS-R014). [F-CDIFF-R018](#F-CDIFF-R018) lo declara explicito.
+4. **El recorrido recursivo del modelo accede al mismo conjunto de hojas que el baseline expone.** [F-CDIFF-R019](#F-CDIFF-R019) (invariante 3, agnostico a la dimension). El motor de auditoria sobre el subarbol con aceptadas y sobre el subarbol con aceptadas+pendientes produce estructuras de la misma forma que el baseline; el descubrimiento dinamico recorre las tres y compara hoja-a-hoja.
+5. **Las propuestas siguen el patron de sustitucion sobre `nodeId` estable.** Heredado de [F-LAPS-R014](../2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md#F-LAPS-R014). Las propuestas estructurales (creacion / eliminacion / reordenamiento) quedan fuera del alcance de FEAT-CDIFF (ver `## Alcance`).
 6. **Aceptar / rechazar propuestas es una operacion separada de "leer la salida consolidada".** [F-CDIFF-R015](#F-CDIFF-R015). Las decisiones siguen la pipeline de FEAT-REVAPR.
 7. **El dominio puede declarar identidad natural sobre las listas relevantes.** [F-CDIFF-R022](#F-CDIFF-R022) requiere que el dominio exponga, para cada lista que merece diff por elemento, una clave natural. Si una lista nueva aparece sin identidad declarada, cae en diff posicional sin requerir cambios al contrato.
 8. **El dominio (o el modelo) puede clasificar los roles funcionales que [F-CDIFF-R020](#F-CDIFF-R020) excluye del diff.** La forma exacta de declarar la categoria de un campo (anotacion, convencion de nombre, registro centralizado) es decision de arquitectura, pero el assumption es que la informacion existe o se puede establecer.
@@ -788,9 +760,9 @@ Definir que cuenta como "field" en el mapa por nodo afectado. Opciones considera
 
 - **FEAT-COURSE** — Define la jerarquia del curso (Course -> Milestone -> Topic -> Knowledge -> Quiz Template) sobre la que se construye el arbol del consolidado. Citado por [F-CDIFF-R006](#F-CDIFF-R006) (la regla aplica a hojas y a padres del arbol).
 - **FEAT-REVAPR** — Define el ciclo de vida de las propuestas (`PENDING_APPROVAL`, `APPROVED`, `REJECTED`) y la regla de aplicacion al curso. La salida consolidada lee esos veredictos. Citado por [F-CDIFF-R003](#F-CDIFF-R003), [F-CDIFF-R004](#F-CDIFF-R004), [F-CDIFF-R005](#F-CDIFF-R005), [F-CDIFF-R011](#F-CDIFF-R011), [F-CDIFF-R015](#F-CDIFF-R015).
-- **FEAT-REVBYP** — Define la `RevisionProposal` con sus campos (`elementBefore`, `elementAfter`, `nodeId`, `planId`, `sourceAuditId`). El contrato consolidado se apoya en esa estructura. Citado por [F-CDIFF-R004](#F-CDIFF-R004), [F-CDIFF-R006](#F-CDIFF-R006), [F-CDIFF-R018](#F-CDIFF-R018).
-- **FEAT-PIPRE** — Preview de impacto por propuesta individual. FEAT-CDIFF lo extiende con un contrato de salida agregado por analisis. Supersede explicitamente el escenario "preview combinado" que [F-PIPRE-R011](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R011) habia dejado fuera. Citado por [F-CDIFF-R010](#F-CDIFF-R010), [F-CDIFF-R013](#F-CDIFF-R013), [F-CDIFF-R015](#F-CDIFF-R015), [F-CDIFF-R016](#F-CDIFF-R016), [F-CDIFF-R021](#F-CDIFF-R021).
-- **FEAT-LAPS** — Estrategia de propuesta para `LEMMA_ABSENCE`. Aporta el patron de sustitucion sobre `nodeId` estable que la salida hereda. Citado por [F-CDIFF-R018](#F-CDIFF-R018).
+- **FEAT-REVBYP** — Define la `RevisionProposal` con sus campos (`elementBefore`, `elementAfter`, `nodeId`, `planId`, `sourceAuditId`). El contrato consolidado se apoya en esa estructura. Citado por [F-CDIFF-R004](#F-CDIFF-R004) y [F-CDIFF-R006](#F-CDIFF-R006).
+- **FEAT-PIPRE** — Preview de impacto por propuesta individual. FEAT-CDIFF lo extiende con un contrato de salida agregado por analisis. Supersede explicitamente el escenario "preview combinado" que [F-PIPRE-R011](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R011) habia dejado fuera. Citado por [F-CDIFF-R010](#F-CDIFF-R010), [F-CDIFF-R013](#F-CDIFF-R013), [F-CDIFF-R015](#F-CDIFF-R015), [F-CDIFF-R016](#F-CDIFF-R016) y [F-CDIFF-R019](#F-CDIFF-R019) (invariante 3 sobre paridad estructural).
+- **FEAT-LAPS** — Estrategia de propuesta para `LEMMA_ABSENCE`. Aporta el patron de sustitucion sobre `nodeId` estable que la salida hereda. La exclusion de propuestas estructurales que esta feature define se hereda al alcance de FEAT-CDIFF (ver `## Alcance`).
 - **FEAT-COCA** — Ejemplo de analizador con estrategia de agregacion no-lineal (acumulacion de conteos por banda). El motor de auditoria aplica esa estrategia al producir los `AuditReport` que FEAT-CDIFF lee para llenar las fotos del consolidado ([F-CDIFF-R007](#F-CDIFF-R007).5); como se agrega es alcance de FEAT-COCA, no de este contrato.
 - **FEAT-DLABS** — Diagnosticos tipados de lemma-absence. Define los registros `LemmaAbsenceCourseDiagnosis`, `LemmaAbsenceLevelDiagnosis`, `LemmaPlacementDiagnosis`, `AbsentLemma`, `MisplacedLemma` que el motor produce sobre el arbol consolidado y el arbol con pendientes; sus hojas escalares y listas con identidad son recorridas dinamicamente por [F-CDIFF-R019](#F-CDIFF-R019). Identidades naturales `(lemma, pos)` ilustradas en [F-CDIFF-R022](#F-CDIFF-R022).
 - **FEAT-DCOCA** — Diagnosticos tipados de coca-buckets-distribution. Define `CocaProgressionDiagnosis`, `CocaBucketsLevelDiagnosis`, `CocaBucketsTopicDiagnosis`, `BucketResult`, `BucketSummary`, `QuarterResult`, `ProgressionAssessment`, `ImprovementDirective`. Sus hojas escalares y listas con identidad (por `bandName`, `index`, `(type, bandName, levelName)`) son recorridas dinamicamente por [F-CDIFF-R019](#F-CDIFF-R019) y diff-eadas por [F-CDIFF-R022](#F-CDIFF-R022).
