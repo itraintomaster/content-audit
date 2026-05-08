@@ -19,17 +19,65 @@ class DefaultLemmaAbsencePromptBuilder implements LemmaAbsencePromptBuilder {
         return """
                 You are a language curriculum specialist correcting English cloze exercises for learners.
 
-                Your responsibilities:
-                1. Produce a new cloze exercise in the same quizSentence DSL format as the input (blank slots with [option1|option2] syntax, underscores for blanks, e.g. "She ____ [walks|runs] to school.").
-                2. The new exercise must be coherent with the CEFR level provided.
+                # DSL syntax for quizSentence
+
+                A quizSentence is plain English text plus three special constructs:
+
+                - Blank slot: `____ [answer]`. The blank is always immediately followed by a single bracket.
+                  Inside the bracket:
+                    * One option, e.g. `[walks]` — that single form is the correct answer.
+                    * Multiple options separated by `|`, e.g. `[is|'s]` — every variant is accepted as
+                      a correct answer. They must be fully equivalent (e.g. a contraction and its
+                      expansion). NEVER place two grammatically distinct forms here just because both
+                      could plausibly fit; only one of `don't have` and `doesn't have` is correct for
+                      a given subject, so only the correct one belongs inside the bracket.
+                - Pedagogical hint: `(hint text)` inline in the plain text.
+                  A hint is scaffolding visible to the student. It is NOT the answer; it tells the
+                  student which lemma(s) to conjugate, negate, or position. Hints typically appear as
+                  the bare lemma or a slash-separated cue, e.g. `(to be)`, `(loud / loudly)`,
+                  `(not / click)`. A student looking only at the stem plus the hint — without seeing
+                  the bracket — should have enough information to produce the correct answer.
+
+                Examples:
+                - `He ____ [is|'s] (to be) tall.` — both `is` and `'s` are correct.
+                - `You ____ [don't click] (not / click) this icon.` — only `don't click` is correct;
+                  the hint signals "negated form of click".
+
+                # Your responsibilities
+
+                1. Produce a new cloze exercise in the same DSL above.
+                2. The new exercise must be coherent with the provided CEFR level.
                 3. Replace any misplaced lemmas with words from the suggested lemmas list when applicable.
                 4. Deliver exactly one candidate — not multiple alternatives.
                 5. Replace the original exercise entirely — do not patch individual words.
 
-                Response format:
+                # Self-check before responding
+
+                Run every check below. If any fails, fix the candidate before emitting the JSON.
+
+                A. Grammar and semantics. With each variant from the bracket substituted into the
+                   blank, the full sentence must be grammatically and semantically correct natural
+                   English: subject-verb agreement, tense, articles, word order, register.
+
+                B. Every variant inside `[...]` is genuinely correct. Each form separated by `|` must
+                   be a fully acceptable answer in this exact context. If only one form fits, the
+                   bracket contains only that form — no plausible-but-wrong alternatives.
+
+                C. Hints make the blank solvable. If the original exercise had hints `(...)`, your
+                   candidate must carry hints that expose the lemma(s) the student needs in order to
+                   produce the answer. A student who reads only the stem and the hints — never seeing
+                   the bracket — must be able to type a correct answer.
+
+                D. Alignment with knowledge title and instructions. The grammatical phenomenon the
+                   blank exercises must match what `knowledgeTitle` and `knowledgeInstructions`
+                   describe. If the knowledge is about negation of `have`, the blank must exercise
+                   negated `have` — not possession, not a different verb.
+
+                # Response format
+
                 Respond with ONLY a JSON object with exactly two fields:
-                - "quizSentence": the corrected exercise in the cloze DSL format (string)
-                - "translation": the Spanish translation of the corrected exercise (string)
+                - quizSentence: the corrected exercise in the DSL above (string)
+                - translation: the Spanish translation of the corrected exercise (string)
 
                 Do not include any explanation, preamble, or additional text outside the JSON object.
                 """;
