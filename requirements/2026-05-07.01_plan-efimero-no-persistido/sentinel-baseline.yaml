@@ -4188,18 +4188,6 @@ modules:
         \ from revision-domain.lemmaabsence with fixed quizSentence/translation. DOUBT-CANNED-MODE-AVAILABILITY\
         \ -> Option B (kept as opt-in, never default)."
     visibility: public
-  - name: PlanStorageMode
-    type: enum
-    fields:
-    - name: DISK
-      description: "Persistent path: el plan se guarda via RefinementPlanStore en\
-        \ .content-audit/refinement-plans/. Comportamiento previo a F-PLANEF, sigue\
-        \ siendo el default cuando el operador no pasa --storage."
-    - name: EPHEMERAL
-      description: "Modo efimero (F-PLANEF-R001). El comando plan calcula el plan,\
-        \ NO lo persiste, y emite la representacion JSON completa por stdout. Mensajes\
-        \ informativos van a stderr."
-    visibility: public
   interfaces:
   - name: AnalyzeCommand
     stereotype: port
@@ -4226,7 +4214,7 @@ modules:
     stereotype: port
     sealed: true
     exposes:
-    - signature: "plan(String auditId, PlanStorageMode storageMode): Integer"
+    - signature: "plan(String auditId): Integer"
   - name: ReviseCommand
     stereotype: port
     sealed: true
@@ -4278,13 +4266,6 @@ modules:
     description: Public CLI command tree — the only exported API of the audit-cli
       module
     visibility: internal
-    interfaces:
-    - name: EphemeralPlanRenderer
-      stereotype: port
-      sealed: false
-      exposes:
-      - signature: "render(RefinementPlan plan): Integer"
-      visibility: internal
     implementations:
     - name: Main
       types:
@@ -4885,11 +4866,6 @@ modules:
         type: RefinerEngine
       - name: refinementPlanStore
         type: RefinementPlanStore
-      - name: ephemeralPlanRenderer
-        type: EphemeralPlanRenderer
-        description: Renderer que serializa el RefinementPlan a stdout en JSON cuando
-          storageMode = EPHEMERAL. Solo se invoca en el path efimero; en el path persistente
-          se ignora.
       types:
       - Component
       handwrittenTests:
@@ -5192,10 +5168,6 @@ modules:
           rule: F-CDIFF-R002
       implements:
       - SetActiveAnalysisCommand
-    - name: DefaultEphemeralPlanRenderer
-      visibility: internal
-      implements:
-      - EphemeralPlanRenderer
   - name: formatting
     description: "Internal formatting infrastructure — report transformers, view models,\
       \ formatters, drill-down resolution, and proposal/preview rendering."
@@ -9135,11 +9107,6 @@ features:
     validation: AUTO_VALIDATED
     testModule: revision-domain
     testPackage: com.learney.contentaudit.revisiondomain.engine
-- id: FEAT-PLANEF
-  code: F-PLANEF
-  journeys:
-  - id: F-PLANEF-J001
-    validation: AUTO_VALIDATED
 dependencies:
 - alias: langchain4j-openai
   artifact: dev.langchain4j:langchain4j-open-ai:0.36.2

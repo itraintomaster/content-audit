@@ -453,7 +453,7 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `plan(String auditId): Integer` | (none) |
+| `plan(String auditId, PlanStorageMode storageMode): Integer` | (none) |
 
 #### ReviseCommand [SEALED] (port)
 
@@ -510,6 +510,15 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `setActive(String auditId, String planId): Integer` | (none) |
+
+#### EphemeralPlanRenderer (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `render(RefinementPlan plan): Integer` | (none) |
 
 #### ReportFormatter (package: formatting)
 

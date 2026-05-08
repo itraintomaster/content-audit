@@ -65,6 +65,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: LagenMode - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.PlanStorageMode");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: PlanStorageMode - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.AnalyzeCommand");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AnalyzeCommand - " + e.getMessage());
@@ -123,6 +128,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.SetActiveAnalysisCommand");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: SetActiveAnalysisCommand - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.commands.EphemeralPlanRenderer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: EphemeralPlanRenderer - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.commands.Main");
@@ -193,6 +203,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.commands.DefaultSetActiveAnalysisCommand");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultSetActiveAnalysisCommand - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.commands.DefaultEphemeralPlanRenderer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultEphemeralPlanRenderer - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.formatting.ReportViewModel");

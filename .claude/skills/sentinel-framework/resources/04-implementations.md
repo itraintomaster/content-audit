@@ -558,6 +558,7 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | `auditReportStore` | `AuditReportStore` |
 | `refinerEngine` | `RefinerEngine` |
 | `refinementPlanStore` | `RefinementPlanStore` |
+| `ephemeralPlanRenderer` | `EphemeralPlanRenderer` |
 
 #### ReviseCmd (package: commands)
 
@@ -646,6 +647,12 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | Name | Type |
 |------|------|
 | `activeAnalysisSelectionStore` | `ActiveAnalysisSelectionStore` |
+
+#### DefaultEphemeralPlanRenderer (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+**Implements:** EphemeralPlanRenderer
 
 #### TextReportFormatter (package: formatting)
 

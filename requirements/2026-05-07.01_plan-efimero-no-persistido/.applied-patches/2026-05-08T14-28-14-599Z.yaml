@@ -1,0 +1,73 @@
+code: FEAT-PLANEF
+description: "F-PLANEF: modo efimero del comando plan. Agrega un modo de storage explicito\
+  \ al verbo plan (DISK por default, EPHEMERAL para el path nuevo). En modo EPHEMERAL:\
+  \ PlanCmd no invoca RefinementPlanStore.save (R001 invariante 1), serializa el plan\
+  \ completo a stdout en JSON via EphemeralPlanRenderer (R001 invariante 2), y todo\
+  \ mensaje informativo del CLI va a stderr para no contaminar el JSON. Ortogonal\
+  \ al flag --audit existente (R001 invariante 3). Cambios contenidos en audit-cli;\
+  \ sin nuevos modulos, dependencias o boundaries."
+modules:
+- name: audit-cli
+  description: CLI entry point for running content audits from the command line
+  models:
+  - name: PlanStorageMode
+    type: enum
+    fields:
+    - name: DISK
+      description: "Persistent path: el plan se guarda via RefinementPlanStore en\
+        \ .content-audit/refinement-plans/. Comportamiento previo a F-PLANEF, sigue\
+        \ siendo el default cuando el operador no pasa --storage."
+    - name: EPHEMERAL
+      description: "Modo efimero (F-PLANEF-R001). El comando plan calcula el plan,\
+        \ NO lo persiste, y emite la representacion JSON completa por stdout. Mensajes\
+        \ informativos van a stderr."
+    visibility: public
+    _change: add
+  interfaces:
+  - name: PlanCommand
+    sealed: true
+    exposes:
+    - signature: "plan(String auditId): Integer"
+      _change: delete
+    - signature: "plan(String auditId, PlanStorageMode storageMode): Integer"
+      _change: add
+    _change: modify
+  packages:
+  - name: commands
+    visibility: internal
+    interfaces:
+    - name: EphemeralPlanRenderer
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "render(RefinementPlan plan): Integer"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultEphemeralPlanRenderer
+      visibility: internal
+      implements:
+      - EphemeralPlanRenderer
+      _change: add
+    - name: PlanCmd
+      requiresInject:
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: refinerEngine
+        type: RefinerEngine
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: ephemeralPlanRenderer
+        type: EphemeralPlanRenderer
+        description: Renderer que serializa el RefinementPlan a stdout en JSON cuando
+          storageMode = EPHEMERAL. Solo se invoca en el path efimero; en el path persistente
+          se ignora.
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - PlanCommand
+      _change: modify
+    _change: modify
+  _change: modify

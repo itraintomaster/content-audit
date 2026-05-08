@@ -57,3 +57,24 @@
   Caso concreto: dos tareas consecutivas sugieren la misma palabra. La
   consecuencia de no contaminar el historial sigue presente pero baja a
   segundo plano.
+
+2026-05-08 — architect — Patch arquitectonico propuesto (FEAT-PLANEF / ARCH-PLANEF).
+  Decisiones sobre los 3 doubts:
+  - DOUBT-FLAG-SHAPE → Opcion A (--storage=<mode>) modelado como enum
+    PlanStorageMode {DISK, EPHEMERAL}. Razon: extensibilidad sin romper
+    contrato (vs booleano), per-invocacion (vs env var).
+  - DOUBT-DIAGNOSTIC-OUTPUT → en modo EPHEMERAL stdout queda reservado para
+    JSON; banner/info van a stderr. Modo DISK sin cambios.
+  - DOUBT-OTHER-COMMANDS → Opcion A: solo plan. Generalizar a analyze/revise
+    sin caso de uso concreto seria over-engineering (P3). El shape del flag
+    queda reusable si en el futuro se repite el patron.
+  Cambios contenidos en audit-cli: agrega PlanStorageMode (enum) y el puerto
+  EphemeralPlanRenderer + DefaultEphemeralPlanRenderer (ambos package-private
+  en commands/). Modifica firma sealed PlanCommand.plan() para llevar el modo
+  explicito. Inyecta EphemeralPlanRenderer en PlanCmd. Cero modulos nuevos,
+  cero deps nuevas, cero cambios de boundary.
+  why: el operador habia recortado el scope al maximo en la fase analista;
+  el patch tenia que reflejar esa contencion. La opcion alternativa
+  (introducir un InMemoryRefinementPlanStore no-op) enmascaraba la invariante
+  R001 #1 detras de un swap de adapter; mejor que PlanCmd decida no llamar a
+  save segun el modo, asi el test queda directamente apuntable.

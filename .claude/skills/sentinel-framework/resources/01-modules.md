@@ -146,7 +146,7 @@ project-root/
 | Depends On | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
-| Models | 2 (GetTasksFilter, LagenMode) |
+| Models | 3 (GetTasksFilter, LagenMode, PlanStorageMode) |
 | Interfaces | 12 (AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand, GetConsolidatedCommand, SetActiveAnalysisCommand) |
 | Implementations | 0 |
 | Packages | 3 (commands [internal], formatting [internal], bootstrap [internal]) |

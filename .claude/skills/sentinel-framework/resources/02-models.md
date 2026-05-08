@@ -1240,6 +1240,21 @@ new GetTasksFilter(Optional<String> planId, Optional<String> status, boolean sor
 new LagenMode(null LLM, null CANNED)
 ```
 
+#### PlanStorageMode
+
+**Package:** `com.learney.contentaudit.auditcli`
+**Type:** enum
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `DISK` | `null` |  |
+| `EPHEMERAL` | `null` |  |
+
+**Generated constructor:**
+```java
+new PlanStorageMode(null DISK, null EPHEMERAL)
+```
+
 #### ReportViewModel (package: formatting)
 
 **Package:** `com.learney.contentaudit.auditcli.formatting`

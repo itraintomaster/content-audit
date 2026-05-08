@@ -252,7 +252,7 @@ When `@test-writer` escalates with `type: inconsistent_traceability`, the test b
 
 **Depends on:** audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure
 
-**Models:** GetTasksFilter, LagenMode
+**Models:** GetTasksFilter, LagenMode, PlanStorageMode
 
 **Interfaces:** AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand, GetConsolidatedCommand, SetActiveAnalysisCommand
 

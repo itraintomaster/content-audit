@@ -1,10 +1,10 @@
-generatedAt: 2026-05-08T00:44:17.386049Z
+generatedAt: 2026-05-08T14:28:26.609766Z
 system: ContentAudit
 version: 0.0.1
 features:
 - id: FEAT-DLABS
   state: IMPLEMENTING
-  requirementFile: requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DLABS-R001
     state: NO_TESTS
@@ -206,7 +206,7 @@ features:
     - mutationScore 40% < 60%
 - id: FEAT-CLIRV
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLIRV-R001
     state: PASSING
@@ -877,7 +877,7 @@ features:
     - crapHotspots 32 > 5
 - id: FEAT-LREC
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LREC-R001
     state: NO_TESTS
@@ -1047,7 +1047,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCLAQS
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLAQS-R001
     state: PASSING
@@ -1286,7 +1286,7 @@ features:
     - crapHotspots 21 > 5
 - id: FEAT-DCOCA
   state: IMPLEMENTING
-  requirementFile: requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DCOCA-R001
     state: NO_TESTS
@@ -1385,7 +1385,7 @@ features:
     verdict: PASSED
 - id: FEAT-QSENT
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-22.01_quiz-sentence-dsl/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-22.01_quiz-sentence-dsl/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-QSENT-R001
     state: PASSING
@@ -1712,7 +1712,7 @@ features:
     - mutationScore 36% < 60%
 - id: FEAT-COURSE
   state: IMPLEMENTED
-  requirementFile: requirements/2026-03-15.01_course-structure/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-15.01_course-structure/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-COURSE-R001
     state: PASSING
@@ -1991,7 +1991,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCLALEN
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-28.02_rcla-length-aware-context/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-28.02_rcla-length-aware-context/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLALEN-R001
     state: PASSING
@@ -2325,7 +2325,7 @@ features:
     - crapHotspots 21 > 5
 - id: FEAT-COCA
   state: DRAFT
-  requirementFile: requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-COCA-R001
     state: NO_TESTS
@@ -2448,7 +2448,7 @@ features:
     verdict: PASSED
 - id: FEAT-NLP
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-NLP-R001
     state: NO_TESTS
@@ -2587,7 +2587,7 @@ features:
     - mutationScore 32% < 60%
 - id: FEAT-LABS
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LABS-R001
     state: PASSING
@@ -3508,7 +3508,7 @@ features:
     - mutationScore 44% < 60%
 - id: FEAT-CLI
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLI-R001
     state: PASSING
@@ -3631,7 +3631,7 @@ features:
     - mutationScore 18% < 60%
 - id: FEAT-PIPRE
   state: IMPLEMENTED
-  requirementFile: requirements/2026-05-03.01_proposal-impact-preview/REQUIREMENT.md
+  requirementFile: ./requirements/2026-05-03.01_proposal-impact-preview/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-PIPRE-R001
     state: PASSING
@@ -4014,7 +4014,7 @@ features:
     - crapHotspots 22 > 5
 - id: f0b4e57b-7c0f-4e3e-b9b3-843aef216a67
   state: DRAFT
-  requirementFile: requirements/2026-04-28.01_laps-engine-public-visibility/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-28.01_laps-engine-public-visibility/REQUIREMENT.md
   rulesCoverage:
   - ruleId: 27ac13c5-bc70-4e9b-96c3-3315542d6835
     state: NO_TESTS
@@ -4061,7 +4061,7 @@ features:
     verdict: PASSED
 - id: FEAT-KTLEN
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-KTLEN-R001
     state: PASSING
@@ -4388,7 +4388,7 @@ features:
     verdict: PASSED
 - id: FEAT-CDIFF
   state: IMPLEMENTED
-  requirementFile: requirements/2026-05-06.01_consolidated-differential-view/REQUIREMENT.md
+  requirementFile: ./requirements/2026-05-06.01_consolidated-differential-view/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CDIFF-R001
     state: PASSING
@@ -5188,9 +5188,56 @@ features:
     - lineCoverage 47% < 70%
     - branchCoverage 42% < 60%
     - mutationScore 53% < 60%
+- id: FEAT-PLANEF
+  state: DRAFT
+  requirementFile: ./requirements/2026-05-07.01_plan-efimero-no-persistido/REQUIREMENT.md
+  rulesCoverage:
+  - ruleId: F-PLANEF-R001
+    state: NO_TESTS
+  journeysCoverage:
+  - journeyId: F-PLANEF-J001
+    state: NO_TESTS
+  quality:
+    thresholds:
+      lineCoverage: 70
+      branchCoverage: 60
+      mutationScore: 60
+      crapHotspotThreshold: 30
+      crapHotspotsMax: 5
+    coverage:
+      linesCovered: 0
+      linesMissed: 0
+      linesTotal: 0
+      lineCoveragePct: 0
+      branchesCovered: 0
+      branchesMissed: 0
+      branchesTotal: 0
+      branchCoveragePct: 0
+      blendPct: 0
+    mutation:
+      totalMutants: 0
+      killed: 0
+      survived: 0
+      noCoverage: 0
+      timedOut: 0
+      other: 0
+      mutationScorePct: 0
+      testStrengthPct: 0
+    crap:
+      totalMethods: 0
+      hotspots: 0
+      maxCrap: 0.0
+      averageCrap: 0.0
+      simple: 0
+      moderate: 0
+      high: 0
+      veryHigh: 0
+      healthPct: 0
+    healthScore: 0
+    verdict: PASSED
 - id: FEAT-REVAPR
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVAPR-R001
     state: PASSING
@@ -5900,7 +5947,7 @@ features:
     - crapHotspots 32 > 5
 - id: FEAT-LAPS
   state: IMPLEMENTING
-  requirementFile: requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LAPS-R001
     state: PASSING
@@ -6270,7 +6317,7 @@ features:
     - mutationScore 52% < 60%
 - id: FEAT-DSLEN
   state: DRAFT
-  requirementFile: requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DSLEN-R001
     state: NO_TESTS
@@ -6323,7 +6370,7 @@ features:
     verdict: PASSED
 - id: FEAT-SLEN
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-SLEN-R001
     state: PASSING
@@ -6516,7 +6563,7 @@ features:
     - mutationScore 54% < 60%
 - id: FEAT-LCOUNT
   state: DRAFT
-  requirementFile: requirements/2026-03-28.02_lemma-count/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-28.02_lemma-count/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LCOUNT-R001
     state: NO_TESTS
@@ -6595,7 +6642,7 @@ features:
     verdict: PASSED
 - id: FEAT-REVBYP
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVBYP-R001
     state: PASSING
@@ -6863,7 +6910,7 @@ features:
     - branchCoverage 42% < 60%
 - id: FEAT-LAGEN
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LAGEN-R001
     state: PASSING
@@ -7598,7 +7645,7 @@ features:
     - crapHotspots 6 > 5
 - id: FEAT-RCLA
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLA-R001
     state: PASSING
@@ -8036,8 +8083,8 @@ features:
     - crapHotspots 21 > 5
 - id: FEAT-RCSL
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
-  patchFile: requirements/2026-04-05.02_refiner-correction-context-slen/architectural_patch.yaml
+  requirementFile: ./requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
+  patchFile: ./requirements/2026-04-05.02_refiner-correction-context-slen/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-RCSL-R001
     state: PASSING
@@ -19531,6 +19578,14 @@ elements:
       status: EXISTS
     - name: CANNED
       status: EXISTS
+  - name: PlanStorageMode
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/PlanStorageMode.java
+    fields:
+    - name: DISK
+      status: EXISTS
+    - name: EPHEMERAL
+      status: EXISTS
   interfaces:
   - name: AnalyzeCommand
     status: EXISTS
@@ -19561,7 +19616,7 @@ elements:
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/PlanCommand.java
     methods:
-    - signature: "plan(String auditId): Integer"
+    - signature: "plan(String auditId, PlanStorageMode storageMode): Integer"
       status: EXISTS
   - name: ReviseCommand
     status: EXISTS
@@ -22835,6 +22890,9 @@ elements:
 
       then:
         verify: activeAnalysisSelectionStore.write(org.mockito.ArgumentMatchers.any())
+  - name: DefaultEphemeralPlanRenderer
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/DefaultEphemeralPlanRenderer.java
   - name: TextReportFormatter
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/TextReportFormatter.java
@@ -32209,7 +32267,19 @@ patterns:
     elementName: LagenMode
     nodeId: model-audit-cli-LagenMode
   confidence: 0.95
-- id: stereo-85
+- id: stereo-84
+  pattern: Enum
+  category: architectural
+  source: detected
+  severity: info
+  description: PlanStorageMode is an enum
+  involvedElements:
+  - type: model
+    moduleName: audit-cli
+    elementName: PlanStorageMode
+    nodeId: model-audit-cli-PlanStorageMode
+  confidence: 0.95
+- id: stereo-86
   pattern: Value Object
   category: architectural
   source: detected
@@ -32221,7 +32291,7 @@ patterns:
     elementName: NlpTokenizerConfig
     nodeId: model-nlp-infrastructure-NlpTokenizerConfig
   confidence: 0.75
-- id: stereo-86
+- id: stereo-87
   pattern: Port
   category: architectural
   source: detected
@@ -32233,7 +32303,7 @@ patterns:
     elementName: Reviser
     nodeId: interface-revision-domain-Reviser
   confidence: 0.9
-- id: stereo-87
+- id: stereo-88
   pattern: Port
   category: architectural
   source: detected
@@ -32245,7 +32315,7 @@ patterns:
     elementName: RevisionValidator
     nodeId: interface-revision-domain-RevisionValidator
   confidence: 0.9
-- id: stereo-88
+- id: stereo-89
   pattern: Port
   category: architectural
   source: detected
@@ -32257,7 +32327,7 @@ patterns:
     elementName: RevisionArtifactStore
     nodeId: interface-revision-domain-RevisionArtifactStore
   confidence: 0.9
-- id: stereo-89
+- id: stereo-90
   pattern: Port
   category: architectural
   source: detected
@@ -32269,7 +32339,7 @@ patterns:
     elementName: CourseElementLocator
     nodeId: interface-revision-domain-CourseElementLocator
   confidence: 0.9
-- id: stereo-90
+- id: stereo-91
   pattern: Port
   category: architectural
   source: detected
@@ -32281,7 +32351,7 @@ patterns:
     elementName: RevisionEngine
     nodeId: interface-revision-domain-RevisionEngine
   confidence: 0.9
-- id: stereo-93
+- id: stereo-94
   pattern: Port
   category: architectural
   source: detected
@@ -32293,7 +32363,7 @@ patterns:
     elementName: ProposalDecisionService
     nodeId: interface-revision-domain-ProposalDecisionService
   confidence: 0.9
-- id: stereo-95
+- id: stereo-96
   pattern: Port
   category: architectural
   source: detected
@@ -32305,7 +32375,7 @@ patterns:
     elementName: LemmaAbsenceProposalStrategy
     nodeId: interface-revision-domain-LemmaAbsenceProposalStrategy
   confidence: 0.9
-- id: stereo-96
+- id: stereo-97
   pattern: Service
   category: architectural
   source: detected
@@ -32317,7 +32387,7 @@ patterns:
     elementName: LemmaAbsenceProposalStrategyRegistry
     nodeId: interface-revision-domain-LemmaAbsenceProposalStrategyRegistry
   confidence: 0.9
-- id: stereo-97
+- id: stereo-98
   pattern: Service
   category: architectural
   source: detected
@@ -32329,7 +32399,7 @@ patterns:
     elementName: LemmaAbsenceProposalDeriver
     nodeId: interface-revision-domain-LemmaAbsenceProposalDeriver
   confidence: 0.9
-- id: stereo-98
+- id: stereo-99
   pattern: Port
   category: architectural
   source: detected
@@ -32341,7 +32411,7 @@ patterns:
     elementName: ImpactPreviewStore
     nodeId: interface-revision-domain-ImpactPreviewStore
   confidence: 0.9
-- id: stereo-99
+- id: stereo-100
   pattern: Enum
   category: architectural
   source: detected
@@ -32353,7 +32423,7 @@ patterns:
     elementName: RevisionVerdict
     nodeId: model-revision-domain-RevisionVerdict
   confidence: 0.95
-- id: stereo-100
+- id: stereo-101
   pattern: Enum
   category: architectural
   source: detected
@@ -32365,7 +32435,7 @@ patterns:
     elementName: RevisionOutcomeKind
     nodeId: model-revision-domain-RevisionOutcomeKind
   confidence: 0.95
-- id: stereo-101
+- id: stereo-102
   pattern: Value Object
   category: architectural
   source: detected
@@ -32377,7 +32447,7 @@ patterns:
     elementName: CourseElementSnapshot
     nodeId: model-revision-domain-CourseElementSnapshot
   confidence: 0.75
-- id: stereo-102
+- id: stereo-103
   pattern: Value Object
   category: architectural
   source: detected
@@ -32389,7 +32459,7 @@ patterns:
     elementName: RevisionProposal
     nodeId: model-revision-domain-RevisionProposal
   confidence: 0.75
-- id: stereo-103
+- id: stereo-104
   pattern: Value Object
   category: architectural
   source: detected
@@ -32401,7 +32471,7 @@ patterns:
     elementName: RevisionArtifact
     nodeId: model-revision-domain-RevisionArtifact
   confidence: 0.75
-- id: stereo-104
+- id: stereo-105
   pattern: Value Object
   category: architectural
   source: detected
@@ -32413,7 +32483,7 @@ patterns:
     elementName: RevisionOutcome
     nodeId: model-revision-domain-RevisionOutcome
   confidence: 0.75
-- id: stereo-105
+- id: stereo-106
   pattern: Value Object
   category: architectural
   source: detected
@@ -32425,7 +32495,7 @@ patterns:
     elementName: RevisionEngineConfig
     nodeId: model-revision-domain-RevisionEngineConfig
   confidence: 0.75
-- id: stereo-106
+- id: stereo-107
   pattern: Enum
   category: architectural
   source: detected
@@ -32437,7 +32507,7 @@ patterns:
     elementName: ApprovalMode
     nodeId: model-revision-domain-ApprovalMode
   confidence: 0.95
-- id: stereo-107
+- id: stereo-108
   pattern: Enum
   category: architectural
   source: detected
@@ -32449,7 +32519,7 @@ patterns:
     elementName: ProposalDecisionOutcomeKind
     nodeId: model-revision-domain-ProposalDecisionOutcomeKind
   confidence: 0.95
-- id: stereo-108
+- id: stereo-109
   pattern: Value Object
   category: architectural
   source: detected
@@ -32461,7 +32531,7 @@ patterns:
     elementName: ProposalDecisionOutcome
     nodeId: model-revision-domain-ProposalDecisionOutcome
   confidence: 0.75
-- id: stereo-109
+- id: stereo-110
   pattern: Value Object
   category: architectural
   source: detected
@@ -32473,7 +32543,7 @@ patterns:
     elementName: StrategyId
     nodeId: model-revision-domain-StrategyId
   confidence: 0.75
-- id: stereo-110
+- id: stereo-111
   pattern: Value Object
   category: architectural
   source: detected
@@ -32485,7 +32555,7 @@ patterns:
     elementName: LemmaAbsenceQuizCandidate
     nodeId: model-revision-domain-LemmaAbsenceQuizCandidate
   confidence: 0.75
-- id: stereo-111
+- id: stereo-112
   pattern: Value Object
   category: architectural
   source: detected
@@ -32497,7 +32567,7 @@ patterns:
     elementName: ConsolidatedViewBuilderConfig
     nodeId: model-revision-domain-ConsolidatedViewBuilderConfig
   confidence: 0.75
-- id: anti-112
+- id: anti-113
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32509,7 +32579,7 @@ patterns:
     elementName: AnalysisResult
     nodeId: interface-audit-domain-AnalysisResult
   confidence: 0.9
-- id: anti-113
+- id: anti-114
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32521,7 +32591,7 @@ patterns:
     elementName: NlpTokenizer
     nodeId: interface-audit-domain-NlpTokenizer
   confidence: 0.9
-- id: anti-114
+- id: anti-115
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32533,7 +32603,7 @@ patterns:
     elementName: ContentWordFilter
     nodeId: interface-audit-domain-ContentWordFilter
   confidence: 0.9
-- id: anti-115
+- id: anti-116
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32545,7 +32615,7 @@ patterns:
     elementName: EvpCatalogPort
     nodeId: interface-audit-domain-EvpCatalogPort
   confidence: 0.9
-- id: anti-116
+- id: anti-117
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32557,7 +32627,7 @@ patterns:
     elementName: AuditableEntity
     nodeId: interface-audit-domain-AuditableEntity
   confidence: 0.9
-- id: anti-117
+- id: anti-118
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32569,7 +32639,7 @@ patterns:
     elementName: SelfDescribingConfig
     nodeId: interface-audit-domain-SelfDescribingConfig
   confidence: 0.9
-- id: anti-118
+- id: anti-119
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32581,7 +32651,7 @@ patterns:
     elementName: NodeDiagnoses
     nodeId: interface-audit-domain-NodeDiagnoses
   confidence: 0.9
-- id: anti-119
+- id: anti-120
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32593,7 +32663,7 @@ patterns:
     elementName: CourseDiagnoses
     nodeId: interface-audit-domain-CourseDiagnoses
   confidence: 0.9
-- id: anti-120
+- id: anti-121
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32605,7 +32675,7 @@ patterns:
     elementName: LevelDiagnoses
     nodeId: interface-audit-domain-LevelDiagnoses
   confidence: 0.9
-- id: anti-121
+- id: anti-122
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32617,7 +32687,7 @@ patterns:
     elementName: TopicDiagnoses
     nodeId: interface-audit-domain-TopicDiagnoses
   confidence: 0.9
-- id: anti-122
+- id: anti-123
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32629,7 +32699,7 @@ patterns:
     elementName: KnowledgeDiagnoses
     nodeId: interface-audit-domain-KnowledgeDiagnoses
   confidence: 0.9
-- id: anti-123
+- id: anti-124
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32641,7 +32711,7 @@ patterns:
     elementName: QuizDiagnoses
     nodeId: interface-audit-domain-QuizDiagnoses
   confidence: 0.9
-- id: anti-124
+- id: anti-125
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -32653,7 +32723,7 @@ patterns:
     elementName: audit-domain
     nodeId: module-audit-domain
   confidence: 0.85
-- id: anti-125
+- id: anti-126
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -32665,7 +32735,7 @@ patterns:
     elementName: ContentAnalyzer
     nodeId: interface-audit-domain-ContentAnalyzer
   confidence: 0.8
-- id: anti-126
+- id: anti-127
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -32677,7 +32747,7 @@ patterns:
     elementName: LemmaAbsenceConfig
     nodeId: interface-audit-domain-LemmaAbsenceConfig
   confidence: 0.8
-- id: anti-127
+- id: anti-128
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32689,7 +32759,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: anti-128
+- id: anti-129
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -32701,7 +32771,7 @@ patterns:
     elementName: course-domain
     nodeId: module-course-domain
   confidence: 0.85
-- id: anti-129
+- id: anti-130
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32713,7 +32783,7 @@ patterns:
     elementName: CorrectionContextResolver
     nodeId: interface-refiner-domain-CorrectionContextResolver
   confidence: 0.9
-- id: anti-130
+- id: anti-131
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32725,7 +32795,7 @@ patterns:
     elementName: CorrectionContext
     nodeId: interface-refiner-domain-CorrectionContext
   confidence: 0.9
-- id: anti-131
+- id: anti-132
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -32737,7 +32807,7 @@ patterns:
     elementName: audit-application
     nodeId: module-audit-application
   confidence: 0.85
-- id: anti-132
+- id: anti-133
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32749,7 +32819,7 @@ patterns:
     elementName: AnalyzeCommand
     nodeId: interface-audit-cli-AnalyzeCommand
   confidence: 0.9
-- id: anti-133
+- id: anti-134
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32761,7 +32831,7 @@ patterns:
     elementName: GetCommand
     nodeId: interface-audit-cli-GetCommand
   confidence: 0.9
-- id: anti-134
+- id: anti-135
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32773,7 +32843,7 @@ patterns:
     elementName: DeleteCommand
     nodeId: interface-audit-cli-DeleteCommand
   confidence: 0.9
-- id: anti-135
+- id: anti-136
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32785,7 +32855,7 @@ patterns:
     elementName: PruneCommand
     nodeId: interface-audit-cli-PruneCommand
   confidence: 0.9
-- id: anti-136
+- id: anti-137
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32797,7 +32867,7 @@ patterns:
     elementName: PlanCommand
     nodeId: interface-audit-cli-PlanCommand
   confidence: 0.9
-- id: anti-137
+- id: anti-138
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32809,7 +32879,7 @@ patterns:
     elementName: ReviseCommand
     nodeId: interface-audit-cli-ReviseCommand
   confidence: 0.9
-- id: anti-138
+- id: anti-139
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32821,7 +32891,7 @@ patterns:
     elementName: ConfigAnalyzerCommand
     nodeId: interface-audit-cli-ConfigAnalyzerCommand
   confidence: 0.9
-- id: anti-139
+- id: anti-140
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32833,7 +32903,7 @@ patterns:
     elementName: StatsAnalyzerCommand
     nodeId: interface-audit-cli-StatsAnalyzerCommand
   confidence: 0.9
-- id: anti-140
+- id: anti-141
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32845,7 +32915,7 @@ patterns:
     elementName: ApproveCommand
     nodeId: interface-audit-cli-ApproveCommand
   confidence: 0.9
-- id: anti-141
+- id: anti-142
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32857,7 +32927,7 @@ patterns:
     elementName: RejectCommand
     nodeId: interface-audit-cli-RejectCommand
   confidence: 0.9
-- id: anti-142
+- id: anti-143
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32869,7 +32939,7 @@ patterns:
     elementName: GetConsolidatedCommand
     nodeId: interface-audit-cli-GetConsolidatedCommand
   confidence: 0.9
-- id: anti-143
+- id: anti-144
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32881,7 +32951,7 @@ patterns:
     elementName: SetActiveAnalysisCommand
     nodeId: interface-audit-cli-SetActiveAnalysisCommand
   confidence: 0.9
-- id: anti-144
+- id: anti-145
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -32893,7 +32963,7 @@ patterns:
     elementName: audit-cli
     nodeId: module-audit-cli
   confidence: 0.85
-- id: anti-145
+- id: anti-146
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32905,7 +32975,7 @@ patterns:
     elementName: NlpTokenizerFactory
     nodeId: interface-nlp-infrastructure-NlpTokenizerFactory
   confidence: 0.9
-- id: anti-146
+- id: anti-147
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32917,7 +32987,7 @@ patterns:
     elementName: Reviser
     nodeId: interface-revision-domain-Reviser
   confidence: 0.9
-- id: anti-147
+- id: anti-148
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32929,7 +32999,7 @@ patterns:
     elementName: RevisionValidator
     nodeId: interface-revision-domain-RevisionValidator
   confidence: 0.9
-- id: anti-148
+- id: anti-149
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32941,7 +33011,7 @@ patterns:
     elementName: RevisionValidatorResult
     nodeId: interface-revision-domain-RevisionValidatorResult
   confidence: 0.9
-- id: anti-149
+- id: anti-150
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32953,7 +33023,7 @@ patterns:
     elementName: CourseElementLocator
     nodeId: interface-revision-domain-CourseElementLocator
   confidence: 0.9
-- id: anti-150
+- id: anti-151
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32965,7 +33035,7 @@ patterns:
     elementName: RevisionEngine
     nodeId: interface-revision-domain-RevisionEngine
   confidence: 0.9
-- id: anti-151
+- id: anti-152
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32977,7 +33047,7 @@ patterns:
     elementName: RevisionEngineFactory
     nodeId: interface-revision-domain-RevisionEngineFactory
   confidence: 0.9
-- id: anti-152
+- id: anti-153
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -32989,7 +33059,7 @@ patterns:
     elementName: RevisionValidatorFactory
     nodeId: interface-revision-domain-RevisionValidatorFactory
   confidence: 0.9
-- id: anti-153
+- id: anti-154
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -33001,7 +33071,7 @@ patterns:
     elementName: ProposalDecisionService
     nodeId: interface-revision-domain-ProposalDecisionService
   confidence: 0.9
-- id: anti-154
+- id: anti-155
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -33013,7 +33083,7 @@ patterns:
     elementName: ProposalDecisionServiceFactory
     nodeId: interface-revision-domain-ProposalDecisionServiceFactory
   confidence: 0.9
-- id: anti-155
+- id: anti-156
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -33025,7 +33095,7 @@ patterns:
     elementName: LemmaAbsenceProposalStrategy
     nodeId: interface-revision-domain-LemmaAbsenceProposalStrategy
   confidence: 0.9
-- id: anti-156
+- id: anti-157
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -33037,7 +33107,7 @@ patterns:
     elementName: LemmaAbsenceProposalStrategyRegistry
     nodeId: interface-revision-domain-LemmaAbsenceProposalStrategyRegistry
   confidence: 0.9
-- id: anti-157
+- id: anti-158
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -33049,7 +33119,7 @@ patterns:
     elementName: LemmaAbsenceProposalDeriver
     nodeId: interface-revision-domain-LemmaAbsenceProposalDeriver
   confidence: 0.9
-- id: anti-158
+- id: anti-159
   pattern: God Module
   category: anti-pattern
   source: detected

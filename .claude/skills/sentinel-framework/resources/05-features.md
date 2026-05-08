@@ -1065,7 +1065,6 @@ Este micro-requerimiento es un delta aislado: agrega el campo `quizSentence` al 
 | F-CDIFF-R019 | Cualquier hoja escalar con cambio entre fotos aparece como field | critical | - |
 | F-CDIFF-R020 | Exclusiones por rol funcional, no por whitelist de campos | critical | - |
 | F-CDIFF-R023 | Anidamiento: hojas profundas se identifican por path estable | critical | - |
-| F-CDIFF-R021 | El descubrimiento es agnostico a la dimension que origino la propuesta | major | - |
 | F-CDIFF-R022 | Listas: diff por elemento si tienen identidad declarada, posicional si no | major | - |
 | F-CDIFF-R009 | La salida no tiene una seccion paralela de "estadisticas afectadas" | critical | - |
 | F-CDIFF-R010 | Los deltas no son parte del contrato; son computables por el consumidor | major | - |
@@ -1075,7 +1074,6 @@ Este micro-requerimiento es un delta aislado: agrega el campo `quizSentence` al 
 | F-CDIFF-R015 | Servir el consolidado no escribe ningun artefacto persistido | critical | - |
 | F-CDIFF-R016 | El consolidado combina varias propuestas en un documento; los previews por-propuesta de FEAT-PIPRE permanecen accesibles | major | - |
 | F-CDIFF-R017 | Ninguna foto contiene efecto de propuestas de planes ajenos | major | - |
-| F-CDIFF-R018 | Las propuestas estructurales no contribuyen a ninguna foto y no aparecen en pendingApplicability | minor | - |
 
 **User Journeys:**
 
@@ -1092,4 +1090,20 @@ Este micro-requerimiento es un delta aislado: agrega el campo `quizSentence` al 
 - **F-CDIFF-J006**: Cambio de par activo: idempotente y no destructivo
 
 - **F-CDIFF-J008**: Supersesion explicita del preview combinado de FEAT-PIPRE
+
+### FEAT-PLANEF: Generacion de plan efimero sin persistencia en disco [F-PLANEF]
+
+> **Que**: El comando `plan` admite un modo de invocacion (`--storage=none` sugerido por el operador, shape final a confirmar) que **no escribe ningun archivo en disco** y emite el plan generado por la salida estandar del CLI en formato JSON, con el mismo schema que un plan persistido.
+
+**Por que**: Mientras el operador del dashboard revisa varias tareas dentro del mismo plan, quiere ver en cada momento como se veria el plan **si las decisiones que ya tomo (aceptadas y pendientes) estuvieran aplicadas**, sin tener que aplicarlas literalmente todavia. Ese plan-proyectado se construye una y otra vez sobre la marcha, no tiene valor historico y no debe ensuciar el historial de planes que el operador conserva como artefactos del proyecto.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-PLANEF-R001 | Modo de invocacion del comando `plan` que no persiste y emite el plan por stdout | critical | - |
+
+**User Journeys:**
+
+- **F-PLANEF-J001**: Invocar `plan` en modo efimero entrega el plan por stdout y no escribe archivos
 

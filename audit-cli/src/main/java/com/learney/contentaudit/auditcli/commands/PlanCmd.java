@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditcli.commands;
+import com.learney.contentaudit.auditcli.PlanStorageMode;
 
 import com.learney.contentaudit.auditcli.PlanCommand;
 import com.learney.contentaudit.auditdomain.AuditReport;
@@ -58,12 +59,14 @@ final class PlanCmd implements PlanCommand, Callable<Integer> {
             defaultValue = "text")
     private String formatName;
 
-    public PlanCmd(AuditReportStore auditReportStore, RefinerEngine refinerEngine,
-            RefinementPlanStore refinementPlanStore) {
-        this.auditReportStore = auditReportStore;
-        this.refinerEngine = refinerEngine;
-        this.refinementPlanStore = refinementPlanStore;
-    }
+private final EphemeralPlanRenderer ephemeralPlanRenderer;
+
+public PlanCmd(AuditReportStore auditReportStore, RefinerEngine refinerEngine, RefinementPlanStore refinementPlanStore, EphemeralPlanRenderer ephemeralPlanRenderer) {
+    this.auditReportStore = auditReportStore;
+    this.refinerEngine = refinerEngine;
+    this.refinementPlanStore = refinementPlanStore;
+    this.ephemeralPlanRenderer = ephemeralPlanRenderer;
+}
 
     @Override
     public Integer call() {

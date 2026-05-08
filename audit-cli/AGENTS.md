@@ -25,6 +25,13 @@ CLI entry point for running content audits from the command line
 | LLM | `null` |
 | CANNED | `null` |
 
+### PlanStorageMode (`enum`)
+
+| Field | Type |
+|-------|------|
+| DISK | `null` |
+| EPHEMERAL | `null` |
+
 ## Interfaces
 
 ### AnalyzeCommand (port) [sealed]
@@ -55,7 +62,7 @@ Methods:
 
 Methods:
 
-- `plan(String auditId): Integer`
+- `plan(String auditId, PlanStorageMode storageMode): Integer`
 
 ### ReviseCommand (port) [sealed]
 
