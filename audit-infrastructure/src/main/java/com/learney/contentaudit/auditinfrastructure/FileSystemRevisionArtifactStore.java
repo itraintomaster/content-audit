@@ -36,6 +36,9 @@ public class FileSystemRevisionArtifactStore implements RevisionArtifactStore {
 
     private static final String REVISIONS_SUBDIR = ".content-audit/revisions";
     private static final String FILE_SUFFIX = ".json";
+    // FEAT-PIPRE writes <proposalId>.preview.json sidecars in the same directory.
+    // Those are not RevisionArtifacts and must be excluded from artifact listings.
+    private static final String PREVIEW_SUFFIX = ".preview.json";
 
     private final Path baseDir;
     private final ObjectMapper objectMapper;
@@ -95,7 +98,7 @@ public FileSystemRevisionArtifactStore(Path baseDir) {
         List<Path> files;
         try (Stream<Path> stream = Files.list(planDir)) {
             files = stream
-                    .filter(p -> p.getFileName().toString().endsWith(FILE_SUFFIX))
+                    .filter(FileSystemRevisionArtifactStore::isArtifactFile)
                     .sorted()
                     .toList();
         } catch (IOException e) {
@@ -108,6 +111,11 @@ public FileSystemRevisionArtifactStore(Path baseDir) {
             artifacts.add(loadFromFile(file));
         }
         return artifacts;
+    }
+
+    private static boolean isArtifactFile(Path p) {
+        String name = p.getFileName().toString();
+        return name.endsWith(FILE_SUFFIX) && !name.endsWith(PREVIEW_SUFFIX);
     }
 
     // -------------------------------------------------------------------------
@@ -182,7 +190,7 @@ public FileSystemRevisionArtifactStore(Path baseDir) {
 
         List<Path> files;
         try (Stream<Path> stream = Files.list(planDir)) {
-            files = stream.filter(p -> p.getFileName().toString().endsWith(FILE_SUFFIX)).toList();
+            files = stream.filter(FileSystemRevisionArtifactStore::isArtifactFile).toList();
         } catch (IOException e) {
             throw new AuditPersistenceException(
                     "Failed to list revision files for plan " + planId + ": " + e.getMessage(), e);
