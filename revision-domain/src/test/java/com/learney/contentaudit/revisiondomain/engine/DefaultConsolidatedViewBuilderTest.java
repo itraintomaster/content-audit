@@ -1202,4 +1202,96 @@ public class DefaultConsolidatedViewBuilderTest {
         // La lista de nodeImpacts fue poblada en una sola pasada del builder
         assertNotNull(view.getNodeImpacts(), "nodeImpacts no debe ser null (R016)");
     }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // R007 invariante 5 — la foto del padre proviene del motor (KNOWLEDGE ancestor)
+    // ─────────────────────────────────────────────────────────────────────────
+
+    @Test
+    @DisplayName("Given an APPROVED quiz proposal whose KNOWLEDGE ancestor has an aggregate score that differs across the baseline, consolidated and pending AuditReports, when build runs, then nodeImpacts contains a NodeImpact with nodeTarget=KNOWLEDGE whose fieldChanges carries the tripleta (original, consolidated, pendingProjection) read verbatim from the KNOWLEDGE AuditNode of each AuditReport — R007 invariante 5: la foto del padre proviene del motor, FEAT-CDIFF la copia del AuditNode correspondiente sin recomputar")
+    @Tag("FEAT-CDIFF")
+    @Tag("F-CDIFF-R007")
+    public void givenAnAPPROVEDQuizProposalWhoseKNOWLEDGEAncestorHasAnAggregateScoreThatDiffersAcrossTheBaselineConsolidatedAndPendingAuditReportsWhenBuildRunsThenNodeImpactsContainsANodeImpactWithNodeTargetKNOWLEDGEWhoseFieldChangesCarriesTheTripletaOriginalConsolidatedPendingProjectionReadVerbatimFromTheKNOWLEDGEAuditNodeOfEachAuditReportR007Invariante5LaFotoDelPadreProvieneDelMotorFEATCDIFFLaCopiaDelAuditNodeCorrespondienteSinRecomputar(
+            ) {
+        AuditNode baselineTree = knowledgeWithQuizChild("knowledge-r007-inv5", "quiz-r007-inv5",
+                Map.of("sentence-length", 0.4));
+        stubActive(baselineTree);
+
+        RevisionArtifact approved = approvedArtifact("prop-r007-inv5", "quiz-r007-inv5");
+        when(revisionArtifactStore.listByPlan(PLAN_ID)).thenReturn(List.of(approved));
+
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r007-inv5", null);
+        when(courseElementLocator.snapshot(any(), any(), anyString()))
+                .thenReturn(Optional.of(snapshot));
+        when(courseElementLocator.replace(any(), any()))
+                .thenReturn(new CourseEntity("cid", "English", Collections.emptyList(), null, "english"));
+
+        AuditNode consolidatedTree = knowledgeWithQuizChild("knowledge-r007-inv5", "quiz-r007-inv5",
+                Map.of("sentence-length", 0.7));
+        AuditNode pendingTree = knowledgeWithQuizChild("knowledge-r007-inv5", "quiz-r007-inv5",
+                Map.of("sentence-length", 0.7));
+        when(auditEngine.runAudit(any()))
+                .thenReturn(reportWith(consolidatedTree))
+                .thenReturn(reportWith(pendingTree));
+
+        com.learney.contentaudit.revisiondomain.consolidatedview.FieldChange parentScoreChange =
+                new com.learney.contentaudit.revisiondomain.consolidatedview.FieldChange(0.4, 0.7, 0.7);
+        when(nodeFieldDiffer.diff(any(), any(), any()))
+                .thenReturn(Map.of("scores.sentence-length", parentScoreChange));
+
+        ConsolidatedView view = builder.build(COURSE_PATH);
+
+        com.learney.contentaudit.revisiondomain.consolidatedview.NodeImpact knowledgeImpact =
+                view.getNodeImpacts().stream()
+                        .filter(ni -> ni.getNodeTarget() == AuditTarget.KNOWLEDGE
+                                && "knowledge-r007-inv5".equals(ni.getNodeId()))
+                        .findFirst()
+                        .orElse(null);
+        assertNotNull(knowledgeImpact,
+                "nodeImpacts must contain a NodeImpact for the KNOWLEDGE ancestor (R007 inv 5)");
+
+        com.learney.contentaudit.revisiondomain.consolidatedview.FieldChange emitted =
+                knowledgeImpact.getFieldChanges().get("scores.sentence-length");
+        assertNotNull(emitted,
+                "The KNOWLEDGE NodeImpact must contain the 'scores.sentence-length' field (R007 inv 5)");
+        assertEquals(0.4, emitted.getOriginal(),
+                "original must be 0.4 — verbatim from the baseline AuditNode (R007 inv 5)");
+        assertEquals(0.7, emitted.getConsolidated(),
+                "consolidated must be 0.7 — verbatim from the consolidated AuditNode (R007 inv 5)");
+        assertEquals(0.7, emitted.getPendingProjection(),
+                "pendingProjection must be 0.7 — verbatim from the pending AuditNode (R007 inv 5)");
+
+        assertTrue(knowledgeImpact.getAcceptedProposalIds() == null
+                        || knowledgeImpact.getAcceptedProposalIds().isEmpty(),
+                "KNOWLEDGE NodeImpact must have no acceptedProposalIds (not a proposal target)");
+        assertTrue(knowledgeImpact.getPendingProposalIds() == null
+                        || knowledgeImpact.getPendingProposalIds().isEmpty(),
+                "KNOWLEDGE NodeImpact must have no pendingProposalIds (not a proposal target)");
+    }
+
+    /**
+     * Builds an AuditNode tree: KNOWLEDGE root (given knowledgeId, given scores)
+     * with a single QUIZ leaf child (given quizId).
+     */
+    private static AuditNode knowledgeWithQuizChild(String knowledgeId, String quizId,
+            Map<String, Double> knowledgeScores) {
+        AuditableEntity knowledgeEntity = org.mockito.Mockito.mock(AuditableEntity.class);
+        org.mockito.Mockito.when(knowledgeEntity.getId()).thenReturn(knowledgeId);
+
+        AuditableEntity quizEntity = org.mockito.Mockito.mock(AuditableEntity.class);
+        org.mockito.Mockito.when(quizEntity.getId()).thenReturn(quizId);
+
+        SentenceLengthDiagnosis quizDiag = new SentenceLengthDiagnosis(10, 6, 12, CefrLevel.A1, 0, 1);
+        DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
+        quizDiagnoses.setSentenceLengthDiagnosis(quizDiag);
+        AuditNode quizNode = new AuditNode(quizEntity, AuditTarget.QUIZ, null,
+                Collections.emptyList(), Collections.emptyMap(), Collections.emptyMap(), quizDiagnoses);
+
+        AuditNode knowledgeNode = new AuditNode(knowledgeEntity, AuditTarget.KNOWLEDGE, null,
+                List.of(quizNode), knowledgeScores, Collections.emptyMap(), null);
+
+        quizNode.setParent(knowledgeNode);
+
+        return knowledgeNode;
+    }
 }

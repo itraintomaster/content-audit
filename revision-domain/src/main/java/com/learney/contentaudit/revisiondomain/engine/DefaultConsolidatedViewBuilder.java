@@ -203,12 +203,10 @@ public DefaultConsolidatedViewBuilder(RevisionArtifactStore revisionArtifactStor
         }
 
         // Step 8: build NodeImpact list using nodeFieldDiffer (R006, R007, R019, R023)
-        // For each (nodeTarget, nodeId) touched by APPROVED or PENDING_APPROVAL proposals,
-        // locate the AuditNode in baseline, consolidated, and pending reports, then diff.
+        // Iterate over ALL nodes from the engine-produced reports (not just proposal targets)
+        // so that ancestor nodes (KNOWLEDGE/TOPIC/MILESTONE/COURSE) whose aggregate scores
+        // changed are also included — F-CDIFF-R007 invariante 5.
         java.util.List<com.learney.contentaudit.revisiondomain.consolidatedview.NodeImpact> nodeImpacts = new java.util.ArrayList<>();
-        java.util.Set<String> affectedNodeIds = new java.util.LinkedHashSet<>();
-        affectedNodeIds.addAll(acceptedProposalIds.keySet());
-        affectedNodeIds.addAll(pendingApplicableNodeIds);
 
         // Build a lookup map for AuditNodes by nodeId in each report
         // We use the entity id to identify nodes within the AuditReport tree
@@ -216,12 +214,19 @@ public DefaultConsolidatedViewBuilder(RevisionArtifactStore revisionArtifactStor
                 indexAuditNodes(auditOpt.get().getRoot());
         java.util.Map<String, com.learney.contentaudit.auditdomain.AuditNode> consolidatedNodes =
                 indexAuditNodes(consolidatedReport.getRoot());
+        // R007 invariante 3: when there are no applicable pendings, pendingProjection
+        // equals consolidated. Reuse consolidatedNodes so the differ sees three identical
+        // photos for unaffected fields and emits nothing for them.
         java.util.Map<String, com.learney.contentaudit.auditdomain.AuditNode> pendingNodes =
-                pendingReport != null ? indexAuditNodes(pendingReport.getRoot()) : java.util.Map.of();
+                pendingReport != null ? indexAuditNodes(pendingReport.getRoot()) : consolidatedNodes;
 
-        for (String nodeId : affectedNodeIds) {
-            com.learney.contentaudit.auditdomain.AuditTarget target = nodeTargets.get(nodeId);
+        // Union of all node ids across the three indexed reports covers every node in the tree
+        java.util.Set<String> allNodeIds = new java.util.LinkedHashSet<>();
+        allNodeIds.addAll(baselineNodes.keySet());
+        allNodeIds.addAll(consolidatedNodes.keySet());
+        allNodeIds.addAll(pendingNodes.keySet());
 
+        for (String nodeId : allNodeIds) {
             // Locate the AuditNode in each photo (null = absent in that photo)
             com.learney.contentaudit.auditdomain.AuditNode origNode = baselineNodes.get(nodeId);
             com.learney.contentaudit.auditdomain.AuditNode consNode = consolidatedNodes.get(nodeId);
@@ -230,11 +235,21 @@ public DefaultConsolidatedViewBuilder(RevisionArtifactStore revisionArtifactStor
             // R007 invariante 5: we read what the engine put in the AuditReport — no recompute
             Map<String, FieldChange> fieldChanges = nodeFieldDiffer.diff(origNode, consNode, pendNode);
 
-            // R006 invariante 1: only emit if there is at least one changed field
+            // R006 invariante 1: only emit if there is at least one changed field,
+            // or this nodeId is a direct target of an APPROVED/PENDING proposal
             if (fieldChanges.isEmpty()
                     && !acceptedProposalIds.containsKey(nodeId)
                     && !pendingApplicableNodeIds.contains(nodeId)) {
                 continue;
+            }
+
+            // Resolve target: prefer the proposal-indexed target; fall back to the AuditNode itself
+            // (ancestor nodes like KNOWLEDGE/TOPIC/MILESTONE/COURSE are not indexed in nodeTargets)
+            com.learney.contentaudit.auditdomain.AuditTarget target = nodeTargets.get(nodeId);
+            if (target == null) {
+                com.learney.contentaudit.auditdomain.AuditNode anyNode =
+                        origNode != null ? origNode : (consNode != null ? consNode : pendNode);
+                if (anyNode != null) target = anyNode.getTarget();
             }
 
             java.util.List<String> acceptedIds = acceptedProposalIds.getOrDefault(nodeId, java.util.List.of());

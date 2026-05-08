@@ -661,6 +661,16 @@ modules:
         traceability:
           feature: FEAT-CDIFF
           rule: F-CDIFF-R016
+      - name: "Given an APPROVED quiz proposal whose KNOWLEDGE ancestor has an aggregate\
+          \ score that differs across the baseline, consolidated and pending AuditReports,\
+          \ when build runs, then nodeImpacts contains a NodeImpact with nodeTarget=KNOWLEDGE\
+          \ whose fieldChanges carries the tripleta (original, consolidated, pendingProjection)\
+          \ read verbatim from the KNOWLEDGE AuditNode of each AuditReport — R007\
+          \ invariante 5: la foto del padre proviene del motor, FEAT-CDIFF la copia\
+          \ del AuditNode correspondiente sin recomputar"
+        traceability:
+          feature: FEAT-CDIFF
+          rule: F-CDIFF-R007
       implements:
       - ConsolidatedViewBuilder
       _change: add
