@@ -58,6 +58,27 @@
   consecuencia de no contaminar el historial sigue presente pero baja a
   segundo plano.
 
+2026-05-09 — analyst — R002 agregada: contexto de correccion inline opt-in
+  en modo efimero. Gap descubierto al integrar el dashboard: get task solo
+  opera contra planes persistidos, asi que un plan efimero queda inutilizable
+  para hidratar contexto. R002 cierra el gap moviendo el contexto inline al
+  plan efimero cuando se activa la opcion. La forma del contexto es la ya
+  definida por FEAT-RCSL / FEAT-RCLA (no se redefine), solo cambia el canal
+  de entrega. Doubts nuevos: DOUBT-CTX-FLAG-SHAPE, DOUBT-CTX-IN-DISK-MODE,
+  DOUBT-CTX-DEFAULT.
+  why: el operador necesitaba algo accionable sin abrir un feature nuevo
+  para esto: cae naturalmente como extension del modo efimero. La opcion
+  alternativa (extender get task para que acepte un plan inyectado por
+  stdin) cambiaba la superficie de un verbo distinto y era mas costosa.
+
+2026-05-09 — analyst — Gap 2 (revise con override de contexto) NO se
+  absorbe en FEAT-PLANEF; se abre FEAT-REVCTX
+  ([requirement](../../2026-05-09.01_revise-correction-context-override/REQUIREMENT.md)).
+  why: cambia la semantica del verbo `revise`, que no es plan ni es
+  efimero. Las preocupaciones propias (validacion del override, trazabilidad
+  del artefacto, interaccion con LAPS, semantica de reemplazo vs merge) son
+  semanticamente independientes y mezclarlas en F-PLANEF rompia la cohesion.
+
 2026-05-08 — architect — Patch arquitectonico propuesto (FEAT-PLANEF / ARCH-PLANEF).
   Decisiones sobre los 3 doubts:
   - DOUBT-FLAG-SHAPE → Opcion A (--storage=<mode>) modelado como enum
@@ -78,3 +99,41 @@
   (introducir un InMemoryRefinementPlanStore no-op) enmascaraba la invariante
   R001 #1 detras de un swap de adapter; mejor que PlanCmd decida no llamar a
   save segun el modo, asi el test queda directamente apuntable.
+
+2026-05-09 — architect — Patch ARCH-PLANEF reescrito para incluir F-PLANEF-R002.
+  Decisiones sobre los 3 doubts CTX-*:
+  - DOUBT-CTX-FLAG-SHAPE → Opcion A (--with-correction-context booleano).
+    Razon: aditivo, simple, ortogonal a --storage; opcion B (--include=...)
+    se considera over-engineering hasta que aparezca un segundo opt-in.
+  - DOUBT-CTX-IN-DISK-MODE → Opcion A (rechazo explicito con error).
+    Razon: simetria con la regla durable del proyecto de no introducir
+    comportamientos silenciosos; las opciones B (no-op) y C (persistir
+    inline en disk) o son ambiguas o requieren migracion de schema fuera
+    de scope.
+  - DOUBT-CTX-DEFAULT → Opcion A (default OFF, opt-in).
+    Razon: preserva el contrato de R001, deja la decision al cliente,
+    confirmacion explicita del operador.
+  Cambios estructurales:
+  - audit-domain agrega AuditNodeIndex / AuditNodeIndexFactory + package
+    interno auditnodeindex (Factory Seam: solo DefaultAuditNodeIndexFactory
+    publico, MapAuditNodeIndex package-private). Razon: el indice es
+    capacidad pura sobre el arbol del AuditReport, vive donde vive el
+    arbol; manana cualquier consumidor puede tomarlo sin atravesar
+    refiner-domain.
+  - refiner-domain extiende CorrectionContextResolver con resolveWithIndex
+    (ambas firmas coexisten: resolve para single-task de GetCmd,
+    resolveWithIndex para bulk del renderer). Las 3 implementaciones
+    (Sentence, LemmaAbsence, Dispatching) implementan ambas.
+  - audit-cli extiende PlanCommand sealed con boolean withCorrectionContext
+    (firma vieja borrada, no se mantiene overload). Agrega
+    EphemeralRenderOptions (record) + CorrectionContextJsonMapper port +
+    DefaultCorrectionContextJsonMapper en commands/. EphemeralPlanRenderer
+    cambia firma a render(plan, report, options). PlanCmd inyecta el
+    renderer extendido y valida la combinacion DISK + withCorrectionContext
+    como rechazo. GetCmd pasa a inyectar el mapper compartido.
+  why: la equivalencia de schema R002 #1 entre 'get task' y 'plan efimero'
+  es estructural -un solo serializador-, no copiable a mano (dos
+  implementaciones que se desincronicen al primer campo nuevo). El indice
+  cierra el problema de performance que ya estaba latente en GetCmd
+  cuando se quisiera escalar a planes grandes; aprovechamos la apertura
+  del feature para resolverlo en `audit-domain` donde corresponde.

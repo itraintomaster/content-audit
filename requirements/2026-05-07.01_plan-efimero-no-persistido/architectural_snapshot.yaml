@@ -5,10 +5,13 @@ description: "F-PLANEF: modo efimero del comando plan. Agrega un modo de storage
   \ completo a stdout en JSON via EphemeralPlanRenderer (R001 invariante 2), y todo\
   \ mensaje informativo del CLI va a stderr para no contaminar el JSON. Ortogonal\
   \ al flag --audit existente (R001 invariante 3). Cambios contenidos en audit-cli;\
-  \ sin nuevos modulos, dependencias o boundaries."
+  \ sin nuevos modulos, dependencias o boundaries.; F-PLANEF-R002: contexto de correccion\
+  \ inline opt-in en modo efimero. Indexa nodos del AuditReport para acelerar resolucion\
+  \ masiva, extrae el mapeo correctionContext->JSON a un puerto compartido, y enriquece\
+  \ el renderer efimero para que pueda hidratar contexto inline."
 modules:
 - name: audit-cli
-  description: CLI entry point for running content audits from the command line
+  description: CLI entry point
   models:
   - name: PlanStorageMode
     type: enum
@@ -23,13 +26,24 @@ modules:
         \ informativos van a stderr."
     visibility: public
     _change: add
+  - name: EphemeralRenderOptions
+    type: record
+    fields:
+    - name: withCorrectionContext
+      type: boolean
+      description: "F-PLANEF-R002: si true, cada task del plan emitido lleva inline\
+        \ su correctionContext (o correctionContext=null + correctionContextError\
+        \ si no es construible). Default OFF (DOUBT-CTX-DEFAULT opcion A)."
+    visibility: public
+    _change: add
   interfaces:
   - name: PlanCommand
     sealed: true
     exposes:
-    - signature: "plan(String auditId): Integer"
-      _change: delete
     - signature: "plan(String auditId, PlanStorageMode storageMode): Integer"
+      _change: delete
+    - signature: "plan(String auditId, PlanStorageMode storageMode, boolean withCorrectionContext):\
+        \ Integer"
       _change: add
     _change: modify
   packages:
@@ -41,10 +55,34 @@ modules:
       sealed: false
       exposes:
       - signature: "render(RefinementPlan plan): Integer"
+        _change: delete
+      - signature: "render(RefinementPlan plan, AuditReport report, EphemeralRenderOptions\
+          \ options): Integer"
+        _change: add
+      visibility: internal
+      _change: add
+    - name: CorrectionContextJsonMapper
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "toJsonMap(CorrectionContext context): Map<String,Object>"
       visibility: internal
       _change: add
     implementations:
     - name: DefaultEphemeralPlanRenderer
+      requiresInject:
+      - name: auditNodeIndexFactory
+        type: AuditNodeIndexFactory
+        description: Construye el indice del report una vez por invocacion del renderer
+          cuando se pide contexto inline.
+      - name: correctionContextResolver
+        type: CorrectionContextResolver
+        description: "Inyectado en su forma dispatching; se llama via resolveWithIndex(index,\
+          \ report, task)."
+      - name: correctionContextJsonMapper
+        type: CorrectionContextJsonMapper
+        description: "Misma instancia que GetCmd usa, garantizando que el JSON emitido\
+          \ por plan efimero y por get task tengan la misma forma."
       visibility: internal
       handwrittenTests:
       - name: "Dado un RefinementPlan con tasks no vacias, cuando render se invoca,\
@@ -70,6 +108,7 @@ modules:
         traceability:
           feature: FEAT-PLANEF
           rule: F-PLANEF-R001
+      classStereotype: false
       implements:
       - EphemeralPlanRenderer
       _change: add
@@ -83,9 +122,9 @@ modules:
         type: RefinementPlanStore
       - name: ephemeralPlanRenderer
         type: EphemeralPlanRenderer
-        description: Renderer que serializa el RefinementPlan a stdout en JSON cuando
-          storageMode = EPHEMERAL. Solo se invoca en el path efimero; en el path persistente
-          se ignora.
+        description: Renderer que serializa el RefinementPlan a stdout en JSON. Recibe
+          ahora el AuditReport y las opciones de render (incluyendo withCorrectionContext).
+          Solo se invoca en el path efimero.
       types:
       - Component
       handwrittenTests:
@@ -130,9 +169,118 @@ modules:
           rule: F-PLANEF-R001
       externalImplements:
       - java.util.concurrent.Callable<Integer>
+      classStereotype: false
       implements:
       - PlanCommand
       _change: modify
+    - name: DefaultCorrectionContextJsonMapper
+      visibility: internal
+      classStereotype: false
+      implements:
+      - CorrectionContextJsonMapper
+      _change: add
+    - name: GetCmd
+      requiresInject:
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: analyzerRegistry
+        type: AnalyzerRegistry
+      - name: correctionContextResolver
+        type: CorrectionContextResolver
+      - name: impactPreviewStore
+        type: ImpactPreviewStore
+      - name: impactPreviewFormatter
+        type: ImpactPreviewFormatter
+      - name: correctionContextJsonMapper
+        type: CorrectionContextJsonMapper
+        description: Mismo serializador que usa el renderer efimero. Garantiza que
+          get task y plan efimero produzcan el mismo schema JSON para correctionContext.
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      classStereotype: false
+      implements:
+      - GetCommand
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-domain
+  description: Core business logic
+  interfaces:
+  - name: AuditNodeIndex
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "find(String nodeId, AuditTarget nodeTarget): Optional<AuditNode>"
+    visibility: public
+    _change: add
+  - name: AuditNodeIndexFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "build(AuditReport report): AuditNodeIndex"
+    visibility: public
+    _change: add
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultAuditNodeIndexFactory
+    suppressed: false
+    interface: AuditNodeIndexFactory
+  packages:
+  - name: auditnodeindex
+    description: Implementacion del indice nodeId->AuditNode. Hidden behind AuditNodeIndexFactory;
+      collaborators package-private.
+    visibility: internal
+    implementations:
+    - name: DefaultAuditNodeIndexFactory
+      visibility: public
+      classStereotype: false
+      implements:
+      - AuditNodeIndexFactory
+      _change: add
+    - name: MapAuditNodeIndex
+      classStereotype: false
+      implements:
+      - AuditNodeIndex
+      _change: add
+    _change: add
+  _change: modify
+- name: refiner-domain
+  description: Refinement engine
+  interfaces:
+  - name: CorrectionContextResolver
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "resolve(AuditReport report, RefinementTask task): Optional<T>"
+    - signature: "resolveWithIndex(AuditNodeIndex nodeIndex, AuditReport report, RefinementTask\
+        \ task): Optional<T>"
+      _change: add
+    typeParameters:
+    - T extends CorrectionContext
+    _change: modify
+  implementations:
+  - name: SentenceLengthContextResolver
+    visibility: public
+    classStereotype: false
+    implements:
+    - CorrectionContextResolver
+    _change: modify
+  - name: LemmaAbsenceContextResolver
+    visibility: public
+    classStereotype: false
+    implements:
+    - CorrectionContextResolver
+    _change: modify
+  - name: DispatchingCorrectionContextResolver
+    visibility: public
+    classStereotype: false
+    implements:
+    - CorrectionContextResolver
     _change: modify
   _change: modify
 features:

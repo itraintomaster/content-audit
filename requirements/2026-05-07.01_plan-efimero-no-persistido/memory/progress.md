@@ -67,3 +67,17 @@
   Compilacion OK. Blocker remanente: PlanCmdTest lineas 364-365 llaman plan.id() y plan.sourceAuditId()
   (record-style), pero RefinementPlan @Generated usa getId()/getSourceAuditId() (JavaBean). Escalacion
   necesaria: @architect debe agregar metodos id() / sourceAuditId() al modelo o regenerarlo como record.
+
+2026-05-09 — analyst — R002 agregada al REQUIREMENT.md: el modo efimero acepta
+  una opcion opt-in para emitir el correctionContext inline por tarea (mismo
+  shape que get task entrega sobre planes persistidos). Tres doubts nuevos
+  abiertos. Journeys J002 (con contexto, exito + parcial + error) y J003 (sin
+  contexto, default actual) agregadas. Alcance ampliado para reflejar el segundo
+  in-scope. References actualizado para citar FEAT-RCSL adicionalmente y para
+  apuntar al feature complementario FEAT-REVCTX.
+  why: el cliente del dashboard descubrio que get task no opera sobre planes
+  efimeros; la unica via barata para que el plan proyectado sea consumible es
+  emitir el contexto inline al momento de calcularlo. Ya implementado el modo
+  efimero base (R001), R002 es estrictamente aditivo. Pendiente: pasar a
+  @architect para que decida shape de flag y como interactua con el patch
+  de R001 ya existente.
