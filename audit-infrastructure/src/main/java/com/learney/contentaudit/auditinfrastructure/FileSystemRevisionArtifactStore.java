@@ -43,6 +43,10 @@ public class FileSystemRevisionArtifactStore implements RevisionArtifactStore {
     private final Path baseDir;
     private final ObjectMapper objectMapper;
 
+public FileSystemRevisionArtifactStore() {
+    this(Path.of(System.getProperty("user.dir")));
+}
+
 public FileSystemRevisionArtifactStore(Path baseDir) {
     this.baseDir = baseDir;
     this.objectMapper = createObjectMapper();
