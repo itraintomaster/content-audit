@@ -1,0 +1,18 @@
+{
+  "runId" : "20260509T161032-323bcfe7",
+  "agent" : "architect",
+  "graphKind" : "single-agent",
+  "requirementFolder" : "requirements/2026-05-09.01_revise-correction-context-override",
+  "request" : "Propose the architecture for F-REVCTX Override del contexto de correccion en el verbo revise.",
+  "status" : "failed",
+  "started" : "2026-05-09T16:10:32.725873Z",
+  "updated" : "2026-05-09T16:10:36.610025Z",
+  "metadata" : {
+    "provider" : "gemini",
+    "model" : "gemini-3-flash-preview"
+  },
+  "outcome" : {
+    "halted" : true,
+    "haltReason" : "graph execution failed"
+  }
+}
