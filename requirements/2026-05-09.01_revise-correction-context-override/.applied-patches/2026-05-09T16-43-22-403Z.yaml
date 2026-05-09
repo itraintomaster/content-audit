@@ -1,0 +1,163 @@
+code: FEAT-REVCTX
+description: "FEAT-REVCTX: re-emision del patch para fines de TECH_SPEC tras aplicacion\
+  \ en Architect Studio.; FEAT-REVCTX: el verbo revise acepta un correctionContext\
+  \ provisto externamente. Re-emision completa del patch (post-aplicacion) para alinear\
+  \ el TECH_SPEC con todos los elementos. Se introduce un parser/validador propio\
+  \ del override en revision-domain.contextoverride (paquete interno con dependencia\
+  \ a Jackson), un nuevo carrier CorrectionContextOverride mas el enum CorrectionContextSource,\
+  \ dos nuevos RevisionOutcomeKind (OVERRIDE_INVALID, OVERRIDE_NOT_APPLICABLE), un\
+  \ overload nuevo en RevisionEngine y ReviseCommand para el camino con override,\
+  \ dos campos nuevos en RevisionArtifact para auditabilidad (Opcion A de DOUBT-OVERRIDE-AUDITABILITY)\
+  \ y un metodo supports(DiagnosisKind) en CorrectionContextResolver para que R004\
+  \ use una sola fuente de verdad."
+modules:
+- name: refiner-domain
+  interfaces:
+  - name: CorrectionContextResolver
+    sealed: false
+    exposes:
+    - signature: "supports(DiagnosisKind kind): boolean"
+      _change: add
+    _change: modify
+  _change: modify
+- name: revision-domain
+  models:
+  - name: RevisionOutcomeKind
+    type: record
+    fields:
+    - name: OVERRIDE_INVALID
+      _change: add
+    - name: OVERRIDE_NOT_APPLICABLE
+      _change: add
+    _change: modify
+  - name: RevisionArtifact
+    type: record
+    fields:
+    - name: contextSource
+      type: CorrectionContextSource
+      _change: add
+    - name: contextOverridePayload
+      type: String
+      _change: add
+    _change: modify
+  - name: CorrectionContextSource
+    type: enum
+    fields:
+    - name: DERIVED
+    - name: OVERRIDE
+    _change: add
+  - name: CorrectionContextOverride
+    type: record
+    fields:
+    - name: context
+      type: CorrectionContext
+    - name: rawPayload
+      type: String
+    _change: add
+  - name: OverrideRejectedException
+    type: exception
+    fields:
+    - name: reason
+      type: String
+    message: "correctionContext override rejected: %s"
+    _change: add
+    extends: RuntimeException
+  - name: RevisionEngineConfig
+    type: record
+    fields:
+    - name: correctionContextOverrideParser
+      type: CorrectionContextOverrideParser
+      _change: add
+    _change: modify
+  interfaces:
+  - name: RevisionEngine
+    sealed: false
+    exposes:
+    - signature: "revise(String planId, String taskId, Path coursePath, String overridePayload):\
+        \ RevisionOutcome"
+      _change: add
+    _change: modify
+  - name: CorrectionContextOverrideParser
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "parse(String rawJson, DiagnosisKind expectedDiagnosisKind, String\
+        \ expectedNodeId): CorrectionContextOverride"
+    _change: add
+  uses:
+  - jackson-databind
+  packages:
+  - name: contextoverride
+    description: "Encapsulamiento del parsing y validacion del correctionContext provisto\
+      \ externamente por el cliente (FEAT-REVCTX). Aloja la implementacion del CorrectionContextOverrideParser,\
+      \ un mapper Jackson dedicado y los validadores estructurales por DiagnosisKind."
+    visibility: internal
+    interfaces:
+    - name: CorrectionContextStructuralValidator
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "validateAndBuild(JsonNode payload, String expectedNodeId): CorrectionContext"
+      _change: add
+    implementations:
+    - name: DefaultCorrectionContextOverrideParser
+      requiresInject:
+      - name: objectMapper
+        type: ObjectMapper
+      - name: validators
+        type: "Map<DiagnosisKind,CorrectionContextStructuralValidator>"
+      visibility: public
+      classStereotype: false
+      implements:
+      - CorrectionContextOverrideParser
+      _change: add
+    - name: LemmaAbsenceContextStructuralValidator
+      requiresInject:
+      - name: objectMapper
+        type: ObjectMapper
+      classStereotype: false
+      implements:
+      - CorrectionContextStructuralValidator
+      _change: add
+    - name: SentenceLengthContextStructuralValidator
+      requiresInject:
+      - name: objectMapper
+        type: ObjectMapper
+      classStereotype: false
+      implements:
+      - CorrectionContextStructuralValidator
+      _change: add
+    _change: add
+  - name: engine
+    implementations:
+    - name: DefaultRevisionEngine
+      requiresInject:
+      - name: correctionContextOverrideParser
+        type: CorrectionContextOverrideParser
+        _change: add
+      classStereotype: false
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-cli
+  interfaces:
+  - name: ReviseCommand
+    sealed: false
+    exposes:
+    - signature: "revise(String taskId, String planId, String correctionContextJson,\
+        \ String correctionContextFilePath): Integer"
+      _change: add
+    _change: modify
+  _change: modify
+dependencies:
+- alias: jackson-databind
+  artifact: com.fasterxml.jackson.core:jackson-databind:2.17.2
+  scope: compile
+  provides:
+  - type: ObjectMapper
+    package: com.fasterxml.jackson.databind
+  - type: JsonNode
+    package: com.fasterxml.jackson.databind
+  - type: JsonProcessingException
+    package: com.fasterxml.jackson.core
+  _change: modify

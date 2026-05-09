@@ -66,7 +66,9 @@ public class FileSystemRevisionArtifactStoreTest {
                 null,   // rejectionReason is null when APPROVED (R010)
                 RevisionOutcomeKind.APPROVED_APPLIED,
                 null,   // decidedAt — null for auto-approved (not separately recorded)
-                null    // decisionNote — null for auto-approved
+                null,   // decisionNote — null for auto-approved
+                null,   // contextSource — null for pre-FEAT-REVCTX artifacts
+                null    // contextOverridePayload — null for pre-FEAT-REVCTX artifacts
         );
     }
 
@@ -100,7 +102,9 @@ public class FileSystemRevisionArtifactStoreTest {
                 null,   // rejectionReason — null for PENDING_APPROVAL
                 RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED,
                 null,   // decidedAt — not yet decided
-                null    // decisionNote — not yet decided
+                null,   // decisionNote — not yet decided
+                null,   // contextSource — null for pre-FEAT-REVCTX artifacts
+                null    // contextOverridePayload — null for pre-FEAT-REVCTX artifacts
         );
     }
 
@@ -134,7 +138,9 @@ public class FileSystemRevisionArtifactStoreTest {
                 "not relevant",
                 RevisionOutcomeKind.REJECTED,
                 Instant.parse("2026-04-20T11:00:00Z"),
-                "rejected in test"
+                "rejected in test",
+                null,   // contextSource — null for pre-FEAT-REVCTX artifacts
+                null    // contextOverridePayload — null for pre-FEAT-REVCTX artifacts
         );
     }
 

@@ -12,8 +12,12 @@ import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.revisiondomain.CorrectionContextOverride;
+import com.learney.contentaudit.revisiondomain.CorrectionContextOverrideParser;
+import com.learney.contentaudit.revisiondomain.CorrectionContextSource;
 import com.learney.contentaudit.revisiondomain.CourseElementLocator;
 import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
+import com.learney.contentaudit.revisiondomain.OverrideRejectedException;
 import com.learney.contentaudit.revisiondomain.RevisionArtifact;
 import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
 import com.learney.contentaudit.revisiondomain.RevisionOutcome;
@@ -46,8 +50,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
@@ -72,6 +79,7 @@ public class DefaultRevisionEngineTest {
     @Mock private CourseElementLocator elementLocator;
     @Mock private ImpactPreviewComputer impactPreviewComputer;
     @Mock private ImpactPreviewStore impactPreviewStore;
+    @Mock private CorrectionContextOverrideParser correctionContextOverrideParser;
 
     private DefaultRevisionEngine buildEngine() {
         return new DefaultRevisionEngine(
@@ -84,7 +92,8 @@ public class DefaultRevisionEngineTest {
                 courseRepository,
                 elementLocator,
                 impactPreviewComputer,
-                impactPreviewStore
+                impactPreviewStore,
+                correctionContextOverrideParser
         );
     }
 
@@ -135,7 +144,7 @@ public class DefaultRevisionEngineTest {
         DefaultRevisionEngine engine = buildEngine();
 
         // Act
-        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath);
+        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath, null);
 
         // Assert – R011: courseRepository.save must be called with the updated course
         verify(courseRepository).save(any(CourseEntity.class), eq(coursePath));
@@ -188,7 +197,7 @@ public class DefaultRevisionEngineTest {
         DefaultRevisionEngine engine = buildEngine();
 
         // Act
-        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath);
+        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath, null);
 
         // Assert – R012: courseRepository.save must NEVER be called
         verify(courseRepository, never()).save(any(CourseEntity.class), any(Path.class));
@@ -243,7 +252,7 @@ public class DefaultRevisionEngineTest {
         DefaultRevisionEngine engine = buildEngine();
 
         // Act
-        engine.revise(planId, taskId, coursePath);
+        engine.revise(planId, taskId, coursePath, null);
 
         // Assert – R013: refinementPlanStore.save is called with a plan whose matching task is COMPLETED
         ArgumentCaptor<RefinementPlan> planCaptor = ArgumentCaptor.forClass(RefinementPlan.class);
@@ -307,7 +316,7 @@ public class DefaultRevisionEngineTest {
         DefaultRevisionEngine engine = buildEngine();
 
         // Act
-        engine.revise(planId, taskId, coursePath);
+        engine.revise(planId, taskId, coursePath, null);
 
         // Assert – R014: artifactStore.save must be called BEFORE courseRepository.save
         InOrder order = inOrder(artifactStore, courseRepository);
@@ -361,7 +370,7 @@ public class DefaultRevisionEngineTest {
         DefaultRevisionEngine engine = buildEngine();
 
         // Act
-        engine.revise(planId, taskId, coursePath);
+        engine.revise(planId, taskId, coursePath, null);
 
         // Assert – R008: artifactStore.save called with artifact having PENDING_APPROVAL verdict
         ArgumentCaptor<RevisionArtifact> artifactCaptor = ArgumentCaptor.forClass(RevisionArtifact.class);
@@ -419,7 +428,7 @@ public class DefaultRevisionEngineTest {
         DefaultRevisionEngine engine = buildEngine();
 
         // Act
-        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath);
+        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath, null);
 
         // Assert – R009: outcome kind is PENDING_APPROVAL_PERSISTED
         assertEquals(RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, outcome.getKind(),
@@ -462,7 +471,7 @@ public class DefaultRevisionEngineTest {
         DefaultRevisionEngine engine = buildEngine();
 
         // Act
-        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath);
+        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath, null);
 
         // Assert – R010: outcome kind is ALREADY_PENDING_DECISION
         assertEquals(RevisionOutcomeKind.ALREADY_PENDING_DECISION, outcome.getKind(),
@@ -533,7 +542,7 @@ public class DefaultRevisionEngineTest {
         DefaultRevisionEngine engine = buildEngine();
 
         // Act
-        engine.revise(planId, taskId, coursePath);
+        engine.revise(planId, taskId, coursePath, null);
 
         // Assert — R001: compute must be called exactly once with the current course and the new proposal
         verify(impactPreviewComputer, org.mockito.Mockito.times(1))
@@ -596,7 +605,7 @@ public class DefaultRevisionEngineTest {
         DefaultRevisionEngine engine = buildEngine();
 
         // Act
-        engine.revise(planId, taskId, coursePath);
+        engine.revise(planId, taskId, coursePath, null);
 
         // Assert — R001: impactPreviewStore.save must be called with the preview that carries the proposalId
         ArgumentCaptor<ImpactPreview> previewCaptor = ArgumentCaptor.forClass(ImpactPreview.class);
@@ -668,7 +677,7 @@ public class DefaultRevisionEngineTest {
         DefaultRevisionEngine engine = buildEngine();
 
         // Act — must NOT throw even though the preview is UNAVAILABLE
-        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath);
+        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath, null);
 
         // Assert — R010: artifact persisted with its initial verdict (PENDING_APPROVAL)
         ArgumentCaptor<RevisionArtifact> artifactCaptor = ArgumentCaptor.forClass(RevisionArtifact.class);
@@ -683,5 +692,488 @@ public class DefaultRevisionEngineTest {
 
         // Assert — R010: the UNAVAILABLE preview is still persisted (not discarded)
         verify(impactPreviewStore).save(any(ImpactPreview.class));
+    }
+
+    @Test
+    @DisplayName("should bypass contextResolver and consume the override payload as the strategy input when overridePayload is provided")
+    @Tag("FEAT-REVCTX")
+    @Tag("F-REVCTX-R002")
+    public void shouldBypassContextResolverAndConsumeTheOverridePayloadAsTheStrategyInputWhenOverridePayloadIsProvided() {
+        // R002: when overridePayload is provided, the engine must use the parsed override as the
+        // CorrectionContext fed to the strategy — contextResolver.resolve() must NOT be called
+        // (no AuditReport-derived context construction for this task).
+        String planId = "plan-r002-a";
+        String taskId = "task-r002-a";
+        String auditId = "audit-r002-a";
+        String nodeId = "quiz-r002-a";
+        String overridePayload = """
+                {"taskId":"task-r002-a","nodeId":"quiz-r002-a","diagnosisKind":"LEMMA_ABSENCE","sentence":"She runs."}
+                """;
+        Path coursePath = Path.of("./db/english-course");
+
+        RefinementTask task = new RefinementTask(
+                taskId, AuditTarget.QUIZ, nodeId, "Quiz about lemma absence override",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING
+        );
+        RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
+
+        CorrectionContext overrideContext = mock(CorrectionContext.class);
+        CorrectionContextOverride override = new CorrectionContextOverride(overrideContext, overridePayload);
+
+        CourseEntity course = mock(CourseEntity.class);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        RevisionProposal proposal = new RevisionProposal(
+                taskId + "-r002a", taskId, planId, auditId,
+                DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
+                snapshot, snapshot, "strategy: lemma absence", "lemma-absence-mvp", Instant.now(), null
+        );
+
+        RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
+        when(validatorResult.verdict()).thenReturn(RevisionVerdict.APPROVED);
+        when(validatorResult.rejectionReason()).thenReturn(Optional.empty());
+
+        when(refinementPlanStore.load(planId)).thenReturn(Optional.of(plan));
+        when(contextResolver.supports(DiagnosisKind.LEMMA_ABSENCE)).thenReturn(true);
+        when(correctionContextOverrideParser.parse(eq(overridePayload), eq(DiagnosisKind.LEMMA_ABSENCE), eq(nodeId)))
+                .thenReturn(override);
+        when(courseRepository.load(coursePath)).thenReturn(course);
+        when(elementLocator.snapshot(course, AuditTarget.QUIZ, nodeId)).thenReturn(Optional.of(snapshot));
+        when(reviser.handles(DiagnosisKind.LEMMA_ABSENCE)).thenReturn(true);
+        when(reviser.propose(task, overrideContext, snapshot)).thenReturn(proposal);
+        when(validator.validate(proposal)).thenReturn(validatorResult);
+        when(artifactStore.save(any(RevisionArtifact.class))).thenReturn(".content-audit/revisions/" + planId + "/" + proposal.getProposalId());
+        when(elementLocator.replace(eq(course), eq(snapshot))).thenReturn(course);
+        when(impactPreviewComputer.compute(any(CourseEntity.class), any(RevisionProposal.class)))
+                .thenReturn(new ImpactPreview(proposal.getProposalId(), Instant.now(),
+                        ImpactPreviewAvailability.AVAILABLE, null, Collections.emptyList()));
+
+        DefaultRevisionEngine engine = buildEngine();
+
+        // Act
+        engine.revise(planId, taskId, coursePath, overridePayload);
+
+        // Assert — R002: the strategy receives the overrideContext (from the parser), not a derived one
+        verify(reviser).propose(eq(task), eq(overrideContext), eq(snapshot));
+        // Assert — R002: contextResolver.resolve must NOT be called (no AuditReport derivation)
+        verify(contextResolver, never()).resolve(any(AuditReport.class), any(RefinementTask.class));
+    }
+
+    @Test
+    @DisplayName("should not perform any AuditReport-derived context construction for the revised task when overridePayload is provided")
+    @Tag("FEAT-REVCTX")
+    @Tag("F-REVCTX-R002")
+    public void shouldNotPerformAnyAuditReportderivedContextConstructionForTheRevisedTaskWhenOverridePayloadIsProvided() {
+        // R002 #2: "zero derivation" — no call to contextResolver.resolve() or
+        // contextResolver.resolveWithIndex() occurs for the revised task when overridePayload
+        // is provided. Also: auditReportStore.load() may still be called for task lookup but
+        // must NOT be used to construct the CorrectionContext.
+        String planId = "plan-r002-b";
+        String taskId = "task-r002-b";
+        String auditId = "audit-r002-b";
+        String nodeId = "quiz-r002-b";
+        String overridePayload = """
+                {"taskId":"task-r002-b","nodeId":"quiz-r002-b","diagnosisKind":"LEMMA_ABSENCE","sentence":"He reads."}
+                """;
+        Path coursePath = Path.of("./db/english-course");
+
+        RefinementTask task = new RefinementTask(
+                taskId, AuditTarget.QUIZ, nodeId, "Quiz zero derivation",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING
+        );
+        RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
+
+        CorrectionContext overrideContext = mock(CorrectionContext.class);
+        CorrectionContextOverride override = new CorrectionContextOverride(overrideContext, overridePayload);
+
+        CourseEntity course = mock(CourseEntity.class);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        RevisionProposal proposal = new RevisionProposal(
+                taskId + "-r002b", taskId, planId, auditId,
+                DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
+                snapshot, snapshot, "strategy: lemma absence", "lemma-absence-mvp", Instant.now(), null
+        );
+
+        RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
+        when(validatorResult.verdict()).thenReturn(RevisionVerdict.APPROVED);
+        when(validatorResult.rejectionReason()).thenReturn(Optional.empty());
+
+        when(refinementPlanStore.load(planId)).thenReturn(Optional.of(plan));
+        when(contextResolver.supports(DiagnosisKind.LEMMA_ABSENCE)).thenReturn(true);
+        when(correctionContextOverrideParser.parse(eq(overridePayload), eq(DiagnosisKind.LEMMA_ABSENCE), eq(nodeId)))
+                .thenReturn(override);
+        when(courseRepository.load(coursePath)).thenReturn(course);
+        when(elementLocator.snapshot(course, AuditTarget.QUIZ, nodeId)).thenReturn(Optional.of(snapshot));
+        when(reviser.handles(DiagnosisKind.LEMMA_ABSENCE)).thenReturn(true);
+        when(reviser.propose(task, overrideContext, snapshot)).thenReturn(proposal);
+        when(validator.validate(proposal)).thenReturn(validatorResult);
+        when(artifactStore.save(any(RevisionArtifact.class))).thenReturn(".content-audit/revisions/" + planId + "/" + proposal.getProposalId());
+        when(elementLocator.replace(eq(course), eq(snapshot))).thenReturn(course);
+        when(impactPreviewComputer.compute(any(CourseEntity.class), any(RevisionProposal.class)))
+                .thenReturn(new ImpactPreview(proposal.getProposalId(), Instant.now(),
+                        ImpactPreviewAvailability.AVAILABLE, null, Collections.emptyList()));
+
+        DefaultRevisionEngine engine = buildEngine();
+
+        // Act
+        engine.revise(planId, taskId, coursePath, overridePayload);
+
+        // Assert — R002 #2: contextResolver.resolve must NEVER be called (zero derivation)
+        verify(contextResolver, never()).resolve(any(AuditReport.class), any(RefinementTask.class));
+        verify(contextResolver, never()).resolveWithIndex(any(), any(AuditReport.class), any(RefinementTask.class));
+    }
+
+    @Test
+    @DisplayName("should produce OVERRIDE_INVALID outcome without persisting an artifact and without modifying the course when the parser rejects the override payload")
+    @Tag("FEAT-REVCTX")
+    @Tag("F-REVCTX-R003")
+    public void shouldProduceOVERRIDEINVALIDOutcomeWithoutPersistingAnArtifactAndWithoutModifyingTheCourseWhenTheParserRejectsTheOverridePayload() {
+        // R003: when the parser rejects the override (structural violation or identity mismatch),
+        // the engine must return OVERRIDE_INVALID without: invoking the strategy, persisting an
+        // artifact, or modifying the course/task.
+        String planId = "plan-r003";
+        String taskId = "task-r003";
+        String auditId = "audit-r003";
+        String nodeId = "quiz-r003";
+        String invalidPayload = """
+                {"taskId":"task-r003","nodeId":"quiz-wrong","diagnosisKind":"SENTENCE_LENGTH","sentence":"Bad."}
+                """;
+        Path coursePath = Path.of("./db/english-course");
+
+        RefinementTask task = new RefinementTask(
+                taskId, AuditTarget.QUIZ, nodeId, "Quiz identity mismatch",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING
+        );
+        RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
+
+        when(refinementPlanStore.load(planId)).thenReturn(Optional.of(plan));
+        // supports() returns true — the kind has a context contract; the rejection comes from the parser
+        when(contextResolver.supports(DiagnosisKind.LEMMA_ABSENCE)).thenReturn(true);
+        when(correctionContextOverrideParser.parse(eq(invalidPayload), eq(DiagnosisKind.LEMMA_ABSENCE), eq(nodeId)))
+                .thenThrow(new OverrideRejectedException(
+                        "El correctionContext provisto pertenece a otra tarea logica"));
+
+        DefaultRevisionEngine engine = buildEngine();
+
+        // Act
+        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath, invalidPayload);
+
+        // Assert — R003: outcome must be OVERRIDE_INVALID
+        assertEquals(RevisionOutcomeKind.OVERRIDE_INVALID, outcome.getKind(),
+                "Outcome must be OVERRIDE_INVALID when the parser rejects the override");
+        // Assert — R003: no artifact persisted, no strategy invoked, no course write
+        verify(reviser, never()).propose(any(), any(), any());
+        verify(artifactStore, never()).save(any(RevisionArtifact.class));
+        verify(courseRepository, never()).save(any(CourseEntity.class), any(Path.class));
+    }
+
+    @Test
+    @DisplayName("should produce OVERRIDE_NOT_APPLICABLE outcome without persisting an artifact and without modifying the course when the task diagnosisKind has no context contract")
+    @Tag("FEAT-REVCTX")
+    @Tag("F-REVCTX-R004")
+    public void shouldProduceOVERRIDENOTAPPLICABLEOutcomeWithoutPersistingAnArtifactAndWithoutModifyingTheCourseWhenTheTaskDiagnosisKindHasNoContextContract() {
+        // R004: when the task's DiagnosisKind has no context contract (contextResolver.supports()
+        // returns false), the engine must reject the override and return OVERRIDE_NOT_APPLICABLE
+        // without persisting an artifact or modifying the course.
+        String planId = "plan-r004";
+        String taskId = "task-r004";
+        String auditId = "audit-r004";
+        String nodeId = "quiz-r004";
+        String overridePayload = """
+                {"taskId":"task-r004","nodeId":"quiz-r004","diagnosisKind":"COCA_BUCKETS"}
+                """;
+        Path coursePath = Path.of("./db/english-course");
+
+        // COCA_BUCKETS falls to the bypass — no context contract
+        RefinementTask task = new RefinementTask(
+                taskId, AuditTarget.QUIZ, nodeId, "Quiz COCA_BUCKETS no context",
+                DiagnosisKind.COCA_BUCKETS, 1, RefinementTaskStatus.PENDING
+        );
+        RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
+
+        when(refinementPlanStore.load(planId)).thenReturn(Optional.of(plan));
+        // supports() returns false for COCA_BUCKETS — no context contract
+        when(contextResolver.supports(DiagnosisKind.COCA_BUCKETS)).thenReturn(false);
+
+        DefaultRevisionEngine engine = buildEngine();
+
+        // Act
+        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath, overridePayload);
+
+        // Assert — R004: outcome must be OVERRIDE_NOT_APPLICABLE
+        assertEquals(RevisionOutcomeKind.OVERRIDE_NOT_APPLICABLE, outcome.getKind(),
+                "Outcome must be OVERRIDE_NOT_APPLICABLE when DiagnosisKind has no context contract");
+        // Assert — R004: no parser invoked, no strategy, no artifact, no course write
+        verify(correctionContextOverrideParser, never()).parse(anyString(), any(DiagnosisKind.class), anyString());
+        verify(reviser, never()).propose(any(), any(), any());
+        verify(artifactStore, never()).save(any(RevisionArtifact.class));
+        verify(courseRepository, never()).save(any(CourseEntity.class), any(Path.class));
+    }
+
+    @Test
+    @DisplayName("should resolve the revised task from the persisted plan identified by planId and pass the override to the strategy regardless of any task identity hint embedded in the payload")
+    @Tag("FEAT-REVCTX")
+    @Tag("F-REVCTX-R005")
+    public void shouldResolveTheRevisedTaskFromThePersistedPlanIdentifiedByPlanIdAndPassTheOverrideToTheStrategyRegardlessOfAnyTaskIdentityHintEmbeddedInThePayload() {
+        // R005: the task is resolved from the persisted plan by taskId. The nodeId/diagnosisKind in
+        // the payload are used only for the R003 identity sanity check — the engine uses the
+        // persisted task's definition (not any payload hint) to drive the flow. The override context
+        // is then passed to the strategy unchanged.
+        String planId = "plan-r005";
+        String taskId = "task-r005-persisted";
+        String auditId = "audit-r005";
+        String nodeId = "quiz-r005";
+        // The payload's taskId may differ (from a projected plan) but nodeId+diagnosisKind must match
+        String overridePayload = """
+                {"taskId":"task-r005-projected","nodeId":"quiz-r005","diagnosisKind":"LEMMA_ABSENCE","sentence":"They sing."}
+                """;
+        Path coursePath = Path.of("./db/english-course");
+
+        RefinementTask persistedTask = new RefinementTask(
+                taskId, AuditTarget.QUIZ, nodeId, "Quiz persisted task",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING
+        );
+        RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(persistedTask));
+
+        CorrectionContext overrideContext = mock(CorrectionContext.class);
+        CorrectionContextOverride override = new CorrectionContextOverride(overrideContext, overridePayload);
+
+        CourseEntity course = mock(CourseEntity.class);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        RevisionProposal proposal = new RevisionProposal(
+                taskId + "-r005", taskId, planId, auditId,
+                DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
+                snapshot, snapshot, "strategy: lemma absence", "lemma-absence-mvp", Instant.now(), null
+        );
+
+        RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
+        when(validatorResult.verdict()).thenReturn(RevisionVerdict.APPROVED);
+        when(validatorResult.rejectionReason()).thenReturn(Optional.empty());
+
+        when(refinementPlanStore.load(planId)).thenReturn(Optional.of(plan));
+        when(contextResolver.supports(DiagnosisKind.LEMMA_ABSENCE)).thenReturn(true);
+        // Parser accepts: the nodeId+diagnosisKind in the payload match the persisted task
+        when(correctionContextOverrideParser.parse(eq(overridePayload), eq(DiagnosisKind.LEMMA_ABSENCE), eq(nodeId)))
+                .thenReturn(override);
+        when(courseRepository.load(coursePath)).thenReturn(course);
+        when(elementLocator.snapshot(course, AuditTarget.QUIZ, nodeId)).thenReturn(Optional.of(snapshot));
+        when(reviser.handles(DiagnosisKind.LEMMA_ABSENCE)).thenReturn(true);
+        when(reviser.propose(persistedTask, overrideContext, snapshot)).thenReturn(proposal);
+        when(validator.validate(proposal)).thenReturn(validatorResult);
+        when(artifactStore.save(any(RevisionArtifact.class))).thenReturn(".content-audit/revisions/" + planId + "/" + proposal.getProposalId());
+        when(elementLocator.replace(eq(course), eq(snapshot))).thenReturn(course);
+        when(impactPreviewComputer.compute(any(CourseEntity.class), any(RevisionProposal.class)))
+                .thenReturn(new ImpactPreview(proposal.getProposalId(), Instant.now(),
+                        ImpactPreviewAvailability.AVAILABLE, null, Collections.emptyList()));
+
+        DefaultRevisionEngine engine = buildEngine();
+
+        // Act
+        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath, overridePayload);
+
+        // Assert — R005: task resolved from persisted plan; strategy receives the persisted task
+        // as the first arg and the override context as the second — not a derived context
+        verify(reviser).propose(eq(persistedTask), eq(overrideContext), eq(snapshot));
+        assertEquals(RevisionOutcomeKind.APPROVED_APPLIED, outcome.getKind(),
+                "Flow must complete successfully when the persisted task matches the override identity");
+    }
+
+    @Test
+    @DisplayName("should preserve the human approval flow and emit a PENDING_APPROVAL artifact when human approval mode is active and an override is provided")
+    @Tag("FEAT-REVCTX")
+    @Tag("F-REVCTX-R006")
+    public void shouldPreserveTheHumanApprovalFlowAndEmitAPENDINGAPPROVALArtifactWhenHumanApprovalModeIsActiveAndAnOverrideIsProvided() {
+        // R006: the override must not alter the approval flow. When the validator emits
+        // PENDING_APPROVAL, the artifact is persisted with PENDING_APPROVAL and the course is
+        // untouched — identical behavior to a non-override invocation in human mode.
+        String planId = "plan-r006";
+        String taskId = "task-r006";
+        String auditId = "audit-r006";
+        String nodeId = "quiz-r006";
+        String overridePayload = """
+                {"taskId":"task-r006","nodeId":"quiz-r006","diagnosisKind":"LEMMA_ABSENCE","sentence":"She writes."}
+                """;
+        Path coursePath = Path.of("./db/english-course");
+
+        RefinementTask task = new RefinementTask(
+                taskId, AuditTarget.QUIZ, nodeId, "Quiz human approval with override",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING
+        );
+        RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
+
+        CorrectionContext overrideContext = mock(CorrectionContext.class);
+        CorrectionContextOverride override = new CorrectionContextOverride(overrideContext, overridePayload);
+
+        CourseEntity course = mock(CourseEntity.class);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        RevisionProposal proposal = new RevisionProposal(
+                taskId + "-r006", taskId, planId, auditId,
+                DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
+                snapshot, snapshot, "strategy: lemma absence", "lemma-absence-mvp", Instant.now(), null
+        );
+
+        // Human validator emits PENDING_APPROVAL
+        RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
+        when(validatorResult.verdict()).thenReturn(RevisionVerdict.PENDING_APPROVAL);
+        when(validatorResult.rejectionReason()).thenReturn(Optional.empty());
+
+        when(refinementPlanStore.load(planId)).thenReturn(Optional.of(plan));
+        when(contextResolver.supports(DiagnosisKind.LEMMA_ABSENCE)).thenReturn(true);
+        when(correctionContextOverrideParser.parse(eq(overridePayload), eq(DiagnosisKind.LEMMA_ABSENCE), eq(nodeId)))
+                .thenReturn(override);
+        when(courseRepository.load(coursePath)).thenReturn(course);
+        when(elementLocator.snapshot(course, AuditTarget.QUIZ, nodeId)).thenReturn(Optional.of(snapshot));
+        when(reviser.handles(DiagnosisKind.LEMMA_ABSENCE)).thenReturn(true);
+        when(reviser.propose(task, overrideContext, snapshot)).thenReturn(proposal);
+        when(validator.validate(proposal)).thenReturn(validatorResult);
+        when(artifactStore.save(any(RevisionArtifact.class))).thenReturn(".content-audit/revisions/" + planId + "/" + proposal.getProposalId());
+        when(impactPreviewComputer.compute(any(CourseEntity.class), any(RevisionProposal.class)))
+                .thenReturn(new ImpactPreview(proposal.getProposalId(), Instant.now(),
+                        ImpactPreviewAvailability.AVAILABLE, null, Collections.emptyList()));
+
+        DefaultRevisionEngine engine = buildEngine();
+
+        // Act
+        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath, overridePayload);
+
+        // Assert — R006: outcome is PENDING_APPROVAL_PERSISTED (same as without override in human mode)
+        assertEquals(RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, outcome.getKind(),
+                "Outcome must be PENDING_APPROVAL_PERSISTED when validator emits PENDING_APPROVAL with an override");
+        // Assert — R006: artifact persisted with PENDING_APPROVAL verdict
+        ArgumentCaptor<RevisionArtifact> artifactCaptor = ArgumentCaptor.forClass(RevisionArtifact.class);
+        verify(artifactStore).save(artifactCaptor.capture());
+        assertEquals(RevisionVerdict.PENDING_APPROVAL, artifactCaptor.getValue().getVerdict(),
+                "Artifact must carry PENDING_APPROVAL verdict regardless of override");
+        // Assert — R006: course never written
+        verify(courseRepository, never()).save(any(CourseEntity.class), any(Path.class));
+    }
+
+    @Test
+    @DisplayName("should persist the RevisionArtifact with contextSource=OVERRIDE and contextOverridePayload equal to the literal raw JSON received when an override is provided")
+    @Tag("FEAT-REVCTX")
+    @Tag("F-REVCTX-R007")
+    public void shouldPersistTheRevisionArtifactWithContextSourceOVERRIDEAndContextOverridePayloadEqualToTheLiteralRawJSONReceivedWhenAnOverrideIsProvided() {
+        // R007: the persisted artifact must carry (a) contextSource=OVERRIDE and (b) the literal
+        // raw JSON payload as contextOverridePayload for auditability.
+        String planId = "plan-r007-ov";
+        String taskId = "task-r007-ov";
+        String auditId = "audit-r007-ov";
+        String nodeId = "quiz-r007-ov";
+        String rawJson = """
+                {"taskId":"task-r007-ov","nodeId":"quiz-r007-ov","diagnosisKind":"LEMMA_ABSENCE","sentence":"We dance."}
+                """;
+        Path coursePath = Path.of("./db/english-course");
+
+        RefinementTask task = new RefinementTask(
+                taskId, AuditTarget.QUIZ, nodeId, "Quiz auditability override",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING
+        );
+        RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
+
+        CorrectionContext overrideContext = mock(CorrectionContext.class);
+        CorrectionContextOverride override = new CorrectionContextOverride(overrideContext, rawJson);
+
+        CourseEntity course = mock(CourseEntity.class);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        RevisionProposal proposal = new RevisionProposal(
+                taskId + "-r007ov", taskId, planId, auditId,
+                DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
+                snapshot, snapshot, "strategy: lemma absence", "lemma-absence-mvp", Instant.now(), null
+        );
+
+        RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
+        when(validatorResult.verdict()).thenReturn(RevisionVerdict.APPROVED);
+        when(validatorResult.rejectionReason()).thenReturn(Optional.empty());
+
+        when(refinementPlanStore.load(planId)).thenReturn(Optional.of(plan));
+        when(contextResolver.supports(DiagnosisKind.LEMMA_ABSENCE)).thenReturn(true);
+        when(correctionContextOverrideParser.parse(eq(rawJson), eq(DiagnosisKind.LEMMA_ABSENCE), eq(nodeId)))
+                .thenReturn(override);
+        when(courseRepository.load(coursePath)).thenReturn(course);
+        when(elementLocator.snapshot(course, AuditTarget.QUIZ, nodeId)).thenReturn(Optional.of(snapshot));
+        when(reviser.handles(DiagnosisKind.LEMMA_ABSENCE)).thenReturn(true);
+        when(reviser.propose(task, overrideContext, snapshot)).thenReturn(proposal);
+        when(validator.validate(proposal)).thenReturn(validatorResult);
+        when(artifactStore.save(any(RevisionArtifact.class))).thenReturn(".content-audit/revisions/" + planId + "/" + proposal.getProposalId());
+        when(elementLocator.replace(eq(course), eq(snapshot))).thenReturn(course);
+        when(impactPreviewComputer.compute(any(CourseEntity.class), any(RevisionProposal.class)))
+                .thenReturn(new ImpactPreview(proposal.getProposalId(), Instant.now(),
+                        ImpactPreviewAvailability.AVAILABLE, null, Collections.emptyList()));
+
+        DefaultRevisionEngine engine = buildEngine();
+
+        // Act
+        engine.revise(planId, taskId, coursePath, rawJson);
+
+        // Assert — R007: artifact must have contextSource=OVERRIDE and the literal raw JSON payload
+        ArgumentCaptor<RevisionArtifact> captor = ArgumentCaptor.forClass(RevisionArtifact.class);
+        verify(artifactStore).save(captor.capture());
+        RevisionArtifact saved = captor.getValue();
+        assertEquals(CorrectionContextSource.OVERRIDE, saved.getContextSource(),
+                "contextSource must be OVERRIDE when an override payload is provided");
+        assertEquals(rawJson, saved.getContextOverridePayload(),
+                "contextOverridePayload must be the literal raw JSON received — no re-serialization");
+    }
+
+    @Test
+    @DisplayName("should persist the RevisionArtifact with contextSource=DERIVED and a null contextOverridePayload when no override is provided")
+    @Tag("FEAT-REVCTX")
+    @Tag("F-REVCTX-R007")
+    public void shouldPersistTheRevisionArtifactWithContextSourceDERIVEDAndANullContextOverridePayloadWhenNoOverrideIsProvided() {
+        // R007: for a normal (no override) invocation, the artifact must carry contextSource=DERIVED
+        // and contextOverridePayload=null — confirming the origin indicator is always populated
+        // and is "derived" when the system resolved the context by itself.
+        String planId = "plan-r007-der";
+        String taskId = "task-r007-der";
+        String auditId = "audit-r007-der";
+        String nodeId = "quiz-r007-der";
+        Path coursePath = Path.of("./db/english-course");
+
+        RefinementTask task = new RefinementTask(
+                taskId, AuditTarget.QUIZ, nodeId, "Quiz auditability derived",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING
+        );
+        RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
+
+        AuditReport auditReport = mock(AuditReport.class);
+        CorrectionContext context = mock(CorrectionContext.class);
+        CourseEntity course = mock(CourseEntity.class);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        RevisionProposal proposal = new RevisionProposal(
+                taskId + "-r007der", taskId, planId, auditId,
+                DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, nodeId,
+                snapshot, snapshot, "bypass: identity", "bypass", Instant.now(), null
+        );
+
+        RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
+        when(validatorResult.verdict()).thenReturn(RevisionVerdict.APPROVED);
+        when(validatorResult.rejectionReason()).thenReturn(Optional.empty());
+
+        when(refinementPlanStore.load(planId)).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(auditId)).thenReturn(Optional.of(auditReport));
+        when(contextResolver.resolve(eq(auditReport), eq(task))).thenReturn(Optional.of(context));
+        when(courseRepository.load(coursePath)).thenReturn(course);
+        when(elementLocator.snapshot(course, AuditTarget.QUIZ, nodeId)).thenReturn(Optional.of(snapshot));
+        when(reviser.handles(DiagnosisKind.SENTENCE_LENGTH)).thenReturn(true);
+        when(reviser.propose(task, context, snapshot)).thenReturn(proposal);
+        when(validator.validate(proposal)).thenReturn(validatorResult);
+        when(artifactStore.save(any(RevisionArtifact.class))).thenReturn(".content-audit/revisions/" + planId + "/" + proposal.getProposalId());
+        when(elementLocator.replace(eq(course), eq(snapshot))).thenReturn(course);
+        when(impactPreviewComputer.compute(any(CourseEntity.class), any(RevisionProposal.class)))
+                .thenReturn(new ImpactPreview(proposal.getProposalId(), Instant.now(),
+                        ImpactPreviewAvailability.AVAILABLE, null, Collections.emptyList()));
+
+        DefaultRevisionEngine engine = buildEngine();
+
+        // Act — no overridePayload (null)
+        engine.revise(planId, taskId, coursePath, null);
+
+        // Assert — R007: artifact must have contextSource=DERIVED and null contextOverridePayload
+        ArgumentCaptor<RevisionArtifact> captor = ArgumentCaptor.forClass(RevisionArtifact.class);
+        verify(artifactStore).save(captor.capture());
+        RevisionArtifact saved = captor.getValue();
+        assertEquals(CorrectionContextSource.DERIVED, saved.getContextSource(),
+                "contextSource must be DERIVED when no override payload is provided");
+        assertNull(saved.getContextOverridePayload(),
+                "contextOverridePayload must be null when contextSource is DERIVED");
     }
 }

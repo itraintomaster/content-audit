@@ -1,0 +1,211 @@
+code: FEAT-REVCTX
+description: "FEAT-REVCTX: el verbo revise acepta un correctionContext provisto externamente.\
+  \ Se introduce un parser/validador propio del override en revision-domain.contextoverride\
+  \ (paquete interno con dependencia a Jackson), un nuevo carrier CorrectionContextOverride\
+  \ mas el enum CorrectionContextSource, dos nuevos RevisionOutcomeKind (OVERRIDE_INVALID,\
+  \ OVERRIDE_NOT_APPLICABLE), un overload nuevo en RevisionEngine y ReviseCommand\
+  \ para el camino con override, dos campos nuevos en RevisionArtifact para auditabilidad\
+  \ (Opcion A de DOUBT-OVERRIDE-AUDITABILITY) y un metodo supports(DiagnosisKind)\
+  \ en CorrectionContextResolver para que R004 use una sola fuente de verdad."
+modules:
+- name: refiner-domain
+  interfaces:
+  - name: CorrectionContextResolver
+    sealed: false
+    exposes:
+    - signature: "supports(DiagnosisKind kind): boolean"
+      _change: add
+    _change: modify
+  _change: modify
+- name: revision-domain
+  models:
+  - name: RevisionOutcomeKind
+    type: record
+    fields:
+    - name: OVERRIDE_INVALID
+      description: "El correctionContext provisto externamente no respeta el contrato\
+        \ estructural (R003) o no es coherente con la tarea persistida (sanity check\
+        \ de nodeId+diagnosisKind, DOUBT-OVERRIDE-COHERENCE). No se persiste artefacto,\
+        \ no se modifica curso ni tarea."
+      _change: add
+    - name: OVERRIDE_NOT_APPLICABLE
+      description: La tarea revisada es de un DiagnosisKind para el cual no existe
+        contrato de correctionContext (R004). El override no tiene como afectar al
+        bypass; se rechaza la invocacion sin persistir artefacto.
+      _change: add
+    _change: modify
+  - name: RevisionArtifact
+    type: record
+    fields:
+    - name: contextSource
+      type: CorrectionContextSource
+      description: "Origen del correctionContext consumido por la estrategia (FEAT-REVCTX\
+        \ R002 #3). DERIVED para artefactos pre-FEAT-REVCTX o invocaciones sin override;\
+        \ OVERRIDE cuando el cliente provee el contexto via revise --correction-context(-file)."
+      _change: add
+    - name: contextOverridePayload
+      type: String
+      description: Snapshot crudo del JSON entregado por el cliente como override
+        (DOUBT-OVERRIDE-AUDITABILITY Opcion A). Null cuando contextSource=DERIVED.
+        Se persiste literal para que la auditoria del artefacto sea reconstruible
+        a posteriori.
+      _change: add
+    _change: modify
+  - name: CorrectionContextSource
+    type: enum
+    fields:
+    - name: DERIVED
+      description: El contexto fue derivado por el sistema desde el AuditReport y
+        el plan persistente (camino historico de FEAT-REVBYP / FEAT-RCLA / FEAT-RCSL).
+    - name: OVERRIDE
+      description: El contexto fue provisto externamente por el cliente via revise
+        --correction-context (FEAT-REVCTX R001).
+    _change: add
+  - name: CorrectionContextOverride
+    type: record
+    fields:
+    - name: context
+      type: CorrectionContext
+      description: "Contexto ya parseado y validado estructuralmente (R003) y por\
+        \ coherencia minima con la tarea persistida (nodeId + diagnosisKind, DOUBT-OVERRIDE-COHERENCE\
+        \ Opcion B). Es el mismo tipo que produce el CorrectionContextResolver; la\
+        \ estrategia activa lo consume sin saber su origen."
+    - name: rawPayload
+      type: String
+      description: "JSON crudo entregado por el cliente, conservado verbatim para\
+        \ auditabilidad (R002 #3, DOUBT-OVERRIDE-AUDITABILITY Opcion A). Viaja al\
+        \ RevisionArtifact y se persiste tal cual."
+    _change: add
+  - name: OverrideRejectedException
+    type: exception
+    fields:
+    - name: reason
+      type: String
+      description: "Mensaje accionable que identifica el motivo del rechazo (R003:\
+        \ campo faltante, tipo invalido, valor fuera de dominio; o sanity check fallido:\
+        \ nodeId/diagnosisKind no coinciden con la tarea persistida)."
+    message: "correctionContext override rejected: %s"
+    _change: add
+    extends: RuntimeException
+  - name: RevisionEngineConfig
+    type: record
+    fields:
+    - name: correctionContextOverrideParser
+      type: CorrectionContextOverrideParser
+      description: FEAT-REVCTX. Parser de overrides JSON usado por el engine cuando
+        recibe la invocacion con override (revise(...) overload). Nullable -> la factory
+        wirea DefaultCorrectionContextOverrideParser. La unica responsabilidad del
+        parser es traducir el JSON crudo a un CorrectionContextOverride o lanzar OverrideRejectedException;
+        el engine sigue siendo el que decide si invocar al parser segun el overload
+        usado.
+      _change: add
+    _change: modify
+  interfaces:
+  - name: RevisionEngine
+    sealed: false
+    exposes:
+    - signature: "revise(String planId, String taskId, Path coursePath, String overridePayload):\
+        \ RevisionOutcome"
+      _change: add
+    _change: modify
+  - name: CorrectionContextOverrideParser
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "parse(String rawJson, DiagnosisKind expectedDiagnosisKind, String\
+        \ expectedNodeId): CorrectionContextOverride"
+    _change: add
+  uses:
+  - jackson-databind
+  packages:
+  - name: contextoverride
+    description: "Encapsulamiento del parsing y validacion del correctionContext provisto\
+      \ externamente por el cliente (FEAT-REVCTX). Aloja la implementacion del CorrectionContextOverrideParser,\
+      \ un mapper Jackson dedicado y los validadores estructurales por DiagnosisKind.\
+      \ Solo el carrier CorrectionContextOverride y el port viven a nivel raiz; los\
+      \ internals (Jackson, parsers especificos por kind, validadores) quedan ocultos\
+      \ en este paquete interno."
+    visibility: internal
+    interfaces:
+    - name: CorrectionContextStructuralValidator
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "validateAndBuild(JsonNode payload, String expectedNodeId): CorrectionContext"
+      _change: add
+    implementations:
+    - name: DefaultCorrectionContextOverrideParser
+      requiresInject:
+      - name: objectMapper
+        type: ObjectMapper
+        description: Mapper Jackson configurado para tolerar campos desconocidos minimamente
+          y rechazar tipos incompatibles. La factory de RevisionEngine lo construye
+          con la misma configuracion que usa audit-infrastructure para los stores
+          filesystem.
+      - name: validators
+        type: "Map<DiagnosisKind,CorrectionContextStructuralValidator>"
+        description: "Validadores estructurales registrados por DiagnosisKind (uno\
+          \ para LEMMA_ABSENCE que matchea FEAT-RCLA, uno para SENTENCE_LENGTH que\
+          \ matchea FEAT-RCSL). Si el DiagnosisKind no esta en el mapa, parse() lanza\
+          \ OverrideRejectedException con motivo no-applicable; en la practica el\
+          \ engine ya validan R004 antes via CorrectionContextResolver.supports."
+      visibility: public
+      classStereotype: false
+      implements:
+      - CorrectionContextOverrideParser
+      _change: add
+    - name: LemmaAbsenceContextStructuralValidator
+      requiresInject:
+      - name: objectMapper
+        type: ObjectMapper
+      classStereotype: false
+      implements:
+      - CorrectionContextStructuralValidator
+      _change: add
+    - name: SentenceLengthContextStructuralValidator
+      requiresInject:
+      - name: objectMapper
+        type: ObjectMapper
+      classStereotype: false
+      implements:
+      - CorrectionContextStructuralValidator
+      _change: add
+    _change: add
+  - name: engine
+    implementations:
+    - name: DefaultRevisionEngine
+      requiresInject:
+      - name: correctionContextOverrideParser
+        type: CorrectionContextOverrideParser
+        description: "FEAT-REVCTX. Parser inyectado por la factory; usado solo en\
+          \ el overload revise(planId, taskId, coursePath, overridePayload). El overload\
+          \ existente (sin override) no lo invoca. R002 #2: cuando hay override el\
+          \ engine NO llama a contextResolver.resolve para construir el contexto;\
+          \ solo invoca contextResolver.supports(kind) para validar R004."
+        _change: add
+      classStereotype: false
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-cli
+  interfaces:
+  - name: ReviseCommand
+    sealed: false
+    exposes:
+    - signature: "revise(String taskId, String planId, String correctionContextJson,\
+        \ String correctionContextFilePath): Integer"
+      _change: add
+    _change: modify
+  _change: modify
+dependencies:
+- alias: jackson-databind
+  artifact: com.fasterxml.jackson.core:jackson-databind:2.17.2
+  scope: compile
+  provides:
+  - type: ObjectMapper
+    package: com.fasterxml.jackson.databind
+  - type: JsonNode
+    package: com.fasterxml.jackson.databind
+  - type: JsonProcessingException
+    package: com.fasterxml.jackson.core
+  _change: add

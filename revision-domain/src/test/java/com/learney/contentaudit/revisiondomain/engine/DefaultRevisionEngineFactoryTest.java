@@ -46,7 +46,8 @@ public class DefaultRevisionEngineFactoryTest {
                 null,                                            // lemmaAbsenceProposalDeriver
                 null,                                            // courseMapper
                 null,                                            // auditEngine
-                null                                             // impactPreviewStore
+                null,                                            // impactPreviewStore
+                null                                             // correctionContextOverrideParser (nullable per TECH_SPEC)
         );
 
         RevisionEngineFactory factory = new DefaultRevisionEngineFactory();

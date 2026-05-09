@@ -7,6 +7,8 @@ import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.revisiondomain.RevisionEngine;
 import com.learney.contentaudit.revisiondomain.RevisionOutcome;
 import com.learney.contentaudit.revisiondomain.RevisionOutcomeKind;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
@@ -101,7 +103,7 @@ import picocli.CommandLine.Parameters;
                 "use OpenRouter or a litellm proxy as a gateway.",
         }
 )
-final class ReviseCmd implements ReviseCommand, Callable<Integer> {
+class ReviseCmd implements ReviseCommand, Callable<Integer> {
     private final RevisionEngine revisionEngine;
 
     private final RefinementPlanStore refinementPlanStore;
@@ -121,6 +123,16 @@ final class ReviseCmd implements ReviseCommand, Callable<Integer> {
             description = "Path to the course directory. Defaults to CONTENT_AUDIT_CONTENT_FOLDER env var.")
     private String coursePath;
 
+    @Option(names = {"--correction-context"},
+            description = "JSON payload of the correctionContext override (inline). "
+                    + "Mutually exclusive with --correction-context-file (F-REVCTX-R001).")
+    private String correctionContextJson;
+
+    @Option(names = {"--correction-context-file"},
+            description = "Path to a file containing the correctionContext JSON override. "
+                    + "Mutually exclusive with --correction-context (F-REVCTX-R001).")
+    private String correctionContextFilePath;
+
     public ReviseCmd(RevisionEngine revisionEngine, RefinementPlanStore refinementPlanStore) {
         this.revisionEngine = revisionEngine;
         this.refinementPlanStore = refinementPlanStore;
@@ -128,16 +140,37 @@ final class ReviseCmd implements ReviseCommand, Callable<Integer> {
 
     @Override
     public Integer call() {
-        return revise(taskId, planId);
+        return revise(taskId, planId, correctionContextJson, correctionContextFilePath);
     }
 
     @Override
-    public Integer revise(String taskId, String planId) {
+    public Integer revise(String taskId, String planId, String correctionContextJson,
+            String correctionContextFilePath) {
+        // F-REVCTX-R001: mutually exclusive flags check
+        if (correctionContextJson != null && correctionContextFilePath != null) {
+            System.err.println("Error: --correction-context y --correction-context-file son mutuamente excluyentes");
+            return 1;
+        }
+
         // Resolve the course path
         String resolvedCoursePath = CoursePathResolver.resolve(coursePath);
         if (resolvedCoursePath == null) {
             System.err.println("Error: missing course path. Provide it as --course-path or set CONTENT_AUDIT_CONTENT_FOLDER.");
             return 1;
+        }
+
+        // Resolve override payload if any (F-REVCTX-R001, R008)
+        String resolvedOverridePayload = null;
+        if (correctionContextJson != null) {
+            resolvedOverridePayload = correctionContextJson;
+        } else if (correctionContextFilePath != null) {
+            try {
+                resolvedOverridePayload = Files.readString(Path.of(correctionContextFilePath));
+            } catch (IOException e) {
+                System.err.println("Error: no se pudo leer el archivo de correctionContext '"
+                        + correctionContextFilePath + "': " + e.getMessage());
+                return 1;
+            }
         }
 
         // Resolve the plan (R015)
@@ -176,7 +209,9 @@ final class ReviseCmd implements ReviseCommand, Callable<Integer> {
         }
 
         // Invoke the revision engine (FEAT-REVBYP: bypass skeleton)
-        RevisionOutcome outcome = revisionEngine.revise(resolvedPlanId, taskId, Path.of(resolvedCoursePath));
+        // When resolvedOverridePayload is null, the engine uses the derived context path (F-REVCTX-R001)
+        RevisionOutcome outcome = revisionEngine.revise(resolvedPlanId, taskId,
+                Path.of(resolvedCoursePath), resolvedOverridePayload);
         return handleOutcome(outcome, taskId, resolvedPlanId);
     }
 
@@ -297,6 +332,21 @@ final class ReviseCmd implements ReviseCommand, Callable<Integer> {
                         System.err.println("  Verify CONTENT_AUDIT_LAGEN_API_KEY is set to a valid key.");
                     }
                 }
+                yield 1;
+            }
+            case OVERRIDE_INVALID -> {
+                // F-REVCTX-R003: override rejected due to structural or identity validation failure
+                System.err.println("El correctionContext provisto fue rechazado para la tarea " + taskId + ".");
+                if (outcome.getErrorMessage() != null) {
+                    System.err.println("Motivo: " + outcome.getErrorMessage());
+                }
+                yield 1;
+            }
+            case OVERRIDE_NOT_APPLICABLE -> {
+                // F-REVCTX-R004: override provided but this DiagnosisKind has no context contract
+                System.err.println(outcome.getErrorMessage() != null
+                        ? outcome.getErrorMessage()
+                        : "El verbo revise no acepta correctionContext para este tipo de tarea.");
                 yield 1;
             }
         };

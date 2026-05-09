@@ -49,7 +49,8 @@ public class DefaultRevisionEngineFactory implements RevisionEngineFactory {
                 config.getCourseRepository(),
                 elementLocator,
                 impactPreviewComputer,
-                config.getImpactPreviewStore()
+                config.getImpactPreviewStore(),
+                config.getCorrectionContextOverrideParser()
         );
     }
 }

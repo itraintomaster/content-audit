@@ -69,13 +69,16 @@ class DefaultProposalDecisionService implements ProposalDecisionService {
         CourseEntity updatedCourse = elementLocator.replace(course, elementAfter);
 
         // Step 4: Rewrite artifact with APPROVED verdict and save
+        // Preserve contextSource and contextOverridePayload from the original artifact (F-REVCTX-R007)
         RevisionArtifact approvedArtifact = new RevisionArtifact(
                 artifact.getProposal(),
                 RevisionVerdict.APPROVED,
                 artifact.getRejectionReason(),
                 artifact.getOutcome(),
                 Instant.now(),
-                note.orElse(null)
+                note.orElse(null),
+                artifact.getContextSource(),
+                artifact.getContextOverridePayload()
         );
         artifactStore.save(approvedArtifact);
 
@@ -121,13 +124,16 @@ class DefaultProposalDecisionService implements ProposalDecisionService {
         }
 
         // Step 3: Rewrite artifact with REJECTED verdict
+        // Preserve contextSource and contextOverridePayload from the original artifact (F-REVCTX-R007)
         RevisionArtifact rejectedArtifact = new RevisionArtifact(
                 artifact.getProposal(),
                 RevisionVerdict.REJECTED,
                 artifact.getRejectionReason(),
                 artifact.getOutcome(),
                 Instant.now(),
-                reason.orElse(null)
+                reason.orElse(null),
+                artifact.getContextSource(),
+                artifact.getContextOverridePayload()
         );
         artifactStore.save(rejectedArtifact);
 

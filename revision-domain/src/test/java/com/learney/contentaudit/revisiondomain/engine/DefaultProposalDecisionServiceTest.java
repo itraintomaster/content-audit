@@ -76,7 +76,7 @@ public class DefaultProposalDecisionServiceTest {
     private RevisionArtifact buildArtifact(String proposalId, String taskId, String planId,
                                            RevisionVerdict verdict) {
         RevisionProposal proposal = buildProposal(proposalId, taskId, planId);
-        return new RevisionArtifact(proposal, verdict, null, null, null, null);
+        return new RevisionArtifact(proposal, verdict, null, null, null, null, null, null);
     }
 
     private RefinementPlan buildPlanWithTask(String planId, String taskId,

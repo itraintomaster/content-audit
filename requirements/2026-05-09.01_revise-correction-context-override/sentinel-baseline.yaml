@@ -2806,7 +2806,6 @@ modules:
     - signature: "resolve(AuditReport report, RefinementTask task): Optional<T>"
     - signature: "resolveWithIndex(AuditNodeIndex nodeIndex, AuditReport report, RefinementTask\
         \ task): Optional<T>"
-    - signature: "supports(DiagnosisKind kind): boolean"
     typeParameters:
     - T extends CorrectionContext
   - name: CorrectionContext
@@ -3142,11 +3141,6 @@ modules:
       traceability:
         feature: FEAT-RCLA
         rule: F-RCLA-R007
-    - name: should report supports=true for diagnosisKinds with a registered resolver
-        and supports=false for kinds without one
-      traceability:
-        feature: FEAT-REVCTX
-        rule: F-REVCTX-R004
     classStereotype: false
     implements:
     - CorrectionContextResolver
@@ -4304,10 +4298,9 @@ modules:
         \ Integer"
   - name: ReviseCommand
     stereotype: port
-    sealed: false
+    sealed: true
     exposes:
-    - signature: "revise(String taskId, String planId, String correctionContextJson,\
-        \ String correctionContextFilePath): Integer"
+    - signature: "revise(String taskId, String planId): Integer"
   - name: ConfigAnalyzerCommand
     stereotype: port
     sealed: true
@@ -5045,14 +5038,6 @@ modules:
         traceability:
           feature: FEAT-PLANEF
           rule: F-PLANEF-R001
-      - name: "Dado storageMode DISK y withCorrectionContext=true, cuando plan se\
-          \ invoca, entonces el comando rechaza la combinacion con codigo de error\
-          \ y no invoca refinerEngine, refinementPlanStore.save ni ephemeralPlanRenderer.render\
-          \ — R002 detail #4 (la opcion solo tiene efecto en modo efimero) + DOUBT-CTX-IN-DISK-MODE\
-          \ resuelto como rechazo explicito"
-        traceability:
-          feature: FEAT-PLANEF
-          rule: F-PLANEF-R002
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       classStereotype: false
@@ -5104,27 +5089,6 @@ modules:
         traceability:
           feature: FEAT-REVAPR
           rule: F-REVAPR-R016
-      - name: should reject the invocation with a clear error before invoking the
-          engine when both --correction-context and --correction-context-file are
-          provided
-        traceability:
-          feature: FEAT-REVCTX
-          rule: F-REVCTX-R001
-      - name: should invoke the engine overload with the inline JSON payload when
-          --correction-context is provided
-        traceability:
-          feature: FEAT-REVCTX
-          rule: F-REVCTX-R001
-      - name: should invoke the engine overload with the JSON payload read from disk
-          when --correction-context-file is provided
-        traceability:
-          feature: FEAT-REVCTX
-          rule: F-REVCTX-R001
-      - name: should invoke the engine without overridePayload and preserve the historical
-          revise behavior when neither override flag is provided
-        traceability:
-          feature: FEAT-REVCTX
-          rule: F-REVCTX-R001
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       classStereotype: false
@@ -5395,52 +5359,6 @@ modules:
         traceability:
           feature: FEAT-PLANEF
           rule: F-PLANEF-R001
-      - name: "Dado un RefinementPlan con tasks no vacias y EphemeralRenderOptions.withCorrectionContext=false,\
-          \ cuando render se invoca, entonces el JSON emitido no contiene la clave\
-          \ correctionContext en ninguna task y ni el resolver ni el mapper son invocados\
-          \ — R002 invariante #3: opt-in default OFF preserva R001 y no se cambia\
-          \ silenciosamente"
-        traceability:
-          feature: FEAT-PLANEF
-          rule: F-PLANEF-R002
-      - name: "Dado un RefinementPlan con tasks y EphemeralRenderOptions.withCorrectionContext=true,\
-          \ cuando render se invoca y el resolver retorna contexto para cada task,\
-          \ entonces cada task del JSON emitido tiene un campo correctionContext igual\
-          \ al mapa producido por CorrectionContextJsonMapper.toJsonMap aplicado al\
-          \ contexto resuelto via resolveWithIndex con el indice construido a partir\
-          \ del AuditReport — R002 invariante #1: contexto inline por tarea con la\
-          \ misma estructura/semantica que get task"
-        traceability:
-          feature: FEAT-PLANEF
-          rule: F-PLANEF-R002
-      - name: "Dado un RefinementPlan y una unica instancia de CorrectionContextJsonMapper\
-          \ inyectada en GetCmd y en DefaultEphemeralPlanRenderer, cuando ambos comandos\
-          \ serializan el correctionContext de la misma task derivada del mismo AuditReport,\
-          \ entonces el campo correctionContext que emite plan efimero es estructuralmente\
-          \ igual al que emite get task (mismas claves, mismos valores) — R002 invariante\
-          \ #2: equivalencia funcional con get task garantizada por compartir el mapper"
-        traceability:
-          feature: FEAT-PLANEF
-          rule: F-PLANEF-R002
-      - name: "Dado un RefinementPlan con tasks y EphemeralRenderOptions.withCorrectionContext=true,\
-          \ cuando render se invoca y el resolver retorna Optional.empty para una\
-          \ task (contexto no construible), entonces esa task del JSON emitido tiene\
-          \ correctionContext en null y un campo descriptivo del motivo, con la misma\
-          \ semantica que F-RCLA-R008 define para get task — R002 invariante #4: tareas\
-          \ sin contexto construible llevan correctionContext ausente o nulo + motivo"
-        traceability:
-          feature: FEAT-PLANEF
-          rule: F-PLANEF-R002
-      - name: "Dado un RefinementPlan con tasks mixtas y EphemeralRenderOptions.withCorrectionContext=true,\
-          \ cuando render se invoca y el resolver retorna contexto para algunas tasks\
-          \ y Optional.empty para otras, entonces el comando retorna codigo 0, el\
-          \ JSON emitido contiene todas las tasks, las tasks resueltas llevan correctionContext\
-          \ con valor y las no resueltas llevan correctionContext en null + motivo\
-          \ — R002 invariante #4: el comando no falla globalmente, emite el plan completo\
-          \ con la falla por tarea visible para el cliente"
-        traceability:
-          feature: FEAT-PLANEF
-          rule: F-PLANEF-R002
       classStereotype: false
       implements:
       - EphemeralPlanRenderer
@@ -6512,15 +6430,6 @@ modules:
         \ provider down, uninterpretable response) or its candidate could not be derived.\
         \ No artifact, no course write, task unchanged (F-LAPS-R015, F-LAPS-R016,\
         \ F-LAPS-J003)."
-    - name: OVERRIDE_INVALID
-      description: "El correctionContext provisto externamente no respeta el contrato\
-        \ estructural (R003) o no es coherente con la tarea persistida (sanity check\
-        \ de nodeId+diagnosisKind, DOUBT-OVERRIDE-COHERENCE). No se persiste artefacto,\
-        \ no se modifica curso ni tarea."
-    - name: OVERRIDE_NOT_APPLICABLE
-      description: La tarea revisada es de un DiagnosisKind para el cual no existe
-        contrato de correctionContext (R004). El override no tiene como afectar al
-        bypass; se rechaza la invocacion sin persistir artefacto.
   - name: CourseElementSnapshot
     type: record
     fields:
@@ -6598,17 +6507,6 @@ modules:
       type: String
       description: "Free-text note attached by the operator on approve/reject (R011\
         \ --note, R012 --reason); null if not provided"
-    - name: contextSource
-      type: CorrectionContextSource
-      description: "Origen del correctionContext consumido por la estrategia (FEAT-REVCTX\
-        \ R002 #3). DERIVED para artefactos pre-FEAT-REVCTX o invocaciones sin override;\
-        \ OVERRIDE cuando el cliente provee el contexto via revise --correction-context(-file)."
-    - name: contextOverridePayload
-      type: String
-      description: Snapshot crudo del JSON entregado por el cliente como override
-        (DOUBT-OVERRIDE-AUDITABILITY Opcion A). Null cuando contextSource=DERIVED.
-        Se persiste literal para que la auditoria del artefacto sea reconstruible
-        a posteriori.
   - name: RevisionOutcome
     type: record
     fields:
@@ -6675,14 +6573,6 @@ modules:
       type: ImpactPreviewStore
       description: "FEAT-PIPRE. Filesystem (or future) sidecar store for the per-proposal\
         \ preview. Required (no default): the persistence root is a CLI-level concern."
-    - name: correctionContextOverrideParser
-      type: CorrectionContextOverrideParser
-      description: FEAT-REVCTX. Parser de overrides JSON usado por el engine cuando
-        recibe la invocacion con override (revise(...) overload). Nullable -> la factory
-        wirea DefaultCorrectionContextOverrideParser. La unica responsabilidad del
-        parser es traducir el JSON crudo a un CorrectionContextOverride o lanzar OverrideRejectedException;
-        el engine sigue siendo el que decide si invocar al parser segun el overload
-        usado.
   - name: ApprovalMode
     type: enum
     fields:
@@ -6817,39 +6707,6 @@ modules:
         por la composition root via DefaultNodeFieldDifferFactory.create(). El factory
         de ConsolidatedViewBuilder lo unpackea del config y lo pasa a DefaultConsolidatedViewBuilder.
     visibility: public
-  - name: CorrectionContextSource
-    type: enum
-    fields:
-    - name: DERIVED
-      description: El contexto fue derivado por el sistema desde el AuditReport y
-        el plan persistente (camino historico de FEAT-REVBYP / FEAT-RCLA / FEAT-RCSL).
-    - name: OVERRIDE
-      description: El contexto fue provisto externamente por el cliente via revise
-        --correction-context (FEAT-REVCTX R001).
-  - name: CorrectionContextOverride
-    type: record
-    fields:
-    - name: context
-      type: CorrectionContext
-      description: "Contexto ya parseado y validado estructuralmente (R003) y por\
-        \ coherencia minima con la tarea persistida (nodeId + diagnosisKind, DOUBT-OVERRIDE-COHERENCE\
-        \ Opcion B). Es el mismo tipo que produce el CorrectionContextResolver; la\
-        \ estrategia activa lo consume sin saber su origen."
-    - name: rawPayload
-      type: String
-      description: "JSON crudo entregado por el cliente, conservado verbatim para\
-        \ auditabilidad (R002 #3, DOUBT-OVERRIDE-AUDITABILITY Opcion A). Viaja al\
-        \ RevisionArtifact y se persiste tal cual."
-  - name: OverrideRejectedException
-    type: exception
-    fields:
-    - name: reason
-      type: String
-      description: "Mensaje accionable que identifica el motivo del rechazo (R003:\
-        \ campo faltante, tipo invalido, valor fuera de dominio; o sanity check fallido:\
-        \ nodeId/diagnosisKind no coinciden con la tarea persistida)."
-    message: "correctionContext override rejected: %s"
-    extends: RuntimeException
   interfaces:
   - name: Reviser
     stereotype: port
@@ -6891,8 +6748,7 @@ modules:
     stereotype: port
     sealed: false
     exposes:
-    - signature: "revise(String planId, String taskId, Path coursePath, String overridePayload):\
-        \ RevisionOutcome"
+    - signature: "revise(String planId, String taskId, Path coursePath): RevisionOutcome"
   - name: RevisionEngineFactory
     stereotype: factory
     sealed: false
@@ -6944,20 +6800,12 @@ modules:
     - signature: "save(ImpactPreview preview): void"
     - signature: "findByProposalId(String proposalId): Optional<ImpactPreview>"
     visibility: public
-  - name: CorrectionContextOverrideParser
-    stereotype: port
-    sealed: false
-    exposes:
-    - signature: "parse(String rawJson, DiagnosisKind expectedDiagnosisKind, String\
-        \ expectedNodeId): CorrectionContextOverride"
   patterns:
   - type: Strategy
     implementations:
     - LemmaAbsenceMvpStrategy
     suppressed: false
     interface: LemmaAbsenceProposalStrategy
-  uses:
-  - jackson-databind
   packages:
   - name: engine
     description: "Revision engine internals. Only DefaultRevisionEngineFactory, DefaultRevisionValidatorFactory,\
@@ -7180,8 +7028,6 @@ modules:
           \ indexed by proposalId. Deliberately separate from RevisionArtifactStore\
           \ so the RevisionArtifact contract stays unchanged and the preview can be\
           \ fetched/listed independently in future iterations (DOUBT-BATCH-PREVIEW)."
-      - name: correctionContextOverrideParser
-        type: CorrectionContextOverrideParser
       types:
       - Component
       handwrittenTests:
@@ -7241,49 +7087,6 @@ modules:
         traceability:
           feature: FEAT-PIPRE
           rule: F-PIPRE-R010
-      - name: should bypass contextResolver and consume the override payload as the
-          strategy input when overridePayload is provided
-        traceability:
-          feature: FEAT-REVCTX
-          rule: F-REVCTX-R002
-      - name: should not perform any AuditReport-derived context construction for
-          the revised task when overridePayload is provided
-        traceability:
-          feature: FEAT-REVCTX
-          rule: F-REVCTX-R002
-      - name: should produce OVERRIDE_INVALID outcome without persisting an artifact
-          and without modifying the course when the parser rejects the override payload
-        traceability:
-          feature: FEAT-REVCTX
-          rule: F-REVCTX-R003
-      - name: should produce OVERRIDE_NOT_APPLICABLE outcome without persisting an
-          artifact and without modifying the course when the task diagnosisKind has
-          no context contract
-        traceability:
-          feature: FEAT-REVCTX
-          rule: F-REVCTX-R004
-      - name: should resolve the revised task from the persisted plan identified by
-          planId and pass the override to the strategy regardless of any task identity
-          hint embedded in the payload
-        traceability:
-          feature: FEAT-REVCTX
-          rule: F-REVCTX-R005
-      - name: should preserve the human approval flow and emit a PENDING_APPROVAL
-          artifact when human approval mode is active and an override is provided
-        traceability:
-          feature: FEAT-REVCTX
-          rule: F-REVCTX-R006
-      - name: should persist the RevisionArtifact with contextSource=OVERRIDE and
-          contextOverridePayload equal to the literal raw JSON received when an override
-          is provided
-        traceability:
-          feature: FEAT-REVCTX
-          rule: F-REVCTX-R007
-      - name: should persist the RevisionArtifact with contextSource=DERIVED and a
-          null contextOverridePayload when no override is provided
-        traceability:
-          feature: FEAT-REVCTX
-          rule: F-REVCTX-R007
       classStereotype: false
       implements:
       - RevisionEngine
@@ -8651,81 +8454,6 @@ modules:
       classStereotype: false
       implements:
       - NodeFieldDifferFactory
-  - name: contextoverride
-    description: "Encapsulamiento del parsing y validacion del correctionContext provisto\
-      \ externamente por el cliente (FEAT-REVCTX). Aloja la implementacion del CorrectionContextOverrideParser,\
-      \ un mapper Jackson dedicado y los validadores estructurales por DiagnosisKind."
-    visibility: internal
-    interfaces:
-    - name: CorrectionContextStructuralValidator
-      stereotype: port
-      sealed: false
-      exposes:
-      - signature: "validateAndBuild(JsonNode payload, String expectedNodeId): CorrectionContext"
-    implementations:
-    - name: DefaultCorrectionContextOverrideParser
-      requiresInject:
-      - name: objectMapper
-        type: ObjectMapper
-      - name: validators
-        type: "Map<DiagnosisKind,CorrectionContextStructuralValidator>"
-      visibility: public
-      handwrittenTests:
-      - name: should accept payload when nodeId and diagnosisKind match the expected
-          task identity
-        traceability:
-          feature: FEAT-REVCTX
-          rule: F-REVCTX-R003
-      - name: should reject payload with OverrideRejectedException when nodeId does
-          not match the expected task identity
-        traceability:
-          feature: FEAT-REVCTX
-          rule: F-REVCTX-R003
-      - name: should reject payload with OverrideRejectedException when diagnosisKind
-          does not match the expected task identity
-        traceability:
-          feature: FEAT-REVCTX
-          rule: F-REVCTX-R003
-      - name: should parse payload mirroring the get task output for a LEMMA_ABSENCE
-          context and return a CorrectionContextOverride whose rawPayload is the literal
-          JSON received
-        traceability:
-          feature: FEAT-REVCTX
-          rule: F-REVCTX-R008
-      - name: should reject payload whose JSON shape does not mirror the get task
-          output even when its core structural fields are individually valid
-        traceability:
-          feature: FEAT-REVCTX
-          rule: F-REVCTX-R008
-      classStereotype: false
-      implements:
-      - CorrectionContextOverrideParser
-    - name: LemmaAbsenceContextStructuralValidator
-      requiresInject:
-      - name: objectMapper
-        type: ObjectMapper
-      handwrittenTests:
-      - name: should throw OverrideRejectedException when the LEMMA_ABSENCE payload
-          misses a required structural field or has an invalid value
-        traceability:
-          feature: FEAT-REVCTX
-          rule: F-REVCTX-R003
-      classStereotype: false
-      implements:
-      - CorrectionContextStructuralValidator
-    - name: SentenceLengthContextStructuralValidator
-      requiresInject:
-      - name: objectMapper
-        type: ObjectMapper
-      handwrittenTests:
-      - name: should throw OverrideRejectedException when the SENTENCE_LENGTH payload
-          misses a required structural field or has an out-of-domain value
-        traceability:
-          feature: FEAT-REVCTX
-          rule: F-REVCTX-R003
-      classStereotype: false
-      implements:
-      - CorrectionContextStructuralValidator
 - name: revision-infrastructure
   description: "Infrastructure adapter for the revision phase. Provides the LLM-backed\
     \ implementation of LemmaAbsenceQuizCandidateGenerator (revision-domain.lemmaabsence\
@@ -9312,12 +9040,8 @@ features:
   journeys:
   - id: F-LREC-J001
     validation: AUTO_VALIDATED
-    testModule: audit-domain
-    testPackage: com.learney.contentaudit.auditdomain.lrec
   - id: F-LREC-J004
     validation: AUTO_VALIDATED
-    testModule: audit-domain
-    testPackage: com.learney.contentaudit.auditdomain.lrec
 - id: FEAT-DCOCA
   code: F-DCOCA
   journeys:
@@ -9373,24 +9097,14 @@ features:
   journeys:
   - id: F-LABS-J001
     validation: AUTO_VALIDATED
-    testModule: audit-domain
-    testPackage: com.learney.contentaudit.auditdomain.labs
   - id: F-LABS-J002
     validation: AUTO_VALIDATED
-    testModule: audit-domain
-    testPackage: com.learney.contentaudit.auditdomain.labs
   - id: F-LABS-J003
     validation: AUTO_VALIDATED
-    testModule: audit-domain
-    testPackage: com.learney.contentaudit.auditdomain.labs
   - id: F-LABS-J004
     validation: AUTO_VALIDATED
-    testModule: audit-domain
-    testPackage: com.learney.contentaudit.auditdomain.labs
   - id: F-LABS-J005
     validation: AUTO_VALIDATED
-    testModule: audit-domain
-    testPackage: com.learney.contentaudit.auditdomain.labs
 - id: FEAT-CLI
   code: F-CLI
   journeys:
@@ -9416,8 +9130,6 @@ features:
   journeys:
   - id: F-DSLEN-J001
     validation: AUTO_VALIDATED
-    testModule: refiner-domain
-    testPackage: com.learney.contentaudit.refinerdomain
 - id: FEAT-SLEN
   code: F-SLEN
   journeys:
@@ -9656,33 +9368,6 @@ features:
     validation: AUTO_VALIDATED
     testModule: audit-cli
     testPackage: com.learney.contentaudit.auditcli.commands
-  - id: F-PLANEF-J002
-    validation: AUTO_VALIDATED
-    testModule: audit-cli
-    testPackage: com.learney.contentaudit.auditcli.commands
-  - id: F-PLANEF-J003
-    validation: AUTO_VALIDATED
-    testModule: audit-cli
-    testPackage: com.learney.contentaudit.auditcli.commands
-- id: FEAT-REVCTX
-  code: F-REVCTX
-  journeys:
-  - id: F-REVCTX-J001
-    validation: AUTO_VALIDATED
-    testModule: audit-cli
-    testPackage: com.learney.contentaudit.auditcli.commands
-  - id: F-REVCTX-J002
-    validation: AUTO_VALIDATED
-    testModule: audit-cli
-    testPackage: com.learney.contentaudit.auditcli.commands
-  - id: F-REVCTX-J003
-    validation: AUTO_VALIDATED
-    testModule: audit-cli
-    testPackage: com.learney.contentaudit.auditcli.commands
-  - id: F-REVCTX-J004
-    validation: AUTO_VALIDATED
-    testModule: audit-cli
-    testPackage: com.learney.contentaudit.auditcli.commands
 dependencies:
 - alias: langchain4j-openai
   artifact: dev.langchain4j:langchain4j-open-ai:0.36.2
@@ -9708,16 +9393,6 @@ dependencies:
     package: dev.langchain4j.data.message
   - type: Response
     package: dev.langchain4j.model.output
-- alias: jackson-databind
-  artifact: com.fasterxml.jackson.core:jackson-databind:2.17.2
-  scope: compile
-  provides:
-  - type: ObjectMapper
-    package: com.fasterxml.jackson.databind
-  - type: JsonNode
-    package: com.fasterxml.jackson.databind
-  - type: JsonProcessingException
-    package: com.fasterxml.jackson.core
 language:
   name: java
   version: 17

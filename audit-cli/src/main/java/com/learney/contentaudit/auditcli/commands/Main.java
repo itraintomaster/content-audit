@@ -422,7 +422,11 @@ class Main {
                         auditReportStore)));
 
         // plan
-        EphemeralPlanRenderer ephemeralPlanRenderer = new DefaultEphemeralPlanRenderer();
+        com.learney.contentaudit.auditdomain.AuditNodeIndexFactory auditNodeIndexFactory =
+                new com.learney.contentaudit.auditdomain.auditnodeindex.DefaultAuditNodeIndexFactory();
+        CorrectionContextJsonMapper correctionContextJsonMapper = new DefaultCorrectionContextJsonMapper();
+        EphemeralPlanRenderer ephemeralPlanRenderer = new DefaultEphemeralPlanRenderer(
+                auditNodeIndexFactory, correctionContextResolver, correctionContextJsonMapper);
         cmd.addSubcommand("plan", new picocli.CommandLine(
                 new PlanCmd(auditReportStore, refinerEngine, refinementPlanStore, ephemeralPlanRenderer)));
 
@@ -451,7 +455,8 @@ class Main {
         // get — inject baseDir for plan listing; revisionArtifactStore para proposals;
         // impactPreviewStore + formatter para el preview de impacto (F-PIPRE-R007)
         GetCmd getCmd = new GetCmd(auditReportStore, refinementPlanStore, analyzerRegistry,
-                correctionContextResolver, impactPreviewStore, new DefaultImpactPreviewFormatter());
+                correctionContextResolver, impactPreviewStore, new DefaultImpactPreviewFormatter(),
+                correctionContextJsonMapper);
         getCmd.setBaseDir(baseDir);
         getCmd.setRevisionArtifactStore(revisionArtifactStore);
         cmd.addSubcommand("get", new picocli.CommandLine(getCmd));

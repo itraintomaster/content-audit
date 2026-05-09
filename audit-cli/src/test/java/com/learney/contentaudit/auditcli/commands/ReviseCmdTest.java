@@ -2,7 +2,9 @@ package com.learney.contentaudit.auditcli.commands;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Mockito.*;
 
 import com.learney.contentaudit.auditdomain.AuditTarget;
@@ -11,6 +13,7 @@ import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.revisiondomain.CorrectionContextSource;
 import com.learney.contentaudit.revisiondomain.RevisionArtifact;
 import com.learney.contentaudit.revisiondomain.RevisionEngine;
 import com.learney.contentaudit.revisiondomain.RevisionOutcome;
@@ -106,16 +109,16 @@ public class ReviseCmdTest {
         when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(latestPlan));
 
         RevisionOutcome outcome = new RevisionOutcome(RevisionOutcomeKind.APPROVED_APPLIED, null, null);
-        when(revisionEngine.revise(eq(planId), eq(taskId), any(Path.class))).thenReturn(outcome);
+        when(revisionEngine.revise(eq(planId), eq(taskId), any(Path.class), isNull())).thenReturn(outcome);
 
         // Act
-        int exit = reviseCmd.revise(taskId, null);
+        int exit = reviseCmd.revise(taskId, null, null, null);
 
         // Assert — R015: default plan resolution uses loadLatest(); APPROVED_APPLIED maps to exit 0
         assertEquals(0, exit,
                 "revise(taskId, null) with APPROVED_APPLIED outcome should exit 0");
         verify(refinementPlanStore).loadLatest();
-        verify(revisionEngine).revise(eq(planId), eq(taskId), any(Path.class));
+        verify(revisionEngine).revise(eq(planId), eq(taskId), any(Path.class), isNull());
     }
 
     @Test
@@ -133,16 +136,16 @@ public class ReviseCmdTest {
         when(refinementPlanStore.load(planId)).thenReturn(Optional.of(namedPlan));
 
         RevisionOutcome outcome = new RevisionOutcome(RevisionOutcomeKind.APPROVED_APPLIED, null, null);
-        when(revisionEngine.revise(eq(planId), eq(taskId), any(Path.class))).thenReturn(outcome);
+        when(revisionEngine.revise(eq(planId), eq(taskId), any(Path.class), isNull())).thenReturn(outcome);
 
         // Act
-        int exit = reviseCmd.revise(taskId, planId);
+        int exit = reviseCmd.revise(taskId, planId, null, null);
 
         // Assert — R015: explicit --plan uses load(planId); APPROVED_APPLIED maps to exit 0
         assertEquals(0, exit,
                 "revise(taskId, planId) with APPROVED_APPLIED outcome should exit 0");
         verify(refinementPlanStore).load(planId);
-        verify(revisionEngine).revise(eq(planId), eq(taskId), any(Path.class));
+        verify(revisionEngine).revise(eq(planId), eq(taskId), any(Path.class), isNull());
     }
 
     // --- Failure modes ---
@@ -160,7 +163,7 @@ public class ReviseCmdTest {
         System.setErr(new PrintStream(errBuf));
         try {
             // Act
-            int exit = reviseCmd.revise("task-001", null);
+            int exit = reviseCmd.revise("task-001", null, null, null);
 
             // Assert — R015: "No plans available. Run 'content-audit plan' first."
             assertNotEquals(0, exit, "revise with no plans must exit non-zero");
@@ -186,7 +189,7 @@ public class ReviseCmdTest {
         System.setErr(new PrintStream(errBuf));
         try {
             // Act
-            int exit = reviseCmd.revise("task-001", unknownPlanId);
+            int exit = reviseCmd.revise("task-001", unknownPlanId, null, null);
 
             // Assert — R015: "Plan '<id>' not found"
             assertNotEquals(0, exit, "revise with unknown planId must exit non-zero");
@@ -219,7 +222,7 @@ public class ReviseCmdTest {
         System.setErr(new PrintStream(errBuf));
         try {
             // Act
-            int exit = reviseCmd.revise(missingTaskId, null);
+            int exit = reviseCmd.revise(missingTaskId, null, null, null);
 
             // Assert — R015: "Task '<task-id>' not found in plan '<plan-id>'"
             // The plan-id in the message is the resolved plan (default = most recent)
@@ -255,7 +258,7 @@ public class ReviseCmdTest {
         System.setErr(new PrintStream(errBuf));
         try {
             // Act
-            int exit = reviseCmd.revise(missingTaskId, explicitPlanId);
+            int exit = reviseCmd.revise(missingTaskId, explicitPlanId, null, null);
 
             // Assert — R015: error message names the explicitly supplied plan id
             assertNotEquals(0, exit, "revise with absent taskId must exit non-zero");
@@ -309,7 +312,9 @@ public class ReviseCmdTest {
                 null,   // rejectionReason: null when PENDING_APPROVAL
                 RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED,
                 null,   // decidedAt: null — not yet decided
-                null    // decisionNote: null — not yet decided
+                null,   // decisionNote: null — not yet decided
+                CorrectionContextSource.DERIVED,
+                null    // contextOverridePayload: null — no override
         );
 
         RevisionOutcome outcome = new RevisionOutcome(
@@ -317,7 +322,7 @@ public class ReviseCmdTest {
                 artifact,
                 null
         );
-        when(revisionEngine.revise(eq(planId), eq(taskId), any(Path.class))).thenReturn(outcome);
+        when(revisionEngine.revise(eq(planId), eq(taskId), any(Path.class), isNull())).thenReturn(outcome);
 
         // Capture stdout
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
@@ -326,7 +331,7 @@ public class ReviseCmdTest {
         int exit;
         try {
             // Act — invoke revise without --plan (uses loadLatest)
-            exit = reviseCmd.revise(taskId, null);
+            exit = reviseCmd.revise(taskId, null, null, null);
         } finally {
             System.setOut(originalOut);
         }
@@ -338,5 +343,136 @@ public class ReviseCmdTest {
                 "PENDING_APPROVAL_PERSISTED outcome should exit 0 (propose phase succeeded)");
         assertTrue(stdoutOutput.contains(proposalId),
                 "stdout must contain the proposalId '" + proposalId + "' for copy-paste, got: " + stdoutOutput);
+    }
+
+    @Test
+    @DisplayName("should reject the invocation with a clear error before invoking the engine when both --correction-context and --correction-context-file are provided")
+    @Tag("FEAT-REVCTX")
+    @Tag("F-REVCTX-R001")
+    public void shouldRejectTheInvocationWithAClearErrorBeforeInvokingTheEngineWhenBothCorrectioncontextAndCorrectioncontextfileAreProvided() {
+        // R001: if the operator passes both --correction-context and --correction-context-file
+        // in the same invocation, the command must fail with a clear error BEFORE reading either
+        // payload, without invoking the engine, without persisting an artifact, without modifying
+        // the task or the course.
+        String inlineJson = """
+                {"taskId":"task-001","nodeId":"quiz-001","diagnosisKind":"LEMMA_ABSENCE"}
+                """;
+        String filePath = "/tmp/ctx.json";
+
+        ByteArrayOutputStream errBuf = new ByteArrayOutputStream();
+        PrintStream originalErr = System.err;
+        System.setErr(new PrintStream(errBuf));
+        int exit;
+        try {
+            // Act — both flags provided simultaneously
+            exit = reviseCmd.revise("task-001", null, inlineJson, filePath);
+        } finally {
+            System.setErr(originalErr);
+        }
+
+        // Assert — R001: exit non-zero, clear error message about mutual exclusion
+        assertNotEquals(0, exit, "Command must exit non-zero when both override flags are provided");
+        String errOutput = errBuf.toString();
+        assertTrue(
+                errOutput.contains("mutuamente excluyentes") || errOutput.contains("mutually exclusive")
+                        || errOutput.contains("correction-context"),
+                "stderr must contain a clear message about mutual exclusion, got: " + errOutput
+        );
+        // Assert — R001: engine must NOT be invoked (no side effects)
+        verify(revisionEngine, never()).revise(anyString(), anyString(), any(Path.class), any());
+    }
+
+    @Test
+    @DisplayName("should invoke the engine overload with the inline JSON payload when --correction-context is provided")
+    @Tag("FEAT-REVCTX")
+    @Tag("F-REVCTX-R001")
+    public void shouldInvokeTheEngineOverloadWithTheInlineJSONPayloadWhenCorrectioncontextIsProvided() {
+        // R001: when --correction-context=<json> is provided (and --correction-context-file is
+        // absent), the command must resolve the plan normally and invoke the engine's 4-arg
+        // revise() with the inline JSON string as the overridePayload.
+        String taskId = "task-ctx-inline";
+        String planId = "plan-ctx-inline";
+        String inlineJson = """
+                {"taskId":"task-ctx-inline","nodeId":"quiz-inline","diagnosisKind":"LEMMA_ABSENCE","sentence":"I read."}
+                """;
+
+        RefinementTask task = task(taskId);
+        RefinementPlan latestPlan = plan(planId, "audit-ctx-inline", List.of(task));
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(latestPlan));
+
+        RevisionOutcome outcome = new RevisionOutcome(RevisionOutcomeKind.APPROVED_APPLIED, null, null);
+        when(revisionEngine.revise(eq(planId), eq(taskId), any(Path.class), eq(inlineJson)))
+                .thenReturn(outcome);
+
+        // Act — --correction-context provided, --correction-context-file absent (null)
+        int exit = reviseCmd.revise(taskId, null, inlineJson, null);
+
+        // Assert — R001: engine invoked with the inline JSON as overridePayload; exit 0
+        assertEquals(0, exit, "APPROVED_APPLIED outcome with inline override should exit 0");
+        verify(revisionEngine).revise(eq(planId), eq(taskId), any(Path.class), eq(inlineJson));
+    }
+
+    @Test
+    @DisplayName("should invoke the engine overload with the JSON payload read from disk when --correction-context-file is provided")
+    @Tag("FEAT-REVCTX")
+    @Tag("F-REVCTX-R001")
+    public void shouldInvokeTheEngineOverloadWithTheJSONPayloadReadFromDiskWhenCorrectioncontextfileIsProvided() throws Exception {
+        // R001: when --correction-context-file=<path> is provided (and --correction-context is
+        // absent), the command must read the file and invoke the engine's 4-arg revise() with the
+        // file's content as the overridePayload.
+        String taskId = "task-ctx-file";
+        String planId = "plan-ctx-file";
+        String fileContent = """
+                {"taskId":"task-ctx-file","nodeId":"quiz-file","diagnosisKind":"LEMMA_ABSENCE","sentence":"You write."}
+                """;
+
+        // Write the override payload to a temp file
+        java.io.File tempFile = java.io.File.createTempFile("correction-context-", ".json");
+        tempFile.deleteOnExit();
+        java.nio.file.Files.writeString(tempFile.toPath(), fileContent);
+
+        RefinementTask task = task(taskId);
+        RefinementPlan latestPlan = plan(planId, "audit-ctx-file", List.of(task));
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(latestPlan));
+
+        RevisionOutcome outcome = new RevisionOutcome(RevisionOutcomeKind.APPROVED_APPLIED, null, null);
+        // The engine receives the file content as overridePayload
+        when(revisionEngine.revise(eq(planId), eq(taskId), any(Path.class), eq(fileContent)))
+                .thenReturn(outcome);
+
+        // Act — --correction-context-file provided, --correction-context absent (null)
+        int exit = reviseCmd.revise(taskId, null, null, tempFile.getAbsolutePath());
+
+        // Assert — R001: engine invoked with the file content as overridePayload; exit 0
+        assertEquals(0, exit, "APPROVED_APPLIED outcome with file override should exit 0");
+        verify(revisionEngine).revise(eq(planId), eq(taskId), any(Path.class), eq(fileContent));
+    }
+
+    @Test
+    @DisplayName("should invoke the engine without overridePayload and preserve the historical revise behavior when neither override flag is provided")
+    @Tag("FEAT-REVCTX")
+    @Tag("F-REVCTX-R001")
+    public void shouldInvokeTheEngineWithoutOverridePayloadAndPreserveTheHistoricalReviseBehaviorWhenNeitherOverrideFlagIsProvided() {
+        // R001: when neither --correction-context nor --correction-context-file is provided,
+        // the command must preserve the historical behavior: invoke the engine with null as
+        // overridePayload so the engine derives context from the plan/AuditReport as before.
+        // A client that does not use the override observes no change.
+        String taskId = "task-no-override";
+        String planId = "plan-no-override";
+
+        RefinementTask task = task(taskId);
+        RefinementPlan latestPlan = plan(planId, "audit-no-override", List.of(task));
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(latestPlan));
+
+        RevisionOutcome outcome = new RevisionOutcome(RevisionOutcomeKind.APPROVED_APPLIED, null, null);
+        when(revisionEngine.revise(eq(planId), eq(taskId), any(Path.class), isNull()))
+                .thenReturn(outcome);
+
+        // Act — neither override flag provided
+        int exit = reviseCmd.revise(taskId, null, null, null);
+
+        // Assert — R001: engine invoked with null overridePayload (historical path); exit 0
+        assertEquals(0, exit, "APPROVED_APPLIED outcome without override should exit 0");
+        verify(revisionEngine).revise(eq(planId), eq(taskId), any(Path.class), isNull());
     }
 }

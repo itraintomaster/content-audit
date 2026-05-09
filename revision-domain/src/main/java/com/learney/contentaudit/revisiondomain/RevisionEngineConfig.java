@@ -43,6 +43,8 @@ public class RevisionEngineConfig {
 
     private ImpactPreviewStore impactPreviewStore;
 
+    private CorrectionContextOverrideParser correctionContextOverrideParser;
+
     public RevisionEngineConfig() {
     }
 
@@ -53,7 +55,8 @@ public class RevisionEngineConfig {
             CorrectionContextResolver<CorrectionContext> contextResolver,
             LemmaAbsenceProposalStrategyRegistry lemmaAbsenceStrategyRegistry,
             LemmaAbsenceProposalDeriver lemmaAbsenceProposalDeriver, CourseMapper courseMapper,
-            AuditEngine auditEngine, ImpactPreviewStore impactPreviewStore) {
+            AuditEngine auditEngine, ImpactPreviewStore impactPreviewStore,
+            CorrectionContextOverrideParser correctionContextOverrideParser) {
         this.revisers = revisers;
         this.validator = validator;
         this.artifactStore = artifactStore;
@@ -67,6 +70,7 @@ public class RevisionEngineConfig {
         this.courseMapper = courseMapper;
         this.auditEngine = auditEngine;
         this.impactPreviewStore = impactPreviewStore;
+        this.correctionContextOverrideParser = correctionContextOverrideParser;
     }
 
     public Map<DiagnosisKind, Reviser> getRevisers() {
@@ -175,6 +179,15 @@ public class RevisionEngineConfig {
         this.impactPreviewStore = impactPreviewStore;
     }
 
+    public CorrectionContextOverrideParser getCorrectionContextOverrideParser() {
+        return this.correctionContextOverrideParser;
+    }
+
+    public void setCorrectionContextOverrideParser(
+            CorrectionContextOverrideParser correctionContextOverrideParser) {
+        this.correctionContextOverrideParser = correctionContextOverrideParser;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -192,11 +205,12 @@ public class RevisionEngineConfig {
                     && Objects.equals(this.lemmaAbsenceProposalDeriver, that.lemmaAbsenceProposalDeriver)
                     && Objects.equals(this.courseMapper, that.courseMapper)
                     && Objects.equals(this.auditEngine, that.auditEngine)
-                    && Objects.equals(this.impactPreviewStore, that.impactPreviewStore);
+                    && Objects.equals(this.impactPreviewStore, that.impactPreviewStore)
+                    && Objects.equals(this.correctionContextOverrideParser, that.correctionContextOverrideParser);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(revisers, validator, artifactStore, courseRepository, elementLocator, refinementPlanStore, auditReportStore, contextResolver, lemmaAbsenceStrategyRegistry, lemmaAbsenceProposalDeriver, courseMapper, auditEngine, impactPreviewStore);
+        return Objects.hash(revisers, validator, artifactStore, courseRepository, elementLocator, refinementPlanStore, auditReportStore, contextResolver, lemmaAbsenceStrategyRegistry, lemmaAbsenceProposalDeriver, courseMapper, auditEngine, impactPreviewStore, correctionContextOverrideParser);
     }
 }

@@ -127,7 +127,7 @@ public class DefaultConsolidatedViewBuilderTest {
                 new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null),
                 new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null),
                 "rationale", "auto", Instant.now(), null);
-        return new RevisionArtifact(proposal, RevisionVerdict.APPROVED, null, null, Instant.now(), null);
+        return new RevisionArtifact(proposal, RevisionVerdict.APPROVED, null, null, Instant.now(), null, null, null);
     }
 
     private RevisionArtifact pendingArtifact(String proposalId, String nodeId) {
@@ -137,7 +137,7 @@ public class DefaultConsolidatedViewBuilderTest {
                 new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null),
                 new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null),
                 "rationale", "auto", Instant.now(), null);
-        return new RevisionArtifact(proposal, RevisionVerdict.PENDING_APPROVAL, null, null, Instant.now(), null);
+        return new RevisionArtifact(proposal, RevisionVerdict.PENDING_APPROVAL, null, null, Instant.now(), null, null, null);
     }
 
     private RevisionArtifact rejectedArtifact(String proposalId, String nodeId) {
@@ -147,7 +147,7 @@ public class DefaultConsolidatedViewBuilderTest {
                 new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null),
                 new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null),
                 "rationale", "auto", Instant.now(), null);
-        return new RevisionArtifact(proposal, RevisionVerdict.REJECTED, "no sirve", null, Instant.now(), null);
+        return new RevisionArtifact(proposal, RevisionVerdict.REJECTED, "no sirve", null, Instant.now(), null, null, null);
     }
 
     /** Stub the "happy path" up to the point where AuditEngine runs. */
@@ -1047,7 +1047,7 @@ public class DefaultConsolidatedViewBuilderTest {
                 new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011e", null),
                 "r1", "auto", t1, null);
         RevisionArtifact approved1 = new RevisionArtifact(proposal1, RevisionVerdict.APPROVED,
-                null, null, t1, null);
+                null, null, t1, null, null, null);
 
         RevisionProposal proposal2 = new RevisionProposal(
                 "prop-r011-nueva", "task-n", PLAN_ID, AUDIT_ID,
@@ -1056,7 +1056,7 @@ public class DefaultConsolidatedViewBuilderTest {
                 new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011e", null),
                 "r2", "auto", t2, null);
         RevisionArtifact approved2 = new RevisionArtifact(proposal2, RevisionVerdict.APPROVED,
-                null, null, t2, null);
+                null, null, t2, null, null, null);
 
         // Se pasa en orden: vieja luego nueva — el builder debe ordenar por createdAt ascendente
         when(revisionArtifactStore.listByPlan(PLAN_ID)).thenReturn(List.of(approved1, approved2));

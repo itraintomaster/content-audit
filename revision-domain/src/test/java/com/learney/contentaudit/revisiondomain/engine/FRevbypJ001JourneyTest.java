@@ -69,6 +69,7 @@ public class FRevbypJ001JourneyTest {
     @Mock private CourseElementLocator elementLocator;
     @Mock private com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewComputer impactPreviewComputer;
     @Mock private com.learney.contentaudit.revisiondomain.ImpactPreviewStore impactPreviewStore;
+    @Mock private com.learney.contentaudit.revisiondomain.CorrectionContextOverrideParser correctionContextOverrideParser;
 
     private DefaultRevisionEngine buildEngine() {
         return new DefaultRevisionEngine(
@@ -81,7 +82,8 @@ public class FRevbypJ001JourneyTest {
                 courseRepository,
                 elementLocator,
                 impactPreviewComputer,
-                impactPreviewStore
+                impactPreviewStore,
+                correctionContextOverrideParser
         );
     }
 
@@ -144,7 +146,7 @@ public class FRevbypJ001JourneyTest {
         DefaultRevisionEngine engine = buildEngine();
 
         // Act — revise triggers the full J001 happy path
-        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath);
+        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath, null);
 
         // Assert terminal result: success → APPROVED_APPLIED
         assertEquals(RevisionOutcomeKind.APPROVED_APPLIED, outcome.getKind());
@@ -216,7 +218,7 @@ public class FRevbypJ001JourneyTest {
         DefaultRevisionEngine engine = buildEngine();
 
         // Act
-        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath);
+        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath, null);
 
         // Assert terminal result: failure → APPROVED_APPLY_FAILED (R014)
         assertEquals(RevisionOutcomeKind.APPROVED_APPLY_FAILED, outcome.getKind());
@@ -281,7 +283,7 @@ public class FRevbypJ001JourneyTest {
         DefaultRevisionEngine engine = buildEngine();
 
         // Act
-        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath);
+        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath, null);
 
         // Assert terminal result: failure → REJECTED
         assertEquals(RevisionOutcomeKind.REJECTED, outcome.getKind());
@@ -334,7 +336,7 @@ public class FRevbypJ001JourneyTest {
         DefaultRevisionEngine engine = buildEngine();
 
         // Act
-        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath);
+        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath, null);
 
         // Assert terminal result: failure → NO_REVISER (R005)
         assertEquals(RevisionOutcomeKind.NO_REVISER, outcome.getKind());
@@ -382,7 +384,7 @@ public class FRevbypJ001JourneyTest {
         DefaultRevisionEngine engine = buildEngine();
 
         // Act
-        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath);
+        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath, null);
 
         // Assert terminal result: failure → ELEMENT_NOT_FOUND
         assertEquals(RevisionOutcomeKind.ELEMENT_NOT_FOUND, outcome.getKind());
@@ -422,7 +424,7 @@ public class FRevbypJ001JourneyTest {
         DefaultRevisionEngine engine = buildEngine();
 
         // Act
-        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath);
+        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath, null);
 
         // Assert terminal result: failure → CONTEXT_UNAVAILABLE
         assertEquals(RevisionOutcomeKind.CONTEXT_UNAVAILABLE, outcome.getKind());

@@ -21,18 +21,25 @@ public class RevisionArtifact {
 
     private String decisionNote;
 
+    private CorrectionContextSource contextSource;
+
+    private String contextOverridePayload;
+
     public RevisionArtifact() {
     }
 
     public RevisionArtifact(RevisionProposal proposal, RevisionVerdict verdict,
             String rejectionReason, RevisionOutcomeKind outcome, Instant decidedAt,
-            String decisionNote) {
+            String decisionNote, CorrectionContextSource contextSource,
+            String contextOverridePayload) {
         this.proposal = proposal;
         this.verdict = verdict;
         this.rejectionReason = rejectionReason;
         this.outcome = outcome;
         this.decidedAt = decidedAt;
         this.decisionNote = decisionNote;
+        this.contextSource = contextSource;
+        this.contextOverridePayload = contextOverridePayload;
     }
 
     public RevisionProposal getProposal() {
@@ -83,6 +90,22 @@ public class RevisionArtifact {
         this.decisionNote = decisionNote;
     }
 
+    public CorrectionContextSource getContextSource() {
+        return this.contextSource;
+    }
+
+    public void setContextSource(CorrectionContextSource contextSource) {
+        this.contextSource = contextSource;
+    }
+
+    public String getContextOverridePayload() {
+        return this.contextOverridePayload;
+    }
+
+    public void setContextOverridePayload(String contextOverridePayload) {
+        this.contextOverridePayload = contextOverridePayload;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -93,11 +116,13 @@ public class RevisionArtifact {
                     && Objects.equals(this.rejectionReason, that.rejectionReason)
                     && Objects.equals(this.outcome, that.outcome)
                     && Objects.equals(this.decidedAt, that.decidedAt)
-                    && Objects.equals(this.decisionNote, that.decisionNote);
+                    && Objects.equals(this.decisionNote, that.decisionNote)
+                    && Objects.equals(this.contextSource, that.contextSource)
+                    && Objects.equals(this.contextOverridePayload, that.contextOverridePayload);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(proposal, verdict, rejectionReason, outcome, decidedAt, decisionNote);
+        return Objects.hash(proposal, verdict, rejectionReason, outcome, decidedAt, decisionNote, contextSource, contextOverridePayload);
     }
 }

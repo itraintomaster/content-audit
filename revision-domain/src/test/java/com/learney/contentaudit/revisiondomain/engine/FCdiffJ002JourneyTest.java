@@ -110,7 +110,7 @@ public class FCdiffJ002JourneyTest {
                 new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null),
                 new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null),
                 "r", "auto", createdAt, null);
-        return new RevisionArtifact(proposal, verdict, null, null, createdAt, null);
+        return new RevisionArtifact(proposal, verdict, null, null, createdAt, null, null, null);
     }
 
     private void stubCommon(AuditNode baseRoot) {

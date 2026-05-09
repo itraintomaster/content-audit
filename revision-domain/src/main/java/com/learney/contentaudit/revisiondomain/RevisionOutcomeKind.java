@@ -25,5 +25,9 @@ public enum RevisionOutcomeKind {
 
     NO_ACTIVE_STRATEGY,
 
-    STRATEGY_FAILED
+    STRATEGY_FAILED,
+
+    OVERRIDE_INVALID,
+
+    OVERRIDE_NOT_APPLICABLE
 }

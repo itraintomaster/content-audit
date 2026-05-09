@@ -121,7 +121,7 @@ public class FCdiffJ005JourneyTest {
                 new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null),
                 new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null),
                 "r", "auto", Instant.now(), null);
-        return new RevisionArtifact(prop, RevisionVerdict.APPROVED, null, null, Instant.now(), null);
+        return new RevisionArtifact(prop, RevisionVerdict.APPROVED, null, null, Instant.now(), null, null, null);
     }
 
     private RevisionArtifact pendingFor(String proposalId,
@@ -132,7 +132,7 @@ public class FCdiffJ005JourneyTest {
                 elementBefore,
                 new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null),
                 "r", "auto", Instant.now(), null);
-        return new RevisionArtifact(prop, RevisionVerdict.PENDING_APPROVAL, null, null, Instant.now(), null);
+        return new RevisionArtifact(prop, RevisionVerdict.PENDING_APPROVAL, null, null, Instant.now(), null, null, null);
     }
 
     @Test

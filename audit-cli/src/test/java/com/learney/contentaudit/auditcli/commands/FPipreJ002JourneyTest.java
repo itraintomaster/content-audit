@@ -70,7 +70,7 @@ public class FPipreJ002JourneyTest {
     @BeforeEach
     void setUp() throws Exception {
         cmd = new GetCmd(auditReportStore, refinementPlanStore, analyzerRegistry,
-                correctionContextResolver, null, null);
+                correctionContextResolver, null, null, null);
         cmd.setRevisionArtifactStore(revisionArtifactStore);
         try {
             Method setImpactPreviewStore = GetCmd.class.getDeclaredMethod(

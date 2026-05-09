@@ -76,12 +76,13 @@ public class FPipreJ001JourneyTest {
     @Mock private CourseElementLocator elementLocator;
     @Mock private ImpactPreviewComputer impactPreviewComputer;
     @Mock private ImpactPreviewStore impactPreviewStore;
+    @Mock private com.learney.contentaudit.revisiondomain.CorrectionContextOverrideParser correctionContextOverrideParser;
 
     private DefaultRevisionEngine buildEngine() {
         return new DefaultRevisionEngine(
                 refinementPlanStore, auditReportStore, contextResolver, reviser,
                 validator, artifactStore, courseRepository, elementLocator,
-                impactPreviewComputer, impactPreviewStore
+                impactPreviewComputer, impactPreviewStore, correctionContextOverrideParser
         );
     }
 
@@ -145,7 +146,7 @@ public class FPipreJ001JourneyTest {
         DefaultRevisionEngine engine = buildEngine();
 
         // Act
-        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath);
+        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath, null);
 
         // Step 3 (persistir_propuesta_con_preview — result: success):
         //   Gate: R004/R005/R006 (deltas in preview), R008 (preview immutable once persisted).
@@ -232,7 +233,7 @@ public class FPipreJ001JourneyTest {
         DefaultRevisionEngine engine = buildEngine();
 
         // Act
-        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath);
+        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath, null);
 
         // Step 3 (persistir_propuesta_sin_preview — result: success):
         //   Gate: R009 (UNAVAILABLE with cause), R010 (proposal persisted normally despite preview failure).

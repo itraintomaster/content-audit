@@ -113,4 +113,23 @@ public class DispatchingCorrectionContextResolverTest {
 
         Assertions.assertFalse(result.isPresent(), "Dispatcher must propagate empty from delegate");
     }
+
+    @Test
+    @DisplayName("should report supports=true for diagnosisKinds with a registered resolver and supports=false for kinds without one")
+    @Tag("FEAT-REVCTX")
+    @Tag("F-REVCTX-R004")
+    public void shouldReportSupportstrueForDiagnosisKindsWithARegisteredResolverAndSupportsfalseForKindsWithoutOne() {
+        // R004: supports() is the source of truth for "this DiagnosisKind has a context contract".
+        // DispatchingCorrectionContextResolver registers SentenceLengthContextResolver
+        // (handles SENTENCE_LENGTH) and LemmaAbsenceContextResolver (handles LEMMA_ABSENCE).
+        // Kinds without a registered resolver must return false.
+        Assertions.assertTrue(sut.supports(DiagnosisKind.SENTENCE_LENGTH),
+                "SENTENCE_LENGTH has a registered resolver — supports() must return true");
+        Assertions.assertTrue(sut.supports(DiagnosisKind.LEMMA_ABSENCE),
+                "LEMMA_ABSENCE has a registered resolver — supports() must return true");
+        Assertions.assertFalse(sut.supports(DiagnosisKind.COCA_BUCKETS),
+                "COCA_BUCKETS has no registered resolver — supports() must return false");
+        Assertions.assertFalse(sut.supports(DiagnosisKind.LEMMA_RECURRENCE),
+                "LEMMA_RECURRENCE has no registered resolver — supports() must return false");
+    }
 }

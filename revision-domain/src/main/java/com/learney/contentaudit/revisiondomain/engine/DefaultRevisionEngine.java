@@ -1,5 +1,9 @@
 package com.learney.contentaudit.revisiondomain.engine;
+import com.learney.contentaudit.revisiondomain.CorrectionContextOverride;
+import com.learney.contentaudit.revisiondomain.CorrectionContextOverrideParser;
+import com.learney.contentaudit.revisiondomain.CorrectionContextSource;
 import com.learney.contentaudit.revisiondomain.ImpactPreviewStore;
+import com.learney.contentaudit.revisiondomain.OverrideRejectedException;
 import com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewComputer;
 
 import com.learney.contentaudit.auditdomain.AuditReport;
@@ -56,7 +60,9 @@ class DefaultRevisionEngine implements RevisionEngine {
     
     private final ImpactPreviewStore impactPreviewStore;
     
-    public DefaultRevisionEngine(RefinementPlanStore refinementPlanStore, AuditReportStore auditReportStore, CorrectionContextResolver<CorrectionContext> contextResolver, Reviser reviser, RevisionValidator validator, RevisionArtifactStore artifactStore, CourseRepository courseRepository, CourseElementLocator elementLocator, ImpactPreviewComputer impactPreviewComputer, ImpactPreviewStore impactPreviewStore) {
+    private final CorrectionContextOverrideParser correctionContextOverrideParser;
+    
+    public DefaultRevisionEngine(RefinementPlanStore refinementPlanStore, AuditReportStore auditReportStore, CorrectionContextResolver<CorrectionContext> contextResolver, Reviser reviser, RevisionValidator validator, RevisionArtifactStore artifactStore, CourseRepository courseRepository, CourseElementLocator elementLocator, ImpactPreviewComputer impactPreviewComputer, ImpactPreviewStore impactPreviewStore, CorrectionContextOverrideParser correctionContextOverrideParser) {
         this.refinementPlanStore = refinementPlanStore;
         this.auditReportStore = auditReportStore;
         this.contextResolver = contextResolver;
@@ -67,12 +73,14 @@ class DefaultRevisionEngine implements RevisionEngine {
         this.elementLocator = elementLocator;
         this.impactPreviewComputer = impactPreviewComputer;
         this.impactPreviewStore = impactPreviewStore;
+        this.correctionContextOverrideParser = correctionContextOverrideParser;
     }
     
 
+
     
     @Override
-    public RevisionOutcome revise(String planId, String taskId, Path coursePath) {
+    public RevisionOutcome revise(String planId, String taskId, Path coursePath, String overridePayload) {
         // Step 1: Load plan and find task
         RefinementPlan plan = refinementPlanStore.load(planId)
                 .orElseThrow(() -> new IllegalArgumentException("Plan not found: " + planId));
@@ -81,26 +89,67 @@ class DefaultRevisionEngine implements RevisionEngine {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Task not found: " + taskId));
 
-        // Step 2: Resolve CorrectionContext — load audit report first
+        // Step 2: Load audit report — needed for derived path context resolution; loaded eagerly
+        // so it is available for plan source metadata regardless of path (R002 only prohibits
+        // using it to CONSTRUCT the context, not loading it).
         Optional<AuditReport> auditReportOpt = auditReportStore.load(plan.getSourceAuditId());
-        if (auditReportOpt.isEmpty()) {
-            return new RevisionOutcome(RevisionOutcomeKind.CONTEXT_UNAVAILABLE, null,
-                    "Audit report not found: " + plan.getSourceAuditId());
-        }
-        AuditReport auditReport = auditReportOpt.get();
 
-        // Step 2b: Guard — if task already has a pending proposal, reject the revise (R010)
-        if (artifactStore.hasPendingProposalForTask(planId, taskId)) {
+        // Step 2a: Resolve CorrectionContext
+        // When overridePayload is non-null, use the override path (F-REVCTX-R001, R002)
+        CorrectionContext context;
+        CorrectionContextSource contextSource;
+        String contextOverridePayload = null;
+        AuditReport auditReport = auditReportOpt.orElse(null);
+
+        if (overridePayload != null) {
+            // Override path (FEAT-REVCTX)
+            // R004: check if this DiagnosisKind supports override (has a context contract)
+            if (!contextResolver.supports(task.getDiagnosisKind())) {
+                return new RevisionOutcome(RevisionOutcomeKind.OVERRIDE_NOT_APPLICABLE, null,
+                        "El verbo revise no acepta correctionContext para tareas de tipo '"
+                        + task.getDiagnosisKind().name() + "'");
+            }
+            // Parse and validate the override (R003: structural + identity check)
+            CorrectionContextOverride override;
+            try {
+                override = correctionContextOverrideParser.parse(
+                        overridePayload, task.getDiagnosisKind(), task.getNodeId());
+            } catch (OverrideRejectedException e) {
+                return new RevisionOutcome(RevisionOutcomeKind.OVERRIDE_INVALID, null,
+                        e.getMessage());
+            }
+            context = override.getContext();
+            contextSource = CorrectionContextSource.OVERRIDE;
+            contextOverridePayload = override.getRawPayload();
+            // R002: zero derivation — the override context is used as-is, no audit report used
+            // to construct the context (auditReport was loaded above but not used for derivation)
+        } else {
+            // Derived path (existing behavior)
+            if (auditReportOpt.isEmpty()) {
+                return new RevisionOutcome(RevisionOutcomeKind.CONTEXT_UNAVAILABLE, null,
+                        "Audit report not found: " + plan.getSourceAuditId());
+            }
+
+            // Step 2b: Guard — if task already has a pending proposal, reject the revise (R010)
+            if (artifactStore.hasPendingProposalForTask(planId, taskId)) {
+                return new RevisionOutcome(RevisionOutcomeKind.ALREADY_PENDING_DECISION, null,
+                        "Task already has a pending proposal awaiting decision: " + taskId);
+            }
+
+            Optional<CorrectionContext> contextOpt = contextResolver.resolve(auditReport, task);
+            if (contextOpt.isEmpty()) {
+                return new RevisionOutcome(RevisionOutcomeKind.CONTEXT_UNAVAILABLE, null,
+                        "CorrectionContext could not be resolved for task: " + taskId);
+            }
+            context = contextOpt.get();
+            contextSource = CorrectionContextSource.DERIVED;
+        }
+
+        // Guard for override path: pending proposal check (also applies to override path, R006)
+        if (overridePayload != null && artifactStore.hasPendingProposalForTask(planId, taskId)) {
             return new RevisionOutcome(RevisionOutcomeKind.ALREADY_PENDING_DECISION, null,
                     "Task already has a pending proposal awaiting decision: " + taskId);
         }
-
-        Optional<CorrectionContext> contextOpt = contextResolver.resolve(auditReport, task);
-        if (contextOpt.isEmpty()) {
-            return new RevisionOutcome(RevisionOutcomeKind.CONTEXT_UNAVAILABLE, null,
-                    "CorrectionContext could not be resolved for task: " + taskId);
-        }
-        CorrectionContext context = contextOpt.get();
 
         // Step 3: Load course and locate element
         CourseEntity course = courseRepository.load(coursePath);
@@ -139,6 +188,7 @@ class DefaultRevisionEngine implements RevisionEngine {
         String rejectionReason = validatorResult.rejectionReason().orElse(null);
 
         // Step 7: Build and persist artifact (BEFORE course write — R014)
+        // Include contextSource and contextOverridePayload for traceability (F-REVCTX-R007)
         RevisionOutcomeKind artifactOutcomeKind;
         if (verdict == RevisionVerdict.APPROVED) {
             artifactOutcomeKind = RevisionOutcomeKind.APPROVED_APPLIED;
@@ -153,7 +203,9 @@ class DefaultRevisionEngine implements RevisionEngine {
                 rejectionReason,
                 artifactOutcomeKind,
                 null,
-                null
+                null,
+                contextSource,
+                contextOverridePayload
         );
         artifactStore.save(artifact);
 
