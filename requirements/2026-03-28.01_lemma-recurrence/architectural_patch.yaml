@@ -1,0 +1,10 @@
+code: FEAT-LREC
+features:
+  - id: FEAT-LREC
+    journeys:
+      - id: F-LREC-J001
+        testModule: audit-domain
+        testPackage: com.learney.contentaudit.auditdomain.lrec
+      - id: F-LREC-J004
+        testModule: audit-domain
+        testPackage: com.learney.contentaudit.auditdomain.lrec
