@@ -105,8 +105,11 @@ public class FRevaprJ002JourneyTest {
             CourseElementLocator elementLocator) {
 
         CorrectionContext stubContext = mock(CorrectionContext.class);
-        CorrectionContextResolver<CorrectionContext> contextResolver =
-                (report, task) -> Optional.of(stubContext);
+        CorrectionContextResolver<CorrectionContext> contextResolver = new CorrectionContextResolver<CorrectionContext>() {
+            @Override public Optional<CorrectionContext> resolve(AuditReport report, RefinementTask task) { return Optional.of(stubContext); }
+            @Override public Optional<CorrectionContext> resolveWithIndex(com.learney.contentaudit.auditdomain.AuditNodeIndex idx, AuditReport report, RefinementTask task) { return Optional.of(stubContext); }
+            @Override public boolean supports(DiagnosisKind kind) { return true; }
+        };
 
         RevisionValidator humanValidator = new DefaultRevisionValidatorFactory().create(ApprovalMode.HUMAN);
         RevisionEngineConfig config = new RevisionEngineConfig();
@@ -161,7 +164,7 @@ public class FRevaprJ002JourneyTest {
         RevisionEngineConfig config = buildHumanConfig(
                 planStore, auditReportStore, artifactStore, courseRepository, elementLocator);
         RevisionEngine engine = new DefaultRevisionEngineFactory().create(config);
-        RevisionOutcome proposeOutcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH);
+        RevisionOutcome proposeOutcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH, null);
 
         assertEquals(RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, proposeOutcome.getKind(),
                 "path-1 propose: human validator must yield PENDING_APPROVAL_PERSISTED (R007, R008, R009)");

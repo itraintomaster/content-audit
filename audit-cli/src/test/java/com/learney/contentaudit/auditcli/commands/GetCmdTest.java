@@ -73,7 +73,7 @@ public class GetCmdTest {
     @BeforeEach
     void setUp() throws Exception {
         cmd = new GetCmd(auditReportStore, refinementPlanStore, analyzerRegistry,
-                correctionContextResolver, null, null);
+                correctionContextResolver, null, null, new DefaultCorrectionContextJsonMapper());
         cmd.setRevisionArtifactStore(revisionArtifactStore);
         // GetCmd has a picocli @Option field 'formatName' that picocli normally populates.
         // When constructing directly in unit tests, we must inject a default value so the

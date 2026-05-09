@@ -118,8 +118,11 @@ public class FRevaprJ001JourneyTest {
 
         // IdentityReviser does not inspect the context — any non-empty Optional satisfies the engine.
         CorrectionContext stubContext = mock(CorrectionContext.class);
-        CorrectionContextResolver<CorrectionContext> contextResolver =
-                (report, task) -> Optional.of(stubContext);
+        CorrectionContextResolver<CorrectionContext> contextResolver = new CorrectionContextResolver<CorrectionContext>() {
+            @Override public Optional<CorrectionContext> resolve(AuditReport report, RefinementTask task) { return Optional.of(stubContext); }
+            @Override public Optional<CorrectionContext> resolveWithIndex(com.learney.contentaudit.auditdomain.AuditNodeIndex idx, AuditReport report, RefinementTask task) { return Optional.of(stubContext); }
+            @Override public boolean supports(DiagnosisKind kind) { return true; }
+        };
 
         RevisionValidator humanValidator = new DefaultRevisionValidatorFactory().create(ApprovalMode.HUMAN);
 
@@ -179,7 +182,7 @@ public class FRevaprJ001JourneyTest {
         RevisionEngine engine = new DefaultRevisionEngineFactory().create(config);
 
         // Nodes: iniciar_revision / generar_propuesta / validar_humano / persistir_artefacto_pendiente / marcar_tarea_esperando
-        RevisionOutcome proposeOutcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH);
+        RevisionOutcome proposeOutcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH, null);
 
         // Gate R001/R007/R008: outcome is PENDING_APPROVAL_PERSISTED; artifact carries PENDING_APPROVAL
         assertEquals(RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, proposeOutcome.getKind(),
@@ -289,7 +292,7 @@ public class FRevaprJ001JourneyTest {
         RevisionEngineConfig config = buildHumanConfig(
                 planStore, auditReportStore, artifactStore, courseRepository, elementLocator);
         RevisionEngine engine = new DefaultRevisionEngineFactory().create(config);
-        RevisionOutcome proposeOutcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH);
+        RevisionOutcome proposeOutcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH, null);
 
         assertEquals(RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, proposeOutcome.getKind(),
                 "path-2 propose: must yield PENDING_APPROVAL_PERSISTED");

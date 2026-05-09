@@ -137,3 +137,56 @@
   cierra el problema de performance que ya estaba latente en GetCmd
   cuando se quisiera escalar a planes grandes; aprovechamos la apertura
   del feature para resolverlo en `audit-domain` donde corresponde.
+
+2026-05-09 — architect — Escalacion qa-tester (missing_field F-PLANEF-J002/J003): NO requiere patch arquitectonico.
+  Resolucion: la CLI rechaza el _change sobre features[].journeys[] con el mensaje
+  "features[].rules[] and features[].journeys[] are derived from REQUIREMENT.md
+  and cannot be modified via patch. To apply these changes, edit REQUIREMENT.md
+  and run `sentinel generate`". J002 y J003 ya estan declarados en REQUIREMENT.md
+  con shape valido (flow + outcomes); sentinel generate los materializara
+  automaticamente en sentinel.yaml#features.FEAT-PLANEF.journeys cuando se corra
+  tras aplicar el patch actual. testModule/testPackage los infiere Sentinel del
+  paquete donde aterrice el JourneyTest (precedente: F-PLANEF-J001 quedo con
+  testModule=audit-cli, testPackage=com.learney.contentaudit.auditcli.commands
+  -via *JourneyTest.java escrito en commit eb8cadb-).
+  Bloque features: residual en architectural_patch.yaml (lineas 82-92) -la CLI
+  ignora los _change pero deja el bloque pegado en el merge. Es benigno: sentinel
+  generate sobreescribe ese bloque con el sintetizado desde REQUIREMENT.md.
+  TECH_SPEC.md no se reescribe: contiene la narrativa completa del patch
+  arquitectonico de R002 (firma PlanCommand extendida, AuditNodeIndex,
+  CorrectionContextResolver con resolveWithIndex, CorrectionContextJsonMapper,
+  EphemeralRenderOptions, etc.) ya aplicado en commit a69a81a/eb8cadb. El
+  architectural_patch.yaml hoy solo acumula los 6 handwrittenTests de qa-tester
+  para R002, asi que tech-spec write contra el patch actual rechazaria todos los
+  fences de la narrativa arquitectonica con "no esta en architectural_patch.yaml".
+  Conservar TECH_SPEC.md tal cual es la unica via no-destructiva.
+  why: la escalacion buscaba un cambio de contrato; pero el "contrato" de los
+  journeys no vive en sentinel.yaml editable -vive en REQUIREMENT.md derived.
+  Lo que el qa-tester observa como "missing field" es un estado transitorio
+  (REQUIREMENT.md cambio, sentinel generate aun no se corrio); sentinel generate
+  cierra el ciclo sin necesidad de patch. Comunicado a qa-tester via SendMessage.
+
+2026-05-09 — architect — Asuncion del 2026-05-09 (entrada anterior) FALSADA empiricamente:
+  sentinel generate NO materializa F-PLANEF-J002/J003 a pesar de estar bien
+  declarados en REQUIREMENT.md. Genera WARNING explicito:
+    "REQUIREMENT.md declares journey 'F-PLANEF-J002' under feature 'FEAT-PLANEF'
+     which is not listed in sentinel.yaml — skipping for generation
+     (add 'F-PLANEF-J002' to features.FEAT-PLANEF.journeys: to materialize it)."
+  Re-intentar via patch propose con _change: add sigue rechazado (mismo mensaje
+  que antes). Es un deadlock real entre las dos puertas del CLI:
+    - patch propose dice "edita REQUIREMENT.md y corre sentinel generate"
+    - sentinel generate dice "agregalo a sentinel.yaml manualmente"
+  Bug reportado en /Users/josecullen/projects/sentinel/.bugs/in_progress/
+    2026-05-09-01-features-journeys-derived-but-not-materialized.md
+  Mismo problema con F-REVCTX-J004 (otra implementacion en paralelo).
+  Decision pragmatica: avanzar SIN J002/J003 materializados. Las 5 invariantes
+  de R002 ya estan cubiertas funcionalmente por los 6 handwrittenTests sobre
+  PlanCmd/DefaultEphemeralPlanRenderer (architectural_patch.yaml en applied-patches/
+  2026-05-09T16-48...). Los journeys son cobertura adicional path-based que se
+  pueden agregar despues de que Sentinel resuelva el bug, editando sentinel.yaml
+  manualmente o por la via que el equipo de Sentinel decida.
+  why: bloquear el avance esperando un fix de Sentinel cuesta mas que la
+  cobertura adicional que J002/J003 daria. Las invariantes #1..#5 de R002 estan
+  cubiertas por los 6 handwrittenTests propuestos por qa-tester. La adicion
+  posterior de los JourneyTest queda planificada para cuando Sentinel resuelva
+  la inconsistencia.

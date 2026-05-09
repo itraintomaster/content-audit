@@ -70,6 +70,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: PlanStorageMode - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.EphemeralRenderOptions");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: EphemeralRenderOptions - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.AnalyzeCommand");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AnalyzeCommand - " + e.getMessage());
@@ -133,6 +138,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.commands.EphemeralPlanRenderer");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: EphemeralPlanRenderer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.commands.CorrectionContextJsonMapper");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CorrectionContextJsonMapper - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.commands.Main");
@@ -208,6 +218,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.commands.DefaultEphemeralPlanRenderer");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultEphemeralPlanRenderer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.commands.DefaultCorrectionContextJsonMapper");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultCorrectionContextJsonMapper - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.formatting.ReportViewModel");

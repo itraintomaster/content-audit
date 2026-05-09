@@ -250,8 +250,11 @@ public class FLapsJ005JourneyTest {
         CourseElementLocator elementLocator = mock(CourseElementLocator.class);
 
         LemmaAbsenceContextResolver lapsResolver = new LemmaAbsenceContextResolver();
-        CorrectionContextResolver<CorrectionContext> contextResolver =
-                (report, task) -> lapsResolver.resolve(report, task).map(c -> (CorrectionContext) c);
+        CorrectionContextResolver<CorrectionContext> contextResolver = new CorrectionContextResolver<CorrectionContext>() {
+            @Override public Optional<CorrectionContext> resolve(AuditReport report, RefinementTask task) { return lapsResolver.resolve(report, task).map(c -> (CorrectionContext) c); }
+            @Override public Optional<CorrectionContext> resolveWithIndex(com.learney.contentaudit.auditdomain.AuditNodeIndex idx, AuditReport report, RefinementTask task) { return resolve(report, task); }
+            @Override public boolean supports(DiagnosisKind kind) { return lapsResolver.supports(kind); }
+        };
 
         AuditReport auditReport = buildAuditReport();
         RefinementPlan plan = buildPlan();
@@ -291,7 +294,7 @@ public class FLapsJ005JourneyTest {
         RevisionEngine engine = new DefaultRevisionEngineFactory().create(config);
 
         // ── Act: Step 1 — revise in human mode (Node: estrategia_produce_candidato) ─
-        RevisionOutcome reviseOutcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH);
+        RevisionOutcome reviseOutcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH, null);
 
         // Node: propuesta_pendiente — verify gates R001, R005, R012, R013
         assertEquals(RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, reviseOutcome.getKind(),

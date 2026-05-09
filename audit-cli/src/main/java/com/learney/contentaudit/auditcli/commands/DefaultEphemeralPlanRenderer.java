@@ -1,9 +1,21 @@
 package com.learney.contentaudit.auditcli.commands;
+import com.learney.contentaudit.auditcli.EphemeralRenderOptions;
+import com.learney.contentaudit.auditdomain.AuditNodeIndex;
+import com.learney.contentaudit.auditdomain.AuditNodeIndexFactory;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.refinerdomain.CorrectionContext;
+import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
+import java.util.List;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -14,15 +26,57 @@ class DefaultEphemeralPlanRenderer implements EphemeralPlanRenderer {
 
     private final ObjectMapper objectMapper;
 
-    DefaultEphemeralPlanRenderer() {
+    private final AuditNodeIndexFactory auditNodeIndexFactory;
+
+    private final CorrectionContextResolver correctionContextResolver;
+
+    private final CorrectionContextJsonMapper correctionContextJsonMapper;
+
+    DefaultEphemeralPlanRenderer(AuditNodeIndexFactory auditNodeIndexFactory, CorrectionContextResolver correctionContextResolver, CorrectionContextJsonMapper correctionContextJsonMapper) {
         this.objectMapper = createObjectMapper();
+        this.auditNodeIndexFactory = auditNodeIndexFactory;
+        this.correctionContextResolver = correctionContextResolver;
+        this.correctionContextJsonMapper = correctionContextJsonMapper;
     }
 
     @Override
-    public Integer render(RefinementPlan plan) {
+    public Integer render(RefinementPlan plan, AuditReport report, EphemeralRenderOptions options) {
         try {
-            String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(plan);
-            System.out.println(json);
+            if (!options.isWithCorrectionContext()) {
+                // Simple path: serialize the plan as-is
+                String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(plan);
+                System.out.println(json);
+                return 0;
+            }
+
+            // Enriched path: build index once, then annotate each task with correctionContext
+            AuditNodeIndex index = auditNodeIndexFactory.build(report);
+
+            // Serialize the whole plan to a JsonNode tree to preserve all existing fields
+            JsonNode planNode = objectMapper.valueToTree(plan);
+
+            // Enrich each task in the tasks array
+            JsonNode tasksNode = planNode.get("tasks");
+            if (tasksNode != null && tasksNode.isArray()) {
+                List<RefinementTask> tasks = plan.getTasks() != null ? plan.getTasks() : List.of();
+                ArrayNode tasksArray = (ArrayNode) tasksNode;
+                for (int i = 0; i < tasks.size() && i < tasksArray.size(); i++) {
+                    RefinementTask task = tasks.get(i);
+                    ObjectNode taskNode = (ObjectNode) tasksArray.get(i);
+                    @SuppressWarnings({"unchecked", "rawtypes"})
+                    Optional<CorrectionContext> ctxOpt =
+                            correctionContextResolver.resolveWithIndex(index, report, task);
+                    if (ctxOpt.isPresent()) {
+                        Object contextMap = correctionContextJsonMapper.toJsonMap(ctxOpt.get());
+                        taskNode.set("correctionContext", objectMapper.valueToTree(contextMap));
+                    } else {
+                        taskNode.putNull("correctionContext");
+                        taskNode.put("correctionContextError", "context not constructible");
+                    }
+                }
+            }
+
+            System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(planNode));
             return 0;
         } catch (Exception e) {
             System.err.println("Error serializing plan to JSON: " + e.getMessage());

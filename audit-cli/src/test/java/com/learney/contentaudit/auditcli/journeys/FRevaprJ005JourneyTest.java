@@ -77,7 +77,7 @@ public class FRevaprJ005JourneyTest {
     }
 
     private RevisionArtifact buildArtifact(String proposalId, String planId, RevisionVerdict verdict) {
-        return new RevisionArtifact(buildProposal(proposalId, planId), verdict, null, null, null, null);
+        return new RevisionArtifact(buildProposal(proposalId, planId), verdict, null, null, null, null, null, null);
     }
 
     // -------------------------------------------------------------------------
@@ -101,10 +101,11 @@ public class FRevaprJ005JourneyTest {
                 AnalyzerRegistry.class,
                 CorrectionContextResolver.class,
                 Class.forName("com.learney.contentaudit.revisiondomain.ImpactPreviewStore"),
-                Class.forName("com.learney.contentaudit.auditcli.formatting.ImpactPreviewFormatter"));
+                Class.forName("com.learney.contentaudit.auditcli.formatting.ImpactPreviewFormatter"),
+                Class.forName("com.learney.contentaudit.auditcli.commands.CorrectionContextJsonMapper"));
         ctor.setAccessible(true);
         Object getCmdInstance = ctor.newInstance(
-                auditReportStore, refinementPlanStore, analyzerRegistry, contextResolver, null, null);
+                auditReportStore, refinementPlanStore, analyzerRegistry, contextResolver, null, null, null);
 
         // Inject formatName (picocli @Option default)
         try {

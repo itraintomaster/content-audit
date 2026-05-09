@@ -1,5 +1,6 @@
 package com.learney.contentaudit.refinerdomain;
 
+import com.learney.contentaudit.auditdomain.AuditNodeIndex;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
@@ -10,4 +11,8 @@ import javax.annotation.processing.Generated;
 )
 public interface CorrectionContextResolver<T extends CorrectionContext> {
     Optional<T> resolve(AuditReport report, RefinementTask task);
+
+    Optional<T> resolveWithIndex(AuditNodeIndex nodeIndex, AuditReport report, RefinementTask task);
+
+    boolean supports(DiagnosisKind kind);
 }

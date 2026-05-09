@@ -75,7 +75,7 @@ public class FRevaprJ003JourneyTest {
 
     private RevisionArtifact buildArtifact(String proposalId, String taskId, String planId,
                                            RevisionVerdict verdict) {
-        return new RevisionArtifact(buildProposal(proposalId, taskId, planId), verdict, null, null, null, null);
+        return new RevisionArtifact(buildProposal(proposalId, taskId, planId), verdict, null, null, null, null, null, null);
     }
 
     private RefinementPlan buildPlan(String planId, String taskId) {

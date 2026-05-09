@@ -8,7 +8,11 @@ description: "F-PLANEF: modo efimero del comando plan. Agrega un modo de storage
   \ sin nuevos modulos, dependencias o boundaries.; F-PLANEF-R002: contexto de correccion\
   \ inline opt-in en modo efimero. Indexa nodos del AuditReport para acelerar resolucion\
   \ masiva, extrae el mapeo correctionContext->JSON a un puerto compartido, y enriquece\
-  \ el renderer efimero para que pueda hidratar contexto inline."
+  \ el renderer efimero para que pueda hidratar contexto inline.; FEAT-PLANEF / ARCH-PLANEF\
+  \ R002 — handwrittenTests para el modo efimero con contexto de correccion inline\
+  \ opt-in. Los journeys F-PLANEF-J002 y F-PLANEF-J003 no van en este patch: son derived\
+  \ de REQUIREMENT.md y se materializan automaticamente en sentinel.yaml al correr\
+  \ sentinel generate."
 modules:
 - name: audit-cli
   description: CLI entry point
@@ -108,6 +112,52 @@ modules:
         traceability:
           feature: FEAT-PLANEF
           rule: F-PLANEF-R001
+      - name: "Dado un RefinementPlan con tasks no vacias y EphemeralRenderOptions.withCorrectionContext=false,\
+          \ cuando render se invoca, entonces el JSON emitido no contiene la clave\
+          \ correctionContext en ninguna task y ni el resolver ni el mapper son invocados\
+          \ — R002 invariante #3: opt-in default OFF preserva R001 y no se cambia\
+          \ silenciosamente"
+        traceability:
+          feature: FEAT-PLANEF
+          rule: F-PLANEF-R002
+      - name: "Dado un RefinementPlan con tasks y EphemeralRenderOptions.withCorrectionContext=true,\
+          \ cuando render se invoca y el resolver retorna contexto para cada task,\
+          \ entonces cada task del JSON emitido tiene un campo correctionContext igual\
+          \ al mapa producido por CorrectionContextJsonMapper.toJsonMap aplicado al\
+          \ contexto resuelto via resolveWithIndex con el indice construido a partir\
+          \ del AuditReport — R002 invariante #1: contexto inline por tarea con la\
+          \ misma estructura/semantica que get task"
+        traceability:
+          feature: FEAT-PLANEF
+          rule: F-PLANEF-R002
+      - name: "Dado un RefinementPlan y una unica instancia de CorrectionContextJsonMapper\
+          \ inyectada en GetCmd y en DefaultEphemeralPlanRenderer, cuando ambos comandos\
+          \ serializan el correctionContext de la misma task derivada del mismo AuditReport,\
+          \ entonces el campo correctionContext que emite plan efimero es estructuralmente\
+          \ igual al que emite get task (mismas claves, mismos valores) — R002 invariante\
+          \ #2: equivalencia funcional con get task garantizada por compartir el mapper"
+        traceability:
+          feature: FEAT-PLANEF
+          rule: F-PLANEF-R002
+      - name: "Dado un RefinementPlan con tasks y EphemeralRenderOptions.withCorrectionContext=true,\
+          \ cuando render se invoca y el resolver retorna Optional.empty para una\
+          \ task (contexto no construible), entonces esa task del JSON emitido tiene\
+          \ correctionContext en null y un campo descriptivo del motivo, con la misma\
+          \ semantica que F-RCLA-R008 define para get task — R002 invariante #4: tareas\
+          \ sin contexto construible llevan correctionContext ausente o nulo + motivo"
+        traceability:
+          feature: FEAT-PLANEF
+          rule: F-PLANEF-R002
+      - name: "Dado un RefinementPlan con tasks mixtas y EphemeralRenderOptions.withCorrectionContext=true,\
+          \ cuando render se invoca y el resolver retorna contexto para algunas tasks\
+          \ y Optional.empty para otras, entonces el comando retorna codigo 0, el\
+          \ JSON emitido contiene todas las tasks, las tasks resueltas llevan correctionContext\
+          \ con valor y las no resueltas llevan correctionContext en null + motivo\
+          \ — R002 invariante #4: el comando no falla globalmente, emite el plan completo\
+          \ con la falla por tarea visible para el cliente"
+        traceability:
+          feature: FEAT-PLANEF
+          rule: F-PLANEF-R002
       classStereotype: false
       implements:
       - EphemeralPlanRenderer
@@ -167,6 +217,14 @@ modules:
         traceability:
           feature: FEAT-PLANEF
           rule: F-PLANEF-R001
+      - name: "Dado storageMode DISK y withCorrectionContext=true, cuando plan se\
+          \ invoca, entonces el comando rechaza la combinacion con codigo de error\
+          \ y no invoca refinerEngine, refinementPlanStore.save ni ephemeralPlanRenderer.render\
+          \ — R002 detail #4 (la opcion solo tiene efecto en modo efimero) + DOUBT-CTX-IN-DISK-MODE\
+          \ resuelto como rechazo explicito"
+        traceability:
+          feature: FEAT-PLANEF
+          rule: F-PLANEF-R002
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       classStereotype: false

@@ -6,6 +6,7 @@ import static org.mockito.Mockito.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.learney.contentaudit.auditcli.EphemeralRenderOptions;
 import com.learney.contentaudit.auditcli.PlanStorageMode;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditReportSummary;
@@ -89,7 +90,7 @@ public class PlanCmdTest {
         when(refinementPlanStore.save(plan)).thenReturn("plan-001");
 
         // Act
-        int exit = planCmd.plan(null, PlanStorageMode.DISK);
+        int exit = planCmd.plan(null, PlanStorageMode.DISK, false);
 
         // Assert — R014: success exits 0; plan must be persisted
         assertEquals(0, exit, "plan(null) should exit 0 on success");
@@ -112,7 +113,7 @@ public class PlanCmdTest {
         when(refinementPlanStore.save(plan)).thenReturn("plan-002");
 
         // Act
-        int exit = planCmd.plan(auditId, PlanStorageMode.DISK);
+        int exit = planCmd.plan(auditId, PlanStorageMode.DISK, false);
 
         // Assert — R014: explicit --audit <id> uses that audit; exits 0 on success
         assertEquals(0, exit, "plan(auditId) should exit 0 on success");
@@ -136,7 +137,7 @@ public class PlanCmdTest {
         System.setErr(new PrintStream(errBuf));
         try {
             // Act
-            int exit = planCmd.plan(null, PlanStorageMode.DISK);
+            int exit = planCmd.plan(null, PlanStorageMode.DISK, false);
 
             // Assert — R014: "No audits available. Run 'content-audit analyze' first."
             assertNotEquals(0, exit, "plan(null) with no audits must exit non-zero");
@@ -162,7 +163,7 @@ public class PlanCmdTest {
         System.setErr(new PrintStream(errBuf));
         try {
             // Act
-            int exit = planCmd.plan(unknownAuditId, PlanStorageMode.DISK);
+            int exit = planCmd.plan(unknownAuditId, PlanStorageMode.DISK, false);
 
             // Assert — R014: "Audit '<id>' not found"
             assertNotEquals(0, exit, "plan(unknownId) must exit non-zero");
@@ -195,7 +196,7 @@ public class PlanCmdTest {
         when(refinementPlanStore.save(plan)).thenReturn("plan-r004");
 
         // Act
-        int exit = planCmd.plan(auditId, PlanStorageMode.DISK);
+        int exit = planCmd.plan(auditId, PlanStorageMode.DISK, false);
 
         // Assert — semantics unchanged: refinerEngine delegates the plan, store persists it
         assertEquals(0, exit, "plan with valid auditId must exit 0 (semantics unchanged under new placement)");
@@ -216,10 +217,10 @@ public class PlanCmdTest {
 
         RefinementPlan plan = new RefinementPlan("plan-eph-001", auditId, Instant.now(), List.of());
         when(refinerEngine.plan(report, auditId)).thenReturn(plan);
-        when(ephemeralPlanRenderer.render(plan)).thenReturn(0);
+        when(ephemeralPlanRenderer.render(plan, report, new EphemeralRenderOptions(false))).thenReturn(0);
 
         // Act
-        int exit = planCmd.plan(auditId, PlanStorageMode.EPHEMERAL);
+        int exit = planCmd.plan(auditId, PlanStorageMode.EPHEMERAL, false);
 
         // Assert — R001 invariante 1: modo efimero nunca escribe en disco
         assertEquals(0, exit, "plan en modo EPHEMERAL debe salir con codigo 0");
@@ -242,12 +243,12 @@ public class PlanCmdTest {
         when(refinementPlanStore.save(plan)).thenReturn("plan-disk-001");
 
         // Act
-        int exit = planCmd.plan(auditId, PlanStorageMode.DISK);
+        int exit = planCmd.plan(auditId, PlanStorageMode.DISK, false);
 
         // Assert — R001 invariante 1 control negativo: modo DISK persiste el plan y no llama al renderer
         assertEquals(0, exit, "plan en modo DISK debe salir con codigo 0");
         verify(refinementPlanStore).save(plan);
-        verify(ephemeralPlanRenderer, never()).render(any());
+        verify(ephemeralPlanRenderer, never()).render(any(), any(), any());
     }
 
     @Test
@@ -263,13 +264,13 @@ public class PlanCmdTest {
 
         RefinementPlan plan = new RefinementPlan("plan-eph-002", auditId, Instant.now(), List.of());
         when(refinerEngine.plan(report, auditId)).thenReturn(plan);
-        when(ephemeralPlanRenderer.render(plan)).thenReturn(0);
+        when(ephemeralPlanRenderer.render(plan, report, new EphemeralRenderOptions(false))).thenReturn(0);
 
         // Act
-        planCmd.plan(auditId, PlanStorageMode.EPHEMERAL);
+        planCmd.plan(auditId, PlanStorageMode.EPHEMERAL, false);
 
         // Assert — R001 invariante 2: el renderer recibe el plan derivado por el engine
-        verify(ephemeralPlanRenderer).render(plan);
+        verify(ephemeralPlanRenderer).render(plan, report, new EphemeralRenderOptions(false));
         verify(refinementPlanStore, never()).save(any());
     }
 
@@ -289,10 +290,10 @@ public class PlanCmdTest {
         when(refinementPlanStore.save(plan)).thenReturn("plan-disk-002");
 
         // Act
-        planCmd.plan(auditId, PlanStorageMode.DISK);
+        planCmd.plan(auditId, PlanStorageMode.DISK, false);
 
         // Assert — R001 invariante 2 control negativo: modo DISK no toca el renderer efimero
-        verify(ephemeralPlanRenderer, never()).render(any());
+        verify(ephemeralPlanRenderer, never()).render(any(), any(), any());
         verify(refinementPlanStore).save(plan);
     }
 
@@ -313,11 +314,11 @@ public class PlanCmdTest {
                 .thenReturn(planDisk)
                 .thenReturn(planEph);
         when(refinementPlanStore.save(planDisk)).thenReturn("plan-disk-inv3");
-        when(ephemeralPlanRenderer.render(planEph)).thenReturn(0);
+        when(ephemeralPlanRenderer.render(planEph, report, new EphemeralRenderOptions(false))).thenReturn(0);
 
         // Act — primera invocacion con DISK, segunda con EPHEMERAL
-        planCmd.plan(auditId, PlanStorageMode.DISK);
-        planCmd.plan(auditId, PlanStorageMode.EPHEMERAL);
+        planCmd.plan(auditId, PlanStorageMode.DISK, false);
+        planCmd.plan(auditId, PlanStorageMode.EPHEMERAL, false);
 
         // Assert — R001 invariante 3: el engine recibe exactamente los mismos argumentos en ambas invocaciones
         verify(refinerEngine, times(2)).plan(report, auditId);
@@ -348,10 +349,10 @@ public class PlanCmdTest {
             doAnswer(inv -> {
                 System.out.print(expectedJson);
                 return 0;
-            }).when(ephemeralPlanRenderer).render(plan);
+            }).when(ephemeralPlanRenderer).render(plan, report, new EphemeralRenderOptions(false));
 
             // Act
-            planCmd.plan(auditId, PlanStorageMode.EPHEMERAL);
+            planCmd.plan(auditId, PlanStorageMode.EPHEMERAL, false);
         } finally {
             System.setOut(originalOut);
         }
@@ -363,5 +364,33 @@ public class PlanCmdTest {
         RefinementPlan parsed = mapper.readValue(stdoutContent, RefinementPlan.class);
         assertEquals(plan.getId(), parsed.getId(), "El JSON en stdout debe corresponder al plan derivado");
         assertEquals(plan.getSourceAuditId(), parsed.getSourceAuditId());
+    }
+
+    @Test
+    @DisplayName("Dado storageMode DISK y withCorrectionContext=true, cuando plan se invoca, entonces el comando rechaza la combinacion con codigo de error y no invoca refinerEngine, refinementPlanStore.save ni ephemeralPlanRenderer.render — R002 detail #4 (la opcion solo tiene efecto en modo efimero) + DOUBT-CTX-IN-DISK-MODE resuelto como rechazo explicito")
+    @Tag("FEAT-PLANEF")
+    @Tag("F-PLANEF-R002")
+    public void dadoStorageModeDISKYWithCorrectionContexttrueCuandoPlanSeInvocaEntoncesElComandoRechazaLaCombinacionConCodigoDeErrorYNoInvocaRefinerEngineRefinementPlanStoresaveNiEphemeralPlanRendererrenderR002Detail4LaOpcionSoloTieneEfectoEnModoEfimeroDOUBTCTXINDISKMODEResueltoComoRechazoExplicito() {
+        // Arrange — withCorrectionContext=true con storageMode DISK: combinacion invalida segun R002 detail #4
+        // DOUBT-CTX-IN-DISK-MODE resuelto como rechazo explicito (Opcion A)
+        String auditId = "2026-05-09T10-00-00";
+
+        ByteArrayOutputStream errBuf = new ByteArrayOutputStream();
+        PrintStream originalErr = System.err;
+        System.setErr(new PrintStream(errBuf));
+        try {
+            // Act — invocacion con la combinacion rechazada
+            int exit = planCmd.plan(auditId, PlanStorageMode.DISK, true);
+
+            // Assert — R002 detail #4: rechazo explicito con codigo de error
+            assertNotEquals(0, exit, "DISK + withCorrectionContext=true debe retornar codigo de error");
+
+            // Ninguna de las dependencias de negocio debe invocarse: la validacion ocurre antes
+            verify(refinerEngine, never()).plan(any(), any());
+            verify(refinementPlanStore, never()).save(any());
+            verify(ephemeralPlanRenderer, never()).render(any(), any(), any());
+        } finally {
+            System.setErr(originalErr);
+        }
     }
 }

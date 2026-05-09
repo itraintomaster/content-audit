@@ -53,6 +53,12 @@ public class SentinelArchitectureTest {
   }
 
   @Test
+  public void enforcePackageAuditnodeindexVisibility() {
+    JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
+    ArchRuleDefinition.noClasses().that().resideOutsideOfPackages("..auditdomain..", "java..").should().dependOnClassesThat().resideInAPackage("..auditdomain.auditnodeindex..").allowEmptyShould(true).check(classes);
+  }
+
+  @Test
   public void enforceAllDeclaredClassesExist() {
     try {
       Class.forName("com.learney.contentaudit.auditdomain.AuditReport");
@@ -238,6 +244,16 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditdomain.ActiveAnalysisSelectionStore");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: ActiveAnalysisSelectionStore - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.AuditNodeIndex");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AuditNodeIndex - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.AuditNodeIndexFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AuditNodeIndexFactory - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditdomain.IAuditEngine");
@@ -533,6 +549,16 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditdomain.labs.LemmaAbsenceScoreAggregator");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LemmaAbsenceScoreAggregator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.auditnodeindex.DefaultAuditNodeIndexFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultAuditNodeIndexFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.auditnodeindex.MapAuditNodeIndex");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MapAuditNodeIndex - " + e.getMessage());
     }
   }
 }

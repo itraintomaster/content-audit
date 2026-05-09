@@ -64,6 +64,11 @@ final class PlanCmd implements PlanCommand, Callable<Integer> {
             defaultValue = "DISK")
     private PlanStorageMode storageMode;
 
+    @Option(names = {"--with-correction-context"},
+            description = "Include correction context for each task in EPHEMERAL output (only valid with --storage EPHEMERAL)",
+            defaultValue = "false")
+    private boolean withCorrectionContext;
+
     private final EphemeralPlanRenderer ephemeralPlanRenderer;
 
     public PlanCmd(AuditReportStore auditReportStore, RefinerEngine refinerEngine, RefinementPlanStore refinementPlanStore, EphemeralPlanRenderer ephemeralPlanRenderer) {
@@ -75,11 +80,17 @@ final class PlanCmd implements PlanCommand, Callable<Integer> {
 
     @Override
     public Integer call() {
-        return plan(this.auditId, this.storageMode);
+        return plan(this.auditId, this.storageMode, this.withCorrectionContext);
     }
 
     @Override
-    public Integer plan(String auditId, PlanStorageMode storageMode) {
+    public Integer plan(String auditId, PlanStorageMode storageMode, boolean withCorrectionContext) {
+        // R002 invariant: --with-correction-context only applies in EPHEMERAL mode
+        if (storageMode == PlanStorageMode.DISK && withCorrectionContext) {
+            System.err.println("--with-correction-context only applies in EPHEMERAL mode");
+            return 1;
+        }
+
         Optional<AuditReport> reportOpt;
         String resolvedAuditId;
 
@@ -108,7 +119,7 @@ final class PlanCmd implements PlanCommand, Callable<Integer> {
         RefinementPlan plan = refinerEngine.plan(report, resolvedAuditId);
 
         if (storageMode == PlanStorageMode.EPHEMERAL) {
-            return ephemeralPlanRenderer.render(plan);
+            return ephemeralPlanRenderer.render(plan, report, new com.learney.contentaudit.auditcli.EphemeralRenderOptions(withCorrectionContext));
         }
 
         String planId = refinementPlanStore.save(plan);

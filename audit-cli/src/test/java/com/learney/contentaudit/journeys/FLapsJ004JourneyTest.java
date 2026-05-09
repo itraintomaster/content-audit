@@ -205,8 +205,11 @@ public class FLapsJ004JourneyTest {
         CourseElementLocator elementLocator = mock(CourseElementLocator.class);
 
         LemmaAbsenceContextResolver lapsResolver = new LemmaAbsenceContextResolver();
-        CorrectionContextResolver<CorrectionContext> contextResolver =
-                (report, task) -> lapsResolver.resolve(report, task).map(c -> (CorrectionContext) c);
+        CorrectionContextResolver<CorrectionContext> contextResolver = new CorrectionContextResolver<CorrectionContext>() {
+            @Override public Optional<CorrectionContext> resolve(AuditReport report, RefinementTask task) { return lapsResolver.resolve(report, task).map(c -> (CorrectionContext) c); }
+            @Override public Optional<CorrectionContext> resolveWithIndex(com.learney.contentaudit.auditdomain.AuditNodeIndex idx, AuditReport report, RefinementTask task) { return resolve(report, task); }
+            @Override public boolean supports(DiagnosisKind kind) { return lapsResolver.supports(kind); }
+        };
 
         AuditReport auditReport = buildAuditReport();
         RefinementPlan plan = buildPlan();
@@ -246,7 +249,7 @@ public class FLapsJ004JourneyTest {
         RevisionEngine engine = new DefaultRevisionEngineFactory().create(config);
 
         // ── Act ───────────────────────────────────────────────────────────────────
-        RevisionOutcome outcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH);
+        RevisionOutcome outcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH, null);
 
         // ── Assert: Node abortar_explicitamente (gates R002, R006) ────────────────
         // R006: explicit failure — NO_ACTIVE_STRATEGY (not bypass, not identity revision)

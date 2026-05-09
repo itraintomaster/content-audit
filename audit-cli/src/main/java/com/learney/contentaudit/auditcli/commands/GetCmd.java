@@ -133,16 +133,17 @@ final class GetCmd implements GetCommand, Callable<Integer> {
 
     private ImpactPreviewFormatter impactPreviewFormatter;
 
-    public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore,
-            AnalyzerRegistry analyzerRegistry, CorrectionContextResolver correctionContextResolver,
-            ImpactPreviewStore impactPreviewStore, ImpactPreviewFormatter impactPreviewFormatter) {
-        this.auditReportStore = auditReportStore;
-        this.refinementPlanStore = refinementPlanStore;
-        this.analyzerRegistry = analyzerRegistry;
-        this.correctionContextResolver = correctionContextResolver;
-        this.impactPreviewStore = impactPreviewStore;
-        this.impactPreviewFormatter = impactPreviewFormatter;
-    }
+private final CorrectionContextJsonMapper correctionContextJsonMapper;
+
+public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore, AnalyzerRegistry analyzerRegistry, CorrectionContextResolver correctionContextResolver, ImpactPreviewStore impactPreviewStore, ImpactPreviewFormatter impactPreviewFormatter, CorrectionContextJsonMapper correctionContextJsonMapper) {
+    this.auditReportStore = auditReportStore;
+    this.refinementPlanStore = refinementPlanStore;
+    this.analyzerRegistry = analyzerRegistry;
+    this.correctionContextResolver = correctionContextResolver;
+    this.impactPreviewStore = impactPreviewStore;
+    this.impactPreviewFormatter = impactPreviewFormatter;
+    this.correctionContextJsonMapper = correctionContextJsonMapper;
+}
 
     /** Called by Main to inject the resolved working directory (needed for plan listing). */
     void setBaseDir(Path baseDir) {
@@ -664,9 +665,9 @@ final class GetCmd implements GetCommand, Callable<Integer> {
     /** Appends correctionContext (or correctionContext=null + correctionContextError) to a task JSON map. */
     private void addContextToJsonMap(Map<String, Object> m, CorrectionContextResult ctx) {
         if (ctx.slContext != null) {
-            m.put("correctionContext", buildSentenceLengthContextMap(ctx.slContext));
+            m.put("correctionContext", correctionContextJsonMapper.toJsonMap(ctx.slContext));
         } else if (ctx.laContext != null) {
-            m.put("correctionContext", buildLemmaAbsenceContextMap(ctx.laContext));
+            m.put("correctionContext", correctionContextJsonMapper.toJsonMap(ctx.laContext));
         } else {
             m.put("correctionContext", null);
             m.put("correctionContextError", ctx.error != null ? ctx.error : "unknown reason");
@@ -772,82 +773,6 @@ final class GetCmd implements GetCommand, Callable<Integer> {
                         + cocaPart);
             }
         }
-    }
-
-    private Map<String, Object> buildSentenceLengthContextMap(SentenceLengthCorrectionContext ctx) {
-        Map<String, Object> map = new LinkedHashMap<>();
-        map.put("sentence", ctx.getSentence());
-        map.put("translation", ctx.getTranslation());
-        map.put("knowledgeTitle", ctx.getKnowledgeTitle());
-        map.put("knowledgeInstructions", ctx.getKnowledgeInstructions());
-        map.put("topicLabel", ctx.getTopicLabel());
-        map.put("cefrLevel", ctx.getCefrLevel() != null ? ctx.getCefrLevel().name() : null);
-        map.put("tokenCount", ctx.getTokenCount());
-        Map<String, Object> targetRange = new LinkedHashMap<>();
-        targetRange.put("min", ctx.getTargetMin());
-        targetRange.put("max", ctx.getTargetMax());
-        map.put("targetRange", targetRange);
-        map.put("delta", ctx.getDelta());
-        List<SuggestedLemma> lemmas = ctx.getSuggestedLemmas();
-        map.put("suggestedLemmas", lemmas == null ? List.of() : lemmas.stream()
-                .map(l -> {
-                    Map<String, Object> lm = new LinkedHashMap<>();
-                    lm.put("lemma", l.getLemma());
-                    lm.put("pos", l.getPos());
-                    lm.put("reason", l.getReason());
-                    lm.put("cocaRank", l.getCocaRank());
-                    return lm;
-                })
-                .collect(Collectors.toList()));
-        return map;
-    }
-
-    private Map<String, Object> buildLemmaAbsenceContextMap(LemmaAbsenceCorrectionContext ctx) {
-        Map<String, Object> map = new LinkedHashMap<>();
-        map.put("quizSentence", ctx.getQuizSentence());
-        map.put("sentence", ctx.getSentence());
-        map.put("translation", ctx.getTranslation());
-        map.put("knowledgeTitle", ctx.getKnowledgeTitle());
-        map.put("knowledgeInstructions", ctx.getKnowledgeInstructions());
-        map.put("topicLabel", ctx.getTopicLabel());
-        map.put("cefrLevel", ctx.getCefrLevel() != null ? ctx.getCefrLevel().name() : null);
-        // F-RCLALEN-R005: include length fields when lengthDirection is known; omit numerics when UNKNOWN.
-        LengthDirection dir = ctx.getLengthDirection();
-        if (dir != null && dir != LengthDirection.UNKNOWN) {
-            map.put("tokenCount", ctx.getTokenCount());
-            Map<String, Object> targetRange = new LinkedHashMap<>();
-            targetRange.put("min", ctx.getTargetMin());
-            targetRange.put("max", ctx.getTargetMax());
-            map.put("targetRange", targetRange);
-            map.put("delta", ctx.getDelta());
-        }
-        if (dir != null) {
-            map.put("lengthDirection", dir.name());
-        }
-        List<MisplacedLemmaContext> misplaced = ctx.getMisplacedLemmas();
-        map.put("misplacedLemmas", misplaced == null ? List.of() : misplaced.stream()
-                .map(ml -> {
-                    Map<String, Object> mm = new LinkedHashMap<>();
-                    mm.put("lemma", ml.getLemma());
-                    mm.put("pos", ml.getPos());
-                    mm.put("expectedLevel", ml.getExpectedLevel() != null ? ml.getExpectedLevel().name() : null);
-                    mm.put("quizLevel", ml.getQuizLevel() != null ? ml.getQuizLevel().name() : null);
-                    mm.put("cocaRank", ml.getCocaRank());
-                    return mm;
-                })
-                .collect(Collectors.toList()));
-        List<SuggestedLemma> lemmas = ctx.getSuggestedLemmas();
-        map.put("suggestedLemmas", lemmas == null ? List.of() : lemmas.stream()
-                .map(l -> {
-                    Map<String, Object> lm = new LinkedHashMap<>();
-                    lm.put("lemma", l.getLemma());
-                    lm.put("pos", l.getPos());
-                    lm.put("reason", l.getReason());
-                    lm.put("cocaRank", l.getCocaRank());
-                    return lm;
-                })
-                .collect(Collectors.toList()));
-        return map;
     }
 
     /** Value object holding the result of a context resolution attempt. */

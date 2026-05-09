@@ -7,6 +7,7 @@ import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
+import com.learney.contentaudit.auditcli.EphemeralRenderOptions;
 import com.learney.contentaudit.auditcli.PlanStorageMode;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
@@ -85,14 +86,14 @@ public class FPlanefJ001JourneyTest {
         RefinementPlan plan = new RefinementPlan(
                 "plan-ephemeral-001", auditId, Instant.parse("2026-05-07T10:00:00Z"), List.of());
         when(refinerEngine.plan(report, auditId)).thenReturn(plan);
-        when(ephemeralPlanRenderer.render(plan)).thenReturn(0);
+        when(ephemeralPlanRenderer.render(plan, report, new EphemeralRenderOptions(false))).thenReturn(0);
 
         // === Act: invoke plan in EPHEMERAL mode ===
-        int exitCode = planCmd.plan(auditId, PlanStorageMode.EPHEMERAL);
+        int exitCode = planCmd.plan(auditId, PlanStorageMode.EPHEMERAL, false);
 
         // === Node: emitir_json ===
         // Gate: F-PLANEF-R001 invariante 2 — EphemeralPlanRenderer.render se invoca con el plan derivado
-        verify(ephemeralPlanRenderer).render(plan);
+        verify(ephemeralPlanRenderer).render(plan, report, new EphemeralRenderOptions(false));
 
         // === Node: verificar_filesystem_intacto ===
         // Gate: F-PLANEF-R001 invariante 1 — RefinementPlanStore.save NO se invoca en modo efimero
@@ -114,7 +115,7 @@ public class FPlanefJ001JourneyTest {
         when(auditReportStore.load(unknownAuditId)).thenReturn(Optional.empty());
 
         // === Act: invoke plan in EPHEMERAL mode with a missing audit source ===
-        int exitCode = planCmd.plan(unknownAuditId, PlanStorageMode.EPHEMERAL);
+        int exitCode = planCmd.plan(unknownAuditId, PlanStorageMode.EPHEMERAL, false);
 
         // === Node: reportar_error ===
         // Gate: F-PLANEF-R001 invariante 1 — RefinementPlanStore.save NO se invoca (filesystem intacto incluso en error)

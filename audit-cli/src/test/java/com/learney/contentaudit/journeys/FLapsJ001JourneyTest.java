@@ -313,8 +313,11 @@ public class FLapsJ001JourneyTest {
         // Since the AuditReport is built with a LEMMA_ABSENCE quiz node, the resolver will return
         // a populated LemmaAbsenceCorrectionContext.
         LemmaAbsenceContextResolver lapsResolver = new LemmaAbsenceContextResolver();
-        CorrectionContextResolver<CorrectionContext> contextResolver =
-                (report, task) -> lapsResolver.resolve(report, task).map(c -> (CorrectionContext) c);
+        CorrectionContextResolver<CorrectionContext> contextResolver = new CorrectionContextResolver<CorrectionContext>() {
+            @Override public Optional<CorrectionContext> resolve(AuditReport report, RefinementTask task) { return lapsResolver.resolve(report, task).map(c -> (CorrectionContext) c); }
+            @Override public Optional<CorrectionContext> resolveWithIndex(com.learney.contentaudit.auditdomain.AuditNodeIndex idx, AuditReport report, RefinementTask task) { return resolve(report, task); }
+            @Override public boolean supports(DiagnosisKind kind) { return lapsResolver.supports(kind); }
+        };
 
         AuditReport auditReport = buildAuditReport();
         RefinementPlan plan = buildPlan();
@@ -339,7 +342,7 @@ public class FLapsJ001JourneyTest {
         RevisionEngine engine = new DefaultRevisionEngineFactory().create(config);
 
         // ── Act ───────────────────────────────────────────────────────────────────
-        RevisionOutcome outcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH);
+        RevisionOutcome outcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH, null);
 
         // ── Assert terminal result: success (APPROVED_APPLIED) ───────────────────
         // Gate F-LAPS-R002: the LAPS strategy pipeline handled the task (not bypass)
@@ -409,8 +412,11 @@ public class FLapsJ001JourneyTest {
         CourseElementLocator elementLocator = mock(CourseElementLocator.class);
 
         LemmaAbsenceContextResolver lapsResolver = new LemmaAbsenceContextResolver();
-        CorrectionContextResolver<CorrectionContext> contextResolver =
-                (report, task) -> lapsResolver.resolve(report, task).map(c -> (CorrectionContext) c);
+        CorrectionContextResolver<CorrectionContext> contextResolver = new CorrectionContextResolver<CorrectionContext>() {
+            @Override public Optional<CorrectionContext> resolve(AuditReport report, RefinementTask task) { return lapsResolver.resolve(report, task).map(c -> (CorrectionContext) c); }
+            @Override public Optional<CorrectionContext> resolveWithIndex(com.learney.contentaudit.auditdomain.AuditNodeIndex idx, AuditReport report, RefinementTask task) { return resolve(report, task); }
+            @Override public boolean supports(DiagnosisKind kind) { return lapsResolver.supports(kind); }
+        };
 
         AuditReport auditReport = buildAuditReport();
         RefinementPlan plan = buildPlan();
@@ -438,7 +444,7 @@ public class FLapsJ001JourneyTest {
         RevisionEngine engine = new DefaultRevisionEngineFactory().create(config);
 
         // ── Act ───────────────────────────────────────────────────────────────────
-        RevisionOutcome outcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH);
+        RevisionOutcome outcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH, null);
 
         // ── Assert: failure → APPROVED_APPLY_FAILED (FEAT-REVBYP R14) ─────────────
         // The artifact was persisted BEFORE the course write (R014: artifact-first guarantee)
@@ -470,8 +476,11 @@ public class FLapsJ001JourneyTest {
         CourseElementLocator elementLocator = mock(CourseElementLocator.class);
 
         LemmaAbsenceContextResolver lapsResolver = new LemmaAbsenceContextResolver();
-        CorrectionContextResolver<CorrectionContext> contextResolver =
-                (report, task) -> lapsResolver.resolve(report, task).map(c -> (CorrectionContext) c);
+        CorrectionContextResolver<CorrectionContext> contextResolver = new CorrectionContextResolver<CorrectionContext>() {
+            @Override public Optional<CorrectionContext> resolve(AuditReport report, RefinementTask task) { return lapsResolver.resolve(report, task).map(c -> (CorrectionContext) c); }
+            @Override public Optional<CorrectionContext> resolveWithIndex(com.learney.contentaudit.auditdomain.AuditNodeIndex idx, AuditReport report, RefinementTask task) { return resolve(report, task); }
+            @Override public boolean supports(DiagnosisKind kind) { return lapsResolver.supports(kind); }
+        };
 
         AuditReport auditReport = buildAuditReport();
         RefinementPlan plan = buildPlan();
@@ -513,7 +522,7 @@ public class FLapsJ001JourneyTest {
         RevisionEngine engine = new DefaultRevisionEngineFactory().create(config);
 
         // ── Act ───────────────────────────────────────────────────────────────────
-        RevisionOutcome outcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH);
+        RevisionOutcome outcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH, null);
 
         // ── Assert: failure → STRATEGY_FAILED ────────────────────────────────────
         // R015: outcome is STRATEGY_FAILED; no artifact created; course not touched; task stays PENDING
@@ -553,8 +562,11 @@ public class FLapsJ001JourneyTest {
         CourseElementLocator elementLocator = mock(CourseElementLocator.class);
 
         LemmaAbsenceContextResolver lapsResolver = new LemmaAbsenceContextResolver();
-        CorrectionContextResolver<CorrectionContext> contextResolver =
-                (report, task) -> lapsResolver.resolve(report, task).map(c -> (CorrectionContext) c);
+        CorrectionContextResolver<CorrectionContext> contextResolver = new CorrectionContextResolver<CorrectionContext>() {
+            @Override public Optional<CorrectionContext> resolve(AuditReport report, RefinementTask task) { return lapsResolver.resolve(report, task).map(c -> (CorrectionContext) c); }
+            @Override public Optional<CorrectionContext> resolveWithIndex(com.learney.contentaudit.auditdomain.AuditNodeIndex idx, AuditReport report, RefinementTask task) { return resolve(report, task); }
+            @Override public boolean supports(DiagnosisKind kind) { return lapsResolver.supports(kind); }
+        };
 
         AuditReport auditReport = buildAuditReport();
         RefinementPlan plan = buildPlan();
@@ -592,7 +604,7 @@ public class FLapsJ001JourneyTest {
         RevisionEngine engine = new DefaultRevisionEngineFactory().create(config);
 
         // ── Act ───────────────────────────────────────────────────────────────────
-        RevisionOutcome outcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH);
+        RevisionOutcome outcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH, null);
 
         // ── Assert: failure → NO_ACTIVE_STRATEGY ─────────────────────────────────
         // R006: system reports no active strategy; does NOT fall back to IdentityReviser

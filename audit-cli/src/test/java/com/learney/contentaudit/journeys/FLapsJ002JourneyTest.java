@@ -247,8 +247,11 @@ public class FLapsJ002JourneyTest {
         CourseElementLocator elementLocator = mock(CourseElementLocator.class);
 
         LemmaAbsenceContextResolver lapsResolver = new LemmaAbsenceContextResolver();
-        CorrectionContextResolver<CorrectionContext> contextResolver =
-                (report, task) -> lapsResolver.resolve(report, task).map(c -> (CorrectionContext) c);
+        CorrectionContextResolver<CorrectionContext> contextResolver = new CorrectionContextResolver<CorrectionContext>() {
+            @Override public Optional<CorrectionContext> resolve(AuditReport report, RefinementTask task) { return lapsResolver.resolve(report, task).map(c -> (CorrectionContext) c); }
+            @Override public Optional<CorrectionContext> resolveWithIndex(com.learney.contentaudit.auditdomain.AuditNodeIndex idx, AuditReport report, RefinementTask task) { return resolve(report, task); }
+            @Override public boolean supports(DiagnosisKind kind) { return lapsResolver.supports(kind); }
+        };
 
         AuditReport auditReport = buildAuditReport();
         RefinementPlan plan = buildPlan();
@@ -286,7 +289,7 @@ public class FLapsJ002JourneyTest {
         RevisionEngine engine = new DefaultRevisionEngineFactory().create(config);
 
         // ── Act: Step 1 — revise in human mode ────────────────────────────────────
-        RevisionOutcome reviseOutcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH);
+        RevisionOutcome reviseOutcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH, null);
 
         // Gate: validator emits PENDING_APPROVAL → PENDING_APPROVAL_PERSISTED
         assertEquals(RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, reviseOutcome.getKind(),
@@ -357,8 +360,11 @@ public class FLapsJ002JourneyTest {
         CourseElementLocator elementLocator = mock(CourseElementLocator.class);
 
         LemmaAbsenceContextResolver lapsResolver = new LemmaAbsenceContextResolver();
-        CorrectionContextResolver<CorrectionContext> contextResolver =
-                (report, task) -> lapsResolver.resolve(report, task).map(c -> (CorrectionContext) c);
+        CorrectionContextResolver<CorrectionContext> contextResolver = new CorrectionContextResolver<CorrectionContext>() {
+            @Override public Optional<CorrectionContext> resolve(AuditReport report, RefinementTask task) { return lapsResolver.resolve(report, task).map(c -> (CorrectionContext) c); }
+            @Override public Optional<CorrectionContext> resolveWithIndex(com.learney.contentaudit.auditdomain.AuditNodeIndex idx, AuditReport report, RefinementTask task) { return resolve(report, task); }
+            @Override public boolean supports(DiagnosisKind kind) { return lapsResolver.supports(kind); }
+        };
 
         AuditReport auditReport = buildAuditReport();
         RefinementPlan plan = buildPlan();
@@ -397,7 +403,7 @@ public class FLapsJ002JourneyTest {
         RevisionEngine engine = new DefaultRevisionEngineFactory().create(config);
 
         // ── Act: Step 1 — revise in human mode ────────────────────────────────────
-        RevisionOutcome reviseOutcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH);
+        RevisionOutcome reviseOutcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH, null);
 
         assertEquals(RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, reviseOutcome.getKind(),
                 "Human validator must produce PENDING_APPROVAL_PERSISTED");

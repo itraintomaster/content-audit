@@ -22,6 +22,43 @@
   redirigido para tests posteriores. @BeforeEach/@AfterEach garantiza restauracion aunque el
   test lance excepcion en cualquier punto.
 
+2026-05-09 — test-writer — DefaultEphemeralPlanRendererTest adaptacion R001: renderer instanciado como
+  new DefaultEphemeralPlanRenderer(auditNodeIndexFactory, correctionContextResolver, correctionContextJsonMapper)
+  con @Mock Mockito en la clase de test (no @InjectMocks, renderer no es @Command picocli).
+  render(plan) -> render(plan, report, new EphemeralRenderOptions(false)). AuditReport report = new AuditReport(null).
+  why: constructor cambio para R002; los tests R001 (withCorrectionContext=false) usan lenient stubs solo
+  para lo que invocan; los mocks de context resolver y mapper no se usan con false (ni se stubbean).
+
+2026-05-09 — test-writer — PlanCmdTest: verify(ephemeralPlanRenderer, never()).render(any()) ->
+  verify(ephemeralPlanRenderer, never()).render(any(), any(), any()).
+  why: render ahora tiene 3 parametros; un solo any() no matchea metodo de 3 parametros con Mockito.
+
+2026-05-09 — test-writer — DefaultEphemeralPlanRendererTest R002 invariante #4 (correctionContextError):
+  El campo esperado cuando el resolver retorna Optional.empty se llama "correctionContextError".
+  Si la produccion usa un nombre distinto, el test fallara con "campo correctionContextError no encontrado".
+  Escalacion al developer si el campo tiene otro nombre.
+
+2026-05-09 — developer — DefaultEphemeralPlanRenderer: campo correctionContextResolver es raw type
+  CorrectionContextResolver (sin param generico); rawtype no resuelve resolveWithIndex hasta que
+  el JAR actualizado de refiner-domain esta instalado en .m2. Solucion: instalar refiner-domain antes
+  de compilar audit-cli.
+  why: CorrectionContextResolver<T> con raw type borra genericos; el compilador busca el .class en el
+  JAR instalado; si el JAR es viejo (sin resolveWithIndex), falla con "cannot find symbol".
+
+2026-05-09 — developer — PlanCmd: interface PlanCommand ya fue regenerada con firma plan(String, PlanStorageMode, boolean).
+  No agregar un delegate plan(String, PlanStorageMode) con @Override; el compilador falla porque
+  la interface ya no tiene ese metodo. Mantener solo el @Override al metodo de 3 args.
+
+2026-05-09 — test-writer — J002/J003 journey tests al nivel PlanCmd (no al nivel renderer).
+  path-1 y path-2 de J002 son distinguibles semanticamente (todas tareas vs parcial) pero producen
+  el mismo arrange/act/assert a nivel PlanCmd: la distincion real esta en el renderer (cubierta por
+  DefaultEphemeralPlanRendererTest). El journey test de PlanCmd verifica que el comando despacha al
+  renderer con la opcion correcta (EphemeralRenderOptions(true)) y no toca el store. Es el nivel
+  de abstraccion correcto para un journey test de la capa de comandos.
+  why: no hay ninguna decision en PlanCmd que diferencie path-1 de path-2; la diferencia es interna
+  al renderer (resolver retorna Optional.empty para algunas tareas). Forzar esa distincion en el
+  journey test de PlanCmd requerina mockear tipos no declarados en requiresInject.
+
 2026-05-08 — developer — DefaultEphemeralPlanRenderer.render(): usa ObjectMapper con JavaTimeModule
   + disable(WRITE_DATES_AS_TIMESTAMPS) + writerWithDefaultPrettyPrinter().writeValueAsString(plan).
   Mismo config exacto que FileSystemRefinementPlanStore para garantizar schema-equivalencia.
