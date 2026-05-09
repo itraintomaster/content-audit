@@ -1,0 +1,7 @@
+code: FEAT-DSLEN
+features:
+  - id: FEAT-DSLEN
+    journeys:
+      - id: F-DSLEN-J001
+        testModule: refiner-domain
+        testPackage: com.learney.contentaudit.refinerdomain
