@@ -61,7 +61,9 @@ import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
 import com.learney.contentaudit.revisiondomain.StrategyId;
 import com.learney.contentaudit.revisiondomain.engine.DefaultLemmaAbsenceProposalDeriver;
 import com.learney.contentaudit.revisiondomain.engine.DefaultLemmaAbsenceProposalStrategyRegistry;
+import com.learney.contentaudit.revisiondomain.contextoverride.DefaultCorrectionContextOverrideParser;
 import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionEngineFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learney.contentaudit.revisiondomain.engine.DefaultProposalDecisionServiceFactory;
 import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionValidatorFactory;
 import com.learney.contentaudit.revisiondomain.engine.LemmaAbsenceProposalStrategyRegistryConfig;
@@ -398,6 +400,8 @@ class Main {
         revisionEngineConfig.setCourseMapper(courseToAuditableMapper);
         revisionEngineConfig.setAuditEngine(auditEngine);
         revisionEngineConfig.setImpactPreviewStore(impactPreviewStore);
+        revisionEngineConfig.setCorrectionContextOverrideParser(
+                DefaultCorrectionContextOverrideParser.withDefaultValidators(new ObjectMapper()));
         RevisionEngine revisionEngine = new DefaultRevisionEngineFactory().create(revisionEngineConfig);
 
         ProposalDecisionService proposalDecisionService;

@@ -1,0 +1,200 @@
+{
+  "scores": {
+    "a1": {
+      "a1aPassed": true,
+      "a1aViolations": [],
+      "a1bScore": 1,
+      "a1bDetails": [],
+      "a1cScore": 1,
+      "a1dScore": 1,
+      "compositeScore": 1
+    },
+    "a2": {
+      "structurallySound": true,
+      "a2a": {
+        "id": "A2a",
+        "name": "Structural Integrity",
+        "score": 1,
+        "violations": []
+      },
+      "a2b": {
+        "id": "A2b",
+        "name": "Port Coverage",
+        "score": 1,
+        "violations": []
+      },
+      "a2c": {
+        "id": "A2c",
+        "name": "Reachability",
+        "score": 0.46956521739130436,
+        "violations": []
+      },
+      "a2d": {
+        "id": "A2d",
+        "name": "Contract Utilization",
+        "score": 1,
+        "violations": []
+      },
+      "a2e": {
+        "id": "A2e",
+        "name": "Path Traceability",
+        "score": 1,
+        "violations": []
+      },
+      "composite": 0.7878260869565217
+    },
+    "a3": {
+      "modules": [],
+      "componentCount": 0,
+      "threshold": 30,
+      "ramp": 0,
+      "rawScore": 1,
+      "effectiveScore": 1
+    },
+    "a4": {
+      "dependencyInversionHolds": true,
+      "acyclic": true,
+      "a4a": {
+        "id": "A4a",
+        "name": "Dependency Inversion",
+        "score": 1,
+        "violations": [
+          {
+            "code": "A4-NOLAYER",
+            "severity": "warning",
+            "message": "No modules declare a layer — A4 cannot be evaluated"
+          }
+        ]
+      },
+      "a4b": {
+        "id": "A4b",
+        "name": "Acyclicity",
+        "score": 1,
+        "violations": []
+      },
+      "a4c": {
+        "id": "A4c",
+        "name": "Adapter Polarity",
+        "score": 1,
+        "violations": []
+      },
+      "a4d": {
+        "id": "A4d",
+        "name": "Layer Isolation",
+        "score": 1,
+        "violations": []
+      },
+      "a4e": {
+        "id": "A4e",
+        "name": "Composition Root Discipline",
+        "score": 1,
+        "violations": []
+      },
+      "composite": 1
+    },
+    "a5": {
+      "a5aScore": 0.5,
+      "a5bScore": 1,
+      "a5cScore": 0,
+      "a5dScore": 1,
+      "a5eScore": 1,
+      "violations": [
+        {
+          "code": "A5a",
+          "severity": "warning",
+          "message": "Factory pattern 'AuditNodeIndexFactory' has 1 implementation(s) — needs ≥2 to justify"
+        },
+        {
+          "code": "A5a",
+          "severity": "warning",
+          "message": "Factory pattern 'NlpTokenizerFactory' has 1 implementation(s) — needs ≥2 to justify"
+        },
+        {
+          "code": "A5a",
+          "severity": "warning",
+          "message": "Factory pattern 'LemmaAbsenceLlmGeneratorFactory' has 1 implementation(s) — needs ≥2 to justify"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'DefaultAuditNodeIndexFactory' declared in Factory pattern but not found in any module"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'SpacyNlpTokenizerFactory' declared in Factory pattern but not found in any module"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'DefaultLemmaAbsenceLlmGeneratorFactory' declared in Factory pattern but not found in any module"
+        }
+      ],
+      "composite": 0.6
+    },
+    "a6": {
+      "score": 1,
+      "totalInterfaces": 0,
+      "inflatedCount": 0,
+      "inflated": []
+    },
+    "c1": {
+      "score": 1,
+      "maxDepth": 0,
+      "avgDepth": 0,
+      "entries": [
+        {
+          "entryPoint": "audit-cli.commands.ContentAuditCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.AnalyzeCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.GetCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.DeleteCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.PruneCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.PlanCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.ReviseCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.ConfigAnalyzerCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.StatsAnalyzerCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.ApproveCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.RejectCmd",
+          "depth": 0
+        }
+      ]
+    },
+    "c3": {
+      "score": 1,
+      "details": []
+    },
+    "mode": "PATCH_ONLY",
+    "compositeScore": 0.8923395445134575
+  },
+  "timestamp": "2026-05-10T00:09:40.107Z"
+}

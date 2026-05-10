@@ -144,20 +144,8 @@ public class FileSystemRevisionArtifactStoreTest {
         );
     }
 
-    /**
-     * Creates a store whose base directory resolves to tempDir by temporarily
-     * redirecting user.dir. The no-arg constructor follows the same convention as
-     * FileSystemAuditReportStore and FileSystemRefinementPlanStore:
-     * {@code this(Path.of(System.getProperty("user.dir")))}.
-     */
     private static FileSystemRevisionArtifactStore storeFor(Path tempDir) {
-        String previous = System.getProperty("user.dir");
-        System.setProperty("user.dir", tempDir.toString());
-        try {
-            return new FileSystemRevisionArtifactStore();
-        } finally {
-            System.setProperty("user.dir", previous);
-        }
+        return new FileSystemRevisionArtifactStore(tempDir);
     }
 
     @Test

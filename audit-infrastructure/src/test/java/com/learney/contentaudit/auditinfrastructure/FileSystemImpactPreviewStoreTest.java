@@ -31,19 +31,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 )
 public class FileSystemImpactPreviewStoreTest {
 
-    /**
-     * Creates a FileSystemImpactPreviewStore with its root at tempDir by
-     * temporarily redirecting user.dir, following the same convention as
-     * FileSystemRevisionArtifactStore and FileSystemAuditReportStore.
-     */
     private static ImpactPreviewStore storeFor(Path tempDir) {
-        String previous = System.getProperty("user.dir");
-        System.setProperty("user.dir", tempDir.toString());
-        try {
-            return new FileSystemImpactPreviewStore();
-        } finally {
-            System.setProperty("user.dir", previous);
-        }
+        return new FileSystemImpactPreviewStore(tempDir);
     }
 
     private static ImpactPreview buildAvailablePreview(String proposalId, double beforeScore, double afterScore) {

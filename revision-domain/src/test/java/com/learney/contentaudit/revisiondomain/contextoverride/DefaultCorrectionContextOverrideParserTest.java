@@ -182,4 +182,43 @@ public class DefaultCorrectionContextOverrideParserTest {
                 "OverrideRejectedException must be thrown when the JSON shape does not mirror the get task output"
         );
     }
+
+    @Test
+    @DisplayName("should expose a static withDefaultValidators factory that wires both LEMMA_ABSENCE and SENTENCE_LENGTH validators so the audit-cli composition root can construct the parser without breaking the package-private encapsulation of the per-kind validators")
+    @Tag("FEAT-REVCTX")
+    @Tag("F-REVCTX-R002")
+    public void shouldExposeAStaticWithDefaultValidatorsFactoryThatWiresBothLEMMAABSENCEAndSENTENCELENGTHValidatorsSoTheAuditcliCompositionRootCanConstructTheParserWithoutBreakingThePackageprivateEncapsulationOfThePerkindValidators() {
+        DefaultCorrectionContextOverrideParser parser =
+                DefaultCorrectionContextOverrideParser.withDefaultValidators(new ObjectMapper());
+        assertNotNull(parser, "withDefaultValidators must return a non-null parser");
+
+        CorrectionContextOverride lemmaResult = parser.parse(
+                validLemmaAbsenceJson(), DiagnosisKind.LEMMA_ABSENCE, EXPECTED_NODE_ID);
+        assertNotNull(lemmaResult, "LEMMA_ABSENCE validator must be wired so the parser succeeds for that kind");
+        assertTrue(lemmaResult.getContext() instanceof LemmaAbsenceCorrectionContext,
+                "LEMMA_ABSENCE payload must yield a LemmaAbsenceCorrectionContext");
+
+        String sentenceLengthJson = """
+                {
+                  "taskId": "task-sl-001",
+                  "nodeId": "%s",
+                  "diagnosisKind": "SENTENCE_LENGTH",
+                  "sentence": "She runs every day.",
+                  "translation": "Ella corre todos los dias.",
+                  "knowledgeTitle": "Daily routine",
+                  "knowledgeInstructions": "Complete the sentence.",
+                  "topicLabel": "Routines A1",
+                  "cefrLevel": "A1",
+                  "tokenCount": 4,
+                  "targetMin": 5,
+                  "targetMax": 8,
+                  "delta": -1,
+                  "suggestedLemmas": []
+                }
+                """.formatted(EXPECTED_NODE_ID);
+
+        CorrectionContextOverride lengthResult = parser.parse(
+                sentenceLengthJson, DiagnosisKind.SENTENCE_LENGTH, EXPECTED_NODE_ID);
+        assertNotNull(lengthResult, "SENTENCE_LENGTH validator must be wired so the parser succeeds for that kind");
+    }
 }

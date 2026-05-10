@@ -8,6 +8,7 @@ import com.learney.contentaudit.refinerdomain.DiagnosisKind;
 import com.learney.contentaudit.revisiondomain.CorrectionContextOverride;
 import com.learney.contentaudit.revisiondomain.CorrectionContextOverrideParser;
 import com.learney.contentaudit.revisiondomain.OverrideRejectedException;
+import java.util.EnumMap;
 import java.util.Map;
 import javax.annotation.processing.Generated;
 
@@ -24,6 +25,13 @@ public class DefaultCorrectionContextOverrideParser implements CorrectionContext
             Map<DiagnosisKind, CorrectionContextStructuralValidator> validators) {
         this.objectMapper = objectMapper;
         this.validators = validators;
+    }
+
+    public static DefaultCorrectionContextOverrideParser withDefaultValidators(ObjectMapper objectMapper) {
+        Map<DiagnosisKind, CorrectionContextStructuralValidator> validators = new EnumMap<>(DiagnosisKind.class);
+        validators.put(DiagnosisKind.LEMMA_ABSENCE, new LemmaAbsenceContextStructuralValidator(objectMapper));
+        validators.put(DiagnosisKind.SENTENCE_LENGTH, new SentenceLengthContextStructuralValidator(objectMapper));
+        return new DefaultCorrectionContextOverrideParser(objectMapper, validators);
     }
 
     @Override

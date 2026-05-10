@@ -428,7 +428,6 @@ modules:
     - name: scoreAggregator
       type: ScoreAggregator
     visibility: public
-    classStereotype: false
     implements:
     - AuditEngine
   - name: KnowledgeTitleLengthAnalyzer
@@ -540,7 +539,6 @@ modules:
       traceability:
         feature: FEAT-KTLEN
         rule: F-KTLEN-R003
-    classStereotype: false
     implements:
     - ContentAnalyzer
   - name: KnowledgeInstructionsLengthAnalyzer
@@ -676,7 +674,6 @@ modules:
       traceability:
         feature: FEAT-KTLEN
         rule: F-KTLEN-R006
-    classStereotype: false
     implements:
     - ContentAnalyzer
   - name: SentenceLengthAnalyzer
@@ -767,12 +764,10 @@ modules:
       traceability:
         feature: FEAT-SLEN
         rule: F-SLEN-R001
-    classStereotype: false
     implements:
     - ContentAnalyzer
   - name: IScoreAggregator
     visibility: public
-    classStereotype: false
     implements:
     - ScoreAggregator
   patterns:
@@ -1067,26 +1062,21 @@ modules:
       - name: improvementPlanner
         type: ImprovementPlanner
       visibility: public
-      classStereotype: false
       implements:
       - ContentAnalyzer
     - name: CocaTokenAccumulationAggregator
-      classStereotype: false
       implements:
       - ScoreAggregator
     - name: DefaultTokenClassifier
       visibility: public
-      classStereotype: false
       implements:
       - TokenClassifier
     - name: DefaultProgressionEvaluator
       visibility: public
-      classStereotype: false
       implements:
       - ProgressionEvaluator
     - name: DefaultImprovementPlanner
       visibility: public
-      classStereotype: false
       implements:
       - ImprovementPlanner
   - name: lrec
@@ -1204,7 +1194,6 @@ modules:
         traceability:
           feature: FEAT-LREC
           rule: F-LREC-R002
-      classStereotype: false
       implements:
       - ContentAnalyzer
     - name: DefaultContentWordFilter
@@ -1342,7 +1331,6 @@ modules:
         assert:
           returns: false
       visibility: public
-      classStereotype: false
       implements:
       - ContentWordFilter
     - name: DefaultIntervalCalculator
@@ -1402,12 +1390,10 @@ modules:
         assert:
           returns: 0
       visibility: public
-      classStereotype: false
       implements:
       - IntervalCalculator
     - name: DefaultExposureClassifier
       visibility: public
-      classStereotype: false
       implements:
       - ExposureClassifier
   - name: labs
@@ -2072,12 +2058,10 @@ modules:
         traceability:
           feature: FEAT-DLABS
           rule: F-DLABS-R003
-      classStereotype: false
       implements:
       - ContentAnalyzer
     - name: LemmaAbsenceScoreAggregator
       visibility: public
-      classStereotype: false
       implements:
       - ScoreAggregator
   - name: auditnodeindex
@@ -2087,11 +2071,9 @@ modules:
     implementations:
     - name: DefaultAuditNodeIndexFactory
       visibility: public
-      classStereotype: false
       implements:
       - AuditNodeIndexFactory
     - name: MapAuditNodeIndex
-      classStereotype: false
       implements:
       - AuditNodeIndex
 - name: course-domain
@@ -2565,13 +2547,10 @@ modules:
         traceability:
           feature: FEAT-QSENT
           rule: F-QSENT-R025
-      classStereotype: false
       implements:
       - QuizSentenceConverter
     - name: QuizSentenceSerializer
-      classStereotype: false
     - name: QuizSentenceParser
-      classStereotype: false
     - name: PlainSentenceDeriver
       requiresInject:
       - name: whitespaceNormalizer
@@ -2579,9 +2558,7 @@ modules:
         description: "Helper de normalizacion de whitespace (collapse runs, trim)\
           \ usado al final de buildSentenceFromParts para cumplir R019 sobre la oracion\
           \ derivada."
-      classStereotype: false
     - name: WhitespaceNormalizer
-      classStereotype: false
 - name: refiner-domain
   description: Refinement engine
   dependsOn:
@@ -2935,7 +2912,6 @@ modules:
         feature: FEAT-RCSL
         rule: F-RCSL-R001
       _change: add
-    classStereotype: false
     implements:
     - CorrectionContextResolver
   - name: LemmaAbsenceContextResolver
@@ -3111,7 +3087,6 @@ modules:
       traceability:
         feature: FEAT-RCLALEN
         rule: F-RCLALEN-R004
-    classStereotype: false
     implements:
     - CorrectionContextResolver
   - name: DispatchingCorrectionContextResolver
@@ -3147,7 +3122,6 @@ modules:
       traceability:
         feature: FEAT-REVCTX
         rule: F-REVCTX-R004
-    classStereotype: false
     implements:
     - CorrectionContextResolver
   - name: DefaultRefinerEngine
@@ -3173,7 +3147,6 @@ modules:
       traceability:
         feature: FEAT-RCLA
         rule: F-RCLA-R001
-    classStereotype: false
     implements:
     - RefinerEngine
   scope: internal
@@ -3270,14 +3243,12 @@ modules:
       traceability:
         feature: FEAT-RCLAQS
         rule: F-RCLAQS-R004
-    classStereotype: false
     implements:
     - CourseMapper
   - name: DefaultSentenceLengthConfig
     types:
     - Component
     visibility: public
-    classStereotype: false
     implements:
     - SentenceLengthConfig
   - name: DefaultAuditRunner
@@ -3344,21 +3315,18 @@ modules:
       traceability:
         feature: FEAT-CLI
         rule: F-CLI-R001
-    classStereotype: false
     implements:
     - AuditRunner
   - name: DefaultCocaBucketsConfig
     types:
     - Component
     visibility: public
-    classStereotype: false
     implements:
     - CocaBucketsConfig
   - name: DefaultLemmaRecurrenceConfig
     types:
     - Component
     visibility: public
-    classStereotype: false
     implements:
     - LemmaRecurrenceConfig
   - name: DefaultLemmaAbsenceConfig
@@ -3615,7 +3583,6 @@ modules:
       traceability:
         feature: FEAT-LABS
         rule: F-LABS-R032
-    classStereotype: false
     implements:
     - LemmaAbsenceConfig
   - name: DefaultAnalyzerRegistry
@@ -3627,7 +3594,6 @@ modules:
     types:
     - Component
     visibility: public
-    classStereotype: false
     implements:
     - AnalyzerRegistry
   patterns:
@@ -4198,7 +4164,6 @@ modules:
         feature: F-COURSE
         journey: F-COURSE-J006
     visibility: public
-    classStereotype: false
     implements:
     - CourseRepository
   scope: internal
@@ -4372,7 +4337,6 @@ modules:
     - name: Main
       types:
       - Component
-      classStereotype: false
     - name: ContentAuditCmd
       types:
       - Component
@@ -4389,7 +4353,6 @@ modules:
           rule: F-CLIRV-R020
       externalImplements:
       - java.util.concurrent.Callable<Integer>
-      classStereotype: false
     - name: AnalyzeCmd
       requiresInject:
       - name: auditRunner
@@ -4416,7 +4379,6 @@ modules:
           rule: F-CLIRV-R013
       externalImplements:
       - java.util.concurrent.Callable<Integer>
-      classStereotype: false
       implements:
       - AnalyzeCommand
     - name: GetCmd
@@ -4835,7 +4797,6 @@ modules:
           rule: F-RCLALEN-R006
       externalImplements:
       - java.util.concurrent.Callable<Integer>
-      classStereotype: false
       implements:
       - GetCommand
     - name: DeleteCmd
@@ -4904,7 +4865,6 @@ modules:
           rule: F-REVAPR-R004
       externalImplements:
       - java.util.concurrent.Callable<Integer>
-      classStereotype: false
       implements:
       - DeleteCommand
     - name: PruneCmd
@@ -4962,7 +4922,6 @@ modules:
           rule: F-REVAPR-R004
       externalImplements:
       - java.util.concurrent.Callable<Integer>
-      classStereotype: false
       implements:
       - PruneCommand
     - name: PlanCmd
@@ -5055,7 +5014,6 @@ modules:
           rule: F-PLANEF-R002
       externalImplements:
       - java.util.concurrent.Callable<Integer>
-      classStereotype: false
       implements:
       - PlanCommand
     - name: ReviseCmd
@@ -5127,7 +5085,6 @@ modules:
           rule: F-REVCTX-R001
       externalImplements:
       - java.util.concurrent.Callable<Integer>
-      classStereotype: false
       implements:
       - ReviseCommand
     - name: ConfigAnalyzerCmd
@@ -5149,7 +5106,6 @@ modules:
           rule: F-CLIRV-R016
       externalImplements:
       - java.util.concurrent.Callable<Integer>
-      classStereotype: false
       implements:
       - ConfigAnalyzerCommand
     - name: StatsAnalyzerCmd
@@ -5185,7 +5141,6 @@ modules:
           rule: F-CLIRV-R021
       externalImplements:
       - java.util.concurrent.Callable<Integer>
-      classStereotype: false
       implements:
       - StatsAnalyzerCommand
     - name: ApproveCmd
@@ -5243,7 +5198,6 @@ modules:
           rule: F-REVAPR-R011
       externalImplements:
       - java.util.concurrent.Callable<Integer>
-      classStereotype: false
       implements:
       - ApproveCommand
     - name: RejectCmd
@@ -5291,7 +5245,6 @@ modules:
           rule: F-REVAPR-R013
       externalImplements:
       - java.util.concurrent.Callable<Integer>
-      classStereotype: false
       implements:
       - RejectCommand
     - name: DefaultGetConsolidatedCommand
@@ -5324,7 +5277,6 @@ modules:
         traceability:
           feature: FEAT-CDIFF
           rule: F-CDIFF-R015
-      classStereotype: false
       implements:
       - GetConsolidatedCommand
     - name: DefaultSetActiveAnalysisCommand
@@ -5353,7 +5305,6 @@ modules:
         traceability:
           feature: FEAT-CDIFF
           rule: F-CDIFF-R002
-      classStereotype: false
       implements:
       - SetActiveAnalysisCommand
     - name: DefaultEphemeralPlanRenderer
@@ -5441,12 +5392,10 @@ modules:
         traceability:
           feature: FEAT-PLANEF
           rule: F-PLANEF-R002
-      classStereotype: false
       implements:
       - EphemeralPlanRenderer
     - name: DefaultCorrectionContextJsonMapper
       visibility: internal
-      classStereotype: false
       implements:
       - CorrectionContextJsonMapper
   - name: formatting
@@ -5745,7 +5694,6 @@ modules:
       - name: drillDownResolver
         type: DrillDownResolver
       visibility: public
-      classStereotype: false
       implements:
       - ReportFormatter
     - name: JsonReportFormatter
@@ -5753,7 +5701,6 @@ modules:
       - name: drillDownResolver
         type: DrillDownResolver
       visibility: public
-      classStereotype: false
       implements:
       - ReportFormatter
     - name: TableReportFormatter
@@ -5761,7 +5708,6 @@ modules:
       - name: drillDownResolver
         type: DrillDownResolver
       visibility: public
-      classStereotype: false
       implements:
       - ReportFormatter
     - name: DefaultFormatterRegistry
@@ -5773,45 +5719,38 @@ modules:
       types:
       - Component
       visibility: public
-      classStereotype: false
       implements:
       - FormatterRegistry
     - name: DefaultReportViewModelTransformer
       visibility: public
-      classStereotype: false
       implements:
       - ReportViewModelTransformer
     - name: RawJsonReportFormatter
       visibility: public
-      classStereotype: false
       implements:
       - RawReportFormatter
     - name: DefaultDrillDownResolver
       types:
       - Component
       visibility: public
-      classStereotype: false
       implements:
       - DrillDownResolver
     - name: DefaultAnalyzerStatsTransformer
       types:
       - Component
       visibility: public
-      classStereotype: false
       implements:
       - AnalyzerStatsTransformer
     - name: LemmaAbsenceDetailedFormatter
       types:
       - Component
       visibility: public
-      classStereotype: false
       implements:
       - DetailedFormatter
     - name: CocaBucketsDetailedFormatter
       types:
       - Component
       visibility: public
-      classStereotype: false
       implements:
       - DetailedFormatter
     - name: DefaultImpactPreviewFormatter
@@ -5834,7 +5773,6 @@ modules:
         traceability:
           feature: FEAT-PIPRE
           rule: F-PIPRE-R013
-      classStereotype: false
       implements:
       - ImpactPreviewFormatter
     - name: DefaultConsolidatedViewFormatter
@@ -5893,7 +5831,6 @@ modules:
         traceability:
           feature: FEAT-CDIFF
           rule: F-CDIFF-R011
-      classStereotype: false
       implements:
       - ConsolidatedViewFormatter
   - name: bootstrap
@@ -6011,7 +5948,6 @@ modules:
         traceability:
           feature: FEAT-CLIRV
           rule: F-CLIRV-R018
-      classStereotype: false
       implements:
       - WorkdirResolver
     - name: DefaultApprovalModeResolver
@@ -6049,7 +5985,6 @@ modules:
         traceability:
           feature: FEAT-REVAPR
           rule: F-REVAPR-R005
-      classStereotype: false
       implements:
       - ApprovalModeResolver
     - name: DefaultProposalStrategySelector
@@ -6073,7 +6008,6 @@ modules:
         traceability:
           feature: FEAT-LAPS
           rule: F-LAPS-R004
-      classStereotype: false
       implements:
       - ProposalStrategySelector
     - name: DefaultLagenModeResolver
@@ -6116,7 +6050,6 @@ modules:
         traceability:
           feature: FEAT-LAGEN
           rule: F-LAGEN-R014
-      classStereotype: false
       implements:
       - LagenModeResolver
     - name: DefaultLagenConfigResolver
@@ -6174,7 +6107,6 @@ modules:
         traceability:
           feature: FEAT-LAGEN
           rule: F-LAGEN-R014
-      classStereotype: false
       implements:
       - LagenConfigResolver
 - name: nlp-infrastructure
@@ -6218,7 +6150,6 @@ modules:
       types:
       - Component
       visibility: public
-      classStereotype: false
       implements:
       - NlpTokenizerFactory
     - name: SpacyNlpTokenizer
@@ -6228,7 +6159,6 @@ modules:
       - name: resultParser
         type: SpacyResultParser
       visibility: package-private
-      classStereotype: false
       implements:
       - NlpTokenizer
     - name: SpacyProcessRunner
@@ -6236,16 +6166,13 @@ modules:
       - name: config
         type: NlpTokenizerConfig
       visibility: package-private
-      classStereotype: false
     - name: SpacyResultParser
       visibility: package-private
-      classStereotype: false
     - name: CachedNlpTokenizer
       requiresInject:
       - name: delegate
         type: NlpTokenizer
       visibility: package-private
-      classStereotype: false
       implements:
       - NlpTokenizer
 - name: vocabulary-infrastructure
@@ -6261,7 +6188,6 @@ modules:
     implementations:
     - name: FileSystemEvpCatalog
       visibility: public
-      classStereotype: false
       implements:
       - EvpCatalogPort
   - name: coca
@@ -6293,7 +6219,6 @@ modules:
     handwrittenTests:
     - name: should save an AuditReport and load it back with identical content
       _change: delete
-    classStereotype: false
     implements:
     - AuditReportStore
   - name: FileSystemRefinementPlanStore
@@ -6305,7 +6230,6 @@ modules:
     types:
     - Repository
     visibility: public
-    classStereotype: false
     implements:
     - RefinementPlanStore
   - name: FileSystemRevisionArtifactStore
@@ -6390,7 +6314,6 @@ modules:
       traceability:
         feature: FEAT-REVAPR
         rule: F-REVAPR-R017
-    classStereotype: false
     implements:
     - RevisionArtifactStore
   - name: FileSystemImpactPreviewStore
@@ -6415,7 +6338,6 @@ modules:
       traceability:
         feature: FEAT-PIPRE
         rule: F-PIPRE-R008
-    classStereotype: false
     implements:
     - ImpactPreviewStore
   - name: FileSystemActiveAnalysisSelectionStore
@@ -6452,7 +6374,6 @@ modules:
       traceability:
         feature: FEAT-CDIFF
         rule: F-CDIFF-R002
-    classStereotype: false
     implements:
     - ActiveAnalysisSelectionStore
   scope: internal
@@ -6993,7 +6914,6 @@ modules:
         traceability:
           feature: FEAT-REVBYP
           rule: F-REVBYP-R004
-      classStereotype: false
       implements:
       - RevisionEngineFactory
     - name: IdentityReviser
@@ -7019,7 +6939,6 @@ modules:
         traceability:
           feature: FEAT-REVBYP
           rule: F-REVBYP-R004
-      classStereotype: false
       implements:
       - Reviser
     - name: AutoApproveValidator
@@ -7036,7 +6955,6 @@ modules:
         traceability:
           feature: FEAT-REVBYP
           rule: F-REVBYP-R006
-      classStereotype: false
       implements:
       - RevisionValidator
     - name: DefaultRevisionValidatorResult
@@ -7049,7 +6967,6 @@ modules:
         type: Optional<String>
         description: Detalle textual cuando verdict=REJECTED; Optional.empty() cuando
           APPROVED o PENDING_APPROVAL.
-      classStereotype: false
       implements:
       - RevisionValidatorResult
     - name: DispatchingReviser
@@ -7138,13 +7055,11 @@ modules:
         traceability:
           feature: FEAT-LAPS
           rule: F-LAPS-R005
-      classStereotype: false
       implements:
       - Reviser
     - name: DefaultCourseElementLocator
       types:
       - Component
-      classStereotype: false
       implements:
       - CourseElementLocator
     - name: DefaultRevisionEngine
@@ -7284,7 +7199,6 @@ modules:
         traceability:
           feature: FEAT-REVCTX
           rule: F-REVCTX-R007
-      classStereotype: false
       implements:
       - RevisionEngine
     - name: HumanApprovalValidator
@@ -7307,7 +7221,6 @@ modules:
         traceability:
           feature: FEAT-REVAPR
           rule: F-REVAPR-R001
-      classStereotype: false
       implements:
       - RevisionValidator
     - name: DefaultRevisionValidatorFactory
@@ -7326,14 +7239,12 @@ modules:
         traceability:
           feature: FEAT-REVAPR
           rule: F-REVAPR-R006
-      classStereotype: false
       implements:
       - RevisionValidatorFactory
     - name: DefaultProposalDecisionServiceFactory
       types:
       - Component
       visibility: public
-      classStereotype: false
       implements:
       - ProposalDecisionServiceFactory
     - name: DefaultProposalDecisionService
@@ -7424,7 +7335,6 @@ modules:
         traceability:
           feature: FEAT-REVAPR
           rule: F-REVAPR-R013
-      classStereotype: false
       implements:
       - ProposalDecisionService
     - name: DefaultLemmaAbsenceProposalStrategyRegistry
@@ -7462,7 +7372,6 @@ modules:
         traceability:
           feature: FEAT-LAPS
           rule: F-LAPS-R004
-      classStereotype: false
       implements:
       - LemmaAbsenceProposalStrategyRegistry
     - name: DefaultLemmaAbsenceProposalDeriver
@@ -7531,7 +7440,6 @@ modules:
         traceability:
           feature: FEAT-LAPS
           rule: F-LAPS-R019
-      classStereotype: false
       implements:
       - LemmaAbsenceProposalDeriver
     - name: DefaultImpactPreviewComputer
@@ -7635,14 +7543,12 @@ modules:
         traceability:
           feature: FEAT-PIPRE
           rule: F-PIPRE-R012
-      classStereotype: false
       implements:
       - ImpactPreviewComputer
     - name: DefaultConsolidatedViewBuilderFactory
       types:
       - Component
       visibility: public
-      classStereotype: false
       implements:
       - ConsolidatedViewBuilderFactory
     - name: DefaultConsolidatedViewBuilder
@@ -7898,7 +7804,6 @@ modules:
         traceability:
           feature: FEAT-CDIFF
           rule: F-CDIFF-R007
-      classStereotype: false
       implements:
       - ConsolidatedViewBuilder
   - name: lemmaabsence
@@ -7967,7 +7872,6 @@ modules:
         traceability:
           feature: FEAT-LAGEN
           rule: F-LAGEN-R009
-      classStereotype: false
       implements:
       - LemmaAbsenceProposalStrategy
     - name: CannedLemmaAbsenceQuizCandidateGenerator
@@ -8005,7 +7909,6 @@ modules:
         traceability:
           feature: FEAT-LAGEN
           rule: F-LAGEN-R012
-      classStereotype: false
       implements:
       - LemmaAbsenceQuizCandidateGenerator
   - name: impactpreview
@@ -8552,7 +8455,6 @@ modules:
         traceability:
           feature: FEAT-CDIFF
           rule: F-CDIFF-R023
-      classStereotype: false
       implements:
       - NodeFieldDiffer
     - name: DefaultFieldExclusionRegistry
@@ -8594,7 +8496,6 @@ modules:
         traceability:
           feature: FEAT-CDIFF
           rule: F-CDIFF-R020
-      classStereotype: false
       implements:
       - FieldExclusionRegistry
     - name: DefaultListIdentityRegistry
@@ -8633,7 +8534,6 @@ modules:
         traceability:
           feature: FEAT-CDIFF
           rule: F-CDIFF-R022
-      classStereotype: false
       implements:
       - ListIdentityRegistry
     - name: DefaultNodeFieldDifferFactory
@@ -8648,7 +8548,6 @@ modules:
         traceability:
           feature: FEAT-CDIFF
           rule: F-CDIFF-R019
-      classStereotype: false
       implements:
       - NodeFieldDifferFactory
   - name: contextoverride
@@ -8697,7 +8596,13 @@ modules:
         traceability:
           feature: FEAT-REVCTX
           rule: F-REVCTX-R008
-      classStereotype: false
+      - name: should expose a static withDefaultValidators factory that wires both
+          LEMMA_ABSENCE and SENTENCE_LENGTH validators so the audit-cli composition
+          root can construct the parser without breaking the package-private encapsulation
+          of the per-kind validators
+        traceability:
+          feature: FEAT-REVCTX
+          rule: F-REVCTX-R002
       implements:
       - CorrectionContextOverrideParser
     - name: LemmaAbsenceContextStructuralValidator
@@ -8710,7 +8615,6 @@ modules:
         traceability:
           feature: FEAT-REVCTX
           rule: F-REVCTX-R003
-      classStereotype: false
       implements:
       - CorrectionContextStructuralValidator
     - name: SentenceLengthContextStructuralValidator
@@ -8723,7 +8627,6 @@ modules:
         traceability:
           feature: FEAT-REVCTX
           rule: F-REVCTX-R003
-      classStereotype: false
       implements:
       - CorrectionContextStructuralValidator
 - name: revision-infrastructure
@@ -8980,7 +8883,6 @@ modules:
         traceability:
           feature: FEAT-LAGEN
           rule: F-LAGEN-R008
-      classStereotype: false
       implements:
       - LemmaAbsenceLlmGeneratorFactory
     - name: LemmaAbsenceLlmGenerator
@@ -9070,7 +8972,6 @@ modules:
         traceability:
           feature: FEAT-LAGEN
           rule: F-LAGEN-R006
-      classStereotype: false
       implements:
       - LemmaAbsenceQuizCandidateGenerator
     - name: DefaultLemmaAbsencePromptBuilder
@@ -9145,7 +9046,6 @@ modules:
         traceability:
           feature: FEAT-RCLALEN
           rule: F-RCLALEN-R004
-      classStereotype: false
       implements:
       - LemmaAbsencePromptBuilder
     - name: DefaultLemmaAbsenceResponseParser
@@ -9231,7 +9131,6 @@ modules:
         traceability:
           feature: FEAT-LAGEN
           rule: F-LAGEN-R010
-      classStereotype: false
       implements:
       - LemmaAbsenceResponseParser
     - name: DefaultLangChainErrorClassifier
@@ -9288,7 +9187,6 @@ modules:
         traceability:
           feature: FEAT-LAGEN
           rule: F-LAGEN-R006
-      classStereotype: false
       implements:
       - LangChainErrorClassifier
 features:
