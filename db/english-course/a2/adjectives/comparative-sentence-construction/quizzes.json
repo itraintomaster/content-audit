@@ -1,582 +1,511 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e7a"
-    },
-    "id": "67fab6d59930102295342e7a",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Escribe una oración. Usa el 'present simple' del verbo 'be', un comparativo y la palabra 'than'.",
-    "translation": "Mi casa está más lejos que tu casa.",
-    "answerAudioUrl": "A2.11.04.01",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a3"
-    },
-    "title": "Comparative Sentence Construction",
-    "code": "",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "a2.11.Use_the_Comparative",
-    "imageUrl": "",
-    "audioUrl": "",
-    "miniTheory": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "My house / far / your house"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "My house is further than your house."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ]
-    },
-    "successMessage": "",
-    "answerImageUrl": "",
-    "topicName": "Adjectives"
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e7a"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e7b"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "successMessage": "",
-    "id": "67fab6d59930102295342e7b",
-    "instructions": "Escribe una oración. Usa el 'present simple' del verbo 'be', un comparativo y la palabra 'than'.",
-    "audioUrl": "",
-    "theoryId": "a2.11.Use_the_Comparative",
-    "translation": "Los elefantes son más pesados que los perros.",
-    "answerImageUrl": "",
-    "answerAudioUrl": "A2.11.04.02",
-    "code": "",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "miniTheory": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a3"
-    },
-    "title": "Comparative Sentence Construction",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Elephants / heavy / dogs",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Elephants are heavier than dogs."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ]
-    },
-    "imageUrl": "",
-    "topicName": "Adjectives"
+  "id" : "67fab6d59930102295342e7a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a3"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e7c"
-    },
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a3"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Summer / hot / winter",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Summer is hotter than winter."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE"
-    },
-    "theoryId": "a2.11.Use_the_Comparative",
-    "id": "67fab6d59930102295342e7c",
-    "imageUrl": "",
-    "successMessage": "",
-    "answerAudioUrl": "A2.11.04.03",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "answerImageUrl": "",
-    "title": "Comparative Sentence Construction",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Escribe una oración. Usa el 'present simple' del verbo 'be', un comparativo y la palabra 'than'.",
-    "audioUrl": "",
-    "translation": "El verano es más caluroso que el invierno.",
-    "miniTheory": "",
-    "code": "",
-    "topicName": "Adjectives"
+  "title" : "Comparative Sentence Construction",
+  "instructions" : "Escribe una oración. Usa el 'present simple' del verbo 'be', un comparativo y la palabra 'than'.",
+  "translation" : "Mi casa está más lejos que tu casa.",
+  "theoryId" : "a2.11.Use_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e7d"
-    },
-    "title": "Comparative Sentence Construction",
-    "answerAudioUrl": "A2.11.04.04",
-    "code": "",
-    "kind": "CLOZE",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "a2.11.Use_the_Comparative",
-    "miniTheory": "",
-    "translation": "Mi hermano es menor que mi padre.",
-    "successMessage": "",
-    "imageUrl": "",
-    "audioUrl": "",
-    "id": "67fab6d59930102295342e7d",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a3"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Escribe una oración. Usa el 'present simple' del verbo 'be', un comparativo y la palabra 'than'.",
-    "form": {
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "My brother / young / my father",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "My brother is younger than my father."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE"
-    },
-    "answerImageUrl": "",
-    "topicName": "Adjectives"
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e7e"
-    },
-    "instructions": "Escribe una oración. Usa el 'present simple' del verbo 'be', un comparativo y la palabra 'than'.",
-    "translation": "Los gatos son más lindos que las ratas.",
-    "id": "67fab6d59930102295342e7e",
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a3"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "audioUrl": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "a2.11.Use_the_Comparative",
-    "imageUrl": "",
-    "successMessage": "",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "kind": "CLOZE",
-    "title": "Comparative Sentence Construction",
-    "form": {
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Cats / cute / rats",
-          "options": null
-        },
-        {
-          "text": "",
-          "options": [
-            "Cats are cuter than rats."
-          ],
-          "kind": "CLOZE"
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE"
-    },
-    "answerAudioUrl": "A2.11.04.05",
-    "topicName": "Adjectives"
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e7f"
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.04.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
     },
-    "theoryId": "a2.11.Use_the_Comparative",
-    "successMessage": "",
-    "instructions": "Escribe una oración. Usa el 'present simple' del verbo 'be', un comparativo y la palabra 'than'.",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.04.06",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a3"
-    },
-    "kind": "CLOZE",
-    "title": "Comparative Sentence Construction",
-    "form": {
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "text": "Apples / sweet / lemons",
-          "options": null,
-          "kind": "TEXT"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Apples are sweeter than lemons."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      }
-    },
-    "audioUrl": "",
-    "miniTheory": "",
-    "id": "67fab6d59930102295342e7f",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "translation": "Las manzanas son más dulces que los limones.",
-    "answerImageUrl": "",
-    "code": "",
-    "topicName": "Adjectives"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e80"
-    },
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a3"
-    },
-    "answerAudioUrl": "A2.11.04.07",
-    "id": "67fab6d59930102295342e80",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "imageUrl": "",
-    "translation": "Los aviones son más rápidos que los trenes.",
-    "code": "",
-    "instructions": "Escribe una oración. Usa el 'present simple' del verbo 'be', un comparativo y la palabra 'than'.",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "Planes / quick / trains"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Planes are quicker than trains."
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": ""
-        }
-      ]
-    },
-    "theoryId": "a2.11.Use_the_Comparative",
-    "successMessage": "",
-    "answerImageUrl": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Comparative Sentence Construction",
-    "audioUrl": "",
-    "miniTheory": "",
-    "topicName": "Adjectives"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e81"
-    },
-    "answerAudioUrl": "A2.11.04.08",
-    "id": "67fab6d59930102295342e81",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Escribe una oración. Usa el 'present simple' del verbo 'be', un comparativo y la palabra 'than'.",
-    "theoryId": "a2.11.Use_the_Comparative",
-    "imageUrl": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Lucy / short / Brian",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Lucy is shorter than Brian."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ]
-    },
-    "translation": "Lucy es más baja que Brian.",
-    "miniTheory": "",
-    "code": "",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a3"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Comparative Sentence Construction",
-    "answerImageUrl": "",
-    "audioUrl": "",
-    "successMessage": "",
-    "topicName": "Adjectives"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e82"
-    },
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Comparative Sentence Construction",
-    "theoryId": "a2.11.Use_the_Comparative",
-    "answerImageUrl": "",
-    "form": {
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "This film / boring / that film",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "This film is more boring than that film."
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": ""
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": ""
-    },
-    "audioUrl": "",
-    "translation": "Esta película es más aburrida que aquella película.",
-    "successMessage": "",
-    "code": "",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Escribe una oración. Usa el 'present simple' del verbo 'be', un comparativo y la palabra 'than'.",
-    "imageUrl": "",
-    "miniTheory": "",
-    "answerAudioUrl": "A2.11.04.09",
-    "id": "67fab6d59930102295342e82",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a3"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "topicName": "Adjectives"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e83"
-    },
-    "id": "67fab6d59930102295342e83",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Escribe una oración. Usa el 'present simple' del verbo 'be', un comparativo y la palabra 'than'.",
-    "theoryId": "a2.11.Use_the_Comparative",
-    "audioUrl": "",
-    "successMessage": "",
-    "answerImageUrl": "",
-    "answerAudioUrl": "A2.11.04.10",
-    "code": "",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Comparative Sentence Construction",
-    "imageUrl": "",
-    "translation": "La comida italiana es más sabrosa que la comida alemana.",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a3"
-    },
-    "miniTheory": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Italian food / tasty / German food",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Italian food is tastier than German food."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ]
-    },
-    "topicName": "Adjectives"
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My house / far / your house",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "My house is further than your house." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e7b"
+  },
+  "id" : "67fab6d59930102295342e7b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a3"
+  },
+  "title" : "Comparative Sentence Construction",
+  "instructions" : "Escribe una oración. Usa el 'present simple' del verbo 'be', un comparativo y la palabra 'than'.",
+  "translation" : "Los elefantes son más pesados que los perros.",
+  "theoryId" : "a2.11.Use_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.04.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Elephants / heavy / dogs",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Elephants are heavier than dogs." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e7c"
+  },
+  "id" : "67fab6d59930102295342e7c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a3"
+  },
+  "title" : "Comparative Sentence Construction",
+  "instructions" : "Escribe una oración. Usa el 'present simple' del verbo 'be', un comparativo y la palabra 'than'.",
+  "translation" : "El verano es más caluroso que el invierno.",
+  "theoryId" : "a2.11.Use_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.04.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Summer / hot / winter",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Summer is hotter than winter." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e7d"
+  },
+  "id" : "67fab6d59930102295342e7d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a3"
+  },
+  "title" : "Comparative Sentence Construction",
+  "instructions" : "Escribe una oración. Usa el 'present simple' del verbo 'be', un comparativo y la palabra 'than'.",
+  "translation" : "Mi hermano es menor que mi padre.",
+  "theoryId" : "a2.11.Use_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.04.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My brother / young / my father",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "My brother is younger than my father." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e7e"
+  },
+  "id" : "67fab6d59930102295342e7e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a3"
+  },
+  "title" : "Comparative Sentence Construction",
+  "instructions" : "Escribe una oración. Usa el 'present simple' del verbo 'be', un comparativo y la palabra 'than'.",
+  "translation" : "Los gatos son más lindos que las ratas.",
+  "theoryId" : "a2.11.Use_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.04.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Cats / cute / rats",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Cats are cuter than rats." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e7f"
+  },
+  "id" : "67fab6d59930102295342e7f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a3"
+  },
+  "title" : "Comparative Sentence Construction",
+  "instructions" : "Escribe una oración. Usa el 'present simple' del verbo 'be', un comparativo y la palabra 'than'.",
+  "translation" : "Las manzanas son más dulces que los limones.",
+  "theoryId" : "a2.11.Use_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.04.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Apples / sweet / lemons",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Apples are sweeter than lemons." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e80"
+  },
+  "id" : "67fab6d59930102295342e80",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a3"
+  },
+  "title" : "Comparative Sentence Construction",
+  "instructions" : "Escribe una oración. Usa el 'present simple' del verbo 'be', un comparativo y la palabra 'than'.",
+  "translation" : "Los aviones son más rápidos que los trenes.",
+  "theoryId" : "a2.11.Use_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.04.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Planes / quick / trains",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Planes are quicker than trains." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e81"
+  },
+  "id" : "67fab6d59930102295342e81",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a3"
+  },
+  "title" : "Comparative Sentence Construction",
+  "instructions" : "Escribe una oración. Usa el 'present simple' del verbo 'be', un comparativo y la palabra 'than'.",
+  "translation" : "Lucy es más baja que Brian.",
+  "theoryId" : "a2.11.Use_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.04.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Lucy / short / Brian",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Lucy is shorter than Brian." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e82"
+  },
+  "id" : "67fab6d59930102295342e82",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a3"
+  },
+  "title" : "Comparative Sentence Construction",
+  "instructions" : "Escribe una oración. Usa el 'present simple' del verbo 'be', un comparativo y la palabra 'than'.",
+  "translation" : "Esta película es más aburrida que aquella película.",
+  "theoryId" : "a2.11.Use_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.04.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This film / boring / that film",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "This film is more boring than that film." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e83"
+  },
+  "id" : "67fab6d59930102295342e83",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a3"
+  },
+  "title" : "Comparative Sentence Construction",
+  "instructions" : "Escribe una oración. Usa el 'present simple' del verbo 'be', un comparativo y la palabra 'than'.",
+  "translation" : "La comida italiana es más sabrosa que la comida alemana.",
+  "theoryId" : "a2.11.Use_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.04.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Italian food / tasty / German food",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Italian food is tastier than German food." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+} ]

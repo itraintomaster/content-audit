@@ -3,7 +3,7 @@
 
 **This module is isolated.** Your scope is limited to this module and the contracts (models and interfaces) of its dependencies. Do not access information from other modules.
 
-Domain module for the refinement workflow. Defines the plan/task model and ports for generating and persisting refinement plans derived from audit reports.
+Refinement engine
 
 ## Models
 
@@ -134,6 +134,8 @@ Methods:
 Methods:
 
 - `resolve(AuditReport report, RefinementTask task): Optional<T>`
+- `resolveWithIndex(AuditNodeIndex nodeIndex, AuditReport report, RefinementTask task): Optional<T>`
+- `supports(DiagnosisKind kind): boolean`
 
 ### CorrectionContext (port)
 
@@ -141,7 +143,7 @@ Methods:
 
 ### SentenceLengthContextResolver
 
-**Implements:** CorrectionContextResolver<SentenceLengthCorrectionContext>
+**Implements:** CorrectionContextResolver
 
 **Tests that must pass:**
 
@@ -169,7 +171,7 @@ Methods:
 
 ### LemmaAbsenceContextResolver
 
-**Implements:** CorrectionContextResolver<LemmaAbsenceCorrectionContext>
+**Implements:** CorrectionContextResolver
 
 **Tests that must pass:**
 
@@ -213,7 +215,7 @@ Methods:
 
 ### DispatchingCorrectionContextResolver
 
-**Implements:** CorrectionContextResolver<CorrectionContext>
+**Implements:** CorrectionContextResolver
 
 **Dependencies (constructor injection):**
 
@@ -227,6 +229,7 @@ Methods:
 - should return empty for unsupported diagnosis kind COCA_BUCKETS → FEAT-RCLA/F-RCLA-R007
 - should return empty for unsupported diagnosis kind LEMMA_RECURRENCE → FEAT-RCLA/F-RCLA-R007
 - should propagate empty from delegate when delegate returns empty → FEAT-RCLA/F-RCLA-R007
+- should report supports=true for diagnosisKinds with a registered resolver and supports=false for kinds without one → FEAT-REVCTX/F-REVCTX-R004
 
 ### DefaultRefinerEngine
 
@@ -562,6 +565,18 @@ Methods:
 - `read(): Optional<ActiveAnalysisSelection>`
 - `write(ActiveAnalysisSelection selection): void`
 - `clear(): void`
+
+### AuditNodeIndex (port)
+
+Methods:
+
+- `find(String nodeId, AuditTarget nodeTarget): Optional<AuditNode>`
+
+### AuditNodeIndexFactory (factory)
+
+Methods:
+
+- `build(AuditReport report): AuditNodeIndex`
 
 ### From course-domain
 

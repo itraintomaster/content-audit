@@ -1,582 +1,511 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342ee8"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Good or Well? A Practice Exercise",
-    "answerAudioUrl": "A2.12.02.01",
-    "code": "",
-    "kind": "CLOZE",
-    "translation": "Él toca bien la guitarra.",
-    "form": {
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He plays the guitar",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "well"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(good / well).",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE"
-    },
-    "theoryId": "",
-    "imageUrl": "",
-    "audioUrl": "",
-    "successMessage": "",
-    "id": "67fab6d59930102295342ee8",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Elegí entre 'well' o 'good'.",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ac"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "topicName": "Adverbs"
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ee8"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342ee9"
-    },
-    "form": {
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "text": "We sing karaoke",
-          "options": null,
-          "kind": "TEXT"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "well"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(good / well).",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      }
-    },
-    "answerAudioUrl": "A2.12.02.02",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Good or Well? A Practice Exercise",
-    "theoryId": "",
-    "imageUrl": "",
-    "translation": "Nosotros cantamos bien karaoke.",
-    "miniTheory": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ac"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Elegí entre 'well' o 'good'.",
-    "audioUrl": "",
-    "answerImageUrl": "",
-    "id": "67fab6d59930102295342ee9",
-    "code": "",
-    "kind": "CLOZE",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "successMessage": "",
-    "topicName": "Adverbs"
+  "id" : "67fab6d59930102295342ee8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ac"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342eea"
-    },
-    "translation": "Su pintura es buena.",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Good or Well? A Practice Exercise",
-    "imageUrl": "",
-    "audioUrl": "",
-    "answerAudioUrl": "A2.12.02.03",
-    "id": "67fab6d59930102295342eea",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Elegí entre 'well' o 'good'.",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Her painting is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "good"
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "(good / well)."
-        }
-      ]
-    },
-    "theoryId": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ac"
-    },
-    "kind": "CLOZE",
-    "successMessage": "",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "code": "",
-    "topicName": "Adverbs"
+  "title" : "Good or Well? A Practice Exercise",
+  "instructions" : "Elegí entre 'well' o 'good'.",
+  "translation" : "Él toca bien la guitarra.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342eeb"
-    },
-    "answerAudioUrl": "A2.12.02.04",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ac"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "imageUrl": "",
-    "audioUrl": "",
-    "translation": "Ella baila bien.",
-    "id": "67fab6d59930102295342eeb",
-    "instructions": "Elegí entre 'well' o 'good'.",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She dances",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "well"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(good / well).",
-          "options": null
-        }
-      ]
-    },
-    "answerImageUrl": "",
-    "code": "",
-    "kind": "CLOZE",
-    "successMessage": "",
-    "miniTheory": "",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Good or Well? A Practice Exercise",
-    "theoryId": "",
-    "topicName": "Adverbs"
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342eec"
-    },
-    "instructions": "Elegí entre 'well' o 'good'.",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "text": "They produce",
-          "options": null,
-          "kind": "TEXT"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "good"
-          ]
-        },
-        {
-          "text": "(good / well) products.",
-          "options": null,
-          "kind": "TEXT"
-        }
-      ]
-    },
-    "miniTheory": "",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ac"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "answerAudioUrl": "A2.12.02.05",
-    "id": "67fab6d59930102295342eec",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "answerImageUrl": "",
-    "translation": "Ellos producen buenos productos.",
-    "successMessage": "",
-    "code": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "imageUrl": "",
-    "title": "Good or Well? A Practice Exercise",
-    "theoryId": "",
-    "audioUrl": "",
-    "topicName": "Adverbs"
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342eed"
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.02.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
     },
-    "instructions": "Elegí entre 'well' o 'good'.",
-    "code": "",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ac"
-    },
-    "title": "Good or Well? A Practice Exercise",
-    "audioUrl": "",
-    "answerAudioUrl": "A2.12.02.06",
-    "id": "67fab6d59930102295342eed",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "",
-    "imageUrl": "",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "She understands"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "good"
-          ]
-        },
-        {
-          "text": "(good / well) Spanish.",
-          "options": null,
-          "kind": "TEXT"
-        }
-      ]
-    },
-    "translation": "Ella entiende bien el español.",
-    "successMessage": "",
-    "topicName": "Adverbs"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342eee"
-    },
-    "id": "67fab6d59930102295342eee",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Good or Well? A Practice Exercise",
-    "translation": "Él es un buen estudiante.",
-    "answerImageUrl": "",
-    "code": "",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He is a",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "good"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(good / well) student.",
-          "options": null
-        }
-      ]
-    },
-    "imageUrl": "",
-    "successMessage": "",
-    "miniTheory": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ac"
-    },
-    "instructions": "Elegí entre 'well' o 'good'.",
-    "audioUrl": "",
-    "answerAudioUrl": "A2.12.02.07",
-    "kind": "CLOZE",
-    "theoryId": "",
-    "topicName": "Adverbs"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342eef"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Elegí entre 'well' o 'good'.",
-    "imageUrl": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ac"
-    },
-    "audioUrl": "",
-    "successMessage": "",
-    "miniTheory": "",
-    "answerAudioUrl": "A2.12.02.08",
-    "code": "",
-    "kind": "CLOZE",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "name": "",
-      "sentenceParts": [
-        {
-          "text": "She draws",
-          "options": null,
-          "kind": "TEXT"
-        },
-        {
-          "text": "",
-          "options": [
-            "well"
-          ],
-          "kind": "CLOZE"
-        },
-        {
-          "kind": "TEXT",
-          "text": "(good / well).",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": ""
-    },
-    "id": "67fab6d59930102295342eef",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Good or Well? A Practice Exercise",
-    "theoryId": "",
-    "translation": "Ella dibuja bien.",
-    "answerImageUrl": "",
-    "topicName": "Adverbs"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342ef0"
-    },
-    "successMessage": "",
-    "kind": "CLOZE",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "",
-    "translation": "Ellos realizaron bien la tarea.",
-    "audioUrl": "",
-    "answerImageUrl": "",
-    "answerAudioUrl": "A2.12.02.09",
-    "miniTheory": "",
-    "id": "67fab6d59930102295342ef0",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "They performed the task"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "well"
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "(good / well)."
-        }
-      ]
-    },
-    "imageUrl": "",
-    "instructions": "Elegí entre 'well' o 'good'.",
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ac"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Good or Well? A Practice Exercise",
-    "topicName": "Adverbs"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342ef1"
-    },
-    "title": "Good or Well? A Practice Exercise",
-    "instructions": "Elegí entre 'well' o 'good'.",
-    "theoryId": "",
-    "imageUrl": "",
-    "successMessage": "",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "audioUrl": "",
-    "translation": "Su dibujo es bueno.",
-    "answerImageUrl": "",
-    "code": "",
-    "miniTheory": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ac"
-    },
-    "form": {
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "His drawing is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "good"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(good / well).",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": ""
-    },
-    "answerAudioUrl": "A2.12.02.10",
-    "id": "67fab6d59930102295342ef1",
-    "topicName": "Adverbs"
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He plays the guitar",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "well" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(good / well).",
+      "options" : null
+    } ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ee9"
+  },
+  "id" : "67fab6d59930102295342ee9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ac"
+  },
+  "title" : "Good or Well? A Practice Exercise",
+  "instructions" : "Elegí entre 'well' o 'good'.",
+  "translation" : "Nosotros cantamos bien karaoke.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.02.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We sing karaoke",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "well" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(good / well).",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342eea"
+  },
+  "id" : "67fab6d59930102295342eea",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ac"
+  },
+  "title" : "Good or Well? A Practice Exercise",
+  "instructions" : "Elegí entre 'well' o 'good'.",
+  "translation" : "Su pintura es buena.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.02.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Her painting is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "good" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(good / well).",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342eeb"
+  },
+  "id" : "67fab6d59930102295342eeb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ac"
+  },
+  "title" : "Good or Well? A Practice Exercise",
+  "instructions" : "Elegí entre 'well' o 'good'.",
+  "translation" : "Ella baila bien.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.02.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She dances",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "well" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(good / well).",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342eec"
+  },
+  "id" : "67fab6d59930102295342eec",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ac"
+  },
+  "title" : "Good or Well? A Practice Exercise",
+  "instructions" : "Elegí entre 'well' o 'good'.",
+  "translation" : "Ellos producen buenos productos.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.02.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They produce",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "good" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(good / well) products.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342eed"
+  },
+  "id" : "67fab6d59930102295342eed",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ac"
+  },
+  "title" : "Good or Well? A Practice Exercise",
+  "instructions" : "Elegí entre 'well' o 'good'.",
+  "translation" : "Ella entiende bien el español.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.02.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She understands",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "good" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(good / well) Spanish.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342eee"
+  },
+  "id" : "67fab6d59930102295342eee",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ac"
+  },
+  "title" : "Good or Well? A Practice Exercise",
+  "instructions" : "Elegí entre 'well' o 'good'.",
+  "translation" : "Él es un buen estudiante.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.02.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is a",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "good" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(good / well) student.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342eef"
+  },
+  "id" : "67fab6d59930102295342eef",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ac"
+  },
+  "title" : "Good or Well? A Practice Exercise",
+  "instructions" : "Elegí entre 'well' o 'good'.",
+  "translation" : "Ella dibuja bien.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.02.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She draws",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "well" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(good / well).",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ef0"
+  },
+  "id" : "67fab6d59930102295342ef0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ac"
+  },
+  "title" : "Good or Well? A Practice Exercise",
+  "instructions" : "Elegí entre 'well' o 'good'.",
+  "translation" : "Ellos realizaron bien la tarea.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.02.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They performed the task",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "well" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(good / well).",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ef1"
+  },
+  "id" : "67fab6d59930102295342ef1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ac"
+  },
+  "title" : "Good or Well? A Practice Exercise",
+  "instructions" : "Elegí entre 'well' o 'good'.",
+  "translation" : "Su dibujo es bueno.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.02.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "His drawing is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "good" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(good / well).",
+      "options" : null
+    } ]
+  }
+} ]

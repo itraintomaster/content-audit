@@ -347,6 +347,18 @@ Methods:
 - `write(ActiveAnalysisSelection selection): void`
 - `clear(): void`
 
+### AuditNodeIndex (port)
+
+Methods:
+
+- `find(String nodeId, AuditTarget nodeTarget): Optional<AuditNode>`
+
+### AuditNodeIndexFactory (factory)
+
+Methods:
+
+- `build(AuditReport report): AuditNodeIndex`
+
 ### From course-domain
 
 ## Models

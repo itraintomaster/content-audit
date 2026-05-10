@@ -58,11 +58,13 @@ Every `handwrittenTest` **must** declare `traceability` with one of these shapes
 
 Flow-based journeys are tested by auto-generated journey test classes and **must not** be referenced from `handwrittenTests` (see *Flow Journey Traceability* below).
 
-**If a test has no clean trace** to an existing rule or linear journey, do NOT declare it as a `handwrittenTest`. Follow the escalation path in `qa-tester.md`:
+**If a test has no clean trace** to an existing rule or linear journey, do NOT declare it as a `handwrittenTest`. Follow the escalation path:
 
-1. **Propose a new rule** to `@analyst`, wait for it to land in `REQUIREMENT.md`, then declare the test.
+1. **Propose a new rule** to `@analyst`, wait for it to land in `REQUIREMENT.md` and to be registered via `sentinel feature sync` (analyst's job — see the **Journey Lifecycle Playbook**), then declare the test. If `sentinel feature status` shows journeys as `missing-from-gate`, the analyst's sync did not run yet — escalate before proposing any placement.
 2. **Accept ArchUnit enforcement** — pattern-level invariants are best enforced by ArchUnit from the DSL.
 3. **Raise a doubt** asking the user whether the behavior deserves a rule.
+
+**Journeys in the gate without `testModule`/`testPackage` are YOUR primary input.** Run `sentinel feature status` at the start of every session to find them. Choose a `testModule` consistent with sibling journeys on the same feature and the module that owns the entry-point under test (see the placement rules in Step 6 below).
 
 **Forcing a "closest" rule is prohibited.** Every `traceability.rule` must point at a rule that currently exists in `REQUIREMENT.md`; every `traceability.journey` must point at a linear journey. `sentinel patch propose` and `sentinel generate` reject patches that reference missing features, rules, or journeys — with an error like:
 

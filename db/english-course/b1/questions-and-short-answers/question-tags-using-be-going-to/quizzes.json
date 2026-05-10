@@ -1,1162 +1,1021 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534331c"
-    },
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e9"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Question Tags: Using 'be going to'",
-    "theoryId": "b1.05.Question_Tags",
-    "imageUrl": "",
-    "translation": "El gato no se va a comer al ratón, ¿verdad?",
-    "id": "67fab6d5993010229534331c",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Añade un 'question tag' a la oración.",
-    "answerImageUrl": "",
-    "answerAudioUrl": "B1.05.08.01",
-    "code": "",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The cat isn't going to eat the mouse,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "is it"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ]
-    },
-    "audioUrl": "",
-    "successMessage": "",
-    "miniTheory": "",
-    "topicName": "Questions and short answers"
+[ {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534331c"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534331d"
-    },
-    "form": {
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The players are going to score goals,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "aren't they"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": ""
-    },
-    "successMessage": "",
-    "miniTheory": "",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Añade un 'question tag' a la oración.",
-    "audioUrl": "",
-    "answerAudioUrl": "B1.05.08.02",
-    "code": "",
-    "kind": "CLOZE",
-    "theoryId": "b1.05.Question_Tags",
-    "imageUrl": "",
-    "translation": "Los jugadores van a marcar goles, ¿no?",
-    "id": "67fab6d5993010229534331d",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Question Tags: Using 'be going to'",
-    "answerImageUrl": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e9"
-    },
-    "topicName": "Questions and short answers"
+  "id" : "67fab6d5993010229534331c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e9"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534331e"
-    },
-    "code": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "text": "John is going to order pizza,",
-          "options": null,
-          "kind": "TEXT"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "isn't he"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ]
-    },
-    "audioUrl": "",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e9"
-    },
-    "translation": "John va a pedir pizza, ¿no?",
-    "answerImageUrl": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Añade un 'question tag' a la oración.",
-    "imageUrl": "",
-    "successMessage": "",
-    "miniTheory": "",
-    "answerAudioUrl": "B1.05.08.03",
-    "id": "67fab6d5993010229534331e",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Question Tags: Using 'be going to'",
-    "theoryId": "b1.05.Question_Tags",
-    "topicName": "Questions and short answers"
+  "title" : "Question Tags: Using 'be going to'",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "El gato no se va a comer al ratón, ¿verdad?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534331f"
-    },
-    "answerImageUrl": "",
-    "id": "67fab6d5993010229534331f",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b1.05.Question_Tags",
-    "miniTheory": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He isn't going to sing,",
-          "options": null
-        },
-        {
-          "text": "",
-          "options": [
-            "is he"
-          ],
-          "kind": "CLOZE"
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ]
-    },
-    "imageUrl": "",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "audioUrl": "",
-    "successMessage": "",
-    "code": "",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e9"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Question Tags: Using 'be going to'",
-    "translation": "Él no va a cantar, ¿verdad?",
-    "answerAudioUrl": "B1.05.08.04",
-    "topicName": "Questions and short answers"
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343320"
-    },
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Question Tags: Using 'be going to'",
-    "theoryId": "b1.05.Question_Tags",
-    "answerAudioUrl": "B1.05.08.05",
-    "id": "67fab6d59930102295343320",
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e9"
-    },
-    "translation": "La televisión se va a apagar, ¿no?",
-    "miniTheory": "",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The television's going to turn off,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "isn't it"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ]
-    },
-    "imageUrl": "",
-    "audioUrl": "",
-    "successMessage": "",
-    "answerImageUrl": "",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "topicName": "Questions and short answers"
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343321"
-    },
-    "kind": "CLOZE",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b1.05.Question_Tags",
-    "id": "67fab6d59930102295343321",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "audioUrl": "",
-    "translation": "Ella me va a visitar, ¿no?",
-    "answerImageUrl": "",
-    "answerAudioUrl": "B1.05.08.06",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "imageUrl": "",
-    "miniTheory": "",
-    "title": "Question Tags: Using 'be going to'",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e9"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She's going to visit me,",
-          "options": null
-        },
-        {
-          "options": [
-            "isn't she"
-          ],
-          "kind": "CLOZE",
-          "text": ""
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE"
-    },
-    "successMessage": "",
-    "code": "",
-    "topicName": "Questions and short answers"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343322"
-    },
-    "audioUrl": "",
-    "answerAudioUrl": "B1.05.08.07",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e9"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "We aren't going to lose,"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "are we"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ]
-    },
-    "theoryId": "b1.05.Question_Tags",
-    "miniTheory": "",
-    "kind": "CLOZE",
-    "title": "Question Tags: Using 'be going to'",
-    "translation": "Nosotros no vamos a perder, ¿verdad?",
-    "answerImageUrl": "",
-    "id": "67fab6d59930102295343322",
-    "code": "",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "imageUrl": "",
-    "successMessage": "",
-    "topicName": "Questions and short answers"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343323"
-    },
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e9"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b1.05.Question_Tags",
-    "audioUrl": "",
-    "miniTheory": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Question Tags: Using 'be going to'",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "form": {
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They aren't going to watch the film,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "are they"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": ""
-    },
-    "answerImageUrl": "",
-    "answerAudioUrl": "B1.05.08.08",
-    "id": "67fab6d59930102295343323",
-    "code": "",
-    "imageUrl": "",
-    "translation": "Ellos no van a ver la película, ¿verdad?",
-    "successMessage": "",
-    "topicName": "Questions and short answers"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343324"
-    },
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e9"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "miniTheory": "",
-    "answerAudioUrl": "B1.05.08.09",
-    "id": "67fab6d59930102295343324",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Añade un 'question tag' a la oración.",
-    "form": {
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I'm going to make coffee,",
-          "options": null
-        },
-        {
-          "text": "",
-          "options": [
-            "aren't I"
-          ],
-          "kind": "CLOZE"
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      }
-    },
-    "audioUrl": "",
-    "translation": "Voy a hacer café, ¿no?",
-    "code": "",
-    "title": "Question Tags: Using 'be going to'",
-    "theoryId": "b1.05.Question_Tags",
-    "imageUrl": "",
-    "successMessage": "",
-    "answerImageUrl": "",
-    "topicName": "Questions and short answers"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343325"
-    },
-    "theoryId": "b1.05.Question_Tags",
-    "answerAudioUrl": "B1.05.08.10",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Añade un 'question tag' a la oración.",
-    "form": {
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He's going to go to the beach,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "isn't he"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": ""
-    },
-    "imageUrl": "",
-    "translation": "Él va a ir a la playa, ¿no?",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e9"
-    },
-    "title": "Question Tags: Using 'be going to'",
-    "audioUrl": "",
-    "id": "67fab6d59930102295343325",
-    "successMessage": "",
-    "topicName": "Questions and short answers"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343326"
-    },
-    "imageUrl": "",
-    "translation": "Tú no vas a revisar los documentos, ¿verdad?",
-    "answerAudioUrl": "B1.05.08.11",
-    "code": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "You aren't going to check the documents,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "are you"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      }
-    },
-    "theoryId": "b1.05.Question_Tags",
-    "successMessage": "",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "answerImageUrl": "",
-    "id": "67fab6d59930102295343326",
-    "audioUrl": "",
-    "title": "Question Tags: Using 'be going to'",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "miniTheory": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e9"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "topicName": "Questions and short answers"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343327"
-    },
-    "title": "Question Tags: Using 'be going to'",
-    "imageUrl": "",
-    "audioUrl": "",
-    "successMessage": "",
-    "miniTheory": "",
-    "answerAudioUrl": "B1.05.08.12",
-    "id": "67fab6d59930102295343327",
-    "code": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Añade un 'question tag' a la oración.",
-    "theoryId": "b1.05.Question_Tags",
-    "translation": "Estos árboles van a crecer más rápido, ¿no?",
-    "answerImageUrl": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e9"
-    },
-    "form": {
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "These trees are going to grow faster,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "aren't they"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      }
-    },
-    "topicName": "Questions and short answers"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343328"
-    },
-    "id": "67fab6d59930102295343328",
-    "kind": "CLOZE",
-    "imageUrl": "",
-    "successMessage": "",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "answerAudioUrl": "B1.05.08.13",
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e9"
-    },
-    "form": {
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She's going to call us,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "isn't she"
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "?"
-        }
-      ],
-      "kind": "CLOZE"
-    },
-    "audioUrl": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Añade un 'question tag' a la oración.",
-    "theoryId": "b1.05.Question_Tags",
-    "translation": "Ella nos va a llamar, ¿no?",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Question Tags: Using 'be going to'",
-    "topicName": "Questions and short answers"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343329"
-    },
-    "id": "67fab6d59930102295343329",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e9"
-    },
-    "title": "Question Tags: Using 'be going to'",
-    "form": {
-      "sentenceParts": [
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "We aren't going to stay at home tomorrow,"
-        },
-        {
-          "text": "",
-          "options": [
-            "are we"
-          ],
-          "kind": "CLOZE"
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": ""
-    },
-    "audioUrl": "",
-    "code": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.05.08.14",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Añade un 'question tag' a la oración.",
-    "theoryId": "b1.05.Question_Tags",
-    "translation": "No nos vamos a quedar en casa mañana, ¿verdad?",
-    "successMessage": "",
-    "kind": "CLOZE",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "topicName": "Questions and short answers"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534332a"
-    },
-    "code": "",
-    "theoryId": "b1.05.Question_Tags",
-    "answerAudioUrl": "B1.05.08.15",
-    "form": {
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I'm going to read this novel,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "aren't I"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": ""
-    },
-    "audioUrl": "",
-    "answerImageUrl": "",
-    "imageUrl": "",
-    "translation": "Voy a leer esta novela, ¿no?",
-    "id": "67fab6d5993010229534332a",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e9"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Question Tags: Using 'be going to'",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "kind": "CLOZE",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "successMessage": "",
-    "miniTheory": "",
-    "topicName": "Questions and short answers"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534332b"
-    },
-    "answerAudioUrl": "B1.05.08.16",
-    "id": "67fab6d5993010229534332b",
-    "audioUrl": "",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "imageUrl": "",
-    "translation": "Vamos a tomar té, ¿no?",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "We're going to have tea,"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "aren't we"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      }
-    },
-    "theoryId": "b1.05.Question_Tags",
-    "successMessage": "",
-    "miniTheory": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e9"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "answerImageUrl": "",
-    "code": "",
-    "title": "Question Tags: Using 'be going to'",
-    "topicName": "Questions and short answers"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534332c"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He isn't going to wake up early,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "is he"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ]
-    },
-    "answerImageUrl": "",
-    "answerAudioUrl": "B1.05.08.17",
-    "id": "67fab6d5993010229534332c",
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e9"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "audioUrl": "",
-    "theoryId": "b1.05.Question_Tags",
-    "imageUrl": "",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Question Tags: Using 'be going to'",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "translation": "Él no se va a despertar temprano, ¿verdad?",
-    "successMessage": "",
-    "miniTheory": "",
-    "topicName": "Questions and short answers"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534332d"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Añade un 'question tag' a la oración.",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I'm not going to stay here,",
-          "options": null
-        },
-        {
-          "text": "",
-          "options": [
-            "am I"
-          ],
-          "kind": "CLOZE"
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ]
-    },
-    "miniTheory": "",
-    "id": "67fab6d5993010229534332d",
-    "audioUrl": "",
-    "translation": "No me voy a quedar aquí, ¿verdad?",
-    "answerImageUrl": "",
-    "code": "",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Question Tags: Using 'be going to'",
-    "kind": "CLOZE",
-    "theoryId": "b1.05.Question_Tags",
-    "imageUrl": "",
-    "successMessage": "",
-    "answerAudioUrl": "B1.05.08.18",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e9"
-    },
-    "topicName": "Questions and short answers"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534332e"
-    },
-    "miniTheory": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e9"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Question Tags: Using 'be going to'",
-    "audioUrl": "",
-    "imageUrl": "",
-    "successMessage": "",
-    "answerAudioUrl": "B1.05.08.19",
-    "code": "",
-    "kind": "CLOZE",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Añade un 'question tag' a la oración.",
-    "form": {
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "You aren't going to take the train,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "are you"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": ""
-    },
-    "theoryId": "b1.05.Question_Tags",
-    "translation": "No vas a tomar el tren, ¿verdad?",
-    "id": "67fab6d5993010229534332e",
-    "answerImageUrl": "",
-    "topicName": "Questions and short answers"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534332f"
-    },
-    "instructions": "Añade un 'question tag' a la oración.",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Peter isn't going to buy dinner,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "is he"
-          ]
-        },
-        {
-          "text": "?",
-          "options": null,
-          "kind": "TEXT"
-        }
-      ]
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "imageUrl": "",
-    "answerAudioUrl": "B1.05.08.20",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e9"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "id": "67fab6d5993010229534332f",
-    "title": "Question Tags: Using 'be going to'",
-    "theoryId": "b1.05.Question_Tags",
-    "audioUrl": "",
-    "translation": "Peter no va a comprar la cena, ¿verdad?",
-    "successMessage": "",
-    "code": "",
-    "topicName": "Questions and short answers"
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.08.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The cat isn't going to eat the mouse,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is it" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534331d"
+  },
+  "id" : "67fab6d5993010229534331d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e9"
+  },
+  "title" : "Question Tags: Using 'be going to'",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Los jugadores van a marcar goles, ¿no?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.08.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The players are going to score goals,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "aren't they" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534331e"
+  },
+  "id" : "67fab6d5993010229534331e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e9"
+  },
+  "title" : "Question Tags: Using 'be going to'",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "John va a pedir pizza, ¿no?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.08.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "John is going to order pizza,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "isn't he" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534331f"
+  },
+  "id" : "67fab6d5993010229534331f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e9"
+  },
+  "title" : "Question Tags: Using 'be going to'",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Él no va a cantar, ¿verdad?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.08.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He isn't going to sing,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is he" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343320"
+  },
+  "id" : "67fab6d59930102295343320",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e9"
+  },
+  "title" : "Question Tags: Using 'be going to'",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "La televisión se va a apagar, ¿no?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.08.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The television's going to turn off,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "isn't it" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343321"
+  },
+  "id" : "67fab6d59930102295343321",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e9"
+  },
+  "title" : "Question Tags: Using 'be going to'",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Ella me va a visitar, ¿no?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.08.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's going to visit me,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "isn't she" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343322"
+  },
+  "id" : "67fab6d59930102295343322",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e9"
+  },
+  "title" : "Question Tags: Using 'be going to'",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Nosotros no vamos a perder, ¿verdad?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.08.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We aren't going to lose,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are we" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343323"
+  },
+  "id" : "67fab6d59930102295343323",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e9"
+  },
+  "title" : "Question Tags: Using 'be going to'",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Ellos no van a ver la película, ¿verdad?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.08.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They aren't going to watch the film,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are they" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343324"
+  },
+  "id" : "67fab6d59930102295343324",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e9"
+  },
+  "title" : "Question Tags: Using 'be going to'",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Voy a hacer café, ¿no?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.08.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm going to make coffee,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "aren't I" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343325"
+  },
+  "id" : "67fab6d59930102295343325",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e9"
+  },
+  "title" : "Question Tags: Using 'be going to'",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Él va a ir a la playa, ¿no?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.08.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's going to go to the beach,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "isn't he" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343326"
+  },
+  "id" : "67fab6d59930102295343326",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e9"
+  },
+  "title" : "Question Tags: Using 'be going to'",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Tú no vas a revisar los documentos, ¿verdad?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.08.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You aren't going to check the documents,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are you" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343327"
+  },
+  "id" : "67fab6d59930102295343327",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e9"
+  },
+  "title" : "Question Tags: Using 'be going to'",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Estos árboles van a crecer más rápido, ¿no?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.08.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "These trees are going to grow faster,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "aren't they" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343328"
+  },
+  "id" : "67fab6d59930102295343328",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e9"
+  },
+  "title" : "Question Tags: Using 'be going to'",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Ella nos va a llamar, ¿no?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.08.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's going to call us,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "isn't she" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343329"
+  },
+  "id" : "67fab6d59930102295343329",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e9"
+  },
+  "title" : "Question Tags: Using 'be going to'",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "No nos vamos a quedar en casa mañana, ¿verdad?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.08.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We aren't going to stay at home tomorrow,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are we" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534332a"
+  },
+  "id" : "67fab6d5993010229534332a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e9"
+  },
+  "title" : "Question Tags: Using 'be going to'",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Voy a leer esta novela, ¿no?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.08.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm going to read this novel,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "aren't I" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534332b"
+  },
+  "id" : "67fab6d5993010229534332b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e9"
+  },
+  "title" : "Question Tags: Using 'be going to'",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Vamos a tomar té, ¿no?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.08.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We're going to have tea,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "aren't we" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534332c"
+  },
+  "id" : "67fab6d5993010229534332c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e9"
+  },
+  "title" : "Question Tags: Using 'be going to'",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Él no se va a despertar temprano, ¿verdad?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.08.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He isn't going to wake up early,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is he" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534332d"
+  },
+  "id" : "67fab6d5993010229534332d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e9"
+  },
+  "title" : "Question Tags: Using 'be going to'",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "No me voy a quedar aquí, ¿verdad?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.08.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm not going to stay here,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "am I" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534332e"
+  },
+  "id" : "67fab6d5993010229534332e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e9"
+  },
+  "title" : "Question Tags: Using 'be going to'",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "No vas a tomar el tren, ¿verdad?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.08.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You aren't going to take the train,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are you" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534332f"
+  },
+  "id" : "67fab6d5993010229534332f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e9"
+  },
+  "title" : "Question Tags: Using 'be going to'",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Peter no va a comprar la cena, ¿verdad?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.08.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Peter isn't going to buy dinner,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is he" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ]
+  }
+} ]

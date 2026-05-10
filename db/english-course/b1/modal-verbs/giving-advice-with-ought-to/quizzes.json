@@ -1,1162 +1,1021 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343839"
-    },
-    "translation": "Deberían irse de la fiesta ahora.",
-    "id": "67fab6d59930102295343839",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Crea oraciones con 'ought to' o 'shouldn't'.",
-    "theoryId": "b1.11.Ought_to_for_Advice",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "audioUrl": "",
-    "successMessage": "",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "answerAudioUrl": "B1.11.08.01",
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d332"
-    },
-    "title": "Giving Advice with 'Ought to'",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think it's a good idea for them to leave the party now.",
-          "options": null
-        },
-        {
-          "text": "",
-          "options": [
-            "They ought to leave the party now."
-          ],
-          "kind": "CLOZE"
-        },
-        {
-          "text": "",
-          "options": null,
-          "kind": "TEXT"
-        }
-      ]
-    },
-    "imageUrl": "",
-    "topicName": "Modal verbs"
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343839"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534383a"
-    },
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d332"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Crea oraciones con 'ought to' o 'shouldn't'.",
-    "form": {
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I don't think it's a good idea for you to spend so much money.",
-          "options": null
-        },
-        {
-          "text": "",
-          "options": [
-            "You shouldn't spend so much money."
-          ],
-          "kind": "CLOZE"
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": ""
-    },
-    "imageUrl": "",
-    "translation": "No deberías gastar tanto dinero.",
-    "answerImageUrl": "",
-    "kind": "CLOZE",
-    "theoryId": "b1.11.Ought_to_for_Advice",
-    "audioUrl": "",
-    "miniTheory": "",
-    "title": "Giving Advice with 'Ought to'",
-    "id": "67fab6d5993010229534383a",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "successMessage": "",
-    "answerAudioUrl": "B1.11.08.02",
-    "code": "",
-    "topicName": "Modal verbs"
+  "id" : "67fab6d59930102295343839",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d332"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534383b"
-    },
-    "successMessage": "",
-    "answerAudioUrl": "B1.11.08.03",
-    "kind": "CLOZE",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b1.11.Ought_to_for_Advice",
-    "translation": "Los estudiantes no deberían faltar a clase.",
-    "code": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I don't think it's a good idea for the students to skip class.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The students shouldn't skip class."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ]
-    },
-    "miniTheory": "",
-    "id": "67fab6d5993010229534383b",
-    "instructions": "Crea oraciones con 'ought to' o 'shouldn't'.",
-    "title": "Giving Advice with 'Ought to'",
-    "imageUrl": "",
-    "audioUrl": "",
-    "answerImageUrl": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d332"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "topicName": "Modal verbs"
+  "title" : "Giving Advice with 'Ought to'",
+  "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
+  "translation" : "Deberían irse de la fiesta ahora.",
+  "theoryId" : "b1.11.Ought_to_for_Advice",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534383c"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think it's a good idea for them to practice their instruments daily.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They ought to practice their instruments daily."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE"
-    },
-    "theoryId": "b1.11.Ought_to_for_Advice",
-    "imageUrl": "",
-    "miniTheory": "",
-    "code": "",
-    "instructions": "Crea oraciones con 'ought to' o 'shouldn't'.",
-    "audioUrl": "",
-    "answerAudioUrl": "B1.11.08.04",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d332"
-    },
-    "successMessage": "",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Giving Advice with 'Ought to'",
-    "translation": "Deberían practicar sus instrumentos a diario.",
-    "answerImageUrl": "",
-    "id": "67fab6d5993010229534383c",
-    "topicName": "Modal verbs"
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534383d"
-    },
-    "id": "67fab6d5993010229534383d",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "imageUrl": "",
-    "audioUrl": "",
-    "answerImageUrl": "",
-    "answerAudioUrl": "B1.11.08.05",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d332"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I don't think it's a good idea for the girls to stay out so late.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The girls shouldn't stay out so late."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ]
-    },
-    "translation": "Las chicas no deberían quedarse fuera hasta tan tarde.",
-    "miniTheory": "",
-    "code": "",
-    "title": "Giving Advice with 'Ought to'",
-    "instructions": "Crea oraciones con 'ought to' o 'shouldn't'.",
-    "theoryId": "b1.11.Ought_to_for_Advice",
-    "successMessage": "",
-    "topicName": "Modal verbs"
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534383e"
-    },
-    "kind": "CLOZE",
-    "imageUrl": "",
-    "title": "Giving Advice with 'Ought to'",
-    "translation": "Él no debería comer tanta comida chatarra.",
-    "code": "",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I don't think it's a good idea for him to eat so much junk food.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He shouldn't eat so much junk food."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ]
-    },
-    "theoryId": "b1.11.Ought_to_for_Advice",
-    "successMessage": "",
-    "answerAudioUrl": "B1.11.08.06",
-    "id": "67fab6d5993010229534383e",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d332"
-    },
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "instructions": "Crea oraciones con 'ought to' o 'shouldn't'.",
-    "audioUrl": "",
-    "topicName": "Modal verbs"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534383f"
-    },
-    "translation": "La gente debería beber suficiente agua.",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Giving Advice with 'Ought to'",
-    "instructions": "Crea oraciones con 'ought to' o 'shouldn't'.",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "I think it's a good idea for people to drink enough water."
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "People ought to drink enough water."
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": ""
-        }
-      ]
-    },
-    "answerAudioUrl": "B1.11.08.07",
-    "kind": "CLOZE",
-    "theoryId": "b1.11.Ought_to_for_Advice",
-    "audioUrl": "",
-    "successMessage": "",
-    "answerImageUrl": "",
-    "code": "",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "imageUrl": "",
-    "miniTheory": "",
-    "id": "67fab6d5993010229534383f",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d332"
-    },
-    "topicName": "Modal verbs"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343840"
-    },
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d332"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "translation": "Deberías ser más paciente.",
-    "code": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Crea oraciones con 'ought to' o 'shouldn't'.",
-    "successMessage": "",
-    "id": "67fab6d59930102295343840",
-    "title": "Giving Advice with 'Ought to'",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "form": {
-      "name": "",
-      "sentenceParts": [
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "I think it's a good idea for you to be more patient."
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "You ought to be more patient."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": ""
-    },
-    "theoryId": "b1.11.Ought_to_for_Advice",
-    "imageUrl": "",
-    "audioUrl": "",
-    "answerAudioUrl": "B1.11.08.08",
-    "topicName": "Modal verbs"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343841"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Crea oraciones con 'ought to' o 'shouldn't'.",
-    "audioUrl": "",
-    "translation": "No deberían conducir tan descuidadamente.",
-    "successMessage": "",
-    "kind": "CLOZE",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Giving Advice with 'Ought to'",
-    "theoryId": "b1.11.Ought_to_for_Advice",
-    "imageUrl": "",
-    "code": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "answerImageUrl": "",
-    "id": "67fab6d59930102295343841",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d332"
-    },
-    "form": {
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "text": "I don't think it's a good idea for them to drive so carelessly.",
-          "options": null,
-          "kind": "TEXT"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They shouldn't drive so carelessly."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      }
-    },
-    "miniTheory": "",
-    "answerAudioUrl": "B1.11.08.09",
-    "topicName": "Modal verbs"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343842"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "imageUrl": "",
-    "translation": "Ella debería regar sus plantas regularmente.",
-    "miniTheory": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "kind": "CLOZE",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Giving Advice with 'Ought to'",
-    "successMessage": "",
-    "id": "67fab6d59930102295343842",
-    "instructions": "Crea oraciones con 'ought to' o 'shouldn't'.",
-    "form": {
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think it's a good idea for her to water her plants regularly.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She ought to water her plants regularly."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      }
-    },
-    "theoryId": "b1.11.Ought_to_for_Advice",
-    "answerAudioUrl": "B1.11.08.10",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d332"
-    },
-    "audioUrl": "",
-    "answerImageUrl": "",
-    "code": "",
-    "topicName": "Modal verbs"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343843"
-    },
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "answerAudioUrl": "B1.11.08.11",
-    "code": "",
-    "title": "Giving Advice with 'Ought to'",
-    "instructions": "Crea oraciones con 'ought to' o 'shouldn't'.",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "text": "I think it's a good idea for you to buy some new clothes.",
-          "options": null,
-          "kind": "TEXT"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "You ought to buy some new clothes."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ]
-    },
-    "successMessage": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d332"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b1.11.Ought_to_for_Advice",
-    "audioUrl": "",
-    "translation": "Deberías comprar ropa nueva.",
-    "id": "67fab6d59930102295343843",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "imageUrl": "",
-    "topicName": "Modal verbs"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343844"
-    },
-    "theoryId": "b1.11.Ought_to_for_Advice",
-    "miniTheory": "",
-    "id": "67fab6d59930102295343844",
-    "instructions": "Crea oraciones con 'ought to' o 'shouldn't'.",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I don't think it's a good idea for you to cycle without a helmet.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "You shouldn't cycle without a helmet."
-          ]
-        },
-        {
-          "text": "",
-          "options": null,
-          "kind": "TEXT"
-        }
-      ]
-    },
-    "translation": "No deberías andar en bicicleta sin casco.",
-    "successMessage": "",
-    "kind": "CLOZE",
-    "title": "Giving Advice with 'Ought to'",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "answerImageUrl": "",
-    "answerAudioUrl": "B1.11.08.12",
-    "code": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "imageUrl": "",
-    "audioUrl": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d332"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "topicName": "Modal verbs"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343845"
-    },
-    "translation": "Ella no debería faltar a su cita.",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "successMessage": "",
-    "id": "67fab6d59930102295343845",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Crea oraciones con 'ought to' o 'shouldn't'.",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I don't think it's a good idea for her to miss her appointment.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She shouldn't miss her appointment."
-          ]
-        },
-        {
-          "text": "",
-          "options": null,
-          "kind": "TEXT"
-        }
-      ]
-    },
-    "theoryId": "b1.11.Ought_to_for_Advice",
-    "kind": "CLOZE",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Giving Advice with 'Ought to'",
-    "imageUrl": "",
-    "audioUrl": "",
-    "answerAudioUrl": "B1.11.08.13",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d332"
-    },
-    "topicName": "Modal verbs"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343846"
-    },
-    "answerImageUrl": "",
-    "kind": "CLOZE",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think it's a good idea for the children to wear their hats.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The children ought to wear their hats."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ]
-    },
-    "successMessage": "",
-    "answerAudioUrl": "B1.11.08.14",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d332"
-    },
-    "instructions": "Crea oraciones con 'ought to' o 'shouldn't'.",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Giving Advice with 'Ought to'",
-    "translation": "Los niños deberían usar sus sombreros.",
-    "id": "67fab6d59930102295343846",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "imageUrl": "",
-    "audioUrl": "",
-    "miniTheory": "",
-    "code": "",
-    "theoryId": "b1.11.Ought_to_for_Advice",
-    "topicName": "Modal verbs"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343847"
-    },
-    "instructions": "Crea oraciones con 'ought to' o 'shouldn't'.",
-    "audioUrl": "",
-    "miniTheory": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d332"
-    },
-    "translation": "No deberían vender su coche.",
-    "answerImageUrl": "",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Giving Advice with 'Ought to'",
-    "theoryId": "b1.11.Ought_to_for_Advice",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.11.08.15",
-    "id": "67fab6d59930102295343847",
-    "code": "",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "text": "I don't think it's a good idea for them to sell their car.",
-          "options": null,
-          "kind": "TEXT"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They shouldn't sell their car."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ]
-    },
-    "successMessage": "",
-    "topicName": "Modal verbs"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343848"
-    },
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d332"
-    },
-    "imageUrl": "",
-    "translation": "Él debería revisar sus correos electrónicos todos los días.",
-    "miniTheory": "",
-    "id": "67fab6d59930102295343848",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Giving Advice with 'Ought to'",
-    "successMessage": "",
-    "answerAudioUrl": "B1.11.08.16",
-    "kind": "CLOZE",
-    "form": {
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "I think it's a good idea for him to check his emails every day."
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He ought to check his emails every day."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE"
-    },
-    "audioUrl": "",
-    "instructions": "Crea oraciones con 'ought to' o 'shouldn't'.",
-    "theoryId": "b1.11.Ought_to_for_Advice",
-    "answerImageUrl": "",
-    "code": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "topicName": "Modal verbs"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343849"
-    },
-    "id": "67fab6d59930102295343849",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Crea oraciones con 'ought to' o 'shouldn't'.",
-    "imageUrl": "",
-    "translation": "Ella no debería renunciar a su trabajo.",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d332"
-    },
-    "audioUrl": "",
-    "answerAudioUrl": "B1.11.08.17",
-    "kind": "CLOZE",
-    "title": "Giving Advice with 'Ought to'",
-    "theoryId": "b1.11.Ought_to_for_Advice",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "code": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I don't think it's a good idea for her to quit her job.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She shouldn't quit her job."
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": ""
-        }
-      ]
-    },
-    "successMessage": "",
-    "topicName": "Modal verbs"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534384a"
-    },
-    "title": "Giving Advice with 'Ought to'",
-    "form": {
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think it's a good idea for you to invest some money.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "You ought to invest some money."
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": ""
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": ""
-    },
-    "answerImageUrl": "",
-    "answerAudioUrl": "B1.11.08.18",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d332"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b1.11.Ought_to_for_Advice",
-    "imageUrl": "",
-    "miniTheory": "",
-    "code": "",
-    "instructions": "Crea oraciones con 'ought to' o 'shouldn't'.",
-    "translation": "Deberías invertir algo de dinero.",
-    "successMessage": "",
-    "id": "67fab6d5993010229534384a",
-    "kind": "CLOZE",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "audioUrl": "",
-    "topicName": "Modal verbs"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534384b"
-    },
-    "translation": "Ella debería aplicarse lápiz labial.",
-    "successMessage": "",
-    "miniTheory": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d332"
-    },
-    "audioUrl": "",
-    "id": "67fab6d5993010229534384b",
-    "imageUrl": "",
-    "answerImageUrl": "",
-    "kind": "CLOZE",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Giving Advice with 'Ought to'",
-    "instructions": "Crea oraciones con 'ought to' o 'shouldn't'.",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "I think it's a good idea for her to apply lipstick."
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She ought to apply lipstick."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ]
-    },
-    "theoryId": "b1.11.Ought_to_for_Advice",
-    "answerAudioUrl": "B1.11.08.19",
-    "code": "",
-    "topicName": "Modal verbs"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534384c"
-    },
-    "instructions": "Crea oraciones con 'ought to' o 'shouldn't'.",
-    "form": {
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I don't think it's a good idea for him to play video games so often.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He shouldn't play video games so often."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE"
-    },
-    "imageUrl": "",
-    "answerImageUrl": "",
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d332"
-    },
-    "audioUrl": "",
-    "successMessage": "",
-    "miniTheory": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b1.11.Ought_to_for_Advice",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "answerAudioUrl": "B1.11.08.20",
-    "kind": "CLOZE",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "translation": "Él no debería jugar videojuegos tan a menudo.",
-    "id": "67fab6d5993010229534384c",
-    "title": "Giving Advice with 'Ought to'",
-    "topicName": "Modal verbs"
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.08.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think it's a good idea for them to leave the party now.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They ought to leave the party now." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534383a"
+  },
+  "id" : "67fab6d5993010229534383a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d332"
+  },
+  "title" : "Giving Advice with 'Ought to'",
+  "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
+  "translation" : "No deberías gastar tanto dinero.",
+  "theoryId" : "b1.11.Ought_to_for_Advice",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.08.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't think it's a good idea for you to spend so much money.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "You shouldn't spend so much money." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534383b"
+  },
+  "id" : "67fab6d5993010229534383b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d332"
+  },
+  "title" : "Giving Advice with 'Ought to'",
+  "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
+  "translation" : "Los estudiantes no deberían faltar a clase.",
+  "theoryId" : "b1.11.Ought_to_for_Advice",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.08.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't think it's a good idea for the students to skip class.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The students shouldn't skip class." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534383c"
+  },
+  "id" : "67fab6d5993010229534383c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d332"
+  },
+  "title" : "Giving Advice with 'Ought to'",
+  "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
+  "translation" : "Deberían practicar sus instrumentos a diario.",
+  "theoryId" : "b1.11.Ought_to_for_Advice",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.08.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think it's a good idea for them to practice their instruments daily.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They ought to practice their instruments daily." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534383d"
+  },
+  "id" : "67fab6d5993010229534383d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d332"
+  },
+  "title" : "Giving Advice with 'Ought to'",
+  "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
+  "translation" : "Las chicas no deberían quedarse fuera hasta tan tarde.",
+  "theoryId" : "b1.11.Ought_to_for_Advice",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.08.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't think it's a good idea for the girls to stay out so late.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The girls shouldn't stay out so late." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534383e"
+  },
+  "id" : "67fab6d5993010229534383e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d332"
+  },
+  "title" : "Giving Advice with 'Ought to'",
+  "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
+  "translation" : "Él no debería comer tanta comida chatarra.",
+  "theoryId" : "b1.11.Ought_to_for_Advice",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.08.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't think it's a good idea for him to eat so much junk food.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He shouldn't eat so much junk food." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534383f"
+  },
+  "id" : "67fab6d5993010229534383f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d332"
+  },
+  "title" : "Giving Advice with 'Ought to'",
+  "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
+  "translation" : "La gente debería beber suficiente agua.",
+  "theoryId" : "b1.11.Ought_to_for_Advice",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.08.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think it's a good idea for people to drink enough water.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "People ought to drink enough water." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343840"
+  },
+  "id" : "67fab6d59930102295343840",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d332"
+  },
+  "title" : "Giving Advice with 'Ought to'",
+  "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
+  "translation" : "Deberías ser más paciente.",
+  "theoryId" : "b1.11.Ought_to_for_Advice",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.08.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think it's a good idea for you to be more patient.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "You ought to be more patient." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343841"
+  },
+  "id" : "67fab6d59930102295343841",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d332"
+  },
+  "title" : "Giving Advice with 'Ought to'",
+  "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
+  "translation" : "No deberían conducir tan descuidadamente.",
+  "theoryId" : "b1.11.Ought_to_for_Advice",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.08.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't think it's a good idea for them to drive so carelessly.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They shouldn't drive so carelessly." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343842"
+  },
+  "id" : "67fab6d59930102295343842",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d332"
+  },
+  "title" : "Giving Advice with 'Ought to'",
+  "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
+  "translation" : "Ella debería regar sus plantas regularmente.",
+  "theoryId" : "b1.11.Ought_to_for_Advice",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.08.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think it's a good idea for her to water her plants regularly.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She ought to water her plants regularly." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343843"
+  },
+  "id" : "67fab6d59930102295343843",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d332"
+  },
+  "title" : "Giving Advice with 'Ought to'",
+  "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
+  "translation" : "Deberías comprar ropa nueva.",
+  "theoryId" : "b1.11.Ought_to_for_Advice",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.08.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think it's a good idea for you to buy some new clothes.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "You ought to buy some new clothes." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343844"
+  },
+  "id" : "67fab6d59930102295343844",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d332"
+  },
+  "title" : "Giving Advice with 'Ought to'",
+  "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
+  "translation" : "No deberías andar en bicicleta sin casco.",
+  "theoryId" : "b1.11.Ought_to_for_Advice",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.08.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't think it's a good idea for you to cycle without a helmet.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "You shouldn't cycle without a helmet." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343845"
+  },
+  "id" : "67fab6d59930102295343845",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d332"
+  },
+  "title" : "Giving Advice with 'Ought to'",
+  "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
+  "translation" : "Ella no debería faltar a su cita.",
+  "theoryId" : "b1.11.Ought_to_for_Advice",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.08.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't think it's a good idea for her to miss her appointment.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She shouldn't miss her appointment." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343846"
+  },
+  "id" : "67fab6d59930102295343846",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d332"
+  },
+  "title" : "Giving Advice with 'Ought to'",
+  "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
+  "translation" : "Los niños deberían usar sus sombreros.",
+  "theoryId" : "b1.11.Ought_to_for_Advice",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.08.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think it's a good idea for the children to wear their hats.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The children ought to wear their hats." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343847"
+  },
+  "id" : "67fab6d59930102295343847",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d332"
+  },
+  "title" : "Giving Advice with 'Ought to'",
+  "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
+  "translation" : "No deberían vender su coche.",
+  "theoryId" : "b1.11.Ought_to_for_Advice",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.08.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't think it's a good idea for them to sell their car.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They shouldn't sell their car." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343848"
+  },
+  "id" : "67fab6d59930102295343848",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d332"
+  },
+  "title" : "Giving Advice with 'Ought to'",
+  "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
+  "translation" : "Él debería revisar sus correos electrónicos todos los días.",
+  "theoryId" : "b1.11.Ought_to_for_Advice",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.08.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think it's a good idea for him to check his emails every day.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He ought to check his emails every day." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343849"
+  },
+  "id" : "67fab6d59930102295343849",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d332"
+  },
+  "title" : "Giving Advice with 'Ought to'",
+  "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
+  "translation" : "Ella no debería renunciar a su trabajo.",
+  "theoryId" : "b1.11.Ought_to_for_Advice",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.08.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't think it's a good idea for her to quit her job.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She shouldn't quit her job." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534384a"
+  },
+  "id" : "67fab6d5993010229534384a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d332"
+  },
+  "title" : "Giving Advice with 'Ought to'",
+  "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
+  "translation" : "Deberías invertir algo de dinero.",
+  "theoryId" : "b1.11.Ought_to_for_Advice",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.08.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think it's a good idea for you to invest some money.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "You ought to invest some money." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534384b"
+  },
+  "id" : "67fab6d5993010229534384b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d332"
+  },
+  "title" : "Giving Advice with 'Ought to'",
+  "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
+  "translation" : "Ella debería aplicarse lápiz labial.",
+  "theoryId" : "b1.11.Ought_to_for_Advice",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.08.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think it's a good idea for her to apply lipstick.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She ought to apply lipstick." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534384c"
+  },
+  "id" : "67fab6d5993010229534384c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d332"
+  },
+  "title" : "Giving Advice with 'Ought to'",
+  "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
+  "translation" : "Él no debería jugar videojuegos tan a menudo.",
+  "theoryId" : "b1.11.Ought_to_for_Advice",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.08.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't think it's a good idea for him to play video games so often.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He shouldn't play video games so often." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+} ]

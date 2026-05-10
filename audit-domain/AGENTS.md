@@ -3,6 +3,8 @@
 
 **This module is isolated.** Your scope is limited to this module and the contracts (models and interfaces) of its dependencies. Do not access information from other modules.
 
+Core business logic
+
 ## Models
 
 ### AuditReport (`record`)
@@ -322,6 +324,18 @@ Methods:
 - `read(): Optional<ActiveAnalysisSelection>`
 - `write(ActiveAnalysisSelection selection): void`
 - `clear(): void`
+
+### AuditNodeIndex (port)
+
+Methods:
+
+- `find(String nodeId, AuditTarget nodeTarget): Optional<AuditNode>`
+
+### AuditNodeIndexFactory (factory)
+
+Methods:
+
+- `build(AuditReport report): AuditNodeIndex`
 
 ## Implementations
 

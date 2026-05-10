@@ -56,6 +56,7 @@ A suggestion must have `basedOn` pointing to a real component path. If the compo
 modules:
   - name: string              # Module name (e.g., "payments", "domain")
     description: string        # What this module is responsible for
+    layer: domain|infrastructure|application  # Hexagonal layer (enables A4 eval checks)
     scope: public|internal     # "public" = exported API, "internal" = generates module-info.java
     dependsOn: [string]        # Other module names this depends on (ArchUnit-enforced)
     allowedClients: [string]   # Restrict which modules can depend on this (JPMS qualified exports)
@@ -66,6 +67,13 @@ modules:
     packages: [Package]           # Organizational groupings with visibility control
     patterns: [PatternDeclaration]
 ```
+
+**`layer`** — Declares the module's hexagonal architecture role:
+- `domain`: Defines ports (interfaces), models, and business rules. Must NOT depend on infrastructure or application modules.
+- `infrastructure` (or `infra`): Adapters that implement domain ports. Depends only on domain.
+- `application` (or `app`): Entry points and composition root. Wires domain + infra together.
+
+When declared, the eval framework (A4) validates dependency inversion, acyclicity, adapter polarity, and layer isolation. Strongly recommended for all modules.
 
 ## Package
 
@@ -196,7 +204,11 @@ When `typeParameters` is set, method signatures can reference the type variables
 ```yaml
 implementations:
   - name: string              # PascalCase (e.g., "PostgresOrderAdapter")
-    implements: [string]       # Interfaces this class implements (always an array)
+    stereotype: class          # Optional. "class" = standalone class (own contract).
+                               #   Omit for default adapter behavior.
+    implements: [string]       # Interfaces this class implements (required unless stereotype: class)
+    exposes:                   # Methods exposed by this class (used with stereotype: class)
+      - signature: string      # Same format as interface exposes
     visibility: public|internal # Default: internal (package-private). "public" = accessible cross-module
     externalImplements:        # External framework/library interfaces (FQN with generics)
       - string                 # e.g., "java.util.concurrent.Callable<Integer>"
@@ -206,6 +218,26 @@ implementations:
     types: [string]            # Framework annotations: Component, Service, Repository,
                                #   RestController, UseCase, Adapter
 ```
+
+### `stereotype: class` (Standalone Class)
+
+A `stereotype: class` implementation **is its own contract** — it fuses interface + implementation into a single artifact. It has `exposes:` (like interfaces) but generates a concrete class directly with no paired interface.
+
+**Use `stereotype: class` when:**
+- The element is an entry point with `externalImplements` (CLI command, controller)
+- The element is in a `private` package and only consumed by siblings
+- The element is a use-case orchestrator with 1 consumer and no foreseeable second impl
+
+**Use interface + impl (default) when:**
+- The element is a port consumed cross-module via `requiresInject`
+- Multiple implementations exist (Strategy, Factory patterns)
+- `sealed: true` communicates a design constraint
+- DIP justifies the separation (infra adapter implementing domain port)
+
+**Rules:**
+- `stereotype: class` CANNOT have `implements:` — that's a contradiction
+- `stereotype: class` CANNOT be injected by other implementations via `requiresInject` — if something needs to consume it, extract an interface
+- `stereotype: class` MUST have `exposes:` defining its public contract
 
 **`externalImplements`** — Use when the implementation class must implement an interface from an external framework or the JDK (e.g., picocli's `Callable<Integer>`, Spring's `InitializingBean`, Jackson's `Serializer<T>`). These are NOT validated against sentinel interfaces and are passed through to the generated class declaration as-is. Always use the fully-qualified name.
 

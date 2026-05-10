@@ -1,582 +1,511 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342baa"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": ""
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "All"
-          ]
-        },
-        {
-          "text": "dogs need affection.",
-          "options": null,
-          "kind": "TEXT"
-        }
-      ]
-    },
-    "theoryId": "a2.07.Every_Each_and_All",
-    "audioUrl": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d270"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Practice Using 'All' and 'All Of'",
-    "instructions": "Si es posible, completa con 'all'. De lo contrario, completa con 'all of'.",
-    "code": "",
-    "translation": "Todos los perros necesitan afecto.",
-    "id": "67fab6d59930102295342baa",
-    "kind": "CLOZE",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "successMessage": "",
-    "answerImageUrl": "",
-    "imageUrl": "",
-    "miniTheory": "",
-    "answerAudioUrl": "A2.07.13.01",
-    "topicName": "Determiners"
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342baa"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342bab"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "translation": "¿Las manzanas? Él las quiere todas.",
-    "code": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "successMessage": "",
-    "theoryId": "a2.07.Every_Each_and_All",
-    "audioUrl": "",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "answerAudioUrl": "A2.07.13.02",
-    "id": "67fab6d59930102295342bab",
-    "form": {
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The apples? He wants",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "all of"
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "them."
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      }
-    },
-    "title": "Practice Using 'All' and 'All Of'",
-    "instructions": "Si es posible, completa con 'all'. De lo contrario, completa con 'all of'.",
-    "imageUrl": "",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d270"
-    },
-    "topicName": "Determiners"
+  "id" : "67fab6d59930102295342baa",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d270"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342bac"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "answerImageUrl": "",
-    "id": "67fab6d59930102295342bac",
-    "translation": "¿El té? Me lo terminé todo.",
-    "successMessage": "",
-    "miniTheory": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d270"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Practice Using 'All' and 'All Of'",
-    "answerAudioUrl": "A2.07.13.03",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The tea? I finished",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "all of"
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "it."
-        }
-      ]
-    },
-    "theoryId": "a2.07.Every_Each_and_All",
-    "imageUrl": "",
-    "audioUrl": "",
-    "code": "",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Si es posible, completa con 'all'. De lo contrario, completa con 'all of'.",
-    "topicName": "Determiners"
+  "title" : "Practice Using 'All' and 'All Of'",
+  "instructions" : "Si es posible, completa con 'all'. De lo contrario, completa con 'all of'.",
+  "translation" : "Todos los perros necesitan afecto.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342bad"
-    },
-    "audioUrl": "",
-    "answerAudioUrl": "A2.07.13.04",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "a2.07.Every_Each_and_All",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d270"
-    },
-    "instructions": "Si es posible, completa con 'all'. De lo contrario, completa con 'all of'.",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I enjoyed the cookies but I didn't consume",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "all of"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "them.",
-          "options": null
-        }
-      ]
-    },
-    "answerImageUrl": "",
-    "code": "",
-    "kind": "CLOZE",
-    "title": "Practice Using 'All' and 'All Of'",
-    "translation": "Disfruté las galletas, pero no me las comí todas.",
-    "id": "67fab6d59930102295342bad",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "successMessage": "",
-    "miniTheory": "",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "imageUrl": "",
-    "topicName": "Determiners"
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342bae"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "I baked"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "all"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the pies.",
-          "options": null
-        }
-      ]
-    },
-    "translation": "Yo horneé todos los pasteles.",
-    "answerAudioUrl": "A2.07.13.05",
-    "id": "67fab6d59930102295342bae",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d270"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Practice Using 'All' and 'All Of'",
-    "instructions": "Si es posible, completa con 'all'. De lo contrario, completa con 'all of'.",
-    "theoryId": "a2.07.Every_Each_and_All",
-    "miniTheory": "",
-    "code": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "imageUrl": "",
-    "audioUrl": "",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "successMessage": "",
-    "answerImageUrl": "",
-    "topicName": "Determiners"
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342baf"
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.13.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
     },
-    "id": "67fab6d59930102295342baf",
-    "kind": "CLOZE",
-    "successMessage": "",
-    "instructions": "Si es posible, completa con 'all'. De lo contrario, completa con 'all of'.",
-    "imageUrl": "",
-    "audioUrl": "",
-    "answerAudioUrl": "A2.07.13.06",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d270"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Practice Using 'All' and 'All Of'",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Not",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "all"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "men enjoy fishing.",
-          "options": null
-        }
-      ]
-    },
-    "translation": "No a todos los hombres les gusta pescar.",
-    "code": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "a2.07.Every_Each_and_All",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "topicName": "Determiners"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342bb0"
-    },
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d270"
-    },
-    "title": "Practice Using 'All' and 'All Of'",
-    "instructions": "Si es posible, completa con 'all'. De lo contrario, completa con 'all of'.",
-    "audioUrl": "",
-    "successMessage": "",
-    "answerAudioUrl": "A2.07.13.07",
-    "kind": "CLOZE",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She polished",
-          "options": null
-        },
-        {
-          "text": "",
-          "options": [
-            "all"
-          ],
-          "kind": "CLOZE"
-        },
-        {
-          "kind": "TEXT",
-          "text": "my glasses.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": ""
-    },
-    "code": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "miniTheory": "",
-    "id": "67fab6d59930102295342bb0",
-    "imageUrl": "",
-    "translation": "Ella pulió todos mis vasos.",
-    "answerImageUrl": "",
-    "theoryId": "a2.07.Every_Each_and_All",
-    "topicName": "Determiners"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342bb1"
-    },
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d270"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Practice Using 'All' and 'All Of'",
-    "imageUrl": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Not",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "all"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "countries are peaceful.",
-          "options": null
-        }
-      ]
-    },
-    "miniTheory": "",
-    "id": "67fab6d59930102295342bb1",
-    "theoryId": "a2.07.Every_Each_and_All",
-    "audioUrl": "",
-    "answerAudioUrl": "A2.07.13.08",
-    "kind": "CLOZE",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Si es posible, completa con 'all'. De lo contrario, completa con 'all of'.",
-    "translation": "No todos los países son pacíficos.",
-    "answerImageUrl": "",
-    "topicName": "Determiners"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342bb2"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Si es posible, completa con 'all'. De lo contrario, completa con 'all of'.",
-    "successMessage": "",
-    "miniTheory": "",
-    "title": "Practice Using 'All' and 'All Of'",
-    "theoryId": "a2.07.Every_Each_and_All",
-    "translation": "¿Tal vez todos ustedes deberían visitarme y aconsejarme?",
-    "answerAudioUrl": "A2.07.13.09",
-    "code": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "answerImageUrl": "",
-    "id": "67fab6d59930102295342bb2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d270"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "text": "Maybe",
-          "options": null,
-          "kind": "TEXT"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "all of"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "you should visit and advise me?",
-          "options": null
-        }
-      ]
-    },
-    "imageUrl": "",
-    "audioUrl": "",
-    "topicName": "Determiners"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342bb3"
-    },
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d270"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I require",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "all of"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "you to stay here.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": ""
-    },
-    "audioUrl": "",
-    "code": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Practice Using 'All' and 'All Of'",
-    "translation": "Necesito que todos ustedes se queden aquí.",
-    "kind": "CLOZE",
-    "instructions": "Si es posible, completa con 'all'. De lo contrario, completa con 'all of'.",
-    "imageUrl": "",
-    "successMessage": "",
-    "answerAudioUrl": "A2.07.13.10",
-    "id": "67fab6d59930102295342bb3",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "a2.07.Every_Each_and_All",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "topicName": "Determiners"
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "All" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "dogs need affection.",
+      "options" : null
+    } ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342bab"
+  },
+  "id" : "67fab6d59930102295342bab",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d270"
+  },
+  "title" : "Practice Using 'All' and 'All Of'",
+  "instructions" : "Si es posible, completa con 'all'. De lo contrario, completa con 'all of'.",
+  "translation" : "¿Las manzanas? Él las quiere todas.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.13.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The apples? He wants",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "all of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "them.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342bac"
+  },
+  "id" : "67fab6d59930102295342bac",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d270"
+  },
+  "title" : "Practice Using 'All' and 'All Of'",
+  "instructions" : "Si es posible, completa con 'all'. De lo contrario, completa con 'all of'.",
+  "translation" : "¿El té? Me lo terminé todo.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.13.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The tea? I finished",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "all of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "it.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342bad"
+  },
+  "id" : "67fab6d59930102295342bad",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d270"
+  },
+  "title" : "Practice Using 'All' and 'All Of'",
+  "instructions" : "Si es posible, completa con 'all'. De lo contrario, completa con 'all of'.",
+  "translation" : "Disfruté las galletas, pero no me las comí todas.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.13.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I enjoyed the cookies but I didn't consume",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "all of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "them.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342bae"
+  },
+  "id" : "67fab6d59930102295342bae",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d270"
+  },
+  "title" : "Practice Using 'All' and 'All Of'",
+  "instructions" : "Si es posible, completa con 'all'. De lo contrario, completa con 'all of'.",
+  "translation" : "Yo horneé todos los pasteles.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.13.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I baked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "all" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the pies.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342baf"
+  },
+  "id" : "67fab6d59930102295342baf",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d270"
+  },
+  "title" : "Practice Using 'All' and 'All Of'",
+  "instructions" : "Si es posible, completa con 'all'. De lo contrario, completa con 'all of'.",
+  "translation" : "No a todos los hombres les gusta pescar.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.13.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Not",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "all" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "men enjoy fishing.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342bb0"
+  },
+  "id" : "67fab6d59930102295342bb0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d270"
+  },
+  "title" : "Practice Using 'All' and 'All Of'",
+  "instructions" : "Si es posible, completa con 'all'. De lo contrario, completa con 'all of'.",
+  "translation" : "Ella pulió todos mis vasos.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.13.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She polished",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "all" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "my glasses.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342bb1"
+  },
+  "id" : "67fab6d59930102295342bb1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d270"
+  },
+  "title" : "Practice Using 'All' and 'All Of'",
+  "instructions" : "Si es posible, completa con 'all'. De lo contrario, completa con 'all of'.",
+  "translation" : "No todos los países son pacíficos.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.13.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Not",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "all" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "countries are peaceful.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342bb2"
+  },
+  "id" : "67fab6d59930102295342bb2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d270"
+  },
+  "title" : "Practice Using 'All' and 'All Of'",
+  "instructions" : "Si es posible, completa con 'all'. De lo contrario, completa con 'all of'.",
+  "translation" : "¿Tal vez todos ustedes deberían visitarme y aconsejarme?",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.13.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Maybe",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "all of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "you should visit and advise me?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342bb3"
+  },
+  "id" : "67fab6d59930102295342bb3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d270"
+  },
+  "title" : "Practice Using 'All' and 'All Of'",
+  "instructions" : "Si es posible, completa con 'all'. De lo contrario, completa con 'all of'.",
+  "translation" : "Necesito que todos ustedes se queden aquí.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.13.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I require",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "all of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "you to stay here.",
+      "options" : null
+    } ]
+  }
+} ]

@@ -80,14 +80,6 @@ public class LemmaRecurrenceAnalyzerTest {
 
     @Test
     @Disabled("Stub pending implementation")
-    @org.junit.jupiter.api.DisplayName("Given no quizzes have been processed, when getResults is called, then returns empty list")
-    @org.junit.jupiter.api.Tag("F-LREC")
-    public void givenNoQuizzesHaveBeenProcessedWhenGetResultsIsCalledThenReturnsEmptyList() {
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
-
-    @Test
-    @Disabled("Stub pending implementation")
     @org.junit.jupiter.api.DisplayName("Given an AuditableKnowledge and AuditContext, when onKnowledge is called, then completes without error")
     public void givenAnAuditableKnowledgeAndAuditContextWhenOnKnowledgeIsCalledThenCompletesWithoutError() {
         throw new UnsupportedOperationException("Not implemented yet");

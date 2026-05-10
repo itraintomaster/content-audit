@@ -207,6 +207,18 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 **Visibility:** internal
 **Implements:** ScoreAggregator
 
+#### DefaultAuditNodeIndexFactory (package: auditnodeindex)
+
+**Package:** `com.learney.contentaudit.auditdomain.auditnodeindex`
+**Visibility:** internal
+**Implements:** AuditNodeIndexFactory
+
+#### MapAuditNodeIndex (package: auditnodeindex)
+
+**Package:** `com.learney.contentaudit.auditdomain.auditnodeindex`
+**Visibility:** internal
+**Implements:** AuditNodeIndex
+
 ### Module: course-domain
 
 #### DefaultQuizSentenceConverter (package: quizsentenceengine)
@@ -259,19 +271,19 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 
 **Package:** `com.learney.contentaudit.refinerdomain`
 
-**Implements:** CorrectionContextResolver<SentenceLengthCorrectionContext>
+**Implements:** CorrectionContextResolver
 
 #### LemmaAbsenceContextResolver
 
 **Package:** `com.learney.contentaudit.refinerdomain`
 
-**Implements:** CorrectionContextResolver<LemmaAbsenceCorrectionContext>
+**Implements:** CorrectionContextResolver
 
 #### DispatchingCorrectionContextResolver
 
 **Package:** `com.learney.contentaudit.refinerdomain`
 
-**Implements:** CorrectionContextResolver<CorrectionContext>
+**Implements:** CorrectionContextResolver
 
 **Constructor dependencies (requiresInject):**
 
@@ -518,6 +530,7 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | `revisionArtifactStore` | `RevisionArtifactStore` |
 | `impactPreviewStore` | `ImpactPreviewStore` |
 | `impactPreviewFormatter` | `ImpactPreviewFormatter` |
+| `correctionContextJsonMapper` | `CorrectionContextJsonMapper` |
 
 #### DeleteCmd (package: commands)
 
@@ -653,6 +666,20 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 **Package:** `com.learney.contentaudit.auditcli.commands`
 **Visibility:** internal
 **Implements:** EphemeralPlanRenderer
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `auditNodeIndexFactory` | `AuditNodeIndexFactory` |
+| `correctionContextResolver` | `CorrectionContextResolver` |
+| `correctionContextJsonMapper` | `CorrectionContextJsonMapper` |
+
+#### DefaultCorrectionContextJsonMapper (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+**Implements:** CorrectionContextJsonMapper
 
 #### TextReportFormatter (package: formatting)
 
@@ -1007,6 +1034,7 @@ public FileSystemImpactPreviewStore(Path baseDir) {
 | `elementLocator` | `CourseElementLocator` |
 | `impactPreviewComputer` | `ImpactPreviewComputer` |
 | `impactPreviewStore` | `ImpactPreviewStore` |
+| `correctionContextOverrideParser` | `CorrectionContextOverrideParser` |
 
 #### HumanApprovalValidator (package: engine)
 
@@ -1162,6 +1190,43 @@ public FileSystemImpactPreviewStore(Path baseDir) {
 **Package:** `com.learney.contentaudit.revisiondomain.fielddiff`
 **Visibility:** internal
 **Implements:** NodeFieldDifferFactory
+
+#### DefaultCorrectionContextOverrideParser (package: contextoverride)
+
+**Package:** `com.learney.contentaudit.revisiondomain.contextoverride`
+**Visibility:** internal
+**Implements:** CorrectionContextOverrideParser
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `objectMapper` | `ObjectMapper` |
+| `validators` | `Map<DiagnosisKind,CorrectionContextStructuralValidator>` |
+
+#### LemmaAbsenceContextStructuralValidator (package: contextoverride)
+
+**Package:** `com.learney.contentaudit.revisiondomain.contextoverride`
+**Visibility:** internal
+**Implements:** CorrectionContextStructuralValidator
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `objectMapper` | `ObjectMapper` |
+
+#### SentenceLengthContextStructuralValidator (package: contextoverride)
+
+**Package:** `com.learney.contentaudit.revisiondomain.contextoverride`
+**Visibility:** internal
+**Implements:** CorrectionContextStructuralValidator
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `objectMapper` | `ObjectMapper` |
 
 ### Module: revision-infrastructure
 

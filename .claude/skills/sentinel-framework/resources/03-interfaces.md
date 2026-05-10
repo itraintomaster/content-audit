@@ -274,6 +274,22 @@ Examples:
 | `write(ActiveAnalysisSelection selection): void` | (none) |
 | `clear(): void` | (none) |
 
+#### AuditNodeIndex (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `find(String nodeId, AuditTarget nodeTarget): Optional<AuditNode>` | (none) |
+
+#### AuditNodeIndexFactory (factory)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `build(AuditReport report): AuditNodeIndex` | (none) |
+
 #### TokenClassifier (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
@@ -381,9 +397,13 @@ Examples:
 
 **Package:** `com.learney.contentaudit.refinerdomain`
 
+**Implemented by:** SentenceLengthContextResolver (refiner-domain), LemmaAbsenceContextResolver (refiner-domain), DispatchingCorrectionContextResolver (refiner-domain)
+
 | Method | Throws |
 |--------|--------|
 | `resolve(AuditReport report, RefinementTask task): Optional<T>` | (none) |
+| `resolveWithIndex(AuditNodeIndex nodeIndex, AuditReport report, RefinementTask task): Optional<T>` | (none) |
+| `supports(DiagnosisKind kind): boolean` | (none) |
 
 #### CorrectionContext (port)
 
@@ -453,15 +473,15 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `plan(String auditId, PlanStorageMode storageMode): Integer` | (none) |
+| `plan(String auditId, PlanStorageMode storageMode, boolean withCorrectionContext): Integer` | (none) |
 
-#### ReviseCommand [SEALED] (port)
+#### ReviseCommand (port)
 
 **Package:** `com.learney.contentaudit.auditcli`
 
 | Method | Throws |
 |--------|--------|
-| `revise(String taskId, String planId): Integer` | (none) |
+| `revise(String taskId, String planId, String correctionContextJson, String correctionContextFilePath): Integer` | (none) |
 
 #### ConfigAnalyzerCommand [SEALED] (port)
 
@@ -518,7 +538,16 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `render(RefinementPlan plan): Integer` | (none) |
+| `render(RefinementPlan plan, AuditReport report, EphemeralRenderOptions options): Integer` | (none) |
+
+#### CorrectionContextJsonMapper (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `toJsonMap(CorrectionContext context): Map<String,Object>` | (none) |
 
 #### ReportFormatter (package: formatting)
 
@@ -726,7 +755,7 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `revise(String planId, String taskId, Path coursePath): RevisionOutcome` | (none) |
+| `revise(String planId, String taskId, Path coursePath, String overridePayload): RevisionOutcome` | (none) |
 
 #### RevisionEngineFactory (factory)
 
@@ -800,6 +829,14 @@ Examples:
 | `save(ImpactPreview preview): void` | (none) |
 | `findByProposalId(String proposalId): Optional<ImpactPreview>` | (none) |
 
+#### CorrectionContextOverrideParser (port)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+| Method | Throws |
+|--------|--------|
+| `parse(String rawJson, DiagnosisKind expectedDiagnosisKind, String expectedNodeId): CorrectionContextOverride` | (none) |
+
 #### LemmaAbsenceQuizCandidateGenerator (package: lemmaabsence)
 
 **Package:** `com.learney.contentaudit.revisiondomain.lemmaabsence`
@@ -872,6 +909,15 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `create(): NodeFieldDiffer` | (none) |
+
+#### CorrectionContextStructuralValidator (package: contextoverride)
+
+**Package:** `com.learney.contentaudit.revisiondomain.contextoverride`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `validateAndBuild(JsonNode payload, String expectedNodeId): CorrectionContext` | (none) |
 
 ### Module: revision-infrastructure
 

@@ -68,6 +68,82 @@ For this role, the file you will most often update is `decisions.md`. You may up
 
 If the memory directory does not exist for the requirement, create it with empty files (headers only) and proceed. Running `sentinel generate` will scaffold missing ones next time.
 
+## Journey Lifecycle Playbook (shared across all agents)
+
+`sentinel.yaml.features[].journeys[]` is a thin **activation gate** — it lists which journeys are approved for code generation and where their tests land. The journey **content** (steps, flow, validation) lives in `REQUIREMENT.md` and is never duplicated in `sentinel.yaml`. Three pieces of information have three owners:
+
+| Field on a journey | Owner | Where it lives |
+|---|---|---|
+| `id`, `code`, `flow`, `steps`, `name`, `validation` | analyst | REQUIREMENT.md |
+| `id` echo + `testModule` + `testPackage` | qa-tester | sentinel.yaml (via patch) |
+| structural impls / interfaces / models the journey exercises | architect | sentinel.yaml (via patch) |
+
+### Order of operations (every journey, every time)
+
+1. **analyst** edits `REQUIREMENT.md` — adds, removes, or changes a journey's body.
+2. **analyst** runs `feature sync` — registers the journey id in the activation gate. Without sync, `sentinel generate` skips journeys that exist only in the markdown.
+3. **architect** (only if structural changes are needed) proposes a patch — never touches `features[]` other than `code` for the new feature itself.
+4. **qa-tester** proposes the test patch — `handwrittenTests` for rules + `features[].journeys[].testModule/testPackage` for every flow journey, all in ONE patch.
+5. **patch apply** — for an architect-only patch the user applies; for a tests-only patch the qa-tester self-applies with `--as=qa-tester`.
+6. **`sentinel generate`** — materializes Java stubs. Fails fast if any journey in the gate has flow but no `testModule` (placement is required, not optional).
+
+### Commands and what each one actually does
+
+| Command | Owner | Effect on disk | Idempotent? |
+|---|---|---|---|
+| `feature create` | analyst | Creates `requirements/<date>.<n>_<slug>/REQUIREMENT.md` | yes (new dir each call) |
+| `feature sync` | analyst | Adds journey ids to `sentinel.yaml.features[].journeys[]` (id-only). Does NOT touch testModule/testPackage. | yes |
+| `feature status` | any | READ-ONLY. Lists missing-from-gate / missing-placement / orphan per feature. | n/a |
+| `patch propose` | architect, qa-tester | Validates and writes `architectural_patch.yaml` under the requirement folder. Does NOT modify sentinel.yaml. | yes |
+| `patch apply` | user | Merges the patch into `sentinel.yaml`, archives the patch under `.applied-patches/`. | yes (no-op on second apply) |
+| `patch apply --as=qa-tester` | qa-tester | Same as `patch apply`, but rejects the patch unless it contains ONLY handwrittenTests + journey placement. | yes |
+| `generate` | user, qa-tester (post-apply) | Reads `sentinel.yaml` (merged with REQUIREMENT.md), writes Java sources + tests. Read-only on sentinel.yaml. | yes |
+
+### Symptom → action table
+
+| Symptom | Diagnosis | Owner | Command |
+|---|---|---|---|
+| `WARNING: REQUIREMENT.md declares journey 'X' which is not listed in sentinel.yaml` | activation gate stale | analyst | `feature sync --feature <FEAT-ID>` |
+| `Patch validation FAILED: ... features[].journeys[]/rules[] ... cannot be modified via patch` | architect or qa-tester put `_change: modify` on a journey/rule | depends | drop the `_change` marker; for journey placement the qa-tester writes `id + testModule + testPackage` with no `_change` |
+| `Patch rejected by --as=qa-tester guard` | qa-tester patch contains structural changes | qa-tester | split the patch — escalate the structural part to @architect |
+| `Journey placement validation FAILED: ... has flow but no testModule` (during `generate`) | journey is in the gate without testModule | qa-tester | `feature status` to see all; then `patch propose` with `features[].journeys[].testModule/testPackage`; then `patch apply --as=qa-tester` |
+| `Patch references journey 'X' which does not exist` (during `apply`) | qa-tester proposed placement for an id that the analyst never synced | analyst, then qa-tester | `feature sync --feature <FEAT-ID>` first; the qa-tester re-runs `patch propose` |
+| `architectural_patch.yaml` sitting under `requirements/<feature>/` after a generate attempt | patch was proposed but never applied | depends on patch contents | `patch apply -p <path>` (or `--as=qa-tester` if tests-only) |
+
+### One-page worked example
+
+Analyst adds journey J004 to an already-registered feature `FEAT-CART`:
+
+```bash
+# 1. analyst edits REQUIREMENT.md to add J004
+# 2. analyst registers the activation gate
+java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar feature sync --feature FEAT-CART
+# 3. analyst hands off; status confirms what is pending
+java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar feature status --feature FEAT-CART
+#    → FEAT-CART:
+#        missing-placement  F-CART-J004  (qa-tester: ...)
+# 4. qa-tester proposes the test patch (tests + placement, one shot)
+java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar patch propose -i sentinel.yaml \
+    --requirement-folder requirements/<dir> <<'PATCH'
+modules:
+  - name: cart-domain
+    implementations:
+      - name: CartService
+        handwrittenTests: [...]
+features:
+  - id: FEAT-CART
+    journeys:
+      - id: F-CART-J004
+        testModule: cart-domain
+        testPackage: com.acme.cart
+PATCH
+# 5. qa-tester self-applies (tests-only patch)
+java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar patch apply --as=qa-tester \
+    -p requirements/<dir>/architectural_patch.yaml
+# 6. qa-tester (or user) regenerates
+java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar generate
+```
+
 ## Design Principles
 
 These principles govern every architectural decision. They are not aspirational — they are evaluation criteria. When proposing a patch, verify the design satisfies each principle or justify why it cannot.
@@ -426,8 +502,10 @@ See the **Discovering versions and types** section in the `sentinel-dsl-ref` ski
 ## What you do NOT do
 
 - You do NOT write source code (Java, TypeScript, etc.)
-- You do NOT modify `sentinel.yaml` directly — you propose patches via CLI
-- You do NOT apply or merge patches — NEVER run `patch apply` or any command that modifies `sentinel.yaml`. Only the user applies patches.
+- You do NOT modify `sentinel.yaml` directly — you propose patches via CLI.
+- You do NOT apply or merge patches — NEVER run `patch apply`. Only the user (or the qa-tester with `--as=qa-tester` for tests-only patches) applies patches. See the **Journey Lifecycle Playbook** section for the full chain of ownership.
+- You do NOT touch `features[].rules[]` or `features[].journeys[]` in patches. If a journey id you need is not yet in `sentinel.yaml.features[].journeys[]`, redirect to @analyst for sync BEFORE you propose the structural patch (the apply will fail otherwise).
+- You do NOT propose `testModule` / `testPackage` on journeys — that is the qa-tester's role.
 - You do NOT write files directly — only `patch propose` and `tech-spec write` are permitted.
 - You do NOT touch `sentinel-baseline.yaml` after the first `patch propose` — it is the frozen "before" snapshot and must stay immutable.
 - You do NOT design without asking clarifying questions first
@@ -451,7 +529,7 @@ See the **Discovering versions and types** section in the `sentinel-dsl-ref` ski
 
 | Module | Dependencies | Interfaces | Implementations | Packages |
 |--------|-------------|------------|------------------|----------|
-| audit-domain | course-domain | AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore, CourseMapper, ActiveAnalysisSelectionStore | IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, SentenceLengthAnalyzer, IScoreAggregator | coca [internal], lrec [internal], labs [internal] |
+| audit-domain | course-domain | AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore, CourseMapper, ActiveAnalysisSelectionStore, AuditNodeIndex, AuditNodeIndexFactory | IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, SentenceLengthAnalyzer, IScoreAggregator | coca [internal], lrec [internal], labs [internal], auditnodeindex [internal] |
 | course-domain | — | CourseRepository, CourseValidator | — | quizsentence [public], quizsentenceengine [internal] |
 | refiner-domain | audit-domain | RefinerEngine, RefinementPlanStore, CorrectionContextResolver, CorrectionContext | SentenceLengthContextResolver, LemmaAbsenceContextResolver, DispatchingCorrectionContextResolver, DefaultRefinerEngine | — |
 | audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain | AuditRunner, AnalyzerRegistry | CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig, DefaultAnalyzerRegistry | — |
@@ -460,7 +538,7 @@ See the **Discovering versions and types** section in the `sentinel-dsl-ref` ski
 | nlp-infrastructure | audit-domain | NlpTokenizerFactory | — | spacy [public] |
 | vocabulary-infrastructure | audit-domain | — | — | evp [internal], coca [internal] |
 | audit-infrastructure | audit-domain, refiner-domain, revision-domain | — | FileSystemAuditReportStore, FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore, FileSystemImpactPreviewStore, FileSystemActiveAnalysisSelectionStore | — |
-| revision-domain | audit-domain, refiner-domain, course-domain | Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore | — | engine [internal], lemmaabsence [public], impactpreview [public], consolidatedview [public], fielddiff [internal] |
+| revision-domain | audit-domain, refiner-domain, course-domain | Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore, CorrectionContextOverrideParser | — | engine [internal], lemmaabsence [public], impactpreview [public], consolidatedview [public], fielddiff [internal], contextoverride [internal] |
 | revision-infrastructure | revision-domain, refiner-domain | — | — | lagen [public], lagenopenai [internal] |
 
 ### Boundaries

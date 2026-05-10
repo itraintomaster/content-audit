@@ -1,0 +1,10 @@
+code: FEAT-PLANEF
+features:
+  - id: FEAT-PLANEF
+    journeys:
+      - id: F-PLANEF-J002
+        testModule: audit-cli
+        testPackage: com.learney.contentaudit.auditcli.commands
+      - id: F-PLANEF-J003
+        testModule: audit-cli
+        testPackage: com.learney.contentaudit.auditcli.commands

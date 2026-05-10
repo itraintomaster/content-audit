@@ -172,6 +172,7 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should return empty for unsupported diagnosis kind COCA_BUCKETS → FEAT-RCLA/F-RCLA-R007
 - should return empty for unsupported diagnosis kind LEMMA_RECURRENCE → FEAT-RCLA/F-RCLA-R007
 - should propagate empty from delegate when delegate returns empty → FEAT-RCLA/F-RCLA-R007
+- should report supports=true for diagnosisKinds with a registered resolver and supports=false for kinds without one → FEAT-REVCTX/F-REVCTX-R004
 
 ### DefaultRefinerEngine (refiner-domain)
 

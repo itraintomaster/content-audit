@@ -1255,6 +1255,20 @@ new LagenMode(null LLM, null CANNED)
 new PlanStorageMode(null DISK, null EPHEMERAL)
 ```
 
+#### EphemeralRenderOptions
+
+**Package:** `com.learney.contentaudit.auditcli`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `withCorrectionContext` | `boolean` |  |
+
+**Generated constructor:**
+```java
+new EphemeralRenderOptions(boolean withCorrectionContext)
+```
+
 #### ReportViewModel (package: formatting)
 
 **Package:** `com.learney.contentaudit.auditcli.formatting`
@@ -1547,10 +1561,12 @@ new RevisionVerdict(null APPROVED, null REJECTED, null PENDING_APPROVAL)
 | `ALREADY_PENDING_DECISION` | `null` |  |
 | `NO_ACTIVE_STRATEGY` | `null` |  |
 | `STRATEGY_FAILED` | `null` |  |
+| `OVERRIDE_INVALID` | `null` |  |
+| `OVERRIDE_NOT_APPLICABLE` | `null` |  |
 
 **Generated constructor:**
 ```java
-new RevisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null REJECTED, null NO_REVISER, null CONTEXT_UNAVAILABLE, null ELEMENT_NOT_FOUND, null PENDING_APPROVAL_PERSISTED, null ALREADY_PENDING_DECISION, null NO_ACTIVE_STRATEGY, null STRATEGY_FAILED)
+new RevisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null REJECTED, null NO_REVISER, null CONTEXT_UNAVAILABLE, null ELEMENT_NOT_FOUND, null PENDING_APPROVAL_PERSISTED, null ALREADY_PENDING_DECISION, null NO_ACTIVE_STRATEGY, null STRATEGY_FAILED, null OVERRIDE_INVALID, null OVERRIDE_NOT_APPLICABLE)
 ```
 
 #### CourseElementSnapshot
@@ -1608,10 +1624,12 @@ new RevisionProposal(String proposalId, String taskId, String planId, String sou
 | `outcome` | `RevisionOutcomeKind` |  |
 | `decidedAt` | `Instant` |  |
 | `decisionNote` | `String` |  |
+| `contextSource` | `CorrectionContextSource` |  |
+| `contextOverridePayload` | `String` |  |
 
 **Generated constructor:**
 ```java
-new RevisionArtifact(RevisionProposal proposal, RevisionVerdict verdict, String rejectionReason, RevisionOutcomeKind outcome, Instant decidedAt, String decisionNote)
+new RevisionArtifact(RevisionProposal proposal, RevisionVerdict verdict, String rejectionReason, RevisionOutcomeKind outcome, Instant decidedAt, String decisionNote, CorrectionContextSource contextSource, String contextOverridePayload)
 ```
 
 #### RevisionOutcome
@@ -1650,10 +1668,11 @@ new RevisionOutcome(RevisionOutcomeKind kind, RevisionArtifact artifact, String 
 | `courseMapper` | `CourseMapper` |  |
 | `auditEngine` | `AuditEngine` |  |
 | `impactPreviewStore` | `ImpactPreviewStore` |  |
+| `correctionContextOverrideParser` | `CorrectionContextOverrideParser` |  |
 
 **Generated constructor:**
 ```java
-new RevisionEngineConfig(Map<DiagnosisKind,Reviser> revisers, RevisionValidator validator, RevisionArtifactStore artifactStore, CourseRepository courseRepository, CourseElementLocator elementLocator, RefinementPlanStore refinementPlanStore, AuditReportStore auditReportStore, CorrectionContextResolver<CorrectionContext> contextResolver, LemmaAbsenceProposalStrategyRegistry lemmaAbsenceStrategyRegistry, LemmaAbsenceProposalDeriver lemmaAbsenceProposalDeriver, CourseMapper courseMapper, AuditEngine auditEngine, ImpactPreviewStore impactPreviewStore)
+new RevisionEngineConfig(Map<DiagnosisKind,Reviser> revisers, RevisionValidator validator, RevisionArtifactStore artifactStore, CourseRepository courseRepository, CourseElementLocator elementLocator, RefinementPlanStore refinementPlanStore, AuditReportStore auditReportStore, CorrectionContextResolver<CorrectionContext> contextResolver, LemmaAbsenceProposalStrategyRegistry lemmaAbsenceStrategyRegistry, LemmaAbsenceProposalDeriver lemmaAbsenceProposalDeriver, CourseMapper courseMapper, AuditEngine auditEngine, ImpactPreviewStore impactPreviewStore, CorrectionContextOverrideParser correctionContextOverrideParser)
 ```
 
 #### ApprovalMode
@@ -1792,6 +1811,52 @@ new ProposalDerivationException(String strategyName, String taskId, String reaso
 **Generated constructor:**
 ```java
 new ConsolidatedViewBuilderConfig(ActiveAnalysisSelectionStore activeAnalysisSelectionStore, AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore, RevisionArtifactStore revisionArtifactStore, CourseRepository courseRepository, CourseElementLocator courseElementLocator, CourseMapper courseMapper, AuditEngine auditEngine, NodeFieldDiffer nodeFieldDiffer)
+```
+
+#### CorrectionContextSource
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+**Type:** enum
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `DERIVED` | `null` |  |
+| `OVERRIDE` | `null` |  |
+
+**Generated constructor:**
+```java
+new CorrectionContextSource(null DERIVED, null OVERRIDE)
+```
+
+#### CorrectionContextOverride
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `context` | `CorrectionContext` |  |
+| `rawPayload` | `String` |  |
+
+**Generated constructor:**
+```java
+new CorrectionContextOverride(CorrectionContext context, String rawPayload)
+```
+
+#### OverrideRejectedException
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+**Type:** exception
+**Extends:** `RuntimeException`
+**Message:** `"correctionContext override rejected: %s"`
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `reason` | `String` |  |
+
+**Generated class** extends `RuntimeException` with constructor:
+```java
+new OverrideRejectedException(String reason)
 ```
 
 #### LemmaAbsenceProposalStrategyRegistryConfig (package: engine)

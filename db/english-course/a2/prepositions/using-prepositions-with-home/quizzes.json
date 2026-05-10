@@ -1,582 +1,511 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342ccc"
-    },
-    "answerImageUrl": "",
-    "code": "",
-    "title": "Using Prepositions with 'Home'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Escribe 'at' o, si no necesitas una preposición, escribe '–'.",
-    "form": {
-      "sentenceParts": [
-        {
-          "text": "They arrived",
-          "options": null,
-          "kind": "TEXT"
-        },
-        {
-          "options": [
-            "-"
-          ],
-          "kind": "CLOZE",
-          "text": ""
-        },
-        {
-          "kind": "TEXT",
-          "text": "home.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": ""
-    },
-    "theoryId": "a2.09.Prepositions_After_Nouns",
-    "translation": "Ellos llegaron a casa.",
-    "id": "67fab6d59930102295342ccc",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d286"
-    },
-    "miniTheory": "",
-    "kind": "CLOZE",
-    "audioUrl": "",
-    "successMessage": "",
-    "answerAudioUrl": "A2.09.05.01",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "imageUrl": "",
-    "topicName": "Prepositions"
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ccc"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342ccd"
-    },
-    "id": "67fab6d59930102295342ccd",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d286"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "a2.09.Prepositions_After_Nouns",
-    "imageUrl": "",
-    "answerImageUrl": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "audioUrl": "",
-    "code": "",
-    "kind": "CLOZE",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Using Prepositions with 'Home'",
-    "translation": "Desayunamos en casa.",
-    "successMessage": "",
-    "answerAudioUrl": "A2.09.05.02",
-    "instructions": "Escribe 'at' o, si no necesitas una preposición, escribe '–'.",
-    "form": {
-      "sentenceParts": [
-        {
-          "text": "We ate breakfast",
-          "options": null,
-          "kind": "TEXT"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "home.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": ""
-    },
-    "miniTheory": "",
-    "topicName": "Prepositions"
+  "id" : "67fab6d59930102295342ccc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d286"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342cce"
-    },
-    "instructions": "Escribe 'at' o, si no necesitas una preposición, escribe '–'.",
-    "miniTheory": "",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "sentenceParts": [
-        {
-          "text": "She ran",
-          "options": null,
-          "kind": "TEXT"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "home.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": ""
-    },
-    "imageUrl": "",
-    "answerImageUrl": "",
-    "id": "67fab6d59930102295342cce",
-    "answerAudioUrl": "A2.09.05.03",
-    "title": "Using Prepositions with 'Home'",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d286"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "a2.09.Prepositions_After_Nouns",
-    "audioUrl": "",
-    "translation": "Ella corrió a casa.",
-    "successMessage": "",
-    "code": "",
-    "topicName": "Prepositions"
+  "title" : "Using Prepositions with 'Home'",
+  "instructions" : "Escribe 'at' o, si no necesitas una preposición, escribe '–'.",
+  "translation" : "Ellos llegaron a casa.",
+  "theoryId" : "a2.09.Prepositions_After_Nouns",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342ccf"
-    },
-    "successMessage": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d286"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "text": "She slept",
-          "options": null,
-          "kind": "TEXT"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "home.",
-          "options": null
-        }
-      ]
-    },
-    "theoryId": "a2.09.Prepositions_After_Nouns",
-    "translation": "Ella durmió en casa.",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "imageUrl": "",
-    "audioUrl": "",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "answerAudioUrl": "A2.09.05.04",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Using Prepositions with 'Home'",
-    "instructions": "Escribe 'at' o, si no necesitas una preposición, escribe '–'.",
-    "id": "67fab6d59930102295342ccf",
-    "code": "",
-    "topicName": "Prepositions"
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342cd0"
-    },
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d286"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "translation": "Jugamos juegos en casa.",
-    "answerImageUrl": "",
-    "id": "67fab6d59930102295342cd0",
-    "kind": "CLOZE",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We played games",
-          "options": null
-        },
-        {
-          "text": "",
-          "options": [
-            "at"
-          ],
-          "kind": "CLOZE"
-        },
-        {
-          "kind": "TEXT",
-          "text": "home.",
-          "options": null
-        }
-      ]
-    },
-    "code": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Using Prepositions with 'Home'",
-    "audioUrl": "",
-    "successMessage": "",
-    "miniTheory": "",
-    "answerAudioUrl": "A2.09.05.05",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Escribe 'at' o, si no necesitas una preposición, escribe '–'.",
-    "theoryId": "a2.09.Prepositions_After_Nouns",
-    "imageUrl": "",
-    "topicName": "Prepositions"
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342cd1"
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.05.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
     },
-    "id": "67fab6d59930102295342cd1",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d286"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Escribe 'at' o, si no necesitas una preposición, escribe '–'.",
-    "miniTheory": "",
-    "imageUrl": "",
-    "audioUrl": "",
-    "successMessage": "",
-    "answerImageUrl": "",
-    "answerAudioUrl": "A2.09.05.06",
-    "kind": "CLOZE",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Using Prepositions with 'Home'",
-    "translation": "Viajé a casa.",
-    "code": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I travelled",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "home."
-        }
-      ]
-    },
-    "theoryId": "a2.09.Prepositions_After_Nouns",
-    "topicName": "Prepositions"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342cd2"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "a2.09.Prepositions_After_Nouns",
-    "translation": "Él planea conducir a casa mañana.",
-    "answerAudioUrl": "A2.09.05.07",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He is planning to drive",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "home tomorrow.",
-          "options": null
-        }
-      ]
-    },
-    "imageUrl": "",
-    "miniTheory": "",
-    "id": "67fab6d59930102295342cd2",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "answerImageUrl": "",
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d286"
-    },
-    "title": "Using Prepositions with 'Home'",
-    "instructions": "Escribe 'at' o, si no necesitas una preposición, escribe '–'.",
-    "audioUrl": "",
-    "successMessage": "",
-    "topicName": "Prepositions"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342cd3"
-    },
-    "id": "67fab6d59930102295342cd3",
-    "miniTheory": "",
-    "theoryId": "a2.09.Prepositions_After_Nouns",
-    "imageUrl": "",
-    "translation": "Mis padres están en casa.",
-    "kind": "CLOZE",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Escribe 'at' o, si no necesitas una preposición, escribe '–'.",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "My parents are",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "home.",
-          "options": null
-        }
-      ]
-    },
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d286"
-    },
-    "successMessage": "",
-    "answerAudioUrl": "A2.09.05.08",
-    "answerImageUrl": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Using Prepositions with 'Home'",
-    "audioUrl": "",
-    "topicName": "Prepositions"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342cd4"
-    },
-    "successMessage": "",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d286"
-    },
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.05.09",
-    "instructions": "Escribe 'at' o, si no necesitas una preposición, escribe '–'.",
-    "form": {
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Mary hurried",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "home."
-        }
-      ],
-      "kind": "CLOZE"
-    },
-    "miniTheory": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "a2.09.Prepositions_After_Nouns",
-    "title": "Using Prepositions with 'Home'",
-    "audioUrl": "",
-    "translation": "Mary se apresuró a casa.",
-    "answerImageUrl": "",
-    "id": "67fab6d59930102295342cd4",
-    "code": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "topicName": "Prepositions"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342cd5"
-    },
-    "title": "Using Prepositions with 'Home'",
-    "form": {
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "He watched TV"
-        },
-        {
-          "options": [
-            "at"
-          ],
-          "kind": "CLOZE",
-          "text": ""
-        },
-        {
-          "kind": "TEXT",
-          "text": "home.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      }
-    },
-    "translation": "Él vio televisión en casa.",
-    "answerAudioUrl": "A2.09.05.10",
-    "code": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "answerImageUrl": "",
-    "id": "67fab6d59930102295342cd5",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d286"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Escribe 'at' o, si no necesitas una preposición, escribe '–'.",
-    "theoryId": "a2.09.Prepositions_After_Nouns",
-    "miniTheory": "",
-    "kind": "CLOZE",
-    "imageUrl": "",
-    "audioUrl": "",
-    "successMessage": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "topicName": "Prepositions"
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They arrived",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "home.",
+      "options" : null
+    } ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ccd"
+  },
+  "id" : "67fab6d59930102295342ccd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d286"
+  },
+  "title" : "Using Prepositions with 'Home'",
+  "instructions" : "Escribe 'at' o, si no necesitas una preposición, escribe '–'.",
+  "translation" : "Desayunamos en casa.",
+  "theoryId" : "a2.09.Prepositions_After_Nouns",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.05.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We ate breakfast",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "home.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cce"
+  },
+  "id" : "67fab6d59930102295342cce",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d286"
+  },
+  "title" : "Using Prepositions with 'Home'",
+  "instructions" : "Escribe 'at' o, si no necesitas una preposición, escribe '–'.",
+  "translation" : "Ella corrió a casa.",
+  "theoryId" : "a2.09.Prepositions_After_Nouns",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.05.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She ran",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "home.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ccf"
+  },
+  "id" : "67fab6d59930102295342ccf",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d286"
+  },
+  "title" : "Using Prepositions with 'Home'",
+  "instructions" : "Escribe 'at' o, si no necesitas una preposición, escribe '–'.",
+  "translation" : "Ella durmió en casa.",
+  "theoryId" : "a2.09.Prepositions_After_Nouns",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.05.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She slept",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "home.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cd0"
+  },
+  "id" : "67fab6d59930102295342cd0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d286"
+  },
+  "title" : "Using Prepositions with 'Home'",
+  "instructions" : "Escribe 'at' o, si no necesitas una preposición, escribe '–'.",
+  "translation" : "Jugamos juegos en casa.",
+  "theoryId" : "a2.09.Prepositions_After_Nouns",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.05.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We played games",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "home.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cd1"
+  },
+  "id" : "67fab6d59930102295342cd1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d286"
+  },
+  "title" : "Using Prepositions with 'Home'",
+  "instructions" : "Escribe 'at' o, si no necesitas una preposición, escribe '–'.",
+  "translation" : "Viajé a casa.",
+  "theoryId" : "a2.09.Prepositions_After_Nouns",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.05.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I travelled",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "home.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cd2"
+  },
+  "id" : "67fab6d59930102295342cd2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d286"
+  },
+  "title" : "Using Prepositions with 'Home'",
+  "instructions" : "Escribe 'at' o, si no necesitas una preposición, escribe '–'.",
+  "translation" : "Él planea conducir a casa mañana.",
+  "theoryId" : "a2.09.Prepositions_After_Nouns",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.05.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is planning to drive",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "home tomorrow.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cd3"
+  },
+  "id" : "67fab6d59930102295342cd3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d286"
+  },
+  "title" : "Using Prepositions with 'Home'",
+  "instructions" : "Escribe 'at' o, si no necesitas una preposición, escribe '–'.",
+  "translation" : "Mis padres están en casa.",
+  "theoryId" : "a2.09.Prepositions_After_Nouns",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.05.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My parents are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "home.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cd4"
+  },
+  "id" : "67fab6d59930102295342cd4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d286"
+  },
+  "title" : "Using Prepositions with 'Home'",
+  "instructions" : "Escribe 'at' o, si no necesitas una preposición, escribe '–'.",
+  "translation" : "Mary se apresuró a casa.",
+  "theoryId" : "a2.09.Prepositions_After_Nouns",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.05.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Mary hurried",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "home.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cd5"
+  },
+  "id" : "67fab6d59930102295342cd5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d286"
+  },
+  "title" : "Using Prepositions with 'Home'",
+  "instructions" : "Escribe 'at' o, si no necesitas una preposición, escribe '–'.",
+  "translation" : "Él vio televisión en casa.",
+  "theoryId" : "a2.09.Prepositions_After_Nouns",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.05.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He watched TV",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "home.",
+      "options" : null
+    } ]
+  }
+} ]

@@ -411,6 +411,18 @@ Methods:
 - `write(ActiveAnalysisSelection selection): void`
 - `clear(): void`
 
+### AuditNodeIndex (port)
+
+Methods:
+
+- `find(String nodeId, AuditTarget nodeTarget): Optional<AuditNode>`
+
+### AuditNodeIndexFactory (factory)
+
+Methods:
+
+- `build(AuditReport report): AuditNodeIndex`
+
 ### From course-domain
 
 ## Models
@@ -695,6 +707,8 @@ Methods:
 Methods:
 
 - `resolve(AuditReport report, RefinementTask task): Optional<T>`
+- `resolveWithIndex(AuditNodeIndex nodeIndex, AuditReport report, RefinementTask task): Optional<T>`
+- `supports(DiagnosisKind kind): boolean`
 
 ### CorrectionContext (port)
 
@@ -724,6 +738,8 @@ Methods:
 | ALREADY_PENDING_DECISION | `null` |
 | NO_ACTIVE_STRATEGY | `null` |
 | STRATEGY_FAILED | `null` |
+| OVERRIDE_INVALID | `null` |
+| OVERRIDE_NOT_APPLICABLE | `null` |
 
 ### CourseElementSnapshot (`record`)
 
@@ -761,6 +777,8 @@ Methods:
 | outcome | `RevisionOutcomeKind` |
 | decidedAt | `Instant` |
 | decisionNote | `String` |
+| contextSource | `CorrectionContextSource` |
+| contextOverridePayload | `String` |
 
 ### RevisionOutcome (`record`)
 
@@ -787,6 +805,7 @@ Methods:
 | courseMapper | `CourseMapper` |
 | auditEngine | `AuditEngine` |
 | impactPreviewStore | `ImpactPreviewStore` |
+| correctionContextOverrideParser | `CorrectionContextOverrideParser` |
 
 ### ApprovalMode (`enum`)
 
@@ -866,6 +885,30 @@ Methods:
 | auditEngine | `AuditEngine` |
 | nodeFieldDiffer | `NodeFieldDiffer` |
 
+### CorrectionContextSource (`enum`)
+
+| Field | Type |
+|-------|------|
+| DERIVED | `null` |
+| OVERRIDE | `null` |
+
+### CorrectionContextOverride (`record`)
+
+| Field | Type |
+|-------|------|
+| context | `CorrectionContext` |
+| rawPayload | `String` |
+
+### OverrideRejectedException (`exception`)
+
+**Extends:** `RuntimeException`
+
+**Message:** `correctionContext override rejected: %s`
+
+| Field | Type |
+|-------|------|
+| reason | `String` |
+
 ### Reviser (port)
 
 Methods:
@@ -909,7 +952,7 @@ Methods:
 
 Methods:
 
-- `revise(String planId, String taskId, Path coursePath): RevisionOutcome`
+- `revise(String planId, String taskId, Path coursePath, String overridePayload): RevisionOutcome`
 
 ### RevisionEngineFactory (factory)
 
@@ -964,4 +1007,10 @@ Methods:
 
 - `save(ImpactPreview preview): void`
 - `findByProposalId(String proposalId): Optional<ImpactPreview>`
+
+### CorrectionContextOverrideParser (port)
+
+Methods:
+
+- `parse(String rawJson, DiagnosisKind expectedDiagnosisKind, String expectedNodeId): CorrectionContextOverride`
 

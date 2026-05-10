@@ -1093,17 +1093,51 @@ Este micro-requerimiento es un delta aislado: agrega el campo `quizSentence` al 
 
 ### FEAT-PLANEF: Generacion de plan efimero sin persistencia en disco [F-PLANEF]
 
-> **Que**: El comando `plan` admite un modo de invocacion (`--storage=none` sugerido por el operador, shape final a confirmar) que **no escribe ningun archivo en disco** y emite el plan generado por la salida estandar del CLI en formato JSON, con el mismo schema que un plan persistido.
+> **Que**: El comando `plan` admite un modo de invocacion (`--storage=none` sugerido por el operador, shape final a confirmar) que **no escribe ningun archivo en disco** y emite el plan generado por la salida estandar del CLI en formato JSON, con el mismo schema que un plan persistido. Opcionalmente, en ese mismo modo, cada tarea del plan emitido puede llevar **inline su contexto de correccion** (F-PLANEF-R002), evitando que el cliente tenga que pedirlo aparte sobre un plan que no existe en disco.
 
-**Por que**: Mientras el operador del dashboard revisa varias tareas dentro del mismo plan, quiere ver en cada momento como se veria el plan **si las decisiones que ya tomo (aceptadas y pendientes) estuvieran aplicadas**, sin tener que aplicarlas literalmente todavia. Ese plan-proyectado se construye una y otra vez sobre la marcha, no tiene valor historico y no debe ensuciar el historial de planes que el operador conserva como artefactos del proyecto.
+**Por que**: Mientras el operador del dashboard revisa varias tareas dentro del mismo plan, quiere ver en cada momento como se veria el plan **si las decisiones que ya tomo (aceptadas y pendientes) estuvieran aplicadas**, sin tener que aplicarlas literalmente todavia. Ese plan-proyectado se construye una y otra vez sobre la marcha, no tiene valor historico y no debe ensuciar el historial de planes que el operador conserva como artefactos del proyecto. El contexto de correccion inline cierra el ciclo: el cliente recibe en una sola pasada todo lo que el operador necesita ver para cada tarea proyectada, sin un round-trip adicional contra un plan que ni siquiera tiene id resoluble.
 
 **Business Rules:**
 
 | ID | Rule | Severity | Error Message |
 |----|------|----------|---------------|
 | F-PLANEF-R001 | Modo de invocacion del comando `plan` que no persiste y emite el plan por stdout | critical | - |
+| F-PLANEF-R002 | El plan efimero puede emitir el contexto de correccion inline por tarea, opt-in | critical | - |
 
 **User Journeys:**
 
 - **F-PLANEF-J001**: Invocar `plan` en modo efimero entrega el plan por stdout y no escribe archivos
+
+- **F-PLANEF-J002**: Invocar `plan` efimero con la opcion de contexto inline emite el plan con `correctionContext` por tarea
+
+- **F-PLANEF-J003**: Invocar `plan` efimero **sin** la opcion de contexto preserva la salida actual
+
+### FEAT-REVCTX: Override del contexto de correccion en el verbo revise [F-REVCTX]
+
+> **Que**: El verbo `revise task <id>` acepta opcionalmente un **`correctionContext` provisto externamente por el cliente** mediante dos flags mutuamente excluyentes: `--correction-context=<json>` (literal en linea) y `--correction-context-file=<path>` (archivo). Cuando se provee, el sistema usa ese contexto como insumo de la estrategia de revision activa, en lugar del contexto que derivaria por si mismo del plan persistente y su `AuditReport` fuente. Cuando no se provee, el comportamiento es el actual y no cambia.
+
+**Por que**: El operador del dashboard revisa decenas de tareas y, mientras decide, ve un **plan proyectado** (FEAT-PLANEF) que refleja el efecto acumulado de sus decisiones aceptadas y pendientes. Cuando finalmente aprueba una tarea, espera que la revision se ejecute sobre el contexto proyectado que efectivamente vio en la UI. Hoy `revise` deriva el contexto del plan persistido + `AuditReport` original, ignorando las pendientes; la consecuencia es que la estrategia (LLM en LEMMA_ABSENCE) puede proponer una palabra que ya consumio una propuesta previa pendiente -exactamente el problema que el plan proyectado prometia evitar visualmente. Permitir un override del contexto cierra el ciclo entre lo que el operador ve y lo que el sistema ejecuta.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-REVCTX-R001 | El verbo `revise` acepta un `correctionContext` provisto externamente, opcional | critical | - |
+| F-REVCTX-R002 | Cuando se provee override, el sistema **no** deriva contexto por su cuenta para la tarea revisada | critical | - |
+| F-REVCTX-R003 | El override debe respetar el contrato del `correctionContext` y declarar la misma identidad logica que la tarea revisada | critical | - |
+| F-REVCTX-R004 | El override no aplica a `DiagnosisKind` que no tienen contexto definido | major | El verbo revise no acepta correctionContext para tareas de tipo '{diagnosisKind}' |
+| F-REVCTX-R005 | El plan resoluble por `revise` puede ser distinto del plan que el cliente proyecto | critical | - |
+| F-REVCTX-R006 | El override no altera los modos de aprobacion ni la persistencia del artefacto | major | - |
+| F-REVCTX-R007 | El artefacto persiste el origen del contexto y un snapshot literal del override | critical | - |
+| F-REVCTX-R008 | El payload del override es JSON con la misma forma observable que la salida de `get task` | critical | - |
+
+**User Journeys:**
+
+- **F-REVCTX-J001**: El operador aprueba una tarea sobre el contexto proyectado y `revise` consume el override
+
+- **F-REVCTX-J002**: El cliente invoca `revise` con override sobre una tarea de un kind que no tiene contrato de contexto
+
+- **F-REVCTX-J003**: El cliente invoca `revise` **sin** override y el comportamiento es el actual
+
+- **F-REVCTX-J004**: El cliente invoca `revise` con los dos flags de override a la vez
 

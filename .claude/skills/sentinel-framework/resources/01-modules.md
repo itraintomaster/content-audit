@@ -67,6 +67,8 @@ project-root/
 
 ### audit-domain
 
+> Core business logic
+
 | Property | Value |
 |----------|-------|
 | Package | `com.learney.contentaudit.auditdomain` |
@@ -74,9 +76,9 @@ project-root/
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
 | Models | 15 (AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode, SentenceLengthDiagnosis, AuditReportSummary, ActiveAnalysisSelection) |
-| Interfaces | 22 (AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore, CourseMapper, ActiveAnalysisSelectionStore) |
+| Interfaces | 24 (AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore, CourseMapper, ActiveAnalysisSelectionStore, AuditNodeIndex, AuditNodeIndexFactory) |
 | Implementations | 5 (IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, SentenceLengthAnalyzer, IScoreAggregator) |
-| Packages | 3 (coca [internal], lrec [internal], labs [internal]) |
+| Packages | 4 (coca [internal], lrec [internal], labs [internal], auditnodeindex [internal]) |
 
 ### course-domain
 
@@ -95,7 +97,7 @@ project-root/
 
 ### refiner-domain
 
-> Domain module for the refinement workflow. Defines the plan/task model and ports for generating and persisting refinement plans derived from audit reports.
+> Refinement engine
 
 | Property | Value |
 |----------|-------|
@@ -138,7 +140,7 @@ project-root/
 
 ### audit-cli
 
-> CLI entry point for running content audits from the command line
+> CLI entry point
 
 | Property | Value |
 |----------|-------|
@@ -146,7 +148,7 @@ project-root/
 | Depends On | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
-| Models | 3 (GetTasksFilter, LagenMode, PlanStorageMode) |
+| Models | 4 (GetTasksFilter, LagenMode, PlanStorageMode, EphemeralRenderOptions) |
 | Interfaces | 12 (AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand, GetConsolidatedCommand, SetActiveAnalysisCommand) |
 | Implementations | 0 |
 | Packages | 3 (commands [internal], formatting [internal], bootstrap [internal]) |
@@ -206,10 +208,10 @@ project-root/
 | Depends On | audit-domain, refiner-domain, course-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
-| Models | 15 (RevisionVerdict, RevisionOutcomeKind, CourseElementSnapshot, RevisionProposal, RevisionArtifact, RevisionOutcome, RevisionEngineConfig, ApprovalMode, ProposalDecisionOutcomeKind, ProposalDecisionOutcome, StrategyId, LemmaAbsenceQuizCandidate, ProposalStrategyFailedException, ProposalDerivationException, ConsolidatedViewBuilderConfig) |
-| Interfaces | 14 (Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore) |
+| Models | 18 (RevisionVerdict, RevisionOutcomeKind, CourseElementSnapshot, RevisionProposal, RevisionArtifact, RevisionOutcome, RevisionEngineConfig, ApprovalMode, ProposalDecisionOutcomeKind, ProposalDecisionOutcome, StrategyId, LemmaAbsenceQuizCandidate, ProposalStrategyFailedException, ProposalDerivationException, ConsolidatedViewBuilderConfig, CorrectionContextSource, CorrectionContextOverride, OverrideRejectedException) |
+| Interfaces | 15 (Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore, CorrectionContextOverrideParser) |
 | Implementations | 0 |
-| Packages | 5 (engine [internal], lemmaabsence [public], impactpreview [public], consolidatedview [public], fielddiff [internal]) |
+| Packages | 6 (engine [internal], lemmaabsence [public], impactpreview [public], consolidatedview [public], fielddiff [internal], contextoverride [internal]) |
 
 ### revision-infrastructure
 

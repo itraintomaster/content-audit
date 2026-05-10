@@ -1,0 +1,591 @@
+{
+  "scores": {
+    "a1": {
+      "a1aPassed": true,
+      "a1aViolations": [],
+      "a1bScore": 0.6,
+      "a1bDetails": [
+        {
+          "elementName": "SentenceLengthContextResolver",
+          "kind": "IMPLEMENTATION",
+          "actualLevel": "public",
+          "optimalLevel": "internal",
+          "elementScore": 0.5
+        },
+        {
+          "elementName": "EphemeralPlanRenderer",
+          "kind": "INTERFACE",
+          "actualLevel": "internal",
+          "optimalLevel": "private",
+          "elementScore": 0.5
+        },
+        {
+          "elementName": "CorrectionContextJsonMapper",
+          "kind": "INTERFACE",
+          "actualLevel": "internal",
+          "optimalLevel": "private",
+          "elementScore": 0.5
+        },
+        {
+          "elementName": "PlanCommand",
+          "kind": "INTERFACE",
+          "actualLevel": "public",
+          "optimalLevel": "internal",
+          "elementScore": 0.5
+        },
+        {
+          "elementName": "DefaultEphemeralPlanRenderer",
+          "kind": "IMPLEMENTATION",
+          "actualLevel": "internal",
+          "optimalLevel": "private",
+          "elementScore": 0.5
+        },
+        {
+          "elementName": "DispatchingCorrectionContextResolver",
+          "kind": "IMPLEMENTATION",
+          "actualLevel": "public",
+          "optimalLevel": "public",
+          "elementScore": 1
+        },
+        {
+          "elementName": "CorrectionContextResolver",
+          "kind": "INTERFACE",
+          "actualLevel": "public",
+          "optimalLevel": "public+allowedClients",
+          "elementScore": 0.75
+        },
+        {
+          "elementName": "GetCmd",
+          "kind": "IMPLEMENTATION",
+          "actualLevel": "internal",
+          "optimalLevel": "private",
+          "elementScore": 0.5
+        },
+        {
+          "elementName": "MapAuditNodeIndex",
+          "kind": "IMPLEMENTATION",
+          "actualLevel": "internal",
+          "optimalLevel": "private",
+          "elementScore": 0.5
+        },
+        {
+          "elementName": "DefaultAuditNodeIndexFactory",
+          "kind": "IMPLEMENTATION",
+          "actualLevel": "internal",
+          "optimalLevel": "public",
+          "elementScore": 1
+        },
+        {
+          "elementName": "DefaultCorrectionContextJsonMapper",
+          "kind": "IMPLEMENTATION",
+          "actualLevel": "internal",
+          "optimalLevel": "private",
+          "elementScore": 0.5
+        },
+        {
+          "elementName": "AuditNodeIndexFactory",
+          "kind": "INTERFACE",
+          "actualLevel": "public",
+          "optimalLevel": "public+allowedClients",
+          "elementScore": 0.75
+        },
+        {
+          "elementName": "PlanCmd",
+          "kind": "IMPLEMENTATION",
+          "actualLevel": "internal",
+          "optimalLevel": "private",
+          "elementScore": 0.5
+        },
+        {
+          "elementName": "AuditNodeIndex",
+          "kind": "INTERFACE",
+          "actualLevel": "public",
+          "optimalLevel": "internal",
+          "elementScore": 0.5
+        },
+        {
+          "elementName": "LemmaAbsenceContextResolver",
+          "kind": "IMPLEMENTATION",
+          "actualLevel": "public",
+          "optimalLevel": "internal",
+          "elementScore": 0.5
+        }
+      ],
+      "a1cScore": 0.8333333333333334,
+      "a1dScore": 0.7999999999999999,
+      "compositeScore": 0.705
+    },
+    "a2": {
+      "structurallySound": false,
+      "a2a": {
+        "id": "A2a",
+        "name": "Structural Integrity",
+        "score": 0,
+        "violations": [
+          {
+            "code": "A2a-IMPL",
+            "severity": "critical",
+            "message": "SentenceLengthContextResolver implements CorrectionContextResolver<SentenceLengthCorrectionContext> but no such interface exists in refiner-domain or its dependsOn"
+          },
+          {
+            "code": "A2a-IMPL",
+            "severity": "critical",
+            "message": "LemmaAbsenceContextResolver implements CorrectionContextResolver<LemmaAbsenceCorrectionContext> but no such interface exists in refiner-domain or its dependsOn"
+          },
+          {
+            "code": "A2a-IMPL",
+            "severity": "critical",
+            "message": "DispatchingCorrectionContextResolver implements CorrectionContextResolver<CorrectionContext> but no such interface exists in refiner-domain or its dependsOn"
+          },
+          {
+            "code": "A2a-DEP",
+            "severity": "critical",
+            "message": "DispatchingCorrectionContextResolver requires SentenceLengthContextResolver but no such interface exists in refiner-domain or its dependsOn"
+          },
+          {
+            "code": "A2a-DEP",
+            "severity": "critical",
+            "message": "DispatchingCorrectionContextResolver requires LemmaAbsenceContextResolver but no such interface exists in refiner-domain or its dependsOn"
+          },
+          {
+            "code": "A2a-DEP",
+            "severity": "critical",
+            "message": "GetCmd requires AuditReportStore but no such interface exists in audit-cli or its dependsOn"
+          },
+          {
+            "code": "A2a-DEP",
+            "severity": "critical",
+            "message": "GetCmd requires RefinementPlanStore but no such interface exists in audit-cli or its dependsOn"
+          },
+          {
+            "code": "A2a-DEP",
+            "severity": "critical",
+            "message": "GetCmd requires AnalyzerRegistry but no such interface exists in audit-cli or its dependsOn"
+          },
+          {
+            "code": "A2a-DEP",
+            "severity": "critical",
+            "message": "GetCmd requires CorrectionContextResolver but no such interface exists in audit-cli or its dependsOn"
+          },
+          {
+            "code": "A2a-DEP",
+            "severity": "critical",
+            "message": "GetCmd requires RevisionArtifactStore but no such interface exists in audit-cli or its dependsOn"
+          },
+          {
+            "code": "A2a-DEP",
+            "severity": "critical",
+            "message": "GetCmd requires ImpactPreviewStore but no such interface exists in audit-cli or its dependsOn"
+          },
+          {
+            "code": "A2a-DEP",
+            "severity": "critical",
+            "message": "PlanCmd requires AuditReportStore but no such interface exists in audit-cli or its dependsOn"
+          },
+          {
+            "code": "A2a-DEP",
+            "severity": "critical",
+            "message": "PlanCmd requires RefinerEngine but no such interface exists in audit-cli or its dependsOn"
+          },
+          {
+            "code": "A2a-DEP",
+            "severity": "critical",
+            "message": "PlanCmd requires RefinementPlanStore but no such interface exists in audit-cli or its dependsOn"
+          },
+          {
+            "code": "A2a-DEP",
+            "severity": "critical",
+            "message": "DefaultEphemeralPlanRenderer requires AuditNodeIndexFactory but no such interface exists in audit-cli or its dependsOn"
+          },
+          {
+            "code": "A2a-DEP",
+            "severity": "critical",
+            "message": "DefaultEphemeralPlanRenderer requires CorrectionContextResolver but no such interface exists in audit-cli or its dependsOn"
+          },
+          {
+            "code": "A2a-DEP",
+            "severity": "critical",
+            "message": "GetCmd requires AuditReportStore but no such interface exists in audit-cli or its dependsOn"
+          },
+          {
+            "code": "A2a-DEP",
+            "severity": "critical",
+            "message": "GetCmd requires RefinementPlanStore but no such interface exists in audit-cli or its dependsOn"
+          },
+          {
+            "code": "A2a-DEP",
+            "severity": "critical",
+            "message": "GetCmd requires AnalyzerRegistry but no such interface exists in audit-cli or its dependsOn"
+          },
+          {
+            "code": "A2a-DEP",
+            "severity": "critical",
+            "message": "GetCmd requires CorrectionContextResolver but no such interface exists in audit-cli or its dependsOn"
+          },
+          {
+            "code": "A2a-DEP",
+            "severity": "critical",
+            "message": "GetCmd requires ImpactPreviewStore but no such interface exists in audit-cli or its dependsOn"
+          },
+          {
+            "code": "A2a-DEP",
+            "severity": "critical",
+            "message": "PlanCmd requires AuditReportStore but no such interface exists in audit-cli or its dependsOn"
+          },
+          {
+            "code": "A2a-DEP",
+            "severity": "critical",
+            "message": "PlanCmd requires RefinerEngine but no such interface exists in audit-cli or its dependsOn"
+          },
+          {
+            "code": "A2a-DEP",
+            "severity": "critical",
+            "message": "PlanCmd requires RefinementPlanStore but no such interface exists in audit-cli or its dependsOn"
+          }
+        ]
+      },
+      "a2b": {
+        "id": "A2b",
+        "name": "Port Coverage",
+        "score": 0,
+        "violations": []
+      },
+      "a2c": {
+        "id": "A2c",
+        "name": "Reachability",
+        "score": 0,
+        "violations": []
+      },
+      "a2d": {
+        "id": "A2d",
+        "name": "Contract Utilization",
+        "score": 0,
+        "violations": []
+      },
+      "a2e": {
+        "id": "A2e",
+        "name": "Path Traceability",
+        "score": 0,
+        "violations": []
+      },
+      "composite": 0
+    },
+    "a3": {
+      "modules": [
+        {
+          "name": "audit-cli",
+          "ca": 0,
+          "ce": 0,
+          "instability": 0,
+          "abstractness": 0.375,
+          "distance": 0.625,
+          "zone": "pain",
+          "score": 0.375
+        },
+        {
+          "name": "refiner-domain",
+          "ca": 0,
+          "ce": 0,
+          "instability": 0,
+          "abstractness": 0.25,
+          "distance": 0.75,
+          "zone": "pain",
+          "score": 0.25
+        },
+        {
+          "name": "audit-domain",
+          "ca": 0,
+          "ce": 0,
+          "instability": 0,
+          "abstractness": 0.5,
+          "distance": 0.5,
+          "zone": "off_sequence",
+          "score": 0.5
+        }
+      ],
+      "componentCount": 16,
+      "threshold": 30,
+      "ramp": 0.5333333333333333,
+      "rawScore": 0.375,
+      "effectiveScore": 0.6666666666666667
+    },
+    "a4": {
+      "dependencyInversionHolds": true,
+      "acyclic": true,
+      "a4a": {
+        "id": "A4a",
+        "name": "Dependency Inversion",
+        "score": 1,
+        "violations": [
+          {
+            "code": "A4-NOLAYER",
+            "severity": "warning",
+            "message": "No modules declare a layer — A4 cannot be evaluated"
+          }
+        ]
+      },
+      "a4b": {
+        "id": "A4b",
+        "name": "Acyclicity",
+        "score": 1,
+        "violations": []
+      },
+      "a4c": {
+        "id": "A4c",
+        "name": "Adapter Polarity",
+        "score": 1,
+        "violations": []
+      },
+      "a4d": {
+        "id": "A4d",
+        "name": "Layer Isolation",
+        "score": 1,
+        "violations": []
+      },
+      "a4e": {
+        "id": "A4e",
+        "name": "Composition Root Discipline",
+        "score": 1,
+        "violations": []
+      },
+      "composite": 1
+    },
+    "a5": {
+      "a5aScore": 0.45,
+      "a5bScore": 1,
+      "a5cScore": 0.25,
+      "a5dScore": 1,
+      "a5eScore": 1,
+      "violations": [
+        {
+          "code": "A5a",
+          "severity": "warning",
+          "message": "Factory pattern 'AuditNodeIndexFactory' has 1 implementation(s) — needs ≥2 to justify"
+        },
+        {
+          "code": "A5a",
+          "severity": "warning",
+          "message": "Factory pattern 'NlpTokenizerFactory' has 1 implementation(s) — needs ≥2 to justify"
+        },
+        {
+          "code": "A5a",
+          "severity": "warning",
+          "message": "Strategy pattern 'LemmaAbsenceProposalStrategy' has 1 implementation(s) — needs ≥2 for polymorphism"
+        },
+        {
+          "code": "A5a",
+          "severity": "warning",
+          "message": "Factory pattern 'LemmaAbsenceLlmGeneratorFactory' has 1 implementation(s) — needs ≥2 to justify"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'SpacyNlpTokenizerFactory' declared in Factory pattern but not found in any module"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'LemmaAbsenceMvpStrategy' declared in Strategy pattern but not found in any module"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'DefaultLemmaAbsenceLlmGeneratorFactory' declared in Factory pattern but not found in any module"
+        }
+      ],
+      "composite": 0.6475000000000001
+    },
+    "a6": {
+      "score": 0.875,
+      "totalInterfaces": 8,
+      "inflatedCount": 1,
+      "inflated": [
+        {
+          "interfaceName": "AuditNodeIndex",
+          "moduleName": "audit-domain",
+          "implementorName": "MapAuditNodeIndex",
+          "reason": "1:1 in same module 'audit-domain', no consumers, no pattern"
+        }
+      ]
+    },
+    "c1": {
+      "score": 1,
+      "maxDepth": 1,
+      "avgDepth": 0.15384615384615385,
+      "entries": [
+        {
+          "entryPoint": "audit-cli.commands.ContentAuditCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.AnalyzeCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.GetCmd",
+          "depth": 1
+        },
+        {
+          "entryPoint": "audit-cli.commands.DeleteCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.PruneCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.PlanCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.ReviseCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.ConfigAnalyzerCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.StatsAnalyzerCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.ApproveCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.RejectCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.GetCmd",
+          "depth": 1
+        },
+        {
+          "entryPoint": "audit-cli.commands.PlanCmd",
+          "depth": 0
+        }
+      ]
+    },
+    "c3": {
+      "score": 0.8142857142857143,
+      "details": [
+        {
+          "name": "SentenceLengthContextResolver",
+          "moduleName": "refiner-domain",
+          "cbo": 1,
+          "threshold": 4,
+          "layer": "domain",
+          "score": 1
+        },
+        {
+          "name": "LemmaAbsenceContextResolver",
+          "moduleName": "refiner-domain",
+          "cbo": 1,
+          "threshold": 4,
+          "layer": "domain",
+          "score": 1
+        },
+        {
+          "name": "DispatchingCorrectionContextResolver",
+          "moduleName": "refiner-domain",
+          "cbo": 3,
+          "threshold": 4,
+          "layer": "domain",
+          "score": 1
+        },
+        {
+          "name": "GetCmd",
+          "moduleName": "audit-cli",
+          "cbo": 9,
+          "threshold": 4,
+          "layer": "domain",
+          "score": 0
+        },
+        {
+          "name": "PlanCmd",
+          "moduleName": "audit-cli",
+          "cbo": 5,
+          "threshold": 4,
+          "layer": "domain",
+          "score": 0.8
+        },
+        {
+          "name": "DefaultAuditNodeIndexFactory",
+          "moduleName": "audit-domain",
+          "cbo": 1,
+          "threshold": 4,
+          "layer": "domain",
+          "score": 1
+        },
+        {
+          "name": "MapAuditNodeIndex",
+          "moduleName": "audit-domain",
+          "cbo": 1,
+          "threshold": 4,
+          "layer": "domain",
+          "score": 1
+        },
+        {
+          "name": "SentenceLengthContextResolver",
+          "moduleName": "refiner-domain",
+          "cbo": 1,
+          "threshold": 4,
+          "layer": "domain",
+          "score": 1
+        },
+        {
+          "name": "LemmaAbsenceContextResolver",
+          "moduleName": "refiner-domain",
+          "cbo": 1,
+          "threshold": 4,
+          "layer": "domain",
+          "score": 1
+        },
+        {
+          "name": "DispatchingCorrectionContextResolver",
+          "moduleName": "refiner-domain",
+          "cbo": 1,
+          "threshold": 4,
+          "layer": "domain",
+          "score": 1
+        },
+        {
+          "name": "DefaultEphemeralPlanRenderer",
+          "moduleName": "audit-cli",
+          "cbo": 4,
+          "threshold": 4,
+          "layer": "domain",
+          "score": 1
+        },
+        {
+          "name": "DefaultCorrectionContextJsonMapper",
+          "moduleName": "audit-cli",
+          "cbo": 1,
+          "threshold": 4,
+          "layer": "domain",
+          "score": 1
+        },
+        {
+          "name": "GetCmd",
+          "moduleName": "audit-cli",
+          "cbo": 9,
+          "threshold": 4,
+          "layer": "domain",
+          "score": 0
+        },
+        {
+          "name": "PlanCmd",
+          "moduleName": "audit-cli",
+          "cbo": 6,
+          "threshold": 4,
+          "layer": "domain",
+          "score": 0.6
+        }
+      ]
+    },
+    "mode": "PATCH_ONLY",
+    "compositeScore": 0.6028628117913832
+  },
+  "timestamp": "2026-05-09T16:14:43.079Z"
+}

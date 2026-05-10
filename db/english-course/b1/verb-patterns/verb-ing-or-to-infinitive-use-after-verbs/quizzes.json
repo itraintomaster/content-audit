@@ -1,1162 +1,1021 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343470"
-    },
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2fb"
-    },
-    "miniTheory": "",
-    "translation": "Él sugirió salir temprano.",
-    "successMessage": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Verb+ing or to + infinitive: Use after verbs",
-    "theoryId": "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
-    "imageUrl": "",
-    "id": "67fab6d59930102295343470",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
-    "audioUrl": "",
-    "answerImageUrl": "",
-    "kind": "CLOZE",
-    "form": {
-      "sentenceParts": [
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "He suggested"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "leaving"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(leave) early.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": ""
-    },
-    "answerAudioUrl": "B1.06.04.01",
-    "topicName": "Verb patterns"
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343470"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343471"
-    },
-    "code": "",
-    "imageUrl": "",
-    "successMessage": "",
-    "answerImageUrl": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Verb+ing or to + infinitive: Use after verbs",
-    "theoryId": "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2fb"
-    },
-    "miniTheory": "",
-    "answerAudioUrl": "B1.06.04.02",
-    "id": "67fab6d59930102295343471",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
-    "form": {
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She always promises",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to call"
-          ]
-        },
-        {
-          "text": "(call).",
-          "options": null,
-          "kind": "TEXT"
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      }
-    },
-    "audioUrl": "",
-    "translation": "Ella siempre promete llamar.",
-    "topicName": "Verb patterns"
+  "id" : "67fab6d59930102295343470",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2fb"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343472"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "answerAudioUrl": "B1.06.04.03",
-    "code": "",
-    "imageUrl": "",
-    "miniTheory": "",
-    "id": "67fab6d59930102295343472",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2fb"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Verb+ing or to + infinitive: Use after verbs",
-    "theoryId": "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
-    "audioUrl": "",
-    "answerImageUrl": "",
-    "instructions": "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She'd like",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to drink"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(drink) some water.",
-          "options": null
-        }
-      ]
-    },
-    "translation": "A ella le gustaría beber un poco de agua.",
-    "successMessage": "",
-    "topicName": "Verb patterns"
+  "title" : "Verb+ing or to + infinitive: Use after verbs",
+  "instructions" : "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
+  "translation" : "Él sugirió salir temprano.",
+  "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
+  "topicName" : "Verb patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343473"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "successMessage": "",
-    "miniTheory": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2fb"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "audioUrl": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "She can't help"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "feeling"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(feel) sad.",
-          "options": null
-        }
-      ]
-    },
-    "theoryId": "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
-    "imageUrl": "",
-    "answerImageUrl": "",
-    "translation": "Ella no puede evitar sentirse triste.",
-    "answerAudioUrl": "B1.06.04.04",
-    "id": "67fab6d59930102295343473",
-    "code": "",
-    "kind": "CLOZE",
-    "title": "Verb+ing or to + infinitive: Use after verbs",
-    "instructions": "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
-    "topicName": "Verb patterns"
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343474"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "translation": "Me gustaría comerme una pizza ahora.",
-    "successMessage": "",
-    "miniTheory": "",
-    "answerAudioUrl": "B1.06.04.05",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "imageUrl": "",
-    "audioUrl": "",
-    "instructions": "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
-    "kind": "CLOZE",
-    "title": "Verb+ing or to + infinitive: Use after verbs",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I'd like",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to eat"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(eat) a pizza now.",
-          "options": null
-        }
-      ]
-    },
-    "theoryId": "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2fb"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "answerImageUrl": "",
-    "id": "67fab6d59930102295343474",
-    "topicName": "Verb patterns"
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343475"
-    },
-    "answerAudioUrl": "B1.06.04.06",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Verb+ing or to + infinitive: Use after verbs",
-    "theoryId": "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
-    "imageUrl": "",
-    "answerImageUrl": "",
-    "successMessage": "",
-    "miniTheory": "",
-    "id": "67fab6d59930102295343475",
-    "code": "",
-    "instructions": "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
-    "form": {
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We promised",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to buy"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(buy) drinks.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      }
-    },
-    "audioUrl": "",
-    "translation": "Prometimos comprar bebidas.",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2fb"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "topicName": "Verb patterns"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343476"
-    },
-    "code": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Verb+ing or to + infinitive: Use after verbs",
-    "form": {
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We expected",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to ace"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(ace) the test.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": ""
-    },
-    "answerImageUrl": "",
-    "id": "67fab6d59930102295343476",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "audioUrl": "",
-    "translation": "Esperábamos sacar la máxima nota en el examen.",
-    "successMessage": "",
-    "miniTheory": "",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2fb"
-    },
-    "theoryId": "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
-    "answerAudioUrl": "B1.06.04.07",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
-    "imageUrl": "",
-    "topicName": "Verb patterns"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343477"
-    },
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They couldn't help",
-          "options": null
-        },
-        {
-          "options": [
-            "crying"
-          ],
-          "kind": "CLOZE",
-          "text": ""
-        },
-        {
-          "kind": "TEXT",
-          "text": "(cry).",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      }
-    },
-    "imageUrl": "",
-    "successMessage": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2fb"
-    },
-    "theoryId": "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
-    "audioUrl": "",
-    "id": "67fab6d59930102295343477",
-    "title": "Verb+ing or to + infinitive: Use after verbs",
-    "instructions": "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "answerAudioUrl": "B1.06.04.08",
-    "code": "",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "translation": "No pudieron evitar llorar.",
-    "topicName": "Verb patterns"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343478"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Verb+ing or to + infinitive: Use after verbs",
-    "instructions": "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2fb"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "imageUrl": "",
-    "translation": "No me importa limpiar por ti.",
-    "successMessage": "",
-    "miniTheory": "",
-    "id": "67fab6d59930102295343478",
-    "answerAudioUrl": "B1.06.04.09",
-    "code": "",
-    "kind": "CLOZE",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I don't mind",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "cleaning"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(clean) for you.",
-          "options": null
-        }
-      ]
-    },
-    "theoryId": "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
-    "audioUrl": "",
-    "answerImageUrl": "",
-    "topicName": "Verb patterns"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343479"
-    },
-    "answerAudioUrl": "B1.06.04.10",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2fb"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She's going to suggest",
-          "options": null
-        },
-        {
-          "options": [
-            "catching"
-          ],
-          "kind": "CLOZE",
-          "text": ""
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "(catch) the bus."
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": ""
-    },
-    "theoryId": "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
-    "imageUrl": "",
-    "id": "67fab6d59930102295343479",
-    "code": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "successMessage": "",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "title": "Verb+ing or to + infinitive: Use after verbs",
-    "instructions": "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
-    "audioUrl": "",
-    "translation": "Ella va a sugerir tomar el autobús.",
-    "topicName": "Verb patterns"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534347a"
-    },
-    "id": "67fab6d5993010229534347a",
-    "kind": "CLOZE",
-    "theoryId": "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
-    "audioUrl": "",
-    "translation": "Ella accedió a presentar el proyecto.",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "She agreed"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to present"
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "(present) the project."
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      }
-    },
-    "answerImageUrl": "",
-    "answerAudioUrl": "B1.06.04.11",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2fb"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
-    "miniTheory": "",
-    "code": "",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Verb+ing or to + infinitive: Use after verbs",
-    "imageUrl": "",
-    "successMessage": "",
-    "topicName": "Verb patterns"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534347b"
-    },
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "audioUrl": "",
-    "successMessage": "",
-    "id": "67fab6d5993010229534347b",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2fb"
-    },
-    "title": "Verb+ing or to + infinitive: Use after verbs",
-    "instructions": "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
-    "form": {
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They often practise",
-          "options": null
-        },
-        {
-          "text": "",
-          "options": [
-            "speaking"
-          ],
-          "kind": "CLOZE"
-        },
-        {
-          "kind": "TEXT",
-          "text": "(speak) English.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": ""
-    },
-    "translation": "A menudo practican hablar inglés.",
-    "answerImageUrl": "",
-    "answerAudioUrl": "B1.06.04.12",
-    "code": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "miniTheory": "",
-    "theoryId": "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
-    "imageUrl": "",
-    "topicName": "Verb patterns"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534347c"
-    },
-    "translation": "Ella discutió ir sola.",
-    "successMessage": "",
-    "code": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
-    "imageUrl": "",
-    "miniTheory": "",
-    "answerAudioUrl": "B1.06.04.13",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2fb"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Verb+ing or to + infinitive: Use after verbs",
-    "form": {
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She discussed",
-          "options": null
-        },
-        {
-          "text": "",
-          "options": [
-            "going"
-          ],
-          "kind": "CLOZE"
-        },
-        {
-          "kind": "TEXT",
-          "text": "(go) alone.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      }
-    },
-    "id": "67fab6d5993010229534347c",
-    "kind": "CLOZE",
-    "instructions": "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
-    "audioUrl": "",
-    "answerImageUrl": "",
-    "topicName": "Verb patterns"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534347d"
-    },
-    "title": "Verb+ing or to + infinitive: Use after verbs",
-    "instructions": "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
-    "code": "",
-    "translation": "Practicamos bailar.",
-    "successMessage": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
-    "imageUrl": "",
-    "audioUrl": "",
-    "miniTheory": "",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2fb"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We practised",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "dancing"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(dance).",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      }
-    },
-    "answerImageUrl": "",
-    "answerAudioUrl": "B1.06.04.14",
-    "id": "67fab6d5993010229534347d",
-    "topicName": "Verb patterns"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534347e"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We agreed",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to edit"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(edit) the report.",
-          "options": null
-        }
-      ]
-    },
-    "imageUrl": "",
-    "successMessage": "",
-    "answerImageUrl": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
-    "answerAudioUrl": "B1.06.04.15",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "audioUrl": "",
-    "miniTheory": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2fb"
-    },
-    "instructions": "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
-    "title": "Verb+ing or to + infinitive: Use after verbs",
-    "translation": "Acordamos editar el informe.",
-    "id": "67fab6d5993010229534347e",
-    "code": "",
-    "topicName": "Verb patterns"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534347f"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
-    "audioUrl": "",
-    "kind": "CLOZE",
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2fb"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
-    "translation": "Esperaban quedarse en el hotel.",
-    "answerImageUrl": "",
-    "id": "67fab6d5993010229534347f",
-    "title": "Verb+ing or to + infinitive: Use after verbs",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "text": "They expected",
-          "options": null,
-          "kind": "TEXT"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to stay"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(stay) at the hotel.",
-          "options": null
-        }
-      ]
-    },
-    "imageUrl": "",
-    "successMessage": "",
-    "miniTheory": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "answerAudioUrl": "B1.06.04.16",
-    "topicName": "Verb patterns"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343480"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "translation": "Decidieron ver una película.",
-    "miniTheory": "",
-    "code": "",
-    "instructions": "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
-    "form": {
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They decided",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to watch"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(watch) a movie.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": ""
-    },
-    "imageUrl": "",
-    "answerImageUrl": "",
-    "id": "67fab6d59930102295343480",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2fb"
-    },
-    "title": "Verb+ing or to + infinitive: Use after verbs",
-    "audioUrl": "",
-    "successMessage": "",
-    "answerAudioUrl": "B1.06.04.17",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
-    "topicName": "Verb patterns"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343481"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
-    "answerAudioUrl": "B1.06.04.18",
-    "id": "67fab6d59930102295343481",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "successMessage": "",
-    "answerImageUrl": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "text": "We decided",
-          "options": null,
-          "kind": "TEXT"
-        },
-        {
-          "text": "",
-          "options": [
-            "to go"
-          ],
-          "kind": "CLOZE"
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "(go) home later."
-        }
-      ]
-    },
-    "audioUrl": "",
-    "miniTheory": "",
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2fb"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Verb+ing or to + infinitive: Use after verbs",
-    "kind": "CLOZE",
-    "instructions": "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
-    "imageUrl": "",
-    "translation": "Decidimos ir a casa más tarde.",
-    "topicName": "Verb patterns"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343482"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "answerImageUrl": "",
-    "code": "",
-    "kind": "CLOZE",
-    "translation": "¿Te importa pasarme el libro?",
-    "successMessage": "",
-    "miniTheory": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2fb"
-    },
-    "instructions": "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
-    "title": "Verb+ing or to + infinitive: Use after verbs",
-    "form": {
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Do you mind",
-          "options": null
-        },
-        {
-          "text": "",
-          "options": [
-            "handing"
-          ],
-          "kind": "CLOZE"
-        },
-        {
-          "kind": "TEXT",
-          "text": "(hand) me the book?",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      }
-    },
-    "audioUrl": "",
-    "id": "67fab6d59930102295343482",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "imageUrl": "",
-    "answerAudioUrl": "B1.06.04.19",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
-    "topicName": "Verb patterns"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343483"
-    },
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Verb+ing or to + infinitive: Use after verbs",
-    "form": {
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "text": "They discussed",
-          "options": null,
-          "kind": "TEXT"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "renting"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(rent) an apartment.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE"
-    },
-    "theoryId": "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
-    "imageUrl": "",
-    "miniTheory": "",
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2fb"
-    },
-    "instructions": "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
-    "successMessage": "",
-    "id": "67fab6d59930102295343483",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "audioUrl": "",
-    "translation": "Discutieron alquilar un apartamento.",
-    "answerImageUrl": "",
-    "answerAudioUrl": "B1.06.04.20",
-    "topicName": "Verb patterns"
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.06.04.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He suggested",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "leaving" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(leave) early.",
+      "options" : null
+    } ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343471"
+  },
+  "id" : "67fab6d59930102295343471",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2fb"
+  },
+  "title" : "Verb+ing or to + infinitive: Use after verbs",
+  "instructions" : "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
+  "translation" : "Ella siempre promete llamar.",
+  "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
+  "topicName" : "Verb patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.06.04.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She always promises",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to call" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(call).",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343472"
+  },
+  "id" : "67fab6d59930102295343472",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2fb"
+  },
+  "title" : "Verb+ing or to + infinitive: Use after verbs",
+  "instructions" : "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
+  "translation" : "A ella le gustaría beber un poco de agua.",
+  "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
+  "topicName" : "Verb patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.06.04.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She'd like",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to drink" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(drink) some water.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343473"
+  },
+  "id" : "67fab6d59930102295343473",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2fb"
+  },
+  "title" : "Verb+ing or to + infinitive: Use after verbs",
+  "instructions" : "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
+  "translation" : "Ella no puede evitar sentirse triste.",
+  "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
+  "topicName" : "Verb patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.06.04.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She can't help",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "feeling" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(feel) sad.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343474"
+  },
+  "id" : "67fab6d59930102295343474",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2fb"
+  },
+  "title" : "Verb+ing or to + infinitive: Use after verbs",
+  "instructions" : "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
+  "translation" : "Me gustaría comerme una pizza ahora.",
+  "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
+  "topicName" : "Verb patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.06.04.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'd like",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to eat" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(eat) a pizza now.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343475"
+  },
+  "id" : "67fab6d59930102295343475",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2fb"
+  },
+  "title" : "Verb+ing or to + infinitive: Use after verbs",
+  "instructions" : "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
+  "translation" : "Prometimos comprar bebidas.",
+  "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
+  "topicName" : "Verb patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.06.04.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We promised",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to buy" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(buy) drinks.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343476"
+  },
+  "id" : "67fab6d59930102295343476",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2fb"
+  },
+  "title" : "Verb+ing or to + infinitive: Use after verbs",
+  "instructions" : "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
+  "translation" : "Esperábamos sacar la máxima nota en el examen.",
+  "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
+  "topicName" : "Verb patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.06.04.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We expected",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to ace" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(ace) the test.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343477"
+  },
+  "id" : "67fab6d59930102295343477",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2fb"
+  },
+  "title" : "Verb+ing or to + infinitive: Use after verbs",
+  "instructions" : "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
+  "translation" : "No pudieron evitar llorar.",
+  "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
+  "topicName" : "Verb patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.06.04.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They couldn't help",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "crying" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(cry).",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343478"
+  },
+  "id" : "67fab6d59930102295343478",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2fb"
+  },
+  "title" : "Verb+ing or to + infinitive: Use after verbs",
+  "instructions" : "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
+  "translation" : "No me importa limpiar por ti.",
+  "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
+  "topicName" : "Verb patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.06.04.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't mind",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "cleaning" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(clean) for you.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343479"
+  },
+  "id" : "67fab6d59930102295343479",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2fb"
+  },
+  "title" : "Verb+ing or to + infinitive: Use after verbs",
+  "instructions" : "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
+  "translation" : "Ella va a sugerir tomar el autobús.",
+  "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
+  "topicName" : "Verb patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.06.04.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's going to suggest",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "catching" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(catch) the bus.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534347a"
+  },
+  "id" : "67fab6d5993010229534347a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2fb"
+  },
+  "title" : "Verb+ing or to + infinitive: Use after verbs",
+  "instructions" : "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
+  "translation" : "Ella accedió a presentar el proyecto.",
+  "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
+  "topicName" : "Verb patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.06.04.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She agreed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to present" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(present) the project.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534347b"
+  },
+  "id" : "67fab6d5993010229534347b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2fb"
+  },
+  "title" : "Verb+ing or to + infinitive: Use after verbs",
+  "instructions" : "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
+  "translation" : "A menudo practican hablar inglés.",
+  "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
+  "topicName" : "Verb patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.06.04.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They often practise",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "speaking" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(speak) English.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534347c"
+  },
+  "id" : "67fab6d5993010229534347c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2fb"
+  },
+  "title" : "Verb+ing or to + infinitive: Use after verbs",
+  "instructions" : "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
+  "translation" : "Ella discutió ir sola.",
+  "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
+  "topicName" : "Verb patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.06.04.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She discussed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "going" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(go) alone.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534347d"
+  },
+  "id" : "67fab6d5993010229534347d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2fb"
+  },
+  "title" : "Verb+ing or to + infinitive: Use after verbs",
+  "instructions" : "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
+  "translation" : "Practicamos bailar.",
+  "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
+  "topicName" : "Verb patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.06.04.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We practised",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "dancing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(dance).",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534347e"
+  },
+  "id" : "67fab6d5993010229534347e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2fb"
+  },
+  "title" : "Verb+ing or to + infinitive: Use after verbs",
+  "instructions" : "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
+  "translation" : "Acordamos editar el informe.",
+  "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
+  "topicName" : "Verb patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.06.04.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We agreed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to edit" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(edit) the report.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534347f"
+  },
+  "id" : "67fab6d5993010229534347f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2fb"
+  },
+  "title" : "Verb+ing or to + infinitive: Use after verbs",
+  "instructions" : "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
+  "translation" : "Esperaban quedarse en el hotel.",
+  "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
+  "topicName" : "Verb patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.06.04.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They expected",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to stay" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(stay) at the hotel.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343480"
+  },
+  "id" : "67fab6d59930102295343480",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2fb"
+  },
+  "title" : "Verb+ing or to + infinitive: Use after verbs",
+  "instructions" : "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
+  "translation" : "Decidieron ver una película.",
+  "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
+  "topicName" : "Verb patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.06.04.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They decided",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to watch" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(watch) a movie.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343481"
+  },
+  "id" : "67fab6d59930102295343481",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2fb"
+  },
+  "title" : "Verb+ing or to + infinitive: Use after verbs",
+  "instructions" : "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
+  "translation" : "Decidimos ir a casa más tarde.",
+  "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
+  "topicName" : "Verb patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.06.04.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We decided",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to go" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(go) home later.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343482"
+  },
+  "id" : "67fab6d59930102295343482",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2fb"
+  },
+  "title" : "Verb+ing or to + infinitive: Use after verbs",
+  "instructions" : "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
+  "translation" : "¿Te importa pasarme el libro?",
+  "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
+  "topicName" : "Verb patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.06.04.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you mind",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "handing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(hand) me the book?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343483"
+  },
+  "id" : "67fab6d59930102295343483",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2fb"
+  },
+  "title" : "Verb+ing or to + infinitive: Use after verbs",
+  "instructions" : "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
+  "translation" : "Discutieron alquilar un apartamento.",
+  "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
+  "topicName" : "Verb patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.06.04.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They discussed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "renting" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(rent) an apartment.",
+      "options" : null
+    } ]
+  }
+} ]

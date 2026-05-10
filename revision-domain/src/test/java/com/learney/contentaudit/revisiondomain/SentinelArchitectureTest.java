@@ -47,6 +47,12 @@ public class SentinelArchitectureTest {
   }
 
   @Test
+  public void enforcePackageContextoverrideVisibility() {
+    JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
+    ArchRuleDefinition.noClasses().that().resideOutsideOfPackages("..revisiondomain..", "java..").should().dependOnClassesThat().resideInAPackage("..revisiondomain.contextoverride..").allowEmptyShould(true).check(classes);
+  }
+
+  @Test
   public void enforceAllDeclaredClassesExist() {
     try {
       Class.forName("com.learney.contentaudit.revisiondomain.RevisionVerdict");
@@ -124,6 +130,21 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: ConsolidatedViewBuilderConfig - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.revisiondomain.CorrectionContextSource");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CorrectionContextSource - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.CorrectionContextOverride");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CorrectionContextOverride - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.OverrideRejectedException");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: OverrideRejectedException - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.revisiondomain.Reviser");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: Reviser - " + e.getMessage());
@@ -192,6 +213,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.revisiondomain.ImpactPreviewStore");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: ImpactPreviewStore - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.CorrectionContextOverrideParser");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CorrectionContextOverrideParser - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.revisiondomain.engine.LemmaAbsenceProposalStrategyRegistryConfig");
@@ -452,6 +478,26 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.revisiondomain.fielddiff.DefaultNodeFieldDifferFactory");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultNodeFieldDifferFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.contextoverride.CorrectionContextStructuralValidator");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CorrectionContextStructuralValidator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.contextoverride.DefaultCorrectionContextOverrideParser");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultCorrectionContextOverrideParser - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.contextoverride.LemmaAbsenceContextStructuralValidator");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaAbsenceContextStructuralValidator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.contextoverride.SentenceLengthContextStructuralValidator");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SentenceLengthContextStructuralValidator - " + e.getMessage());
     }
   }
 }

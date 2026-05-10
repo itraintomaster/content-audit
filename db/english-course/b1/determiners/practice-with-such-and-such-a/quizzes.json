@@ -1,1162 +1,1021 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435ba"
-    },
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30e"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Practice with 'Such' and 'Such a'",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "This is / amazing car.",
-          "options": null
-        },
-        {
-          "text": "",
-          "options": [
-            "This is such an amazing car."
-          ],
-          "kind": "CLOZE"
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ]
-    },
-    "audioUrl": "",
-    "successMessage": "",
-    "answerAudioUrl": "B1.08.04.01",
-    "code": "",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
-    "miniTheory": "",
-    "id": "67fab6d599301022953435ba",
-    "theoryId": "b1.08.Such_and_Such_a",
-    "imageUrl": "",
-    "translation": "Este es un coche tan increíble.",
-    "answerImageUrl": "",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "topicName": "Determiners"
+[ {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435ba"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435bb"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "audioUrl": "",
-    "miniTheory": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30e"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "translation": "Ella es tan mala hablante de francés.",
-    "answerImageUrl": "",
-    "answerAudioUrl": "B1.08.04.02",
-    "code": "",
-    "title": "Practice with 'Such' and 'Such a'",
-    "instructions": "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
-    "form": {
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She is / bad French speaker.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She is such a bad French speaker."
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": ""
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": ""
-    },
-    "theoryId": "b1.08.Such_and_Such_a",
-    "imageUrl": "",
-    "id": "67fab6d599301022953435bb",
-    "kind": "CLOZE",
-    "successMessage": "",
-    "topicName": "Determiners"
+  "id" : "67fab6d599301022953435ba",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30e"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435bc"
-    },
-    "title": "Practice with 'Such' and 'Such a'",
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30e"
-    },
-    "answerAudioUrl": "B1.08.04.03",
-    "kind": "CLOZE",
-    "successMessage": "",
-    "miniTheory": "",
-    "instructions": "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
-    "imageUrl": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He reads / long books.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He reads such long books."
-          ]
-        },
-        {
-          "text": "",
-          "options": null,
-          "kind": "TEXT"
-        }
-      ]
-    },
-    "theoryId": "b1.08.Such_and_Such_a",
-    "audioUrl": "",
-    "translation": "Él lee libros tan largos.",
-    "id": "67fab6d599301022953435bc",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "answerImageUrl": "",
-    "topicName": "Determiners"
+  "title" : "Practice with 'Such' and 'Such a'",
+  "instructions" : "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
+  "translation" : "Este es un coche tan increíble.",
+  "theoryId" : "b1.08.Such_and_Such_a",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435bd"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "text": "I felt / good feeling.",
-          "options": null,
-          "kind": "TEXT"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I felt such a good feeling."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ]
-    },
-    "audioUrl": "",
-    "code": "",
-    "translation": "Sentí una sensación tan buena.",
-    "answerImageUrl": "",
-    "title": "Practice with 'Such' and 'Such a'",
-    "instructions": "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
-    "theoryId": "b1.08.Such_and_Such_a",
-    "imageUrl": "",
-    "successMessage": "",
-    "id": "67fab6d599301022953435bd",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "answerAudioUrl": "B1.08.04.04",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30e"
-    },
-    "miniTheory": "",
-    "topicName": "Determiners"
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435be"
-    },
-    "successMessage": "",
-    "answerImageUrl": "",
-    "instructions": "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
-    "theoryId": "b1.08.Such_and_Such_a",
-    "translation": "Juegan en un jardín tan grande.",
-    "miniTheory": "",
-    "id": "67fab6d599301022953435be",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30e"
-    },
-    "title": "Practice with 'Such' and 'Such a'",
-    "imageUrl": "",
-    "audioUrl": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "sentenceParts": [
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "They play in / big garden."
-        },
-        {
-          "text": "",
-          "options": [
-            "They play in such a big garden."
-          ],
-          "kind": "CLOZE"
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": ""
-    },
-    "answerAudioUrl": "B1.08.04.05",
-    "code": "",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "topicName": "Determiners"
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435bf"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "That is / big castle.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "That is such a big castle."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ]
-    },
-    "answerAudioUrl": "B1.08.04.06",
-    "id": "67fab6d599301022953435bf",
-    "kind": "CLOZE",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "audioUrl": "",
-    "successMessage": "",
-    "code": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Practice with 'Such' and 'Such a'",
-    "imageUrl": "",
-    "translation": "Ese es un castillo tan grande.",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
-    "theoryId": "b1.08.Such_and_Such_a",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30e"
-    },
-    "topicName": "Determiners"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435c0"
-    },
-    "id": "67fab6d599301022953435c0",
-    "title": "Practice with 'Such' and 'Such a'",
-    "audioUrl": "",
-    "successMessage": "",
-    "instructions": "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We saw / incredible movies.",
-          "options": null
-        },
-        {
-          "text": "",
-          "options": [
-            "We saw such incredible movies."
-          ],
-          "kind": "CLOZE"
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ]
-    },
-    "imageUrl": "",
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30e"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "answerAudioUrl": "B1.08.04.07",
-    "theoryId": "b1.08.Such_and_Such_a",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "kind": "CLOZE",
-    "translation": "Vimos películas tan increíbles.",
-    "topicName": "Determiners"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435c1"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
-    "audioUrl": "",
-    "answerImageUrl": "",
-    "answerAudioUrl": "B1.08.04.08",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30e"
-    },
-    "title": "Practice with 'Such' and 'Such a'",
-    "successMessage": "",
-    "code": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Those are / nice shoes.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Those are such nice shoes."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": ""
-    },
-    "imageUrl": "",
-    "translation": "Esos son zapatos tan bonitos.",
-    "kind": "CLOZE",
-    "theoryId": "b1.08.Such_and_Such_a",
-    "miniTheory": "",
-    "id": "67fab6d599301022953435c1",
-    "topicName": "Determiners"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435c2"
-    },
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30e"
-    },
-    "imageUrl": "",
-    "audioUrl": "",
-    "successMessage": "",
-    "kind": "CLOZE",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Practice with 'Such' and 'Such a'",
-    "answerAudioUrl": "B1.08.04.09",
-    "code": "",
-    "instructions": "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
-    "theoryId": "b1.08.Such_and_Such_a",
-    "answerImageUrl": "",
-    "id": "67fab6d599301022953435c2",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They hate / sour candy.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They hate such sour candy."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ]
-    },
-    "translation": "Odian los caramelos tan agrios.",
-    "miniTheory": "",
-    "topicName": "Determiners"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435c3"
-    },
-    "miniTheory": "",
-    "answerAudioUrl": "B1.08.04.10",
-    "form": {
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He is / excellent soccer player.",
-          "options": null
-        },
-        {
-          "options": [
-            "He is such an excellent soccer player."
-          ],
-          "kind": "CLOZE",
-          "text": ""
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": ""
-    },
-    "audioUrl": "",
-    "translation": "Él es un jugador de fútbol tan excelente.",
-    "successMessage": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30e"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "imageUrl": "",
-    "answerImageUrl": "",
-    "theoryId": "b1.08.Such_and_Such_a",
-    "code": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Practice with 'Such' and 'Such a'",
-    "id": "67fab6d599301022953435c3",
-    "kind": "CLOZE",
-    "instructions": "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
-    "topicName": "Determiners"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435c4"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "text": "I read / awful book.",
-          "options": null,
-          "kind": "TEXT"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I read such an awful book."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ]
-    },
-    "translation": "Leí un libro tan horrible.",
-    "answerImageUrl": "",
-    "code": "",
-    "kind": "CLOZE",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b1.08.Such_and_Such_a",
-    "successMessage": "",
-    "miniTheory": "",
-    "id": "67fab6d599301022953435c4",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30e"
-    },
-    "title": "Practice with 'Such' and 'Such a'",
-    "audioUrl": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.04.11",
-    "topicName": "Determiners"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435c5"
-    },
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30e"
-    },
-    "title": "Practice with 'Such' and 'Such a'",
-    "imageUrl": "",
-    "successMessage": "",
-    "id": "67fab6d599301022953435c5",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The animals are / beautiful creatures.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The animals are such beautiful creatures."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ]
-    },
-    "theoryId": "b1.08.Such_and_Such_a",
-    "audioUrl": "",
-    "miniTheory": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
-    "translation": "Los animales son criaturas tan hermosas.",
-    "answerImageUrl": "",
-    "answerAudioUrl": "B1.08.04.12",
-    "kind": "CLOZE",
-    "topicName": "Determiners"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435c6"
-    },
-    "miniTheory": "",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "audioUrl": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30e"
-    },
-    "theoryId": "b1.08.Such_and_Such_a",
-    "imageUrl": "",
-    "translation": "Mary es una mujer tan tranquila.",
-    "successMessage": "",
-    "answerImageUrl": "",
-    "answerAudioUrl": "B1.08.04.13",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Practice with 'Such' and 'Such a'",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
-    "form": {
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "text": "Mary is / quiet woman.",
-          "options": null,
-          "kind": "TEXT"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Mary is such a quiet woman."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      }
-    },
-    "id": "67fab6d599301022953435c6",
-    "code": "",
-    "topicName": "Determiners"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435c7"
-    },
-    "translation": "Esas son galletas tan sabrosas.",
-    "successMessage": "",
-    "miniTheory": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
-    "audioUrl": "",
-    "code": "",
-    "imageUrl": "",
-    "answerImageUrl": "",
-    "id": "67fab6d599301022953435c7",
-    "kind": "CLOZE",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "answerAudioUrl": "B1.08.04.14",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30e"
-    },
-    "title": "Practice with 'Such' and 'Such a'",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Those are / tasty cookies.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Those are such tasty cookies."
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": ""
-        }
-      ]
-    },
-    "theoryId": "b1.08.Such_and_Such_a",
-    "topicName": "Determiners"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435c8"
-    },
-    "miniTheory": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "imageUrl": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "text": "I visited / hot place.",
-          "options": null,
-          "kind": "TEXT"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I visited such a hot place."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ]
-    },
-    "theoryId": "b1.08.Such_and_Such_a",
-    "audioUrl": "",
-    "id": "67fab6d599301022953435c8",
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30e"
-    },
-    "instructions": "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
-    "kind": "CLOZE",
-    "answerImageUrl": "",
-    "answerAudioUrl": "B1.08.04.15",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Practice with 'Such' and 'Such a'",
-    "translation": "Visité un lugar tan caluroso.",
-    "topicName": "Determiners"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435c9"
-    },
-    "kind": "CLOZE",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They visit / crowded places.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They visit such crowded places."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ]
-    },
-    "miniTheory": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Practice with 'Such' and 'Such a'",
-    "theoryId": "b1.08.Such_and_Such_a",
-    "imageUrl": "",
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30e"
-    },
-    "instructions": "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
-    "audioUrl": "",
-    "successMessage": "",
-    "answerImageUrl": "",
-    "answerAudioUrl": "B1.08.04.16",
-    "id": "67fab6d599301022953435c9",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "translation": "Visitan lugares tan concurridos.",
-    "topicName": "Determiners"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435ca"
-    },
-    "id": "67fab6d599301022953435ca",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
-    "successMessage": "",
-    "answerImageUrl": "",
-    "title": "Practice with 'Such' and 'Such a'",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.04.17",
-    "code": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He uses / sharp knife.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He uses such a sharp knife."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": ""
-    },
-    "audioUrl": "",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30e"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b1.08.Such_and_Such_a",
-    "translation": "Él usa un cuchillo tan afilado.",
-    "miniTheory": "",
-    "topicName": "Determiners"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435cb"
-    },
-    "kind": "CLOZE",
-    "theoryId": "b1.08.Such_and_Such_a",
-    "translation": "Llevas una mochila tan ligera.",
-    "successMessage": "",
-    "answerAudioUrl": "B1.08.04.18",
-    "id": "67fab6d599301022953435cb",
-    "audioUrl": "",
-    "instructions": "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "You carry / light backpack.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "You carry such a light backpack."
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": ""
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": ""
-    },
-    "imageUrl": "",
-    "code": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Practice with 'Such' and 'Such a'",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30e"
-    },
-    "topicName": "Determiners"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435cc"
-    },
-    "form": {
-      "name": "",
-      "sentenceParts": [
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "It became / scary film."
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "It became such a scary film."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": ""
-    },
-    "answerAudioUrl": "B1.08.04.19",
-    "id": "67fab6d599301022953435cc",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Practice with 'Such' and 'Such a'",
-    "audioUrl": "",
-    "translation": "Se convirtió en una película tan aterradora.",
-    "answerImageUrl": "",
-    "code": "",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
-    "successMessage": "",
-    "miniTheory": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30e"
-    },
-    "theoryId": "b1.08.Such_and_Such_a",
-    "imageUrl": "",
-    "topicName": "Determiners"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435cd"
-    },
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30e"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "translation": "Pasé tan poco tiempo.",
-    "successMessage": "",
-    "answerAudioUrl": "B1.08.04.20",
-    "imageUrl": "",
-    "audioUrl": "",
-    "code": "",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Practice with 'Such' and 'Such a'",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I spent / short time.",
-          "options": null
-        },
-        {
-          "options": [
-            "I spent such a short time."
-          ],
-          "kind": "CLOZE",
-          "text": ""
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ]
-    },
-    "id": "67fab6d599301022953435cd",
-    "theoryId": "b1.08.Such_and_Such_a",
-    "topicName": "Determiners"
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.04.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is / amazing car.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "This is such an amazing car." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435bb"
+  },
+  "id" : "67fab6d599301022953435bb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30e"
+  },
+  "title" : "Practice with 'Such' and 'Such a'",
+  "instructions" : "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
+  "translation" : "Ella es tan mala hablante de francés.",
+  "theoryId" : "b1.08.Such_and_Such_a",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.04.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is / bad French speaker.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She is such a bad French speaker." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435bc"
+  },
+  "id" : "67fab6d599301022953435bc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30e"
+  },
+  "title" : "Practice with 'Such' and 'Such a'",
+  "instructions" : "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
+  "translation" : "Él lee libros tan largos.",
+  "theoryId" : "b1.08.Such_and_Such_a",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.04.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He reads / long books.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He reads such long books." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435bd"
+  },
+  "id" : "67fab6d599301022953435bd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30e"
+  },
+  "title" : "Practice with 'Such' and 'Such a'",
+  "instructions" : "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
+  "translation" : "Sentí una sensación tan buena.",
+  "theoryId" : "b1.08.Such_and_Such_a",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.04.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I felt / good feeling.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I felt such a good feeling." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435be"
+  },
+  "id" : "67fab6d599301022953435be",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30e"
+  },
+  "title" : "Practice with 'Such' and 'Such a'",
+  "instructions" : "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
+  "translation" : "Juegan en un jardín tan grande.",
+  "theoryId" : "b1.08.Such_and_Such_a",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.04.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They play in / big garden.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They play in such a big garden." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435bf"
+  },
+  "id" : "67fab6d599301022953435bf",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30e"
+  },
+  "title" : "Practice with 'Such' and 'Such a'",
+  "instructions" : "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
+  "translation" : "Ese es un castillo tan grande.",
+  "theoryId" : "b1.08.Such_and_Such_a",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.04.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That is / big castle.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "That is such a big castle." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435c0"
+  },
+  "id" : "67fab6d599301022953435c0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30e"
+  },
+  "title" : "Practice with 'Such' and 'Such a'",
+  "instructions" : "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
+  "translation" : "Vimos películas tan increíbles.",
+  "theoryId" : "b1.08.Such_and_Such_a",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.04.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We saw / incredible movies.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We saw such incredible movies." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435c1"
+  },
+  "id" : "67fab6d599301022953435c1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30e"
+  },
+  "title" : "Practice with 'Such' and 'Such a'",
+  "instructions" : "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
+  "translation" : "Esos son zapatos tan bonitos.",
+  "theoryId" : "b1.08.Such_and_Such_a",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.04.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Those are / nice shoes.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Those are such nice shoes." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435c2"
+  },
+  "id" : "67fab6d599301022953435c2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30e"
+  },
+  "title" : "Practice with 'Such' and 'Such a'",
+  "instructions" : "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
+  "translation" : "Odian los caramelos tan agrios.",
+  "theoryId" : "b1.08.Such_and_Such_a",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.04.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They hate / sour candy.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They hate such sour candy." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435c3"
+  },
+  "id" : "67fab6d599301022953435c3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30e"
+  },
+  "title" : "Practice with 'Such' and 'Such a'",
+  "instructions" : "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
+  "translation" : "Él es un jugador de fútbol tan excelente.",
+  "theoryId" : "b1.08.Such_and_Such_a",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.04.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is / excellent soccer player.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He is such an excellent soccer player." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435c4"
+  },
+  "id" : "67fab6d599301022953435c4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30e"
+  },
+  "title" : "Practice with 'Such' and 'Such a'",
+  "instructions" : "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
+  "translation" : "Leí un libro tan horrible.",
+  "theoryId" : "b1.08.Such_and_Such_a",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.04.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I read / awful book.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I read such an awful book." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435c5"
+  },
+  "id" : "67fab6d599301022953435c5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30e"
+  },
+  "title" : "Practice with 'Such' and 'Such a'",
+  "instructions" : "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
+  "translation" : "Los animales son criaturas tan hermosas.",
+  "theoryId" : "b1.08.Such_and_Such_a",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.04.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The animals are / beautiful creatures.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The animals are such beautiful creatures." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435c6"
+  },
+  "id" : "67fab6d599301022953435c6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30e"
+  },
+  "title" : "Practice with 'Such' and 'Such a'",
+  "instructions" : "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
+  "translation" : "Mary es una mujer tan tranquila.",
+  "theoryId" : "b1.08.Such_and_Such_a",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.04.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Mary is / quiet woman.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Mary is such a quiet woman." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435c7"
+  },
+  "id" : "67fab6d599301022953435c7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30e"
+  },
+  "title" : "Practice with 'Such' and 'Such a'",
+  "instructions" : "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
+  "translation" : "Esas son galletas tan sabrosas.",
+  "theoryId" : "b1.08.Such_and_Such_a",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.04.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Those are / tasty cookies.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Those are such tasty cookies." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435c8"
+  },
+  "id" : "67fab6d599301022953435c8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30e"
+  },
+  "title" : "Practice with 'Such' and 'Such a'",
+  "instructions" : "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
+  "translation" : "Visité un lugar tan caluroso.",
+  "theoryId" : "b1.08.Such_and_Such_a",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.04.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I visited / hot place.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I visited such a hot place." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435c9"
+  },
+  "id" : "67fab6d599301022953435c9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30e"
+  },
+  "title" : "Practice with 'Such' and 'Such a'",
+  "instructions" : "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
+  "translation" : "Visitan lugares tan concurridos.",
+  "theoryId" : "b1.08.Such_and_Such_a",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.04.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They visit / crowded places.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They visit such crowded places." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435ca"
+  },
+  "id" : "67fab6d599301022953435ca",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30e"
+  },
+  "title" : "Practice with 'Such' and 'Such a'",
+  "instructions" : "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
+  "translation" : "Él usa un cuchillo tan afilado.",
+  "theoryId" : "b1.08.Such_and_Such_a",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.04.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He uses / sharp knife.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He uses such a sharp knife." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435cb"
+  },
+  "id" : "67fab6d599301022953435cb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30e"
+  },
+  "title" : "Practice with 'Such' and 'Such a'",
+  "instructions" : "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
+  "translation" : "Llevas una mochila tan ligera.",
+  "theoryId" : "b1.08.Such_and_Such_a",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.04.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You carry / light backpack.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "You carry such a light backpack." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435cc"
+  },
+  "id" : "67fab6d599301022953435cc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30e"
+  },
+  "title" : "Practice with 'Such' and 'Such a'",
+  "instructions" : "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
+  "translation" : "Se convirtió en una película tan aterradora.",
+  "theoryId" : "b1.08.Such_and_Such_a",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.04.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It became / scary film.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "It became such a scary film." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435cd"
+  },
+  "id" : "67fab6d599301022953435cd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30e"
+  },
+  "title" : "Practice with 'Such' and 'Such a'",
+  "instructions" : "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
+  "translation" : "Pasé tan poco tiempo.",
+  "theoryId" : "b1.08.Such_and_Such_a",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.04.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I spent / short time.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I spent such a short time." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+} ]

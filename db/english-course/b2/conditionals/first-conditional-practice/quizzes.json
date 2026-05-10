@@ -1,1402 +1,1181 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344760"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "audioUrl": "",
-    "translation": "Él estará feliz si le das un regalo.",
-    "kind": "CLOZE",
-    "title": "First Conditional Practice",
-    "instructions": "Escribe oraciones usando el 'first conditional'.",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "text": "He",
-          "options": null,
-          "kind": "TEXT"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will be"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) happy if you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "give"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(give) him a present.",
-          "options": null
-        }
-      ]
-    },
-    "imageUrl": "",
-    "answerImageUrl": "",
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47b"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "miniTheory": "",
-    "id": "67fab6d59930102295344760",
-    "successMessage": "",
-    "answerAudioUrl": "B2.12.02.01",
-    "topicName": "Conditionals"
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344760"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344761"
-    },
-    "instructions": "Escribe oraciones usando el 'first conditional'.",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47b"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "First Conditional Practice",
-    "answerImageUrl": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will be"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) angry if you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "don't call"
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "(not / call) me soon."
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": ""
-    },
-    "translation": "Me enojaré si no me llamas pronto.",
-    "imageUrl": "",
-    "successMessage": "",
-    "code": "",
-    "kind": "CLOZE",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "miniTheory": "",
-    "answerAudioUrl": "B2.12.02.02",
-    "id": "67fab6d59930102295344761",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "audioUrl": "",
-    "topicName": "Conditionals"
+  "id" : "67fab6d59930102295344760",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47b"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344762"
-    },
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47b"
-    },
-    "instructions": "Escribe oraciones usando el 'first conditional'.",
-    "successMessage": "",
-    "kind": "CLOZE",
-    "miniTheory": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "translation": "El perro ladrará si alguien se acerca.",
-    "code": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "First Conditional Practice",
-    "form": {
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The dog",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will bark"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(bark) if someone",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "comes"
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "(come) near."
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      }
-    },
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "imageUrl": "",
-    "audioUrl": "",
-    "id": "67fab6d59930102295344762",
-    "answerAudioUrl": "B2.12.02.03",
-    "answerImageUrl": "",
-    "topicName": "Conditionals"
+  "title" : "First Conditional Practice",
+  "instructions" : "Escribe oraciones usando el 'first conditional'.",
+  "translation" : "Él estará feliz si le das un regalo.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344763"
-    },
-    "audioUrl": "",
-    "miniTheory": "",
-    "title": "First Conditional Practice",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47b"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Escribe oraciones usando el 'first conditional'.",
-    "form": {
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The teacher",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will smile"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(smile) if you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "do"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(do) your homework.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      }
-    },
-    "answerImageUrl": "",
-    "id": "67fab6d59930102295344763",
-    "translation": "El maestro sonreirá si haces tu tarea.",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "imageUrl": "",
-    "successMessage": "",
-    "answerAudioUrl": "B2.12.02.04",
-    "code": "",
-    "topicName": "Conditionals"
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344764"
-    },
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47b"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "First Conditional Practice",
-    "successMessage": "",
-    "id": "67fab6d59930102295344764",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "audioUrl": "",
-    "translation": "Si necesitan dinero, les prestaremos un poco.",
-    "instructions": "Escribe oraciones usando el 'first conditional'.",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "code": "",
-    "kind": "CLOZE",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "need"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(need) money, we",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will lend"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(lend) some.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": ""
-    },
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.02.05",
-    "topicName": "Conditionals"
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344765"
-    },
-    "code": "",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "First Conditional Practice",
-    "id": "67fab6d59930102295344765",
-    "translation": "Si llueve, nos quedaremos en casa.",
-    "answerAudioUrl": "B2.12.02.06",
-    "imageUrl": "",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47b"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Escribe oraciones usando el 'first conditional'.",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If it",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "rains"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(rain), we",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will stay"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(stay) at home.",
-          "options": null
-        }
-      ]
-    },
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "audioUrl": "",
-    "successMessage": "",
-    "kind": "CLOZE",
-    "topicName": "Conditionals"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344766"
-    },
-    "successMessage": "",
-    "answerImageUrl": "",
-    "id": "67fab6d59930102295344766",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47b"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "options": [
-            "will go"
-          ],
-          "kind": "CLOZE",
-          "text": ""
-        },
-        {
-          "kind": "TEXT",
-          "text": "(go) to the beach if it",
-          "options": null
-        },
-        {
-          "options": [
-            "is"
-          ],
-          "kind": "CLOZE",
-          "text": ""
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) sunny.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": ""
-    },
-    "imageUrl": "",
-    "instructions": "Escribe oraciones usando el 'first conditional'.",
-    "audioUrl": "",
-    "translation": "Ellos irán a la playa si hace sol.",
-    "miniTheory": "",
-    "answerAudioUrl": "B2.12.02.07",
-    "kind": "CLOZE",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "First Conditional Practice",
-    "topicName": "Conditionals"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344767"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If he",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "is"
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "(be) thirsty, he"
-        },
-        {
-          "options": [
-            "will drink"
-          ],
-          "kind": "CLOZE",
-          "text": ""
-        },
-        {
-          "kind": "TEXT",
-          "text": "(drink) some water.",
-          "options": null
-        }
-      ]
-    },
-    "imageUrl": "",
-    "audioUrl": "",
-    "id": "67fab6d59930102295344767",
-    "title": "First Conditional Practice",
-    "translation": "Si tiene sed, beberá un poco de agua.",
-    "answerImageUrl": "",
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47b"
-    },
-    "instructions": "Escribe oraciones usando el 'first conditional'.",
-    "miniTheory": "",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "successMessage": "",
-    "answerAudioUrl": "B2.12.02.08",
-    "topicName": "Conditionals"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344768"
-    },
-    "answerImageUrl": "",
-    "code": "",
-    "kind": "CLOZE",
-    "form": {
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If you",
-          "options": null
-        },
-        {
-          "options": [
-            "want"
-          ],
-          "kind": "CLOZE",
-          "text": ""
-        },
-        {
-          "kind": "TEXT",
-          "text": "(want) help, I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will assist"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(assist) you.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": ""
-    },
-    "imageUrl": "",
-    "audioUrl": "",
-    "instructions": "Escribe oraciones usando el 'first conditional'.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "miniTheory": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47b"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "First Conditional Practice",
-    "id": "67fab6d59930102295344768",
-    "translation": "Si quieres ayuda, te ayudaré.",
-    "successMessage": "",
-    "answerAudioUrl": "B2.12.02.09",
-    "topicName": "Conditionals"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344769"
-    },
-    "code": "",
-    "kind": "CLOZE",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Escribe oraciones usando el 'first conditional'.",
-    "successMessage": "",
-    "miniTheory": "",
-    "id": "67fab6d59930102295344769",
-    "title": "First Conditional Practice",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "audioUrl": "",
-    "translation": "Si no estudias bien, no aprobarás.",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "don't study"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / study) well, you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "won't pass"
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "(not / pass)."
-        }
-      ],
-      "kind": "CLOZE"
-    },
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47b"
-    },
-    "answerImageUrl": "",
-    "answerAudioUrl": "B2.12.02.10",
-    "imageUrl": "",
-    "topicName": "Conditionals"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534476a"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "answerImageUrl": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47b"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The vase",
-          "options": null
-        },
-        {
-          "text": "",
-          "options": [
-            "will fall"
-          ],
-          "kind": "CLOZE"
-        },
-        {
-          "kind": "TEXT",
-          "text": "(fall) if you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "touch"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(touch) it.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": ""
-    },
-    "successMessage": "",
-    "answerAudioUrl": "B2.12.02.11",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "translation": "El jarrón se caerá si lo tocas.",
-    "miniTheory": "",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "code": "",
-    "kind": "CLOZE",
-    "title": "First Conditional Practice",
-    "instructions": "Escribe oraciones usando el 'first conditional'.",
-    "imageUrl": "",
-    "audioUrl": "",
-    "id": "67fab6d5993010229534476a",
-    "topicName": "Conditionals"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534476b"
-    },
-    "code": "",
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Escribe oraciones usando el 'first conditional'.",
-    "successMessage": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47b"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will visit"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(visit) you if you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "invite"
-          ]
-        },
-        {
-          "text": "(invite) her.",
-          "options": null,
-          "kind": "TEXT"
-        }
-      ]
-    },
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.02.12",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "title": "First Conditional Practice",
-    "audioUrl": "",
-    "answerImageUrl": "",
-    "id": "67fab6d5993010229534476b",
-    "translation": "Ella te visitará si la invitas.",
-    "miniTheory": "",
-    "topicName": "Conditionals"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534476c"
-    },
-    "title": "First Conditional Practice",
-    "answerAudioUrl": "B2.12.02.13",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47b"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "successMessage": "",
-    "id": "67fab6d5993010229534476c",
-    "code": "",
-    "answerImageUrl": "",
-    "imageUrl": "",
-    "miniTheory": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "He"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will give"
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "(give) you a call if he"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "has"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(have) some news.",
-          "options": null
-        }
-      ]
-    },
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "audioUrl": "",
-    "translation": "Él te llamará si tiene alguna noticia.",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Escribe oraciones usando el 'first conditional'.",
-    "topicName": "Conditionals"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534476d"
-    },
-    "id": "67fab6d5993010229534476d",
-    "instructions": "Escribe oraciones usando el 'first conditional'.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "imageUrl": "",
-    "code": "",
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "First Conditional Practice",
-    "form": {
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The computer",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "won't work"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / work) if you",
-          "options": null
-        },
-        {
-          "text": "",
-          "options": [
-            "don't charge"
-          ],
-          "kind": "CLOZE"
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / charge) it.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": ""
-    },
-    "audioUrl": "",
-    "translation": "La computadora no funcionará si no la cargas.",
-    "successMessage": "",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "answerAudioUrl": "B2.12.02.14",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47b"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "topicName": "Conditionals"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534476e"
-    },
-    "title": "First Conditional Practice",
-    "translation": "Si ella está aburrida, verá la televisión.",
-    "answerImageUrl": "",
-    "answerAudioUrl": "B2.12.02.15",
-    "id": "67fab6d5993010229534476e",
-    "instructions": "Escribe oraciones usando el 'first conditional'.",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If she",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "is"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) bored, she",
-          "options": null
-        },
-        {
-          "options": [
-            "will watch"
-          ],
-          "kind": "CLOZE",
-          "text": ""
-        },
-        {
-          "text": "(watch) TV.",
-          "options": null,
-          "kind": "TEXT"
-        }
-      ]
-    },
-    "audioUrl": "",
-    "miniTheory": "",
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47b"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "kind": "CLOZE",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "imageUrl": "",
-    "successMessage": "",
-    "topicName": "Conditionals"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534476f"
-    },
-    "answerAudioUrl": "B2.12.02.16",
-    "id": "67fab6d5993010229534476f",
-    "successMessage": "",
-    "miniTheory": "",
-    "instructions": "Escribe oraciones usando el 'first conditional'.",
-    "form": {
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If it",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "snows"
-          ]
-        },
-        {
-          "text": "(snow), we",
-          "options": null,
-          "kind": "TEXT"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "won't go"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / go) to school.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE"
-    },
-    "translation": "Si nieva, no iremos a la escuela.",
-    "answerImageUrl": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "First Conditional Practice",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47b"
-    },
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "imageUrl": "",
-    "audioUrl": "",
-    "code": "",
-    "kind": "CLOZE",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344770"
-    },
-    "miniTheory": "",
-    "id": "67fab6d59930102295344770",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47b"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The players",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will win"
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "(win) the game if they"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "train"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(train) a lot.",
-          "options": null
-        }
-      ]
-    },
-    "imageUrl": "",
-    "kind": "CLOZE",
-    "title": "First Conditional Practice",
-    "translation": "Los jugadores ganarán el partido si entrenan mucho.",
-    "code": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "audioUrl": "",
-    "answerImageUrl": "",
-    "answerAudioUrl": "B2.12.02.17",
-    "instructions": "Escribe oraciones usando el 'first conditional'.",
-    "successMessage": "",
-    "topicName": "Conditionals"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344771"
-    },
-    "kind": "CLOZE",
-    "answerImageUrl": "",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "answerAudioUrl": "B2.12.02.18",
-    "code": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47b"
-    },
-    "imageUrl": "",
-    "translation": "Si los gatos tienen hambre, pedirán comida.",
-    "miniTheory": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "First Conditional Practice",
-    "instructions": "Escribe oraciones usando el 'first conditional'.",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "If the cats"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "are"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) hungry, they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will ask"
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "(ask) for food."
-        }
-      ]
-    },
-    "audioUrl": "",
-    "successMessage": "",
-    "id": "67fab6d59930102295344771",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "topicName": "Conditionals"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344772"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "First Conditional Practice",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "imageUrl": "",
-    "successMessage": "",
-    "miniTheory": "",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47b"
-    },
-    "translation": "Si repruebas el examen, estudiarás más.",
-    "answerAudioUrl": "B2.12.02.19",
-    "id": "67fab6d59930102295344772",
-    "code": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "fail"
-          ]
-        },
-        {
-          "options": null,
-          "kind": "TEXT",
-          "text": "(fail) the test, you"
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will study"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(study) harder.",
-          "options": null
-        }
-      ]
-    },
-    "kind": "CLOZE",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Escribe oraciones usando el 'first conditional'.",
-    "audioUrl": "",
-    "answerImageUrl": "",
-    "topicName": "Conditionals"
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344773"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "First Conditional Practice",
-    "translation": "Si están disponibles, nos ayudarán.",
-    "successMessage": "",
-    "miniTheory": "",
-    "answerImageUrl": "",
-    "code": "",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47b"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "instructions": "Escribe oraciones usando el 'first conditional'.",
-    "form": {
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "are"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) available, they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will help"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(help) us.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": ""
-    },
-    "id": "67fab6d59930102295344773",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "imageUrl": "",
-    "audioUrl": "",
-    "answerAudioUrl": "B2.12.02.20",
-    "topicName": "Conditionals"
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.02.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will be" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) happy if you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "give" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(give) him a present.",
+      "options" : null
+    } ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344761"
+  },
+  "id" : "67fab6d59930102295344761",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47b"
+  },
+  "title" : "First Conditional Practice",
+  "instructions" : "Escribe oraciones usando el 'first conditional'.",
+  "translation" : "Me enojaré si no me llamas pronto.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.02.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will be" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) angry if you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't call" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / call) me soon.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344762"
+  },
+  "id" : "67fab6d59930102295344762",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47b"
+  },
+  "title" : "First Conditional Practice",
+  "instructions" : "Escribe oraciones usando el 'first conditional'.",
+  "translation" : "El perro ladrará si alguien se acerca.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.02.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dog",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will bark" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(bark) if someone",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "comes" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(come) near.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344763"
+  },
+  "id" : "67fab6d59930102295344763",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47b"
+  },
+  "title" : "First Conditional Practice",
+  "instructions" : "Escribe oraciones usando el 'first conditional'.",
+  "translation" : "El maestro sonreirá si haces tu tarea.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.02.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The teacher",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will smile" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(smile) if you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "do" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(do) your homework.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344764"
+  },
+  "id" : "67fab6d59930102295344764",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47b"
+  },
+  "title" : "First Conditional Practice",
+  "instructions" : "Escribe oraciones usando el 'first conditional'.",
+  "translation" : "Si necesitan dinero, les prestaremos un poco.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.02.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "need" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(need) money, we",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will lend" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(lend) some.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344765"
+  },
+  "id" : "67fab6d59930102295344765",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47b"
+  },
+  "title" : "First Conditional Practice",
+  "instructions" : "Escribe oraciones usando el 'first conditional'.",
+  "translation" : "Si llueve, nos quedaremos en casa.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.02.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "rains" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(rain), we",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will stay" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(stay) at home.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344766"
+  },
+  "id" : "67fab6d59930102295344766",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47b"
+  },
+  "title" : "First Conditional Practice",
+  "instructions" : "Escribe oraciones usando el 'first conditional'.",
+  "translation" : "Ellos irán a la playa si hace sol.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.02.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will go" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(go) to the beach if it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) sunny.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344767"
+  },
+  "id" : "67fab6d59930102295344767",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47b"
+  },
+  "title" : "First Conditional Practice",
+  "instructions" : "Escribe oraciones usando el 'first conditional'.",
+  "translation" : "Si tiene sed, beberá un poco de agua.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.02.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) thirsty, he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will drink" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(drink) some water.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344768"
+  },
+  "id" : "67fab6d59930102295344768",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47b"
+  },
+  "title" : "First Conditional Practice",
+  "instructions" : "Escribe oraciones usando el 'first conditional'.",
+  "translation" : "Si quieres ayuda, te ayudaré.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.02.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "want" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(want) help, I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will assist" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(assist) you.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344769"
+  },
+  "id" : "67fab6d59930102295344769",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47b"
+  },
+  "title" : "First Conditional Practice",
+  "instructions" : "Escribe oraciones usando el 'first conditional'.",
+  "translation" : "Si no estudias bien, no aprobarás.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.02.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't study" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / study) well, you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "won't pass" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / pass).",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534476a"
+  },
+  "id" : "67fab6d5993010229534476a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47b"
+  },
+  "title" : "First Conditional Practice",
+  "instructions" : "Escribe oraciones usando el 'first conditional'.",
+  "translation" : "El jarrón se caerá si lo tocas.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.02.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The vase",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will fall" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(fall) if you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "touch" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(touch) it.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534476b"
+  },
+  "id" : "67fab6d5993010229534476b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47b"
+  },
+  "title" : "First Conditional Practice",
+  "instructions" : "Escribe oraciones usando el 'first conditional'.",
+  "translation" : "Ella te visitará si la invitas.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.02.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will visit" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(visit) you if you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "invite" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(invite) her.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534476c"
+  },
+  "id" : "67fab6d5993010229534476c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47b"
+  },
+  "title" : "First Conditional Practice",
+  "instructions" : "Escribe oraciones usando el 'first conditional'.",
+  "translation" : "Él te llamará si tiene alguna noticia.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.02.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will give" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(give) you a call if he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "has" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(have) some news.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534476d"
+  },
+  "id" : "67fab6d5993010229534476d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47b"
+  },
+  "title" : "First Conditional Practice",
+  "instructions" : "Escribe oraciones usando el 'first conditional'.",
+  "translation" : "La computadora no funcionará si no la cargas.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.02.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The computer",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "won't work" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / work) if you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't charge" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / charge) it.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534476e"
+  },
+  "id" : "67fab6d5993010229534476e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47b"
+  },
+  "title" : "First Conditional Practice",
+  "instructions" : "Escribe oraciones usando el 'first conditional'.",
+  "translation" : "Si ella está aburrida, verá la televisión.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.02.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) bored, she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will watch" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(watch) TV.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534476f"
+  },
+  "id" : "67fab6d5993010229534476f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47b"
+  },
+  "title" : "First Conditional Practice",
+  "instructions" : "Escribe oraciones usando el 'first conditional'.",
+  "translation" : "Si nieva, no iremos a la escuela.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.02.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "snows" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(snow), we",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "won't go" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / go) to school.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344770"
+  },
+  "id" : "67fab6d59930102295344770",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47b"
+  },
+  "title" : "First Conditional Practice",
+  "instructions" : "Escribe oraciones usando el 'first conditional'.",
+  "translation" : "Los jugadores ganarán el partido si entrenan mucho.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.02.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The players",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will win" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(win) the game if they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "train" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(train) a lot.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344771"
+  },
+  "id" : "67fab6d59930102295344771",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47b"
+  },
+  "title" : "First Conditional Practice",
+  "instructions" : "Escribe oraciones usando el 'first conditional'.",
+  "translation" : "Si los gatos tienen hambre, pedirán comida.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.02.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If the cats",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) hungry, they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will ask" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(ask) for food.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344772"
+  },
+  "id" : "67fab6d59930102295344772",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47b"
+  },
+  "title" : "First Conditional Practice",
+  "instructions" : "Escribe oraciones usando el 'first conditional'.",
+  "translation" : "Si repruebas el examen, estudiarás más.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.02.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "fail" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(fail) the test, you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will study" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(study) harder.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344773"
+  },
+  "id" : "67fab6d59930102295344773",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47b"
+  },
+  "title" : "First Conditional Practice",
+  "instructions" : "Escribe oraciones usando el 'first conditional'.",
+  "translation" : "Si están disponibles, nos ayudarán.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.02.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) available, they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will help" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(help) us.",
+      "options" : null
+    } ]
+  }
+} ]

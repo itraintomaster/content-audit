@@ -1,4 +1,4 @@
-analyzedAt: 2026-04-11T19:25:21.297039Z
+analyzedAt: 2026-05-10T01:26:43.466205Z
 system: ContentAudit
 modules:
 - name: audit-infrastructure
@@ -14,24 +14,983 @@ modules:
     type: class
     visibility: package-private
   implementations:
+  - name: FileSystemActiveAnalysisSelectionStore
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: baseDir
+      type: Path
+    sentinelStatus: differs
+    implements:
+    - ActiveAnalysisSelectionStore
   - name: FileSystemAuditReportStore
     source: mixed
     visibility: public
     requiresInject:
     - name: baseDir
       type: Path
-    sentinelStatus: differs
     implements:
     - AuditReportStore
+  - name: FileSystemRevisionArtifactStore
+    source: mixed
+    visibility: public
+    requiresInject:
+    - name: baseDir
+      type: Path
+    implements:
+    - RevisionArtifactStore
+  - name: FileSystemImpactPreviewStore
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: baseDir
+      type: Path
+    implements:
+    - ImpactPreviewStore
   - name: FileSystemRefinementPlanStore
     source: mixed
     visibility: public
     requiresInject:
     - name: baseDir
       type: Path
-    sentinelStatus: differs
     implements:
     - RefinementPlanStore
+- name: revision-domain
+  source: sentinel
+  models:
+  - name: FieldChange
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: original
+      type: Object
+    - name: consolidated
+      type: Object
+    - name: pendingProjection
+      type: Object
+  - name: ConsolidatedView
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: activeAuditId
+      type: String
+    - name: activePlanId
+      type: String
+    - name: availability
+      type: ConsolidatedViewAvailability
+    - name: unavailability
+      type: ConsolidatedViewUnavailability
+    - name: computedAt
+      type: Instant
+    - name: nodeImpacts
+      type: List<NodeImpact>
+    - name: nonApplicablePendings
+      type: List<NonApplicablePending>
+  - name: NodeImpact
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: nodeTarget
+      type: AuditTarget
+    - name: nodeId
+      type: String
+    - name: acceptedProposalIds
+      type: List<String>
+    - name: fieldChanges
+      type: "Map<String,FieldChange>"
+    - name: pendingProposalIds
+      type: List<String>
+  - name: FieldExclusionRole
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: OPAQUE_PERSISTENCE_ID
+      type: constant
+    - name: STRUCTURAL_REFERENCE
+      type: constant
+    - name: TIMESTAMP
+      type: constant
+    - name: INTERNAL_ORDER
+      type: constant
+    - name: NON_SEMANTIC
+      type: constant
+  - name: NonApplicablePending
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: proposalId
+      type: String
+    - name: reason
+      type: NonApplicablePendingReason
+    - name: detail
+      type: String
+  - name: ConsolidatedViewUnavailability
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: reason
+      type: ConsolidatedViewUnavailabilityReason
+    - name: detail
+      type: String
+  - name: NonApplicablePendingReason
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: NODE_ABSENT
+      type: constant
+    - name: ELEMENT_BEFORE_MISMATCH
+      type: constant
+    - name: OTHER
+      type: constant
+  - name: FieldPath
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: raw
+      type: String
+  - name: ConsolidatedViewUnavailabilityReason
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: NO_ACTIVE_ANALYSIS
+      type: constant
+    - name: ACTIVE_PLAN_UNAVAILABLE
+      type: constant
+    - name: INCONSISTENT_PROPOSAL
+      type: constant
+    - name: REAGGREGATION_FAILED
+      type: constant
+    - name: OTHER
+      type: constant
+  - name: ConsolidatedViewAvailability
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: AVAILABLE
+      type: constant
+    - name: UNAVAILABLE
+      type: constant
+  - name: CourseElementSnapshot
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: nodeTarget
+      type: AuditTarget
+    - name: nodeId
+      type: String
+    - name: quiz
+      type: QuizTemplateEntity
+  - name: ConsolidatedViewBuilderConfig
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: activeAnalysisSelectionStore
+      type: ActiveAnalysisSelectionStore
+    - name: auditReportStore
+      type: AuditReportStore
+    - name: refinementPlanStore
+      type: RefinementPlanStore
+    - name: revisionArtifactStore
+      type: RevisionArtifactStore
+    - name: courseRepository
+      type: CourseRepository
+    - name: courseElementLocator
+      type: CourseElementLocator
+    - name: courseMapper
+      type: CourseMapper
+    - name: auditEngine
+      type: AuditEngine
+    - name: nodeFieldDiffer
+      type: NodeFieldDiffer
+  - name: LemmaAbsenceGeneratorResponse
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: quizSentence
+      type: String
+    - name: translation
+      type: String
+  - name: ProposalDerivationException
+    source: sentinel
+    type: exception
+    visibility: public
+    fields:
+    - name: strategyName
+      type: String
+    - name: taskId
+      type: String
+    - name: reason
+      type: String
+    extendsType: RuntimeException
+  - name: RevisionEngineConfig
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: revisers
+      type: "Map<DiagnosisKind,Reviser>"
+    - name: validator
+      type: RevisionValidator
+    - name: artifactStore
+      type: RevisionArtifactStore
+    - name: courseRepository
+      type: CourseRepository
+    - name: elementLocator
+      type: CourseElementLocator
+    - name: refinementPlanStore
+      type: RefinementPlanStore
+    - name: auditReportStore
+      type: AuditReportStore
+    - name: contextResolver
+      type: CorrectionContextResolver<CorrectionContext>
+    - name: lemmaAbsenceStrategyRegistry
+      type: LemmaAbsenceProposalStrategyRegistry
+    - name: lemmaAbsenceProposalDeriver
+      type: LemmaAbsenceProposalDeriver
+    - name: courseMapper
+      type: CourseMapper
+    - name: auditEngine
+      type: AuditEngine
+    - name: impactPreviewStore
+      type: ImpactPreviewStore
+    - name: correctionContextOverrideParser
+      type: CorrectionContextOverrideParser
+  - name: ApprovalMode
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: AUTO
+      type: constant
+    - name: HUMAN
+      type: constant
+  - name: FieldExclusionRule
+    source: sentinel
+    type: class
+    visibility: package-private
+    fields:
+    - name: declaringTypeName
+      type: String
+    - name: fieldName
+      type: String
+    - name: role
+      type: FieldExclusionRole
+  - name: ListIdentityKeySpec
+    source: sentinel
+    type: class
+    visibility: package-private
+    fields:
+    - name: fieldNames
+      type: List<String>
+  - name: ListIdentityRule
+    source: sentinel
+    type: class
+    visibility: package-private
+    fields:
+    - name: declaringTypeName
+      type: String
+    - name: fieldName
+      type: String
+    - name: keySpec
+      type: ListIdentityKeySpec
+  - name: RevisionProposal
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: proposalId
+      type: String
+    - name: taskId
+      type: String
+    - name: planId
+      type: String
+    - name: sourceAuditId
+      type: String
+    - name: diagnosisKind
+      type: DiagnosisKind
+    - name: nodeTarget
+      type: AuditTarget
+    - name: nodeId
+      type: String
+    - name: elementBefore
+      type: CourseElementSnapshot
+    - name: elementAfter
+      type: CourseElementSnapshot
+    - name: rationale
+      type: String
+    - name: reviserKind
+      type: String
+    - name: createdAt
+      type: Instant
+    - name: strategyId
+      type: StrategyId
+  - name: LemmaAbsenceQuizCandidate
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: quizSentence
+      type: String
+    - name: translation
+      type: String
+  - name: RevisionArtifact
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: proposal
+      type: RevisionProposal
+    - name: verdict
+      type: RevisionVerdict
+    - name: rejectionReason
+      type: String
+    - name: outcome
+      type: RevisionOutcomeKind
+    - name: decidedAt
+      type: Instant
+    - name: decisionNote
+      type: String
+    - name: contextSource
+      type: CorrectionContextSource
+    - name: contextOverridePayload
+      type: String
+  - name: RevisionOutcomeKind
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: APPROVED_APPLIED
+      type: constant
+    - name: APPROVED_APPLY_FAILED
+      type: constant
+    - name: REJECTED
+      type: constant
+    - name: NO_REVISER
+      type: constant
+    - name: CONTEXT_UNAVAILABLE
+      type: constant
+    - name: ELEMENT_NOT_FOUND
+      type: constant
+    - name: PENDING_APPROVAL_PERSISTED
+      type: constant
+    - name: ALREADY_PENDING_DECISION
+      type: constant
+    - name: NO_ACTIVE_STRATEGY
+      type: constant
+    - name: STRATEGY_FAILED
+      type: constant
+    - name: OVERRIDE_INVALID
+      type: constant
+    - name: OVERRIDE_NOT_APPLICABLE
+      type: constant
+  - name: RevisionOutcome
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: kind
+      type: RevisionOutcomeKind
+    - name: artifact
+      type: RevisionArtifact
+    - name: errorMessage
+      type: String
+  - name: ProposalDecisionOutcomeKind
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: APPROVED_APPLIED
+      type: constant
+    - name: APPROVED_APPLY_FAILED
+      type: constant
+    - name: REJECTED
+      type: constant
+    - name: NOT_FOUND
+      type: constant
+    - name: ALREADY_DECIDED
+      type: constant
+  - name: ProposalDecisionOutcome
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: kind
+      type: ProposalDecisionOutcomeKind
+    - name: artifact
+      type: RevisionArtifact
+    - name: errorMessage
+      type: String
+  - name: ProposalStrategyFailedException
+    source: sentinel
+    type: exception
+    visibility: public
+    fields:
+    - name: strategyName
+      type: String
+    - name: taskId
+      type: String
+    - name: reason
+      type: String
+    extendsType: RuntimeException
+  - name: StrategyId
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: name
+      type: String
+    - name: version
+      type: String
+    - name: providerId
+      type: String
+  - name: LemmaAbsenceProposalStrategyRegistryConfig
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: registered
+      type: List<LemmaAbsenceProposalStrategy>
+    - name: activeName
+      type: String
+  - name: OverrideRejectedException
+    source: sentinel
+    type: exception
+    visibility: public
+    fields:
+    - name: reason
+      type: String
+    extendsType: RuntimeException
+  - name: ScoreDelta
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: before
+      type: double
+    - name: after
+      type: double
+    - name: difference
+      type: double
+  - name: ImpactPreviewAvailability
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: AVAILABLE
+      type: constant
+    - name: UNAVAILABLE
+      type: constant
+  - name: ImpactPreviewUnavailability
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: reason
+      type: ImpactPreviewUnavailabilityReason
+    - name: detail
+      type: String
+  - name: ImpactPreview
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: proposalId
+      type: String
+    - name: computedAt
+      type: Instant
+    - name: availability
+      type: ImpactPreviewAvailability
+    - name: unavailability
+      type: ImpactPreviewUnavailability
+    - name: levelImpacts
+      type: List<LevelImpact>
+  - name: LevelImpact
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: nodeTarget
+      type: AuditTarget
+    - name: nodeId
+      type: String
+    - name: aggregateDelta
+      type: ScoreDelta
+    - name: dimensionDeltas
+      type: List<DimensionDelta>
+  - name: DimensionDelta
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: dimension
+      type: String
+    - name: delta
+      type: ScoreDelta
+  - name: ImpactPreviewUnavailabilityReason
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: TARGET_NODE_ABSENT
+      type: constant
+    - name: BASE_AUDIT_UNAVAILABLE
+      type: constant
+    - name: SIMULATION_FAILED
+      type: constant
+    - name: OTHER
+      type: constant
+  - name: RevisionVerdict
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: APPROVED
+      type: constant
+    - name: REJECTED
+      type: constant
+    - name: PENDING_APPROVAL
+      type: constant
+  - name: CorrectionContextOverride
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: context
+      type: CorrectionContext
+    - name: rawPayload
+      type: String
+  - name: CorrectionContextSource
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: DERIVED
+      type: constant
+    - name: OVERRIDE
+      type: constant
+  interfaces:
+  - name: ConsolidatedViewBuilder
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "build(Path coursePath): ConsolidatedView"
+  - name: ConsolidatedViewBuilderFactory
+    source: sentinel
+    visibility: public
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(ConsolidatedViewBuilderConfig config): ConsolidatedViewBuilder"
+  - name: NodeFieldDiffer
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "diff(AuditNode original, AuditNode consolidated, AuditNode pendingProjection):\
+        \ Map<String,FieldChange>"
+  - name: LemmaAbsenceQuizCandidateGenerator
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "generate(LemmaAbsenceCorrectionContext context): LemmaAbsenceGeneratorResponse"
+  - name: CorrectionContextStructuralValidator
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "validateAndBuild(JsonNode payload, String expectedNodeId): CorrectionContext"
+  - name: LemmaAbsenceProposalStrategy
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "id(): StrategyId"
+    - signature: "handles(DiagnosisKind kind): boolean"
+    - signature: "propose(RefinementTask task, LemmaAbsenceCorrectionContext context):\
+        \ LemmaAbsenceQuizCandidate"
+  - name: ImpactPreviewStore
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "save(ImpactPreview preview): void"
+    - signature: "findByProposalId(String proposalId): Optional<ImpactPreview>"
+  - name: RevisionEngine
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "revise(String planId, String taskId, Path coursePath, String overridePayload):\
+        \ RevisionOutcome"
+  - name: Reviser
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "propose(RefinementTask task, CorrectionContext context, CourseElementSnapshot\
+        \ before): RevisionProposal"
+    - signature: "handles(DiagnosisKind kind): boolean"
+    - signature: "reviserKind(): String"
+  - name: RevisionEngineFactory
+    source: sentinel
+    visibility: public
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(RevisionEngineConfig config): RevisionEngine"
+  - name: FieldExclusionRegistry
+    source: sentinel
+    visibility: package-private
+    sealed: false
+    exposes:
+    - signature: "isExcluded(String declaringTypeName, String fieldName): boolean"
+    - signature: "getRole(String declaringTypeName, String fieldName): Optional<FieldExclusionRole>"
+  - name: NodeFieldDifferFactory
+    source: sentinel
+    visibility: public
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(): NodeFieldDiffer"
+  - name: ListIdentityRegistry
+    source: sentinel
+    visibility: package-private
+    sealed: false
+    exposes:
+    - signature: "getKeySpec(String declaringTypeName, String fieldName): Optional<ListIdentityKeySpec>"
+  - name: LemmaAbsenceProposalStrategyRegistry
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "active(): Optional<LemmaAbsenceProposalStrategy>"
+    - signature: "byName(String name): Optional<LemmaAbsenceProposalStrategy>"
+    - signature: "listAll(): List<StrategyId>"
+  - name: LemmaAbsenceProposalDeriver
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "derive(CourseElementSnapshot before, LemmaAbsenceQuizCandidate candidate):\
+        \ CourseElementSnapshot"
+  - name: ProposalDecisionServiceFactory
+    source: sentinel
+    visibility: public
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(RevisionEngineConfig config): ProposalDecisionService"
+  - name: CourseElementLocator
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "snapshot(CourseEntity course, AuditTarget target, String nodeId):\
+        \ Optional<CourseElementSnapshot>"
+    - signature: "replace(CourseEntity course, CourseElementSnapshot replacement):\
+        \ CourseEntity"
+  - name: RevisionArtifactStore
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "save(RevisionArtifact artifact): String"
+    - signature: "load(String planId, String proposalId): Optional<RevisionArtifact>"
+    - signature: "listByPlan(String planId): List<RevisionArtifact>"
+    - signature: "findByProposalId(String proposalId, Optional<String> planId): Optional<RevisionArtifact>"
+    - signature: "hasPendingProposalForTask(String planId, String taskId): boolean"
+    - signature: "list(): List<RevisionArtifact>"
+  - name: ProposalDecisionService
+    source: sentinel
+    visibility: public
+    stereotype: service
+    sealed: false
+    exposes:
+    - signature: "approve(String proposalId, Optional<String> planId, Optional<String>\
+        \ note, Path coursePath): ProposalDecisionOutcome"
+    - signature: "reject(String proposalId, Optional<String> planId, Optional<String>\
+        \ reason): ProposalDecisionOutcome"
+  - name: CorrectionContextOverrideParser
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "parse(String rawJson, DiagnosisKind expectedDiagnosisKind, String\
+        \ expectedNodeId): CorrectionContextOverride"
+  - name: RevisionValidatorResult
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "verdict(): RevisionVerdict"
+    - signature: "rejectionReason(): Optional<String>"
+  - name: RevisionValidatorFactory
+    source: sentinel
+    visibility: public
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(ApprovalMode mode): RevisionValidator"
+  - name: ImpactPreviewComputer
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "compute(CourseEntity currentCourse, RevisionProposal proposal):\
+        \ ImpactPreview"
+  - name: RevisionValidator
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "validate(RevisionProposal proposal): RevisionValidatorResult"
+  implementations:
+  - name: CannedLemmaAbsenceQuizCandidateGenerator
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: cannedQuizSentence
+      type: String
+    - name: cannedTranslation
+      type: String
+    implements:
+    - LemmaAbsenceQuizCandidateGenerator
+  - name: LemmaAbsenceMvpStrategy
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: generator
+      type: LemmaAbsenceQuizCandidateGenerator
+    - name: providerId
+      type: String
+    implements:
+    - LemmaAbsenceProposalStrategy
+  - name: SentenceLengthContextStructuralValidator
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: objectMapper
+      type: ObjectMapper
+    implements:
+    - CorrectionContextStructuralValidator
+  - name: LemmaAbsenceContextStructuralValidator
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: objectMapper
+      type: ObjectMapper
+    implements:
+    - CorrectionContextStructuralValidator
+  - name: DefaultCorrectionContextOverrideParser
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: objectMapper
+      type: ObjectMapper
+    - name: validators
+      type: "Map<DiagnosisKind,CorrectionContextStructuralValidator>"
+    implements:
+    - CorrectionContextOverrideParser
+  - name: DefaultListIdentityRegistry
+    source: sentinel
+    visibility: package-private
+    implements:
+    - ListIdentityRegistry
+  - name: DefaultFieldExclusionRegistry
+    source: sentinel
+    visibility: package-private
+    implements:
+    - FieldExclusionRegistry
+  - name: RecursiveNodeFieldDiffer
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: exclusionRegistry
+      type: FieldExclusionRegistry
+    - name: identityRegistry
+      type: ListIdentityRegistry
+    implements:
+    - NodeFieldDiffer
+  - name: DefaultNodeFieldDifferFactory
+    source: sentinel
+    visibility: public
+    implements:
+    - NodeFieldDifferFactory
+  - name: DefaultProposalDecisionServiceFactory
+    source: sentinel
+    visibility: public
+    implements:
+    - ProposalDecisionServiceFactory
+  - name: DispatchingReviser
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: byKind
+      type: "Map<DiagnosisKind,Reviser>"
+    - name: fallback
+      type: IdentityReviser
+    - name: strategyRegistry
+      type: LemmaAbsenceProposalStrategyRegistry
+    - name: deriver
+      type: LemmaAbsenceProposalDeriver
+    implements:
+    - Reviser
+  - name: DefaultRevisionEngineFactory
+    source: sentinel
+    visibility: public
+    implements:
+    - RevisionEngineFactory
+  - name: DefaultRevisionValidatorFactory
+    source: sentinel
+    visibility: public
+    implements:
+    - RevisionValidatorFactory
+  - name: DefaultImpactPreviewComputer
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: courseMapper
+      type: CourseMapper
+    - name: auditEngine
+      type: AuditEngine
+    - name: elementLocator
+      type: CourseElementLocator
+    - name: auditReportStore
+      type: AuditReportStore
+    implements:
+    - ImpactPreviewComputer
+  - name: DefaultConsolidatedViewBuilderFactory
+    source: sentinel
+    visibility: public
+    implements:
+    - ConsolidatedViewBuilderFactory
+  - name: DefaultProposalDecisionService
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: artifactStore
+      type: RevisionArtifactStore
+    - name: courseRepository
+      type: CourseRepository
+    - name: elementLocator
+      type: CourseElementLocator
+    - name: refinementPlanStore
+      type: RefinementPlanStore
+    implements:
+    - ProposalDecisionService
+  - name: IdentityReviser
+    source: implementation
+    visibility: package-private
+    implements:
+    - Reviser
+  - name: HumanApprovalValidator
+    source: sentinel
+    visibility: package-private
+    implements:
+    - RevisionValidator
+  - name: DefaultRevisionValidatorResult
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: verdict
+      type: RevisionVerdict
+    - name: rejectionReason
+      type: Optional<String>
+    implements:
+    - RevisionValidatorResult
+  - name: DefaultCourseElementLocator
+    source: sentinel
+    visibility: package-private
+    implements:
+    - CourseElementLocator
+  - name: AutoApproveValidator
+    source: sentinel
+    visibility: package-private
+    implements:
+    - RevisionValidator
+  - name: DefaultConsolidatedViewBuilder
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: revisionArtifactStore
+      type: RevisionArtifactStore
+    - name: activeAnalysisSelectionStore
+      type: ActiveAnalysisSelectionStore
+    - name: auditReportStore
+      type: AuditReportStore
+    - name: refinementPlanStore
+      type: RefinementPlanStore
+    - name: courseRepository
+      type: CourseRepository
+    - name: courseElementLocator
+      type: CourseElementLocator
+    - name: courseMapper
+      type: CourseMapper
+    - name: auditEngine
+      type: AuditEngine
+    - name: nodeFieldDiffer
+      type: NodeFieldDiffer
+    implements:
+    - ConsolidatedViewBuilder
+  - name: DefaultRevisionEngine
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: refinementPlanStore
+      type: RefinementPlanStore
+    - name: auditReportStore
+      type: AuditReportStore
+    - name: contextResolver
+      type: CorrectionContextResolver<CorrectionContext>
+    - name: reviser
+      type: Reviser
+    - name: validator
+      type: RevisionValidator
+    - name: artifactStore
+      type: RevisionArtifactStore
+    - name: courseRepository
+      type: CourseRepository
+    - name: elementLocator
+      type: CourseElementLocator
+    - name: impactPreviewComputer
+      type: ImpactPreviewComputer
+    - name: impactPreviewStore
+      type: ImpactPreviewStore
+    - name: correctionContextOverrideParser
+      type: CorrectionContextOverrideParser
+    implements:
+    - RevisionEngine
+  - name: DefaultLemmaAbsenceProposalDeriver
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: quizSentenceConverter
+      type: QuizSentenceConverter
+    implements:
+    - LemmaAbsenceProposalDeriver
+  - name: DefaultLemmaAbsenceProposalStrategyRegistry
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: config
+      type: LemmaAbsenceProposalStrategyRegistryConfig
+    implements:
+    - LemmaAbsenceProposalStrategyRegistry
 - name: course-domain
   source: sentinel
   models:
@@ -178,6 +1137,35 @@ modules:
       type: constant
     - name: KNOWLEDGE
       type: constant
+  - name: QuizSentenceParser
+    source: sentinel
+    type: class
+    visibility: package-private
+    fields:
+    - name: BLANK_BLOCK_PATTERN
+      type: Pattern
+  - name: WhitespaceNormalizer
+    source: sentinel
+    type: class
+    visibility: package-private
+  - name: QuizSentenceSerializer
+    source: sentinel
+    type: class
+    visibility: package-private
+    fields:
+    - name: BLANK
+      type: String
+    - name: WS
+      type: WhitespaceNormalizer
+  - name: PlainSentenceDeriver
+    source: sentinel
+    type: class
+    visibility: package-private
+    fields:
+    - name: HINT_PATTERN
+      type: Pattern
+    - name: whitespaceNormalizer
+      type: WhitespaceNormalizer
   - name: KnowledgeEntity
     source: sentinel
     type: class
@@ -249,6 +1237,26 @@ modules:
       type: String
     - name: knowledges
       type: List<KnowledgeEntity>
+  - name: QuizSentenceParseException
+    source: sentinel
+    type: exception
+    visibility: public
+    fields:
+    - name: reason
+      type: String
+    - name: position
+      type: int
+    extendsType: RuntimeException
+  - name: QuizSentenceSerializationException
+    source: sentinel
+    type: exception
+    visibility: public
+    fields:
+    - name: reason
+      type: String
+    - name: position
+      type: String
+    extendsType: RuntimeException
   interfaces:
   - name: CourseRepository
     source: sentinel
@@ -264,15 +1272,47 @@ modules:
     sealed: false
     exposes:
     - signature: "validate(CourseEntity course): void"
-- name: audit-application
-  source: sentinel
-  interfaces:
-  - name: CourseMapper
+  - name: QuizSentenceConverter
     source: sentinel
     visibility: public
     sealed: false
     exposes:
-    - signature: "map(CourseEntity course): AuditableCourse"
+    - signature: "serialize(FormEntity form): String"
+    - signature: "parse(String quizSentence): FormEntity"
+    - signature: "toPlainSentences(FormEntity form): List<String>"
+  implementations:
+  - name: DefaultQuizSentenceConverter
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: serializer
+      type: QuizSentenceSerializer
+    - name: parser
+      type: QuizSentenceParser
+    - name: plainDeriver
+      type: PlainSentenceDeriver
+    implements:
+    - QuizSentenceConverter
+  - name: QuizSentenceSerializer
+    source: sentinel
+    sentinelStatus: missing
+  - name: QuizSentenceParser
+    source: sentinel
+    sentinelStatus: missing
+  - name: PlainSentenceDeriver
+    source: sentinel
+    requiresInject:
+    - name: whitespaceNormalizer
+      type: WhitespaceNormalizer
+      description: "Helper de normalizacion de whitespace (collapse runs, trim) usado\
+        \ al final de buildSentenceFromParts para cumplir R019 sobre la oracion derivada."
+    sentinelStatus: missing
+  - name: WhitespaceNormalizer
+    source: sentinel
+    sentinelStatus: missing
+- name: audit-application
+  source: sentinel
+  interfaces:
   - name: AuditRunner
     source: sentinel
     visibility: public
@@ -312,7 +1352,6 @@ modules:
       type: List<ContentAnalyzer>
     - name: scoreAggregator
       type: ScoreAggregator
-    sentinelStatus: differs
     implements:
     - AuditRunner
   - name: DefaultLemmaAbsenceConfig
@@ -341,8 +1380,145 @@ modules:
     requiresInject:
     - name: nlpTokenizer
       type: NlpTokenizer
+    - name: quizSentenceConverter
+      type: QuizSentenceConverter
     implements:
     - CourseMapper
+- name: revision-infrastructure
+  source: sentinel
+  models:
+  - name: InvalidProviderIdException
+    source: sentinel
+    type: exception
+    visibility: public
+    fields:
+    - name: providerName
+      type: String
+    - name: modelId
+      type: String
+    extendsType: RuntimeException
+  - name: LagenDefaults
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: temperature
+      type: double
+    - name: maxTokens
+      type: int
+    - name: timeout
+      type: Duration
+  - name: LlmGenerationFailureCategory
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: LLM_UNREACHABLE
+      type: constant
+    - name: LLM_TIMEOUT
+      type: constant
+    - name: LLM_AUTH_FAILED
+      type: constant
+    - name: LLM_RESPONSE_EMPTY
+      type: constant
+    - name: LLM_RESPONSE_MALFORMED
+      type: constant
+    - name: LLM_OTHER
+      type: constant
+  - name: LagenConfig
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: providerName
+      type: String
+    - name: modelId
+      type: String
+    - name: endpoint
+      type: String
+    - name: apiKey
+      type: String
+    - name: temperature
+      type: Double
+    - name: maxTokens
+      type: Integer
+    - name: timeout
+      type: Duration
+  - name: LemmaAbsenceLlmRawResponse
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: rawText
+      type: String
+  interfaces:
+  - name: LemmaAbsenceLlmGeneratorFactory
+    source: sentinel
+    visibility: public
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(LagenConfig config): LemmaAbsenceQuizCandidateGenerator"
+    - signature: "providerIdFor(LagenConfig config): String"
+  - name: LemmaAbsencePromptBuilder
+    source: sentinel
+    visibility: package-private
+    sealed: false
+    exposes:
+    - signature: "buildSystemPrompt(): String"
+    - signature: "buildUserPrompt(LemmaAbsenceCorrectionContext context): String"
+  - name: LemmaAbsenceResponseParser
+    source: sentinel
+    visibility: package-private
+    sealed: false
+    exposes:
+    - signature: "parse(LemmaAbsenceLlmRawResponse raw, String taskId, String strategyName):\
+        \ LemmaAbsenceGeneratorResponse"
+  - name: LangChainErrorClassifier
+    source: sentinel
+    visibility: package-private
+    sealed: false
+    exposes:
+    - signature: "classify(Throwable cause): LlmGenerationFailureCategory"
+  implementations:
+  - name: DefaultLemmaAbsenceLlmGeneratorFactory
+    source: sentinel
+    visibility: public
+    implements:
+    - LemmaAbsenceLlmGeneratorFactory
+  - name: DefaultLemmaAbsencePromptBuilder
+    source: sentinel
+    visibility: package-private
+    implements:
+    - LemmaAbsencePromptBuilder
+  - name: DefaultLangChainErrorClassifier
+    source: sentinel
+    visibility: package-private
+    implements:
+    - LangChainErrorClassifier
+  - name: DefaultLemmaAbsenceResponseParser
+    source: sentinel
+    visibility: package-private
+    implements:
+    - LemmaAbsenceResponseParser
+  - name: LemmaAbsenceLlmGenerator
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: config
+      type: LagenConfig
+    - name: promptBuilder
+      type: LemmaAbsencePromptBuilder
+    - name: responseParser
+      type: LemmaAbsenceResponseParser
+    - name: errorClassifier
+      type: LangChainErrorClassifier
+    - name: strategyName
+      type: String
+    - name: chatModel
+      type: ChatLanguageModel
+    implements:
+    - LemmaAbsenceQuizCandidateGenerator
 - name: vocabulary-infrastructure
   source: sentinel
   implementations:
@@ -373,7 +1549,7 @@ modules:
     - name: priorityLevel
       type: PriorityLevel
     - name: cocaRank
-      type: int
+      type: Integer
     - name: semanticCategory
       type: String
   - name: PriorityLevel
@@ -506,7 +1682,7 @@ modules:
     - name: absenceType
       type: AbsenceType
     - name: cocaRank
-      type: int
+      type: Integer
     - name: semanticCategory
       type: String
   - name: LemmaAbsenceLevelDiagnosis
@@ -594,6 +1770,15 @@ modules:
       type: ExposureSummary
     - name: overallScore
       type: double
+  - name: ActiveAnalysisSelection
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: auditId
+      type: String
+    - name: planId
+      type: String
   - name: AuditReportSummary
     source: sentinel
     type: class
@@ -962,7 +2147,7 @@ modules:
     - name: posTag
       type: String
     - name: frequencyRank
-      type: int
+      type: Integer
     - name: isStop
       type: boolean
     - name: isPunct
@@ -1030,8 +2215,6 @@ modules:
     source: sentinel
     type: record
     fields:
-    - name: sentence
-      type: String
     - name: tokens
       type: List<NlpToken>
       description: Pre-computed enriched NLP tokens for the quiz sentence
@@ -1047,6 +2230,19 @@ modules:
     - name: translation
       type: String
       description: Spanish translation of the quiz sentence
+    - name: sentences
+      type: List<String>
+      description: "Ordered list of plain sentences derived from the quiz sentenceParts\
+        \ (FEAT-QSENT R017). Index 0 is the canonical variant (R018), which is the\
+        \ single source consumed by current analyzers. Extra variants are materialized\
+        \ eagerly for future multi-variant analysis."
+    - name: quizSentence
+      type: String
+      description: "FEAT-QSENT DSL serialization of the original quiz FormEntity (R001/R002).\
+        \ Stamped eagerly by CourseToAuditableMapper in the same pass that fills `sentences`\
+        \ (FEAT-QSENT R027), guaranteeing quizSentence and sentences[0] are derived\
+        \ from the same FormEntity in the same derivation step (R003). Null only if\
+        \ the course predates FEAT-QSENT — never null for quizzes that pass the mapper."
     extendsType: AuditableEntity
     sentinelStatus: missing
   interfaces:
@@ -1128,6 +2324,12 @@ modules:
     exposes:
     - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>"
     - signature: "getCocaBucketsDiagnosis(): Optional<CocaBucketsTopicDiagnosis>"
+  - name: AuditNodeIndex
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "find(String nodeId, AuditTarget nodeTarget): Optional<AuditNode>"
   - name: KnowledgeDiagnoses
     source: mixed
     visibility: public
@@ -1160,6 +2362,13 @@ modules:
     - signature: "isPhrase(String lemma): boolean"
     - signature: "getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>"
     - signature: "getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>"
+  - name: AuditNodeIndexFactory
+    source: sentinel
+    visibility: public
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "build(AuditReport report): AuditNodeIndex"
   - name: QuizDiagnoses
     source: mixed
     visibility: public
@@ -1210,6 +2419,20 @@ modules:
     exposes:
     - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceLevelDiagnosis>"
     - signature: "getCocaBucketsDiagnosis(): Optional<CocaBucketsLevelDiagnosis>"
+  - name: ActiveAnalysisSelectionStore
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "read(): Optional<ActiveAnalysisSelection>"
+    - signature: "write(ActiveAnalysisSelection selection): void"
+    - signature: "clear(): void"
+  - name: CourseMapper
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "map(CourseEntity course): AuditableCourse"
   - name: LemmaRecurrenceConfig
     source: sentinel
     visibility: public
@@ -1343,13 +2566,27 @@ modules:
       type: String
     implements:
     - AuditableEntity
+  - name: DefaultAuditNodeIndexFactory
+    source: sentinel
+    visibility: public
+    implements:
+    - AuditNodeIndexFactory
+  - name: MapAuditNodeIndex
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: report
+      type: AuditReport
+    implements:
+    - AuditNodeIndex
   - name: SentenceLengthAnalyzer
     source: sentinel
     visibility: public
     requiresInject:
+    - name: nlpTokenizer
+      type: NlpTokenizer
     - name: config
       type: SentenceLengthConfig
-    sentinelStatus: differs
     implements:
     - ContentAnalyzer
   - name: KnowledgeTitleLengthAnalyzer
@@ -1366,8 +2603,6 @@ modules:
     source: sentinel
     visibility: public
     requiresInject:
-    - name: sentence
-      type: String
     - name: tokens
       type: List<NlpToken>
     - name: id
@@ -1377,6 +2612,10 @@ modules:
     - name: code
       type: String
     - name: translation
+      type: String
+    - name: sentences
+      type: List<String>
+    - name: quizSentence
       type: String
     implements:
     - AuditableEntity
@@ -1467,6 +2706,34 @@ modules:
 - name: refiner-domain
   source: sentinel
   models:
+  - name: LengthDirection
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: SHORTEN
+      type: constant
+    - name: LENGTHEN
+      type: constant
+    - name: KEEP_SAME
+      type: constant
+    - name: UNKNOWN
+      type: constant
+  - name: MisplacedLemmaContext
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: lemma
+      type: String
+    - name: pos
+      type: String
+    - name: expectedLevel
+      type: CefrLevel
+    - name: quizLevel
+      type: CefrLevel
+    - name: cocaRank
+      type: Integer
   - name: SuggestedLemma
     source: sentinel
     type: class
@@ -1479,7 +2746,7 @@ modules:
     - name: reason
       type: String
     - name: cocaRank
-      type: int
+      type: Integer
   - name: DiagnosisKind
     source: sentinel
     type: enum
@@ -1529,10 +2796,20 @@ modules:
       type: int
     - name: status
       type: RefinementTaskStatus
+  - name: RefinementTaskStatus
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: PENDING
+      type: constant
+    - name: COMPLETED
+      type: constant
+    - name: SKIPPED
+      type: constant
   - name: SentenceLengthCorrectionContext
     source: sentinel
-    type: class
-    visibility: public
+    type: record
     fields:
     - name: taskId
       type: String
@@ -1558,17 +2835,68 @@ modules:
       type: int
     - name: suggestedLemmas
       type: List<SuggestedLemma>
-  - name: RefinementTaskStatus
+    sentinelStatus: missing
+  - name: LemmaAbsenceCorrectionContext
     source: sentinel
-    type: enum
-    visibility: public
+    type: record
     fields:
-    - name: PENDING
-      type: constant
-    - name: COMPLETED
-      type: constant
-    - name: SKIPPED
-      type: constant
+    - name: taskId
+      type: String
+      description: Identifier of the refinement task
+    - name: sentence
+      type: String
+      description: Current quiz sentence as plain text
+    - name: translation
+      type: String
+      description: Spanish translation of the sentence
+    - name: knowledgeTitle
+      type: String
+      description: Title of the parent knowledge
+    - name: knowledgeInstructions
+      type: String
+      description: Instructions of the exercise
+    - name: topicLabel
+      type: String
+      description: Label of the parent topic
+    - name: cefrLevel
+      type: CefrLevel
+      description: CEFR level determined by milestone ancestor
+    - name: misplacedLemmas
+      type: List<MisplacedLemmaContext>
+      description: Words in the quiz whose expected CEFR level is higher than the
+        quiz level
+    - name: suggestedLemmas
+      type: List<SuggestedLemma>
+      description: Absent lemmas from the level that could serve as replacements (reuses
+        existing SuggestedLemma model)
+    - name: quizSentence
+      type: String
+      description: FEAT-QSENT DSL of the original quiz (R001). Copied verbatim from
+        AuditableQuiz.quizSentence by LemmaAbsenceContextResolver; never recomputed
+        in this module. Coexists with `sentence` (plain) per R001 — both correspond
+        to the same quiz and the same derivation step (R003). Null when the upstream
+        AuditableQuiz was built before FEAT-QSENT was shipped.
+    - name: tokenCount
+      type: Integer
+      description: |
+        Cantidad actual de tokens en la oracion del quiz, copiada de SentenceLengthDiagnosis.tokenCount sobre el mismo nodo quiz (F-RCLALEN-R001, F-RCLALEN-R003). Nullable cuando no hay diagnostico de longitud disponible (F-RCLALEN-R004); reusa nombre y semantica de F-RCSL-R001.
+    - name: targetMin
+      type: Integer
+      description: |
+        Minimo de tokens esperados para el nivel CEFR del quiz, copiado de SentenceLengthDiagnosis.targetMin (F-RCLALEN-R001). Nullable cuando no hay diagnostico (F-RCLALEN-R004).
+    - name: targetMax
+      type: Integer
+      description: |
+        Maximo de tokens esperados para el nivel CEFR del quiz, copiado de SentenceLengthDiagnosis.targetMax (F-RCLALEN-R001). Nullable cuando no hay diagnostico (F-RCLALEN-R004).
+    - name: delta
+      type: Integer
+      description: |
+        Desviacion respecto al rango: 0 si esta dentro, positivo si excede el maximo, negativo si esta por debajo del minimo (F-RCLALEN-R001). Nullable cuando no hay diagnostico (F-RCLALEN-R004). Misma convencion de signo que F-RCSL-R001.
+    - name: lengthDirection
+      type: LengthDirection
+      description: |
+        Direccion accionable derivada del signo de delta por el resolver (F-RCLALEN-R002). Cuando no hay SentenceLengthDiagnosis se establece a UNKNOWN (F-RCLALEN-R004), nunca null. Pre-calculado del lado del sistema para que el prompt LLM sea deterministico y la salida CLI tenga una etiqueta legible para humanos.
+    sentinelStatus: missing
   interfaces:
   - name: RefinementPlanStore
     source: sentinel
@@ -1590,21 +2918,179 @@ modules:
     visibility: public
     sealed: false
     exposes:
-    - signature: "resolve(AuditReport report, RefinementTask task): Optional<SentenceLengthCorrectionContext>"
+    - signature: "resolve(AuditReport report, RefinementTask task): Optional<T>"
+    - signature: "resolveWithIndex(AuditNodeIndex nodeIndex, AuditReport report, RefinementTask\
+        \ task): Optional<T>"
+    - signature: "supports(DiagnosisKind kind): boolean"
+  - name: CorrectionContext
+    source: sentinel
+    visibility: public
+    sealed: false
   implementations:
-  - name: DefaultCorrectionContextResolver
-    source: mixed
-    visibility: package-private
+  - name: LemmaAbsenceCorrectionContext
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: taskId
+      type: String
+    - name: sentence
+      type: String
+    - name: translation
+      type: String
+    - name: knowledgeTitle
+      type: String
+    - name: knowledgeInstructions
+      type: String
+    - name: topicLabel
+      type: String
+    - name: cefrLevel
+      type: CefrLevel
+    - name: misplacedLemmas
+      type: List<MisplacedLemmaContext>
+    - name: suggestedLemmas
+      type: List<SuggestedLemma>
+    - name: quizSentence
+      type: String
+    - name: tokenCount
+      type: Integer
+    - name: targetMin
+      type: Integer
+    - name: targetMax
+      type: Integer
+    - name: delta
+      type: Integer
+    - name: lengthDirection
+      type: LengthDirection
+    implements:
+    - CorrectionContext
+  - name: LemmaAbsenceContextResolver
+    source: sentinel
+    visibility: public
     implements:
     - CorrectionContextResolver
+  - name: DispatchingCorrectionContextResolver
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: sentenceLengthResolver
+      type: SentenceLengthContextResolver
+    - name: lemmaAbsenceResolver
+      type: LemmaAbsenceContextResolver
+    implements:
+    - CorrectionContextResolver
+  - name: SentenceLengthCorrectionContext
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: taskId
+      type: String
+    - name: sentence
+      type: String
+    - name: translation
+      type: String
+    - name: knowledgeTitle
+      type: String
+    - name: knowledgeInstructions
+      type: String
+    - name: topicLabel
+      type: String
+    - name: cefrLevel
+      type: CefrLevel
+    - name: tokenCount
+      type: int
+    - name: targetMin
+      type: int
+    - name: targetMax
+      type: int
+    - name: delta
+      type: int
+    - name: suggestedLemmas
+      type: List<SuggestedLemma>
+    implements:
+    - CorrectionContext
   - name: DefaultRefinerEngine
-    source: implementation
+    source: mixed
     visibility: public
     implements:
     - RefinerEngine
+  - name: SentenceLengthContextResolver
+    source: sentinel
+    visibility: public
+    implements:
+    - CorrectionContextResolver
 - name: audit-cli
   source: sentinel
   models:
+  - name: InvalidWorkdirException
+    source: sentinel
+    type: exception
+    visibility: public
+    fields:
+    - name: path
+      type: String
+    extendsType: RuntimeException
+  - name: InvalidApprovalModeException
+    source: sentinel
+    type: exception
+    visibility: public
+    fields:
+    - name: value
+      type: String
+    extendsType: RuntimeException
+  - name: InvalidLagenModeException
+    source: sentinel
+    type: exception
+    visibility: public
+    fields:
+    - name: value
+      type: String
+    extendsType: RuntimeException
+  - name: InvalidProposalStrategyException
+    source: sentinel
+    type: exception
+    visibility: public
+    fields:
+    - name: value
+      type: String
+    - name: registered
+      type: String
+    extendsType: RuntimeException
+  - name: InvalidLagenConfigException
+    source: sentinel
+    type: exception
+    visibility: public
+    fields:
+    - name: key
+      type: String
+    - name: detail
+      type: String
+    extendsType: RuntimeException
+  - name: LagenMode
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: LLM
+      type: constant
+    - name: CANNED
+      type: constant
+  - name: GetTasksFilter
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: planId
+      type: Optional<String>
+    - name: status
+      type: Optional<String>
+    - name: sortByPriority
+      type: boolean
+    - name: limit
+      type: Optional<Integer>
+    - name: target
+      type: Optional<AuditTarget>
+    - name: diagnosisKind
+      type: Optional<DiagnosisKind>
   - name: AnalyzerStatsView
     source: sentinel
     type: class
@@ -1626,6 +3112,15 @@ modules:
       type: "Map<String,Map<String,Double>>"
     - name: itemCount
       type: int
+  - name: DimensionDeltaView
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: dimension
+      type: String
+    - name: deltaText
+      type: String
   - name: DrillDownView
     source: sentinel
     type: class
@@ -1643,6 +3138,19 @@ modules:
       type: List<String>
     - name: childRows
       type: List<ScoreRow>
+  - name: LevelImpactView
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: nodeTarget
+      type: AuditTarget
+    - name: nodeId
+      type: String
+    - name: aggregateText
+      type: String
+    - name: dimensionRows
+      type: List<DimensionDeltaView>
   - name: DrillDownScope
     source: sentinel
     type: class
@@ -1697,10 +3205,45 @@ modules:
       type: "Map<String,Double>"
     - name: milestoneScores
       type: List<MilestoneScoreRow>
+  - name: ImpactPreviewView
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: availability
+      type: ImpactPreviewAvailability
+    - name: unavailabilityText
+      type: String
+    - name: levels
+      type: List<LevelImpactView>
+  - name: PlanStorageMode
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: DISK
+      type: constant
+    - name: EPHEMERAL
+      type: constant
+  - name: StoreHelper
+    source: implementation
+    type: class
+    visibility: package-private
+    fields:
+    - name: AUDITS_SUBDIR
+      type: String
+    - name: PLANS_SUBDIR
+      type: String
+    - name: AUDIT_PREFIX
+      type: String
+    - name: PLAN_PREFIX
+      type: String
+    - name: JSON_SUFFIX
+      type: String
   - name: Main
     source: implementation
     type: class
-    visibility: public
+    visibility: package-private
   - name: CoursePathResolver
     source: implementation
     type: class
@@ -1708,6 +3251,13 @@ modules:
     fields:
     - name: ENV_KEY
       type: String
+  - name: EphemeralRenderOptions
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: withCorrectionContext
+      type: boolean
   - name: MilestoneScoreRow
     source: sentinel
     type: record
@@ -1812,18 +3362,72 @@ modules:
     extendsType: ScoreRow
     sentinelStatus: missing
   interfaces:
-  - name: RefinerNextCommand
+  - name: DeleteCommand
     source: sentinel
     visibility: public
     sealed: false
     exposes:
-    - signature: "next(String planId): int"
-  - name: RefinerPlanCommand
+    - signature: "delete(String resource, String id): Integer"
+  - name: GetConsolidatedCommand
     source: sentinel
     visibility: public
     sealed: false
     exposes:
-    - signature: "plan(String auditId): int"
+    - signature: "getConsolidated(String coursePath, String format): Integer"
+  - name: WorkdirResolver
+    source: sentinel
+    visibility: public
+    sealed: true
+    exposes:
+    - signature: "resolve(String flagValue): Path"
+    permits:
+    - DefaultWorkdirResolver
+  - name: LagenModeResolver
+    source: sentinel
+    visibility: public
+    sealed: true
+    exposes:
+    - signature: "resolve(String envValue): LagenMode"
+    permits:
+    - DefaultLagenModeResolver
+  - name: ApprovalModeResolver
+    source: sentinel
+    visibility: public
+    sealed: true
+    exposes:
+    - signature: "resolve(String envValue): ApprovalMode"
+    permits:
+    - DefaultApprovalModeResolver
+  - name: ProposalStrategySelector
+    source: sentinel
+    visibility: public
+    sealed: true
+    exposes:
+    - signature: "select(String envValue, LemmaAbsenceProposalStrategyRegistry registry):\
+        \ String"
+    permits:
+    - DefaultProposalStrategySelector
+  - name: LagenConfigResolver
+    source: sentinel
+    visibility: public
+    sealed: true
+    exposes:
+    - signature: "resolve(Map<String,String> env): LagenConfig"
+    permits:
+    - DefaultLagenConfigResolver
+  - name: PruneCommand
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "prune(String resource, int keep): Integer"
+  - name: PlanCommand
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "plan(String auditId, PlanStorageMode storageMode, boolean withCorrectionContext):\
+        \ Integer"
   - name: DetailedFormatter
     source: sentinel
     visibility: public
@@ -1860,12 +3464,24 @@ modules:
     exposes:
     - signature: "transform(AuditReport report, String analyzerName, AnalyzerRegistry\
         \ registry): AnalyzerStatsView"
+  - name: ConsolidatedViewFormatter
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "format(ConsolidatedView view, String format): String"
   - name: RawReportFormatter
     source: sentinel
     visibility: public
     sealed: false
     exposes:
     - signature: "format(AuditReport report): String"
+  - name: ImpactPreviewFormatter
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "format(ImpactPreview preview): ImpactPreviewView"
   - name: ReportFormatter
     source: sentinel
     visibility: public
@@ -1878,38 +3494,97 @@ modules:
     sealed: false
     exposes:
     - signature: "getFormatter(String formatName): ReportFormatter"
-  - name: AnalyzerConfigCommand
+  - name: CorrectionContextJsonMapper
+    source: sentinel
+    visibility: package-private
+    sealed: false
+    exposes:
+    - signature: "toJsonMap(CorrectionContext context): Map<String,Object>"
+  - name: EphemeralPlanRenderer
+    source: sentinel
+    visibility: package-private
+    sealed: false
+    exposes:
+    - signature: "render(RefinementPlan plan, AuditReport report, EphemeralRenderOptions\
+        \ options): Integer"
+  - name: GetCommand
     source: sentinel
     visibility: public
     sealed: false
     exposes:
-    - signature: "showConfig(String analyzerName): int"
-  - name: RefinerListCommand
+    - signature: "get(String resource, String name, GetTasksFilter filter): Integer"
+  - name: StatsAnalyzerCommand
     source: sentinel
     visibility: public
     sealed: false
     exposes:
-    - signature: "listTasks(String planId): int"
+    - signature: "showStats(String analyzerName, String coursePath): Integer"
+  - name: RejectCommand
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "reject(String resource, String proposalId, String planId, String\
+        \ reason): Integer"
+  - name: SetActiveAnalysisCommand
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "setActive(String auditId, String planId): Integer"
+  - name: ConfigAnalyzerCommand
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "showConfig(String analyzerName): Integer"
   - name: AnalyzeCommand
     source: sentinel
     visibility: public
     sealed: false
     exposes:
     - signature: "analyze(String coursePath, String format, String level, String topic,\
-        \ String knowledge, List<String> analyzers, boolean detailed): int"
-  - name: AnalyzerListCommand
+        \ String knowledge, List<String> analyzers, boolean detailed): Integer"
+  - name: ApproveCommand
     source: sentinel
     visibility: public
     sealed: false
     exposes:
-    - signature: "list(): int"
-  - name: AnalyzerStatsCommand
+    - signature: "approve(String resource, String proposalId, String planId, String\
+        \ note): Integer"
+  - name: ReviseCommand
     source: sentinel
     visibility: public
     sealed: false
     exposes:
-    - signature: "showStats(String analyzerName, String coursePath): int"
+    - signature: "revise(String taskId, String planId, String correctionContextJson,\
+        \ String correctionContextFilePath): Integer"
   implementations:
+  - name: DefaultProposalStrategySelector
+    source: sentinel
+    visibility: public
+    implements:
+    - ProposalStrategySelector
+  - name: DefaultWorkdirResolver
+    source: sentinel
+    visibility: public
+    implements:
+    - WorkdirResolver
+  - name: DefaultApprovalModeResolver
+    source: sentinel
+    visibility: public
+    implements:
+    - ApprovalModeResolver
+  - name: DefaultLagenModeResolver
+    source: sentinel
+    visibility: public
+    implements:
+    - LagenModeResolver
+  - name: DefaultLagenConfigResolver
+    source: sentinel
+    visibility: public
+    implements:
+    - LagenConfigResolver
   - name: DefaultFormatterRegistry
     source: sentinel
     visibility: public
@@ -1922,7 +3597,7 @@ modules:
     source: implementation
     visibility: public
     requiresInject:
-    - name: resolver
+    - name: drillDownResolver
       type: DrillDownResolver
     implements:
     - ReportFormatter
@@ -1966,11 +3641,16 @@ modules:
       type: AuditableEntity
     implements:
     - ScoreRow
+  - name: DefaultImpactPreviewFormatter
+    source: sentinel
+    visibility: public
+    implements:
+    - ImpactPreviewFormatter
   - name: TableReportFormatter
     source: implementation
     visibility: public
     requiresInject:
-    - name: resolver
+    - name: drillDownResolver
       type: DrillDownResolver
     implements:
     - ReportFormatter
@@ -2030,7 +3710,7 @@ modules:
     source: implementation
     visibility: public
     requiresInject:
-    - name: resolver
+    - name: drillDownResolver
       type: DrillDownResolver
     implements:
     - ReportFormatter
@@ -2048,27 +3728,60 @@ modules:
       type: AuditableEntity
     implements:
     - ScoreRow
-  - name: ContentAuditCmd
+  - name: DefaultConsolidatedViewFormatter
     source: sentinel
     visibility: public
+    implements:
+    - ConsolidatedViewFormatter
+  - name: GetConsolidatedCmd
+    source: implementation
+    visibility: package-private
+    requiresInject:
+    - name: delegate
+      type: GetConsolidatedCommand
     annotations:
     - Command
     implements:
-    - Runnable
-  - name: AnalyzerListCmd
+    - Callable
+  - name: ApproveCmd
     source: sentinel
     visibility: package-private
     requiresInject:
-    - name: analyzerRegistry
-      type: AnalyzerRegistry
+    - name: decisionService
+      type: ProposalDecisionService
     annotations:
     - Command
     implements:
-    - AnalyzerListCommand
+    - ApproveCommand
+    - Callable
+  - name: DefaultSetActiveAnalysisCommand
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: activeAnalysisSelectionStore
+      type: ActiveAnalysisSelectionStore
+    implements:
+    - SetActiveAnalysisCommand
+  - name: ContentAuditCmd
+    source: sentinel
+    visibility: package-private
+    annotations:
+    - Command
+    implements:
+    - Callable
+  - name: SetActiveCmd
+    source: implementation
+    visibility: package-private
+    requiresInject:
+    - name: delegate
+      type: SetActiveAnalysisCommand
+    annotations:
+    - Command
+    implements:
     - Callable
   - name: AnalyzeCmd
     source: implementation
-    visibility: public
+    visibility: package-private
     requiresInject:
     - name: auditRunner
       type: AuditRunner
@@ -2089,7 +3802,71 @@ modules:
     implements:
     - AnalyzeCommand
     - Callable
-  - name: AnalyzerStatsCmd
+  - name: GetCmd
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: auditReportStore
+      type: AuditReportStore
+    - name: refinementPlanStore
+      type: RefinementPlanStore
+    - name: analyzerRegistry
+      type: AnalyzerRegistry
+    - name: correctionContextResolver
+      type: CorrectionContextResolver
+    - name: impactPreviewStore
+      type: ImpactPreviewStore
+    - name: impactPreviewFormatter
+      type: ImpactPreviewFormatter
+    - name: correctionContextJsonMapper
+      type: CorrectionContextJsonMapper
+    annotations:
+    - Command
+    implements:
+    - GetCommand
+    - Callable
+  - name: DeleteCmd
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: auditReportStore
+      type: AuditReportStore
+    - name: refinementPlanStore
+      type: RefinementPlanStore
+    annotations:
+    - Command
+    implements:
+    - DeleteCommand
+    - Callable
+  - name: ReviseCmd
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: revisionEngine
+      type: RevisionEngine
+    - name: refinementPlanStore
+      type: RefinementPlanStore
+    annotations:
+    - Command
+    implements:
+    - ReviseCommand
+    - Callable
+  - name: DefaultCorrectionContextJsonMapper
+    source: sentinel
+    visibility: package-private
+    implements:
+    - CorrectionContextJsonMapper
+  - name: DefaultGetConsolidatedCommand
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: consolidatedViewBuilder
+      type: ConsolidatedViewBuilder
+    - name: formatter
+      type: ConsolidatedViewFormatter
+    implements:
+    - GetConsolidatedCommand
+  - name: StatsAnalyzerCmd
     source: sentinel
     visibility: package-private
     requiresInject:
@@ -2102,24 +3879,33 @@ modules:
     annotations:
     - Command
     implements:
-    - AnalyzerStatsCommand
+    - StatsAnalyzerCommand
     - Callable
-  - name: RefinerPlanCmd
-    source: implementation
+  - name: RejectCmd
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: decisionService
+      type: ProposalDecisionService
+    annotations:
+    - Command
+    implements:
+    - RejectCommand
+    - Callable
+  - name: PruneCmd
+    source: sentinel
     visibility: package-private
     requiresInject:
     - name: auditReportStore
       type: AuditReportStore
-    - name: refinerEngine
-      type: RefinerEngine
     - name: refinementPlanStore
       type: RefinementPlanStore
     annotations:
     - Command
     implements:
-    - RefinerPlanCommand
+    - PruneCommand
     - Callable
-  - name: AnalyzerConfigCmd
+  - name: ConfigAnalyzerCmd
     source: sentinel
     visibility: package-private
     requiresInject:
@@ -2128,46 +3914,37 @@ modules:
     annotations:
     - Command
     implements:
-    - AnalyzerConfigCommand
+    - ConfigAnalyzerCommand
     - Callable
-  - name: AnalyzerCmd
+  - name: PlanCmd
     source: sentinel
-    visibility: public
-    annotations:
-    - Command
-    implements:
-    - Runnable
-  - name: RefinerListCmd
-    source: implementation
     visibility: package-private
     requiresInject:
-    - name: refinementPlanStore
-      type: RefinementPlanStore
-    annotations:
-    - Command
-    implements:
-    - RefinerListCommand
-    - Callable
-  - name: RefinerCmd
-    source: implementation
-    visibility: public
-    annotations:
-    - Command
-    implements:
-    - Runnable
-  - name: RefinerNextCmd
-    source: implementation
-    visibility: package-private
-    requiresInject:
-    - name: refinementPlanStore
-      type: RefinementPlanStore
+    - name: auditReportStore
+      type: AuditReportStore
     - name: refinerEngine
       type: RefinerEngine
+    - name: refinementPlanStore
+      type: RefinementPlanStore
+    - name: ephemeralPlanRenderer
+      type: EphemeralPlanRenderer
     annotations:
     - Command
     implements:
-    - RefinerNextCommand
+    - PlanCommand
     - Callable
+  - name: DefaultEphemeralPlanRenderer
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: auditNodeIndexFactory
+      type: AuditNodeIndexFactory
+    - name: correctionContextResolver
+      type: CorrectionContextResolver
+    - name: correctionContextJsonMapper
+      type: CorrectionContextJsonMapper
+    implements:
+    - EphemeralPlanRenderer
   - name: Main
     source: sentinel
     sentinelStatus: missing
@@ -2269,6 +4046,10 @@ dependencies:
     imports:
     - com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
   - from: audit-infrastructure
+    to: javax.annotation.processing
+    imports:
+    - javax.annotation.processing.Generated
+  - from: audit-infrastructure
     to: com.fasterxml.jackson.annotation
     imports:
     - com.fasterxml.jackson.annotation.JsonIgnore
@@ -2283,6 +4064,19 @@ dependencies:
     to: com.fasterxml.jackson.datatype.jdk8
     imports:
     - com.fasterxml.jackson.datatype.jdk8.Jdk8Module
+  - from: revision-domain
+    to: javax.annotation.processing
+    imports:
+    - javax.annotation.processing.Generated
+  - from: revision-domain
+    to: com.fasterxml.jackson.databind
+    imports:
+    - com.fasterxml.jackson.databind.JsonNode
+    - com.fasterxml.jackson.databind.ObjectMapper
+  - from: revision-domain
+    to: com.fasterxml.jackson.core
+    imports:
+    - com.fasterxml.jackson.core.JsonProcessingException
   - from: course-domain
     to: javax.annotation.processing
     imports:
@@ -2291,11 +4085,47 @@ dependencies:
     to: javax.annotation.processing
     imports:
     - javax.annotation.processing.Generated
+  - from: revision-infrastructure
+    to: dev.langchain4j.model.openai
+    imports:
+    - dev.langchain4j.model.openai.OpenAiChatModel
+  - from: revision-infrastructure
+    to: dev.langchain4j.model.chat
+    imports:
+    - dev.langchain4j.model.chat.ChatLanguageModel
+  - from: revision-infrastructure
+    to: dev.ai4j.openai4j
+    imports:
+    - dev.ai4j.openai4j.OpenAiHttpException
+  - from: revision-infrastructure
+    to: javax.annotation.processing
+    imports:
+    - javax.annotation.processing.Generated
+  - from: revision-infrastructure
+    to: dev.langchain4j.data.message
+    imports:
+    - dev.langchain4j.data.message.UserMessage
+    - dev.langchain4j.data.message.AiMessage
+    - dev.langchain4j.data.message.ChatMessage
+    - dev.langchain4j.data.message.SystemMessage
+  - from: revision-infrastructure
+    to: com.fasterxml.jackson.databind
+    imports:
+    - com.fasterxml.jackson.databind.JsonNode
+    - com.fasterxml.jackson.databind.ObjectMapper
+  - from: revision-infrastructure
+    to: dev.langchain4j.model.output
+    imports:
+    - dev.langchain4j.model.output.Response
   - from: vocabulary-infrastructure
     to: com.fasterxml.jackson.databind
     imports:
     - com.fasterxml.jackson.databind.ObjectMapper
     - com.fasterxml.jackson.databind.JsonNode
+  - from: vocabulary-infrastructure
+    to: javax.annotation.processing
+    imports:
+    - javax.annotation.processing.Generated
   - from: audit-domain
     to: javax.annotation.processing
     imports:
@@ -2304,17 +4134,6 @@ dependencies:
     to: javax.annotation.processing
     imports:
     - javax.annotation.processing.Generated
-  - from: audit-cli
-    to: picocli.CommandLine
-    imports:
-    - picocli.CommandLine.Parameters
-    - picocli.CommandLine.Spec
-    - picocli.CommandLine.Option
-    - picocli.CommandLine.Command
-  - from: audit-cli
-    to: picocli.CommandLine.Model
-    imports:
-    - picocli.CommandLine.Model.CommandSpec
   - from: audit-cli
     to: javax.annotation.processing
     imports:
@@ -2328,10 +4147,35 @@ dependencies:
     imports:
     - picocli.CommandLine
   - from: audit-cli
+    to: com.fasterxml.jackson.databind.node
+    imports:
+    - com.fasterxml.jackson.databind.node.ArrayNode
+    - com.fasterxml.jackson.databind.node.ObjectNode
+  - from: audit-cli
+    to: picocli.CommandLine
+    imports:
+    - picocli.CommandLine.Option
+    - picocli.CommandLine.Command
+    - picocli.CommandLine.Parameters
+    - picocli.CommandLine.Spec
+  - from: audit-cli
     to: com.fasterxml.jackson.databind
     imports:
+    - com.fasterxml.jackson.databind.JsonNode
     - com.fasterxml.jackson.databind.ObjectMapper
     - com.fasterxml.jackson.databind.SerializationFeature
+  - from: audit-cli
+    to: picocli.CommandLine.Model
+    imports:
+    - picocli.CommandLine.Model.CommandSpec
+  - from: audit-cli
+    to: com.fasterxml.jackson.annotation
+    imports:
+    - com.fasterxml.jackson.annotation.JsonInclude
+  - from: course-infrastructure
+    to: javax.annotation.processing
+    imports:
+    - javax.annotation.processing.Generated
   - from: course-infrastructure
     to: com.fasterxml.jackson.databind
     imports:
@@ -2352,6 +4196,12 @@ dependencies:
     - javax.annotation.processing.Generated
 graph:
   edges:
+  - from: audit-infrastructure.FileSystemActiveAnalysisSelectionStore
+    to: audit-domain.ActiveAnalysisSelection
+    relation: references
+  - from: audit-infrastructure.FileSystemActiveAnalysisSelectionStore
+    to: audit-domain.ActiveAnalysisSelectionStore
+    relation: references
   - from: audit-infrastructure.FileSystemAuditReportStore
     to: audit-domain.AuditNode
     relation: references
@@ -2364,11 +4214,713 @@ graph:
   - from: audit-infrastructure.FileSystemAuditReportStore
     to: audit-domain.AuditReportSummary
     relation: references
+  - from: audit-infrastructure.FileSystemRevisionArtifactStore
+    to: revision-domain.RevisionArtifact
+    relation: references
+  - from: audit-infrastructure.FileSystemRevisionArtifactStore
+    to: revision-domain.RevisionArtifactStore
+    relation: references
+  - from: audit-infrastructure.FileSystemImpactPreviewStore
+    to: revision-domain.ImpactPreviewStore
+    relation: references
+  - from: audit-infrastructure.FileSystemImpactPreviewStore
+    to: revision-domain.ImpactPreview
+    relation: references
   - from: audit-infrastructure.FileSystemRefinementPlanStore
     to: refiner-domain.RefinementPlan
     relation: references
   - from: audit-infrastructure.FileSystemRefinementPlanStore
     to: refiner-domain.RefinementPlanStore
+    relation: references
+  - from: revision-domain.ConsolidatedViewBuilder
+    to: revision-domain.ConsolidatedView
+    relation: references
+  - from: revision-domain.ConsolidatedView
+    to: revision-domain.NodeImpact
+    relation: references
+  - from: revision-domain.ConsolidatedView
+    to: revision-domain.ConsolidatedViewUnavailability
+    relation: references
+  - from: revision-domain.ConsolidatedView
+    to: revision-domain.ConsolidatedViewAvailability
+    relation: references
+  - from: revision-domain.ConsolidatedView
+    to: revision-domain.NonApplicablePending
+    relation: references
+  - from: revision-domain.NodeImpact
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: revision-domain.NodeImpact
+    to: revision-domain.FieldChange
+    relation: references
+  - from: revision-domain.NonApplicablePending
+    to: revision-domain.NonApplicablePendingReason
+    relation: references
+  - from: revision-domain.ConsolidatedViewUnavailability
+    to: revision-domain.ConsolidatedViewUnavailabilityReason
+    relation: references
+  - from: revision-domain.ConsolidatedViewBuilderFactory
+    to: revision-domain.ConsolidatedViewBuilder
+    relation: references
+  - from: revision-domain.ConsolidatedViewBuilderFactory
+    to: revision-domain.ConsolidatedViewBuilderConfig
+    relation: references
+  - from: revision-domain.NodeFieldDiffer
+    to: audit-domain.AuditNode
+    relation: references
+  - from: revision-domain.NodeFieldDiffer
+    to: revision-domain.FieldChange
+    relation: references
+  - from: revision-domain.CourseElementSnapshot
+    to: course-domain.QuizTemplateEntity
+    relation: references
+  - from: revision-domain.CourseElementSnapshot
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: revision-domain.ConsolidatedViewBuilderConfig
+    to: course-domain.CourseRepository
+    relation: references
+  - from: revision-domain.ConsolidatedViewBuilderConfig
+    to: revision-domain.CourseElementLocator
+    relation: references
+  - from: revision-domain.ConsolidatedViewBuilderConfig
+    to: audit-domain.CourseMapper
+    relation: references
+  - from: revision-domain.ConsolidatedViewBuilderConfig
+    to: audit-domain.ActiveAnalysisSelectionStore
+    relation: references
+  - from: revision-domain.ConsolidatedViewBuilderConfig
+    to: audit-domain.AuditEngine
+    relation: references
+  - from: revision-domain.ConsolidatedViewBuilderConfig
+    to: revision-domain.RevisionArtifactStore
+    relation: references
+  - from: revision-domain.ConsolidatedViewBuilderConfig
+    to: revision-domain.NodeFieldDiffer
+    relation: references
+  - from: revision-domain.ConsolidatedViewBuilderConfig
+    to: audit-domain.AuditReportStore
+    relation: references
+  - from: revision-domain.ConsolidatedViewBuilderConfig
+    to: refiner-domain.RefinementPlanStore
+    relation: references
+  - from: revision-domain.CannedLemmaAbsenceQuizCandidateGenerator
+    to: revision-domain.LemmaAbsenceQuizCandidateGenerator
+    relation: references
+  - from: revision-domain.CannedLemmaAbsenceQuizCandidateGenerator
+    to: revision-domain.LemmaAbsenceGeneratorResponse
+    relation: references
+  - from: revision-domain.CannedLemmaAbsenceQuizCandidateGenerator
+    to: refiner-domain.LemmaAbsenceCorrectionContext
+    relation: references
+  - from: revision-domain.LemmaAbsenceMvpStrategy
+    to: revision-domain.LemmaAbsenceQuizCandidateGenerator
+    relation: references
+  - from: revision-domain.LemmaAbsenceMvpStrategy
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: revision-domain.LemmaAbsenceMvpStrategy
+    to: revision-domain.StrategyId
+    relation: references
+  - from: revision-domain.LemmaAbsenceMvpStrategy
+    to: revision-domain.LemmaAbsenceProposalStrategy
+    relation: references
+  - from: revision-domain.LemmaAbsenceMvpStrategy
+    to: revision-domain.LemmaAbsenceQuizCandidate
+    relation: references
+  - from: revision-domain.LemmaAbsenceMvpStrategy
+    to: refiner-domain.LemmaAbsenceCorrectionContext
+    relation: references
+  - from: revision-domain.LemmaAbsenceMvpStrategy
+    to: refiner-domain.DiagnosisKind
+    relation: references
+  - from: revision-domain.LemmaAbsenceQuizCandidateGenerator
+    to: revision-domain.LemmaAbsenceGeneratorResponse
+    relation: references
+  - from: revision-domain.LemmaAbsenceQuizCandidateGenerator
+    to: refiner-domain.LemmaAbsenceCorrectionContext
+    relation: references
+  - from: revision-domain.CorrectionContextStructuralValidator
+    to: refiner-domain.CorrectionContext
+    relation: references
+  - from: revision-domain.SentenceLengthContextStructuralValidator
+    to: revision-domain.CorrectionContextStructuralValidator
+    relation: references
+  - from: revision-domain.SentenceLengthContextStructuralValidator
+    to: refiner-domain.CorrectionContext
+    relation: references
+  - from: revision-domain.LemmaAbsenceContextStructuralValidator
+    to: revision-domain.CorrectionContextStructuralValidator
+    relation: references
+  - from: revision-domain.LemmaAbsenceContextStructuralValidator
+    to: refiner-domain.CorrectionContext
+    relation: references
+  - from: revision-domain.DefaultCorrectionContextOverrideParser
+    to: revision-domain.CorrectionContextStructuralValidator
+    relation: references
+  - from: revision-domain.DefaultCorrectionContextOverrideParser
+    to: revision-domain.CorrectionContextOverride
+    relation: references
+  - from: revision-domain.DefaultCorrectionContextOverrideParser
+    to: revision-domain.CorrectionContextOverrideParser
+    relation: references
+  - from: revision-domain.DefaultCorrectionContextOverrideParser
+    to: refiner-domain.DiagnosisKind
+    relation: references
+  - from: revision-domain.LemmaAbsenceProposalStrategy
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: revision-domain.LemmaAbsenceProposalStrategy
+    to: revision-domain.StrategyId
+    relation: references
+  - from: revision-domain.LemmaAbsenceProposalStrategy
+    to: revision-domain.LemmaAbsenceQuizCandidate
+    relation: references
+  - from: revision-domain.LemmaAbsenceProposalStrategy
+    to: refiner-domain.LemmaAbsenceCorrectionContext
+    relation: references
+  - from: revision-domain.LemmaAbsenceProposalStrategy
+    to: refiner-domain.DiagnosisKind
+    relation: references
+  - from: revision-domain.RevisionEngineConfig
+    to: course-domain.CourseRepository
+    relation: references
+  - from: revision-domain.RevisionEngineConfig
+    to: revision-domain.CourseElementLocator
+    relation: references
+  - from: revision-domain.RevisionEngineConfig
+    to: audit-domain.CourseMapper
+    relation: references
+  - from: revision-domain.RevisionEngineConfig
+    to: refiner-domain.CorrectionContextResolver
+    relation: references
+  - from: revision-domain.RevisionEngineConfig
+    to: audit-domain.AuditReportStore
+    relation: references
+  - from: revision-domain.RevisionEngineConfig
+    to: revision-domain.CorrectionContextOverrideParser
+    relation: references
+  - from: revision-domain.RevisionEngineConfig
+    to: revision-domain.LemmaAbsenceProposalStrategyRegistry
+    relation: references
+  - from: revision-domain.RevisionEngineConfig
+    to: revision-domain.ImpactPreviewStore
+    relation: references
+  - from: revision-domain.RevisionEngineConfig
+    to: revision-domain.Reviser
+    relation: references
+  - from: revision-domain.RevisionEngineConfig
+    to: audit-domain.AuditEngine
+    relation: references
+  - from: revision-domain.RevisionEngineConfig
+    to: revision-domain.RevisionArtifactStore
+    relation: references
+  - from: revision-domain.RevisionEngineConfig
+    to: revision-domain.RevisionValidator
+    relation: references
+  - from: revision-domain.RevisionEngineConfig
+    to: revision-domain.LemmaAbsenceProposalDeriver
+    relation: references
+  - from: revision-domain.RevisionEngineConfig
+    to: refiner-domain.RefinementPlanStore
+    relation: references
+  - from: revision-domain.RevisionEngineConfig
+    to: refiner-domain.CorrectionContext
+    relation: references
+  - from: revision-domain.RevisionEngineConfig
+    to: refiner-domain.DiagnosisKind
+    relation: references
+  - from: revision-domain.ImpactPreviewStore
+    to: revision-domain.ImpactPreview
+    relation: references
+  - from: revision-domain.RevisionEngine
+    to: revision-domain.RevisionOutcome
+    relation: references
+  - from: revision-domain.Reviser
+    to: revision-domain.RevisionProposal
+    relation: references
+  - from: revision-domain.Reviser
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: revision-domain.Reviser
+    to: revision-domain.CourseElementSnapshot
+    relation: references
+  - from: revision-domain.Reviser
+    to: refiner-domain.CorrectionContext
+    relation: references
+  - from: revision-domain.Reviser
+    to: refiner-domain.DiagnosisKind
+    relation: references
+  - from: revision-domain.RevisionEngineFactory
+    to: revision-domain.RevisionEngine
+    relation: references
+  - from: revision-domain.RevisionEngineFactory
+    to: revision-domain.RevisionEngineConfig
+    relation: references
+  - from: revision-domain.FieldExclusionRegistry
+    to: revision-domain.FieldExclusionRole
+    relation: references
+  - from: revision-domain.DefaultListIdentityRegistry
+    to: revision-domain.ListIdentityKeySpec
+    relation: references
+  - from: revision-domain.DefaultListIdentityRegistry
+    to: revision-domain.ListIdentityRegistry
+    relation: references
+  - from: revision-domain.FieldExclusionRule
+    to: revision-domain.FieldExclusionRole
+    relation: references
+  - from: revision-domain.NodeFieldDifferFactory
+    to: revision-domain.NodeFieldDiffer
+    relation: references
+  - from: revision-domain.DefaultFieldExclusionRegistry
+    to: revision-domain.FieldExclusionRole
+    relation: references
+  - from: revision-domain.DefaultFieldExclusionRegistry
+    to: revision-domain.FieldExclusionRegistry
+    relation: references
+  - from: revision-domain.RecursiveNodeFieldDiffer
+    to: revision-domain.ListIdentityKeySpec
+    relation: references
+  - from: revision-domain.RecursiveNodeFieldDiffer
+    to: revision-domain.NodeFieldDiffer
+    relation: references
+  - from: revision-domain.RecursiveNodeFieldDiffer
+    to: audit-domain.AuditNode
+    relation: references
+  - from: revision-domain.RecursiveNodeFieldDiffer
+    to: revision-domain.ListIdentityRegistry
+    relation: references
+  - from: revision-domain.RecursiveNodeFieldDiffer
+    to: revision-domain.FieldChange
+    relation: references
+  - from: revision-domain.RecursiveNodeFieldDiffer
+    to: revision-domain.FieldExclusionRegistry
+    relation: references
+  - from: revision-domain.ListIdentityRule
+    to: revision-domain.ListIdentityKeySpec
+    relation: references
+  - from: revision-domain.DefaultNodeFieldDifferFactory
+    to: revision-domain.NodeFieldDifferFactory
+    relation: references
+  - from: revision-domain.DefaultNodeFieldDifferFactory
+    to: revision-domain.NodeFieldDiffer
+    relation: references
+  - from: revision-domain.ListIdentityRegistry
+    to: revision-domain.ListIdentityKeySpec
+    relation: references
+  - from: revision-domain.LemmaAbsenceProposalStrategyRegistry
+    to: revision-domain.StrategyId
+    relation: references
+  - from: revision-domain.LemmaAbsenceProposalStrategyRegistry
+    to: revision-domain.LemmaAbsenceProposalStrategy
+    relation: references
+  - from: revision-domain.RevisionProposal
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: revision-domain.RevisionProposal
+    to: revision-domain.StrategyId
+    relation: references
+  - from: revision-domain.RevisionProposal
+    to: revision-domain.CourseElementSnapshot
+    relation: references
+  - from: revision-domain.RevisionProposal
+    to: refiner-domain.DiagnosisKind
+    relation: references
+  - from: revision-domain.LemmaAbsenceProposalDeriver
+    to: revision-domain.CourseElementSnapshot
+    relation: references
+  - from: revision-domain.LemmaAbsenceProposalDeriver
+    to: revision-domain.LemmaAbsenceQuizCandidate
+    relation: references
+  - from: revision-domain.RevisionArtifact
+    to: revision-domain.RevisionProposal
+    relation: references
+  - from: revision-domain.RevisionArtifact
+    to: revision-domain.RevisionVerdict
+    relation: references
+  - from: revision-domain.RevisionArtifact
+    to: revision-domain.RevisionOutcomeKind
+    relation: references
+  - from: revision-domain.RevisionArtifact
+    to: revision-domain.CorrectionContextSource
+    relation: references
+  - from: revision-domain.ProposalDecisionServiceFactory
+    to: revision-domain.ProposalDecisionService
+    relation: references
+  - from: revision-domain.ProposalDecisionServiceFactory
+    to: revision-domain.RevisionEngineConfig
+    relation: references
+  - from: revision-domain.CourseElementLocator
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: revision-domain.CourseElementLocator
+    to: revision-domain.CourseElementSnapshot
+    relation: references
+  - from: revision-domain.CourseElementLocator
+    to: course-domain.CourseEntity
+    relation: references
+  - from: revision-domain.RevisionArtifactStore
+    to: revision-domain.RevisionArtifact
+    relation: references
+  - from: revision-domain.ProposalDecisionService
+    to: revision-domain.ProposalDecisionOutcome
+    relation: references
+  - from: revision-domain.RevisionOutcome
+    to: revision-domain.RevisionArtifact
+    relation: references
+  - from: revision-domain.RevisionOutcome
+    to: revision-domain.RevisionOutcomeKind
+    relation: references
+  - from: revision-domain.ProposalDecisionOutcome
+    to: revision-domain.RevisionArtifact
+    relation: references
+  - from: revision-domain.ProposalDecisionOutcome
+    to: revision-domain.ProposalDecisionOutcomeKind
+    relation: references
+  - from: revision-domain.CorrectionContextOverrideParser
+    to: revision-domain.CorrectionContextOverride
+    relation: references
+  - from: revision-domain.CorrectionContextOverrideParser
+    to: refiner-domain.DiagnosisKind
+    relation: references
+  - from: revision-domain.RevisionValidatorResult
+    to: revision-domain.RevisionVerdict
+    relation: references
+  - from: revision-domain.DefaultProposalDecisionServiceFactory
+    to: revision-domain.ProposalDecisionServiceFactory
+    relation: references
+  - from: revision-domain.DefaultProposalDecisionServiceFactory
+    to: revision-domain.ProposalDecisionService
+    relation: references
+  - from: revision-domain.DefaultProposalDecisionServiceFactory
+    to: revision-domain.RevisionEngineConfig
+    relation: references
+  - from: revision-domain.DispatchingReviser
+    to: revision-domain.LemmaAbsenceProposalStrategyRegistry
+    relation: references
+  - from: revision-domain.DispatchingReviser
+    to: revision-domain.Reviser
+    relation: references
+  - from: revision-domain.DispatchingReviser
+    to: revision-domain.RevisionProposal
+    relation: references
+  - from: revision-domain.DispatchingReviser
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: revision-domain.DispatchingReviser
+    to: revision-domain.IdentityReviser
+    relation: references
+  - from: revision-domain.DispatchingReviser
+    to: revision-domain.CourseElementSnapshot
+    relation: references
+  - from: revision-domain.DispatchingReviser
+    to: revision-domain.LemmaAbsenceProposalDeriver
+    relation: references
+  - from: revision-domain.DispatchingReviser
+    to: refiner-domain.CorrectionContext
+    relation: references
+  - from: revision-domain.DispatchingReviser
+    to: refiner-domain.DiagnosisKind
+    relation: references
+  - from: revision-domain.DefaultRevisionEngineFactory
+    to: revision-domain.RevisionEngineFactory
+    relation: references
+  - from: revision-domain.DefaultRevisionEngineFactory
+    to: revision-domain.RevisionEngine
+    relation: references
+  - from: revision-domain.DefaultRevisionEngineFactory
+    to: revision-domain.RevisionEngineConfig
+    relation: references
+  - from: revision-domain.DefaultRevisionValidatorFactory
+    to: revision-domain.RevisionValidatorFactory
+    relation: references
+  - from: revision-domain.DefaultRevisionValidatorFactory
+    to: revision-domain.ApprovalMode
+    relation: references
+  - from: revision-domain.DefaultRevisionValidatorFactory
+    to: revision-domain.RevisionValidator
+    relation: references
+  - from: revision-domain.DefaultImpactPreviewComputer
+    to: revision-domain.ImpactPreview
+    relation: references
+  - from: revision-domain.DefaultImpactPreviewComputer
+    to: audit-domain.CourseMapper
+    relation: references
+  - from: revision-domain.DefaultImpactPreviewComputer
+    to: revision-domain.CourseElementLocator
+    relation: references
+  - from: revision-domain.DefaultImpactPreviewComputer
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: revision-domain.DefaultImpactPreviewComputer
+    to: revision-domain.RevisionProposal
+    relation: references
+  - from: revision-domain.DefaultImpactPreviewComputer
+    to: audit-domain.AuditReportStore
+    relation: references
+  - from: revision-domain.DefaultImpactPreviewComputer
+    to: revision-domain.LevelImpact
+    relation: references
+  - from: revision-domain.DefaultImpactPreviewComputer
+    to: course-domain.CourseEntity
+    relation: references
+  - from: revision-domain.DefaultImpactPreviewComputer
+    to: audit-domain.AuditNode
+    relation: references
+  - from: revision-domain.DefaultImpactPreviewComputer
+    to: revision-domain.ImpactPreviewUnavailabilityReason
+    relation: references
+  - from: revision-domain.DefaultImpactPreviewComputer
+    to: audit-domain.AuditReport
+    relation: references
+  - from: revision-domain.DefaultImpactPreviewComputer
+    to: audit-domain.AuditEngine
+    relation: references
+  - from: revision-domain.DefaultImpactPreviewComputer
+    to: revision-domain.ImpactPreviewComputer
+    relation: references
+  - from: revision-domain.DefaultConsolidatedViewBuilderFactory
+    to: revision-domain.ConsolidatedViewBuilder
+    relation: references
+  - from: revision-domain.DefaultConsolidatedViewBuilderFactory
+    to: revision-domain.ConsolidatedViewBuilderFactory
+    relation: references
+  - from: revision-domain.DefaultConsolidatedViewBuilderFactory
+    to: revision-domain.ConsolidatedViewBuilderConfig
+    relation: references
+  - from: revision-domain.DefaultProposalDecisionService
+    to: course-domain.CourseRepository
+    relation: references
+  - from: revision-domain.DefaultProposalDecisionService
+    to: revision-domain.CourseElementLocator
+    relation: references
+  - from: revision-domain.DefaultProposalDecisionService
+    to: revision-domain.ProposalDecisionService
+    relation: references
+  - from: revision-domain.DefaultProposalDecisionService
+    to: revision-domain.RevisionArtifactStore
+    relation: references
+  - from: revision-domain.DefaultProposalDecisionService
+    to: refiner-domain.RefinementPlanStore
+    relation: references
+  - from: revision-domain.DefaultProposalDecisionService
+    to: revision-domain.ProposalDecisionOutcome
+    relation: references
+  - from: revision-domain.IdentityReviser
+    to: revision-domain.Reviser
+    relation: references
+  - from: revision-domain.IdentityReviser
+    to: revision-domain.RevisionProposal
+    relation: references
+  - from: revision-domain.IdentityReviser
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: revision-domain.IdentityReviser
+    to: revision-domain.CourseElementSnapshot
+    relation: references
+  - from: revision-domain.IdentityReviser
+    to: refiner-domain.CorrectionContext
+    relation: references
+  - from: revision-domain.IdentityReviser
+    to: refiner-domain.DiagnosisKind
+    relation: references
+  - from: revision-domain.HumanApprovalValidator
+    to: revision-domain.RevisionValidatorResult
+    relation: references
+  - from: revision-domain.HumanApprovalValidator
+    to: revision-domain.RevisionProposal
+    relation: references
+  - from: revision-domain.HumanApprovalValidator
+    to: revision-domain.RevisionValidator
+    relation: references
+  - from: revision-domain.DefaultRevisionValidatorResult
+    to: revision-domain.RevisionValidatorResult
+    relation: references
+  - from: revision-domain.DefaultRevisionValidatorResult
+    to: revision-domain.RevisionVerdict
+    relation: references
+  - from: revision-domain.LemmaAbsenceProposalStrategyRegistryConfig
+    to: revision-domain.LemmaAbsenceProposalStrategy
+    relation: references
+  - from: revision-domain.DefaultCourseElementLocator
+    to: course-domain.QuizTemplateEntity
+    relation: references
+  - from: revision-domain.DefaultCourseElementLocator
+    to: revision-domain.CourseElementLocator
+    relation: references
+  - from: revision-domain.DefaultCourseElementLocator
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: revision-domain.DefaultCourseElementLocator
+    to: course-domain.TopicEntity
+    relation: references
+  - from: revision-domain.DefaultCourseElementLocator
+    to: revision-domain.CourseElementSnapshot
+    relation: references
+  - from: revision-domain.DefaultCourseElementLocator
+    to: course-domain.KnowledgeEntity
+    relation: references
+  - from: revision-domain.DefaultCourseElementLocator
+    to: course-domain.CourseEntity
+    relation: references
+  - from: revision-domain.DefaultCourseElementLocator
+    to: course-domain.MilestoneEntity
+    relation: references
+  - from: revision-domain.AutoApproveValidator
+    to: revision-domain.RevisionValidatorResult
+    relation: references
+  - from: revision-domain.AutoApproveValidator
+    to: revision-domain.RevisionProposal
+    relation: references
+  - from: revision-domain.AutoApproveValidator
+    to: revision-domain.RevisionValidator
+    relation: references
+  - from: revision-domain.DefaultConsolidatedViewBuilder
+    to: course-domain.CourseRepository
+    relation: references
+  - from: revision-domain.DefaultConsolidatedViewBuilder
+    to: revision-domain.CourseElementLocator
+    relation: references
+  - from: revision-domain.DefaultConsolidatedViewBuilder
+    to: audit-domain.CourseMapper
+    relation: references
+  - from: revision-domain.DefaultConsolidatedViewBuilder
+    to: revision-domain.NodeFieldDiffer
+    relation: references
+  - from: revision-domain.DefaultConsolidatedViewBuilder
+    to: audit-domain.AuditReportStore
+    relation: references
+  - from: revision-domain.DefaultConsolidatedViewBuilder
+    to: revision-domain.ConsolidatedViewBuilder
+    relation: references
+  - from: revision-domain.DefaultConsolidatedViewBuilder
+    to: audit-domain.ActiveAnalysisSelectionStore
+    relation: references
+  - from: revision-domain.DefaultConsolidatedViewBuilder
+    to: audit-domain.AuditEngine
+    relation: references
+  - from: revision-domain.DefaultConsolidatedViewBuilder
+    to: revision-domain.RevisionArtifactStore
+    relation: references
+  - from: revision-domain.DefaultConsolidatedViewBuilder
+    to: revision-domain.ConsolidatedView
+    relation: references
+  - from: revision-domain.DefaultConsolidatedViewBuilder
+    to: refiner-domain.RefinementPlanStore
+    relation: references
+  - from: revision-domain.DefaultRevisionEngine
+    to: course-domain.CourseRepository
+    relation: references
+  - from: revision-domain.DefaultRevisionEngine
+    to: revision-domain.CourseElementLocator
+    relation: references
+  - from: revision-domain.DefaultRevisionEngine
+    to: refiner-domain.CorrectionContextResolver
+    relation: references
+  - from: revision-domain.DefaultRevisionEngine
+    to: audit-domain.AuditReportStore
+    relation: references
+  - from: revision-domain.DefaultRevisionEngine
+    to: revision-domain.CorrectionContextOverrideParser
+    relation: references
+  - from: revision-domain.DefaultRevisionEngine
+    to: revision-domain.RevisionOutcome
+    relation: references
+  - from: revision-domain.DefaultRevisionEngine
+    to: revision-domain.ImpactPreviewStore
+    relation: references
+  - from: revision-domain.DefaultRevisionEngine
+    to: revision-domain.Reviser
+    relation: references
+  - from: revision-domain.DefaultRevisionEngine
+    to: revision-domain.RevisionArtifactStore
+    relation: references
+  - from: revision-domain.DefaultRevisionEngine
+    to: revision-domain.ImpactPreviewComputer
+    relation: references
+  - from: revision-domain.DefaultRevisionEngine
+    to: revision-domain.RevisionEngine
+    relation: references
+  - from: revision-domain.DefaultRevisionEngine
+    to: revision-domain.RevisionValidator
+    relation: references
+  - from: revision-domain.DefaultRevisionEngine
+    to: refiner-domain.RefinementPlanStore
+    relation: references
+  - from: revision-domain.DefaultRevisionEngine
+    to: refiner-domain.CorrectionContext
+    relation: references
+  - from: revision-domain.DefaultLemmaAbsenceProposalDeriver
+    to: revision-domain.CourseElementSnapshot
+    relation: references
+  - from: revision-domain.DefaultLemmaAbsenceProposalDeriver
+    to: revision-domain.LemmaAbsenceProposalDeriver
+    relation: references
+  - from: revision-domain.DefaultLemmaAbsenceProposalDeriver
+    to: revision-domain.LemmaAbsenceQuizCandidate
+    relation: references
+  - from: revision-domain.DefaultLemmaAbsenceProposalDeriver
+    to: course-domain.QuizSentenceConverter
+    relation: references
+  - from: revision-domain.DefaultLemmaAbsenceProposalStrategyRegistry
+    to: revision-domain.LemmaAbsenceProposalStrategyRegistry
+    relation: references
+  - from: revision-domain.DefaultLemmaAbsenceProposalStrategyRegistry
+    to: revision-domain.LemmaAbsenceProposalStrategyRegistryConfig
+    relation: references
+  - from: revision-domain.DefaultLemmaAbsenceProposalStrategyRegistry
+    to: revision-domain.StrategyId
+    relation: references
+  - from: revision-domain.DefaultLemmaAbsenceProposalStrategyRegistry
+    to: revision-domain.LemmaAbsenceProposalStrategy
+    relation: references
+  - from: revision-domain.RevisionValidatorFactory
+    to: revision-domain.ApprovalMode
+    relation: references
+  - from: revision-domain.RevisionValidatorFactory
+    to: revision-domain.RevisionValidator
+    relation: references
+  - from: revision-domain.ImpactPreviewComputer
+    to: revision-domain.ImpactPreview
+    relation: references
+  - from: revision-domain.ImpactPreviewComputer
+    to: revision-domain.RevisionProposal
+    relation: references
+  - from: revision-domain.ImpactPreviewComputer
+    to: course-domain.CourseEntity
+    relation: references
+  - from: revision-domain.ImpactPreviewUnavailability
+    to: revision-domain.ImpactPreviewUnavailabilityReason
+    relation: references
+  - from: revision-domain.ImpactPreview
+    to: revision-domain.ImpactPreviewUnavailability
+    relation: references
+  - from: revision-domain.ImpactPreview
+    to: revision-domain.LevelImpact
+    relation: references
+  - from: revision-domain.ImpactPreview
+    to: revision-domain.ImpactPreviewAvailability
+    relation: references
+  - from: revision-domain.LevelImpact
+    to: revision-domain.ScoreDelta
+    relation: references
+  - from: revision-domain.LevelImpact
+    to: revision-domain.DimensionDelta
+    relation: references
+  - from: revision-domain.LevelImpact
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: revision-domain.DimensionDelta
+    to: revision-domain.ScoreDelta
+    relation: references
+  - from: revision-domain.RevisionValidator
+    to: revision-domain.RevisionValidatorResult
+    relation: references
+  - from: revision-domain.RevisionValidator
+    to: revision-domain.RevisionProposal
+    relation: references
+  - from: revision-domain.CorrectionContextOverride
+    to: refiner-domain.CorrectionContext
     relation: references
   - from: course-domain.SentencePartEntity
     to: course-domain.SentencePartKind
@@ -2394,6 +4946,45 @@ graph:
   - from: course-domain.MilestoneEntity
     to: course-domain.TopicEntity
     relation: references
+  - from: course-domain.QuizSentenceParser
+    to: course-domain.FormEntity
+    relation: references
+  - from: course-domain.QuizSentenceParser
+    to: course-domain.SentencePartEntity
+    relation: references
+  - from: course-domain.QuizSentenceSerializer
+    to: course-domain.WhitespaceNormalizer
+    relation: references
+  - from: course-domain.QuizSentenceSerializer
+    to: course-domain.FormEntity
+    relation: references
+  - from: course-domain.QuizSentenceSerializer
+    to: course-domain.SentencePartEntity
+    relation: references
+  - from: course-domain.PlainSentenceDeriver
+    to: course-domain.WhitespaceNormalizer
+    relation: references
+  - from: course-domain.PlainSentenceDeriver
+    to: course-domain.FormEntity
+    relation: references
+  - from: course-domain.PlainSentenceDeriver
+    to: course-domain.SentencePartEntity
+    relation: references
+  - from: course-domain.DefaultQuizSentenceConverter
+    to: course-domain.QuizSentenceSerializer
+    relation: references
+  - from: course-domain.DefaultQuizSentenceConverter
+    to: course-domain.FormEntity
+    relation: references
+  - from: course-domain.DefaultQuizSentenceConverter
+    to: course-domain.QuizSentenceParser
+    relation: references
+  - from: course-domain.DefaultQuizSentenceConverter
+    to: course-domain.PlainSentenceDeriver
+    relation: references
+  - from: course-domain.DefaultQuizSentenceConverter
+    to: course-domain.QuizSentenceConverter
+    relation: references
   - from: course-domain.KnowledgeEntity
     to: course-domain.NodeKind
     relation: references
@@ -2411,6 +5002,9 @@ graph:
     relation: references
   - from: course-domain.TopicEntity
     to: course-domain.KnowledgeEntity
+    relation: references
+  - from: course-domain.QuizSentenceConverter
+    to: course-domain.FormEntity
     relation: references
   - from: audit-application.DefaultAnalyzerRegistry
     to: audit-domain.SelfDescribingConfig
@@ -2457,12 +5051,6 @@ graph:
   - from: audit-application.DefaultLemmaAbsenceConfig
     to: audit-domain.CefrLevel
     relation: references
-  - from: audit-application.CourseMapper
-    to: audit-domain.AuditableCourse
-    relation: references
-  - from: audit-application.CourseMapper
-    to: course-domain.CourseEntity
-    relation: references
   - from: audit-application.DefaultSentenceLengthConfig
     to: audit-domain.CefrLevel
     relation: references
@@ -2506,7 +5094,7 @@ graph:
     to: audit-domain.AuditableTopic
     relation: references
   - from: audit-application.CourseToAuditableMapper
-    to: audit-application.CourseMapper
+    to: audit-domain.CourseMapper
     relation: references
   - from: audit-application.CourseToAuditableMapper
     to: audit-domain.NlpToken
@@ -2530,16 +5118,91 @@ graph:
     to: course-domain.MilestoneEntity
     relation: references
   - from: audit-application.CourseToAuditableMapper
-    to: audit-domain.AuditableCourse
+    to: course-domain.QuizTemplateEntity
     relation: references
   - from: audit-application.CourseToAuditableMapper
-    to: course-domain.QuizTemplateEntity
+    to: audit-domain.AuditableCourse
     relation: references
   - from: audit-application.CourseToAuditableMapper
     to: course-domain.KnowledgeEntity
     relation: references
   - from: audit-application.CourseToAuditableMapper
     to: audit-domain.AuditableKnowledge
+    relation: references
+  - from: audit-application.CourseToAuditableMapper
+    to: course-domain.QuizSentenceConverter
+    relation: references
+  - from: revision-infrastructure.LemmaAbsenceLlmGeneratorFactory
+    to: revision-domain.LemmaAbsenceQuizCandidateGenerator
+    relation: references
+  - from: revision-infrastructure.LemmaAbsenceLlmGeneratorFactory
+    to: revision-infrastructure.LagenConfig
+    relation: references
+  - from: revision-infrastructure.LemmaAbsencePromptBuilder
+    to: refiner-domain.LemmaAbsenceCorrectionContext
+    relation: references
+  - from: revision-infrastructure.DefaultLemmaAbsenceLlmGeneratorFactory
+    to: revision-infrastructure.LagenDefaults
+    relation: references
+  - from: revision-infrastructure.DefaultLemmaAbsenceLlmGeneratorFactory
+    to: revision-domain.LemmaAbsenceQuizCandidateGenerator
+    relation: references
+  - from: revision-infrastructure.DefaultLemmaAbsenceLlmGeneratorFactory
+    to: revision-infrastructure.LagenConfig
+    relation: references
+  - from: revision-infrastructure.DefaultLemmaAbsenceLlmGeneratorFactory
+    to: revision-infrastructure.LemmaAbsenceLlmGeneratorFactory
+    relation: references
+  - from: revision-infrastructure.DefaultLemmaAbsencePromptBuilder
+    to: revision-infrastructure.LemmaAbsencePromptBuilder
+    relation: references
+  - from: revision-infrastructure.DefaultLemmaAbsencePromptBuilder
+    to: refiner-domain.LemmaAbsenceCorrectionContext
+    relation: references
+  - from: revision-infrastructure.DefaultLangChainErrorClassifier
+    to: revision-infrastructure.LangChainErrorClassifier
+    relation: references
+  - from: revision-infrastructure.DefaultLangChainErrorClassifier
+    to: revision-infrastructure.LlmGenerationFailureCategory
+    relation: references
+  - from: revision-infrastructure.DefaultLemmaAbsenceResponseParser
+    to: revision-infrastructure.LemmaAbsenceResponseParser
+    relation: references
+  - from: revision-infrastructure.DefaultLemmaAbsenceResponseParser
+    to: revision-infrastructure.LemmaAbsenceLlmRawResponse
+    relation: references
+  - from: revision-infrastructure.DefaultLemmaAbsenceResponseParser
+    to: revision-domain.LemmaAbsenceGeneratorResponse
+    relation: references
+  - from: revision-infrastructure.LemmaAbsenceResponseParser
+    to: revision-infrastructure.LemmaAbsenceLlmRawResponse
+    relation: references
+  - from: revision-infrastructure.LemmaAbsenceResponseParser
+    to: revision-domain.LemmaAbsenceGeneratorResponse
+    relation: references
+  - from: revision-infrastructure.LangChainErrorClassifier
+    to: revision-infrastructure.LlmGenerationFailureCategory
+    relation: references
+  - from: revision-infrastructure.LemmaAbsenceLlmGenerator
+    to: revision-domain.LemmaAbsenceQuizCandidateGenerator
+    relation: references
+  - from: revision-infrastructure.LemmaAbsenceLlmGenerator
+    to: revision-infrastructure.LemmaAbsenceResponseParser
+    relation: references
+  - from: revision-infrastructure.LemmaAbsenceLlmGenerator
+    to: revision-infrastructure.LagenConfig
+    relation: references
+  - from: revision-infrastructure.LemmaAbsenceLlmGenerator
+    to: revision-infrastructure.LangChainErrorClassifier
+    relation: references
+  - from: revision-infrastructure.LemmaAbsenceLlmGenerator
+    to: revision-infrastructure.LemmaAbsencePromptBuilder
+    relation: references
+  - from: revision-infrastructure.LemmaAbsenceLlmGenerator
+    to: revision-domain.LemmaAbsenceGeneratorResponse
+    relation: references
+  - from: revision-infrastructure.LemmaAbsenceLlmGenerator
+    to: refiner-domain.LemmaAbsenceCorrectionContext
     relation: references
   - from: vocabulary-infrastructure.FileSystemEvpCatalog
     to: audit-domain.LemmaAndPos
@@ -2811,6 +5474,27 @@ graph:
   - from: audit-domain.CocaBucketsConfig
     to: audit-domain.BandConfiguration
     relation: references
+  - from: audit-domain.DefaultAuditNodeIndexFactory
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-domain.DefaultAuditNodeIndexFactory
+    to: audit-domain.AuditNodeIndexFactory
+    relation: references
+  - from: audit-domain.DefaultAuditNodeIndexFactory
+    to: audit-domain.AuditNodeIndex
+    relation: references
+  - from: audit-domain.MapAuditNodeIndex
+    to: audit-domain.AuditNode
+    relation: references
+  - from: audit-domain.MapAuditNodeIndex
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-domain.MapAuditNodeIndex
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: audit-domain.MapAuditNodeIndex
+    to: audit-domain.AuditNodeIndex
+    relation: references
   - from: audit-domain.TopicDiagnoses
     to: audit-domain.CocaBucketsTopicDiagnosis
     relation: references
@@ -2840,6 +5524,15 @@ graph:
     relation: references
   - from: audit-domain.SentenceLengthAnalyzer
     to: audit-domain.SentenceLengthConfig
+    relation: references
+  - from: audit-domain.SentenceLengthAnalyzer
+    to: audit-domain.NlpTokenizer
+    relation: references
+  - from: audit-domain.AuditNodeIndex
+    to: audit-domain.AuditNode
+    relation: references
+  - from: audit-domain.AuditNodeIndex
+    to: audit-domain.AuditTarget
     relation: references
   - from: audit-domain.KnowledgeDiagnoses
     to: audit-domain.LemmaPlacementDiagnosis
@@ -2891,6 +5584,12 @@ graph:
     relation: references
   - from: audit-domain.EvpCatalogPort
     to: audit-domain.CefrLevel
+    relation: references
+  - from: audit-domain.AuditNodeIndexFactory
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-domain.AuditNodeIndexFactory
+    to: audit-domain.AuditNodeIndex
     relation: references
   - from: audit-domain.QuizDiagnoses
     to: audit-domain.LemmaPlacementDiagnosis
@@ -3120,6 +5819,15 @@ graph:
   - from: audit-domain.AuditNode
     to: audit-domain.NodeDiagnoses
     relation: references
+  - from: audit-domain.ActiveAnalysisSelectionStore
+    to: audit-domain.ActiveAnalysisSelection
+    relation: references
+  - from: audit-domain.CourseMapper
+    to: audit-domain.AuditableCourse
+    relation: references
+  - from: audit-domain.CourseMapper
+    to: course-domain.CourseEntity
+    relation: references
   - from: audit-domain.DefaultTopicDiagnoses
     to: audit-domain.CocaBucketsTopicDiagnosis
     relation: references
@@ -3180,23 +5888,8 @@ graph:
   - from: refiner-domain.RefinementPlanStore
     to: refiner-domain.RefinementPlan
     relation: references
-  - from: refiner-domain.DefaultCorrectionContextResolver
-    to: audit-domain.AuditNode
-    relation: references
-  - from: refiner-domain.DefaultCorrectionContextResolver
-    to: audit-domain.AuditReport
-    relation: references
-  - from: refiner-domain.DefaultCorrectionContextResolver
-    to: audit-domain.AuditTarget
-    relation: references
-  - from: refiner-domain.DefaultCorrectionContextResolver
-    to: refiner-domain.RefinementTask
-    relation: references
-  - from: refiner-domain.DefaultCorrectionContextResolver
-    to: refiner-domain.CorrectionContextResolver
-    relation: references
-  - from: refiner-domain.DefaultCorrectionContextResolver
-    to: refiner-domain.SentenceLengthCorrectionContext
+  - from: refiner-domain.MisplacedLemmaContext
+    to: audit-domain.CefrLevel
     relation: references
   - from: refiner-domain.RefinerEngine
     to: audit-domain.AuditReport
@@ -3207,6 +5900,45 @@ graph:
   - from: refiner-domain.RefinerEngine
     to: refiner-domain.RefinementPlan
     relation: references
+  - from: refiner-domain.LemmaAbsenceCorrectionContext
+    to: refiner-domain.MisplacedLemmaContext
+    relation: references
+  - from: refiner-domain.LemmaAbsenceCorrectionContext
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: refiner-domain.LemmaAbsenceCorrectionContext
+    to: refiner-domain.SuggestedLemma
+    relation: references
+  - from: refiner-domain.LemmaAbsenceCorrectionContext
+    to: refiner-domain.LengthDirection
+    relation: references
+  - from: refiner-domain.LemmaAbsenceCorrectionContext
+    to: refiner-domain.CorrectionContext
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextResolver
+    to: audit-domain.AuditNode
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextResolver
+    to: audit-domain.AuditReport
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextResolver
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextResolver
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextResolver
+    to: refiner-domain.CorrectionContextResolver
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextResolver
+    to: audit-domain.AuditNodeIndex
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextResolver
+    to: refiner-domain.LemmaAbsenceCorrectionContext
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextResolver
+    to: refiner-domain.DiagnosisKind
+    relation: references
   - from: refiner-domain.CorrectionContextResolver
     to: audit-domain.AuditReport
     relation: references
@@ -3214,10 +5946,37 @@ graph:
     to: refiner-domain.RefinementTask
     relation: references
   - from: refiner-domain.CorrectionContextResolver
-    to: refiner-domain.SentenceLengthCorrectionContext
+    to: audit-domain.AuditNodeIndex
+    relation: references
+  - from: refiner-domain.CorrectionContextResolver
+    to: refiner-domain.DiagnosisKind
     relation: references
   - from: refiner-domain.RefinementPlan
     to: refiner-domain.RefinementTask
+    relation: references
+  - from: refiner-domain.DispatchingCorrectionContextResolver
+    to: refiner-domain.SentenceLengthContextResolver
+    relation: references
+  - from: refiner-domain.DispatchingCorrectionContextResolver
+    to: audit-domain.AuditReport
+    relation: references
+  - from: refiner-domain.DispatchingCorrectionContextResolver
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: refiner-domain.DispatchingCorrectionContextResolver
+    to: refiner-domain.CorrectionContextResolver
+    relation: references
+  - from: refiner-domain.DispatchingCorrectionContextResolver
+    to: audit-domain.AuditNodeIndex
+    relation: references
+  - from: refiner-domain.DispatchingCorrectionContextResolver
+    to: refiner-domain.LemmaAbsenceContextResolver
+    relation: references
+  - from: refiner-domain.DispatchingCorrectionContextResolver
+    to: refiner-domain.CorrectionContext
+    relation: references
+  - from: refiner-domain.DispatchingCorrectionContextResolver
+    to: refiner-domain.DiagnosisKind
     relation: references
   - from: refiner-domain.RefinementTask
     to: audit-domain.AuditTarget
@@ -3233,6 +5992,9 @@ graph:
     relation: references
   - from: refiner-domain.SentenceLengthCorrectionContext
     to: refiner-domain.SuggestedLemma
+    relation: references
+  - from: refiner-domain.SentenceLengthCorrectionContext
+    to: refiner-domain.CorrectionContext
     relation: references
   - from: refiner-domain.DefaultRefinerEngine
     to: audit-domain.AuditNode
@@ -3253,6 +6015,78 @@ graph:
     to: refiner-domain.RefinerEngine
     relation: references
   - from: refiner-domain.DefaultRefinerEngine
+    to: refiner-domain.DiagnosisKind
+    relation: references
+  - from: refiner-domain.SentenceLengthContextResolver
+    to: audit-domain.AuditNode
+    relation: references
+  - from: refiner-domain.SentenceLengthContextResolver
+    to: audit-domain.AuditReport
+    relation: references
+  - from: refiner-domain.SentenceLengthContextResolver
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: refiner-domain.SentenceLengthContextResolver
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: refiner-domain.SentenceLengthContextResolver
+    to: refiner-domain.CorrectionContextResolver
+    relation: references
+  - from: refiner-domain.SentenceLengthContextResolver
+    to: audit-domain.AuditNodeIndex
+    relation: references
+  - from: refiner-domain.SentenceLengthContextResolver
+    to: refiner-domain.SentenceLengthCorrectionContext
+    relation: references
+  - from: refiner-domain.SentenceLengthContextResolver
+    to: refiner-domain.DiagnosisKind
+    relation: references
+  - from: audit-cli.LagenModeResolver
+    to: audit-cli.LagenMode
+    relation: references
+  - from: audit-cli.ApprovalModeResolver
+    to: revision-domain.ApprovalMode
+    relation: references
+  - from: audit-cli.DefaultProposalStrategySelector
+    to: revision-domain.LemmaAbsenceProposalStrategyRegistry
+    relation: references
+  - from: audit-cli.DefaultProposalStrategySelector
+    to: audit-cli.ProposalStrategySelector
+    relation: references
+  - from: audit-cli.DefaultWorkdirResolver
+    to: audit-cli.WorkdirResolver
+    relation: references
+  - from: audit-cli.DefaultApprovalModeResolver
+    to: revision-domain.ApprovalMode
+    relation: references
+  - from: audit-cli.DefaultApprovalModeResolver
+    to: audit-cli.ApprovalModeResolver
+    relation: references
+  - from: audit-cli.ProposalStrategySelector
+    to: revision-domain.LemmaAbsenceProposalStrategyRegistry
+    relation: references
+  - from: audit-cli.LagenConfigResolver
+    to: revision-infrastructure.LagenConfig
+    relation: references
+  - from: audit-cli.DefaultLagenModeResolver
+    to: audit-cli.LagenModeResolver
+    relation: references
+  - from: audit-cli.DefaultLagenModeResolver
+    to: audit-cli.LagenMode
+    relation: references
+  - from: audit-cli.DefaultLagenConfigResolver
+    to: audit-cli.LagenConfigResolver
+    relation: references
+  - from: audit-cli.DefaultLagenConfigResolver
+    to: revision-infrastructure.LagenConfig
+    relation: references
+  - from: audit-cli.PlanCommand
+    to: audit-cli.PlanStorageMode
+    relation: references
+  - from: audit-cli.GetTasksFilter
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: audit-cli.GetTasksFilter
     to: refiner-domain.DiagnosisKind
     relation: references
   - from: audit-cli.DefaultFormatterRegistry
@@ -3338,6 +6172,30 @@ graph:
     relation: references
   - from: audit-cli.ChildScoreRow
     to: audit-domain.AuditableEntity
+    relation: references
+  - from: audit-cli.DefaultImpactPreviewFormatter
+    to: revision-domain.ScoreDelta
+    relation: references
+  - from: audit-cli.DefaultImpactPreviewFormatter
+    to: revision-domain.ImpactPreview
+    relation: references
+  - from: audit-cli.DefaultImpactPreviewFormatter
+    to: revision-domain.DimensionDelta
+    relation: references
+  - from: audit-cli.DefaultImpactPreviewFormatter
+    to: audit-cli.ImpactPreviewFormatter
+    relation: references
+  - from: audit-cli.DefaultImpactPreviewFormatter
+    to: audit-cli.ImpactPreviewView
+    relation: references
+  - from: audit-cli.DefaultImpactPreviewFormatter
+    to: audit-cli.LevelImpactView
+    relation: references
+  - from: audit-cli.DefaultImpactPreviewFormatter
+    to: audit-cli.DimensionDeltaView
+    relation: references
+  - from: audit-cli.DefaultImpactPreviewFormatter
+    to: revision-domain.LevelImpact
     relation: references
   - from: audit-cli.TableReportFormatter
     to: audit-cli.ReportViewModel
@@ -3432,6 +6290,12 @@ graph:
   - from: audit-cli.AnalyzerStatsTransformer
     to: audit-application.AnalyzerRegistry
     relation: references
+  - from: audit-cli.LevelImpactView
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: audit-cli.LevelImpactView
+    to: audit-cli.DimensionDeltaView
+    relation: references
   - from: audit-cli.DefaultDrillDownResolver
     to: audit-cli.ReportViewModel
     relation: references
@@ -3455,6 +6319,9 @@ graph:
     relation: references
   - from: audit-cli.DefaultDrillDownResolver
     to: audit-cli.DrillDownView
+    relation: references
+  - from: audit-cli.ConsolidatedViewFormatter
+    to: revision-domain.ConsolidatedView
     relation: references
   - from: audit-cli.KnowledgeScoreRow
     to: audit-cli.ScoreRow
@@ -3485,6 +6352,12 @@ graph:
     relation: references
   - from: audit-cli.RawReportFormatter
     to: audit-domain.AuditReport
+    relation: references
+  - from: audit-cli.ImpactPreviewFormatter
+    to: revision-domain.ImpactPreview
+    relation: references
+  - from: audit-cli.ImpactPreviewFormatter
+    to: audit-cli.ImpactPreviewView
     relation: references
   - from: audit-cli.TopicScoreRow
     to: audit-cli.KnowledgeScoreRow
@@ -3525,17 +6398,47 @@ graph:
   - from: audit-cli.QuizScoreRow
     to: audit-domain.AuditableEntity
     relation: references
+  - from: audit-cli.DefaultConsolidatedViewFormatter
+    to: audit-cli.ConsolidatedViewFormatter
+    relation: references
+  - from: audit-cli.DefaultConsolidatedViewFormatter
+    to: revision-domain.ConsolidatedView
+    relation: references
   - from: audit-cli.ReportViewModel
     to: audit-cli.MilestoneScoreRow
+    relation: references
+  - from: audit-cli.ImpactPreviewView
+    to: audit-cli.LevelImpactView
+    relation: references
+  - from: audit-cli.ImpactPreviewView
+    to: revision-domain.ImpactPreviewAvailability
     relation: references
   - from: audit-cli.FormatterRegistry
     to: audit-cli.ReportFormatter
     relation: references
-  - from: audit-cli.AnalyzerListCmd
-    to: audit-cli.AnalyzerListCommand
+  - from: audit-cli.GetConsolidatedCmd
+    to: audit-cli.GetConsolidatedCommand
     relation: references
-  - from: audit-cli.AnalyzerListCmd
-    to: audit-application.AnalyzerRegistry
+  - from: audit-cli.ApproveCmd
+    to: revision-domain.ProposalDecisionService
+    relation: references
+  - from: audit-cli.ApproveCmd
+    to: audit-cli.ApproveCommand
+    relation: references
+  - from: audit-cli.StoreHelper
+    to: refiner-domain.RefinementPlan
+    relation: references
+  - from: audit-cli.DefaultSetActiveAnalysisCommand
+    to: audit-domain.ActiveAnalysisSelectionStore
+    relation: references
+  - from: audit-cli.DefaultSetActiveAnalysisCommand
+    to: audit-cli.SetActiveAnalysisCommand
+    relation: references
+  - from: audit-cli.CorrectionContextJsonMapper
+    to: refiner-domain.CorrectionContext
+    relation: references
+  - from: audit-cli.SetActiveCmd
+    to: audit-cli.SetActiveAnalysisCommand
     relation: references
   - from: audit-cli.AnalyzeCmd
     to: audit-cli.FormatterRegistry
@@ -3561,80 +6464,203 @@ graph:
   - from: audit-cli.AnalyzeCmd
     to: audit-cli.RawReportFormatter
     relation: references
-  - from: audit-cli.AnalyzerStatsCmd
-    to: audit-cli.AnalyzerStatsView
+  - from: audit-cli.GetCmd
+    to: audit-cli.CorrectionContextJsonMapper
     relation: references
-  - from: audit-cli.AnalyzerStatsCmd
-    to: audit-cli.AnalyzerStatsTransformer
-    relation: references
-  - from: audit-cli.AnalyzerStatsCmd
-    to: audit-application.AuditRunner
-    relation: references
-  - from: audit-cli.AnalyzerStatsCmd
-    to: audit-application.AnalyzerRegistry
-    relation: references
-  - from: audit-cli.AnalyzerStatsCmd
-    to: audit-cli.AnalyzerStatsCommand
-    relation: references
-  - from: audit-cli.RefinerPlanCmd
+  - from: audit-cli.GetCmd
     to: audit-domain.AuditTarget
     relation: references
-  - from: audit-cli.RefinerPlanCmd
+  - from: audit-cli.GetCmd
     to: refiner-domain.RefinementTask
     relation: references
-  - from: audit-cli.RefinerPlanCmd
+  - from: audit-cli.GetCmd
+    to: audit-domain.AuditReportSummary
+    relation: references
+  - from: audit-cli.GetCmd
+    to: revision-domain.ImpactPreviewStore
+    relation: references
+  - from: audit-cli.GetCmd
+    to: audit-domain.AnalyzerDescriptor
+    relation: references
+  - from: audit-cli.GetCmd
+    to: revision-domain.RevisionArtifact
+    relation: references
+  - from: audit-cli.GetCmd
+    to: audit-cli.GetTasksFilter
+    relation: references
+  - from: audit-cli.GetCmd
+    to: audit-application.AnalyzerRegistry
+    relation: references
+  - from: audit-cli.GetCmd
+    to: refiner-domain.LemmaAbsenceCorrectionContext
+    relation: references
+  - from: audit-cli.GetCmd
+    to: revision-domain.RevisionVerdict
+    relation: references
+  - from: audit-cli.GetCmd
     to: refiner-domain.RefinementPlan
     relation: references
-  - from: audit-cli.RefinerPlanCmd
-    to: refiner-domain.RefinerEngine
+  - from: audit-cli.GetCmd
+    to: refiner-domain.CorrectionContextResolver
     relation: references
-  - from: audit-cli.RefinerPlanCmd
-    to: audit-cli.RefinerPlanCommand
-    relation: references
-  - from: audit-cli.RefinerPlanCmd
+  - from: audit-cli.GetCmd
     to: audit-domain.AuditReportStore
     relation: references
-  - from: audit-cli.RefinerPlanCmd
+  - from: audit-cli.GetCmd
+    to: refiner-domain.SentenceLengthCorrectionContext
+    relation: references
+  - from: audit-cli.GetCmd
+    to: audit-cli.GetCommand
+    relation: references
+  - from: audit-cli.GetCmd
+    to: audit-cli.ImpactPreviewFormatter
+    relation: references
+  - from: audit-cli.GetCmd
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-cli.GetCmd
+    to: revision-domain.RevisionArtifactStore
+    relation: references
+  - from: audit-cli.GetCmd
     to: refiner-domain.RefinementPlanStore
     relation: references
-  - from: audit-cli.AnalyzerConfigCmd
-    to: audit-cli.AnalyzerConfigCommand
+  - from: audit-cli.DeleteCmd
+    to: audit-cli.DeleteCommand
     relation: references
-  - from: audit-cli.AnalyzerConfigCmd
-    to: audit-application.AnalyzerRegistry
+  - from: audit-cli.DeleteCmd
+    to: audit-domain.AuditReportStore
     relation: references
-  - from: audit-cli.RefinerListCmd
-    to: audit-domain.AuditTarget
+  - from: audit-cli.DeleteCmd
+    to: refiner-domain.RefinementPlanStore
     relation: references
-  - from: audit-cli.RefinerListCmd
-    to: refiner-domain.RefinementTask
+  - from: audit-cli.ReviseCmd
+    to: audit-cli.ReviseCommand
     relation: references
-  - from: audit-cli.RefinerListCmd
-    to: audit-cli.RefinerListCommand
+  - from: audit-cli.ReviseCmd
+    to: revision-domain.RevisionEngine
     relation: references
-  - from: audit-cli.RefinerListCmd
+  - from: audit-cli.ReviseCmd
+    to: refiner-domain.RefinementPlanStore
+    relation: references
+  - from: audit-cli.ReviseCmd
+    to: revision-domain.RevisionOutcome
+    relation: references
+  - from: audit-cli.DefaultCorrectionContextJsonMapper
+    to: audit-cli.CorrectionContextJsonMapper
+    relation: references
+  - from: audit-cli.DefaultCorrectionContextJsonMapper
+    to: refiner-domain.CorrectionContext
+    relation: references
+  - from: audit-cli.DefaultCorrectionContextJsonMapper
+    to: refiner-domain.LemmaAbsenceCorrectionContext
+    relation: references
+  - from: audit-cli.DefaultCorrectionContextJsonMapper
+    to: refiner-domain.SentenceLengthCorrectionContext
+    relation: references
+  - from: audit-cli.EphemeralPlanRenderer
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-cli.EphemeralPlanRenderer
     to: refiner-domain.RefinementPlan
     relation: references
-  - from: audit-cli.RefinerListCmd
+  - from: audit-cli.EphemeralPlanRenderer
+    to: audit-cli.EphemeralRenderOptions
+    relation: references
+  - from: audit-cli.DefaultGetConsolidatedCommand
+    to: audit-cli.GetConsolidatedCommand
+    relation: references
+  - from: audit-cli.DefaultGetConsolidatedCommand
+    to: revision-domain.ConsolidatedViewBuilder
+    relation: references
+  - from: audit-cli.DefaultGetConsolidatedCommand
+    to: audit-cli.ConsolidatedViewFormatter
+    relation: references
+  - from: audit-cli.StatsAnalyzerCmd
+    to: audit-cli.AnalyzerStatsView
+    relation: references
+  - from: audit-cli.StatsAnalyzerCmd
+    to: audit-cli.AnalyzerStatsTransformer
+    relation: references
+  - from: audit-cli.StatsAnalyzerCmd
+    to: audit-application.AuditRunner
+    relation: references
+  - from: audit-cli.StatsAnalyzerCmd
+    to: audit-application.AnalyzerRegistry
+    relation: references
+  - from: audit-cli.StatsAnalyzerCmd
+    to: audit-cli.StatsAnalyzerCommand
+    relation: references
+  - from: audit-cli.RejectCmd
+    to: revision-domain.ProposalDecisionService
+    relation: references
+  - from: audit-cli.RejectCmd
+    to: audit-cli.RejectCommand
+    relation: references
+  - from: audit-cli.PruneCmd
+    to: audit-cli.PruneCommand
+    relation: references
+  - from: audit-cli.PruneCmd
+    to: audit-domain.AuditReportStore
+    relation: references
+  - from: audit-cli.PruneCmd
     to: refiner-domain.RefinementPlanStore
     relation: references
-  - from: audit-cli.RefinerNextCmd
+  - from: audit-cli.ConfigAnalyzerCmd
+    to: audit-application.AnalyzerRegistry
+    relation: references
+  - from: audit-cli.ConfigAnalyzerCmd
+    to: audit-cli.ConfigAnalyzerCommand
+    relation: references
+  - from: audit-cli.PlanCmd
+    to: audit-cli.EphemeralPlanRenderer
+    relation: references
+  - from: audit-cli.PlanCmd
+    to: audit-cli.PlanCommand
+    relation: references
+  - from: audit-cli.PlanCmd
     to: audit-domain.AuditTarget
     relation: references
-  - from: audit-cli.RefinerNextCmd
+  - from: audit-cli.PlanCmd
     to: refiner-domain.RefinementTask
     relation: references
-  - from: audit-cli.RefinerNextCmd
+  - from: audit-cli.PlanCmd
+    to: refiner-domain.RefinementPlan
+    relation: references
+  - from: audit-cli.PlanCmd
     to: refiner-domain.RefinerEngine
     relation: references
-  - from: audit-cli.RefinerNextCmd
-    to: audit-cli.RefinerNextCommand
+  - from: audit-cli.PlanCmd
+    to: audit-domain.AuditReportStore
     relation: references
-  - from: audit-cli.RefinerNextCmd
+  - from: audit-cli.PlanCmd
+    to: audit-cli.PlanStorageMode
+    relation: references
+  - from: audit-cli.PlanCmd
     to: refiner-domain.RefinementPlanStore
     relation: references
-  - from: audit-cli.RefinerNextCmd
-    to: refiner-domain.DiagnosisKind
+  - from: audit-cli.DefaultEphemeralPlanRenderer
+    to: audit-cli.EphemeralPlanRenderer
+    relation: references
+  - from: audit-cli.DefaultEphemeralPlanRenderer
+    to: audit-cli.CorrectionContextJsonMapper
+    relation: references
+  - from: audit-cli.DefaultEphemeralPlanRenderer
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-cli.DefaultEphemeralPlanRenderer
+    to: audit-domain.AuditNodeIndexFactory
+    relation: references
+  - from: audit-cli.DefaultEphemeralPlanRenderer
+    to: refiner-domain.RefinementPlan
+    relation: references
+  - from: audit-cli.DefaultEphemeralPlanRenderer
+    to: refiner-domain.CorrectionContextResolver
+    relation: references
+  - from: audit-cli.DefaultEphemeralPlanRenderer
+    to: audit-cli.EphemeralRenderOptions
+    relation: references
+  - from: audit-cli.GetCommand
+    to: audit-cli.GetTasksFilter
     relation: references
   - from: course-infrastructure.CourseValidatorImpl
     to: course-domain.CourseValidator
@@ -3722,11 +6748,17 @@ graph:
     distance: 1
   - component: course-infrastructure.FileSystemCourseRepository
     distance: 1
+  - component: audit-cli.GetConsolidatedCmd
+    distance: 1
   - component: vocabulary-infrastructure.FileSystemEvpCatalog
     distance: 1
   - component: audit-domain.QuizDiagnoses
     distance: 1
+  - component: audit-cli.SetActiveCmd
+    distance: 1
   - component: audit-domain.KnowledgeDiagnoses
+    distance: 1
+  - component: audit-infrastructure.FileSystemRevisionArtifactStore
     distance: 1
   - component: audit-domain.DefaultLevelDiagnoses
     distance: 1
@@ -3738,9 +6770,11 @@ graph:
     distance: 1
   - component: audit-domain.DefaultQuizDiagnoses
     distance: 1
-  - component: audit-domain.DefaultTopicDiagnoses
+  - component: revision-domain.IdentityReviser
     distance: 1
-  - component: audit-cli.RefinerPlanCmd
+  - component: audit-cli.StoreHelper
+    distance: 1
+  - component: audit-domain.DefaultTopicDiagnoses
     distance: 1
   - component: audit-domain.LevelDiagnoses
     distance: 1
@@ -3751,8 +6785,6 @@ graph:
   - component: audit-cli.ScoredItemRow
     distance: 1
   - component: audit-cli.TableReportFormatter
-    distance: 1
-  - component: audit-cli.RefinerListCmd
     distance: 1
   - component: audit-domain.DefaultCourseDiagnoses
     distance: 1
@@ -3770,11 +6802,7 @@ graph:
     distance: 1
   - component: audit-infrastructure.FileSystemRefinementPlanStore
     distance: 1
-  - component: audit-cli.RefinerNextCmd
-    distance: 1
   - component: audit-domain.IScoreAggregator
-    distance: 1
-  - component: refiner-domain.DefaultCorrectionContextResolver
     distance: 1
   - component: audit-cli.JsonReportFormatter
     distance: 1
@@ -3786,7 +6814,6 @@ graph:
   - audit-infrastructure.AuditReportObjectMapper
   - audit-cli.CoursePathResolver
   - audit-infrastructure.AuditPersistenceException
-  - audit-cli.RefinerCmd
   - audit-cli.Main
 methodCallGraph:
   edges:
@@ -3862,6 +6889,491 @@ methodCallGraph:
     toModule: audit-infrastructure
     fragment: "opt [try]"
     earlyReturn: false
+  - fromInterface: LemmaAbsenceProposalStrategy
+    fromMethod: propose
+    toInterface: LemmaAbsenceQuizCandidateGenerator
+    toMethod: generate
+    toModule: revision-domain
+    earlyReturn: false
+  - fromInterface: NodeFieldDiffer
+    fromMethod: diff
+    toInterface: NodeFieldDiffer
+    toMethod: walkNode
+    toModule: revision-domain
+    fragment: "alt [else: original == null && consolidated == n...]"
+    earlyReturn: false
+  - fromInterface: Reviser
+    fromMethod: propose
+    toInterface: Reviser
+    toMethod: proposeLemmaAbsence
+    toModule: revision-domain
+    fragment: "alt [DiagnosisKind.LEMMA_ABSENCE.equals(kind)]"
+    earlyReturn: true
+  - fromInterface: Reviser
+    fromMethod: propose
+    toInterface: IdentityReviser
+    toMethod: propose
+    toModule: revision-domain
+    fragment: "alt [fallback != null]"
+    earlyReturn: true
+  - fromInterface: Reviser
+    fromMethod: handles
+    toInterface: IdentityReviser
+    toMethod: handles
+    toModule: revision-domain
+    fragment: "alt [fallback != null]"
+    earlyReturn: true
+  - fromInterface: ImpactPreviewComputer
+    fromMethod: compute
+    toInterface: AuditReportStore
+    toMethod: loadLatest
+    toModule: audit-domain
+    earlyReturn: false
+  - fromInterface: ImpactPreviewComputer
+    fromMethod: compute
+    toInterface: ImpactPreviewComputer
+    toMethod: unavailable
+    toModule: revision-domain
+    fragment: "alt [baselineOpt.isEmpty()]"
+    earlyReturn: true
+  - fromInterface: ImpactPreviewComputer
+    fromMethod: compute
+    toInterface: CourseElementLocator
+    toMethod: replace
+    toModule: revision-domain
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: ImpactPreviewComputer
+    fromMethod: compute
+    toInterface: CourseElementLocator
+    toMethod: snapshot
+    toModule: revision-domain
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: ImpactPreviewComputer
+    fromMethod: compute
+    toInterface: ImpactPreviewComputer
+    toMethod: unavailable
+    toModule: revision-domain
+    fragment: "alt [snapshotOpt.isEmpty()]"
+    earlyReturn: true
+  - fromInterface: ImpactPreviewComputer
+    fromMethod: compute
+    toInterface: CourseMapper
+    toMethod: map
+    toModule: audit-domain
+    fragment: "alt [else: snapshotOpt.isEmpty()]"
+    earlyReturn: false
+  - fromInterface: ImpactPreviewComputer
+    fromMethod: compute
+    toInterface: AuditEngine
+    toMethod: runAudit
+    toModule: audit-domain
+    fragment: "alt [else: snapshotOpt.isEmpty()]"
+    earlyReturn: false
+  - fromInterface: ImpactPreviewComputer
+    fromMethod: compute
+    toInterface: ImpactPreviewComputer
+    toMethod: unavailable
+    toModule: revision-domain
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: ImpactPreviewComputer
+    fromMethod: compute
+    toInterface: ImpactPreviewComputer
+    toMethod: buildLevelImpacts
+    toModule: revision-domain
+    fragment: "alt [else: baselineOpt.isEmpty()]"
+    earlyReturn: false
+  - fromInterface: ProposalDecisionService
+    fromMethod: approve
+    toInterface: RevisionArtifactStore
+    toMethod: findByProposalId
+    toModule: revision-domain
+    earlyReturn: false
+  - fromInterface: ProposalDecisionService
+    fromMethod: approve
+    toInterface: RefinementPlanStore
+    toMethod: load
+    toModule: refiner-domain
+    fragment: "alt [else: artifact.getVerdict() != RevisionVerd...]"
+    earlyReturn: false
+  - fromInterface: ProposalDecisionService
+    fromMethod: approve
+    toInterface: CourseRepository
+    toMethod: load
+    toModule: course-domain
+    fragment: "alt [else: artifact.getVerdict() != RevisionVerd...]"
+    earlyReturn: false
+  - fromInterface: ProposalDecisionService
+    fromMethod: approve
+    toInterface: CourseElementLocator
+    toMethod: replace
+    toModule: revision-domain
+    fragment: "alt [else: artifact.getVerdict() != RevisionVerd...]"
+    earlyReturn: false
+  - fromInterface: ProposalDecisionService
+    fromMethod: approve
+    toInterface: RevisionArtifactStore
+    toMethod: save
+    toModule: revision-domain
+    fragment: "alt [else: artifact.getVerdict() != RevisionVerd...]"
+    earlyReturn: false
+  - fromInterface: ProposalDecisionService
+    fromMethod: approve
+    toInterface: CourseRepository
+    toMethod: save
+    toModule: course-domain
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: ProposalDecisionService
+    fromMethod: approve
+    toInterface: RefinementPlanStore
+    toMethod: save
+    toModule: refiner-domain
+    fragment: "alt [else: artifact.getVerdict() != RevisionVerd...]"
+    earlyReturn: false
+  - fromInterface: ProposalDecisionService
+    fromMethod: reject
+    toInterface: RevisionArtifactStore
+    toMethod: findByProposalId
+    toModule: revision-domain
+    earlyReturn: false
+  - fromInterface: ProposalDecisionService
+    fromMethod: reject
+    toInterface: RevisionArtifactStore
+    toMethod: save
+    toModule: revision-domain
+    fragment: "alt [else: artifact.getVerdict() != RevisionVerd...]"
+    earlyReturn: false
+  - fromInterface: ProposalDecisionService
+    fromMethod: reject
+    toInterface: RefinementPlanStore
+    toMethod: load
+    toModule: refiner-domain
+    fragment: "alt [else: artifact.getVerdict() != RevisionVerd...]"
+    earlyReturn: false
+  - fromInterface: ProposalDecisionService
+    fromMethod: reject
+    toInterface: RefinementPlanStore
+    toMethod: save
+    toModule: refiner-domain
+    fragment: "alt [else: artifact.getVerdict() != RevisionVerd...]"
+    earlyReturn: false
+  - fromInterface: ConsolidatedViewBuilder
+    fromMethod: build
+    toInterface: ActiveAnalysisSelectionStore
+    toMethod: read
+    toModule: audit-domain
+    earlyReturn: false
+  - fromInterface: ConsolidatedViewBuilder
+    fromMethod: build
+    toInterface: ConsolidatedViewBuilder
+    toMethod: unavailable
+    toModule: revision-domain
+    fragment: "alt [selectionOpt.isEmpty()]"
+    earlyReturn: true
+  - fromInterface: ConsolidatedViewBuilder
+    fromMethod: build
+    toInterface: RefinementPlanStore
+    toMethod: load
+    toModule: refiner-domain
+    fragment: "alt [else: selectionOpt.isEmpty()]"
+    earlyReturn: false
+  - fromInterface: ConsolidatedViewBuilder
+    fromMethod: build
+    toInterface: ConsolidatedViewBuilder
+    toMethod: unavailable
+    toModule: revision-domain
+    fragment: "alt [planOpt.isEmpty()]"
+    earlyReturn: true
+  - fromInterface: ConsolidatedViewBuilder
+    fromMethod: build
+    toInterface: AuditReportStore
+    toMethod: load
+    toModule: audit-domain
+    fragment: "alt [else: planOpt.isEmpty()]"
+    earlyReturn: false
+  - fromInterface: ConsolidatedViewBuilder
+    fromMethod: build
+    toInterface: ConsolidatedViewBuilder
+    toMethod: unavailable
+    toModule: revision-domain
+    fragment: "alt [auditOpt.isEmpty()]"
+    earlyReturn: true
+  - fromInterface: ConsolidatedViewBuilder
+    fromMethod: build
+    toInterface: RevisionArtifactStore
+    toMethod: listByPlan
+    toModule: revision-domain
+    fragment: "alt [else: auditOpt.isEmpty()]"
+    earlyReturn: false
+  - fromInterface: ConsolidatedViewBuilder
+    fromMethod: build
+    toInterface: CourseRepository
+    toMethod: load
+    toModule: course-domain
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: ConsolidatedViewBuilder
+    fromMethod: build
+    toInterface: ConsolidatedViewBuilder
+    toMethod: unavailable
+    toModule: revision-domain
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: ConsolidatedViewBuilder
+    fromMethod: build
+    toInterface: CourseElementLocator
+    toMethod: replace
+    toModule: revision-domain
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: ConsolidatedViewBuilder
+    fromMethod: build
+    toInterface: CourseElementLocator
+    toMethod: snapshot
+    toModule: revision-domain
+    fragment: "loop [for each pending]"
+    earlyReturn: false
+  - fromInterface: ConsolidatedViewBuilder
+    fromMethod: build
+    toInterface: CourseMapper
+    toMethod: map
+    toModule: audit-domain
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: ConsolidatedViewBuilder
+    fromMethod: build
+    toInterface: AuditEngine
+    toMethod: runAudit
+    toModule: audit-domain
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: ConsolidatedViewBuilder
+    fromMethod: build
+    toInterface: CourseMapper
+    toMethod: map
+    toModule: audit-domain
+    fragment: "opt [try]"
+    earlyReturn: true
+  - fromInterface: ConsolidatedViewBuilder
+    fromMethod: build
+    toInterface: AuditEngine
+    toMethod: runAudit
+    toModule: audit-domain
+    fragment: "opt [try]"
+    earlyReturn: true
+  - fromInterface: ConsolidatedViewBuilder
+    fromMethod: build
+    toInterface: ConsolidatedViewBuilder
+    toMethod: unavailable
+    toModule: revision-domain
+    fragment: "opt [try]"
+    earlyReturn: true
+  - fromInterface: ConsolidatedViewBuilder
+    fromMethod: build
+    toInterface: ConsolidatedViewBuilder
+    toMethod: indexAuditNodes
+    toModule: revision-domain
+    fragment: "alt [else: hasPendingApplicable]"
+    earlyReturn: false
+  - fromInterface: ConsolidatedViewBuilder
+    fromMethod: build
+    toInterface: NodeFieldDiffer
+    toMethod: diff
+    toModule: revision-domain
+    fragment: "loop [for each allNodeIds]"
+    earlyReturn: false
+  - fromInterface: RevisionEngine
+    fromMethod: revise
+    toInterface: RefinementPlanStore
+    toMethod: load
+    toModule: refiner-domain
+    earlyReturn: false
+  - fromInterface: RevisionEngine
+    fromMethod: revise
+    toInterface: AuditReportStore
+    toMethod: load
+    toModule: audit-domain
+    earlyReturn: false
+  - fromInterface: RevisionEngine
+    fromMethod: revise
+    toInterface: CorrectionContextResolver
+    toMethod: supports
+    toModule: refiner-domain
+    fragment: "alt [!contextResolver.supports(task.getDia...]"
+    earlyReturn: true
+  - fromInterface: RevisionEngine
+    fromMethod: revise
+    toInterface: CorrectionContextOverrideParser
+    toMethod: parse
+    toModule: revision-domain
+    fragment: "opt [try]"
+    earlyReturn: true
+  - fromInterface: RevisionEngine
+    fromMethod: revise
+    toInterface: RevisionArtifactStore
+    toMethod: hasPendingProposalForTask
+    toModule: revision-domain
+    fragment: "alt [artifactStore.hasPendingProposalForTa...]"
+    earlyReturn: true
+  - fromInterface: RevisionEngine
+    fromMethod: revise
+    toInterface: CorrectionContextResolver
+    toMethod: resolve
+    toModule: refiner-domain
+    fragment: "alt [overridePayload != null]"
+    earlyReturn: true
+  - fromInterface: RevisionEngine
+    fromMethod: revise
+    toInterface: RevisionArtifactStore
+    toMethod: hasPendingProposalForTask
+    toModule: revision-domain
+    fragment: "alt [overridePayload != null && artifactSt...]"
+    earlyReturn: true
+  - fromInterface: RevisionEngine
+    fromMethod: revise
+    toInterface: CourseRepository
+    toMethod: load
+    toModule: course-domain
+    fragment: "alt [else: overridePayload != null && artifactSt...]"
+    earlyReturn: false
+  - fromInterface: RevisionEngine
+    fromMethod: revise
+    toInterface: CourseElementLocator
+    toMethod: snapshot
+    toModule: revision-domain
+    fragment: "alt [else: overridePayload != null && artifactSt...]"
+    earlyReturn: false
+  - fromInterface: RevisionEngine
+    fromMethod: revise
+    toInterface: Reviser
+    toMethod: handles
+    toModule: revision-domain
+    fragment: "alt [!reviser.handles(task.getDiagnosisKin...]"
+    earlyReturn: true
+  - fromInterface: RevisionEngine
+    fromMethod: revise
+    toInterface: Reviser
+    toMethod: propose
+    toModule: revision-domain
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: RevisionEngine
+    fromMethod: revise
+    toInterface: RevisionValidator
+    toMethod: validate
+    toModule: revision-domain
+    fragment: "alt [else: !reviser.handles(task.getDiagnosisKin...]"
+    earlyReturn: false
+  - fromInterface: RevisionEngine
+    fromMethod: revise
+    toInterface: RevisionArtifactStore
+    toMethod: save
+    toModule: revision-domain
+    fragment: "alt [else: !reviser.handles(task.getDiagnosisKin...]"
+    earlyReturn: false
+  - fromInterface: RevisionEngine
+    fromMethod: revise
+    toInterface: ImpactPreviewComputer
+    toMethod: compute
+    toModule: revision-domain
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: RevisionEngine
+    fromMethod: revise
+    toInterface: ImpactPreviewStore
+    toMethod: save
+    toModule: revision-domain
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: RevisionEngine
+    fromMethod: revise
+    toInterface: RefinementPlanStore
+    toMethod: save
+    toModule: refiner-domain
+    fragment: "alt [verdict == RevisionVerdict.PENDING_AP...]"
+    earlyReturn: true
+  - fromInterface: RevisionEngine
+    fromMethod: revise
+    toInterface: CourseElementLocator
+    toMethod: replace
+    toModule: revision-domain
+    fragment: "alt [else: verdict == RevisionVerdict.REJECTED]"
+    earlyReturn: false
+  - fromInterface: RevisionEngine
+    fromMethod: revise
+    toInterface: CourseRepository
+    toMethod: save
+    toModule: course-domain
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: RevisionEngine
+    fromMethod: revise
+    toInterface: RefinementPlanStore
+    toMethod: save
+    toModule: refiner-domain
+    fragment: "alt [else: verdict == RevisionVerdict.REJECTED]"
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceProposalDeriver
+    fromMethod: derive
+    toInterface: QuizSentenceConverter
+    toMethod: parse
+    toModule: course-domain
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceProposalDeriver
+    fromMethod: derive
+    toInterface: QuizSentenceConverter
+    toMethod: toPlainSentences
+    toModule: course-domain
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceProposalStrategyRegistry
+    fromMethod: active
+    toInterface: LemmaAbsenceProposalStrategyRegistryConfig
+    toMethod: getActiveName
+    toModule: revision-domain
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceProposalStrategyRegistry
+    fromMethod: active
+    toInterface: LemmaAbsenceProposalStrategyRegistryConfig
+    toMethod: getRegistered
+    toModule: revision-domain
+    fragment: "alt [else: activeName == null || activeName.isBl...]"
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceProposalStrategyRegistry
+    fromMethod: byName
+    toInterface: LemmaAbsenceProposalStrategyRegistryConfig
+    toMethod: getRegistered
+    toModule: revision-domain
+    fragment: "alt [else: name == null]"
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceProposalStrategyRegistry
+    fromMethod: listAll
+    toInterface: LemmaAbsenceProposalStrategyRegistryConfig
+    toMethod: getRegistered
+    toModule: revision-domain
+    earlyReturn: false
+  - fromInterface: QuizSentenceConverter
+    fromMethod: serialize
+    toInterface: QuizSentenceSerializer
+    toMethod: serialize
+    toModule: course-domain
+    earlyReturn: false
+  - fromInterface: QuizSentenceConverter
+    fromMethod: parse
+    toInterface: QuizSentenceParser
+    toMethod: parse
+    toModule: course-domain
+    earlyReturn: false
+  - fromInterface: QuizSentenceConverter
+    fromMethod: toPlainSentences
+    toInterface: PlainSentenceDeriver
+    toMethod: derive
+    toModule: course-domain
+    earlyReturn: false
   - fromInterface: AuditRunner
     fromMethod: runAudit
     toInterface: AuditRunner
@@ -3884,7 +7396,7 @@ methodCallGraph:
   - fromInterface: CourseMapper
     fromMethod: map
     toInterface: CourseMapper
-    toMethod: collectAllSentences
+    toMethod: collectAllCanonicalSentences
     toModule: audit-application
     fragment: "alt [else: course == null]"
     earlyReturn: false
@@ -3894,6 +7406,70 @@ methodCallGraph:
     toMethod: analyzeTokensBatch
     toModule: audit-domain
     fragment: "alt [else: course == null]"
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceLlmGeneratorFactory
+    fromMethod: create
+    toInterface: LagenDefaults
+    toMethod: getTemperature
+    toModule: revision-infrastructure
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceLlmGeneratorFactory
+    fromMethod: create
+    toInterface: LagenDefaults
+    toMethod: getMaxTokens
+    toModule: revision-infrastructure
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceLlmGeneratorFactory
+    fromMethod: create
+    toInterface: LagenDefaults
+    toMethod: getTimeout
+    toModule: revision-infrastructure
+    earlyReturn: false
+  - fromInterface: LangChainErrorClassifier
+    fromMethod: classify
+    toInterface: LangChainErrorClassifier
+    toMethod: rootCause
+    toModule: revision-infrastructure
+    fragment: "alt [else: cause == null]"
+    earlyReturn: false
+  - fromInterface: LangChainErrorClassifier
+    fromMethod: classify
+    toInterface: Pattern
+    toMethod: matcher
+    toModule: revision-infrastructure
+    fragment: "alt [rootMsg != null && AUTH_PATTERN.match...]"
+    earlyReturn: true
+  - fromInterface: LemmaAbsenceQuizCandidateGenerator
+    fromMethod: generate
+    toInterface: LemmaAbsencePromptBuilder
+    toMethod: buildSystemPrompt
+    toModule: revision-infrastructure
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceQuizCandidateGenerator
+    fromMethod: generate
+    toInterface: LemmaAbsencePromptBuilder
+    toMethod: buildUserPrompt
+    toModule: revision-infrastructure
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceQuizCandidateGenerator
+    fromMethod: generate
+    toInterface: ChatLanguageModel
+    toMethod: generate
+    toModule: revision-infrastructure
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceQuizCandidateGenerator
+    fromMethod: generate
+    toInterface: LangChainErrorClassifier
+    toMethod: classify
+    toModule: revision-infrastructure
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceQuizCandidateGenerator
+    fromMethod: generate
+    toInterface: LemmaAbsenceResponseParser
+    toMethod: parse
+    toModule: revision-infrastructure
     earlyReturn: false
   - fromInterface: ContentAnalyzer
     fromMethod: onQuiz
@@ -4144,6 +7720,46 @@ methodCallGraph:
     toModule: audit-domain
     fragment: "loop [for each level.getTopicDistributions()]"
     earlyReturn: false
+  - fromInterface: CorrectionContextResolver
+    fromMethod: resolve
+    toInterface: SentenceLengthContextResolver
+    toMethod: resolve
+    toModule: refiner-domain
+    fragment: "alt [task.getDiagnosisKind() == DiagnosisK...]"
+    earlyReturn: true
+  - fromInterface: CorrectionContextResolver
+    fromMethod: resolve
+    toInterface: LemmaAbsenceContextResolver
+    toMethod: resolve
+    toModule: refiner-domain
+    fragment: "alt [task.getDiagnosisKind() == DiagnosisK...]"
+    earlyReturn: true
+  - fromInterface: CorrectionContextResolver
+    fromMethod: resolveWithIndex
+    toInterface: SentenceLengthContextResolver
+    toMethod: resolveWithIndex
+    toModule: refiner-domain
+    fragment: "alt [task.getDiagnosisKind() == DiagnosisK...]"
+    earlyReturn: true
+  - fromInterface: CorrectionContextResolver
+    fromMethod: resolveWithIndex
+    toInterface: LemmaAbsenceContextResolver
+    toMethod: resolveWithIndex
+    toModule: refiner-domain
+    fragment: "alt [task.getDiagnosisKind() == DiagnosisK...]"
+    earlyReturn: true
+  - fromInterface: CorrectionContextResolver
+    fromMethod: supports
+    toInterface: SentenceLengthContextResolver
+    toMethod: supports
+    toModule: refiner-domain
+    earlyReturn: false
+  - fromInterface: CorrectionContextResolver
+    fromMethod: supports
+    toInterface: LemmaAbsenceContextResolver
+    toMethod: supports
+    toModule: refiner-domain
+    earlyReturn: false
   - fromInterface: RefinerEngine
     fromMethod: plan
     toInterface: RefinerEngine
@@ -4264,11 +7880,26 @@ methodCallGraph:
     toModule: audit-cli
     fragment: "loop [for]"
     earlyReturn: false
-  - fromInterface: AnalyzerListCommand
-    fromMethod: list
-    toInterface: AnalyzerRegistry
-    toMethod: listAnalyzers
-    toModule: audit-application
+  - fromInterface: ApproveCommand
+    fromMethod: approve
+    toInterface: ProposalDecisionService
+    toMethod: approve
+    toModule: revision-domain
+    fragment: "alt [else: resolvedCoursePath == null]"
+    earlyReturn: false
+  - fromInterface: SetActiveAnalysisCommand
+    fromMethod: setActive
+    toInterface: ActiveAnalysisSelectionStore
+    toMethod: clear
+    toModule: audit-domain
+    fragment: "alt [auditId == null && planId == null]"
+    earlyReturn: true
+  - fromInterface: SetActiveAnalysisCommand
+    fromMethod: setActive
+    toInterface: ActiveAnalysisSelectionStore
+    toMethod: write
+    toModule: audit-domain
+    fragment: "alt [else: auditId == null || planId == null]"
     earlyReturn: false
   - fromInterface: AnalyzeCommand
     fromMethod: analyze
@@ -4312,169 +7943,266 @@ methodCallGraph:
     toModule: audit-cli
     fragment: "alt [else: formatter == null]"
     earlyReturn: false
-  - fromInterface: AnalyzerStatsCommand
+  - fromInterface: GetCommand
+    fromMethod: get
+    toInterface: GetCommand
+    toMethod: normalizeResource
+    toModule: audit-cli
+    fragment: "alt [else: resource == null || resource.isBlank()]"
+    earlyReturn: false
+  - fromInterface: GetCommand
+    fromMethod: get
+    toInterface: GetCommand
+    toMethod: handleAudits
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: GetCommand
+    fromMethod: get
+    toInterface: GetCommand
+    toMethod: handlePlans
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: GetCommand
+    fromMethod: get
+    toInterface: GetCommand
+    toMethod: handleTasks
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: GetCommand
+    fromMethod: get
+    toInterface: GetCommand
+    toMethod: handleAnalyzers
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: GetCommand
+    fromMethod: get
+    toInterface: GetCommand
+    toMethod: handleProposals
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: DeleteCommand
+    fromMethod: delete
+    toInterface: DeleteCommand
+    toMethod: normalizeResource
+    toModule: audit-cli
+    fragment: "alt [else: resource == null || resource.isBlank()]"
+    earlyReturn: false
+  - fromInterface: DeleteCommand
+    fromMethod: delete
+    toInterface: DeleteCommand
+    toMethod: deleteAudit
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: DeleteCommand
+    fromMethod: delete
+    toInterface: DeleteCommand
+    toMethod: deletePlan
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: ReviseCommand
+    fromMethod: revise
+    toInterface: RefinementPlanStore
+    toMethod: loadLatest
+    toModule: refiner-domain
+    fragment: "alt [planId == null || planId.isBlank()]"
+    earlyReturn: true
+  - fromInterface: ReviseCommand
+    fromMethod: revise
+    toInterface: RefinementPlanStore
+    toMethod: load
+    toModule: refiner-domain
+    fragment: "alt [planId == null || planId.isBlank()]"
+    earlyReturn: true
+  - fromInterface: ReviseCommand
+    fromMethod: revise
+    toInterface: RevisionEngine
+    toMethod: revise
+    toModule: revision-domain
+    fragment: "alt [else: !taskFound]"
+    earlyReturn: false
+  - fromInterface: ReviseCommand
+    fromMethod: revise
+    toInterface: ReviseCommand
+    toMethod: handleOutcome
+    toModule: audit-cli
+    fragment: "alt [else: !taskFound]"
+    earlyReturn: false
+  - fromInterface: GetConsolidatedCommand
+    fromMethod: getConsolidated
+    toInterface: ConsolidatedViewBuilder
+    toMethod: build
+    toModule: revision-domain
+    fragment: "alt [else: coursePath == null || coursePath.isBl...]"
+    earlyReturn: false
+  - fromInterface: GetConsolidatedCommand
+    fromMethod: getConsolidated
+    toInterface: ConsolidatedViewFormatter
+    toMethod: format
+    toModule: audit-cli
+    fragment: "alt [else: coursePath == null || coursePath.isBl...]"
+    earlyReturn: false
+  - fromInterface: StatsAnalyzerCommand
     fromMethod: showStats
     toInterface: AnalyzerRegistry
     toMethod: listAnalyzers
     toModule: audit-application
+    fragment: "alt [else: analyzerName == null || analyzerName....]"
     earlyReturn: false
-  - fromInterface: AnalyzerStatsCommand
+  - fromInterface: StatsAnalyzerCommand
     fromMethod: showStats
     toInterface: AuditRunner
     toMethod: runAudit
     toModule: audit-application
     fragment: "opt [try]"
     earlyReturn: false
-  - fromInterface: AnalyzerStatsCommand
+  - fromInterface: StatsAnalyzerCommand
     fromMethod: showStats
     toInterface: AnalyzerStatsTransformer
     toMethod: transform
     toModule: audit-cli
     fragment: "opt [try]"
     earlyReturn: false
-  - fromInterface: AnalyzerStatsCommand
+  - fromInterface: StatsAnalyzerCommand
     fromMethod: showStats
-    toInterface: AnalyzerStatsCommand
-    toMethod: printStats
+    toInterface: StatsAnalyzerCommand
+    toMethod: printJson
     toModule: audit-cli
-    fragment: "opt [try]"
+    fragment: "alt [\"json\".equals(formatName)]"
+    earlyReturn: true
+  - fromInterface: StatsAnalyzerCommand
+    fromMethod: showStats
+    toInterface: StatsAnalyzerCommand
+    toMethod: printText
+    toModule: audit-cli
+    fragment: "alt [\"json\".equals(formatName)]"
+    earlyReturn: true
+  - fromInterface: RejectCommand
+    fromMethod: reject
+    toInterface: ProposalDecisionService
+    toMethod: reject
+    toModule: revision-domain
+    fragment: "alt [else: proposalId == null || proposalId.isBl...]"
     earlyReturn: false
-  - fromInterface: RefinerPlanCommand
+  - fromInterface: PruneCommand
+    fromMethod: prune
+    toInterface: PruneCommand
+    toMethod: normalizeResource
+    toModule: audit-cli
+    fragment: "alt [else: keep < 0]"
+    earlyReturn: false
+  - fromInterface: PruneCommand
+    fromMethod: prune
+    toInterface: PruneCommand
+    toMethod: pruneAudits
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: PruneCommand
+    fromMethod: prune
+    toInterface: PruneCommand
+    toMethod: prunePlans
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: ConfigAnalyzerCommand
+    fromMethod: showConfig
+    toInterface: AnalyzerRegistry
+    toMethod: getAnalyzerConfig
+    toModule: audit-application
+    fragment: "alt [else: analyzerName == null || analyzerName....]"
+    earlyReturn: false
+  - fromInterface: ConfigAnalyzerCommand
+    fromMethod: showConfig
+    toInterface: AnalyzerRegistry
+    toMethod: listAnalyzers
+    toModule: audit-application
+    fragment: "alt [configOpt.isEmpty()]"
+    earlyReturn: true
+  - fromInterface: ConfigAnalyzerCommand
+    fromMethod: showConfig
+    toInterface: ConfigAnalyzerCommand
+    toMethod: printJson
+    toModule: audit-cli
+    fragment: "alt [\"json\".equals(formatName)]"
+    earlyReturn: true
+  - fromInterface: ConfigAnalyzerCommand
+    fromMethod: showConfig
+    toInterface: ConfigAnalyzerCommand
+    toMethod: printText
+    toModule: audit-cli
+    fragment: "alt [\"json\".equals(formatName)]"
+    earlyReturn: true
+  - fromInterface: PlanCommand
     fromMethod: plan
     toInterface: AuditReportStore
     toMethod: list
     toModule: audit-domain
     fragment: "alt [auditId == null || auditId.isBlank()]"
     earlyReturn: true
-  - fromInterface: RefinerPlanCommand
+  - fromInterface: PlanCommand
     fromMethod: plan
     toInterface: AuditReportStore
     toMethod: load
     toModule: audit-domain
     fragment: "alt [auditId == null || auditId.isBlank()]"
     earlyReturn: true
-  - fromInterface: RefinerPlanCommand
+  - fromInterface: PlanCommand
     fromMethod: plan
     toInterface: RefinerEngine
     toMethod: plan
     toModule: refiner-domain
     fragment: "alt [else: auditId == null || auditId.isBlank()]"
     earlyReturn: false
-  - fromInterface: RefinerPlanCommand
+  - fromInterface: PlanCommand
+    fromMethod: plan
+    toInterface: EphemeralPlanRenderer
+    toMethod: render
+    toModule: audit-cli
+    fragment: "alt [storageMode == PlanStorageMode.EPHEMERAL]"
+    earlyReturn: true
+  - fromInterface: PlanCommand
     fromMethod: plan
     toInterface: RefinementPlanStore
     toMethod: save
     toModule: refiner-domain
-    fragment: "alt [else: auditId == null || auditId.isBlank()]"
+    fragment: "alt [else: storageMode == PlanStorageMode.EPHEMERAL]"
     earlyReturn: false
-  - fromInterface: RefinerPlanCommand
+  - fromInterface: PlanCommand
     fromMethod: plan
-    toInterface: RefinerPlanCommand
+    toInterface: PlanCommand
     toMethod: printJson
     toModule: audit-cli
     earlyReturn: false
-  - fromInterface: RefinerPlanCommand
+  - fromInterface: PlanCommand
     fromMethod: plan
-    toInterface: RefinerPlanCommand
+    toInterface: PlanCommand
     toMethod: printTable
     toModule: audit-cli
     earlyReturn: false
-  - fromInterface: RefinerPlanCommand
+  - fromInterface: PlanCommand
     fromMethod: plan
-    toInterface: RefinerPlanCommand
+    toInterface: PlanCommand
     toMethod: printText
     toModule: audit-cli
     earlyReturn: false
-  - fromInterface: AnalyzerConfigCommand
-    fromMethod: showConfig
-    toInterface: AnalyzerRegistry
-    toMethod: listAnalyzers
-    toModule: audit-application
+  - fromInterface: EphemeralPlanRenderer
+    fromMethod: render
+    toInterface: AuditNodeIndexFactory
+    toMethod: build
+    toModule: audit-domain
+    fragment: "alt [else: !options.isWithCorrectionContext()]"
     earlyReturn: false
-  - fromInterface: AnalyzerConfigCommand
-    fromMethod: showConfig
-    toInterface: AnalyzerRegistry
-    toMethod: getAnalyzerConfig
-    toModule: audit-application
-    fragment: "alt [else: !exists]"
-    earlyReturn: false
-  - fromInterface: AnalyzerConfigCommand
-    fromMethod: showConfig
-    toInterface: AnalyzerConfigCommand
-    toMethod: toJson
-    toModule: audit-cli
-    fragment: "alt [configOpt.isPresent()]"
-    earlyReturn: false
-  - fromInterface: RefinerListCommand
-    fromMethod: listTasks
-    toInterface: RefinementPlanStore
-    toMethod: loadLatest
+  - fromInterface: EphemeralPlanRenderer
+    fromMethod: render
+    toInterface: CorrectionContextResolver
+    toMethod: resolveWithIndex
     toModule: refiner-domain
-    fragment: "alt [planId == null || planId.isBlank()]"
-    earlyReturn: true
-  - fromInterface: RefinerListCommand
-    fromMethod: listTasks
-    toInterface: RefinementPlanStore
-    toMethod: load
-    toModule: refiner-domain
-    fragment: "alt [planId == null || planId.isBlank()]"
-    earlyReturn: true
-  - fromInterface: RefinerListCommand
-    fromMethod: listTasks
-    toInterface: RefinerListCommand
-    toMethod: printJson
-    toModule: audit-cli
+    fragment: "loop [for]"
     earlyReturn: false
-  - fromInterface: RefinerListCommand
-    fromMethod: listTasks
-    toInterface: RefinerListCommand
-    toMethod: printTable
+  - fromInterface: EphemeralPlanRenderer
+    fromMethod: render
+    toInterface: CorrectionContextJsonMapper
+    toMethod: toJsonMap
     toModule: audit-cli
-    earlyReturn: false
-  - fromInterface: RefinerListCommand
-    fromMethod: listTasks
-    toInterface: RefinerListCommand
-    toMethod: printText
-    toModule: audit-cli
-    earlyReturn: false
-  - fromInterface: RefinerNextCommand
-    fromMethod: next
-    toInterface: RefinementPlanStore
-    toMethod: loadLatest
-    toModule: refiner-domain
-    fragment: "alt [planId == null || planId.isBlank()]"
-    earlyReturn: true
-  - fromInterface: RefinerNextCommand
-    fromMethod: next
-    toInterface: RefinementPlanStore
-    toMethod: load
-    toModule: refiner-domain
-    fragment: "alt [planId == null || planId.isBlank()]"
-    earlyReturn: true
-  - fromInterface: RefinerNextCommand
-    fromMethod: next
-    toInterface: RefinerNextCommand
-    toMethod: buildFilterDesc
-    toModule: audit-cli
-    fragment: "alt [nextTask.isEmpty()]"
-    earlyReturn: true
-  - fromInterface: RefinerNextCommand
-    fromMethod: next
-    toInterface: RefinerNextCommand
-    toMethod: printJson
-    toModule: audit-cli
-    earlyReturn: false
-  - fromInterface: RefinerNextCommand
-    fromMethod: next
-    toInterface: RefinerNextCommand
-    toMethod: printTable
-    toModule: audit-cli
-    earlyReturn: false
-  - fromInterface: RefinerNextCommand
-    fromMethod: next
-    toInterface: RefinerNextCommand
-    toMethod: printText
-    toModule: audit-cli
+    fragment: "alt [ctxOpt.isPresent()]"
     earlyReturn: false
   - fromInterface: CourseRepository
     fromMethod: load
