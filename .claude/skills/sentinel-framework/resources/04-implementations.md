@@ -461,6 +461,27 @@ public DefaultAnalyzerRegistry(List<ContentAnalyzer> analyzers, List<SelfDescrib
 
 **Framework types:** Component
 
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `threshold` | `int` |
+
+**Generated constructor:**
+```java
+public DefaultLemmaCountConfig(int threshold) {
+    this.threshold = threshold;
+}
+```
+
+#### DefaultLemmaCountConfigLoader
+
+**Package:** `com.learney.contentaudit.auditapplication`
+
+**Implements:** LemmaCountConfigLoader
+
+**Framework types:** Component
+
 ### Module: course-infrastructure
 
 #### FileSystemCourseRepository

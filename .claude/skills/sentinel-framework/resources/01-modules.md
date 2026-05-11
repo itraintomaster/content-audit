@@ -119,8 +119,8 @@ project-root/
 | Allowed Clients | (unrestricted) |
 | Scope | public |
 | Models | 0 |
-| Interfaces | 2 (AuditRunner, AnalyzerRegistry) |
-| Implementations | 8 (CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig, DefaultAnalyzerRegistry, DefaultLemmaCountConfig) |
+| Interfaces | 3 (AuditRunner, AnalyzerRegistry, LemmaCountConfigLoader) |
+| Implementations | 9 (CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig, DefaultAnalyzerRegistry, DefaultLemmaCountConfig, DefaultLemmaCountConfigLoader) |
 | Packages | 0 |
 
 ### course-infrastructure

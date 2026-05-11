@@ -99,7 +99,7 @@ public class LemmaCountAnalyzer implements ContentAnalyzer {
             LemmaAndPos lp = entry.getKey();
             int count = entry.getValue().size();
             double score = Math.min((double) count / thresholdN, 1.0);
-            Optional<CefrLevel> level = lemmaCefrLevelResolver.resolve(lp);
+            Optional<CefrLevel> level = lemmaCefrLevelResolver.resolve(lp, Optional.empty());
 
             if (level.isPresent()) {
                 LemmaCountStats stats = new LemmaCountStats(lp, count, score, level);

@@ -132,6 +132,12 @@ Methods:
 - `listAnalyzers(): List<AnalyzerDescriptor>`
 - `getAnalyzerConfig(String analyzerName): Optional<Map<String,Object>>`
 
+### LemmaCountConfigLoader (port)
+
+Methods:
+
+- `load(String rawThreshold): LemmaCountConfig`
+
 ### From audit-domain
 
 ## Models

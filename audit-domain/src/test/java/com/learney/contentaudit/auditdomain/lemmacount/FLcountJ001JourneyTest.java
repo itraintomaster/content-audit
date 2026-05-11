@@ -87,7 +87,7 @@ public class FLcountJ001JourneyTest {
         when(contentWordFilter.isContentWord(argThat(t -> t == null  || !"VERB".equals(t.getPosTag())))).thenReturn(false);
 
         // [asignar_nivel] — EVP cataloga "run"/"VERB" como A1 (R009)
-        when(lemmaCefrLevelResolver.resolve(runVerb)).thenReturn(Optional.of(CefrLevel.A1));
+        when(lemmaCefrLevelResolver.resolve(eq(runVerb), any())).thenReturn(Optional.of(CefrLevel.A1));
 
         LemmaCountAnalyzer analyzer = new LemmaCountAnalyzer(contentWordFilter, lemmaCefrLevelResolver, lemmaCountConfig);
 
@@ -135,7 +135,7 @@ public class FLcountJ001JourneyTest {
         when(contentWordFilter.isContentWord(argThat(t -> t == null  || !"NOUN".equals(t.getPosTag())))).thenReturn(false);
 
         // [asignar_nivel] — EVP no cataloga "blog"/"NOUN"; NLP aporta B1 como fallback (R010)
-        when(lemmaCefrLevelResolver.resolve(blogNoun)).thenReturn(Optional.of(CefrLevel.B1));
+        when(lemmaCefrLevelResolver.resolve(eq(blogNoun), any())).thenReturn(Optional.of(CefrLevel.B1));
 
         LemmaCountAnalyzer analyzer = new LemmaCountAnalyzer(contentWordFilter, lemmaCefrLevelResolver, lemmaCountConfig);
 
@@ -177,7 +177,7 @@ public class FLcountJ001JourneyTest {
         when(contentWordFilter.isContentWord(argThat(t -> t == null  || !"VERB".equals(t.getPosTag())))).thenReturn(false);
 
         // [asignar_nivel] — ninguna fuente aporta nivel CEFR; el lema cae al grupo no asignado (R011)
-        when(lemmaCefrLevelResolver.resolve(zarpVerb)).thenReturn(Optional.empty());
+        when(lemmaCefrLevelResolver.resolve(eq(zarpVerb), any())).thenReturn(Optional.empty());
 
         LemmaCountAnalyzer analyzer = new LemmaCountAnalyzer(contentWordFilter, lemmaCefrLevelResolver, lemmaCountConfig);
 

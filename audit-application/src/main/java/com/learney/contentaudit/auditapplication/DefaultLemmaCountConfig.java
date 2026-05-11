@@ -10,18 +10,21 @@ import javax.annotation.processing.Generated;
 )
 public class DefaultLemmaCountConfig implements LemmaCountConfig {
 
-    // R007: default threshold is 4 (minimum distinct sentences for full exposure)
-    private static final int DEFAULT_THRESHOLD = 4;
+private final int threshold;
+
+public DefaultLemmaCountConfig(int threshold) {
+    this.threshold = threshold;
+}
 
     @Override
     public int getThreshold() {
-        return DEFAULT_THRESHOLD;
+        return threshold;
     }
 
     @Override
     public Map<String, Object> describe() {
         return Map.of(
                 "analyzerName", "lemma-count",
-                "threshold", getThreshold());
+                "threshold", threshold);
     }
 }

@@ -19,6 +19,12 @@ Methods:
 - `listAnalyzers(): List<AnalyzerDescriptor>`
 - `getAnalyzerConfig(String analyzerName): Optional<Map<String,Object>>`
 
+### LemmaCountConfigLoader (port)
+
+Methods:
+
+- `load(String rawThreshold): LemmaCountConfig`
+
 ## Implementations
 
 ### CourseToAuditableMapper
@@ -169,6 +175,25 @@ Methods:
 **Implements:** LemmaCountConfig
 
 **Types:** Component
+
+**Dependencies (constructor injection):**
+
+- `threshold`: `int`
+
+### DefaultLemmaCountConfigLoader
+
+**Implements:** LemmaCountConfigLoader
+
+**Types:** Component
+
+**Tests that must pass:**
+
+- should return a config with threshold 4 when raw threshold is null → FEAT-LCOUNT/F-LCOUNT-R007
+- should reject zero as threshold value with IllegalArgumentException → FEAT-LCOUNT/F-LCOUNT-R008
+- should reject a negative integer as threshold value with IllegalArgumentException → FEAT-LCOUNT/F-LCOUNT-R008
+- should reject a decimal number as threshold value with IllegalArgumentException → FEAT-LCOUNT/F-LCOUNT-R008
+- should reject a non-numeric string as threshold value with IllegalArgumentException → FEAT-LCOUNT/F-LCOUNT-R008
+- should reject an empty string as threshold value with IllegalArgumentException → FEAT-LCOUNT/F-LCOUNT-R008
 
 ## Dependency Contracts
 

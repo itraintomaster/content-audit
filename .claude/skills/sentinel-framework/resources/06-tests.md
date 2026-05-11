@@ -264,6 +264,15 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should have coverage targets decreasing from A1 to B2 → FEAT-LABS/F-LABS-R032
 - should return coverage targets between 0 and 1 for all levels → FEAT-LABS/F-LABS-R032
 
+### DefaultLemmaCountConfigLoader (audit-application)
+
+- should return a config with threshold 4 when raw threshold is null → FEAT-LCOUNT/F-LCOUNT-R007
+- should reject zero as threshold value with IllegalArgumentException → FEAT-LCOUNT/F-LCOUNT-R008
+- should reject a negative integer as threshold value with IllegalArgumentException → FEAT-LCOUNT/F-LCOUNT-R008
+- should reject a decimal number as threshold value with IllegalArgumentException → FEAT-LCOUNT/F-LCOUNT-R008
+- should reject a non-numeric string as threshold value with IllegalArgumentException → FEAT-LCOUNT/F-LCOUNT-R008
+- should reject an empty string as threshold value with IllegalArgumentException → FEAT-LCOUNT/F-LCOUNT-R008
+
 ### FileSystemCourseRepository (course-infrastructure)
 
 - Given a valid course entity, when save is called, then validator is invoked and no exception is thrown → F-COURSE/F-COURSE-R014

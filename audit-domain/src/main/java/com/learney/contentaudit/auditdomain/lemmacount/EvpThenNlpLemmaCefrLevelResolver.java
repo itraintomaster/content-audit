@@ -18,14 +18,17 @@ public class EvpThenNlpLemmaCefrLevelResolver implements LemmaCefrLevelResolver 
     }
 
     @Override
-    public Optional<CefrLevel> resolve(LemmaAndPos lemmaAndPos) {
-        // R009: EVP is the primary source
+    public Optional<CefrLevel> resolve(LemmaAndPos lemmaAndPos, Optional<CefrLevel> nlpCefr) {
+        // R009: EVP es la fuente primaria
         Optional<CefrLevel> evpLevel = evpCatalogPort.lookupLevel(lemmaAndPos);
         if (evpLevel.isPresent()) {
             return evpLevel;
         }
-        // R010: NLP fallback is a latent contract; NlpToken carries no CefrLevel field,
-        // so all lemmas not in EVP fall directly to R011 (unassigned).
+        // R010: si EVP no tiene nivel y NLP aporta CEFR, usarlo como fallback
+        if (nlpCefr.isPresent()) {
+            return nlpCefr;
+        }
+        // R011: sin CEFR de ninguna fuente -> no asignado
         return Optional.empty();
     }
 }

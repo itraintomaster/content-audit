@@ -2174,7 +2174,8 @@ modules:
       stereotype: port
       sealed: false
       exposes:
-      - signature: "resolve(LemmaAndPos lemmaAndPos): Optional<CefrLevel>"
+      - signature: "resolve(LemmaAndPos lemmaAndPos, Optional<CefrLevel> nlpCefr):\
+          \ Optional<CefrLevel>"
     implementations:
     - name: EvpThenNlpLemmaCefrLevelResolver
       requiresInject:
@@ -2182,6 +2183,29 @@ modules:
         type: EvpCatalogPort
         description: Fuente primaria de nivel CEFR (R009).
       visibility: public
+      handwrittenTests:
+      - name: should return EVP level when EVP catalog contains the lemma
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R009
+      - name: should query EVP catalog by the lemma-and-POS pair as composite identity
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R009
+      - name: should return empty when EVP catalog has no entry and no other source
+          provides CEFR
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R011
+      - name: should return NLP CEFR hint when EVP catalog has no entry for the lemma
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R010
+      - name: should prefer EVP level over NLP CEFR hint when EVP catalog also contains
+          the lemma
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R010
       implements:
       - LemmaCefrLevelResolver
     - name: LemmaCountAnalyzer
@@ -2196,6 +2220,113 @@ modules:
         type: LemmaCountConfig
         description: "Provee el umbral N usado en el score (R006, R007, R008, R016)."
       visibility: public
+      handwrittenTests:
+      - name: should count VERB lemma when content-word filter accepts it
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R001
+      - name: should exclude DET token from lemma count when content-word filter rejects
+          it
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R001
+      - name: should exclude PROPN token from lemma count when content-word filter
+          rejects it
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R001
+      - name: should count run-as-VERB and run-as-NOUN as two distinct lemmas with
+          independent counts
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R002
+      - name: should count ran-running-runs as three appearances of the same VERB
+          lemma run after lemmatization
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R002
+      - name: should not report lemmas absent from the course in the analysis result
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R003
+      - name: should count a lemma once when it appears multiple times in the same
+          quiz sentence
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R004
+      - name: should count a lemma N times when it appears in N distinct quiz sentences
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R004
+      - name: should accumulate count of an A1 lemma across quizzes from A1 A2 and
+          B1 milestones
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R005
+      - name: should compute lemma score as count divided by N when count is below
+          N
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R006
+      - name: should cap lemma score at 1.0 when count equals or exceeds N
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R006
+      - name: should compute level score as simple average of its lemma scores
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R012
+      - name: should omit a CEFR level from results when no assigned lemma falls into
+          it
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R012
+      - name: should compute course score as simple average of level scores regardless
+          of lemma count per level
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R013
+      - name: should compute course score using only canonical CEFR levels and ignoring
+          the unassigned group
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R014
+      - name: should expose course score in the lemma-count diagnosis attached to
+          the course node
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R015
+      - name: should expose empty course score when no canonical CEFR level has assignable
+          score
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R015
+      - name: should expose the threshold N used in the lemma-count result
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R016
+      - name: should list per-level total of evaluated lemmas in the lemma-count result
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R017
+      - name: should list sub-exposed lemmas with score below 1.0 sorted by ascending
+          count for each CEFR level
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R017
+      - name: should not list fully exposed lemmas with score 1.0 individually in
+          the per-level detail
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R017
+      - name: should list unassigned lemmas with their count in the lemma-count result
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R018
+      - name: should return lemma-count as analyzer name
+        traceability:
+          feature: FEAT-LCOUNT
+          rule: F-LCOUNT-R019
       implements:
       - ContentAnalyzer
 - name: course-domain
@@ -3295,6 +3426,12 @@ modules:
     exposes:
     - signature: "listAnalyzers(): List<AnalyzerDescriptor>"
     - signature: "getAnalyzerConfig(String analyzerName): Optional<Map<String,Object>>"
+  - name: LemmaCountConfigLoader
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "load(String rawThreshold): LemmaCountConfig"
+    visibility: public
   implementations:
   - name: CourseToAuditableMapper
     requiresInject:
@@ -3719,11 +3856,46 @@ modules:
     implements:
     - AnalyzerRegistry
   - name: DefaultLemmaCountConfig
+    requiresInject:
+    - name: threshold
+      type: int
+      description: Umbral N validado (entero positivo). Provisto por DefaultLemmaCountConfigLoader.
     types:
     - Component
     visibility: public
     implements:
     - LemmaCountConfig
+  - name: DefaultLemmaCountConfigLoader
+    types:
+    - Component
+    visibility: public
+    handwrittenTests:
+    - name: should return a config with threshold 4 when raw threshold is null
+      traceability:
+        feature: FEAT-LCOUNT
+        rule: F-LCOUNT-R007
+    - name: should reject zero as threshold value with IllegalArgumentException
+      traceability:
+        feature: FEAT-LCOUNT
+        rule: F-LCOUNT-R008
+    - name: should reject a negative integer as threshold value with IllegalArgumentException
+      traceability:
+        feature: FEAT-LCOUNT
+        rule: F-LCOUNT-R008
+    - name: should reject a decimal number as threshold value with IllegalArgumentException
+      traceability:
+        feature: FEAT-LCOUNT
+        rule: F-LCOUNT-R008
+    - name: should reject a non-numeric string as threshold value with IllegalArgumentException
+      traceability:
+        feature: FEAT-LCOUNT
+        rule: F-LCOUNT-R008
+    - name: should reject an empty string as threshold value with IllegalArgumentException
+      traceability:
+        feature: FEAT-LCOUNT
+        rule: F-LCOUNT-R008
+    implements:
+    - LemmaCountConfigLoader
   patterns:
   - type: Decorator
     decorators:

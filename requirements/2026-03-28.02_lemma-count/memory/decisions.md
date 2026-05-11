@@ -40,3 +40,38 @@ should not re-litigate. Newest entries on top.
   (7) courseScore: Optional<Double> para reflejar el caso "ningun nivel con score" (R015).
   why: minima superficie publica (solo el analyzer es visibility:public), un seam por capability
   (conteo vs. resolucion CEFR), y composabilidad con AnalyzerRegistry sin tocar wiring.
+
+2026-05-11 — architect — Patch ARCH-LCOUNT-002 propuesto (mergeado al patch del feature).
+  Cambio: introduce LemmaCountConfigLoader (port en audit-application) + DefaultLemmaCountConfigLoader
+  para habilitar superficie observable de F-LCOUNT-R007 y F-LCOUNT-R008.
+  DefaultLemmaCountConfig gana requiresInject:threshold:int (constructor parametrizado).
+  why: R008 exige rechazo de inputs no-parseables ("abc", "1.5", "") que un constructor (Integer) no
+  cubre — la regla habla literalmente de "la carga de la configuracion falla", asi que vive en el
+  acto de cargar/parsear, no en el POJO. Opcion C elegida sobre A (constructor) y B (factory
+  generica): mismo seam por capability (carga) sin introducir una capa abstracta.
+  Implica wiring change en Main.java: pasar de `new DefaultLemmaCountConfig()` a
+  `new DefaultLemmaCountConfigLoader().load(null)` (trabajo del developer post-apply).
+  Escalacion de R010 (qa-tester) en discusion: propuesto Camino 4 (cambiar firma del resolver a
+  resolve(LemmaAndPos, Optional<CefrLevel> nlpCefr)) vs Camino 1 de qa-tester (agregar cefrLevel a
+  NlpToken). Sin confirmacion aun de qa-tester; patch de R010 pendiente.
+
+2026-05-11 — architect — Patch ARCH-LCOUNT-003 propuesto (mergeado al patch del feature).
+  Cambio: firma del port LemmaCefrLevelResolver cambia de
+    resolve(LemmaAndPos): Optional<CefrLevel>
+  a
+    resolve(LemmaAndPos, Optional<CefrLevel> nlpCefr): Optional<CefrLevel>
+  Habilita superficie observable para F-LCOUNT-R010 (EVP miss + NLP con CEFR -> usar NLP).
+  why: R010 era contrato latente porque NlpToken no expone CEFR. Camino 4 elegido sobre Camino 1
+  (agregar campo cefrLevel a NlpToken): blast radius mucho menor, NlpToken queda puro NLP, y la
+  condicionalidad de R010 vive en la firma del port (donde la regla vive arquitecturalmente) en
+  lugar de un campo "fantasma" del modelo que ninguna implementacion del tokenizer llena hoy.
+  Sigue P3 (versatilidad on demand): activar R010 en runtime el dia que un tokenizer entregue CEFR
+  se vuelve un cambio de wiring local al analyzer (mapear NlpToken -> Optional<CefrLevel>), sin
+  tocar el modelo. Runtime sin cambio: LemmaCountAnalyzer invoca con Optional.empty().
+  Implica ajuste de 1 linea en LemmaCountAnalyzer.java (trabajo del developer post-apply).
+
+2026-05-11 — qa-tester — Decisión R007/R008: la regla "campo ausente -> default 4" (R007) vive en `DefaultLemmaCountConfigLoader.load(null)`, no en el POJO `DefaultLemmaCountConfig`. El POJO solo expone un threshold ya validado e inyectado; el default es responsabilidad del loader (es donde se decide cómo manejar la ausencia del campo en la entrada cruda).
+  why: separar "qué hace el POJO con el valor recibido" de "cómo se obtiene el valor inicial". Antes R007 estaba taggeado en el POJO con test trivial "getThreshold==4"; ahora es un test de comportamiento del loader frente a input null.
+
+2026-05-11 — qa-tester — Decisión R010: la regla "fallback NLP CEFR" se materializa cambiando la firma de `LemmaCefrLevelResolver.resolve()` a `(LemmaAndPos, Optional<CefrLevel> nlpCefr): Optional<CefrLevel>`, en lugar de agregar campo `cefrLevel` a `NlpToken`.
+  why: NlpToken es modelo compartido por todos los analyzers (sentence-length, knowledge-title-length, etc.); contaminarlo con un campo que ningún tokenizer real llena hoy ni en el futuro inmediato amplifica blast radius innecesariamente. La condicionalidad de R010 vive en el contrato del port (donde la regla vive arquitecturalmente), no en el modelo. Runtime sin cambio: el analyzer pasa Optional.empty() y R010 sigue siendo "latente" en ejecución pero deja de ser latente en el contrato (testeable).

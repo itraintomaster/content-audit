@@ -356,7 +356,7 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `resolve(LemmaAndPos lemmaAndPos): Optional<CefrLevel>` | (none) |
+| `resolve(LemmaAndPos lemmaAndPos, Optional<CefrLevel> nlpCefr): Optional<CefrLevel>` | (none) |
 
 ### Module: course-domain
 
@@ -454,6 +454,16 @@ Examples:
 |--------|--------|
 | `listAnalyzers(): List<AnalyzerDescriptor>` | (none) |
 | `getAnalyzerConfig(String analyzerName): Optional<Map<String,Object>>` | (none) |
+
+#### LemmaCountConfigLoader (port)
+
+**Package:** `com.learney.contentaudit.auditapplication`
+
+**Implemented by:** DefaultLemmaCountConfigLoader (audit-application)
+
+| Method | Throws |
+|--------|--------|
+| `load(String rawThreshold): LemmaCountConfig` | (none) |
 
 ### Module: audit-cli
 

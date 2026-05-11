@@ -59,6 +59,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: AnalyzerRegistry - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditapplication.LemmaCountConfigLoader");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaCountConfigLoader - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditapplication.CourseToAuditableMapper");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: CourseToAuditableMapper - " + e.getMessage());
@@ -97,6 +102,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditapplication.DefaultLemmaCountConfig");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultLemmaCountConfig - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditapplication.DefaultLemmaCountConfigLoader");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultLemmaCountConfigLoader - " + e.getMessage());
     }
   }
 }

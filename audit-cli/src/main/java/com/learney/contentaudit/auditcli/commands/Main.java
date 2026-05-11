@@ -9,6 +9,7 @@ import com.learney.contentaudit.auditapplication.DefaultCocaBucketsConfig;
 import com.learney.contentaudit.auditapplication.DefaultLemmaRecurrenceConfig;
 import com.learney.contentaudit.auditapplication.DefaultLemmaAbsenceConfig;
 import com.learney.contentaudit.auditapplication.DefaultLemmaCountConfig;
+import com.learney.contentaudit.auditapplication.DefaultLemmaCountConfigLoader;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.IAuditEngine;
 import com.learney.contentaudit.auditdomain.IScoreAggregator;
@@ -245,7 +246,7 @@ class Main {
         LemmaByLevelAbsenceAnalyzer lemmaAbsenceAnalyzer = new LemmaByLevelAbsenceAnalyzer(
                 evpCatalog, new DefaultContentWordFilter(), lemmaAbsenceConfig);
 
-        DefaultLemmaCountConfig lemmaCountConfig = new DefaultLemmaCountConfig();
+        DefaultLemmaCountConfig lemmaCountConfig = (DefaultLemmaCountConfig) new DefaultLemmaCountConfigLoader().load(null);
         LemmaCountAnalyzer lemmaCountAnalyzer = new LemmaCountAnalyzer(
                 new DefaultContentWordFilter(),
                 new EvpThenNlpLemmaCefrLevelResolver(evpCatalog),
