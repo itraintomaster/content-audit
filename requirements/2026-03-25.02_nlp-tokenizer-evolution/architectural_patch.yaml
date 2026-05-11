@@ -1,0 +1,159 @@
+code: FEAT-NLP
+modules:
+- name: nlp-infrastructure
+  packages:
+  - name: spacy
+    implementations:
+    - name: SpacyNlpTokenizer
+      handwrittenTests:
+      - name: should produce every NlpToken with the six mandatory fields text lemma
+          posTag frequencyRank isStop and isPunct populated except frequencyRank which
+          may be null when COCA has no entry
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R001
+      - name: should never fail when the optional NlpToken fields tag isAlpha and
+          dep are absent confirming they are not required for the tokenizer contract
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R002
+      - name: should populate the lemma field with the lowercased base form returned
+          by SpaCy so that running yields run was yields be and children yields child
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R003
+      - name: should populate the posTag field with one of the Universal Dependencies
+          tags (NOUN VERB ADJ ADV PROPN NUM ADP AUX CCONJ DET INTJ PART PRON SCONJ
+          PUNCT SYM SPACE X) for every token produced
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R004
+      - name: should produce a List<NlpToken> from analyzeTokens replacing the legacy
+          List<String> tokenize representation as the primary tokenizer output
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R005
+      - name: should expose analyzeTokens(String) returning a List<NlpToken> for a
+          single sentence with linguistic enrichment for every word
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R006
+      - name: should still report a usable token count via the size of the analyzeTokens
+          result without requiring a separate countTokens call so SentenceLengthAnalyzer
+          continues to work
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R007
+      - name: should not implement any analyzer interface confirming the tokenizer
+          is an infrastructure service that only transforms text into enriched tokens
+          without producing scores
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R009
+      - name: should derive the frequencyRank from the COCA entry matched against
+          the token's lemma and not the inflected form so that running running and
+          ran all carry the same rank as run
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R011
+      - name: should map every Universal Dependencies posTag emitted by SpaCy to its
+          corresponding COCA single-character code (NOUN to n VERB to v ADJ to j ADV
+          to r PRON to p DET to a ADP to i CONJ/CCONJ/SCONJ to c NUM to m PART/PRT
+          to t INTJ to u SYM/PUNCT/SPACE/X to x) when looking up frequency
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R012
+      - name: should apply the three-tier COCA lookup strategy resolving frequencyRank
+          by exact-word match first then by lemma+pos-code match and finally by lemma-only
+          match before giving up
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R013
+      - name: should ignore the first 8 metadata lines and the column header line
+          of lemmas_20k_words.txt and parse the TSV body so that lookups use the correct
+          lemRank lemma PoS lemFreq wordFreq and word columns
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R014
+      - name: should load the COCA frequency data only once during initialization
+          and then resolve every subsequent token lookup against the in-memory index
+          without re-reading the file
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R015
+      - name: should set the token frequencyRank to the lemRank column of the matched
+          COCA entry not to the wordFreq of the specific inflected form
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R016
+      - name: should delegate linguistic processing to an external SpaCy-backed pipeline
+          (Python process with en_core_web_sm) producing tokenization lemmatization
+          POS tagging and stop-word/punctuation detection in a single pass
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R017
+      - name: should perform tokenization lemmatization POS tagging and COCA frequency
+          lookup all within the same SpaCy-backed processing step without splitting
+          them across multiple external calls
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R019
+      - name: should produce a clear runtime error indicating the missing environment
+          component (Python 3.11+ SpaCy en_core_web_sm or lemmas_20k_words.txt) when
+          the tokenizer is invoked without the required environment installed
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R020
+      - name: should produce a valid NlpToken with frequencyRank set to null and all
+          other linguistic fields populated when the three-tier COCA lookup finds
+          no entry for the token
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R028
+      - name: should propagate a descriptive exception (and not return partial or
+          corrupt tokens) when the underlying Python process fails to start exits
+          abnormally or returns invalid JSON output
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R029
+      - name: should continue tokenizing the remaining sentences of a batch and emit
+          a fallback NlpToken (text as-is lemma=lowercased text posTag=X frequencyRank=null
+          isStop=false isPunct=heuristic) when a single token inside SpaCy fails
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R032
+    - name: CachedNlpTokenizer
+      handwrittenTests:
+      - name: should serve repeated analyzeTokens calls for the same sentence text
+          from an in-memory cache so that the delegate NlpTokenizer is invoked only
+          on the first call
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R023
+      - name: should treat two sentences differing in any single character (case spacing
+          punctuation) as distinct cache entries triggering a fresh delegate invocation
+          for each variant
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R024
+      - name: should cache List<NlpToken> produced by analyzeTokens with the same
+          decorator pattern previously used for tokenize String results so cached
+          entries match the enriched signature
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R026
+- name: audit-application
+  implementations:
+  - name: CourseToAuditableMapper
+    handwrittenTests:
+    - name: Given two AuditableCourses produced by mapping a course that has knowledge
+        quizzes containing sentences with enriched-token-requiring vocabulary (frequency-ranked
+        words via SpaCy) when AuditEngine runs both audits then every AuditableQuiz
+        produced by the mapper carries a List<NlpToken> populated by analyzeTokensBatch
+        covering tokenization lemmatization POS tagging frequency rank stop-word and
+        punctuation flags so downstream analyzers can read enriched tokens without
+        re-tokenizing
+      traceability:
+        feature: FEAT-NLP
+        rule: F-NLP-R010
+        journey: F-NLP-J001

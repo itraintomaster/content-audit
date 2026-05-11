@@ -287,6 +287,28 @@ public CocaBucketsAnalyzer(NlpTokenizer nlpTokenizer, CocaBucketsConfig cocaBuck
             }
         }
 
+        // Ensure every milestone and topic node in the tree carries a typed diagnosis,
+        // even when the analyzer accumulated no data for that level (e.g. empty course or
+        // nodes not visited via onMilestone/onTopic before onCourseComplete).
+        if (rootNode.getChildren() != null) {
+            for (AuditNode milestoneNode : rootNode.getChildren()) {
+                if (milestoneNode.getDiagnoses() instanceof DefaultLevelDiagnoses levelDiagnoses
+                        && levelDiagnoses.getCocaBucketsDiagnosis().isEmpty()) {
+                    levelDiagnoses.setCocaBucketsDiagnosis(
+                            new CocaBucketsLevelDiagnosis(0, List.of(), List.of()));
+                }
+                if (milestoneNode.getChildren() != null) {
+                    for (AuditNode topicNode : milestoneNode.getChildren()) {
+                        if (topicNode.getDiagnoses() instanceof DefaultTopicDiagnoses topicDiagnoses
+                                && topicDiagnoses.getCocaBucketsDiagnosis().isEmpty()) {
+                            topicDiagnoses.setCocaBucketsDiagnosis(
+                                    new CocaBucketsTopicDiagnosis(0, List.of()));
+                        }
+                    }
+                }
+            }
+        }
+
         return null;
     }
 

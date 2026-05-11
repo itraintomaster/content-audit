@@ -263,4 +263,31 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
         assertEquals(0.5, node2.getScores().get("knowledge-instructions-length"));
         assertEquals(0.0, node3.getScores().get("knowledge-instructions-length"));
     }
+
+    @Test
+    @DisplayName("should distinguish three scoring ranges 1.0 at-or-below-70 0.5 above-70-up-to-100 0.0 above-100 at the declared weighted-char thresholds")
+    @Tag("FEAT-KTLEN")
+    @Tag("F-KTLEN-R005")
+    public void shouldDistinguishThreeScoringRanges10Atorbelow7005Above70upto10000Above100AtTheDeclaredWeightedcharThresholds() {
+        // R005: soft limit = 70, hard limit = 100 (weighted char lengths)
+        // Boundary at soft limit (70): score 1.0
+        AuditNode atSoft = buildKnowledgeNode(knowledgeWithInstructions("a".repeat(70)));
+        analyzer.onKnowledge(atSoft);
+        assertEquals(1.0, atSoft.getScores().get("knowledge-instructions-length"));
+
+        // Just above soft limit (71): score 0.5
+        AuditNode aboveSoft = buildKnowledgeNode(knowledgeWithInstructions("a".repeat(71)));
+        analyzer.onKnowledge(aboveSoft);
+        assertEquals(0.5, aboveSoft.getScores().get("knowledge-instructions-length"));
+
+        // At hard limit (100): score 0.5
+        AuditNode atHard = buildKnowledgeNode(knowledgeWithInstructions("a".repeat(100)));
+        analyzer.onKnowledge(atHard);
+        assertEquals(0.5, atHard.getScores().get("knowledge-instructions-length"));
+
+        // Just above hard limit (101): score 0.0
+        AuditNode aboveHard = buildKnowledgeNode(knowledgeWithInstructions("a".repeat(101)));
+        analyzer.onKnowledge(aboveHard);
+        assertEquals(0.0, aboveHard.getScores().get("knowledge-instructions-length"));
+    }
 }

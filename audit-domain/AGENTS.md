@@ -362,6 +362,7 @@ Methods:
 - Given a course with milestones, topics and knowledges, when AuditEngine.runAudit is invoked with both KTLEN analyzers, then the report root contains aggregated knowledge-title-length and knowledge-instructions-length scores at every hierarchy level → FEAT-KTLEN
 - Given a course with knowledges whose title weighted length exceeds 28, when AuditEngine.runAudit is invoked, then the affected knowledge nodes carry knowledge-title-length scores below 1.0 enabling identification of overlong titles → FEAT-KTLEN
 - Given a course with mixed title and instruction lengths, when AuditEngine.runAudit is invoked, then per-level scores for knowledge-title-length and knowledge-instructions-length are reported independently per AuditNode allowing the user to compare both dimensions → FEAT-KTLEN
+- Given two AuditableCourses with identical content but milestones declared in different orders, when AuditEngine.runAudit is invoked on each with the LemmaRecurrenceAnalyzer registered, then both AuditReports produce the same lemma-recurrence score confirming a deterministic CEFR-ordered traversal independent of input declaration order → FEAT-LREC/F-LREC-R002
 
 ### KnowledgeTitleLengthAnalyzer
 
@@ -424,6 +425,7 @@ Methods:
 - should complete without error when onCourseComplete is called → FEAT-KTLEN/F-KTLEN-R008
 - should produce correct scores for three knowledges with different instruction lengths → FEAT-KTLEN/F-KTLEN-R006
 - should use weighted character length not plain string length for scoring instructions → FEAT-KTLEN/F-KTLEN-R002
+- should distinguish three scoring ranges 1.0 at-or-below-70 0.5 above-70-up-to-100 0.0 above-100 at the declared weighted-char thresholds → FEAT-KTLEN/F-KTLEN-R005
 
 ### SentenceLengthAnalyzer
 
@@ -456,6 +458,10 @@ Methods:
 - should complete without error when onCourseComplete is called → FEAT-SLEN/F-SLEN-R001
 - should produce correct scores for full milestone-knowledge-quiz sequence → FEAT-SLEN/F-SLEN-R002
 - should exclude non-sentence quizzes from scoring → FEAT-SLEN/F-SLEN-R001
+- should emit a SentenceLengthDiagnosis on the quiz node populated with tokenCount, targetMin, targetMax, cefrLevel, delta and toleranceMargin matching the analyzer computation → FEAT-DSLEN/F-DSLEN-R001
+- should NOT emit a SentenceLengthDiagnosis on a quiz node that is excluded as non-sentence (no scoring produced) → FEAT-DSLEN/F-DSLEN-R002
+- should NOT emit a SentenceLengthDiagnosis on knowledge topic milestone or course nodes traversed by the analyzer → FEAT-DSLEN/F-DSLEN-R003
+- should make the emitted SentenceLengthDiagnosis retrievable via QuizDiagnoses getSentenceLengthDiagnosis on the same quiz node → FEAT-DSLEN/F-DSLEN-R004
 
 ### IScoreAggregator
 

@@ -71,23 +71,25 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
         double score = scoreQuiz(tokens, range);
         node.getScores().put(ANALYZER_NAME, score);
 
-        if (node.getDiagnoses() instanceof DefaultQuizDiagnoses quizDiagnoses) {
-            int targetMin = range.getMinTokens();
-            int targetMax = range.getMaxTokens();
-            int toleranceMargin = config.getToleranceMargin();
-            int delta;
-            if (tokens < targetMin) {
-                delta = tokens - targetMin; // negative
-            } else if (tokens > targetMax) {
-                delta = tokens - targetMax; // positive
-            } else {
-                delta = 0; // within range
-            }
-            SentenceLengthDiagnosis diagnosis = new SentenceLengthDiagnosis(
-                tokens, targetMin, targetMax, level, delta, toleranceMargin
-            );
-            quizDiagnoses.setSentenceLengthDiagnosis(diagnosis);
+        if (!(node.getDiagnoses() instanceof DefaultQuizDiagnoses)) {
+            node.setDiagnoses(new DefaultQuizDiagnoses());
         }
+        DefaultQuizDiagnoses quizDiagnoses = (DefaultQuizDiagnoses) node.getDiagnoses();
+        int targetMin = range.getMinTokens();
+        int targetMax = range.getMaxTokens();
+        int toleranceMargin = config.getToleranceMargin();
+        int delta;
+        if (tokens < targetMin) {
+            delta = tokens - targetMin; // negative
+        } else if (tokens > targetMax) {
+            delta = tokens - targetMax; // positive
+        } else {
+            delta = 0; // within range
+        }
+        SentenceLengthDiagnosis diagnosis = new SentenceLengthDiagnosis(
+            tokens, targetMin, targetMax, level, delta, toleranceMargin
+        );
+        quizDiagnoses.setSentenceLengthDiagnosis(diagnosis);
 
         return null;
     }

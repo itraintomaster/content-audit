@@ -1,0 +1,51 @@
+code: FEAT-DLABS
+modules:
+- name: audit-domain
+  packages:
+  - name: labs
+    implementations:
+    - name: LemmaByLevelAbsenceAnalyzer
+      handwrittenTests:
+      - name: "should attach to every AuditNode a typed NodeDiagnoses subtype matching\
+          \ the node's AuditTarget level (CourseDiagnoses on COURSE, LevelDiagnoses\
+          \ on MILESTONE, TopicDiagnoses on TOPIC, KnowledgeDiagnoses on KNOWLEDGE,\
+          \ QuizDiagnoses on QUIZ)"
+        traceability:
+          feature: FEAT-DLABS
+          rule: F-DLABS-R001
+      - name: should leave room on every QuizDiagnoses node for diagnoses of other
+          analyzers so that lemma-absence and sentence-length and others can coexist
+          on the same node without overwriting each other
+        traceability:
+          feature: FEAT-DLABS
+          rule: F-DLABS-R002
+      - name: should emit on each QUIZ AuditNode a LemmaPlacementDiagnosis of the
+          exact same record type returned by TopicDiagnoses and KnowledgeDiagnoses
+          confirming the same record is reused across the three levels
+        traceability:
+          feature: FEAT-DLABS
+          rule: F-DLABS-R009
+      - name: should produce an audit tree where every QUIZ node can navigate to its
+          MILESTONE ancestor via AuditNode.ancestor(AuditTarget.MILESTONE) returning
+          the milestone node that contains it
+        traceability:
+          feature: FEAT-DLABS
+          rule: F-DLABS-R011
+      - name: should expose on a QUIZ node a chain that allows callers to navigate
+          to the MILESTONE ancestor and then read its LemmaAbsenceLevelDiagnosis via
+          the typed LevelDiagnoses getter without any unchecked cast
+        traceability:
+          feature: FEAT-DLABS
+          rule: F-DLABS-R012
+- name: audit-cli
+  packages:
+  - name: formatting
+    implementations:
+    - name: LemmaAbsenceDetailedFormatter
+      handwrittenTests:
+      - name: should read lemma-absence diagnoses exclusively through the typed NodeDiagnoses
+          getters (getLemmaAbsenceDiagnosis) and not fall back to any untyped metadata
+          map when rendering the detailed view
+        traceability:
+          feature: FEAT-DLABS
+          rule: F-DLABS-R013

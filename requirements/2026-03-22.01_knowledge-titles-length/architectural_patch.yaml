@@ -54,3 +54,8 @@ modules:
         rule: F-KTLEN-R002
         journey: F-KTLEN-J003
       _change: modify
+    - name: should distinguish three scoring ranges 1.0 at-or-below-70 0.5 above-70-up-to-100
+        0.0 above-100 at the declared weighted-char thresholds
+      traceability:
+        feature: FEAT-KTLEN
+        rule: F-KTLEN-R005

@@ -637,4 +637,13 @@ public class CourseToAuditableMapperTest {
         assertThrows(QuizSentenceSerializationException.class, () -> mapper.map(course),
                 "Atomic failure: exception from invalid FormEntity prevents AuditableCourse production");
     }
+
+    @Test
+    @DisplayName("Given two AuditableCourses produced by mapping a course that has knowledge quizzes containing sentences with enriched-token-requiring vocabulary (frequency-ranked words via SpaCy) when AuditEngine runs both audits then every AuditableQuiz produced by the mapper carries a List<NlpToken> populated by analyzeTokensBatch covering tokenization lemmatization POS tagging frequency rank stop-word and punctuation flags so downstream analyzers can read enriched tokens without re-tokenizing")
+    @Tag("FEAT-NLP")
+    @Tag("F-NLP-R010")
+    @Tag("F-NLP-J001")
+    public void givenTwoAuditableCoursesProducedByMappingACourseThatHasKnowledgeQuizzesContainingSentencesWithEnrichedtokenrequiringVocabularyFrequencyrankedWordsViaSpaCyWhenAuditEngineRunsBothAuditsThenEveryAuditableQuizProducedByTheMapperCarriesAListNlpTokenPopulatedByAnalyzeTokensBatchCoveringTokenizationLemmatizationPOSTaggingFrequencyRankStopwordAndPunctuationFlagsSoDownstreamAnalyzersCanReadEnrichedTokensWithoutRetokenizing() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

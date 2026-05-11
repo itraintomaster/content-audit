@@ -25,4 +25,55 @@ public class AnalyzeCmdTest {
         assertEquals("analyze", annotation.name(),
                 "AnalyzeCmd must be addressable as the top-level verb 'analyze'");
     }
+
+    @Test
+    @DisplayName("should print an error and return non-zero exit code when invoked without a course path argument and no CONTENT_AUDIT_CONTENT_FOLDER env var is set")
+    @Tag("FEAT-CLI")
+    @Tag("F-CLI-R002")
+    @Tag("F-CLI-J002")
+    public void shouldPrintAnErrorAndReturnNonzeroExitCodeWhenInvokedWithoutACoursePathArgumentAndNoCONTENTAUDITCONTENTFOLDEREnvVarIsSet() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should print an error and return non-zero exit code when invoked with a course path that does not exist on disk")
+    @Tag("FEAT-CLI")
+    @Tag("F-CLI-R002")
+    @Tag("F-CLI-J002")
+    public void shouldPrintAnErrorAndReturnNonzeroExitCodeWhenInvokedWithACoursePathThatDoesNotExistOnDisk() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should produce a plain-text formatted summary on stdout when invoked without a --format option using text as the default format")
+    @Tag("FEAT-CLI")
+    @Tag("F-CLI-R003")
+    public void shouldProduceAPlaintextFormattedSummaryOnStdoutWhenInvokedWithoutAFormatOptionUsingTextAsTheDefaultFormat() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should produce a JSON-formatted summary on stdout when invoked with --format json")
+    @Tag("FEAT-CLI")
+    @Tag("F-CLI-R003")
+    public void shouldProduceAJSONformattedSummaryOnStdoutWhenInvokedWithFormatJson() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should return exit code zero when the audit completes successfully regardless of the overall score produced")
+    @Tag("FEAT-CLI")
+    @Tag("F-CLI-R004")
+    public void shouldReturnExitCodeZeroWhenTheAuditCompletesSuccessfullyRegardlessOfTheOverallScoreProduced() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should return a non-zero exit code when AuditRunner throws a RuntimeException during the audit pipeline and print a descriptive error message to stderr")
+    @Tag("FEAT-CLI")
+    @Tag("F-CLI-R004")
+    @Tag("F-CLI-J003")
+    public void shouldReturnANonzeroExitCodeWhenAuditRunnerThrowsARuntimeExceptionDuringTheAuditPipelineAndPrintADescriptiveErrorMessageToStderr() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

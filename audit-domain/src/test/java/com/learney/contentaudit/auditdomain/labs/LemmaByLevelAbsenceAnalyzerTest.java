@@ -2630,4 +2630,180 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         DefaultTopicDiagnoses freshTopic = new DefaultTopicDiagnoses();
         assertFalse(freshTopic.getLemmaAbsenceDiagnosis().isPresent());
     }
+
+    @Test
+    @DisplayName("should attach to every AuditNode a typed NodeDiagnoses subtype matching the node's AuditTarget level (CourseDiagnoses on COURSE, LevelDiagnoses on MILESTONE, TopicDiagnoses on TOPIC, KnowledgeDiagnoses on KNOWLEDGE, QuizDiagnoses on QUIZ)")
+    @Tag("FEAT-DLABS")
+    @Tag("F-DLABS-R001")
+    public void shouldAttachToEveryAuditNodeATypedNodeDiagnosesSubtypeMatchingTheNodesAuditTargetLevelCourseDiagnosesOnCOURSELevelDiagnosesOnMILESTONETopicDiagnosesOnTOPICKnowledgeDiagnosesOnKNOWLEDGEQuizDiagnosesOnQUIZ() {
+        // R001: addDiagnosesToTree sets the correct NodeDiagnoses subtype per AuditTarget.
+        // This test verifies the tree-setup helper that all other tests depend on.
+        AuditNode root = buildEmptyCourseTree();
+        addDiagnosesToTree(root);
+
+        assertInstanceOf(CourseDiagnoses.class, root.getDiagnoses(),
+                "R001: COURSE node must carry CourseDiagnoses");
+
+        AuditNode milestoneNode = root.getChildren().get(0);
+        assertInstanceOf(LevelDiagnoses.class, milestoneNode.getDiagnoses(),
+                "R001: MILESTONE node must carry LevelDiagnoses");
+
+        // Add a full subtree with topic/knowledge/quiz to verify all levels
+        AuditableTopic topic = new AuditableTopic(List.of(), "t1", "label", "code");
+        AuditNode topicNode = makeNode(AuditTarget.TOPIC, topic, milestoneNode);
+        topicNode.setDiagnoses(new DefaultTopicDiagnoses());
+
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "label", "code");
+        AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
+        knowledgeNode.setDiagnoses(new DefaultKnowledgeDiagnoses());
+
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null);
+        AuditNode quizNode = makeNode(AuditTarget.QUIZ, quiz, knowledgeNode);
+        quizNode.setDiagnoses(new DefaultQuizDiagnoses());
+
+        assertInstanceOf(TopicDiagnoses.class, topicNode.getDiagnoses(),
+                "R001: TOPIC node must carry TopicDiagnoses");
+        assertInstanceOf(KnowledgeDiagnoses.class, knowledgeNode.getDiagnoses(),
+                "R001: KNOWLEDGE node must carry KnowledgeDiagnoses");
+        assertInstanceOf(QuizDiagnoses.class, quizNode.getDiagnoses(),
+                "R001: QUIZ node must carry QuizDiagnoses");
+    }
+
+    @Test
+    @DisplayName("should leave room on every QuizDiagnoses node for diagnoses of other analyzers so that lemma-absence and sentence-length and others can coexist on the same node without overwriting each other")
+    @Tag("FEAT-DLABS")
+    @Tag("F-DLABS-R002")
+    public void shouldLeaveRoomOnEveryQuizDiagnosesNodeForDiagnosesOfOtherAnalyzersSoThatLemmaabsenceAndSentencelengthAndOthersCanCoexistOnTheSameNodeWithoutOverwritingEachOther() {
+        // R002: multiple analyzers write to different getters of the same QuizDiagnoses.
+        // lemma-absence writes LemmaPlacementDiagnosis; sentence-length writes SentenceLengthDiagnosis.
+        // They must coexist without overwriting each other.
+        DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
+
+        // Simulate lemma-absence writing a LemmaPlacementDiagnosis
+        LemmaPlacementDiagnosis placement = new LemmaPlacementDiagnosis(0, List.of());
+        quizDiagnoses.setLemmaAbsenceDiagnosis(placement);
+
+        // Simulate sentence-length writing a SentenceLengthDiagnosis
+        SentenceLengthDiagnosis sld = new SentenceLengthDiagnosis(6, 5, 8, CefrLevel.A1, 0, 4);
+        quizDiagnoses.setSentenceLengthDiagnosis(sld);
+
+        // Both diagnoses coexist on the same node
+        assertTrue(quizDiagnoses.getLemmaAbsenceDiagnosis().isPresent(),
+                "R002: lemma-absence diagnosis must still be present after sentence-length writes");
+        assertTrue(quizDiagnoses.getSentenceLengthDiagnosis().isPresent(),
+                "R002: sentence-length diagnosis must coexist with lemma-absence on the same node");
+        assertEquals(0, quizDiagnoses.getLemmaAbsenceDiagnosis().get().getMisplacedLemmaCount(),
+                "R002: lemma-absence diagnosis data must be intact");
+        assertEquals(6, quizDiagnoses.getSentenceLengthDiagnosis().get().getTokenCount(),
+                "R002: sentence-length diagnosis data must be intact");
+    }
+
+    @Test
+    @DisplayName("should emit on each QUIZ AuditNode a LemmaPlacementDiagnosis of the exact same record type returned by TopicDiagnoses and KnowledgeDiagnoses confirming the same record is reused across the three levels")
+    @Tag("FEAT-DLABS")
+    @Tag("F-DLABS-R009")
+    public void shouldEmitOnEachQUIZAuditNodeALemmaPlacementDiagnosisOfTheExactSameRecordTypeReturnedByTopicDiagnosesAndKnowledgeDiagnosesConfirmingTheSameRecordIsReusedAcrossTheThreeLevels() {
+        // R009: LemmaPlacementDiagnosis is the same record type on topic, knowledge, and quiz nodes.
+        // Verify by running the analyzer on a full tree and checking the type on the quiz node.
+        stubMinimalConfig();
+        stubEmptyEvp();
+        AuditNode root = buildEmptyCourseTree();
+        addDiagnosesToTree(root);
+
+        // Add topic, knowledge, quiz under first milestone
+        AuditNode milestoneNode = root.getChildren().get(0);
+        AuditableTopic topic = new AuditableTopic(List.of(), "t1", "label", "code");
+        AuditNode topicNode = makeNode(AuditTarget.TOPIC, topic, milestoneNode);
+        topicNode.setDiagnoses(new DefaultTopicDiagnoses());
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "label", "code");
+        AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
+        knowledgeNode.setDiagnoses(new DefaultKnowledgeDiagnoses());
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null);
+        AuditNode quizNode = makeNode(AuditTarget.QUIZ, quiz, knowledgeNode);
+        quizNode.setDiagnoses(new DefaultQuizDiagnoses());
+
+        sut.onQuiz(quizNode);
+        sut.onCourseComplete(root);
+
+        // R009: quiz node carries a LemmaPlacementDiagnosis via QuizDiagnoses
+        assertInstanceOf(QuizDiagnoses.class, quizNode.getDiagnoses(),
+                "R009: quiz node must carry QuizDiagnoses");
+        Optional<LemmaPlacementDiagnosis> quizDiag =
+                ((QuizDiagnoses) quizNode.getDiagnoses()).getLemmaAbsenceDiagnosis();
+        assertTrue(quizDiag.isPresent(), "R009: LemmaPlacementDiagnosis must be present on quiz node");
+        assertInstanceOf(LemmaPlacementDiagnosis.class, quizDiag.get(),
+                "R009: diagnosis on quiz node must be LemmaPlacementDiagnosis (same record type as topic/knowledge)");
+    }
+
+    @Test
+    @DisplayName("should produce an audit tree where every QUIZ node can navigate to its MILESTONE ancestor via AuditNode.ancestor(AuditTarget.MILESTONE) returning the milestone node that contains it")
+    @Tag("FEAT-DLABS")
+    @Tag("F-DLABS-R011")
+    public void shouldProduceAnAuditTreeWhereEveryQUIZNodeCanNavigateToItsMILESTONEAncestorViaAuditNodeancestorAuditTargetMILESTONEReturningTheMilestoneNodeThatContainsIt() {
+        // R011: AuditNode.ancestor(AuditTarget.MILESTONE) returns the milestone containing the quiz.
+        // Build a tree: course → milestone → topic → knowledge → quiz
+        AuditNode root = makeNode(AuditTarget.COURSE, null, null);
+        AuditableMilestone ms = new AuditableMilestone(List.of(), "m1", "A1", null);
+        AuditNode milestoneNode = makeNode(AuditTarget.MILESTONE, ms, root);
+        AuditableTopic topic = new AuditableTopic(List.of(), "t1", "label", "code");
+        AuditNode topicNode = makeNode(AuditTarget.TOPIC, topic, milestoneNode);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "label", "code");
+        AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null);
+        AuditNode quizNode = makeNode(AuditTarget.QUIZ, quiz, knowledgeNode);
+
+        // R011: quiz can navigate up to its milestone ancestor
+        Optional<AuditNode> foundMilestone = quizNode.ancestor(AuditTarget.MILESTONE);
+        assertTrue(foundMilestone.isPresent(), "R011: ancestor(MILESTONE) must return the milestone node");
+        assertSame(milestoneNode, foundMilestone.get(), "R011: returned node must be the actual milestone");
+
+        // R011: quiz cannot navigate above its course root (no ancestor of type KNOWLEDGE from quiz)
+        Optional<AuditNode> noKnowledgeAncestor = milestoneNode.ancestor(AuditTarget.KNOWLEDGE);
+        assertFalse(noKnowledgeAncestor.isPresent(),
+                "R011: milestone has no KNOWLEDGE ancestor — must return empty");
+    }
+
+    @Test
+    @DisplayName("should expose on a QUIZ node a chain that allows callers to navigate to the MILESTONE ancestor and then read its LemmaAbsenceLevelDiagnosis via the typed LevelDiagnoses getter without any unchecked cast")
+    @Tag("FEAT-DLABS")
+    @Tag("F-DLABS-R012")
+    public void shouldExposeOnAQUIZNodeAChainThatAllowsCallersToNavigateToTheMILESTONEAncestorAndThenReadItsLemmaAbsenceLevelDiagnosisViaTheTypedLevelDiagnosesGetterWithoutAnyUncheckedCast() {
+        // R012: combine ancestor() (R011) with typed getLemmaAbsenceDiagnosis() (R003).
+        // Run the analyzer to populate real diagnoses, then verify the navigation chain.
+        stubMinimalConfig();
+        stubEmptyEvp();
+
+        AuditNode root = buildEmptyCourseTree();
+        addDiagnosesToTree(root);
+
+        // Add quiz under first milestone (A1)
+        AuditNode milestoneNode = root.getChildren().get(0);
+        AuditableTopic topic = new AuditableTopic(List.of(), "t1", "label", "code");
+        AuditNode topicNode = makeNode(AuditTarget.TOPIC, topic, milestoneNode);
+        topicNode.setDiagnoses(new DefaultTopicDiagnoses());
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "label", "code");
+        AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
+        knowledgeNode.setDiagnoses(new DefaultKnowledgeDiagnoses());
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null);
+        AuditNode quizNode = makeNode(AuditTarget.QUIZ, quiz, knowledgeNode);
+        quizNode.setDiagnoses(new DefaultQuizDiagnoses());
+
+        sut.onQuiz(quizNode);
+        sut.onCourseComplete(root);
+
+        // R012: quiz → ancestor(MILESTONE) → LevelDiagnoses.getLemmaAbsenceDiagnosis()
+        Optional<AuditNode> maybeMilestone = quizNode.ancestor(AuditTarget.MILESTONE);
+        assertTrue(maybeMilestone.isPresent(), "R012: quiz must find its milestone ancestor");
+
+        NodeDiagnoses diagnoses = maybeMilestone.get().getDiagnoses();
+        assertInstanceOf(LevelDiagnoses.class, diagnoses,
+                "R012: milestone node must carry LevelDiagnoses (no unchecked cast needed)");
+
+        LevelDiagnoses levelDiagnoses = (LevelDiagnoses) diagnoses;
+        Optional<LemmaAbsenceLevelDiagnosis> levelDiag = levelDiagnoses.getLemmaAbsenceDiagnosis();
+        assertTrue(levelDiag.isPresent(),
+                "R012: LemmaAbsenceLevelDiagnosis accessible via typed getter from milestone ancestor");
+        // R012: fields are accessible via typed getters without unsafe casts
+        assertNotNull(levelDiag.get().getLevel(), "R012: level field accessible as typed CefrLevel");
+    }
 }

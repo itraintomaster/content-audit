@@ -1,10 +1,79 @@
 code: FEAT-LREC
-features:
-  - id: FEAT-LREC
-    journeys:
-      - id: F-LREC-J001
-        testModule: audit-domain
-        testPackage: com.learney.contentaudit.auditdomain.lrec
-      - id: F-LREC-J004
-        testModule: audit-domain
-        testPackage: com.learney.contentaudit.auditdomain.lrec
+modules:
+- name: audit-domain
+  implementations:
+  - name: IAuditEngine
+    handwrittenTests:
+    - name: "Given two AuditableCourses with identical content but milestones declared\
+        \ in different orders, when AuditEngine.runAudit is invoked on each with the\
+        \ LemmaRecurrenceAnalyzer registered, then both AuditReports produce the same\
+        \ lemma-recurrence score confirming a deterministic CEFR-ordered traversal\
+        \ independent of input declaration order"
+      traceability:
+        feature: FEAT-LREC
+        rule: F-LREC-R002
+  packages:
+  - name: lrec
+    implementations:
+    - name: LemmaRecurrenceAnalyzer
+      handwrittenTests:
+      - name: should assign a globally sequential position counter incremented by
+          one per token traversed across every quiz in the course
+        traceability:
+          feature: FEAT-LREC
+          rule: F-LREC-R001
+      - name: should register each content-word token under its lemma key in the lemma-positions
+          map preserving the global position and grouping inflected forms by their
+          lemmatized form
+        traceability:
+          feature: FEAT-LREC
+          rule: F-LREC-R004
+      - name: should restrict the analysed lemmas to the top N most frequent ones
+          according to the configured top parameter discarding the least frequent
+          lemmas beyond that limit
+        traceability:
+          feature: FEAT-LREC
+          rule: F-LREC-R005
+      - name: should skip from the per-lemma interval calculation any lemma whose
+          registered position list has fewer than two entries
+        traceability:
+          feature: FEAT-LREC
+          rule: F-LREC-R006
+      - name: should classify each analysed lemma as NORMAL when overExposed < meanInterval
+          <= subExposed as OVER_EXPOSED when meanInterval <= overExposed and as SUB_EXPOSED
+          when meanInterval > subExposed using the configured thresholds
+        traceability:
+          feature: FEAT-LREC
+          rule: F-LREC-R008
+      - name: should produce an ExposureSummary whose normalCount plus subExposedCount
+          plus overExposedCount equals the total count of lemmas analysed
+        traceability:
+          feature: FEAT-LREC
+          rule: F-LREC-R009
+      - name: should compute the overall lemma-recurrence score as normalCount divided
+          by totalCount rounded to two decimals and return 0.0 when totalCount is
+          zero
+        traceability:
+          feature: FEAT-LREC
+          rule: F-LREC-R010
+      - name: should produce identical overall score and exposure classification when
+          two analysed lemmas share the same meanInterval but differ in stdDevInterval
+          confirming stdDev is informative only
+        traceability:
+          feature: FEAT-LREC
+          rule: F-LREC-R011
+      - name: should populate every LemmaStats entry with lemma pos count meanInterval
+          stdDevInterval exposureStatus and occurrencePositions matching the data
+          captured for that lemma
+        traceability:
+          feature: FEAT-LREC
+          rule: F-LREC-R012
+- name: audit-application
+  implementations:
+  - name: DefaultLemmaRecurrenceConfig
+    handwrittenTests:
+    - name: should expose top subExposed and overExposed values that satisfy 0 less
+        than overExposed strictly less than subExposed and top greater than zero
+      traceability:
+        feature: FEAT-LREC
+        rule: F-LREC-R014

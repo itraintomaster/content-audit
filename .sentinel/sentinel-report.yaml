@@ -1,15 +1,33 @@
-generatedAt: 2026-05-11T02:36:32.899940Z
+generatedAt: 2026-05-11T11:04:55.959783Z
 system: ContentAudit
 version: 0.0.1
 features:
 - id: FEAT-DLABS
   state: IMPLEMENTING
   requirementFile: ./requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
+  patchFile: ./requirements/2026-04-04.01_typed-diagnostics-lemma-absence/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-DLABS-R001
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "should attach to every AuditNode a typed NodeDiagnoses subtype matching\
+        \ the node's AuditTarget level (CourseDiagnoses on COURSE, LevelDiagnoses\
+        \ on MILESTONE, TopicDiagnoses on TOPIC, KnowledgeDiagnoses on KNOWLEDGE,\
+        \ QuizDiagnoses on QUIZ)"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-DLABS-R002
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should leave room on every QuizDiagnoses node for diagnoses of other analyzers
+        so that lemma-absence and sentence-length and others can coexist on the same
+        node without overwriting each other
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-DLABS-R003
     state: PASSING
     tests:
@@ -65,7 +83,15 @@ features:
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-DLABS-R009
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should emit on each QUIZ AuditNode a LemmaPlacementDiagnosis of the exact
+        same record type returned by TopicDiagnoses and KnowledgeDiagnoses confirming
+        the same record is reused across the three levels
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-DLABS-R010
     state: PASSING
     tests:
@@ -76,11 +102,35 @@ features:
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-DLABS-R011
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should produce an audit tree where every QUIZ node can navigate to its
+        MILESTONE ancestor via AuditNode.ancestor(AuditTarget.MILESTONE) returning
+        the milestone node that contains it
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-DLABS-R012
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should expose on a QUIZ node a chain that allows callers to navigate to
+        the MILESTONE ancestor and then read its LemmaAbsenceLevelDiagnosis via the
+        typed LevelDiagnoses getter without any unchecked cast
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-DLABS-R013
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should read lemma-absence diagnoses exclusively through the typed NodeDiagnoses
+        getters (getLemmaAbsenceDiagnosis) and not fall back to any untyped metadata
+        map when rendering the detailed view
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: LemmaAbsenceDetailedFormatter
   - ruleId: F-DLABS-R014
     state: PASSING
     tests:
@@ -164,6 +214,7 @@ features:
         implementation: FDlabsJ003JourneyTest
   quality:
     classes:
+    - com.learney.contentaudit.auditcli.formatting.LemmaAbsenceDetailedFormatter
     - com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
     thresholds:
       lineCoverage: 70
@@ -172,15 +223,15 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 450
-      linesMissed: 18
-      linesTotal: 468
-      lineCoveragePct: 96
-      branchesCovered: 197
-      branchesMissed: 47
-      branchesTotal: 244
-      branchCoveragePct: 80
-      blendPct: 88
+      linesCovered: 304
+      linesMissed: 8
+      linesTotal: 312
+      lineCoveragePct: 97
+      branchesCovered: 176
+      branchesMissed: 59
+      branchesTotal: 235
+      branchCoveragePct: 74
+      blendPct: 85
     mutation:
       totalMutants: 0
       killed: 0
@@ -191,16 +242,16 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 35
+      totalMethods: 30
       hotspots: 0
-      maxCrap: 25.0
-      averageCrap: 4.8541377428571435
-      simple: 30
-      moderate: 4
-      high: 1
+      maxCrap: 27.0
+      averageCrap: 5.321941066666667
+      simple: 25
+      moderate: 3
+      high: 2
       veryHigh: 0
-      healthPct: 91
-    healthScore: 49
+      healthPct: 88
+    healthScore: 48
     verdict: PASSED
 - id: FEAT-REVCTX
   state: IMPLEMENTED
@@ -1127,33 +1178,31 @@ features:
     - branchCoverage 50% < 60%
     - crapHotspots 7 > 5
 - id: FEAT-LREC
-  state: ANALYSED
+  state: IMPLEMENTED
   requirementFile: ./requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
   patchFile: ./requirements/2026-03-28.01_lemma-recurrence/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-LREC-R001
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should assign a globally sequential position counter incremented by one
+        per token traversed across every quiz in the course
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaRecurrenceAnalyzer
   - ruleId: F-LREC-R002
     state: PASSING
     tests:
-    - name: "Given an AuditableKnowledge and AuditContext, when onKnowledge is called,\
-        \ then completes without error"
+    - name: "Given two AuditableCourses with identical content but milestones declared\
+        \ in different orders, when AuditEngine.runAudit is invoked on each with the\
+        \ LemmaRecurrenceAnalyzer registered, then both AuditReports produce the same\
+        \ lemma-recurrence score confirming a deterministic CEFR-ordered traversal\
+        \ independent of input declaration order"
       implemented: true
       passing: true
       module: audit-domain
-      implementation: LemmaRecurrenceAnalyzer
-    - name: "Given an AuditableTopic and AuditContext, when onTopic is called, then\
-        \ completes without error"
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: LemmaRecurrenceAnalyzer
-    - name: "Given an AuditableMilestone and AuditContext, when onMilestone is called,\
-        \ then completes without error"
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: LemmaRecurrenceAnalyzer
+      implementation: IAuditEngine
   - ruleId: F-LREC-R003
     state: PASSING
     tests:
@@ -1188,11 +1237,34 @@ features:
       module: audit-domain
       implementation: DefaultContentWordFilter
   - ruleId: F-LREC-R004
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should register each content-word token under its lemma key in the lemma-positions
+        map preserving the global position and grouping inflected forms by their lemmatized
+        form
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaRecurrenceAnalyzer
   - ruleId: F-LREC-R005
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should restrict the analysed lemmas to the top N most frequent ones according
+        to the configured top parameter discarding the least frequent lemmas beyond
+        that limit
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaRecurrenceAnalyzer
   - ruleId: F-LREC-R006
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should skip from the per-lemma interval calculation any lemma whose registered
+        position list has fewer than two entries
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaRecurrenceAnalyzer
   - ruleId: F-LREC-R007
     state: PASSING
     tests:
@@ -1221,15 +1293,53 @@ features:
       module: audit-domain
       implementation: DefaultIntervalCalculator
   - ruleId: F-LREC-R008
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should classify each analysed lemma as NORMAL when overExposed < meanInterval
+        <= subExposed as OVER_EXPOSED when meanInterval <= overExposed and as SUB_EXPOSED
+        when meanInterval > subExposed using the configured thresholds
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaRecurrenceAnalyzer
   - ruleId: F-LREC-R009
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should produce an ExposureSummary whose normalCount plus subExposedCount
+        plus overExposedCount equals the total count of lemmas analysed
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaRecurrenceAnalyzer
   - ruleId: F-LREC-R010
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should compute the overall lemma-recurrence score as normalCount divided
+        by totalCount rounded to two decimals and return 0.0 when totalCount is zero
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaRecurrenceAnalyzer
   - ruleId: F-LREC-R011
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should produce identical overall score and exposure classification when
+        two analysed lemmas share the same meanInterval but differ in stdDevInterval
+        confirming stdDev is informative only
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaRecurrenceAnalyzer
   - ruleId: F-LREC-R012
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should populate every LemmaStats entry with lemma pos count meanInterval
+        stdDevInterval exposureStatus and occurrencePositions matching the data captured
+        for that lemma
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaRecurrenceAnalyzer
   - ruleId: F-LREC-R013
     state: PASSING
     tests:
@@ -1240,7 +1350,14 @@ features:
       module: audit-domain
       implementation: LemmaRecurrenceAnalyzer
   - ruleId: F-LREC-R014
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should expose top subExposed and overExposed values that satisfy 0 less
+        than overExposed strictly less than subExposed and top greater than zero
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaRecurrenceConfig
   - ruleId: F-LREC-R015
     state: PASSING
     tests:
@@ -1313,6 +1430,8 @@ features:
         implementation: FLrecJ004JourneyTest
   quality:
     classes:
+    - com.learney.contentaudit.auditapplication.DefaultLemmaRecurrenceConfig
+    - com.learney.contentaudit.auditdomain.IAuditEngine
     - com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter
     - com.learney.contentaudit.auditdomain.lrec.DefaultIntervalCalculator
     - com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzer
@@ -1323,15 +1442,15 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 87
-      linesMissed: 12
-      linesTotal: 99
-      lineCoveragePct: 87
-      branchesCovered: 40
-      branchesMissed: 22
-      branchesTotal: 62
-      branchCoveragePct: 64
-      blendPct: 75
+      linesCovered: 0
+      linesMissed: 8
+      linesTotal: 8
+      lineCoveragePct: 0
+      branchesCovered: 0
+      branchesMissed: 0
+      branchesTotal: 0
+      branchCoveragePct: 0
+      blendPct: 0
     mutation:
       totalMutants: 0
       killed: 0
@@ -1342,17 +1461,19 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 19
+      totalMethods: 5
       hotspots: 0
-      maxCrap: 8.046656
-      averageCrap: 2.7761103157894738
-      simple: 19
+      maxCrap: 2.0
+      averageCrap: 2.0
+      simple: 5
       moderate: 0
       high: 0
       veryHigh: 0
       healthPct: 100
-    healthScore: 48
-    verdict: PASSED
+    healthScore: 25
+    verdict: WARNED
+    violations:
+    - lineCoverage 0% < 70%
 - id: FEAT-RCLAQS
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
@@ -1559,21 +1680,77 @@ features:
 - id: FEAT-DCOCA
   state: IMPLEMENTING
   requirementFile: ./requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
+  patchFile: ./requirements/2026-04-04.02_typed-diagnostics-coca-buckets/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-DCOCA-R001
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should emit on the COURSE AuditNode a CocaProgressionDiagnosis populated
+        with overallScore progressionAssessments and improvementDirectives reflecting
+        the analyzer outputs at the course level
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: CocaBucketsAnalyzer
   - ruleId: F-DCOCA-R002
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should emit on every MILESTONE AuditNode a CocaBucketsLevelDiagnosis populated
+        with totalTokens buckets and quarters reflecting the per-level analyzer outputs
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: CocaBucketsAnalyzer
   - ruleId: F-DCOCA-R003
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should emit on every TOPIC AuditNode a CocaBucketsTopicDiagnosis populated
+        with totalTokens and BucketSummary entries reflecting the informational per-topic
+        distribution
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: CocaBucketsAnalyzer
   - ruleId: F-DCOCA-R004
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should NOT emit a coca-buckets diagnosis on any KNOWLEDGE or QUIZ AuditNode
+        confirming the analyzer operates only at course milestone and topic granularity
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: CocaBucketsAnalyzer
   - ruleId: F-DCOCA-R005
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should make the emitted CocaProgressionDiagnosis CocaBucketsLevelDiagnosis
+        and CocaBucketsTopicDiagnosis retrievable via the typed CourseDiagnoses.getCocaBucketsDiagnosis
+        LevelDiagnoses.getCocaBucketsDiagnosis and TopicDiagnoses.getCocaBucketsDiagnosis
+        getters on the matching nodes
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: CocaBucketsAnalyzer
   - ruleId: F-DCOCA-R006
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should read coca-buckets diagnoses exclusively through the typed NodeDiagnoses
+        getters (CourseDiagnoses LevelDiagnoses TopicDiagnoses .getCocaBucketsDiagnosis)
+        and never call getMetadata or perform unchecked casts when rendering the detailed
+        view
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: CocaBucketsDetailedFormatter
   - ruleId: F-DCOCA-R007
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should not write any coca-buckets-distribution entry to the untyped metadata
+        map on any AuditNode after the migration to typed diagnoses is complete
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: CocaBucketsAnalyzer
   journeysCoverage:
   - journeyId: F-DCOCA-J001
     state: PASSING
@@ -1618,6 +1795,9 @@ features:
         module: audit-domain
         implementation: FDcocaJ002JourneyTest
   quality:
+    classes:
+    - com.learney.contentaudit.auditcli.formatting.CocaBucketsDetailedFormatter
+    - com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzer
     thresholds:
       lineCoverage: 70
       branchCoverage: 60
@@ -1625,15 +1805,15 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
-      lineCoveragePct: 0
-      branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
-      branchCoveragePct: 0
-      blendPct: 0
+      linesCovered: 243
+      linesMissed: 118
+      linesTotal: 361
+      lineCoveragePct: 67
+      branchesCovered: 105
+      branchesMissed: 133
+      branchesTotal: 238
+      branchCoveragePct: 44
+      blendPct: 55
     mutation:
       totalMutants: 0
       killed: 0
@@ -1644,17 +1824,35 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 0
-      hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
-      moderate: 0
-      high: 0
-      veryHigh: 0
-      healthPct: 0
-    healthScore: 0
-    verdict: PASSED
+      totalMethods: 25
+      hotspots: 2
+      maxCrap: 306.0
+      averageCrap: 19.859114679999998
+      simple: 18
+      moderate: 5
+      high: 1
+      veryHigh: 1
+      healthPct: 82
+      top:
+      - className: com.learney.contentaudit.auditcli.formatting.CocaBucketsDetailedFormatter
+        methodName: formatTable
+        methodDesc: (Lcom/learney/contentaudit/auditcli/formatting/CocaBucketsDetailedFormatter$Partitioned;)Ljava/lang/String;
+        line: 222
+        cyclomatic: 17
+        lineCoveragePct: 0
+        crap: 306.0
+      - className: com.learney.contentaudit.auditcli.formatting.CocaBucketsDetailedFormatter
+        methodName: formatText
+        methodDesc: (Lcom/learney/contentaudit/auditcli/formatting/CocaBucketsDetailedFormatter$Partitioned;)Ljava/lang/String;
+        line: 297
+        cyclomatic: 25
+        lineCoveragePct: 69
+        crap: 43.619375000000005
+    healthScore: 37
+    verdict: WARNED
+    violations:
+    - lineCoverage 67% < 70%
+    - branchCoverage 44% < 60%
 - id: FEAT-QSENT
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-04-22.01_quiz-sentence-dsl/REQUIREMENT.md
@@ -2681,23 +2879,76 @@ features:
     healthScore: 0
     verdict: PASSED
 - id: FEAT-NLP
-  state: IMPLEMENTING
+  state: ANALYSED
   requirementFile: ./requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
+  patchFile: ./requirements/2026-03-25.02_nlp-tokenizer-evolution/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-NLP-R001
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should produce every NlpToken with the six mandatory fields text lemma
+        posTag frequencyRank isStop and isPunct populated except frequencyRank which
+        may be null when COCA has no entry
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R002
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should never fail when the optional NlpToken fields tag isAlpha and dep
+        are absent confirming they are not required for the tokenizer contract
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R003
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should populate the lemma field with the lowercased base form returned
+        by SpaCy so that running yields run was yields be and children yields child
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R004
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should populate the posTag field with one of the Universal Dependencies
+        tags (NOUN VERB ADJ ADV PROPN NUM ADP AUX CCONJ DET INTJ PART PRON SCONJ PUNCT
+        SYM SPACE X) for every token produced
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R005
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should produce a List<NlpToken> from analyzeTokens replacing the legacy
+        List<String> tokenize representation as the primary tokenizer output
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R006
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should expose analyzeTokens(String) returning a List<NlpToken> for a single
+        sentence with linguistic enrichment for every word
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R007
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should still report a usable token count via the size of the analyzeTokens
+        result without requiring a separate countTokens call so SentenceLengthAnalyzer
+        continues to work
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R008
     state: PASSING
     tests:
@@ -2708,9 +2959,17 @@ features:
       module: audit-application
       implementation: CourseToAuditableMapper
   - ruleId: F-NLP-R009
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should not implement any analyzer interface confirming the tokenizer is
+        an infrastructure service that only transforms text into enriched tokens without
+        producing scores
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R010
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given a course with quizzes, when map is called, then analyzeTokensBatch\
         \ is invoked and returns an AuditableCourse"
@@ -2724,55 +2983,198 @@ features:
       passing: true
       module: audit-application
       implementation: CourseToAuditableMapper
+    - name: Given two AuditableCourses produced by mapping a course that has knowledge
+        quizzes containing sentences with enriched-token-requiring vocabulary (frequency-ranked
+        words via SpaCy) when AuditEngine runs both audits then every AuditableQuiz
+        produced by the mapper carries a List<NlpToken> populated by analyzeTokensBatch
+        covering tokenization lemmatization POS tagging frequency rank stop-word and
+        punctuation flags so downstream analyzers can read enriched tokens without
+        re-tokenizing
+      implemented: true
+      passing: false
+      module: audit-application
+      implementation: CourseToAuditableMapper
   - ruleId: F-NLP-R011
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should derive the frequencyRank from the COCA entry matched against the
+        token's lemma and not the inflected form so that running running and ran all
+        carry the same rank as run
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R012
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should map every Universal Dependencies posTag emitted by SpaCy to its
+        corresponding COCA single-character code (NOUN to n VERB to v ADJ to j ADV
+        to r PRON to p DET to a ADP to i CONJ/CCONJ/SCONJ to c NUM to m PART/PRT to
+        t INTJ to u SYM/PUNCT/SPACE/X to x) when looking up frequency
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R013
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should apply the three-tier COCA lookup strategy resolving frequencyRank
+        by exact-word match first then by lemma+pos-code match and finally by lemma-only
+        match before giving up
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R014
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should ignore the first 8 metadata lines and the column header line of
+        lemmas_20k_words.txt and parse the TSV body so that lookups use the correct
+        lemRank lemma PoS lemFreq wordFreq and word columns
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R015
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should load the COCA frequency data only once during initialization and
+        then resolve every subsequent token lookup against the in-memory index without
+        re-reading the file
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R016
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should set the token frequencyRank to the lemRank column of the matched
+        COCA entry not to the wordFreq of the specific inflected form
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R017
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should delegate linguistic processing to an external SpaCy-backed pipeline
+        (Python process with en_core_web_sm) producing tokenization lemmatization
+        POS tagging and stop-word/punctuation detection in a single pass
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R018
     state: NO_TESTS
   - ruleId: F-NLP-R019
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should perform tokenization lemmatization POS tagging and COCA frequency
+        lookup all within the same SpaCy-backed processing step without splitting
+        them across multiple external calls
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R020
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should produce a clear runtime error indicating the missing environment
+        component (Python 3.11+ SpaCy en_core_web_sm or lemmas_20k_words.txt) when
+        the tokenizer is invoked without the required environment installed
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R021
     state: NO_TESTS
   - ruleId: F-NLP-R022
     state: NO_TESTS
   - ruleId: F-NLP-R023
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should serve repeated analyzeTokens calls for the same sentence text from
+        an in-memory cache so that the delegate NlpTokenizer is invoked only on the
+        first call
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: CachedNlpTokenizer
   - ruleId: F-NLP-R024
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should treat two sentences differing in any single character (case spacing
+        punctuation) as distinct cache entries triggering a fresh delegate invocation
+        for each variant
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: CachedNlpTokenizer
   - ruleId: F-NLP-R025
     state: NO_TESTS
   - ruleId: F-NLP-R026
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should cache List<NlpToken> produced by analyzeTokens with the same decorator
+        pattern previously used for tokenize String results so cached entries match
+        the enriched signature
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: CachedNlpTokenizer
   - ruleId: F-NLP-R027
     state: NO_TESTS
   - ruleId: F-NLP-R028
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should produce a valid NlpToken with frequencyRank set to null and all
+        other linguistic fields populated when the three-tier COCA lookup finds no
+        entry for the token
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R029
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should propagate a descriptive exception (and not return partial or corrupt
+        tokens) when the underlying Python process fails to start exits abnormally
+        or returns invalid JSON output
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R030
     state: NO_TESTS
   - ruleId: F-NLP-R031
     state: NO_TESTS
   - ruleId: F-NLP-R032
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should continue tokenizing the remaining sentences of a batch and emit
+        a fallback NlpToken (text as-is lemma=lowercased text posTag=X frequencyRank=null
+        isStop=false isPunct=heuristic) when a single token inside SpaCy fails
+      implemented: true
+      passing: false
+      module: nlp-infrastructure
+      implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R033
     state: NO_TESTS
   journeysCoverage:
   - journeyId: F-NLP-J001
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: Given two AuditableCourses produced by mapping a course that has knowledge
+        quizzes containing sentences with enriched-token-requiring vocabulary (frequency-ranked
+        words via SpaCy) when AuditEngine runs both audits then every AuditableQuiz
+        produced by the mapper carries a List<NlpToken> populated by analyzeTokensBatch
+        covering tokenization lemmatization POS tagging frequency rank stop-word and
+        punctuation flags so downstream analyzers can read enriched tokens without
+        re-tokenizing
+      implemented: true
+      passing: false
+      module: audit-application
+      implementation: CourseToAuditableMapper
   - journeyId: F-NLP-J002
     state: NO_TESTS
   - journeyId: F-NLP-J003
@@ -2780,6 +3182,8 @@ features:
   quality:
     classes:
     - com.learney.contentaudit.auditapplication.CourseToAuditableMapper
+    - com.learney.contentaudit.nlpinfrastructure.spacy.CachedNlpTokenizer
+    - com.learney.contentaudit.nlpinfrastructure.spacy.SpacyNlpTokenizer
     thresholds:
       lineCoverage: 70
       branchCoverage: 60
@@ -3865,15 +4269,15 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 481
-      linesMissed: 45
-      linesTotal: 526
-      lineCoveragePct: 91
-      branchesCovered: 211
-      branchesMissed: 49
-      branchesTotal: 260
-      branchCoveragePct: 81
-      blendPct: 86
+      linesCovered: 31
+      linesMissed: 27
+      linesTotal: 58
+      lineCoveragePct: 53
+      branchesCovered: 14
+      branchesMissed: 2
+      branchesTotal: 16
+      branchCoveragePct: 87
+      blendPct: 70
     mutation:
       totalMutants: 0
       killed: 0
@@ -3884,20 +4288,23 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 53
+      totalMethods: 18
       hotspots: 0
-      maxCrap: 25.0
-      averageCrap: 3.8282041698113214
-      simple: 48
-      moderate: 4
-      high: 1
+      maxCrap: 6.0
+      averageCrap: 1.8333333333333333
+      simple: 18
+      moderate: 0
+      high: 0
       veryHigh: 0
-      healthPct: 94
-    healthScore: 49
-    verdict: PASSED
+      healthPct: 100
+    healthScore: 46
+    verdict: WARNED
+    violations:
+    - lineCoverage 53% < 70%
 - id: FEAT-CLI
   state: IMPLEMENTING
   requirementFile: ./requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
+  patchFile: ./requirements/2026-03-21.01_cli-audit-runner/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-CLI-R001
     state: PASSING
@@ -3951,15 +4358,70 @@ features:
       module: audit-application
       implementation: DefaultAuditRunner
   - ruleId: F-CLI-R002
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should print an error and return non-zero exit code when invoked without
+        a course path argument and no CONTENT_AUDIT_CONTENT_FOLDER env var is set
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: AnalyzeCmd
+    - name: should print an error and return non-zero exit code when invoked with
+        a course path that does not exist on disk
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: AnalyzeCmd
   - ruleId: F-CLI-R003
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should produce a plain-text formatted summary on stdout when invoked without
+        a --format option using text as the default format
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: AnalyzeCmd
+    - name: should produce a JSON-formatted summary on stdout when invoked with --format
+        json
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: AnalyzeCmd
   - ruleId: F-CLI-R004
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should return exit code zero when the audit completes successfully regardless
+        of the overall score produced
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: AnalyzeCmd
+    - name: should return a non-zero exit code when AuditRunner throws a RuntimeException
+        during the audit pipeline and print a descriptive error message to stderr
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: AnalyzeCmd
   - ruleId: F-CLI-R005
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should expose a public runAudit(Path coursePath) method on the AuditRunner
+        contract that returns the AuditReport produced after loading the course mapping
+        it to AuditableCourse and running the audit engine
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultAuditRunner
   - ruleId: F-CLI-R006
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should instantiate and wire CourseRepository NlpTokenizer all analyzer
+        configs all analyzers ScoreAggregator AuditEngine and DefaultAuditRunner via
+        manual constructor injection before any CLI subcommand executes
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: Main
   journeysCoverage:
   - journeyId: F-CLI-J001
     state: PASSING
@@ -3971,12 +4433,34 @@ features:
       module: audit-application
       implementation: DefaultAuditRunner
   - journeyId: F-CLI-J002
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should print an error and return non-zero exit code when invoked without
+        a course path argument and no CONTENT_AUDIT_CONTENT_FOLDER env var is set
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: AnalyzeCmd
+    - name: should print an error and return non-zero exit code when invoked with
+        a course path that does not exist on disk
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: AnalyzeCmd
   - journeyId: F-CLI-J003
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should return a non-zero exit code when AuditRunner throws a RuntimeException
+        during the audit pipeline and print a descriptive error message to stderr
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: AnalyzeCmd
   quality:
     classes:
     - com.learney.contentaudit.auditapplication.DefaultAuditRunner
+    - com.learney.contentaudit.auditcli.commands.AnalyzeCmd
+    - com.learney.contentaudit.auditcli.commands.Main
     thresholds:
       lineCoverage: 70
       branchCoverage: 60
@@ -3985,14 +4469,14 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 12
-      linesMissed: 16
-      linesTotal: 28
-      lineCoveragePct: 42
+      linesMissed: 264
+      linesTotal: 276
+      lineCoveragePct: 4
       branchesCovered: 1
-      branchesMissed: 5
-      branchesTotal: 6
-      branchCoveragePct: 16
-      blendPct: 29
+      branchesMissed: 45
+      branchesTotal: 46
+      branchCoveragePct: 2
+      blendPct: 3
     mutation:
       totalMutants: 0
       killed: 0
@@ -4003,20 +4487,35 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 6
-      hotspots: 0
-      maxCrap: 6.0
-      averageCrap: 2.8750704999999996
-      simple: 6
+      totalMethods: 13
+      hotspots: 2
+      maxCrap: 182.0
+      averageCrap: 23.01926330769231
+      simple: 11
       moderate: 0
       high: 0
-      veryHigh: 0
-      healthPct: 100
-    healthScore: 34
+      veryHigh: 2
+      healthPct: 85
+      top:
+      - className: com.learney.contentaudit.auditcli.commands.AnalyzeCmd
+        methodName: analyze
+        methodDesc: (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Z)Ljava/lang/Integer;
+        line: 131
+        cyclomatic: 13
+        lineCoveragePct: 0
+        crap: 182.0
+      - className: com.learney.contentaudit.auditcli.commands.Main
+        methodName: main
+        methodDesc: "([Ljava/lang/String;)V"
+        line: 142
+        cyclomatic: 9
+        lineCoveragePct: 0
+        crap: 90.0
+    healthScore: 22
     verdict: WARNED
     violations:
-    - lineCoverage 42% < 70%
-    - branchCoverage 16% < 60%
+    - lineCoverage 4% < 70%
+    - branchCoverage 2% < 60%
 - id: FEAT-PIPRE
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-05-03.01_proposal-impact-preview/REQUIREMENT.md
@@ -4412,7 +4911,7 @@ features:
     healthScore: 0
     verdict: PASSED
 - id: FEAT-KTLEN
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: ./requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
   patchFile: ./requirements/2026-03-22.01_knowledge-titles-length/architectural_patch.yaml
   rulesCoverage:
@@ -4546,6 +5045,12 @@ features:
       implementation: KnowledgeInstructionsLengthAnalyzer
     - name: should use weighted character length not plain string length for scoring
         instructions
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
+    - name: should distinguish three scoring ranges 1.0 at-or-below-70 0.5 above-70-up-to-100
+        0.0 above-100 at the declared weighted-char thresholds
       implemented: true
       passing: true
       module: audit-domain
@@ -4686,25 +5191,25 @@ features:
       implementation: KnowledgeInstructionsLengthAnalyzer
   journeysCoverage:
   - journeyId: F-KTLEN-J001
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a course with milestones, topics and knowledges, when AuditEngine.runAudit\
         \ is invoked with both KTLEN analyzers, then the report root contains aggregated\
         \ knowledge-title-length and knowledge-instructions-length scores at every\
         \ hierarchy level"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: IAuditEngine
   - journeyId: F-KTLEN-J002
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a course with knowledges whose title weighted length exceeds 28,\
         \ when AuditEngine.runAudit is invoked, then the affected knowledge nodes\
         \ carry knowledge-title-length scores below 1.0 enabling identification of\
         \ overlong titles"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: IAuditEngine
   - journeyId: F-KTLEN-J003
@@ -4723,14 +5228,14 @@ features:
       module: audit-domain
       implementation: KnowledgeInstructionsLengthAnalyzer
   - journeyId: F-KTLEN-J004
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a course with mixed title and instruction lengths, when AuditEngine.runAudit\
         \ is invoked, then per-level scores for knowledge-title-length and knowledge-instructions-length\
         \ are reported independently per AuditNode allowing the user to compare both\
         \ dimensions"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: IAuditEngine
   quality:
@@ -4745,15 +5250,15 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 52
-      linesMissed: 84
-      linesTotal: 136
-      lineCoveragePct: 38
-      branchesCovered: 24
-      branchesMissed: 20
-      branchesTotal: 44
-      branchCoveragePct: 54
-      blendPct: 46
+      linesCovered: 0
+      linesMissed: 0
+      linesTotal: 0
+      lineCoveragePct: 0
+      branchesCovered: 0
+      branchesMissed: 0
+      branchesTotal: 0
+      branchCoveragePct: 0
+      blendPct: 0
     mutation:
       totalMutants: 0
       killed: 0
@@ -4764,35 +5269,17 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 26
-      hotspots: 2
-      maxCrap: 30.0
-      averageCrap: 4.154769230769231
-      simple: 24
+      totalMethods: 0
+      hotspots: 0
+      maxCrap: 0.0
+      averageCrap: 0.0
+      simple: 0
       moderate: 0
-      high: 2
+      high: 0
       veryHigh: 0
-      healthPct: 92
-      top:
-      - className: com.learney.contentaudit.auditdomain.IAuditEngine
-        methodName: buildTree
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditableCourse;)Lcom/learney/contentaudit/auditdomain/AuditNode;
-        line: 40
-        cyclomatic: 5
-        lineCoveragePct: 0
-        crap: 30.0
-      - className: com.learney.contentaudit.auditdomain.IAuditEngine
-        methodName: traverseAndNotify
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Lcom/learney/contentaudit/auditdomain/ContentAnalyzer;)V
-        line: 103
-        cyclomatic: 5
-        lineCoveragePct: 0
-        crap: 30.0
-    healthScore: 37
-    verdict: WARNED
-    violations:
-    - lineCoverage 38% < 70%
-    - branchCoverage 54% < 60%
+      healthPct: 0
+    healthScore: 0
+    verdict: PASSED
 - id: FEAT-CDIFF
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-05-06.01_consolidated-differential-view/REQUIREMENT.md
@@ -6860,18 +7347,47 @@ features:
     healthScore: 55
     verdict: PASSED
 - id: FEAT-DSLEN
-  state: ANALYSED
+  state: IMPLEMENTED
   requirementFile: ./requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
   patchFile: ./requirements/2026-04-05.01_typed-diagnostics-sentence-length/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-DSLEN-R001
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "should emit a SentenceLengthDiagnosis on the quiz node populated with\
+        \ tokenCount, targetMin, targetMax, cefrLevel, delta and toleranceMargin matching\
+        \ the analyzer computation"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
   - ruleId: F-DSLEN-R002
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should NOT emit a SentenceLengthDiagnosis on a quiz node that is excluded
+        as non-sentence (no scoring produced)
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
   - ruleId: F-DSLEN-R003
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should NOT emit a SentenceLengthDiagnosis on knowledge topic milestone
+        or course nodes traversed by the analyzer
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
   - ruleId: F-DSLEN-R004
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should make the emitted SentenceLengthDiagnosis retrievable via QuizDiagnoses
+        getSentenceLengthDiagnosis on the same quiz node
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
   journeysCoverage:
   - journeyId: F-DSLEN-J001
     state: PASSING
@@ -6904,6 +7420,8 @@ features:
         module: refiner-domain
         implementation: FDslenJ001JourneyTest
   quality:
+    classes:
+    - com.learney.contentaudit.auditdomain.SentenceLengthAnalyzer
     thresholds:
       lineCoverage: 70
       branchCoverage: 60
@@ -7102,15 +7620,15 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 45
-      linesMissed: 11
-      linesTotal: 56
-      lineCoveragePct: 80
-      branchesCovered: 20
-      branchesMissed: 8
-      branchesTotal: 28
-      branchCoveragePct: 71
-      blendPct: 75
+      linesCovered: 0
+      linesMissed: 0
+      linesTotal: 0
+      lineCoveragePct: 0
+      branchesCovered: 0
+      branchesMissed: 0
+      branchesTotal: 0
+      branchCoveragePct: 0
+      blendPct: 0
     mutation:
       totalMutants: 0
       killed: 0
@@ -7121,16 +7639,16 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 11
+      totalMethods: 0
       hotspots: 0
-      maxCrap: 10.985984
-      averageCrap: 2.635089454545455
-      simple: 10
-      moderate: 1
+      maxCrap: 0.0
+      averageCrap: 0.0
+      simple: 0
+      moderate: 0
       high: 0
       veryHigh: 0
-      healthPct: 95
-    healthScore: 46
+      healthPct: 0
+    healthScore: 0
     verdict: PASSED
 - id: FEAT-LCOUNT
   state: IMPLEMENTED
@@ -7422,15 +7940,15 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 98
-      linesMissed: 20
-      linesTotal: 118
-      lineCoveragePct: 83
-      branchesCovered: 43
-      branchesMissed: 15
-      branchesTotal: 58
-      branchCoveragePct: 74
-      blendPct: 78
+      linesCovered: 14
+      linesMissed: 1
+      linesTotal: 15
+      lineCoveragePct: 93
+      branchesCovered: 7
+      branchesMissed: 1
+      branchesTotal: 8
+      branchCoveragePct: 87
+      blendPct: 90
     mutation:
       totalMutants: 0
       killed: 0
@@ -7441,16 +7959,16 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 16
+      totalMethods: 2
       hotspots: 0
-      maxCrap: 13.086528
-      averageCrap: 3.6519559999999993
-      simple: 14
-      moderate: 2
+      maxCrap: 5.0128
+      averageCrap: 3.0064
+      simple: 2
+      moderate: 0
       high: 0
       veryHigh: 0
-      healthPct: 94
-    healthScore: 47
+      healthPct: 100
+    healthScore: 52
     verdict: PASSED
 - id: FEAT-REVBYP
   state: IMPLEMENTED
@@ -9673,112 +10191,123 @@ elements:
         \ dimensions"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/IAuditEngineTest.java
-    quality:
-      coverage:
-        linesCovered: 0
-        linesMissed: 80
-        linesTotal: 80
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 18
-        branchesTotal: 18
-        branchCoveragePct: 0
-        blendPct: 0
-      mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
-        noCoverage: 0
-        timedOut: 0
-        other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
-      crap:
-        totalMethods: 4
-        hotspots: 2
-        maxCrap: 30.0
-        averageCrap: 17.0
-        simple: 2
-        moderate: 0
-        high: 2
-        veryHigh: 0
-        healthPct: 50
-        top:
-        - className: com.learney.contentaudit.auditdomain.IAuditEngine
-          methodName: buildTree
-          methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditableCourse;)Lcom/learney/contentaudit/auditdomain/AuditNode;
-          line: 40
-          cyclomatic: 5
-          lineCoveragePct: 0
-          crap: 30.0
-        - className: com.learney.contentaudit.auditdomain.IAuditEngine
-          methodName: traverseAndNotify
-          methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Lcom/learney/contentaudit/auditdomain/ContentAnalyzer;)V
-          line: 103
-          cyclomatic: 5
-          lineCoveragePct: 0
-          crap: 30.0
-      methods:
-      - name: <init>
-        desc: (Ljava/util/List;Lcom/learney/contentaudit/auditdomain/ScoreAggregator;)V
-        line: 17
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 4
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: runAudit
-        desc: (Lcom/learney/contentaudit/auditdomain/AuditableCourse;)Lcom/learney/contentaudit/auditdomain/AuditReport;
-        line: 25
-        cyclomatic: 2
-        linesCovered: 0
-        linesMissed: 7
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 2
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 6.0
-      - name: buildTree
-        desc: (Lcom/learney/contentaudit/auditdomain/AuditableCourse;)Lcom/learney/contentaudit/auditdomain/AuditNode;
-        line: 40
-        cyclomatic: 5
-        linesCovered: 0
-        linesMissed: 56
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 8
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 30.0
-      - name: traverseAndNotify
-        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Lcom/learney/contentaudit/auditdomain/ContentAnalyzer;)V
-        line: 103
-        cyclomatic: 5
-        linesCovered: 0
-        linesMissed: 13
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 8
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 30.0
+    - name: "Given two AuditableCourses with identical content but milestones declared\
+        \ in different orders, when AuditEngine.runAudit is invoked on each with the\
+        \ LemmaRecurrenceAnalyzer registered, then both AuditReports produce the same\
+        \ lemma-recurrence score confirming a deterministic CEFR-ordered traversal\
+        \ independent of input declaration order"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/IAuditEngineTest.java
+    testCleanViews:
+    - |
+      test: "Given a course with milestones, topics and knowledges, when AuditEngine.runAudit is invoked with both KTLEN analyzers, then the report root contains aggregated knowledge-title-length and knowledge-instructions-length scores at every hierarchy level"
+      trace: FEAT-KTLEN / F-KTLEN-J001
+
+      given:
+        k = knowledge("Short title", "Brief instructions.")
+        course = courseWithOneKnowledge(k)
+        engine = ktlenEngine()
+        report = engine.runAudit(course)
+        root = report.getRoot()
+        milestoneNode = root.getChildren().get(0)
+
+      then:
+        report is not null
+        root is not null
+        root.getScores().containsKey("knowledge-title-length") is true
+        root.getScores().containsKey("knowledge-instructions-length") is true
+        root.getChildren() is not null
+        !root.getChildren().isEmpty() is not null
+        milestoneNode.getScores().containsKey("knowledge-title-length") is true
+        milestoneNode.getScores().containsKey("knowledge-instructions-length") is true
+    - |
+      test: "Given a course with knowledges whose title weighted length exceeds 28, when AuditEngine.runAudit is invoked, then the affected knowledge nodes carry knowledge-title-length scores below 1.0 enabling identification of overlong titles"
+      trace: FEAT-KTLEN / F-KTLEN-J002
+
+      given:
+        overlong = knowledge("a".repeat(35), null)
+        course = courseWithOneKnowledge(overlong)
+        engine = ktlenEngine()
+        report = engine.runAudit(course)
+        root = report.getRoot()
+        milestone = root.getChildren().get(0)
+        topic = milestone.getChildren().get(0)
+        knowledgeNode = topic.getChildren().get(0)
+        score = knowledgeNode.getScores().get("knowledge-title-length")
+
+      then:
+        report is not null
+        knowledgeNode.getScores().get("knowledge-title-length") is not null
+        score < 1.0 is true
+    - |
+      test: "Given a course with mixed title and instruction lengths, when AuditEngine.runAudit is invoked, then per-level scores for knowledge-title-length and knowledge-instructions-length are reported independently per AuditNode allowing the user to compare both dimensions"
+      trace: FEAT-KTLEN / F-KTLEN-J004
+
+      given:
+        k = knowledge("Short", "a".repeat(110))
+        course = courseWithOneKnowledge(k)
+        engine = ktlenEngine()
+        report = engine.runAudit(course)
+        root = report.getRoot()
+        milestone = root.getChildren().get(0)
+        topic = milestone.getChildren().get(0)
+        knowledgeNode = topic.getChildren().get(0)
+        titleScore = knowledgeNode.getScores().get("knowledge-title-length")
+        instructionsScore = knowledgeNode.getScores().get("knowledge-instructions-length")
+
+      then:
+        titleScore is not null
+        instructionsScore is not null
+        titleScore == 1.0
+        instructionsScore == 0.0
+        milestone.getScores().containsKey("knowledge-title-length") is true
+        milestone.getScores().containsKey("knowledge-instructions-length") is true
+    - |
+      test: "Given two AuditableCourses with identical content but milestones declared in different orders, when AuditEngine.runAudit is invoked on each with the LemmaRecurrenceAnalyzer registered, then both AuditReports produce the same lemma-recurrence score confirming a deterministic CEFR-ordered traversal independent of input declaration order"
+      trace: FEAT-LREC / F-LREC-R002
+
+      given:
+        catToken = NlpToken("cat", "cat", "NOUN", 100, false, false)
+        quizA1 = AuditableQuiz(List.of(catToken), null, null, null, null, List.of("the cat"), null)
+        quizA2 = AuditableQuiz(List.of(catToken), null, null, null, null, List.of("a cat"), null)
+        topicA1 = AuditableTopic(List.of(new AuditableKnowledge(List.of(quizA1), "K-A1", null, false, "k1", "l1", "C1")), "t1", "TopicA1", "T1")
+        topicA2 = AuditableTopic(List.of(new AuditableKnowledge(List.of(quizA2), "K-A2", null, false, "k2", "l2", "C2")), "t2", "TopicA2", "T2")
+        milestoneA1 = AuditableMilestone(List.of(topicA1), "m1", "A1", "M1")
+        milestoneA2 = AuditableMilestone(List.of(topicA2), "m2", "A2", "M2")
+        course1 = AuditableCourse(List.of(milestoneA1, milestoneA2))
+        course2 = AuditableCourse(List.of(milestoneA2, milestoneA1))
+        cwf = Mockito.mock(ContentWordFilter.class)
+        cfg = Mockito.mock(LemmaRecurrenceConfig.class)
+        ic = Mockito.mock(IntervalCalculator.class)
+        ec = Mockito.mock(ExposureClassifier.class)
+        analyzers = List.of(new LemmaRecurrenceAnalyzer(cwf, cfg, ic, ec))
+        engine = IAuditEngine(analyzers, new IScoreAggregator())
+        report1 = engine.runAudit(course1)
+        cwf2 = Mockito.mock(ContentWordFilter.class)
+        cfg2 = Mockito.mock(LemmaRecurrenceConfig.class)
+        ic2 = Mockito.mock(IntervalCalculator.class)
+        ec2 = Mockito.mock(ExposureClassifier.class)
+        engine2 = IAuditEngine(List.of(new LemmaRecurrenceAnalyzer(cwf2, cfg2, ic2, ec2)), new IScoreAggregator())
+        report2 = engine2.runAudit(course2)
+        score1 = report1.getRoot().getScores().get("lemma-recurrence")
+        score2 = report2.getRoot().getScores().get("lemma-recurrence")
+
+      mock:
+        cwf.isContentWord(any()) -> true
+        cfg.getTop() -> 2000
+        ic.calculateMeanInterval(any()) -> 200.0
+        ic.calculateStdDevInterval(any(), anyDouble()) -> 0.0
+        ec.classify(anyDouble(), any()) -> ExposureStatus.NORMAL
+        cwf2.isContentWord(any()) -> true
+        cfg2.getTop() -> 2000
+        ic2.calculateMeanInterval(any()) -> 200.0
+        ic2.calculateStdDevInterval(any(), anyDouble()) -> 0.0
+        ec2.classify(anyDouble(), any()) -> ExposureStatus.NORMAL
+
+      then:
+        score1 is not null
+        score2 is not null
+        score2 == score1
   - name: KnowledgeTitleLengthAnalyzer
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzer.java
@@ -10149,202 +10678,6 @@ elements:
 
       then:
         node.getScores().get("knowledge-title-length") == 0.0
-    quality:
-      coverage:
-        linesCovered: 26
-        linesMissed: 1
-        linesTotal: 27
-        lineCoveragePct: 96
-        branchesCovered: 12
-        branchesMissed: 0
-        branchesTotal: 12
-        branchCoveragePct: 100
-        blendPct: 98
-      mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
-        noCoverage: 0
-        timedOut: 0
-        other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
-      crap:
-        totalMethods: 11
-        hotspots: 0
-        maxCrap: 4.0
-        averageCrap: 1.7272727272727273
-        simple: 11
-        moderate: 0
-        high: 0
-        veryHigh: 0
-        healthPct: 100
-      methods:
-      - name: <init>
-        desc: ()V
-        line: 8
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: getName
-        desc: ()Ljava/lang/String;
-        line: 15
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: getTarget
-        desc: ()Lcom/learney/contentaudit/auditdomain/AuditTarget;
-        line: 18
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: onMilestone
-        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-        line: 21
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: onTopic
-        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-        line: 24
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: onKnowledge
-        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-        line: 28
-        cyclomatic: 4
-        linesCovered: 10
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 6
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 4.0
-      - name: computeWeightedLength
-        desc: (Ljava/lang/String;)D
-        line: 46
-        cyclomatic: 2
-        linesCovered: 4
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 2
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: charWeight
-        desc: (C)D
-        line: 54
-        cyclomatic: 4
-        linesCovered: 5
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 4
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 4.0
-      - name: onQuiz
-        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-        line: 63
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: onCourseComplete
-        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-        line: 66
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: getDescription
-        desc: ()Ljava/lang/String;
-        line: 70
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
   - name: KnowledgeInstructionsLengthAnalyzer
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzer.java
@@ -10431,6 +10764,10 @@ elements:
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerTest.java
     - name: should use weighted character length not plain string length for scoring
         instructions
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerTest.java
+    - name: should distinguish three scoring ranges 1.0 at-or-below-70 0.5 above-70-up-to-100
+        0.0 above-100 at the declared weighted-char thresholds
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerTest.java
     testCleanViews:
@@ -10637,202 +10974,24 @@ elements:
         node1.getScores().get("knowledge-instructions-length") == 1.0
         node2.getScores().get("knowledge-instructions-length") == 0.5
         node3.getScores().get("knowledge-instructions-length") == 0.0
-    quality:
-      coverage:
-        linesCovered: 26
-        linesMissed: 3
-        linesTotal: 29
-        lineCoveragePct: 89
-        branchesCovered: 12
-        branchesMissed: 2
-        branchesTotal: 14
-        branchCoveragePct: 85
-        blendPct: 87
-      mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
-        noCoverage: 0
-        timedOut: 0
-        other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
-      crap:
-        totalMethods: 11
-        hotspots: 0
-        maxCrap: 5.024
-        averageCrap: 1.9112727272727275
-        simple: 11
-        moderate: 0
-        high: 0
-        veryHigh: 0
-        healthPct: 100
-      methods:
-      - name: <init>
-        desc: ()V
-        line: 8
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: getName
-        desc: ()Ljava/lang/String;
-        line: 15
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: getTarget
-        desc: ()Lcom/learney/contentaudit/auditdomain/AuditTarget;
-        line: 18
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: onMilestone
-        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-        line: 21
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: onTopic
-        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-        line: 24
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: onKnowledge
-        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-        line: 28
-        cyclomatic: 5
-        linesCovered: 12
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 8
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 5.0
-      - name: computeWeightedLength
-        desc: (Ljava/lang/String;)D
-        line: 48
-        cyclomatic: 2
-        linesCovered: 4
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 2
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: charWeight
-        desc: (C)D
-        line: 56
-        cyclomatic: 4
-        linesCovered: 3
-        linesMissed: 2
-        lineCoveragePct: 60
-        branchesCovered: 2
-        branchesMissed: 2
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 5.024
-      - name: onQuiz
-        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-        line: 65
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: onCourseComplete
-        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-        line: 68
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: getDescription
-        desc: ()Ljava/lang/String;
-        line: 72
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
+    - |
+      test: "should distinguish three scoring ranges 1.0 at-or-below-70 0.5 above-70-up-to-100 0.0 above-100 at the declared weighted-char thresholds"
+      trace: FEAT-KTLEN / F-KTLEN-R005
+
+      given:
+        atSoft = buildKnowledgeNode(knowledgeWithInstructions("a".repeat(70)))
+        aboveSoft = buildKnowledgeNode(knowledgeWithInstructions("a".repeat(71)))
+        atHard = buildKnowledgeNode(knowledgeWithInstructions("a".repeat(100)))
+        aboveHard = buildKnowledgeNode(knowledgeWithInstructions("a".repeat(101)))
+
+      when:
+        sut.onKnowledge(atSoft)
+
+      then:
+        atSoft.getScores().get("knowledge-instructions-length") == 1.0
+        aboveSoft.getScores().get("knowledge-instructions-length") == 0.5
+        atHard.getScores().get("knowledge-instructions-length") == 0.5
+        aboveHard.getScores().get("knowledge-instructions-length") == 0.0
   - name: SentenceLengthAnalyzer
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzer.java
@@ -10895,6 +11054,23 @@ elements:
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     - name: should exclude non-sentence quizzes from scoring
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
+    - name: "should emit a SentenceLengthDiagnosis on the quiz node populated with\
+        \ tokenCount, targetMin, targetMax, cefrLevel, delta and toleranceMargin matching\
+        \ the analyzer computation"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
+    - name: should NOT emit a SentenceLengthDiagnosis on a quiz node that is excluded
+        as non-sentence (no scoring produced)
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
+    - name: should NOT emit a SentenceLengthDiagnosis on knowledge topic milestone
+        or course nodes traversed by the analyzer
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
+    - name: should make the emitted SentenceLengthDiagnosis retrievable via QuizDiagnoses
+        getSentenceLengthDiagnosis on the same quiz node
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     testCleanViews:
@@ -11191,307 +11367,208 @@ elements:
 
       then:
         quizNode.getScores().containsKey("sentence-length") is false
-    quality:
-      coverage:
-        linesCovered: 45
-        linesMissed: 11
-        linesTotal: 56
-        lineCoveragePct: 80
-        branchesCovered: 20
-        branchesMissed: 8
-        branchesTotal: 28
-        branchCoveragePct: 71
-        blendPct: 75
-      mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
-        noCoverage: 0
-        timedOut: 0
-        other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
-      crap:
-        totalMethods: 11
-        hotspots: 0
-        maxCrap: 10.985984
-        averageCrap: 2.635089454545455
-        simple: 10
-        moderate: 1
-        high: 0
-        veryHigh: 0
-        healthPct: 95
-      methods:
-      - name: <init>
-        desc: (Lcom/learney/contentaudit/auditdomain/NlpTokenizer;Lcom/learney/contentaudit/auditdomain/SentenceLengthConfig;)V
-        line: 17
-        cyclomatic: 1
-        linesCovered: 4
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: getName
-        desc: ()Ljava/lang/String;
-        line: 24
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: getTarget
-        desc: ()Lcom/learney/contentaudit/auditdomain/AuditTarget;
-        line: 29
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: onMilestone
-        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-        line: 34
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: onTopic
-        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-        line: 39
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: onKnowledge
-        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-        line: 44
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: onQuiz
-        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-        line: 49
-        cyclomatic: 8
-        linesCovered: 18
-        linesMissed: 10
-        lineCoveragePct: 64
-        branchesCovered: 8
-        branchesMissed: 6
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 10.985984
-      - name: onCourseComplete
-        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-        line: 97
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: scoreQuiz
-        desc: (ILcom/learney/contentaudit/auditdomain/TargetRange;)D
-        line: 101
-        cyclomatic: 5
-        linesCovered: 11
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 8
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 5.0
-      - name: parseCefrLevel
-        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Lcom/learney/contentaudit/auditdomain/CefrLevel;
-        line: 124
-        cyclomatic: 4
-        linesCovered: 6
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 4
-        branchesMissed: 2
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 4.0
-      - name: getDescription
-        desc: ()Ljava/lang/String;
-        line: 136
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
+    - |
+      test: "should emit a SentenceLengthDiagnosis on the quiz node populated with tokenCount, targetMin, targetMax, cefrLevel, delta and toleranceMargin matching the analyzer computation"
+      trace: FEAT-DSLEN / F-DSLEN-R001
+
+      given:
+        knowledge = AuditableKnowledge(List.of(), "K", "instr", true, null, null, null)
+        quiz = AuditableQuiz(tokens(11), "q1", null, null, null, List.of("sentence quiz"), null)
+        quizNode = fullTree("A1", knowledge, quiz)
+        diag = quizNode.getDiagnoses()
+        sld = ((QuizDiagnoses) diag).getSentenceLengthDiagnosis()
+        d = sld.get()
+
+      when:
+        sut.onQuiz(quizNode)
+
+      then:
+        diag is not null
+        assertInstanceOf(QuizDiagnoses.class)
+        sld.isPresent() is true
+        d.getTokenCount() == 11
+        d.getTargetMin() == 5
+        d.getTargetMax() == 8
+        d.getCefrLevel() == CefrLevel.A1
+        d.getDelta() == 3
+        d.getToleranceMargin() == 4
+    - |
+      test: "should NOT emit a SentenceLengthDiagnosis on a quiz node that is excluded as non-sentence (no scoring produced)"
+      trace: FEAT-DSLEN / F-DSLEN-R002
+
+      given:
+        knowledge = AuditableKnowledge(List.of(), "Vocabulary", "Match words", false, null, null, null)
+        quiz = AuditableQuiz(tokens(3), null, null, null, null, List.of("apple"), null)
+        quizNode = fullTree("A1", knowledge, quiz)
+        diag = quizNode.getDiagnoses()
+
+      when:
+        sut.onQuiz(quizNode)
+
+      then:
+        quizNode.getScores().containsKey("sentence-length") is false
+    - |
+      test: "should NOT emit a SentenceLengthDiagnosis on knowledge topic milestone or course nodes traversed by the analyzer"
+      trace: FEAT-DSLEN / F-DSLEN-R003
+
+      given:
+        courseNode = buildCourseNode()
+        milestone = AuditableMilestone(List.of(), null, "A1", null)
+        milestoneNode = buildMilestoneNode(courseNode, milestone)
+        topic = AuditableTopic(List.of(), null, null, null)
+        topicNode = buildTopicNode(milestoneNode, topic)
+        knowledge = AuditableKnowledge(List.of(), "K", "instr", true, null, null, null)
+        knowledgeNode = buildKnowledgeNode(topicNode, knowledge)
+
+      when:
+        sut.onMilestone(milestoneNode)
+    - |
+      test: "should make the emitted SentenceLengthDiagnosis retrievable via QuizDiagnoses getSentenceLengthDiagnosis on the same quiz node"
+      trace: FEAT-DSLEN / F-DSLEN-R004
+
+      given:
+        knowledge = AuditableKnowledge(List.of(), "K", "instr", true, null, null, null)
+        quiz = AuditableQuiz(tokens(6), "q1", null, null, null, List.of("six token sentence here"), null)
+        quizNode = fullTree("A1", knowledge, quiz)
+        diag = quizNode.getDiagnoses()
+        sldOpt = ((QuizDiagnoses) diag).getSentenceLengthDiagnosis()
+
+      when:
+        sut.onQuiz(quizNode)
+
+      then:
+        assertInstanceOf(QuizDiagnoses.class)
+        sldOpt.isPresent() is true
+        sldOpt.get() is not null
+        sldOpt.get().getTokenCount() == 6
+        sldOpt.get().getCefrLevel() == CefrLevel.A1
   - name: IScoreAggregator
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/IScoreAggregator.java
-    quality:
-      coverage:
-        linesCovered: 0
-        linesMissed: 28
-        linesTotal: 28
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 18
-        branchesTotal: 18
-        branchCoveragePct: 0
-        blendPct: 0
-      mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
-        noCoverage: 0
-        timedOut: 0
-        other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
-      crap:
-        totalMethods: 4
-        hotspots: 1
-        maxCrap: 110.0
-        averageCrap: 29.0
-        simple: 3
-        moderate: 0
-        high: 0
-        veryHigh: 1
-        healthPct: 75
-        top:
-        - className: com.learney.contentaudit.auditdomain.IScoreAggregator
-          methodName: bubbleUp
-          methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)V
-          line: 22
-          cyclomatic: 10
-          lineCoveragePct: 0
-          crap: 110.0
-      methods:
-      - name: <init>
-        desc: ()V
-        line: 9
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: aggregate
-        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)V
-        line: 13
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 2
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: bubbleUp
-        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)V
-        line: 22
-        cyclomatic: 10
-        linesCovered: 0
-        linesMissed: 24
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 18
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 110.0
-      - name: lambda$bubbleUp$0
-        desc: (Ljava/lang/String;)Ljava/util/List;
-        line: 36
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
   - name: CocaBucketsAnalyzer
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/coca/CocaBucketsAnalyzer.java
+    tests:
+    - name: should emit on the COURSE AuditNode a CocaProgressionDiagnosis populated
+        with overallScore progressionAssessments and improvementDirectives reflecting
+        the analyzer outputs at the course level
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/coca/CocaBucketsAnalyzerTest.java
+    - name: should emit on every MILESTONE AuditNode a CocaBucketsLevelDiagnosis populated
+        with totalTokens buckets and quarters reflecting the per-level analyzer outputs
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/coca/CocaBucketsAnalyzerTest.java
+    - name: should emit on every TOPIC AuditNode a CocaBucketsTopicDiagnosis populated
+        with totalTokens and BucketSummary entries reflecting the informational per-topic
+        distribution
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/coca/CocaBucketsAnalyzerTest.java
+    - name: should NOT emit a coca-buckets diagnosis on any KNOWLEDGE or QUIZ AuditNode
+        confirming the analyzer operates only at course milestone and topic granularity
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/coca/CocaBucketsAnalyzerTest.java
+    - name: should make the emitted CocaProgressionDiagnosis CocaBucketsLevelDiagnosis
+        and CocaBucketsTopicDiagnosis retrievable via the typed CourseDiagnoses.getCocaBucketsDiagnosis
+        LevelDiagnoses.getCocaBucketsDiagnosis and TopicDiagnoses.getCocaBucketsDiagnosis
+        getters on the matching nodes
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/coca/CocaBucketsAnalyzerTest.java
+    - name: should not write any coca-buckets-distribution entry to the untyped metadata
+        map on any AuditNode after the migration to typed diagnoses is complete
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/coca/CocaBucketsAnalyzerTest.java
+    testCleanViews:
+    - |
+      test: "should emit on the COURSE AuditNode a CocaProgressionDiagnosis populated with overallScore progressionAssessments and improvementDirectives reflecting the analyzer outputs at the course level"
+      trace: FEAT-DCOCA / F-DCOCA-R001
+
+      given:
+        sut = buildAnalyzer()
+        root = buildEmptyTree()
+        diag = ((CourseDiagnoses) root.getDiagnoses()).getCocaBucketsDiagnosis()
+
+      when:
+        sut.onCourseComplete(root)
+
+      then:
+        assertInstanceOf(CourseDiagnoses.class)
+        diag.isPresent() is true
+        diag.get().getProgressionAssessments() is not null
+        diag.get().getImprovementDirectives() is not null
+    - |
+      test: "should emit on every MILESTONE AuditNode a CocaBucketsLevelDiagnosis populated with totalTokens buckets and quarters reflecting the per-level analyzer outputs"
+      trace: FEAT-DCOCA / F-DCOCA-R002
+
+      given:
+        sut = buildAnalyzer()
+        root = buildEmptyTree()
+
+      when:
+        sut.onCourseComplete(root)
+    - |
+      test: "should emit on every TOPIC AuditNode a CocaBucketsTopicDiagnosis populated with totalTokens and BucketSummary entries reflecting the informational per-topic distribution"
+      trace: FEAT-DCOCA / F-DCOCA-R003
+
+      given:
+        sut = buildAnalyzer()
+        root = buildEmptyTree()
+
+      when:
+        sut.onCourseComplete(root)
+    - |
+      test: "should NOT emit a coca-buckets diagnosis on any KNOWLEDGE or QUIZ AuditNode confirming the analyzer operates only at course milestone and topic granularity"
+      trace: FEAT-DCOCA / F-DCOCA-R004
+
+      given:
+        knowledgeDiagnoses = DefaultKnowledgeDiagnoses()
+        quizDiagnoses = DefaultQuizDiagnoses()
+        sut = buildAnalyzer()
+        root = buildEmptyTree()
+        milestone = root.getChildren().get(0)
+        topic = milestone.getChildren().get(0)
+        knowledge = AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "l", "c")
+        knowledgeNode = buildNode(AuditTarget.KNOWLEDGE, knowledge, topic)
+        quiz = AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null)
+        quizNode = buildNode(AuditTarget.QUIZ, quiz, knowledgeNode)
+
+      when:
+        sut.onKnowledge(knowledgeNode)
+
+      then:
+        knowledgeNode.getMetadata().containsKey("coca-buckets-distribution") is false
+        quizNode.getMetadata().containsKey("coca-buckets-distribution") is false
+    - |
+      test: "should make the emitted CocaProgressionDiagnosis CocaBucketsLevelDiagnosis and CocaBucketsTopicDiagnosis retrievable via the typed CourseDiagnoses.getCocaBucketsDiagnosis LevelDiagnoses.getCocaBucketsDiagnosis and TopicDiagnoses.getCocaBucketsDiagnosis getters on the matching nodes"
+      trace: FEAT-DCOCA / F-DCOCA-R005
+
+      given:
+        courseDiagnoses = DefaultCourseDiagnoses()
+        courseLevel = CocaProgressionDiagnosis(1.0, List.of(), List.of())
+        levelDiagnoses = DefaultLevelDiagnoses()
+        levelDiag = CocaBucketsLevelDiagnosis(0, List.of(), List.of())
+        topicDiagnoses = DefaultTopicDiagnoses()
+        topicDiag = CocaBucketsTopicDiagnosis(0, List.of())
+
+      when:
+        sut.setCocaBucketsDiagnosis(courseLevel)
+
+      then:
+        courseDiagnoses.getCocaBucketsDiagnosis().isPresent() is true
+        levelDiagnoses.getCocaBucketsDiagnosis().isPresent() is true
+        topicDiagnoses.getCocaBucketsDiagnosis().isPresent() is true
+    - |
+      test: "should not write any coca-buckets-distribution entry to the untyped metadata map on any AuditNode after the migration to typed diagnoses is complete"
+      trace: FEAT-DCOCA / F-DCOCA-R007
+
+      given:
+        sut = buildAnalyzer()
+        root = buildEmptyTree()
+
+      when:
+        sut.onCourseComplete(root)
+
+      then:
+        root.getMetadata().containsKey("coca-buckets-distribution") is false
   - name: CocaTokenAccumulationAggregator
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/coca/CocaTokenAccumulationAggregator.java
@@ -11516,16 +11593,45 @@ elements:
         \ COURSE"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
-    - name: "Given an AuditableKnowledge and AuditContext, when onKnowledge is called,\
-        \ then completes without error"
+    - name: should assign a globally sequential position counter incremented by one
+        per token traversed across every quiz in the course
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
-    - name: "Given an AuditableTopic and AuditContext, when onTopic is called, then\
-        \ completes without error"
+    - name: should register each content-word token under its lemma key in the lemma-positions
+        map preserving the global position and grouping inflected forms by their lemmatized
+        form
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
-    - name: "Given an AuditableMilestone and AuditContext, when onMilestone is called,\
-        \ then completes without error"
+    - name: should restrict the analysed lemmas to the top N most frequent ones according
+        to the configured top parameter discarding the least frequent lemmas beyond
+        that limit
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
+    - name: should skip from the per-lemma interval calculation any lemma whose registered
+        position list has fewer than two entries
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
+    - name: should classify each analysed lemma as NORMAL when overExposed < meanInterval
+        <= subExposed as OVER_EXPOSED when meanInterval <= overExposed and as SUB_EXPOSED
+        when meanInterval > subExposed using the configured thresholds
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
+    - name: should produce an ExposureSummary whose normalCount plus subExposedCount
+        plus overExposedCount equals the total count of lemmas analysed
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
+    - name: should compute the overall lemma-recurrence score as normalCount divided
+        by totalCount rounded to two decimals and return 0.0 when totalCount is zero
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
+    - name: should produce identical overall score and exposure classification when
+        two analysed lemmas share the same meanInterval but differ in stdDevInterval
+        confirming stdDev is informative only
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
+    - name: should populate every LemmaStats entry with lemma pos count meanInterval
+        stdDevInterval exposureStatus and occurrencePositions matching the data captured
+        for that lemma
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
     testCleanViews:
@@ -11577,6 +11683,244 @@ elements:
 
       when:
         doesNotThrow: sut.onMilestone(makeNode(AuditTarget.MILESTONE, m))
+    - |
+      test: "should assign a globally sequential position counter incremented by one per token traversed across every quiz in the course"
+      trace: FEAT-LREC / F-LREC-R001
+
+      given:
+        detToken = NlpToken("the", "the", "DET", 1, true, false)
+        catToken = NlpToken("cat", "cat", "NOUN", 100, false, false)
+        quiz1 = AuditableQuiz(List.of(detToken, catToken), null, null, null, null, List.of("the cat"), null)
+        quiz2 = AuditableQuiz(List.of(detToken, catToken), null, null, null, null, List.of("the cat"), null)
+        quizNode1 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(quiz1.getTokens(), null, null, null, null, List.of("the cat"), null))
+        quizNode2 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(quiz2.getTokens(), null, null, null, null, List.of("the cat"), null))
+        root = makeNode(AuditTarget.COURSE, null)
+        posCaptor = ArgumentCaptor.forClass((Class) List.class)
+        positions = posCaptor.getValue()
+
+      mock:
+        contentWordFilter.isContentWord(argThat(t -> t != null && "DET".equals(t.getPosTag()))) -> false
+        contentWordFilter.isContentWord(argThat(t -> t != null && "NOUN".equals(t.getPosTag()))) -> true
+        config.getTop() -> 2000
+        intervalCalculator.calculateMeanInterval(any()) -> 2.0
+        intervalCalculator.calculateStdDevInterval(any(), anyDouble()) -> 0.0
+        exposureClassifier.classify(anyDouble(), any()) -> ExposureStatus.NORMAL
+
+      when:
+        sut.onQuiz(quizNode1)
+
+      then:
+        positions.size() == 2
+        positions.get(0) == 2
+        positions.get(1) == 4
+        verify: intervalCalculator.calculateMeanInterval(posCaptor.capture()) x atLeastOnce()
+    - |
+      test: "should register each content-word token under its lemma key in the lemma-positions map preserving the global position and grouping inflected forms by their lemmatized form"
+      trace: FEAT-LREC / F-LREC-R004
+
+      given:
+        runs = NlpToken("runs", "run", "VERB", 200, false, false)
+        running = NlpToken("running", "run", "VERB", 200, false, false)
+        posCaptor = ArgumentCaptor.forClass((Class) List.class)
+        quizNode1 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(runs), null, null, null, null, List.of("runs"), null))
+        quizNode2 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(running), null, null, null, null, List.of("running"), null))
+        root = makeNode(AuditTarget.COURSE, null)
+        positions = posCaptor.getValue()
+
+      mock:
+        contentWordFilter.isContentWord(any()) -> true
+        config.getTop() -> 2000
+        intervalCalculator.calculateMeanInterval(posCaptor.capture()) -> 5.0
+        intervalCalculator.calculateStdDevInterval(any(), anyDouble()) -> 0.0
+        exposureClassifier.classify(anyDouble(), any()) -> ExposureStatus.NORMAL
+
+      when:
+        sut.onQuiz(quizNode1)
+
+      then:
+        positions.size() == 2
+        positions.get(0) < positions.get(1) is true
+        verify: intervalCalculator.calculateMeanInterval(any())
+    - |
+      test: "should restrict the analysed lemmas to the top N most frequent ones according to the configured top parameter discarding the least frequent lemmas beyond that limit"
+      trace: FEAT-LREC / F-LREC-R005
+
+      given:
+        cat = NlpToken("cat", "cat", "NOUN", 100, false, false)
+        dog = NlpToken("dog", "dog", "NOUN", 80, false, false)
+        root = makeNode(AuditTarget.COURSE, null)
+
+      mock:
+        contentWordFilter.isContentWord(any()) -> true
+        config.getTop() -> 1
+        intervalCalculator.calculateMeanInterval(any()) -> 10.0
+        intervalCalculator.calculateStdDevInterval(any(), anyDouble()) -> 0.0
+        exposureClassifier.classify(anyDouble(), any()) -> ExposureStatus.NORMAL
+
+      when:
+        sut.onCourseComplete(root)
+
+      then:
+        verify: intervalCalculator.calculateMeanInterval(any())
+    - |
+      test: "should skip from the per-lemma interval calculation any lemma whose registered position list has fewer than two entries"
+      trace: FEAT-LREC / F-LREC-R006
+
+      given:
+        cat = NlpToken("cat", "cat", "NOUN", 100, false, false)
+        quizNode = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(cat), null, null, null, null, List.of("cat"), null))
+        root = makeNode(AuditTarget.COURSE, null)
+
+      mock:
+        contentWordFilter.isContentWord(any()) -> true
+        config.getTop() -> 2000
+
+      when:
+        sut.onQuiz(quizNode)
+
+      then:
+        verify: intervalCalculator.calculateMeanInterval(any()) x 0
+    - |
+      test: "should classify each analysed lemma as NORMAL when overExposed < meanInterval <= subExposed as OVER_EXPOSED when meanInterval <= overExposed and as SUB_EXPOSED when meanInterval > subExposed using the configured thresholds"
+      trace: FEAT-LREC / F-LREC-R008
+
+      given:
+        cat = NlpToken("cat", "cat", "NOUN", 100, false, false)
+        q1 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(cat), null, null, null, null, List.of("cat"), null))
+        q2 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(cat), null, null, null, null, List.of("cat"), null))
+        root = makeNode(AuditTarget.COURSE, null)
+
+      mock:
+        contentWordFilter.isContentWord(any()) -> true
+        config.getTop() -> 2000
+        intervalCalculator.calculateMeanInterval(any()) -> 30.0
+        intervalCalculator.calculateStdDevInterval(any(), anyDouble()) -> 0.0
+        exposureClassifier.classify(anyDouble(), any()) -> ExposureStatus.OVER_EXPOSED
+
+      when:
+        sut.onQuiz(q1)
+
+      then:
+        root.getScores().get("lemma-recurrence") == 0.0
+        verify: exposureClassifier.classify(anyDouble(), any())
+    - |
+      test: "should produce an ExposureSummary whose normalCount plus subExposedCount plus overExposedCount equals the total count of lemmas analysed"
+      trace: FEAT-LREC / F-LREC-R009
+
+      given:
+        cat = NlpToken("cat", "cat", "NOUN", 100, false, false)
+        dog = NlpToken("dog", "dog", "NOUN", 80, false, false)
+        run = NlpToken("run", "run", "VERB", 200, false, false)
+        root = makeNode(AuditTarget.COURSE, null)
+        score = root.getScores().get("lemma-recurrence")
+
+      mock:
+        contentWordFilter.isContentWord(any()) -> true
+        config.getTop() -> 2000
+        intervalCalculator.calculateMeanInterval(any()) -> 100.0
+        intervalCalculator.calculateStdDevInterval(any(), anyDouble()) -> 0.0
+        exposureClassifier.classify(eq(100.0), any()) -> ExposureStatus.NORMAL
+
+      when:
+        sut.onCourseComplete(root)
+
+      then:
+        score == 0.33
+    - |
+      test: "should compute the overall lemma-recurrence score as normalCount divided by totalCount rounded to two decimals and return 0.0 when totalCount is zero"
+      trace: FEAT-LREC / F-LREC-R010
+
+      given:
+        cat = NlpToken("cat", "cat", "NOUN", 100, false, false)
+        q1 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(cat), null, null, null, null, List.of("cat"), null))
+        root1 = makeNode(AuditTarget.COURSE, null)
+        cwf2 = mock(ContentWordFilter.class)
+        cfg2 = mock(LemmaRecurrenceConfig.class)
+        ic2 = mock(IntervalCalculator.class)
+        ec2 = mock(ExposureClassifier.class)
+        sut2 = LemmaRecurrenceAnalyzer(cwf2, cfg2, ic2, ec2)
+        dog = NlpToken("dog", "dog", "NOUN", 80, false, false)
+        run = NlpToken("run", "run", "VERB", 200, false, false)
+        root2 = makeNode(AuditTarget.COURSE, null)
+
+      mock:
+        contentWordFilter.isContentWord(any()) -> true
+        config.getTop() -> 2000
+        cwf2.isContentWord(any()) -> true
+        cfg2.getTop() -> 2000
+        ic2.calculateMeanInterval(any()) -> 100.0
+        ic2.calculateStdDevInterval(any(), anyDouble()) -> 0.0
+        ec2.classify(anyDouble(), any()) -> ExposureStatus.NORMAL
+
+      when:
+        sut.onQuiz(q1)
+
+      then:
+        root1.getScores().get("lemma-recurrence") == 0.0
+        root2.getScores().get("lemma-recurrence") == 0.67
+    - |
+      test: "should produce identical overall score and exposure classification when two analysed lemmas share the same meanInterval but differ in stdDevInterval confirming stdDev is informative only"
+      trace: FEAT-LREC / F-LREC-R011
+
+      given:
+        cwfA = mock(ContentWordFilter.class)
+        cfgA = mock(LemmaRecurrenceConfig.class)
+        icA = mock(IntervalCalculator.class)
+        ecA = mock(ExposureClassifier.class)
+        sutA = LemmaRecurrenceAnalyzer(cwfA, cfgA, icA, ecA)
+        cat = NlpToken("cat", "cat", "NOUN", 100, false, false)
+        rootA = makeNode(AuditTarget.COURSE, null)
+        cwfB = mock(ContentWordFilter.class)
+        cfgB = mock(LemmaRecurrenceConfig.class)
+        icB = mock(IntervalCalculator.class)
+        ecB = mock(ExposureClassifier.class)
+        sutB = LemmaRecurrenceAnalyzer(cwfB, cfgB, icB, ecB)
+        rootB = makeNode(AuditTarget.COURSE, null)
+
+      mock:
+        cwfA.isContentWord(any()) -> true
+        cfgA.getTop() -> 2000
+        icA.calculateMeanInterval(any()) -> 200.0
+        icA.calculateStdDevInterval(any(), anyDouble()) -> 0.0
+        ecA.classify(anyDouble(), any()) -> ExposureStatus.NORMAL
+        cwfB.isContentWord(any()) -> true
+        cfgB.getTop() -> 2000
+        icB.calculateMeanInterval(any()) -> 200.0
+        icB.calculateStdDevInterval(any(), anyDouble()) -> 150.0
+        ecB.classify(anyDouble(), any()) -> ExposureStatus.NORMAL
+
+      when:
+        sut.onCourseComplete(rootA)
+
+      then:
+        rootB.getScores().get("lemma-recurrence") == rootA.getScores().get("lemma-recurrence")
+    - |
+      test: "should populate every LemmaStats entry with lemma pos count meanInterval stdDevInterval exposureStatus and occurrencePositions matching the data captured for that lemma"
+      trace: FEAT-LREC / F-LREC-R012
+
+      given:
+        catNoun = NlpToken("cats", "cat", "NOUN", 100, false, false)
+        positionsCaptor = ArgumentCaptor.forClass((Class) List.class)
+        meanCaptor = ArgumentCaptor.forClass(Double.class)
+        q1 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(catNoun), null, null, null, null, List.of("cats"), null))
+        q2 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(catNoun), null, null, null, null, List.of("cats"), null))
+        root = makeNode(AuditTarget.COURSE, null)
+        capturedPositions = positionsCaptor.getAllValues().get(0)
+
+      mock:
+        contentWordFilter.isContentWord(any()) -> true
+        config.getTop() -> 2000
+        intervalCalculator.calculateMeanInterval(positionsCaptor.capture()) -> 250.0
+        intervalCalculator.calculateStdDevInterval(positionsCaptor.capture(), meanCaptor.capture()) -> 15.0
+        exposureClassifier.classify(anyDouble(), any()) -> ExposureStatus.NORMAL
+
+      when:
+        sut.onQuiz(q1)
+
+      then:
+        capturedPositions.size() == 2
+        meanCaptor.getValue() == 250.0
+        verify: exposureClassifier.classify(eq(250.0), any())
   - name: DefaultContentWordFilter
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/lrec/DefaultContentWordFilter.java
@@ -12057,6 +12401,32 @@ elements:
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should return empty Optional from getLemmaAbsenceDiagnosis when analyzer
         did not run
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
+    - name: "should attach to every AuditNode a typed NodeDiagnoses subtype matching\
+        \ the node's AuditTarget level (CourseDiagnoses on COURSE, LevelDiagnoses\
+        \ on MILESTONE, TopicDiagnoses on TOPIC, KnowledgeDiagnoses on KNOWLEDGE,\
+        \ QuizDiagnoses on QUIZ)"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
+    - name: should leave room on every QuizDiagnoses node for diagnoses of other analyzers
+        so that lemma-absence and sentence-length and others can coexist on the same
+        node without overwriting each other
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
+    - name: should emit on each QUIZ AuditNode a LemmaPlacementDiagnosis of the exact
+        same record type returned by TopicDiagnoses and KnowledgeDiagnoses confirming
+        the same record is reused across the three levels
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
+    - name: should produce an audit tree where every QUIZ node can navigate to its
+        MILESTONE ancestor via AuditNode.ancestor(AuditTarget.MILESTONE) returning
+        the milestone node that contains it
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
+    - name: should expose on a QUIZ node a chain that allows callers to navigate to
+        the MILESTONE ancestor and then read its LemmaAbsenceLevelDiagnosis via the
+        typed LevelDiagnoses getter without any unchecked cast
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     testCleanViews:
@@ -14020,6 +14390,115 @@ elements:
         freshDiagnoses.getLemmaAbsenceDiagnosis().isPresent() is false
         freshLevel.getLemmaAbsenceDiagnosis().isPresent() is false
         freshTopic.getLemmaAbsenceDiagnosis().isPresent() is false
+    - |
+      test: "should attach to every AuditNode a typed NodeDiagnoses subtype matching the node's AuditTarget level (CourseDiagnoses on COURSE, LevelDiagnoses on MILESTONE, TopicDiagnoses on TOPIC, KnowledgeDiagnoses on KNOWLEDGE, QuizDiagnoses on QUIZ)"
+      trace: FEAT-DLABS / F-DLABS-R001
+
+      given:
+        root = buildEmptyCourseTree()
+        milestoneNode = root.getChildren().get(0)
+        topic = AuditableTopic(List.of(), "t1", "label", "code")
+        topicNode = makeNode(AuditTarget.TOPIC, topic, milestoneNode)
+        knowledge = AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "label", "code")
+        knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode)
+        quiz = AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null)
+        quizNode = makeNode(AuditTarget.QUIZ, quiz, knowledgeNode)
+
+      when:
+        sut.setDiagnoses(new DefaultTopicDiagnoses())
+
+      then:
+        assertInstanceOf(CourseDiagnoses.class)
+        assertInstanceOf(LevelDiagnoses.class)
+        assertInstanceOf(TopicDiagnoses.class)
+        assertInstanceOf(KnowledgeDiagnoses.class)
+        assertInstanceOf(QuizDiagnoses.class)
+    - |
+      test: "should leave room on every QuizDiagnoses node for diagnoses of other analyzers so that lemma-absence and sentence-length and others can coexist on the same node without overwriting each other"
+      trace: FEAT-DLABS / F-DLABS-R002
+
+      given:
+        quizDiagnoses = DefaultQuizDiagnoses()
+        placement = LemmaPlacementDiagnosis(0, List.of())
+        sld = SentenceLengthDiagnosis(6, 5, 8, CefrLevel.A1, 0, 4)
+
+      when:
+        sut.setLemmaAbsenceDiagnosis(placement)
+
+      then:
+        quizDiagnoses.getLemmaAbsenceDiagnosis().isPresent() is true
+        quizDiagnoses.getSentenceLengthDiagnosis().isPresent() is true
+        quizDiagnoses.getLemmaAbsenceDiagnosis().get().getMisplacedLemmaCount() == 0
+        quizDiagnoses.getSentenceLengthDiagnosis().get().getTokenCount() == 6
+    - |
+      test: "should emit on each QUIZ AuditNode a LemmaPlacementDiagnosis of the exact same record type returned by TopicDiagnoses and KnowledgeDiagnoses confirming the same record is reused across the three levels"
+      trace: FEAT-DLABS / F-DLABS-R009
+
+      given:
+        root = buildEmptyCourseTree()
+        milestoneNode = root.getChildren().get(0)
+        topic = AuditableTopic(List.of(), "t1", "label", "code")
+        topicNode = makeNode(AuditTarget.TOPIC, topic, milestoneNode)
+        knowledge = AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "label", "code")
+        knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode)
+        quiz = AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null)
+        quizNode = makeNode(AuditTarget.QUIZ, quiz, knowledgeNode)
+        quizDiag = ((QuizDiagnoses) quizNode.getDiagnoses()).getLemmaAbsenceDiagnosis()
+
+      when:
+        sut.setDiagnoses(new DefaultTopicDiagnoses())
+
+      then:
+        assertInstanceOf(QuizDiagnoses.class)
+        quizDiag.isPresent() is true
+        assertInstanceOf(LemmaPlacementDiagnosis.class)
+    - |
+      test: "should produce an audit tree where every QUIZ node can navigate to its MILESTONE ancestor via AuditNode.ancestor(AuditTarget.MILESTONE) returning the milestone node that contains it"
+      trace: FEAT-DLABS / F-DLABS-R011
+
+      given:
+        root = makeNode(AuditTarget.COURSE, null, null)
+        ms = AuditableMilestone(List.of(), "m1", "A1", null)
+        milestoneNode = makeNode(AuditTarget.MILESTONE, ms, root)
+        topic = AuditableTopic(List.of(), "t1", "label", "code")
+        topicNode = makeNode(AuditTarget.TOPIC, topic, milestoneNode)
+        knowledge = AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "label", "code")
+        knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode)
+        quiz = AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null)
+        quizNode = makeNode(AuditTarget.QUIZ, quiz, knowledgeNode)
+        foundMilestone = quizNode.ancestor(AuditTarget.MILESTONE)
+        noKnowledgeAncestor = milestoneNode.ancestor(AuditTarget.KNOWLEDGE)
+
+      then:
+        foundMilestone.isPresent() is true
+        assertSame(milestoneNode)
+        noKnowledgeAncestor.isPresent() is false
+    - |
+      test: "should expose on a QUIZ node a chain that allows callers to navigate to the MILESTONE ancestor and then read its LemmaAbsenceLevelDiagnosis via the typed LevelDiagnoses getter without any unchecked cast"
+      trace: FEAT-DLABS / F-DLABS-R012
+
+      given:
+        root = buildEmptyCourseTree()
+        milestoneNode = root.getChildren().get(0)
+        topic = AuditableTopic(List.of(), "t1", "label", "code")
+        topicNode = makeNode(AuditTarget.TOPIC, topic, milestoneNode)
+        knowledge = AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "label", "code")
+        knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode)
+        quiz = AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null)
+        quizNode = makeNode(AuditTarget.QUIZ, quiz, knowledgeNode)
+        maybeMilestone = quizNode.ancestor(AuditTarget.MILESTONE)
+        diagnoses = maybeMilestone.get().getDiagnoses()
+        levelDiagnoses = (LevelDiagnoses) diagnoses
+        levelDiag = levelDiagnoses.getLemmaAbsenceDiagnosis()
+
+      when:
+        sut.setDiagnoses(new DefaultTopicDiagnoses())
+
+      then:
+        maybeMilestone.isPresent() is true
+        assertInstanceOf(LevelDiagnoses.class)
+        levelDiag.isPresent() is true
+        levelDiag.get().getLevel() is not null
   - name: LemmaAbsenceScoreAggregator
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/labs/LemmaAbsenceScoreAggregator.java
@@ -14825,15 +15304,15 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 1087
-      linesMissed: 1574
-      linesTotal: 2661
-      lineCoveragePct: 40
-      branchesCovered: 341
-      branchesMissed: 970
-      branchesTotal: 1311
-      branchCoveragePct: 26
-      blendPct: 33
+      linesCovered: 0
+      linesMissed: 0
+      linesTotal: 0
+      lineCoveragePct: 0
+      branchesCovered: 0
+      branchesMissed: 0
+      branchesTotal: 0
+      branchCoveragePct: 0
+      blendPct: 0
     mutation:
       totalMutants: 0
       killed: 0
@@ -14844,92 +15323,17 @@ elements:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 745
-      hotspots: 52
-      maxCrap: 462.0
-      averageCrap: 8.331976663087248
-      simple: 667
-      moderate: 25
-      high: 15
-      veryHigh: 38
-      healthPct: 91
-      top:
-      - className: com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzer
-        methodName: onCourseComplete
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-        line: 128
-        cyclomatic: 21
-        lineCoveragePct: 0
-        crap: 462.0
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaAbsenceLevelDiagnosis
-        methodName: equals
-        methodDesc: (Ljava/lang/Object;)Z
-        line: 179
-        cyclomatic: 18
-        lineCoveragePct: 0
-        crap: 342.0
-      - className: com.learney.contentaudit.auditdomain.coca.DefaultProgressionEvaluator
-        methodName: evaluateBandProgression
-        methodDesc: (Ljava/lang/String;Ljava/util/List;)Lcom/learney/contentaudit/auditdomain/coca/ProgressionState;
-        line: 39
-        cyclomatic: 14
-        lineCoveragePct: 0
-        crap: 210.0
-      - className: com.learney.contentaudit.auditdomain.AuditableKnowledge
-        methodName: equals
-        methodDesc: (Ljava/lang/Object;)Z
-        line: 98
-        cyclomatic: 11
-        lineCoveragePct: 0
-        crap: 132.0
-      - className: com.learney.contentaudit.auditdomain.AuditNode
-        methodName: equals
-        methodDesc: (Ljava/lang/Object;)Z
-        line: 106
-        cyclomatic: 11
-        lineCoveragePct: 0
-        crap: 132.0
-      - className: com.learney.contentaudit.auditdomain.AuditableQuiz
-        methodName: equals
-        methodDesc: (Ljava/lang/Object;)Z
-        line: 98
-        cyclomatic: 11
-        lineCoveragePct: 0
-        crap: 132.0
-      - className: com.learney.contentaudit.auditdomain.coca.ImprovementDirective
-        methodName: equals
-        methodDesc: (Ljava/lang/Object;)Z
-        line: 98
-        cyclomatic: 11
-        lineCoveragePct: 0
-        crap: 132.0
-      - className: com.learney.contentaudit.auditdomain.labs.AbsentLemma
-        methodName: equals
-        methodDesc: (Ljava/lang/Object;)Z
-        line: 100
-        cyclomatic: 11
-        lineCoveragePct: 0
-        crap: 132.0
-      - className: com.learney.contentaudit.auditdomain.lrec.LemmaStats
-        methodName: equals
-        methodDesc: (Ljava/lang/Object;)Z
-        line: 99
-        cyclomatic: 11
-        lineCoveragePct: 0
-        crap: 132.0
-      - className: com.learney.contentaudit.auditdomain.IScoreAggregator
-        methodName: bubbleUp
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)V
-        line: 22
-        cyclomatic: 10
-        lineCoveragePct: 0
-        crap: 110.0
-    healthScore: 33
-    verdict: WARNED
-    violations:
-    - lineCoverage 40% < 70%
-    - branchCoverage 26% < 60%
-    - crapHotspots 52 > 5
+      totalMethods: 0
+      hotspots: 0
+      maxCrap: 0.0
+      averageCrap: 0.0
+      simple: 0
+      moderate: 0
+      high: 0
+      veryHigh: 0
+      healthPct: 0
+    healthScore: 0
+    verdict: PASSED
 - module: course-domain
   status: EXISTS
   models:
@@ -17695,6 +18099,15 @@ elements:
         for a CLOZE form with null or empty options
       status: EXISTS
       testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/CourseToAuditableMapperTest.java
+    - name: Given two AuditableCourses produced by mapping a course that has knowledge
+        quizzes containing sentences with enriched-token-requiring vocabulary (frequency-ranked
+        words via SpaCy) when AuditEngine runs both audits then every AuditableQuiz
+        produced by the mapper carries a List<NlpToken> populated by analyzeTokensBatch
+        covering tokenization lemmatization POS tagging frequency rank stop-word and
+        punctuation flags so downstream analyzers can read enriched tokens without
+        re-tokenizing
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/CourseToAuditableMapperTest.java
     testCleanViews:
     - |
       test: "Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse"
@@ -18369,6 +18782,11 @@ elements:
         \ the report from contentAudit"
       status: EXISTS
       testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
+    - name: should expose a public runAudit(Path coursePath) method on the AuditRunner
+        contract that returns the AuditReport produced after loading the course mapping
+        it to AuditableCourse and running the audit engine
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
     testCleanViews:
     - |
       test: "Given a valid course path, when runAudit is called, then returns the audit report from the full chain"
@@ -18471,6 +18889,23 @@ elements:
 
       then:
         assertSame(auditReport)
+    - |
+      test: "should expose a public runAudit(Path coursePath) method on the AuditRunner contract that returns the AuditReport produced after loading the course mapping it to AuditableCourse and running the audit engine"
+      trace: FEAT-CLI / F-CLI-R005
+
+      given:
+        result = sut.runAudit(coursePath, null)
+
+      mock:
+        courseRepository.load(coursePath) -> courseEntity
+        courseToAuditableMapper.map(courseEntity) -> auditableCourse
+        auditEngine.runAudit(auditableCourse) -> auditReport
+
+      then:
+        assertSame(auditReport)
+        verify: courseRepository.load(coursePath)
+        verify: courseToAuditableMapper.map(courseEntity)
+        verify: auditEngine.runAudit(auditableCourse)
     quality:
       coverage:
         linesCovered: 12
@@ -18794,6 +19229,26 @@ elements:
   - name: DefaultLemmaRecurrenceConfig
     status: EXISTS
     filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultLemmaRecurrenceConfig.java
+    tests:
+    - name: should expose top subExposed and overExposed values that satisfy 0 less
+        than overExposed strictly less than subExposed and top greater than zero
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaRecurrenceConfigTest.java
+    testCleanViews:
+    - |
+      test: "should expose top subExposed and overExposed values that satisfy 0 less than overExposed strictly less than subExposed and top greater than zero"
+      trace: FEAT-LREC / F-LREC-R014
+
+      given:
+        config = DefaultLemmaRecurrenceConfig()
+        top = config.getTop()
+        overExposed = config.getOverExposedThreshold()
+        subExposed = config.getSubExposedThreshold()
+
+      then:
+        top > 0 is true
+        overExposed > 0 is true
+        overExposed < subExposed is true
     quality:
       coverage:
         linesCovered: 0
@@ -20382,6 +20837,12 @@ elements:
   - name: Main
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/Main.java
+    tests:
+    - name: should instantiate and wire CourseRepository NlpTokenizer all analyzer
+        configs all analyzers ScoreAggregator AuditEngine and DefaultAuditRunner via
+        manual constructor injection before any CLI subcommand executes
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/MainTest.java
   - name: ContentAuditCmd
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/ContentAuditCmd.java
@@ -20427,6 +20888,30 @@ elements:
     tests:
     - name: "should be registered as a top-level subcommand of content-audit (verb\
         \ relocated, semantics unchanged)"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/AnalyzeCmdTest.java
+    - name: should print an error and return non-zero exit code when invoked without
+        a course path argument and no CONTENT_AUDIT_CONTENT_FOLDER env var is set
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/AnalyzeCmdTest.java
+    - name: should print an error and return non-zero exit code when invoked with
+        a course path that does not exist on disk
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/AnalyzeCmdTest.java
+    - name: should produce a plain-text formatted summary on stdout when invoked without
+        a --format option using text as the default format
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/AnalyzeCmdTest.java
+    - name: should produce a JSON-formatted summary on stdout when invoked with --format
+        json
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/AnalyzeCmdTest.java
+    - name: should return exit code zero when the audit completes successfully regardless
+        of the overall score produced
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/AnalyzeCmdTest.java
+    - name: should return a non-zero exit code when AuditRunner throws a RuntimeException
+        during the audit pipeline and print a descriptive error message to stderr
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/AnalyzeCmdTest.java
     testCleanViews:
@@ -24178,6 +24663,12 @@ elements:
   - name: LemmaAbsenceDetailedFormatter
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/LemmaAbsenceDetailedFormatter.java
+    tests:
+    - name: should read lemma-absence diagnoses exclusively through the typed NodeDiagnoses
+        getters (getLemmaAbsenceDiagnosis) and not fall back to any untyped metadata
+        map when rendering the detailed view
+      status: MISSING
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/LemmaAbsenceDetailedFormatterTest.java
     testCleanViews:
     - |
       test: "should format text output from typed diagnoses matching previous metadata-based output"
@@ -24348,6 +24839,13 @@ elements:
   - name: CocaBucketsDetailedFormatter
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/CocaBucketsDetailedFormatter.java
+    tests:
+    - name: should read coca-buckets diagnoses exclusively through the typed NodeDiagnoses
+        getters (CourseDiagnoses LevelDiagnoses TopicDiagnoses .getCocaBucketsDiagnosis)
+        and never call getMetadata or perform unchecked casts when rendering the detailed
+        view
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/CocaBucketsDetailedFormatterTest.java
   - name: DefaultImpactPreviewFormatter
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/DefaultImpactPreviewFormatter.java
@@ -25255,6 +25753,103 @@ elements:
   - name: SpacyNlpTokenizer
     status: EXISTS
     filePath: nlp-infrastructure/src/main/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizer.java
+    tests:
+    - name: should produce every NlpToken with the six mandatory fields text lemma
+        posTag frequencyRank isStop and isPunct populated except frequencyRank which
+        may be null when COCA has no entry
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizerTest.java
+    - name: should never fail when the optional NlpToken fields tag isAlpha and dep
+        are absent confirming they are not required for the tokenizer contract
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizerTest.java
+    - name: should populate the lemma field with the lowercased base form returned
+        by SpaCy so that running yields run was yields be and children yields child
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizerTest.java
+    - name: should populate the posTag field with one of the Universal Dependencies
+        tags (NOUN VERB ADJ ADV PROPN NUM ADP AUX CCONJ DET INTJ PART PRON SCONJ PUNCT
+        SYM SPACE X) for every token produced
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizerTest.java
+    - name: should produce a List<NlpToken> from analyzeTokens replacing the legacy
+        List<String> tokenize representation as the primary tokenizer output
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizerTest.java
+    - name: should expose analyzeTokens(String) returning a List<NlpToken> for a single
+        sentence with linguistic enrichment for every word
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizerTest.java
+    - name: should still report a usable token count via the size of the analyzeTokens
+        result without requiring a separate countTokens call so SentenceLengthAnalyzer
+        continues to work
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizerTest.java
+    - name: should not implement any analyzer interface confirming the tokenizer is
+        an infrastructure service that only transforms text into enriched tokens without
+        producing scores
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizerTest.java
+    - name: should derive the frequencyRank from the COCA entry matched against the
+        token's lemma and not the inflected form so that running running and ran all
+        carry the same rank as run
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizerTest.java
+    - name: should map every Universal Dependencies posTag emitted by SpaCy to its
+        corresponding COCA single-character code (NOUN to n VERB to v ADJ to j ADV
+        to r PRON to p DET to a ADP to i CONJ/CCONJ/SCONJ to c NUM to m PART/PRT to
+        t INTJ to u SYM/PUNCT/SPACE/X to x) when looking up frequency
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizerTest.java
+    - name: should apply the three-tier COCA lookup strategy resolving frequencyRank
+        by exact-word match first then by lemma+pos-code match and finally by lemma-only
+        match before giving up
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizerTest.java
+    - name: should ignore the first 8 metadata lines and the column header line of
+        lemmas_20k_words.txt and parse the TSV body so that lookups use the correct
+        lemRank lemma PoS lemFreq wordFreq and word columns
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizerTest.java
+    - name: should load the COCA frequency data only once during initialization and
+        then resolve every subsequent token lookup against the in-memory index without
+        re-reading the file
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizerTest.java
+    - name: should set the token frequencyRank to the lemRank column of the matched
+        COCA entry not to the wordFreq of the specific inflected form
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizerTest.java
+    - name: should delegate linguistic processing to an external SpaCy-backed pipeline
+        (Python process with en_core_web_sm) producing tokenization lemmatization
+        POS tagging and stop-word/punctuation detection in a single pass
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizerTest.java
+    - name: should perform tokenization lemmatization POS tagging and COCA frequency
+        lookup all within the same SpaCy-backed processing step without splitting
+        them across multiple external calls
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizerTest.java
+    - name: should produce a clear runtime error indicating the missing environment
+        component (Python 3.11+ SpaCy en_core_web_sm or lemmas_20k_words.txt) when
+        the tokenizer is invoked without the required environment installed
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizerTest.java
+    - name: should produce a valid NlpToken with frequencyRank set to null and all
+        other linguistic fields populated when the three-tier COCA lookup finds no
+        entry for the token
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizerTest.java
+    - name: should propagate a descriptive exception (and not return partial or corrupt
+        tokens) when the underlying Python process fails to start exits abnormally
+        or returns invalid JSON output
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizerTest.java
+    - name: should continue tokenizing the remaining sentences of a batch and emit
+        a fallback NlpToken (text as-is lemma=lowercased text posTag=X frequencyRank=null
+        isStop=false isPunct=heuristic) when a single token inside SpaCy fails
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizerTest.java
   - name: SpacyProcessRunner
     status: EXISTS
     filePath: nlp-infrastructure/src/main/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyProcessRunner.java
@@ -25264,6 +25859,22 @@ elements:
   - name: CachedNlpTokenizer
     status: EXISTS
     filePath: nlp-infrastructure/src/main/java/com/learney/contentaudit/nlpinfrastructure/spacy/CachedNlpTokenizer.java
+    tests:
+    - name: should serve repeated analyzeTokens calls for the same sentence text from
+        an in-memory cache so that the delegate NlpTokenizer is invoked only on the
+        first call
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/CachedNlpTokenizerTest.java
+    - name: should treat two sentences differing in any single character (case spacing
+        punctuation) as distinct cache entries triggering a fresh delegate invocation
+        for each variant
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/CachedNlpTokenizerTest.java
+    - name: should cache List<NlpToken> produced by analyzeTokens with the same decorator
+        pattern previously used for tokenize String results so cached entries match
+        the enriched signature
+      status: EXISTS
+      testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/CachedNlpTokenizerTest.java
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -31748,10 +32359,10 @@ elements:
     healthScore: 0
     verdict: PASSED
 testSummary:
-  total: 850
-  passing: 849
+  total: 908
+  passing: 906
   failing: 0
-  notImplemented: 1
+  notImplemented: 2
 qualitySummary:
   enforcement: warn
   thresholds:
@@ -31761,15 +32372,15 @@ qualitySummary:
     crapHotspotThreshold: 30
     crapHotspotsMax: 5
   coverage:
-    linesCovered: 2944
-    linesMissed: 4201
-    linesTotal: 7145
+    linesCovered: 1857
+    linesMissed: 2627
+    linesTotal: 4484
     lineCoveragePct: 41
-    branchesCovered: 1170
-    branchesMissed: 2541
-    branchesTotal: 3711
-    branchCoveragePct: 31
-    blendPct: 36
+    branchesCovered: 829
+    branchesMissed: 1571
+    branchesTotal: 2400
+    branchCoveragePct: 34
+    blendPct: 37
   mutation:
     totalMutants: 0
     killed: 0
@@ -31780,15 +32391,15 @@ qualitySummary:
     mutationScorePct: 0
     testStrengthPct: 0
   crap:
-    totalMethods: 1518
-    hotspots: 112
+    totalMethods: 773
+    hotspots: 60
     maxCrap: 600.0
-    averageCrap: 9.918016007246376
-    simple: 1323
-    moderate: 77
-    high: 35
-    veryHigh: 83
-    healthPct: 90
+    averageCrap: 11.44660502587322
+    simple: 656
+    moderate: 52
+    high: 20
+    veryHigh: 45
+    healthPct: 88
     top:
     - className: com.learney.contentaudit.coursedomain.QuizTemplateEntity
       methodName: equals
@@ -31797,20 +32408,6 @@ qualitySummary:
       cyclomatic: 24
       lineCoveragePct: 0
       crap: 600.0
-    - className: com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzer
-      methodName: onCourseComplete
-      methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-      line: 128
-      cyclomatic: 21
-      lineCoveragePct: 0
-      crap: 462.0
-    - className: com.learney.contentaudit.auditdomain.labs.LemmaAbsenceLevelDiagnosis
-      methodName: equals
-      methodDesc: (Ljava/lang/Object;)Z
-      line: 179
-      cyclomatic: 18
-      lineCoveragePct: 0
-      crap: 342.0
     - className: com.learney.contentaudit.auditcli.formatting.CocaBucketsDetailedFormatter
       methodName: formatTable
       methodDesc: (Lcom/learney/contentaudit/auditcli/formatting/CocaBucketsDetailedFormatter$Partitioned;)Ljava/lang/String;
@@ -31846,13 +32443,6 @@ qualitySummary:
       cyclomatic: 15
       lineCoveragePct: 0
       crap: 240.0
-    - className: com.learney.contentaudit.auditdomain.coca.DefaultProgressionEvaluator
-      methodName: evaluateBandProgression
-      methodDesc: (Ljava/lang/String;Ljava/util/List;)Lcom/learney/contentaudit/auditdomain/coca/ProgressionState;
-      line: 39
-      cyclomatic: 14
-      lineCoveragePct: 0
-      crap: 210.0
     - className: com.learney.contentaudit.coursedomain.quizsentenceengine.PlainSentenceDeriver
       methodName: derive
       methodDesc: (Lcom/learney/contentaudit/coursedomain/FormEntity;)Ljava/util/List;
@@ -31860,12 +32450,33 @@ qualitySummary:
       cyclomatic: 14
       lineCoveragePct: 0
       crap: 210.0
+    - className: com.learney.contentaudit.coursedomain.MilestoneEntity
+      methodName: equals
+      methodDesc: (Ljava/lang/Object;)Z
+      line: 132
+      cyclomatic: 14
+      lineCoveragePct: 0
+      crap: 210.0
+    - className: com.learney.contentaudit.auditcli.commands.CoursePathResolver
+      methodName: resolve
+      methodDesc: (Ljava/lang/String;)Ljava/lang/String;
+      line: 13
+      cyclomatic: 15
+      lineCoveragePct: 5
+      crap: 207.90937499999998
+    - className: com.learney.contentaudit.auditcli.formatting.TableReportFormatter
+      methodName: format
+      methodDesc: (Lcom/learney/contentaudit/auditcli/formatting/ReportViewModel;Lcom/learney/contentaudit/auditcli/formatting/DrillDownScope;)Ljava/lang/String;
+      line: 20
+      cyclomatic: 13
+      lineCoveragePct: 0
+      crap: 182.0
   healthScore: 33
   verdict: WARNED
   violations:
   - lineCoverage 41% < 70%
-  - branchCoverage 31% < 60%
-  - crapHotspots 112 > 5
+  - branchCoverage 34% < 60%
+  - crapHotspots 60 > 5
 patterns:
 - id: declared-1
   pattern: Factory

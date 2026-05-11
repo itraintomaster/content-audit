@@ -1,0 +1,57 @@
+code: FEAT-DCOCA
+modules:
+- name: audit-domain
+  packages:
+  - name: coca
+    implementations:
+    - name: CocaBucketsAnalyzer
+      handwrittenTests:
+      - name: should emit on the COURSE AuditNode a CocaProgressionDiagnosis populated
+          with overallScore progressionAssessments and improvementDirectives reflecting
+          the analyzer outputs at the course level
+        traceability:
+          feature: FEAT-DCOCA
+          rule: F-DCOCA-R001
+      - name: should emit on every MILESTONE AuditNode a CocaBucketsLevelDiagnosis
+          populated with totalTokens buckets and quarters reflecting the per-level
+          analyzer outputs
+        traceability:
+          feature: FEAT-DCOCA
+          rule: F-DCOCA-R002
+      - name: should emit on every TOPIC AuditNode a CocaBucketsTopicDiagnosis populated
+          with totalTokens and BucketSummary entries reflecting the informational
+          per-topic distribution
+        traceability:
+          feature: FEAT-DCOCA
+          rule: F-DCOCA-R003
+      - name: should NOT emit a coca-buckets diagnosis on any KNOWLEDGE or QUIZ AuditNode
+          confirming the analyzer operates only at course milestone and topic granularity
+        traceability:
+          feature: FEAT-DCOCA
+          rule: F-DCOCA-R004
+      - name: should make the emitted CocaProgressionDiagnosis CocaBucketsLevelDiagnosis
+          and CocaBucketsTopicDiagnosis retrievable via the typed CourseDiagnoses.getCocaBucketsDiagnosis
+          LevelDiagnoses.getCocaBucketsDiagnosis and TopicDiagnoses.getCocaBucketsDiagnosis
+          getters on the matching nodes
+        traceability:
+          feature: FEAT-DCOCA
+          rule: F-DCOCA-R005
+      - name: should not write any coca-buckets-distribution entry to the untyped
+          metadata map on any AuditNode after the migration to typed diagnoses is
+          complete
+        traceability:
+          feature: FEAT-DCOCA
+          rule: F-DCOCA-R007
+- name: audit-cli
+  packages:
+  - name: formatting
+    implementations:
+    - name: CocaBucketsDetailedFormatter
+      handwrittenTests:
+      - name: should read coca-buckets diagnoses exclusively through the typed NodeDiagnoses
+          getters (CourseDiagnoses LevelDiagnoses TopicDiagnoses .getCocaBucketsDiagnosis)
+          and never call getMetadata or perform unchecked casts when rendering the
+          detailed view
+        traceability:
+          feature: FEAT-DCOCA
+          rule: F-DCOCA-R006

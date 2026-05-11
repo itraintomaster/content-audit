@@ -76,3 +76,19 @@ should not re-litigate. Newest entries on top.
     queda ABORTADO: validador rechaza R004 y R007 (correctamente, ya no existen).
   - R005: pending decisión lead — interpretación A (transitivo a R006) vs
     B (tag directo con test "should distinguish three scoring ranges...").
+
+2026-05-11 — architect (post-resolución) — Patrón ArchUnit-style para invariantes estructurales
+  - Architect aportó (después del cierre del feature) el patrón correcto para
+    futuras reglas estructurales que SÍ existan en REQUIREMENT.md:
+    * Declarar handwrittenTest con nombre estructural explícito
+      ("should not expose constructor accepting X", "should not declare field
+      of type X", etc.) y traceability a la regla.
+    * Body implementado por @test-writer usando ArchUnit en clase NUEVA
+      (no en `SentinelArchitectureTest.java` que es `@Generated`).
+    * NO existe primitive `archUnitRule` en el DSL actual — solo handwrittenTest.
+  - No aplicó a FEAT-KTLEN porque analyst retiró R004/R007 antes; pero queda
+    documentado para próximos features.
+  - why: la regla del usuario sobre transitiva (línea 14 de su feedback) admite
+    ArchUnit para invariantes estructurales como excepción. Architect inicialmente
+    fue más estricto que la regla; al revisarla aceptó el patrón con la restricción
+    de no tocar archivos `@Generated`.

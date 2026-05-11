@@ -52,6 +52,7 @@ Methods:
 - should propagate QuizSentenceSerializationException and not emit the AuditableQuiz when the original FormEntity violates FEAT-QSENT invariants → FEAT-RCLAQS/F-RCLAQS-R004
 - should fail atomically without a partial quizSentence when serialize throws for a TEXT form with non-empty options → FEAT-RCLAQS/F-RCLAQS-R004
 - should fail atomically without a partial quizSentence when serialize throws for a CLOZE form with null or empty options → FEAT-RCLAQS/F-RCLAQS-R004
+- Given two AuditableCourses produced by mapping a course that has knowledge quizzes containing sentences with enriched-token-requiring vocabulary (frequency-ranked words via SpaCy) when AuditEngine runs both audits then every AuditableQuiz produced by the mapper carries a List<NlpToken> populated by analyzeTokensBatch covering tokenization lemmatization POS tagging frequency rank stop-word and punctuation flags so downstream analyzers can read enriched tokens without re-tokenizing → FEAT-NLP/F-NLP-R010
 
 ### DefaultSentenceLengthConfig
 
@@ -83,6 +84,7 @@ Methods:
 - Given courseToAuditableMapper throws an exception, when runAudit is called, then the exception propagates → FEAT-CLI/F-CLI-R001
 - Given contentAudit throws an exception, when runAudit is called, then the exception propagates → FEAT-CLI/F-CLI-R001
 - Given a course with no milestones, when runAudit is called, then returns the report from contentAudit → FEAT-CLI/F-CLI-R001
+- should expose a public runAudit(Path coursePath) method on the AuditRunner contract that returns the AuditReport produced after loading the course mapping it to AuditableCourse and running the audit engine → FEAT-CLI/F-CLI-R005
 
 ### DefaultCocaBucketsConfig
 
@@ -95,6 +97,10 @@ Methods:
 **Implements:** LemmaRecurrenceConfig
 
 **Types:** Component
+
+**Tests that must pass:**
+
+- should expose top subExposed and overExposed values that satisfy 0 less than overExposed strictly less than subExposed and top greater than zero → FEAT-LREC/F-LREC-R014
 
 ### DefaultLemmaAbsenceConfig
 

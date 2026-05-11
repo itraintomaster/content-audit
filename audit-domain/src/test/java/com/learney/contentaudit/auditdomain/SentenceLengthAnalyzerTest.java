@@ -446,4 +446,107 @@ public class SentenceLengthAnalyzerTest {
 
         Assertions.assertFalse(quizNode.getScores().containsKey("sentence-length"));
     }
+
+    @Test
+    @DisplayName("should emit a SentenceLengthDiagnosis on the quiz node populated with tokenCount, targetMin, targetMax, cefrLevel, delta and toleranceMargin matching the analyzer computation")
+    @Tag("FEAT-DSLEN")
+    @Tag("F-DSLEN-R001")
+    public void shouldEmitASentenceLengthDiagnosisOnTheQuizNodePopulatedWithTokenCountTargetMinTargetMaxCefrLevelDeltaAndToleranceMarginMatchingTheAnalyzerComputation() {
+        // R001: quiz with 11 tokens in A1 (range 5-8, margin 4) → delta=11-8=3 (over max)
+        setupA1Range();
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "K", "instr", true, null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(tokens(11), "q1", null, null, null, List.of("sentence quiz"), null);
+        AuditNode quizNode = fullTree("A1", knowledge, quiz);
+
+        sut.onQuiz(quizNode);
+
+        NodeDiagnoses diag = quizNode.getDiagnoses();
+        Assertions.assertNotNull(diag, "R001: quiz node must carry a NodeDiagnoses after scoring");
+        Assertions.assertInstanceOf(QuizDiagnoses.class, diag, "R001: diagnoses must be QuizDiagnoses");
+
+        Optional<SentenceLengthDiagnosis> sld = ((QuizDiagnoses) diag).getSentenceLengthDiagnosis();
+        Assertions.assertTrue(sld.isPresent(), "R001: SentenceLengthDiagnosis must be present");
+
+        SentenceLengthDiagnosis d = sld.get();
+        Assertions.assertEquals(11, d.getTokenCount(), "R001: tokenCount must match actual tokens");
+        Assertions.assertEquals(5, d.getTargetMin(), "R001: targetMin must match config range min");
+        Assertions.assertEquals(8, d.getTargetMax(), "R001: targetMax must match config range max");
+        Assertions.assertEquals(CefrLevel.A1, d.getCefrLevel(), "R001: cefrLevel must be A1 from milestone");
+        Assertions.assertEquals(3, d.getDelta(), "R001: delta=tokenCount-targetMax=11-8=3 (over max)");
+        Assertions.assertEquals(4, d.getToleranceMargin(), "R001: toleranceMargin must match config margin");
+    }
+
+    @Test
+    @DisplayName("should NOT emit a SentenceLengthDiagnosis on a quiz node that is excluded as non-sentence (no scoring produced)")
+    @Tag("FEAT-DSLEN")
+    @Tag("F-DSLEN-R002")
+    public void shouldNOTEmitASentenceLengthDiagnosisOnAQuizNodeThatIsExcludedAsNonsentenceNoScoringProduced() {
+        // R002: quiz excluded because knowledge.isSentence() = false → no scoring → no diagnosis
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Vocabulary", "Match words", false, null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(tokens(3), null, null, null, null, List.of("apple"), null);
+        AuditNode quizNode = fullTree("A1", knowledge, quiz);
+
+        sut.onQuiz(quizNode);
+
+        Assertions.assertFalse(quizNode.getScores().containsKey("sentence-length"),
+                "R002: excluded quiz must not have a sentence-length score");
+        NodeDiagnoses diag = quizNode.getDiagnoses();
+        if (diag instanceof QuizDiagnoses qd) {
+            Assertions.assertFalse(qd.getSentenceLengthDiagnosis().isPresent(),
+                    "R002: excluded quiz must not carry a SentenceLengthDiagnosis");
+        }
+    }
+
+    @Test
+    @DisplayName("should NOT emit a SentenceLengthDiagnosis on knowledge topic milestone or course nodes traversed by the analyzer")
+    @Tag("FEAT-DSLEN")
+    @Tag("F-DSLEN-R003")
+    public void shouldNOTEmitASentenceLengthDiagnosisOnKnowledgeTopicMilestoneOrCourseNodesTraversedByTheAnalyzer() {
+        // R003: non-quiz nodes visited by the analyzer must not carry a SentenceLengthDiagnosis
+        setupA1Range();
+
+        AuditNode courseNode = buildCourseNode();
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), null, "A1", null);
+        AuditNode milestoneNode = buildMilestoneNode(courseNode, milestone);
+        AuditableTopic topic = new AuditableTopic(List.of(), null, null, null);
+        AuditNode topicNode = buildTopicNode(milestoneNode, topic);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "K", "instr", true, null, null, null);
+        AuditNode knowledgeNode = buildKnowledgeNode(topicNode, knowledge);
+
+        sut.onMilestone(milestoneNode);
+        sut.onTopic(topicNode);
+        sut.onKnowledge(knowledgeNode);
+
+        for (AuditNode node : List.of(courseNode, milestoneNode, topicNode, knowledgeNode)) {
+            NodeDiagnoses diag = node.getDiagnoses();
+            if (diag instanceof QuizDiagnoses qd) {
+                Assertions.assertFalse(qd.getSentenceLengthDiagnosis().isPresent(),
+                        "R003: non-quiz node must not carry SentenceLengthDiagnosis");
+            }
+        }
+    }
+
+    @Test
+    @DisplayName("should make the emitted SentenceLengthDiagnosis retrievable via QuizDiagnoses getSentenceLengthDiagnosis on the same quiz node")
+    @Tag("FEAT-DSLEN")
+    @Tag("F-DSLEN-R004")
+    public void shouldMakeTheEmittedSentenceLengthDiagnosisRetrievableViaQuizDiagnosesGetSentenceLengthDiagnosisOnTheSameQuizNode() {
+        // R004: getSentenceLengthDiagnosis() on the same quiz node returns the diagnosis without unsafe casts
+        setupA1Range();
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "K", "instr", true, null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(tokens(6), "q1", null, null, null, List.of("six token sentence here"), null);
+        AuditNode quizNode = fullTree("A1", knowledge, quiz);
+
+        sut.onQuiz(quizNode);
+
+        NodeDiagnoses diag = quizNode.getDiagnoses();
+        Assertions.assertInstanceOf(QuizDiagnoses.class, diag, "R004: quiz node diagnoses must be QuizDiagnoses");
+
+        Optional<SentenceLengthDiagnosis> sldOpt = ((QuizDiagnoses) diag).getSentenceLengthDiagnosis();
+        Assertions.assertTrue(sldOpt.isPresent(), "R004: getSentenceLengthDiagnosis() must return present Optional");
+        Assertions.assertNotNull(sldOpt.get(), "R004: SentenceLengthDiagnosis must not be null");
+        // Accessing fields without unsafe casts confirms typed retrieval (R004 contract)
+        Assertions.assertEquals(6, sldOpt.get().getTokenCount(), "R004: tokenCount accessible as typed int");
+        Assertions.assertEquals(CefrLevel.A1, sldOpt.get().getCefrLevel(), "R004: cefrLevel accessible as typed CefrLevel");
+    }
 }

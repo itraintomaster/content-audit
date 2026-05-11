@@ -4,6 +4,22 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-05-10 — test-writer — Implementó 3 journey stubs en IAuditEngineTest.java (J001, J002, J004)
+  Stubs tenían UnsupportedOperationException → propiedad de test-writer (no MODIFIED). 3 tests pasan. sentinel verify VERIFY OK.
+  Regla aprendida: *SentinelTest.java con cuerpos {} son de sentinel (MODIFIED si se tocan). Solo UnsupportedOperationException stubs son de test-writer.
+
+2026-05-10 — test-writer — Implementó 1 stub en KnowledgeInstructionsLengthAnalyzerTest.java (F-KTLEN-R005)
+  shouldDistinguishThreeScoringRanges... → 4 aserciones de boundary conditions (70→1.0, 71→0.5, 100→0.5, 101→0.0). 264 tests, 0 fallos.
+
+2026-05-10 — test-writer — Los 4 stubs de KnowledgeTitleLengthAnalyzerSentinelTest y 8 de KnowledgeInstructionsLengthAnalyzerSentinelTest NO implementados
+  Blocker: son `tests: _change: add` en sentinel.yaml con cuerpos {} en archivos @Generated. Necesitan `sentinel generate` para obtener imports correctos. Sin generate, cualquier modificación = VERIFY FAILED.
+
+2026-05-11 — developer — Diagnóstico nocturno: BUILD FAILURE por 3 stubs sin implementar en IAuditEngineTest.
+  Producción de IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer: CORRECTA.
+  Stubs pendientes (J001, J002, J004) derivados a @test-writer para implementación de bodies.
+  Bloqueante: mvn test -pl audit-domain falla con 3 UnsupportedOperationException en IAuditEngineTest.java.
+  next: @test-writer implementa bodies; developer verifica BUILD verde post-implementación.
+
 2026-05-10 — analyst — REQUIREMENT.md reformulado para desbloquear FEAT-KTLEN
   - R004 (pesos no configurables) y R007 (limites instrucciones no configurables) retirados
     como reglas numeradas. Movidos a Contexto > "Decisiones de simplicidad". Ver decisions.md
@@ -62,3 +78,27 @@ Current state, last action, next step. Newest entries on top.
     pesen 40, esto es R002 puro. Journey J003 se mantiene.
   - Mi parte de Task #1 (QA design) entregada. Próximo: lead aplica patch +
     `sentinel generate` + asigna a test-writer para 3 stubs integradores honestos.
+
+2026-05-11 — qa-tester — Patch correctivo R005 listo tras edit del analyst
+  - Re-evalué los 5 re-tags a la luz del nuevo R005 (umbrales 70/100) vs R006 (mapeo 3 niveles + null/empty).
+  - Patch correctivo: re-revertir 4 tests R006→R005 (los que verifican fronteras exactas 70/71/100/101).
+  - 1 test sigue en R002+J003 (sin cambio, es claramente sistema de pesos).
+  - R006 queda con 9 tests directos (mapeo general + null/empty) — sigue PASSING.
+  - R005 pasa a PASSING con 4 tests boundary directos.
+  - Patch estructural R004/R005/R007 ABORTADO definitivamente (analyst retiró R004 y R007).
+  - Comando apply emitido al lead: `sentinel patch apply --as=qa-tester ...`
+  - why: la nueva redacción de R005 distingue claramente "umbrales como valores" (R005)
+    de "mapeo de 3 niveles + null/empty" (R006); cada test verifica solo uno de los dos.
+
+2026-05-11 — qa-tester — Patch FINAL FEAT-KTLEN entregado (--replace, 1 modification)
+  - Lead eligió Lectura B (tag directo para R005).
+  - Patch final con --replace contiene:
+    * 3 handwrittenTests journey en IAuditEngine (J001, J002, J004).
+    * 4 re-tags R005→R006 (boundary tests vuelven al mapeo general).
+    * 1 re-tag R005→R002+J003 (sistema de pesos).
+    * 1 handwrittenTest NUEVO dedicado a R005: "should distinguish three scoring
+      ranges 1.0 at-or-below-70 0.5 above-70-up-to-100 0.0 above-100 at the
+      declared weighted-char thresholds" — body por test-writer.
+  - Cero referencias a R004/R007 (analyst los retiró).
+  - Comando apply emitido al lead con --as=qa-tester role guard.
+  - Task #1 cerrada de mi lane (queda apply + generate + test-writer).

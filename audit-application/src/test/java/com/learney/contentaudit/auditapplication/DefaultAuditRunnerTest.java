@@ -142,4 +142,23 @@ public class DefaultAuditRunnerTest {
 
         assertSame(auditReport, result);
     }
+
+    @Test
+    @DisplayName("should expose a public runAudit(Path coursePath) method on the AuditRunner contract that returns the AuditReport produced after loading the course mapping it to AuditableCourse and running the audit engine")
+    @Tag("FEAT-CLI")
+    @Tag("F-CLI-R005")
+    public void shouldExposeAPublicRunAuditPathCoursePathMethodOnTheAuditRunnerContractThatReturnsTheAuditReportProducedAfterLoadingTheCourseMappingItToAuditableCourseAndRunningTheAuditEngine() {
+        // R005: AuditRunner.runAudit(Path) is the single public entry point for the full pipeline.
+        // Verify: load course → map to AuditableCourse → run audit engine → return report.
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
+        when(auditEngine.runAudit(auditableCourse)).thenReturn(auditReport);
+
+        AuditReport result = sut.runAudit(coursePath, null);
+
+        assertSame(auditReport, result, "R005: runAudit must return the AuditReport produced by the engine");
+        verify(courseRepository).load(coursePath);
+        verify(courseToAuditableMapper).map(courseEntity);
+        verify(auditEngine).runAudit(auditableCourse);
+    }
 }

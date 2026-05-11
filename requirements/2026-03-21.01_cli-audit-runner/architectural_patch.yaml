@@ -1,0 +1,59 @@
+code: FEAT-CLI
+modules:
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: AnalyzeCmd
+      handwrittenTests:
+      - name: should print an error and return non-zero exit code when invoked without
+          a course path argument and no CONTENT_AUDIT_CONTENT_FOLDER env var is set
+        traceability:
+          feature: FEAT-CLI
+          rule: F-CLI-R002
+          journey: F-CLI-J002
+      - name: should print an error and return non-zero exit code when invoked with
+          a course path that does not exist on disk
+        traceability:
+          feature: FEAT-CLI
+          rule: F-CLI-R002
+          journey: F-CLI-J002
+      - name: should produce a plain-text formatted summary on stdout when invoked
+          without a --format option using text as the default format
+        traceability:
+          feature: FEAT-CLI
+          rule: F-CLI-R003
+      - name: should produce a JSON-formatted summary on stdout when invoked with
+          --format json
+        traceability:
+          feature: FEAT-CLI
+          rule: F-CLI-R003
+      - name: should return exit code zero when the audit completes successfully regardless
+          of the overall score produced
+        traceability:
+          feature: FEAT-CLI
+          rule: F-CLI-R004
+      - name: should return a non-zero exit code when AuditRunner throws a RuntimeException
+          during the audit pipeline and print a descriptive error message to stderr
+        traceability:
+          feature: FEAT-CLI
+          rule: F-CLI-R004
+          journey: F-CLI-J003
+    - name: Main
+      handwrittenTests:
+      - name: should instantiate and wire CourseRepository NlpTokenizer all analyzer
+          configs all analyzers ScoreAggregator AuditEngine and DefaultAuditRunner
+          via manual constructor injection before any CLI subcommand executes
+        traceability:
+          feature: FEAT-CLI
+          rule: F-CLI-R006
+- name: audit-application
+  implementations:
+  - name: DefaultAuditRunner
+    handwrittenTests:
+    - name: should expose a public runAudit(Path coursePath) method on the AuditRunner
+        contract that returns the AuditReport produced after loading the course mapping
+        it to AuditableCourse and running the audit engine
+      traceability:
+        feature: FEAT-CLI
+        rule: F-CLI-R005

@@ -1,7 +1,27 @@
 code: FEAT-DSLEN
-features:
-  - id: FEAT-DSLEN
-    journeys:
-      - id: F-DSLEN-J001
-        testModule: refiner-domain
-        testPackage: com.learney.contentaudit.refinerdomain
+modules:
+- name: audit-domain
+  implementations:
+  - name: SentenceLengthAnalyzer
+    handwrittenTests:
+    - name: "should emit a SentenceLengthDiagnosis on the quiz node populated with\
+        \ tokenCount, targetMin, targetMax, cefrLevel, delta and toleranceMargin matching\
+        \ the analyzer computation"
+      traceability:
+        feature: FEAT-DSLEN
+        rule: F-DSLEN-R001
+    - name: should NOT emit a SentenceLengthDiagnosis on a quiz node that is excluded
+        as non-sentence (no scoring produced)
+      traceability:
+        feature: FEAT-DSLEN
+        rule: F-DSLEN-R002
+    - name: should NOT emit a SentenceLengthDiagnosis on knowledge topic milestone
+        or course nodes traversed by the analyzer
+      traceability:
+        feature: FEAT-DSLEN
+        rule: F-DSLEN-R003
+    - name: should make the emitted SentenceLengthDiagnosis retrievable via QuizDiagnoses
+        getSentenceLengthDiagnosis on the same quiz node
+      traceability:
+        feature: FEAT-DSLEN
+        rule: F-DSLEN-R004
