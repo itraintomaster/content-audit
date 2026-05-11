@@ -1,51 +1,18 @@
 code: FEAT-LAPS
 modules:
-- name: revision-domain
+- name: audit-cli
   packages:
-  - name: lemmaabsence
+  - name: bootstrap
     implementations:
-    - name: LemmaAbsenceMvpStrategy
+    - name: DefaultProposalStrategySelector
       handwrittenTests:
-      - name: should produce a LemmaAbsenceQuizCandidate by consuming exclusively
-          the CorrectionContext fields (quizSentence translation knowledgeTitle knowledgeInstructions
-          topicLabel cefrLevel misplacedLemmas suggestedLemmas) and never reading
-          directly from AuditReport or the diagnoses tree
+      - name: "Given CONTENT_AUDIT_LAPS_STRATEGY unset (null or blank), when select\
+          \ is called with any registry, then it returns the default strategy name\
+          \ 'lemma-absence-mvp'"
+        _change: delete
+      - name: "Given CONTENT_AUDIT_LAPS_STRATEGY unset (null or blank), when select\
+          \ is called with any registry, then it returns the default strategy name\
+          \ 'lemma-absence-llm'"
         traceability:
           feature: FEAT-LAPS
-          rule: F-LAPS-R007
-      - name: should return exactly one LemmaAbsenceQuizCandidate per single propose
-          invocation without ever surfacing multiple alternatives for the operator
-          to choose from
-        traceability:
-          feature: FEAT-LAPS
-          rule: F-LAPS-R008
-      - name: "should produce a LemmaAbsenceQuizCandidate that carries exactly two\
-          \ fields: a quizSentence string and a translation string with both populated\
-          \ and no other element-level field present on the candidate"
-        traceability:
-          feature: FEAT-LAPS
-          rule: F-LAPS-R009
-      - name: should not require successive invocations on the same RefinementTask
-          to return equal candidates documenting that the strategy is non-deterministic
-          by contract
-        traceability:
-          feature: FEAT-LAPS
-          rule: F-LAPS-R010
-      - name: should emit only a candidate whose quizSentence is a string in the FEAT-QSENT
-          DSL grammar plus a translation string so that the strategy never returns
-          plain sentence text quizForm parts or a fully built elementAfter
-        traceability:
-          feature: FEAT-LAPS
-          rule: F-LAPS-R011
-      - name: should not invoke any CEFR-level validator on the produced candidate's
-          quizSentence so that even when the generator returns vocabulary above cefrLevel
-          the strategy returns the candidate as-is without filtering
-        traceability:
-          feature: FEAT-LAPS
-          rule: F-LAPS-R017
-      - name: should not apply any length limit to the produced candidate's quizSentence
-          so that even an unusually short or unusually long candidate is returned
-          as-is without rejection
-        traceability:
-          feature: FEAT-LAPS
-          rule: F-LAPS-R018
+          rule: F-LAPS-R004

@@ -1,4 +1,4 @@
-generatedAt: 2026-05-11T11:43:32.906971Z
+generatedAt: 2026-05-11T11:46:52.887178Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -6735,7 +6735,7 @@ features:
     healthScore: 0
     verdict: PASSED
 - id: FEAT-LAPS
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: ./requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
   patchFile: ./requirements/2026-04-20.02_lemma-absence-proposal-strategy/architectural_patch.yaml
   rulesCoverage:
@@ -6770,14 +6770,8 @@ features:
       module: revision-domain
       implementation: DefaultLemmaAbsenceProposalDeriver
   - ruleId: F-LAPS-R004
-    state: FAILING
+    state: PASSING
     tests:
-    - name: "Given CONTENT_AUDIT_LAPS_STRATEGY unset (null or blank), when select\
-        \ is called with any registry, then it returns the default strategy name 'lemma-absence-mvp'"
-      implemented: true
-      passing: false
-      module: audit-cli
-      implementation: DefaultProposalStrategySelector
     - name: "Given CONTENT_AUDIT_LAPS_STRATEGY set to the name of a registered strategy,\
         \ when select is called, then it returns that exact name (picking one among\
         \ several registered)"
@@ -6788,6 +6782,12 @@ features:
     - name: "Given CONTENT_AUDIT_LAPS_STRATEGY set to a name that no registered strategy\
         \ reports via listAll, when select is called, then it throws InvalidProposalStrategyException\
         \ whose message lists the registered strategy names"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultProposalStrategySelector
+    - name: "Given CONTENT_AUDIT_LAPS_STRATEGY unset (null or blank), when select\
+        \ is called with any registry, then it returns the default strategy name 'lemma-absence-llm'"
       implemented: true
       passing: true
       module: audit-cli
@@ -24209,10 +24209,6 @@ elements:
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/bootstrap/DefaultProposalStrategySelector.java
     tests:
-    - name: "Given CONTENT_AUDIT_LAPS_STRATEGY unset (null or blank), when select\
-        \ is called with any registry, then it returns the default strategy name 'lemma-absence-mvp'"
-      status: MISSING
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultProposalStrategySelectorTest.java
     - name: "Given CONTENT_AUDIT_LAPS_STRATEGY set to the name of a registered strategy,\
         \ when select is called, then it returns that exact name (picking one among\
         \ several registered)"
@@ -24221,6 +24217,10 @@ elements:
     - name: "Given CONTENT_AUDIT_LAPS_STRATEGY set to a name that no registered strategy\
         \ reports via listAll, when select is called, then it throws InvalidProposalStrategyException\
         \ whose message lists the registered strategy names"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultProposalStrategySelectorTest.java
+    - name: "Given CONTENT_AUDIT_LAPS_STRATEGY unset (null or blank), when select\
+        \ is called with any registry, then it returns the default strategy name 'lemma-absence-llm'"
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultProposalStrategySelectorTest.java
     testCleanViews:
@@ -24639,17 +24639,10 @@ elements:
       trace: FEAT-NLP / F-NLP-R030 / F-NLP-J002
 
       given:
-        config = NlpTokenizerConfig("/nonexistent/sample_processor.py", "/nonexistent/lemmas_20k_words.txt", 2)
-        factory = SpacyNlpTokenizerFactory()
-        tokenizer = factory.create(config)
-        tokens = tokenizer.analyzeTokens("She runs every morning")
-        first = tokens.get(0)
+        failScript = Files.createTempFile("spacy-fail-", ".py")
 
-      then:
-        tokens is not null
-        tokens.isEmpty() is false
-        first.getText() is not null
-        first.getFrequencyRank() == null || first.getPosTag() == null || first.getPosTag().equals("X") is true
+      when:
+        sut.writeString(failScript, "import sys\n" + "print('ImportError: No module named spacy', file=sys.stderr)\n" + "sys.exit(1)\n")
   - name: SpacyNlpTokenizer
     status: EXISTS
     filePath: nlp-infrastructure/src/main/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizer.java
@@ -31883,9 +31876,9 @@ elements:
     verdict: PASSED
 testSummary:
   total: 924
-  passing: 922
+  passing: 923
   failing: 0
-  notImplemented: 2
+  notImplemented: 1
 qualitySummary:
   enforcement: warn
   thresholds:

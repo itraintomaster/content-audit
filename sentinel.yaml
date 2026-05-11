@@ -6580,12 +6580,6 @@ modules:
     - name: DefaultProposalStrategySelector
       visibility: public
       handwrittenTests:
-      - name: "Given CONTENT_AUDIT_LAPS_STRATEGY unset (null or blank), when select\
-          \ is called with any registry, then it returns the default strategy name\
-          \ 'lemma-absence-mvp'"
-        traceability:
-          feature: FEAT-LAPS
-          rule: F-LAPS-R004
       - name: "Given CONTENT_AUDIT_LAPS_STRATEGY set to the name of a registered strategy,\
           \ when select is called, then it returns that exact name (picking one among\
           \ several registered)"
@@ -6595,6 +6589,12 @@ modules:
       - name: "Given CONTENT_AUDIT_LAPS_STRATEGY set to a name that no registered\
           \ strategy reports via listAll, when select is called, then it throws InvalidProposalStrategyException\
           \ whose message lists the registered strategy names"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R004
+      - name: "Given CONTENT_AUDIT_LAPS_STRATEGY unset (null or blank), when select\
+          \ is called with any registry, then it returns the default strategy name\
+          \ 'lemma-absence-llm'"
         traceability:
           feature: FEAT-LAPS
           rule: F-LAPS-R004

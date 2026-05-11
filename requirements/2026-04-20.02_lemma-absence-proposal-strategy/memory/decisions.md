@@ -18,3 +18,13 @@ should not re-litigate. Newest entries on top.
     reformular como Bucket 3 (retirar) o dejar.
   - why: el lead esperaba "12 falsos FAILING" pero el estado real es 1 sola
     regla FAILING con 1 test específico real fallando. Diagnóstico ajustado.
+
+2026-05-11 — qa-tester — Rename de handwrittenTest R004 (mvp → llm) via delete+add
+  - DefaultProposalStrategySelector.handwrittenTests tenía: "...default strategy name 'lemma-absence-mvp'"
+  - DEFAULT_STRATEGY real en código: "lemma-absence-llm" (renombrado por F-LAGEN-R001).
+  - Test .java aserta "lemma-absence-llm" y pasa; sentinel-report marcaba failing por
+    desalineamiento del nombre del yaml vs .java.
+  - Patch: _change: delete del nombre viejo + add del nombre nuevo. Manejo de rename
+    sin primitive renameTo: en el DSL (el merger matchea por name).
+  - Validador: 0 additions, 1 modifications, 0 conflicts.
+  - Post-apply esperado: R004 pasa de FAILING a PASSING (8/8 tests).
