@@ -477,10 +477,8 @@ enabling JUnit 5 tag-based filtering (e.g., run only tests for `FEAT-001`).
 | F-KTLEN-R001 | Limite maximo de longitud de titulo | critical | El titulo del knowledge {knowledgeId} excede el limite maximo de longitud ponderada: {longitudPonderada} > 28 |
 | F-KTLEN-R002 | Sistema de pesos por caracter para titulos | critical | - |
 | F-KTLEN-R003 | Puntuacion de longitud de titulo | critical | Puntuacion fuera de rango [0.0, 1.0] calculada para el titulo del knowledge {knowledgeId}: {puntuacion} |
-| F-KTLEN-R004 | Los pesos de caracteres no son configurables | minor | - |
-| F-KTLEN-R005 | Limites de longitud de instrucciones | critical | Configuracion de limites de instrucciones invalida: el limite suave ({soft}) debe ser menor que el limite duro ({hard}) |
+| F-KTLEN-R005 | Limites de longitud de instrucciones | critical | - |
 | F-KTLEN-R006 | Puntuacion de longitud de instrucciones | critical | Puntuacion fuera de rango [0.0, 1.0] calculada para las instrucciones del knowledge {knowledgeId}: {puntuacion} |
-| F-KTLEN-R007 | Los limites de instrucciones no son configurables | minor | - |
 | F-KTLEN-R008 | Nombres de los analizadores en el informe | major | - |
 
 **User Journeys:**

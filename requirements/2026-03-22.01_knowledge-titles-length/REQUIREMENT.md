@@ -51,6 +51,16 @@ Al igual que en otros analizadores del sistema:
 
 El curso actual contiene aproximadamente 608 knowledges distribuidos en 4 niveles (A1, A2, B1, B2). Cada knowledge tiene un titulo y puede tener instrucciones. El analisis debe procesar todos los knowledges del curso.
 
+### Decisiones de simplicidad (fuera del alcance de esta version)
+
+Para esta primera version se asume que el sistema de puntuacion **no expone ningun parametro de configuracion** al usuario. Esto incluye:
+
+- **Pesos por caracter para titulos e instrucciones**: los valores 0.0 / 0.5 / 0.7 / 1.0 definidos en R002 son fijos. Estan calibrados para la fuente proporcional de la interfaz del sistema de aprendizaje de destino. Si en el futuro se usa una fuente con proporciones significativamente diferentes, deberian recalibrarse.
+- **Limite maximo de longitud de titulos** (28 caracteres ponderados, R001): fijo.
+- **Limites suave (70) y duro (100) de instrucciones** (R005): fijos.
+
+Estos parametros son decisiones de calibracion provenientes de la implementacion de referencia. Hacerlos configurables se considera fuera de alcance hasta que aparezca un caso de uso concreto que lo justifique (por ejemplo, soportar interfaces alternativas con restricciones distintas). Mientras tanto, no hay reglas de negocio que describan su configurabilidad: el usuario no interactua con estos valores y el sistema no expone superficie para cambiarlos.
+
 ### Referencia: implementacion original
 
 Esta funcionalidad se basa en el analisis documentado en `analysis/06-knowledge-titles-length`. En la implementacion original, este analisis no seguia la interfaz estandar de analizador, sino que operaba directamente sobre la lista de knowledges en el orquestador. En la migracion a ContentAudit, se integra como analizador estandar para que sus resultados participen en el informe de auditoria y se beneficien de la agregacion generica de la plataforma.
@@ -59,11 +69,13 @@ Esta funcionalidad se basa en el analisis documentado en `analysis/06-knowledge-
 
 ## Reglas de Negocio
 
-Las reglas se organizan en dos grupos segun el aspecto que evaluan:
+Las reglas se organizan en tres grupos segun el aspecto que evaluan:
 
-- **Grupo A - Analisis de longitud de titulos (R001, R002, R003, R004)**: reglas propias del analizador de longitud de titulos, que evalua el titulo de cada knowledge usando longitud ponderada por caracteres.
-- **Grupo B - Analisis de longitud de instrucciones (R005, R006, R007)**: reglas propias del analizador de longitud de instrucciones, que evalua el texto de instrucciones de cada knowledge.
+- **Grupo A - Analisis de longitud de titulos (R001, R002, R003)**: reglas propias del analizador de longitud de titulos, que evalua el titulo de cada knowledge usando longitud ponderada por caracteres.
+- **Grupo B - Analisis de longitud de instrucciones (R005, R006)**: reglas propias del analizador de longitud de instrucciones, que evalua el texto de instrucciones de cada knowledge.
 - **Grupo C - Identificacion de analizadores (R008)**: regla que define los nombres con los que cada analizador se identifica en el informe de auditoria.
+
+> **Nota sobre numeracion**: R004 y R007 fueron retirados como reglas numeradas. Describian la no-configurabilidad de los pesos de caracter y de los limites de instrucciones, una decision de simplicidad documentada en la seccion "Decisiones de simplicidad (fuera del alcance de esta version)" del Contexto. No describian comportamiento observable adicional al ya cubierto por R001/R002/R003/R005/R006. Los IDs R004 y R007 quedan retirados; los demas mantienen su numeracion original para no romper trazabilidad con commits historicos.
 
 > **Nota sobre agregacion**: Las reglas de agregacion de puntuaciones a traves de la jerarquia (knowledge -> topic -> nivel -> curso) son provistas por la plataforma ContentAudit y estan documentadas en FEAT-SLEN (R003-R005, R008, R016). Aplican de manera identica a estos analizadores y no se repiten aqui.
 
@@ -118,15 +130,6 @@ Ejemplo para limite maximo de 28, margen de degradacion 1:
 
 **Error**: "Puntuacion fuera de rango [0.0, 1.0] calculada para el titulo del knowledge {knowledgeId}: {puntuacion}"
 
-### Rule[F-KTLEN-R004] - Los pesos de caracteres no son configurables
-**Severity**: minor | **Validation**: ASSUMPTION
-
-Los pesos por caracter definidos en R002 estan fijos y no son configurables por el usuario. Fueron calibrados para la fuente proporcional utilizada en la interfaz del sistema de aprendizaje.
-
-[ASSUMPTION] Se asume que los pesos de la implementacion de referencia son adecuados para la interfaz actual. Si la interfaz de destino usa una fuente con proporciones significativamente diferentes, los pesos deberian recalibrarse. Se mantienen fijos por simplicidad.
-
-**Error**: N/A (esta regla define un parametro, no una condicion de error)
-
 ---
 
 ### Grupo B - Analisis de longitud de instrucciones
@@ -134,7 +137,7 @@ Los pesos por caracter definidos en R002 estan fijos y no son configurables por 
 ### Rule[F-KTLEN-R005] - Limites de longitud de instrucciones
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-Las instrucciones de cada knowledge se evaluan contra dos umbrales de longitud ponderada:
+Las instrucciones de cada knowledge se evaluan contra dos umbrales de longitud ponderada que separan tres rangos de puntuacion (R006):
 
 | Parametro | Valor | Significado |
 |-----------|-------|-------------|
@@ -143,7 +146,9 @@ Las instrucciones de cada knowledge se evaluan contra dos umbrales de longitud p
 
 La longitud se calcula usando el mismo sistema de pesos por caracter definido en R002 para titulos. Esto alinea el calculo con la implementacion de referencia, que usa longitud ponderada tanto para titulos como para instrucciones.
 
-**Error**: "Configuracion de limites de instrucciones invalida: el limite suave ({soft}) debe ser menor que el limite duro ({hard})"
+Estos limites son observables a traves del comportamiento de puntuacion descrito en R006: una instruccion con longitud ponderada igual a 70 recibe 1.0, mayor a 70 y hasta 100 recibe 0.5, y mayor a 100 recibe 0.0. Los valores 70 y 100 no son configurables (ver "Decisiones de simplicidad" en Contexto).
+
+**Error**: N/A (esta regla define los umbrales que separan los rangos de puntuacion definidos en R006)
 
 ### Rule[F-KTLEN-R006] - Puntuacion de longitud de instrucciones
 **Severity**: critical | **Validation**: AUTO_VALIDATED
@@ -160,15 +165,6 @@ Cada knowledge recibe una puntuacion entre 0.0 y 1.0 para la longitud de sus ins
 El scoring discreto (tres niveles) en lugar de lineal refleja la naturaleza de la evaluacion: no hay una diferencia gradual entre "adecuado" y "largo", sino umbrales claros donde la legibilidad cambia. 70 caracteres ponderados es aproximadamente una linea de texto en la interfaz; 100 caracteres ponderados fuerza al texto a ocupar multiples lineas en la mayoria de dispositivos.
 
 **Error**: "Puntuacion fuera de rango [0.0, 1.0] calculada para las instrucciones del knowledge {knowledgeId}: {puntuacion}"
-
-### Rule[F-KTLEN-R007] - Los limites de instrucciones no son configurables
-**Severity**: minor | **Validation**: ASSUMPTION
-
-Los limites suave (70) y duro (100) para instrucciones estan fijos y no son configurables por el usuario. Provienen de la implementacion de referencia y reflejan restricciones de la interfaz del sistema de aprendizaje.
-
-[ASSUMPTION] Se asume que los limites de la referencia son adecuados para la interfaz actual. Si en el futuro se requiere ajustar estos valores para diferentes tipos de cursos o interfaces, deberia considerarse hacerlos configurables. Se mantienen fijos por simplicidad, alineado con el alcance de esta primera version.
-
-**Error**: N/A (esta regla define parametros, no una condicion de error)
 
 ---
 

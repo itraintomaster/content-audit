@@ -438,28 +438,6 @@ modules:
     - name: scoreAggregator
       type: ScoreAggregator
     visibility: public
-    handwrittenTests:
-    - name: "Given a course with milestones, topics and knowledges, when AuditEngine.runAudit\
-        \ is invoked with both KTLEN analyzers, then the report root contains aggregated\
-        \ knowledge-title-length and knowledge-instructions-length scores at every\
-        \ hierarchy level"
-      traceability:
-        feature: FEAT-KTLEN
-        journey: F-KTLEN-J001
-    - name: "Given a course with knowledges whose title weighted length exceeds 28,\
-        \ when AuditEngine.runAudit is invoked, then the affected knowledge nodes\
-        \ carry knowledge-title-length scores below 1.0 enabling identification of\
-        \ overlong titles"
-      traceability:
-        feature: FEAT-KTLEN
-        journey: F-KTLEN-J002
-    - name: "Given a course with mixed title and instruction lengths, when AuditEngine.runAudit\
-        \ is invoked, then per-level scores for knowledge-title-length and knowledge-instructions-length\
-        \ are reported independently per AuditNode allowing the user to compare both\
-        \ dimensions"
-      traceability:
-        feature: FEAT-KTLEN
-        journey: F-KTLEN-J004
     implements:
     - AuditEngine
   - name: KnowledgeTitleLengthAnalyzer
@@ -660,8 +638,7 @@ modules:
     - name: should score 1.0 for instructions exactly at soft limit of 70 chars
       traceability:
         feature: FEAT-KTLEN
-        rule: F-KTLEN-R006
-      _change: modify
+        rule: F-KTLEN-R005
     - name: should score 1.0 for instructions of 30 chars within soft limit
       traceability:
         feature: FEAT-KTLEN
@@ -669,13 +646,11 @@ modules:
     - name: should score 0.5 for instructions of 71 chars just above soft limit
       traceability:
         feature: FEAT-KTLEN
-        rule: F-KTLEN-R006
-      _change: modify
+        rule: F-KTLEN-R005
     - name: should score 0.5 for instructions exactly at hard limit of 100 chars
       traceability:
         feature: FEAT-KTLEN
-        rule: F-KTLEN-R006
-      _change: modify
+        rule: F-KTLEN-R005
     - name: should score 0.5 for instructions of 85 chars between soft and hard limits
       traceability:
         feature: FEAT-KTLEN
@@ -683,8 +658,7 @@ modules:
     - name: should score 0.0 for instructions of 101 chars just above hard limit
       traceability:
         feature: FEAT-KTLEN
-        rule: F-KTLEN-R006
-      _change: modify
+        rule: F-KTLEN-R005
     - name: should score 0.0 for instructions of 200 chars well above hard limit
       traceability:
         feature: FEAT-KTLEN
@@ -710,13 +684,6 @@ modules:
       traceability:
         feature: FEAT-KTLEN
         rule: F-KTLEN-R006
-    - name: should use weighted character length not plain string length for scoring
-        instructions
-      traceability:
-        feature: FEAT-KTLEN
-        rule: F-KTLEN-R002
-        journey: F-KTLEN-J003
-      _change: modify
     implements:
     - ContentAnalyzer
   - name: SentenceLengthAnalyzer

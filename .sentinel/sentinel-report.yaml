@@ -1,10 +1,10 @@
-generatedAt: 2026-05-11T02:20:59.592814Z
+generatedAt: 2026-05-11T02:36:32.899940Z
 system: ContentAudit
 version: 0.0.1
 features:
 - id: FEAT-DLABS
   state: IMPLEMENTING
-  requirementFile: requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DLABS-R001
     state: NO_TESTS
@@ -203,9 +203,9 @@ features:
     healthScore: 49
     verdict: PASSED
 - id: FEAT-REVCTX
-  state: IMPLEMENTING
-  requirementFile: requirements/2026-05-09.01_revise-correction-context-override/REQUIREMENT.md
-  patchFile: requirements/2026-05-09.01_revise-correction-context-override/architectural_patch.yaml
+  state: IMPLEMENTED
+  requirementFile: ./requirements/2026-05-09.01_revise-correction-context-override/REQUIREMENT.md
+  patchFile: ./requirements/2026-05-09.01_revise-correction-context-override/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-REVCTX-R001
     state: PASSING
@@ -235,18 +235,18 @@ features:
       module: audit-cli
       implementation: ReviseCmd
   - ruleId: F-REVCTX-R002
-    state: FAILING
+    state: PASSING
     tests:
     - name: should bypass contextResolver and consume the override payload as the
         strategy input when overridePayload is provided
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultRevisionEngine
     - name: should not perform any AuditReport-derived context construction for the
         revised task when overridePayload is provided
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultRevisionEngine
     - name: should expose a static withDefaultValidators factory that wires both LEMMA_ABSENCE
@@ -254,112 +254,112 @@ features:
         the parser without breaking the package-private encapsulation of the per-kind
         validators
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultCorrectionContextOverrideParser
   - ruleId: F-REVCTX-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: should produce OVERRIDE_INVALID outcome without persisting an artifact
         and without modifying the course when the parser rejects the override payload
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultRevisionEngine
     - name: should accept payload when nodeId and diagnosisKind match the expected
         task identity
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultCorrectionContextOverrideParser
     - name: should reject payload with OverrideRejectedException when nodeId does
         not match the expected task identity
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultCorrectionContextOverrideParser
     - name: should reject payload with OverrideRejectedException when diagnosisKind
         does not match the expected task identity
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultCorrectionContextOverrideParser
     - name: should throw OverrideRejectedException when the LEMMA_ABSENCE payload
         misses a required structural field or has an invalid value
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: LemmaAbsenceContextStructuralValidator
     - name: should throw OverrideRejectedException when the SENTENCE_LENGTH payload
         misses a required structural field or has an out-of-domain value
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: SentenceLengthContextStructuralValidator
   - ruleId: F-REVCTX-R004
-    state: FAILING
+    state: PASSING
     tests:
     - name: should report supports=true for diagnosisKinds with a registered resolver
         and supports=false for kinds without one
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: DispatchingCorrectionContextResolver
     - name: should produce OVERRIDE_NOT_APPLICABLE outcome without persisting an artifact
         and without modifying the course when the task diagnosisKind has no context
         contract
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultRevisionEngine
   - ruleId: F-REVCTX-R005
-    state: FAILING
+    state: PASSING
     tests:
     - name: should resolve the revised task from the persisted plan identified by
         planId and pass the override to the strategy regardless of any task identity
         hint embedded in the payload
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultRevisionEngine
   - ruleId: F-REVCTX-R006
-    state: FAILING
+    state: PASSING
     tests:
     - name: should preserve the human approval flow and emit a PENDING_APPROVAL artifact
         when human approval mode is active and an override is provided
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultRevisionEngine
   - ruleId: F-REVCTX-R007
-    state: FAILING
+    state: PASSING
     tests:
     - name: should persist the RevisionArtifact with contextSource=OVERRIDE and contextOverridePayload
         equal to the literal raw JSON received when an override is provided
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultRevisionEngine
     - name: should persist the RevisionArtifact with contextSource=DERIVED and a null
         contextOverridePayload when no override is provided
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultRevisionEngine
   - ruleId: F-REVCTX-R008
-    state: FAILING
+    state: PASSING
     tests:
     - name: should parse payload mirroring the get task output for a LEMMA_ABSENCE
         context and return a CorrectionContextOverride whose rawPayload is the literal
         JSON received
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultCorrectionContextOverrideParser
     - name: should reject payload whose JSON shape does not mirror the get task output
         even when its core structural fields are individually valid
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultCorrectionContextOverrideParser
   journeysCoverage:
@@ -478,7 +478,7 @@ features:
     - branchCoverage 43% < 60%
 - id: FEAT-CLIRV
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLIRV-R001
     state: PASSING
@@ -1128,8 +1128,8 @@ features:
     - crapHotspots 7 > 5
 - id: FEAT-LREC
   state: ANALYSED
-  requirementFile: requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
-  patchFile: requirements/2026-03-28.01_lemma-recurrence/architectural_patch.yaml
+  requirementFile: ./requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
+  patchFile: ./requirements/2026-03-28.01_lemma-recurrence/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-LREC-R001
     state: NO_TESTS
@@ -1354,25 +1354,25 @@ features:
     healthScore: 48
     verdict: PASSED
 - id: FEAT-RCLAQS
-  state: IMPLEMENTING
-  requirementFile: requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
+  state: IMPLEMENTED
+  requirementFile: ./requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLAQS-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: should populate quizSentence on the LEMMA_ABSENCE correction context from
         the AuditableQuiz carrier
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
   - ruleId: F-RCLAQS-R002
-    state: FAILING
+    state: PASSING
     tests:
     - name: should copy AuditableQuiz.quizSentence verbatim without recomputing the
         DSL in the resolver
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should stamp quizSentence on AuditableQuiz by invoking QuizSentenceConverter.serialize
@@ -1388,12 +1388,12 @@ features:
       module: audit-application
       implementation: CourseToAuditableMapper
   - ruleId: F-RCLAQS-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: should emit sentence and quizSentence that originate from the same AuditableQuiz
         so both fields describe the same quiz
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: "should stamp sentences[0] and quizSentence from the same FormEntity so\
@@ -1558,7 +1558,7 @@ features:
     - branchCoverage 51% < 60%
 - id: FEAT-DCOCA
   state: IMPLEMENTING
-  requirementFile: requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DCOCA-R001
     state: NO_TESTS
@@ -1657,7 +1657,7 @@ features:
     verdict: PASSED
 - id: FEAT-QSENT
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-22.01_quiz-sentence-dsl/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-22.01_quiz-sentence-dsl/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-QSENT-R001
     state: PASSING
@@ -1981,244 +1981,244 @@ features:
     healthScore: 45
     verdict: PASSED
 - id: FEAT-COURSE
-  state: IMPLEMENTING
-  requirementFile: requirements/2026-03-15.01_course-structure/REQUIREMENT.md
+  state: IMPLEMENTED
+  requirementFile: ./requirements/2026-03-15.01_course-structure/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-COURSE-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a valid course directory, when load is called, then returns CourseEntity\
         \ with 5-level hierarchy including ROOT node"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R002
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a course with ordered milestones and topics, when load is called,\
         \ then child order matches parent children lists"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a loaded course, when saved and reloaded, then the result is semantically\
         \ equivalent to the original"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R004
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a course directory with quiz templates, when load is called, then\
         \ every knowledge has at least one quiz template"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R005
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a course directory with consistent IDs, when load is called, then\
         \ all child ID references resolve to existing entities"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R006
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given validator rejects course with duplicate IDs, when save is called,\
         \ then CourseValidationException propagates"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
     - name: "Given a course directory with unique IDs, when load is called, then no\
         \ duplicate IDs exist across any hierarchy level"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R007
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a valid directory structure, when load is called, then each directory\
         \ level contains its expected descriptor file"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R008
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given validator rejects course with broken parent references, when save\
         \ is called, then CourseValidationException propagates"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
     - name: "Given a loaded course, when inspecting parent references, then each child\
         \ parentId matches its actual parent id"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R009
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a null course entity, when save is called, then an exception is\
         \ thrown"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
     - name: "Given a course with all required fields populated, when load is called,\
         \ then all mandatory fields are non-null"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R010
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a course with empty string and null field values, when saved and\
         \ reloaded, then empty and null values are preserved exactly"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R011
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given quiz templates with dual id and oidId fields, when load is called,\
         \ then both fields contain the same value"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R012
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given quiz templates with numberDouble format values, when saved to JSON,\
         \ then numeric fields preserve MongoDB Extended JSON format"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R013
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a loaded course, when inspecting order fields, then milestones\
         \ topics and knowledges have sequential 1-based order within their parent"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R014
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a valid course entity, when save is called, then validator is invoked\
         \ and no exception is thrown"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
     - name: "Given an invalid course entity, when save is called, then validator throws\
         \ CourseValidationException"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R015
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given validator rejects milestone with no topics, when save is called,\
         \ then CourseValidationException propagates"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
     - name: "Given a milestone with empty children list, when load is called, then\
         \ validation rejects the course with a descriptive error"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R016
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given entities with labels, when saved to disk, then directory names\
         \ are deterministic slugs derived from the labels"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   journeysCoverage:
   - journeyId: F-COURSE-J001
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a course directory with full hierarchy, when loading step by step,\
         \ then all levels are resolved with correct hierarchy order and validation"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - journeyId: F-COURSE-J002
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a course entity with validator passing, when save is called, then\
         \ no exception is thrown"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
     - name: "Given a course in memory, when saving to a target directory, then the\
         \ directory structure and JSON files are written correctly"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - journeyId: F-COURSE-J003
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a course loaded from files, when saved to a new directory and reloaded,\
         \ then the reloaded course equals the original"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - journeyId: F-COURSE-J004
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a loaded course, when navigating from ROOT to milestones to topics\
         \ to knowledges to quizzes, then each level is accessible and correctly ordered"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - journeyId: F-COURSE-J005
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a loaded course, when a knowledge label is modified and the course\
         \ is saved and reloaded, then the change is reflected and unmodified data\
         \ remains intact"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - journeyId: F-COURSE-J006
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a nonexistent path or missing descriptor or malformed JSON, when\
         \ load is called, then a descriptive error is thrown and no partial course\
         \ is returned"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   quality:
@@ -2260,100 +2260,100 @@ features:
     healthScore: 0
     verdict: PASSED
 - id: FEAT-RCLALEN
-  state: IMPLEMENTING
-  requirementFile: requirements/2026-04-28.02_rcla-length-aware-context/REQUIREMENT.md
+  state: IMPLEMENTED
+  requirementFile: ./requirements/2026-04-28.02_rcla-length-aware-context/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLALEN-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: should populate tokenCount on the correction context from SentenceLengthDiagnosis
         on the quiz node
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should populate targetMin and targetMax on the correction context from
         SentenceLengthDiagnosis on the quiz node
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should populate delta on the correction context from SentenceLengthDiagnosis
         on the quiz node
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should populate lengthDirection on the correction context as a non-null
         enum value derived by the resolver
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: buildUserPrompt should include a length section with tokenCount targetMin
         targetMax delta and lengthDirection when the context exposes a known length
         direction
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
   - ruleId: F-RCLALEN-R002
-    state: FAILING
+    state: PASSING
     tests:
     - name: should set lengthDirection to SHORTEN when delta is greater than zero
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should set lengthDirection to LENGTHEN when delta is less than zero
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should set lengthDirection to KEEP_SAME when delta is exactly zero
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should set lengthDirection to UNKNOWN when SentenceLengthDiagnosis is
         not available on the quiz node
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
   - ruleId: F-RCLALEN-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: should read SentenceLengthDiagnosis from the same quiz node already used
         to obtain LemmaPlacementDiagnosis
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should not introduce any new traversal of the audit tree to read SentenceLengthDiagnosis
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
   - ruleId: F-RCLALEN-R004
-    state: FAILING
+    state: PASSING
     tests:
     - name: should still produce a correction context when LemmaPlacementDiagnosis
         is present but SentenceLengthDiagnosis is absent on the quiz node
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should leave non-length fields of the correction context populated normally
         when SentenceLengthDiagnosis is absent
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: buildUserPrompt should omit the length section when lengthDirection is
         UNKNOWN
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
   - ruleId: F-RCLALEN-R005
@@ -2559,7 +2559,7 @@ features:
     - branchCoverage 50% < 60%
 - id: FEAT-COCA
   state: DRAFT
-  requirementFile: requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-COCA-R001
     state: NO_TESTS
@@ -2682,7 +2682,7 @@ features:
     verdict: PASSED
 - id: FEAT-NLP
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-NLP-R001
     state: NO_TESTS
@@ -2819,8 +2819,8 @@ features:
     verdict: PASSED
 - id: FEAT-LABS
   state: IMPLEMENTED
-  requirementFile: requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
-  patchFile: requirements/2026-03-28.03_lemma-absence/architectural_patch.yaml
+  requirementFile: ./requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
+  patchFile: ./requirements/2026-03-28.03_lemma-absence/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-LABS-R001
     state: PASSING
@@ -3897,7 +3897,7 @@ features:
     verdict: PASSED
 - id: FEAT-CLI
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLI-R001
     state: PASSING
@@ -4018,88 +4018,88 @@ features:
     - lineCoverage 42% < 70%
     - branchCoverage 16% < 60%
 - id: FEAT-PIPRE
-  state: IMPLEMENTING
-  requirementFile: requirements/2026-05-03.01_proposal-impact-preview/REQUIREMENT.md
+  state: IMPLEMENTED
+  requirementFile: ./requirements/2026-05-03.01_proposal-impact-preview/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-PIPRE-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dada una RevisionProposal generada, cuando revise corre, entonces ImpactPreviewComputer.compute\
         \ se invoca exactamente una vez con el curso actual y la propuesta recien\
         \ construida"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultRevisionEngine
     - name: "Dado un ImpactPreview computado, cuando revise corre, entonces el preview\
         \ se persiste via ImpactPreviewStore.save asociado al proposalId de la propuesta\
         \ antes de que el flujo retorne"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultRevisionEngine
   - ruleId: F-PIPRE-R002
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un currentCourse y una RevisionProposal, cuando compute corre, entonces\
         \ no se invoca AuditReportStore.save y no se persiste ningun AuditReport nuevo"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultImpactPreviewComputer
   - ruleId: F-PIPRE-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un currentCourse y una RevisionProposal, cuando compute corre, entonces\
         \ el ScoreDelta.before de cada LevelImpact se calcula contra el AuditReport\
         \ baseline del curso recibido y no contra una version posterior"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultImpactPreviewComputer
   - ruleId: F-PIPRE-R004
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dada una RevisionProposal sobre un quiz contenido en knowledge, milestone,\
         \ topic y curso, cuando compute corre, entonces el ImpactPreview.levelImpacts\
         \ cubre la cadena jerarquica QUIZ -> KNOWLEDGE -> TOPIC -> MILESTONE -> COURSE\
         \ en orden de hoja a raiz"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultImpactPreviewComputer
     - name: "Dada una RevisionProposal sobre un nodo cuyo arbol no contiene algun\
         \ nivel intermedio, cuando compute corre, entonces los niveles ausentes se\
         \ omiten en lugar de reportarse como cero en levelImpacts"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultImpactPreviewComputer
   - ruleId: F-PIPRE-R005
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dada una RevisionProposal cuyo elementAfter afecta multiples analyzers,\
         \ cuando compute corre, entonces el LevelImpact correspondiente expone un\
         \ DimensionDelta por cada analyzer evaluado en ese nivel"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultImpactPreviewComputer
     - name: "Dado un nivel donde un analyzer no aporta diagnosticos, cuando compute\
         \ corre, entonces ese analyzer se omite de dimensionDeltas en lugar de reportarse\
         \ con delta cero"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultImpactPreviewComputer
   - ruleId: F-PIPRE-R006
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un ScoreDelta producido por compute para cualquier (nivel, dimension),\
         \ entonces los tres campos before, after y difference estan presentes y difference\
         \ es exactamente after menos before"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultImpactPreviewComputer
   - ruleId: F-PIPRE-R007
@@ -4121,20 +4121,20 @@ features:
       module: audit-cli
       implementation: GetCmd
   - ruleId: F-PIPRE-R008
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un ImpactPreview ya persistido bajo un proposalId, cuando save se\
         \ invoca por segunda vez con otro ImpactPreview con el mismo proposalId, entonces\
         \ findByProposalId retorna el preview persistido originalmente y no el nuevo"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemImpactPreviewStore
     - name: "Dado un ImpactPreview persistido en disco, cuando findByProposalId se\
         \ invoca con su proposalId, entonces retorna el ImpactPreview con todos sus\
         \ levelImpacts, availability y unavailability intactos"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemImpactPreviewStore
   - ruleId: F-PIPRE-R013
@@ -4161,14 +4161,14 @@ features:
       module: audit-cli
       implementation: DefaultImpactPreviewFormatter
   - ruleId: F-PIPRE-R009
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dada una RevisionProposal cuyo nodeId no se localiza en el currentCourse\
         \ al simular, cuando compute corre, entonces retorna un ImpactPreview con\
         \ availability UNAVAILABLE, reason TARGET_NODE_ABSENT y detail no vacio identificando\
         \ el nodeId ausente"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultImpactPreviewComputer
     - name: "Dado que AuditReportStore no puede recuperar la auditoria base del curso\
@@ -4176,67 +4176,67 @@ features:
         \ UNAVAILABLE, reason BASE_AUDIT_UNAVAILABLE y detail no vacio explicando\
         \ la causa"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultImpactPreviewComputer
     - name: "Dado que AuditEngine falla al recomputar scores sobre el curso simulado,\
         \ cuando compute corre, entonces retorna un ImpactPreview con availability\
         \ UNAVAILABLE, reason SIMULATION_FAILED y detail no vacio explicando la causa"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultImpactPreviewComputer
   - ruleId: F-PIPRE-R010
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un ImpactPreview UNAVAILABLE devuelto por el computer, cuando revise\
         \ corre, entonces la RevisionArtifact se persiste igual con su veredicto inicial\
         \ y el outcome no es de error"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultRevisionEngine
   - ruleId: F-PIPRE-R011
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dadas dos RevisionProposal distintas con el mismo currentCourse, cuando\
         \ compute corre dos veces, entonces produce dos ImpactPreview independientes\
         \ con proposalId distinto y sin compartir levelImpacts entre ambos"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultImpactPreviewComputer
   - ruleId: F-PIPRE-R012
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dada una RevisionProposal cuyo elementBefore y elementAfter referencian\
         \ el mismo nodeId estable, cuando compute corre, entonces el LevelImpact del\
         \ nodo objetivo conserva ese nodeId en before y after sin modelar renombres\
         \ ni reubicaciones"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultImpactPreviewComputer
   journeysCoverage:
   - journeyId: F-PIPRE-J001
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_elPreviewSeComputaExitosamente_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FPipreJ001JourneyTest
     - pathId: path-2
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path2_elPreviewNoSePuedeComputar_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FPipreJ001JourneyTest
   - journeyId: F-PIPRE-J002
@@ -4261,24 +4261,24 @@ features:
         module: audit-cli
         implementation: FPipreJ002JourneyTest
   - journeyId: F-PIPRE-J003
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_elNodoObjetivoSeLocalizaEnElCursoSimulado_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FPipreJ003JourneyTest
     - pathId: path-2
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path2_elNodoObjetivoNoSeLocalizaEnElCursoSimulado_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FPipreJ003JourneyTest
   quality:
@@ -4366,7 +4366,7 @@ features:
     - branchCoverage 50% < 60%
 - id: f0b4e57b-7c0f-4e3e-b9b3-843aef216a67
   state: DRAFT
-  requirementFile: requirements/2026-04-28.01_laps-engine-public-visibility/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-28.01_laps-engine-public-visibility/REQUIREMENT.md
   rulesCoverage:
   - ruleId: 27ac13c5-bc70-4e9b-96c3-3315542d6835
     state: NO_TESTS
@@ -4413,7 +4413,8 @@ features:
     verdict: PASSED
 - id: FEAT-KTLEN
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
+  patchFile: ./requirements/2026-03-22.01_knowledge-titles-length/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-KTLEN-R001
     state: PASSING
@@ -4441,6 +4442,12 @@ features:
       passing: true
       module: audit-domain
       implementation: KnowledgeTitleLengthAnalyzer
+    - name: should use weighted character length not plain string length for scoring
+        instructions
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
   - ruleId: F-KTLEN-R003
     state: PASSING
     tests:
@@ -4510,8 +4517,6 @@ features:
       passing: true
       module: audit-domain
       implementation: KnowledgeTitleLengthAnalyzer
-  - ruleId: F-KTLEN-R004
-    state: NO_TESTS
   - ruleId: F-KTLEN-R005
     state: PASSING
     tests:
@@ -4541,26 +4546,6 @@ features:
       implementation: KnowledgeInstructionsLengthAnalyzer
     - name: should use weighted character length not plain string length for scoring
         instructions
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: KnowledgeInstructionsLengthAnalyzer
-    - name: should score 1.0 for instructions exactly at soft limit of 70 chars
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: KnowledgeInstructionsLengthAnalyzer
-    - name: should score 0.5 for instructions of 71 chars just above soft limit
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: KnowledgeInstructionsLengthAnalyzer
-    - name: should score 0.5 for instructions exactly at hard limit of 100 chars
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: KnowledgeInstructionsLengthAnalyzer
-    - name: should score 0.0 for instructions of 101 chars just above hard limit
       implemented: true
       passing: true
       module: audit-domain
@@ -4595,12 +4580,32 @@ features:
       passing: true
       module: audit-domain
       implementation: KnowledgeInstructionsLengthAnalyzer
+    - name: should score 1.0 for instructions exactly at soft limit of 70 chars
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
     - name: should score 1.0 for instructions of 30 chars within soft limit
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeInstructionsLengthAnalyzer
+    - name: should score 0.5 for instructions of 71 chars just above soft limit
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
+    - name: should score 0.5 for instructions exactly at hard limit of 100 chars
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
     - name: should score 0.5 for instructions of 85 chars between soft and hard limits
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
+    - name: should score 0.0 for instructions of 101 chars just above hard limit
       implemented: true
       passing: true
       module: audit-domain
@@ -4616,8 +4621,6 @@ features:
       passing: true
       module: audit-domain
       implementation: KnowledgeInstructionsLengthAnalyzer
-  - ruleId: F-KTLEN-R007
-    state: NO_TESTS
   - ruleId: F-KTLEN-R008
     state: PASSING
     tests:
@@ -4683,9 +4686,27 @@ features:
       implementation: KnowledgeInstructionsLengthAnalyzer
   journeysCoverage:
   - journeyId: F-KTLEN-J001
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: "Given a course with milestones, topics and knowledges, when AuditEngine.runAudit\
+        \ is invoked with both KTLEN analyzers, then the report root contains aggregated\
+        \ knowledge-title-length and knowledge-instructions-length scores at every\
+        \ hierarchy level"
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: IAuditEngine
   - journeyId: F-KTLEN-J002
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: "Given a course with knowledges whose title weighted length exceeds 28,\
+        \ when AuditEngine.runAudit is invoked, then the affected knowledge nodes\
+        \ carry knowledge-title-length scores below 1.0 enabling identification of\
+        \ overlong titles"
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: IAuditEngine
   - journeyId: F-KTLEN-J003
     state: PASSING
     tests:
@@ -4695,10 +4716,26 @@ features:
       passing: true
       module: audit-domain
       implementation: KnowledgeInstructionsLengthAnalyzer
+    - name: should use weighted character length not plain string length for scoring
+        instructions
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
   - journeyId: F-KTLEN-J004
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: "Given a course with mixed title and instruction lengths, when AuditEngine.runAudit\
+        \ is invoked, then per-level scores for knowledge-title-length and knowledge-instructions-length\
+        \ are reported independently per AuditNode allowing the user to compare both\
+        \ dimensions"
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: IAuditEngine
   quality:
     classes:
+    - com.learney.contentaudit.auditdomain.IAuditEngine
     - com.learney.contentaudit.auditdomain.KnowledgeInstructionsLengthAnalyzer
     - com.learney.contentaudit.auditdomain.KnowledgeTitleLengthAnalyzer
     thresholds:
@@ -4709,14 +4746,14 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 52
-      linesMissed: 4
-      linesTotal: 56
-      lineCoveragePct: 92
+      linesMissed: 84
+      linesTotal: 136
+      lineCoveragePct: 38
       branchesCovered: 24
-      branchesMissed: 2
-      branchesTotal: 26
-      branchCoveragePct: 92
-      blendPct: 92
+      branchesMissed: 20
+      branchesTotal: 44
+      branchCoveragePct: 54
+      blendPct: 46
     mutation:
       totalMutants: 0
       killed: 0
@@ -4727,23 +4764,41 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 22
-      hotspots: 0
-      maxCrap: 5.024
-      averageCrap: 1.8192727272727274
-      simple: 22
+      totalMethods: 26
+      hotspots: 2
+      maxCrap: 30.0
+      averageCrap: 4.154769230769231
+      simple: 24
       moderate: 0
-      high: 0
+      high: 2
       veryHigh: 0
-      healthPct: 100
-    healthScore: 53
-    verdict: PASSED
+      healthPct: 92
+      top:
+      - className: com.learney.contentaudit.auditdomain.IAuditEngine
+        methodName: buildTree
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditableCourse;)Lcom/learney/contentaudit/auditdomain/AuditNode;
+        line: 40
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+      - className: com.learney.contentaudit.auditdomain.IAuditEngine
+        methodName: traverseAndNotify
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Lcom/learney/contentaudit/auditdomain/ContentAnalyzer;)V
+        line: 103
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+    healthScore: 37
+    verdict: WARNED
+    violations:
+    - lineCoverage 38% < 70%
+    - branchCoverage 54% < 60%
 - id: FEAT-CDIFF
-  state: IMPLEMENTING
-  requirementFile: requirements/2026-05-06.01_consolidated-differential-view/REQUIREMENT.md
+  state: IMPLEMENTED
+  requirementFile: ./requirements/2026-05-06.01_consolidated-differential-view/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CDIFF-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un ConsolidatedView producido por el builder con activeAuditId y\
         \ activePlanId resueltos, cuando getConsolidated corre, entonces la salida\
@@ -4763,30 +4818,30 @@ features:
         \ read corre, entonces retorna un Optional con esa misma seleccion (auditId\
         \ y planId)"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemActiveAnalysisSelectionStore
     - name: "Dado un store sin seleccion previa (archivo ausente), cuando read corre,\
         \ entonces retorna Optional.empty"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemActiveAnalysisSelectionStore
     - name: "Dado un store con una seleccion escrita, cuando clear corre, entonces\
         \ read posterior retorna Optional.empty"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemActiveAnalysisSelectionStore
     - name: "Dada una seleccion activa con auditId y planId resolubles, cuando build\
         \ corre, entonces ConsolidatedView.activeAuditId y activePlanId coinciden\
         \ con los identificadores leidos del ActiveAnalysisSelectionStore"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R002
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dada una invocacion setActive(auditId, planId) con valores no nulos,\
         \ cuando setActive corre, entonces ActiveAnalysisSelectionStore.write se invoca\
@@ -4812,7 +4867,7 @@ features:
         \ la misma seleccion, entonces el archivo no se reescribe (write idempotente\
         \ y no destructivo a nivel observable)"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemActiveAnalysisSelectionStore
     - name: "Dado un courseRoot con AuditReports y RefinementPlans persistidos, cuando\
@@ -4820,21 +4875,21 @@ features:
         \ ningun AuditReport, RefinementPlan, RevisionArtifact ni archivo del curso\
         \ se modifica"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemActiveAnalysisSelectionStore
   - ruleId: F-CDIFF-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un AuditReport cuyo plan activo no tiene propuestas aceptadas ni\
         \ pendientes, cuando build corre, entonces nodeImpacts queda vacio (no hay\
         \ nodos afectados que reportar) — R003"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R004
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un plan activo de un analisis viejo con propuestas pendientes y\
         \ un analisis mas nuevo cuyo plan no las contiene, cuando build corre apuntando\
@@ -4842,11 +4897,11 @@ features:
         \ y como contribuciones a la foto pendingProjection de los fields tocados\
         \ en nodeImpacts — R004"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R005
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un RevisionArtifact con verdict REJECTED en el plan activo, cuando\
         \ build corre, entonces ese proposalId no aparece en nodeImpacts (ni en acceptedProposalIds\
@@ -4854,11 +4909,11 @@ features:
         \ no contribuye a las fotos original/consolidated/pendingProjection de ningun\
         \ field — R005"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R006
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un ConsolidatedView con un NodeImpact que lleva fieldChanges no\
         \ vacio (varias entradas con FieldChange tripleta) mas acceptedProposalIds\
@@ -4876,7 +4931,7 @@ features:
         \ el mapa fieldChanges del NodeImpact contiene SOLO la entrada del segundo\
         \ field — R006 invariante 1: solo fields con cambio"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dado un NodeImpact con varios fields cambiados de origenes distintos\
@@ -4885,25 +4940,25 @@ features:
         \ misma forma clave-valor con FieldChange(original, consolidated, pendingProjection)\
         \ sin ramas separadas por origen del field — R006 invariante 2: forma uniforme"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dado un nodo cuyo subarbol no produce ningun field cambiado entre las\
         \ tres fotos, cuando build corre, entonces ese nodo NO aparece en ConsolidatedView.nodeImpacts\
         \ — R006 invariante 3: nodo sin cambios no aparece"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R007
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un field cambiado de un nodo hoja, cuando build corre, entonces\
         \ FieldChange.original es identico al valor que el AuditReport baseline expone\
         \ para ese field y ese nodo (sin recomputar, sin redondear, sin derivar) —\
         \ R007 invariante 1: fidelidad de original"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dado un escenario donde el AuditEngine es invocado dos veces (una sobre\
@@ -4913,7 +4968,7 @@ features:
         \ correspondiente, sin que el builder lo recompute o transforme — R007 invariante\
         \ 2: determinacion de consolidated"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dado un escenario donde el AuditEngine es invocado dos veces (una sobre\
@@ -4923,7 +4978,7 @@ features:
         \ correspondiente, sin que el builder lo recompute o derive desde consolidated\
         \ — R007 invariante 3: determinacion de pendingProjection"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dado un nodo hoja con una aceptada (que cambia el field) y una pendiente\
@@ -4932,7 +4987,7 @@ features:
         \ tiene la aceptada aplicada (no sobre el original) — R007 invariante 4: orden\
         \ de stacking, pendientes sobre consolidated, no sobre original"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dado un nodo padre cuyo subarbol contiene cambios y para el cual el AuditEngine\
@@ -4942,7 +4997,7 @@ features:
         \ de hijos en el builder — R007 invariante 5: las tres fotos provienen del\
         \ motor"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Given an APPROVED quiz proposal whose KNOWLEDGE ancestor has an aggregate\
@@ -4953,11 +5008,11 @@ features:
         \ 5: la foto del padre proviene del motor, FEAT-CDIFF la copia del AuditNode\
         \ correspondiente sin recomputar"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R019
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dados tres AuditNode donde una hoja escalar accesible por el recorrido\
         \ recursivo tiene valores distintos entre la foto original y la foto consolidated,\
@@ -4965,7 +5020,7 @@ features:
         \ clave codifica el path a esa hoja y cuyo FieldChange lleva los tres valores\
         \ — R019 invariante 1: cobertura por construccion, sin enumeracion previa"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: RecursiveNodeFieldDiffer
     - name: "Dados tres AuditNode donde una de las hojas escalares pertenece a un\
@@ -4974,7 +5029,7 @@ features:
         \ aparece como field del mapa SIN requerir registro previo en ningun catalogo\
         \ — R019 invariante 2: aparicion automatica de cosas nuevas"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: RecursiveNodeFieldDiffer
     - name: "Dada una invocacion de create() sobre la factory, entonces retorna un\
@@ -4984,18 +5039,18 @@ features:
         \ de diff sobre AuditNode con cambios en hojas excluibles y en listas con\
         \ identidad — composicion del motor"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultNodeFieldDifferFactory
   - ruleId: F-CDIFF-R020
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dados tres AuditNode donde la unica diferencia entre fotos es un campo\
         \ cuyo nombre el exclusionRegistry clasifica como OPAQUE_PERSISTENCE_ID, cuando\
         \ diff corre, entonces el mapa retornado esta vacio: la hoja no se emite aunque\
         \ difiera — R020 categoria 1"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: RecursiveNodeFieldDiffer
     - name: "Dados tres AuditNode donde la unica diferencia entre fotos es un campo\
@@ -5003,7 +5058,7 @@ features:
         \ diff corre, entonces el mapa retornado esta vacio: la referencia estructural\
         \ no se emite aunque difiera — R020 categoria 2"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: RecursiveNodeFieldDiffer
     - name: "Dados tres AuditNode donde la unica diferencia entre fotos es un campo\
@@ -5011,7 +5066,7 @@ features:
         \ entonces el mapa retornado esta vacio: el timestamp no se emite aunque difiera\
         \ — R020 categoria 3"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: RecursiveNodeFieldDiffer
     - name: "Dados tres AuditNode donde la unica diferencia entre fotos es un campo\
@@ -5019,7 +5074,7 @@ features:
         \ corre, entonces el mapa retornado esta vacio: el orden interno no se emite\
         \ aunque difiera — R020 categoria 4"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: RecursiveNodeFieldDiffer
     - name: "Dados tres AuditNode donde la unica diferencia entre fotos es un campo\
@@ -5027,7 +5082,7 @@ features:
         \ corre, entonces el mapa retornado esta vacio: el campo no semantico no se\
         \ emite aunque difiera — R020 categoria 5"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: RecursiveNodeFieldDiffer
     - name: "Dada una invocacion de isExcluded sobre un campo seed del registry cuyo\
@@ -5035,7 +5090,7 @@ features:
         \ retorna OPAQUE_PERSISTENCE_ID — R020 categoria 1: seed de identificadores\
         \ opacos de persistencia"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultFieldExclusionRegistry
     - name: "Dada una invocacion de isExcluded sobre un campo seed del registry cuyo\
@@ -5044,7 +5099,7 @@ features:
         \ retorna true y getRole retorna STRUCTURAL_REFERENCE — R020 categoria 2:\
         \ seed de referencias estructurales"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultFieldExclusionRegistry
     - name: "Dada una invocacion de isExcluded sobre un campo seed del registry cuyo\
@@ -5052,7 +5107,7 @@ features:
         \ modelo), entonces retorna true y getRole retorna TIMESTAMP — R020 categoria\
         \ 3: seed de timestamps"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultFieldExclusionRegistry
     - name: "Dada una invocacion de isExcluded sobre un campo seed del registry cuyo\
@@ -5060,7 +5115,7 @@ features:
         \ por el almacenamiento), entonces retorna true y getRole retorna INTERNAL_ORDER\
         \ — R020 categoria 4: seed de ordenes internos"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultFieldExclusionRegistry
     - name: "Dada una invocacion de isExcluded sobre un campo seed del registry cuyo\
@@ -5068,11 +5123,11 @@ features:
         \ true y getRole retorna NON_SEMANTIC — R020 categoria 5: seed de la categoria\
         \ escape"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultFieldExclusionRegistry
   - ruleId: F-CDIFF-R023
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dados tres AuditNode donde la misma hoja escalar profunda es alcanzable\
         \ por la misma secuencia de campos anidados en las tres fotos con valores\
@@ -5081,7 +5136,7 @@ features:
         \ tres valores (no tres entradas separadas, una por foto) — R023 invariante\
         \ 1: estabilidad entre fotos"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: RecursiveNodeFieldDiffer
     - name: "Dadas dos invocaciones independientes de diff sobre dos pares de AuditNode\
@@ -5090,11 +5145,11 @@ features:
         \ clave para identificar el field correspondiente (sin variantes del path\
         \ por nodo) — R023 invariante 2: estabilidad entre nodos del mismo tipo"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: RecursiveNodeFieldDiffer
   - ruleId: F-CDIFF-R022
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dados tres AuditNode con una lista cuyo tipo de elemento tiene identidad\
         \ declarada en identityRegistry (p.ej. List<AbsentLemma> con clave (lemma,pos)),\
@@ -5103,7 +5158,7 @@ features:
         \ contiene fields derivados con clave estable basada en la identidad del elemento\
         \ (no en su indice posicional) — R022 invariante 1: lista con identidad"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: RecursiveNodeFieldDiffer
     - name: "Dados tres AuditNode con una lista cuyo tipo de elemento NO tiene identidad\
@@ -5113,7 +5168,7 @@ features:
         \ fields con clave de path posicional ([i]) — R022 invariante 2: diff posicional\
         \ sin identidad"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: RecursiveNodeFieldDiffer
     - name: "Dada una invocacion de getKeySpec sobre el campo lista de tipo List<AbsentLemma>\
@@ -5121,7 +5176,7 @@ features:
         \ fieldName='absentLemmas'), entonces retorna un Optional poblado con un ListIdentityKeySpec\
         \ cuyos fieldNames son ['lemma','pos'] — R022 seed AbsentLemma"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultListIdentityRegistry
     - name: "Dada una invocacion de getKeySpec sobre el campo lista de tipo List<MisplacedLemma>\
@@ -5129,7 +5184,7 @@ features:
         \ un ListIdentityKeySpec cuyos fieldNames son ['lemma','pos'] — R022 seed\
         \ MisplacedLemma"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultListIdentityRegistry
     - name: "Dada una invocacion de getKeySpec sobre el campo lista de tipo List<BucketResult>\
@@ -5137,25 +5192,25 @@ features:
         \ poblado con un ListIdentityKeySpec cuyos fieldNames son ['bandName'] — R022\
         \ seed BucketResult"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultListIdentityRegistry
     - name: "Dada una invocacion de getKeySpec sobre el campo lista de tipo List<QuarterResult>,\
         \ entonces retorna un Optional poblado con un ListIdentityKeySpec cuyos fieldNames\
         \ son ['index'] — R022 seed QuarterResult"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultListIdentityRegistry
     - name: "Dada una invocacion de getKeySpec sobre el campo lista de tipo List<ImprovementDirective>,\
         \ entonces retorna un Optional poblado con un ListIdentityKeySpec cuyos fieldNames\
         \ son ['type','bandName','levelName'] — R022 seed ImprovementDirective"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultListIdentityRegistry
   - ruleId: F-CDIFF-R009
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un ConsolidatedView con varios nodeImpacts cuyos fieldChanges incluyen\
         \ scores escalares cambiados, cuando format corre, entonces la salida NO contiene\
@@ -5172,11 +5227,11 @@ features:
         \ afectadas; los scores cambiados solo aparecen como entradas del mapa fieldChanges\
         \ del nodo correspondiente — R009"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R010
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un ConsolidatedView con cualquier conjunto de fieldChanges, cuando\
         \ format corre, entonces la salida NO contiene campos numericos precomputados\
@@ -5191,11 +5246,11 @@ features:
         \ contrato emitido contiene exclusivamente las tripletas (original, consolidated,\
         \ pendingProjection) por field — R010"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R011
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un ConsolidatedView con un NodeImpact cuyo acceptedProposalIds y\
         \ pendingProposalIds estan poblados, cuando format corre, entonces la salida\
@@ -5210,7 +5265,7 @@ features:
         \ SOLO el proposalId de la primera (R011 invariante 1: cobertura accepted,\
         \ recíproca incluida)"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dada una propuesta PENDING_APPROVAL aplicable del plan activo que cambia\
@@ -5219,7 +5274,7 @@ features:
         \ SOLO el proposalId de la primera (R011 invariante 2: cobertura pending,\
         \ recíproca incluida)"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dado un nodo hoja con dos propuestas aceptadas que lo afectaron en orden\
@@ -5227,7 +5282,7 @@ features:
         \ contiene ambos proposalId en orden createdAt ascendente — R011 invariante\
         \ 3: orden estable"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dado un nodo afectado con varias aceptadas y varias pendientes que tocan\
@@ -5236,7 +5291,7 @@ features:
         \ especifico dentro de fieldChanges) — R011 invariante 4: trazabilidad por\
         \ nodo, no por field"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R012
@@ -5250,7 +5305,7 @@ features:
       module: audit-cli
       implementation: DefaultConsolidatedViewFormatter
   - ruleId: F-CDIFF-R013
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un ConsolidatedView con availability UNAVAILABLE producido por el\
         \ builder, cuando getConsolidated corre, entonces el comando termina con exit\
@@ -5272,32 +5327,32 @@ features:
         \ (RefinementPlanStore retorna empty), cuando build corre, entonces ConsolidatedView.availability\
         \ es UNAVAILABLE con reason ACTIVE_PLAN_UNAVAILABLE"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dada una propuesta aceptada que referencia un nodeId no encontrado por\
         \ CourseElementLocator al re-agregar, cuando build corre, entonces ConsolidatedView.availability\
         \ es UNAVAILABLE con reason INCONSISTENT_PROPOSAL"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dado que AuditEngine falla al recomputar agregaciones sobre el subarbol\
         \ modificado, cuando build corre, entonces ConsolidatedView.availability es\
         \ UNAVAILABLE con reason REAGGREGATION_FAILED"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
     - name: "Dado que el ActiveAnalysisSelectionStore retorna Optional.empty, cuando\
         \ build corre, entonces ConsolidatedView.availability es UNAVAILABLE con reason\
         \ NO_ACTIVE_ANALYSIS y nodeImpacts queda vacio — R013"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R015
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dada cualquier invocacion de getConsolidated, entonces no se invoca AuditReportStore.save,\
         \ RefinementPlanStore.save ni RevisionArtifactStore.save sobre los stores\
@@ -5310,11 +5365,11 @@ features:
         \ no aplicables), entonces no se invoca AuditReportStore.save, RefinementPlanStore.save\
         \ ni RevisionArtifactStore.save sobre los stores inyectados"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R016
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un plan activo con multiples propuestas (varias APPROVED y varias\
         \ PENDING_APPROVAL) que tocan distintos nodos, cuando build corre una sola\
@@ -5323,11 +5378,11 @@ features:
         \ aplicables en las fotos pendingProjection) sin requerir invocaciones adicionales\
         \ del builder — R016 invariante 1: combinacion en un documento"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   - ruleId: F-CDIFF-R017
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Dado un plan activo asociado a un AuditReport y un plan ajeno con propuestas\
         \ distintas asociadas a otro analisis, cuando build corre, entonces solo se\
@@ -5335,7 +5390,7 @@ features:
         \ del plan ajeno no aparecen en nodeImpacts (ni como acceptedProposalIds,\
         \ pendingProposalIds, ni como contribuciones a las fotos de fields) — R017"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultConsolidatedViewBuilder
   journeysCoverage:
@@ -5361,78 +5416,78 @@ features:
         module: audit-cli
         implementation: FCdiffJ001JourneyTest
   - journeyId: F-CDIFF-J002
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FCdiffJ002JourneyTest
   - journeyId: F-CDIFF-J003
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_unaListaTieneIdentidadDeclaradaYElementosCambiadosEntreFotos_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FCdiffJ003JourneyTest
     - pathId: path-2
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path2_lasListasAlcanzadasNoPresentanCambiosEntreFotosONoSonRelevantesParaEsteMilestone_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FCdiffJ003JourneyTest
   - journeyId: F-CDIFF-J004
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_hayAlMenosUnaHojaEscalarDeScoreConCambioEntreFotos_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FCdiffJ004JourneyTest
     - pathId: path-2
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path2_ningunaHojaEscalarDeScoreCambio_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FCdiffJ004JourneyTest
   - journeyId: F-CDIFF-J005
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_laPendienteSePuedeAplicar_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FCdiffJ005JourneyTest
     - pathId: path-2
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path2_laPendienteNoSePuedeAplicar_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FCdiffJ005JourneyTest
   - journeyId: F-CDIFF-J006
@@ -5448,15 +5503,15 @@ features:
         module: audit-cli
         implementation: FCdiffJ006JourneyTest
   - journeyId: F-CDIFF-J008
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FCdiffJ008JourneyTest
   quality:
@@ -5509,8 +5564,8 @@ features:
     verdict: PASSED
 - id: FEAT-PLANEF
   state: IMPLEMENTED
-  requirementFile: requirements/2026-05-07.01_plan-efimero-no-persistido/REQUIREMENT.md
-  patchFile: requirements/2026-05-07.01_plan-efimero-no-persistido/architectural_patch.yaml
+  requirementFile: ./requirements/2026-05-07.01_plan-efimero-no-persistido/REQUIREMENT.md
+  patchFile: ./requirements/2026-05-07.01_plan-efimero-no-persistido/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-PLANEF-R001
     state: PASSING
@@ -5757,21 +5812,21 @@ features:
     - lineCoverage 48% < 70%
     - branchCoverage 47% < 60%
 - id: FEAT-REVAPR
-  state: IMPLEMENTING
-  requirementFile: requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
+  state: IMPLEMENTED
+  requirementFile: ./requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVAPR-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given any RevisionProposal, when validate is called in human mode, then\
         \ the verdict field on the returned result is literally the PENDING_APPROVAL\
         \ enum value (new vocabulary)"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: HumanApprovalValidator
   - ruleId: F-REVAPR-R002
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given 'get proposals' without filters, when invoked, then it lists every\
         \ persisted artifact across all plan directories and exits zero"
@@ -5813,37 +5868,37 @@ features:
         \ Optional.empty()) is called, then it scans subdirectories and returns the\
         \ matching artifact"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemRevisionArtifactStore
     - name: "Given no artifact matches the id, when findByProposalId(id, Optional.empty())\
         \ is called, then it returns Optional.empty"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemRevisionArtifactStore
     - name: "Given an artifact saved under plan P1, when findByProposalId(id, Optional.of(P1))\
         \ is called, then it takes the direct path and returns the artifact"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemRevisionArtifactStore
     - name: "Given no artifact under plan P1 with that id, when findByProposalId(id,\
         \ Optional.of(P1)) is called, then it returns Optional.empty"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemRevisionArtifactStore
     - name: "Given artifacts saved under multiple plan directories, when list() is\
         \ called, then it returns all of them across all plans"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemRevisionArtifactStore
     - name: "Given the revisions directory is empty or missing, when list() is called,\
         \ then it returns an empty list"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemRevisionArtifactStore
   - ruleId: F-REVAPR-R003
@@ -5945,90 +6000,90 @@ features:
       module: audit-cli
       implementation: DefaultApprovalModeResolver
   - ruleId: F-REVAPR-R006
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given ApprovalMode.AUTO, when create is called, then it returns an AutoApproveValidator\
         \ instance (exactly one validator active for the invocation)"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultRevisionValidatorFactory
     - name: "Given ApprovalMode.HUMAN, when create is called, then it returns a HumanApprovalValidator\
         \ instance (exactly one validator active for the invocation)"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultRevisionValidatorFactory
   - ruleId: F-REVAPR-R007
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given any RevisionProposal, when validate is called, then it returns\
         \ a RevisionValidatorResult with verdict PENDING_APPROVAL"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: HumanApprovalValidator
     - name: "Given a PENDING_APPROVAL result, when rejectionReason is queried, then\
         \ it returns Optional.empty"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: HumanApprovalValidator
   - ruleId: F-REVAPR-R008
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given the human validator emits PENDING_APPROVAL, when revise runs, then\
         \ the artifact is persisted with PENDING_APPROVAL and CourseRepository is\
         \ never asked to save"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultRevisionEngine
   - ruleId: F-REVAPR-R009
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a PENDING_APPROVAL artifact whose taskId matches, when hasPendingProposalForTask\
         \ is called, then it returns true"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemRevisionArtifactStore
     - name: "Given only an APPROVED artifact exists for the task, when hasPendingProposalForTask\
         \ is called, then it returns false"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemRevisionArtifactStore
     - name: "Given only a REJECTED artifact exists for the task, when hasPendingProposalForTask\
         \ is called, then it returns false"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemRevisionArtifactStore
     - name: "Given no artifact exists for the task, when hasPendingProposalForTask\
         \ is called, then it returns false"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemRevisionArtifactStore
     - name: "Given the human validator emits PENDING_APPROVAL, when revise finishes,\
         \ then the outcome kind is PENDING_APPROVAL_PERSISTED and the RefinementTask\
         \ stays PENDING"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultRevisionEngine
   - ruleId: F-REVAPR-R010
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given the task already has a PENDING_APPROVAL proposal, when revise runs,\
         \ then the outcome is ALREADY_PENDING_DECISION and no new artifact is persisted"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultRevisionEngine
   - ruleId: F-REVAPR-R011
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given 'approve proposal <id>' on a PENDING_APPROVAL proposal, when invoked,\
         \ then decisionService.approve is called with APPROVED verdict and the CLI\
@@ -6064,29 +6119,29 @@ features:
     - name: "Given a PENDING_APPROVAL artifact, when approve is called, then the artifact\
         \ is rewritten with verdict APPROVED and decidedAt set"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultProposalDecisionService
     - name: "Given a PENDING_APPROVAL artifact, when approve is called, then the course\
         \ is loaded and saved with elementAfter applied via CourseRepository"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultProposalDecisionService
     - name: "Given approve is called with a --note, then the persisted artifact's\
         \ decisionNote carries that note"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultProposalDecisionService
     - name: "Given no proposal matches the supplied id, when approve is called, then\
         \ the outcome is NOT_FOUND and no artifact or course is written"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultProposalDecisionService
   - ruleId: F-REVAPR-R012
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given 'reject proposal <id>' on a PENDING_APPROVAL proposal, when invoked,\
         \ then decisionService.reject is called with REJECTED verdict and the CLI\
@@ -6116,23 +6171,23 @@ features:
     - name: "Given a PENDING_APPROVAL artifact, when reject is called, then the artifact\
         \ is rewritten with verdict REJECTED and decisionNote carrying the --reason"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultProposalDecisionService
     - name: "Given a PENDING_APPROVAL artifact, when reject is called, then CourseRepository\
         \ is never asked to load or save the course"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultProposalDecisionService
     - name: "Given no proposal matches the supplied id, when reject is called, then\
         \ the outcome is NOT_FOUND and no artifact or course is written"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultProposalDecisionService
   - ruleId: F-REVAPR-R013
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given decisionService returns ALREADY_DECIDED, when approve is invoked,\
         \ then the CLI prints the already-decided error and exits non-zero"
@@ -6149,47 +6204,47 @@ features:
     - name: "Given a proposal whose verdict is already APPROVED, when approve is called\
         \ again, then the outcome is ALREADY_DECIDED and no side effects occur"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultProposalDecisionService
     - name: "Given a proposal whose verdict is already REJECTED, when approve is called,\
         \ then the outcome is ALREADY_DECIDED and no side effects occur"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultProposalDecisionService
     - name: "Given a proposal whose verdict is already APPROVED, when reject is called,\
         \ then the outcome is ALREADY_DECIDED and no side effects occur"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultProposalDecisionService
     - name: "Given a proposal whose verdict is already REJECTED, when reject is called,\
         \ then the outcome is ALREADY_DECIDED and no side effects occur"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultProposalDecisionService
   - ruleId: F-REVAPR-R014
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given approve succeeds and the course is applied, then the associated\
         \ RefinementTask transitions to DONE"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultProposalDecisionService
     - name: "Given approve rewrites the artifact to APPROVED but the course write\
         \ fails, then the artifact keeps APPROVED with decidedAt and the task does\
         \ not advance to DONE"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultProposalDecisionService
     - name: "Given reject succeeds, then the associated RefinementTask returns to\
         \ its previous state (typically PENDING)"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultProposalDecisionService
   - ruleId: F-REVAPR-R015
@@ -6225,13 +6280,13 @@ features:
       module: audit-cli
       implementation: ReviseCmd
   - ruleId: F-REVAPR-R017
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given the store is constructed with a non-default baseDir, when save\
         \ is called, then the artifact file lands under <baseDir>/.content-audit/revisions/<planId>/<proposalId>.*\
         \ and NOT under System.getProperty('user.dir')"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemRevisionArtifactStore
   journeysCoverage:
@@ -6440,36 +6495,36 @@ features:
     - crapHotspots 6 > 5
 - id: FEAT-LAPS
   state: IMPLEMENTING
-  requirementFile: requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LAPS-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given an elementBefore and a candidate with a non-identity quizSentence,\
         \ when derive is called, then elementAfter is not structurally equal to elementBefore\
         \ (non-identity proposal)"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultLemmaAbsenceProposalDeriver
   - ruleId: F-LAPS-R002
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a task whose diagnosisKind is LEMMA_ABSENCE and a registry with\
         \ an active strategy, when propose is called, then the DispatchingReviser\
         \ routes to the strategy+deriver pipeline and NOT to the IdentityReviser fallback"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DispatchingReviser
   - ruleId: F-LAPS-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given an elementBefore and a candidate, when derive is called, then elementAfter\
         \ replaces the entire quiz form and translation in one step rather than splicing\
         \ word-by-word changes onto the original"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultLemmaAbsenceProposalDeriver
   - ruleId: F-LAPS-R004
@@ -6498,60 +6553,60 @@ features:
     - name: "Given a config whose activeName matches a registered strategy, when active\
         \ is called, then it returns that strategy wrapped in Optional"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultLemmaAbsenceProposalStrategyRegistry
     - name: "Given a config with activeName null, when active is called, then it returns\
         \ Optional.empty"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultLemmaAbsenceProposalStrategyRegistry
     - name: "Given a config with activeName pointing to a name that is not in the\
         \ registered list, when active is called, then it returns Optional.empty"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultLemmaAbsenceProposalStrategyRegistry
     - name: "Given multiple registered strategies, when byName is called with the\
         \ name of each registered strategy, then every lookup returns the corresponding\
         \ strategy and byName of an unknown name returns Optional.empty"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultLemmaAbsenceProposalStrategyRegistry
     - name: "Given multiple registered strategies, when listAll is called, then it\
         \ returns the StrategyId of every registered strategy without dropping or\
         \ deduplicating entries"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultLemmaAbsenceProposalStrategyRegistry
   - ruleId: F-LAPS-R005
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a LEMMA_ABSENCE task and a strategy with id (name, version, providerId),\
         \ when the pipeline produces a RevisionProposal, then the proposal's strategyId\
         \ equals the strategy's id() verbatim (name + version + providerId)"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DispatchingReviser
     - name: "Given a LEMMA_ABSENCE task routed to the strategy pipeline, when the\
         \ resulting RevisionProposal is inspected, then its reviserKind reflects the\
         \ strategy name (not the literal 'bypass')"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DispatchingReviser
   - ruleId: F-LAPS-R006
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a task whose diagnosisKind is LEMMA_ABSENCE and a registry with\
         \ no active strategy, when propose is called, then it returns an outcome with\
         \ kind NO_ACTIVE_STRATEGY (no fallback to bypass)"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DispatchingReviser
   - ruleId: F-LAPS-R007
@@ -6565,64 +6620,64 @@ features:
   - ruleId: F-LAPS-R011
     state: NO_TESTS
   - ruleId: F-LAPS-R012
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given an elementBefore quiz and a candidate whose quizSentence differs\
         \ from the original, when derive is called, then the returned elementAfter\
         \ carries a new sentence plain text and a new quizForm parsed from the candidate's\
         \ quizSentence via QuizSentenceConverter"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultLemmaAbsenceProposalDeriver
     - name: "Given the same elementBefore and the same candidate, when derive is called\
         \ twice, then both invocations return equal elementAfter snapshots (determinism)"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultLemmaAbsenceProposalDeriver
     - name: "Given a candidate whose quizSentence is malformed according to the FEAT-QSENT\
         \ grammar, when derive is called, then it throws ProposalDerivationException\
         \ and does not return a partial elementAfter"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultLemmaAbsenceProposalDeriver
   - ruleId: F-LAPS-R013
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a candidate whose translation differs from elementBefore.translation,\
         \ when derive is called, then elementAfter.translation equals the candidate.translation\
         \ verbatim"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultLemmaAbsenceProposalDeriver
     - name: "Given a candidate whose quizSentence changes the correct answer and accepted\
         \ variants of a CLOZE, when derive is called, then elementAfter.quizForm reflects\
         \ those new answers and variants parsed from the candidate's DSL"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultLemmaAbsenceProposalDeriver
   - ruleId: F-LAPS-R014
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given an elementBefore with a specific quizId, nodeIds, instructions\
         \ and order, and any candidate, when derive is called, then those fields on\
         \ elementAfter are bit-for-bit identical to elementBefore"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultLemmaAbsenceProposalDeriver
   - ruleId: F-LAPS-R015
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a LEMMA_ABSENCE task and an active strategy that throws ProposalStrategyFailedException,\
         \ when propose is called, then it returns an outcome with kind STRATEGY_FAILED\
         \ and no RevisionProposal is built"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DispatchingReviser
     - name: "Given a LEMMA_ABSENCE task and an active strategy whose candidate fails\
@@ -6630,24 +6685,24 @@ features:
         \ it returns an outcome with kind STRATEGY_FAILED and no RevisionProposal\
         \ is built"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DispatchingReviser
   - ruleId: F-LAPS-R016
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a STRATEGY_FAILED outcome, when its RevisionArtifact is inspected,\
         \ then there is no artifact at all (the outcome carries no REJECTED verdict,\
         \ no PENDING_APPROVAL verdict, no RevisionVerdict enum value)"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DispatchingReviser
     - name: "Given a NO_ACTIVE_STRATEGY outcome, when its RevisionArtifact is inspected,\
         \ then there is no artifact at all (the outcome carries no REJECTED verdict,\
         \ no PENDING_APPROVAL verdict, no RevisionVerdict enum value)"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DispatchingReviser
   - ruleId: F-LAPS-R017
@@ -6655,13 +6710,13 @@ features:
   - ruleId: F-LAPS-R018
     state: NO_TESTS
   - ruleId: F-LAPS-R019
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a candidate that carries only quizSentence and translation, when\
         \ derive is called, then the deriver never asks the candidate for plain sentence\
         \ text or quizForm fields (the strategy emits only those two pieces)"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultLemmaAbsenceProposalDeriver
   journeysCoverage:
@@ -6806,8 +6861,8 @@ features:
     verdict: PASSED
 - id: FEAT-DSLEN
   state: ANALYSED
-  requirementFile: requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
-  patchFile: requirements/2026-04-05.01_typed-diagnostics-sentence-length/architectural_patch.yaml
+  requirementFile: ./requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
+  patchFile: ./requirements/2026-04-05.01_typed-diagnostics-sentence-length/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-DSLEN-R001
     state: NO_TESTS
@@ -6819,33 +6874,33 @@ features:
     state: NO_TESTS
   journeysCoverage:
   - journeyId: F-DSLEN-J001
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_elDiagnosticoExisteQuizFueEvaluado_deltaEsPositivoOracionDemasiadoLarga_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: refiner-domain
         implementation: FDslenJ001JourneyTest
     - pathId: path-2
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path2_elDiagnosticoExisteQuizFueEvaluado_deltaEsNegativoOracionDemasiadoCorta_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: refiner-domain
         implementation: FDslenJ001JourneyTest
     - pathId: path-3
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path3_elDiagnosticoNoExisteQuizExcluidoPorNoSerOracion_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: refiner-domain
         implementation: FDslenJ001JourneyTest
   quality:
@@ -6888,7 +6943,7 @@ features:
     verdict: PASSED
 - id: FEAT-SLEN
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-SLEN-R001
     state: PASSING
@@ -7079,8 +7134,8 @@ features:
     verdict: PASSED
 - id: FEAT-LCOUNT
   state: IMPLEMENTED
-  requirementFile: requirements/2026-03-28.02_lemma-count/REQUIREMENT.md
-  patchFile: requirements/2026-03-28.02_lemma-count/architectural_patch.yaml
+  requirementFile: ./requirements/2026-03-28.02_lemma-count/REQUIREMENT.md
+  patchFile: ./requirements/2026-03-28.02_lemma-count/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-LCOUNT-R001
     state: PASSING
@@ -7398,208 +7453,208 @@ features:
     healthScore: 47
     verdict: PASSED
 - id: FEAT-REVBYP
-  state: IMPLEMENTING
-  requirementFile: requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
+  state: IMPLEMENTED
+  requirementFile: ./requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVBYP-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a CorrectionContext, when propose is called, then it returns a\
         \ RevisionProposal with all R001 fields populated"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: IdentityReviser
   - ruleId: F-REVBYP-R002
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given any before snapshot, when propose is called, then elementAfter\
         \ equals elementBefore"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: IdentityReviser
   - ruleId: F-REVBYP-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a Reviser registered for SENTENCE_LENGTH, when propose is called\
         \ with a SENTENCE_LENGTH task, then the registered Reviser handles it"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DispatchingReviser
   - ruleId: F-REVBYP-R004
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a RevisionEngineConfig with an empty revisers map, when create\
         \ is called, then the produced engine uses IdentityReviser as fallback"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultRevisionEngineFactory
     - name: "Given any DiagnosisKind, when handles is called, then it returns true"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: IdentityReviser
     - name: "Given a proposal generated by IdentityReviser, then rationale equals\
         \ 'bypass: identity revision' and reviserKind equals 'bypass'"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: IdentityReviser
     - name: "Given no Reviser registered for a DiagnosisKind, when propose is called,\
         \ then the IdentityReviser fallback handles it"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DispatchingReviser
   - ruleId: F-REVBYP-R005
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given neither a registered Reviser nor a fallback, when handles is queried\
         \ for an unknown DiagnosisKind, then it returns false"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DispatchingReviser
   - ruleId: F-REVBYP-R006
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given an approved result, when rejectionReason is queried, then it returns\
         \ Optional.empty"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: AutoApproveValidator
   - ruleId: F-REVBYP-R007
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given any RevisionProposal, when validate is called, then it returns\
         \ a RevisionValidatorResult with verdict APPROVED"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: AutoApproveValidator
   - ruleId: F-REVBYP-R008
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a RevisionArtifact, when save is called, then a file is written\
         \ under .content-audit/revisions/"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemRevisionArtifactStore
   - ruleId: F-REVBYP-R009
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given an artifact for plan P1 and proposal PR1, when save is called,\
         \ then the file path is .content-audit/revisions/P1/PR1.<ext>"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemRevisionArtifactStore
   - ruleId: F-REVBYP-R010
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a persisted artifact, when load is called, then all RevisionProposal\
         \ fields plus verdict and rejectionReason are recoverable"
       implemented: true
-      passing: false
+      passing: true
       module: audit-infrastructure
       implementation: FileSystemRevisionArtifactStore
   - ruleId: F-REVBYP-R011
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given an APPROVED proposal, when revise runs, then CourseRepository saves\
         \ the updated course"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultRevisionEngine
   - ruleId: F-REVBYP-R012
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a REJECTED proposal, when revise runs, then CourseRepository is\
         \ never asked to save"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultRevisionEngine
   - ruleId: F-REVBYP-R013
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given an APPROVED proposal applied successfully, when revise finishes,\
         \ then the RefinementTask transitions to DONE"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultRevisionEngine
   - ruleId: F-REVBYP-R014
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given revise succeeds end-to-end, then artifactStore.save is invoked\
         \ before courseRepository.save"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultRevisionEngine
   journeysCoverage:
   - journeyId: F-REVBYP-J001
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_elContextoSeResuelveCorrectamente_elElementoExisteEnElCursoCargado_hayUnReviserAplicableBypassComoFallback_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FRevbypJ001JourneyTest
     - pathId: path-2
       result: failure
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path2_elContextoSeResuelveCorrectamente_elElementoExisteEnElCursoCargado_hayUnReviserAplicableBypassComoFallback_failure
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FRevbypJ001JourneyTest
     - pathId: path-3
       result: failure
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path3_elContextoSeResuelveCorrectamente_elElementoExisteEnElCursoCargado_hayUnReviserAplicableBypassComoFallback_failure
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FRevbypJ001JourneyTest
     - pathId: path-4
       result: failure
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path4_elContextoSeResuelveCorrectamente_elElementoExisteEnElCursoCargado_noHayNingunReviserRegistradoParaElDiagnostico_failure
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FRevbypJ001JourneyTest
     - pathId: path-5
       result: failure
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path5_elContextoSeResuelveCorrectamente_elElementoNoSeEncuentraEnElCurso_failure
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FRevbypJ001JourneyTest
     - pathId: path-6
       result: failure
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path6_elContextoNoPuedeResolverseReporteDeAuditoriaNoEncontradoDiagnosticoNoDisponible_failure
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FRevbypJ001JourneyTest
   quality:
@@ -7648,312 +7703,312 @@ features:
     healthScore: 0
     verdict: PASSED
 - id: FEAT-LAGEN
-  state: IMPLEMENTING
-  requirementFile: requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
+  state: IMPLEMENTED
+  requirementFile: ./requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LAGEN-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: should stamp StrategyId.name = 'lemma-absence-llm' on every produced proposal
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: LemmaAbsenceMvpStrategy
     - name: create returns a generator whose strategyName is 'lemma-absence-llm'
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
     - name: generate embeds the strategyName 'lemma-absence-llm' inside the message
         of any ProposalStrategyFailedException it raises
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
   - ruleId: F-LAGEN-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: generate sends both the system prompt and the user prompt produced from
         the context to the model
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
     - name: buildUserPrompt includes quizSentence from the context
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
     - name: buildUserPrompt includes sentence from the context
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
     - name: buildUserPrompt includes translation from the context
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
     - name: buildUserPrompt includes knowledgeTitle from the context
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
     - name: buildUserPrompt includes knowledgeInstructions from the context
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
     - name: buildUserPrompt includes topicLabel from the context
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
     - name: buildUserPrompt includes cefrLevel from the context
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
     - name: buildUserPrompt includes every misplacedLemma from the context
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
     - name: buildUserPrompt includes every suggestedLemma from the context
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
     - name: buildUserPrompt omits a context field that is null without consulting
         any external source
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
   - ruleId: F-LAGEN-R004
-    state: FAILING
+    state: PASSING
     tests:
     - name: buildSystemPrompt instructs the model to return a JSON object with exactly
         the fields quizSentence and translation
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
     - name: "buildSystemPrompt instructs the model to produce one single candidate,\
         \ not a list of alternatives"
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
     - name: "buildSystemPrompt instructs the model to express quizSentence in the\
         \ same DSL of the input quiz, replacing misplacedLemmas with options from\
         \ suggestedLemmas when applicable"
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
   - ruleId: F-LAGEN-R005
-    state: FAILING
+    state: PASSING
     tests:
     - name: generate returns a LemmaAbsenceGeneratorResponse parsed from the model
         output on the happy path
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
     - name: "parse returns LemmaAbsenceGeneratorResponse(quizSentence, translation)\
         \ when the raw text is a JSON object with both fields non-empty"
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse ignores extra JSON fields beyond quizSentence and translation
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
         when the raw text is not parseable as JSON
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
         when the JSON object lacks the quizSentence field
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
         when the JSON object lacks the translation field
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
         when quizSentence is an empty string
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
         when translation is an empty string
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
         when quizSentence is not a JSON string
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
         when translation is not a JSON string
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
   - ruleId: F-LAGEN-R006
-    state: FAILING
+    state: PASSING
     tests:
     - name: generate prefixes the failure reason with the LlmGenerationFailureCategory
         name returned by the classifier
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
     - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_EMPTY
         when the model returns empty text
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
     - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
         when the model returns text the parser cannot interpret
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
     - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_OTHER
         when the model client throws a Throwable not matched by any specific category
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
     - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_UNREACHABLE
         when the model client throws ConnectException
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
     - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_TIMEOUT
         when the model client throws SocketTimeoutException
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
     - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_AUTH_FAILED
         when the model client throws an OpenAiHttpException with status 401
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
     - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_EMPTY
         when the raw text is empty
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse embeds the taskId in the message of any ProposalStrategyFailedException
         it raises
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse embeds the strategyName in the message of any ProposalStrategyFailedException
         it raises
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: classify returns LLM_OTHER for a Throwable not matched by any specific
         category
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLangChainErrorClassifier
     - name: classify never returns null for any non-null Throwable
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLangChainErrorClassifier
     - name: classify returns LLM_UNREACHABLE for a ConnectException anywhere in the
         cause chain
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLangChainErrorClassifier
     - name: classify returns LLM_UNREACHABLE for an UnknownHostException anywhere
         in the cause chain
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLangChainErrorClassifier
     - name: classify returns LLM_UNREACHABLE for a NoRouteToHostException anywhere
         in the cause chain
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLangChainErrorClassifier
     - name: classify returns LLM_TIMEOUT for a SocketTimeoutException anywhere in
         the cause chain
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLangChainErrorClassifier
     - name: classify returns LLM_TIMEOUT for a java.util.concurrent.TimeoutException
         anywhere in the cause chain
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLangChainErrorClassifier
     - name: classify returns LLM_AUTH_FAILED for an OpenAiHttpException whose statusCode
         is 401
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLangChainErrorClassifier
     - name: classify returns LLM_AUTH_FAILED for an OpenAiHttpException whose statusCode
         is 403
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLangChainErrorClassifier
     - name: classify returns LLM_AUTH_FAILED when the root cause message matches the
         auth heuristic regex (case-insensitive 'unauthorized' / 'forbidden' / '401'
         / '403' / 'invalid api key')
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLangChainErrorClassifier
   - ruleId: F-LAGEN-R007
-    state: FAILING
+    state: PASSING
     tests:
     - name: generate issues exactly one round-trip to the model per invocation (no
         automatic retry)
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
     - name: generate raises ProposalStrategyFailedException without persisting any
         partial response when the parser rejects the raw text
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
   - ruleId: F-LAGEN-R008
-    state: FAILING
+    state: PASSING
     tests:
     - name: resolve returns a LagenConfig populated from every CONTENT_AUDIT_LAGEN_*
         env entry when all required keys are present and valid
@@ -7988,143 +8043,143 @@ features:
     - name: "create propagates explicit endpoint, modelId and apiKey from LagenConfig\
         \ into the configured generator"
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
     - name: "create propagates explicit temperature, maxTokens and timeout from LagenConfig\
         \ into the configured generator"
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
     - name: create sends no Authorization header when LagenConfig.apiKey is null
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
     - name: create applies LagenDefaults.maxTokens (2048) when LagenConfig.maxTokens
         is null
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
     - name: create applies LagenDefaults.timeout (Duration.ofSeconds(30)) when LagenConfig.timeout
         is null
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
   - ruleId: F-LAGEN-R009
-    state: FAILING
+    state: PASSING
     tests:
     - name: should stamp StrategyId.providerId from the injected generator's provider
         on every proposal
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: LemmaAbsenceMvpStrategy
     - name: providerIdFor yields different values for two LagenConfigs that differ
         in providerName
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
     - name: providerIdFor yields different values for two LagenConfigs that differ
         in modelId
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
     - name: providerIdFor returns 'providerName:modelId' joining the two LagenConfig
         fields with a literal ':'
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
     - name: providerIdFor preserves the case of providerName and modelId verbatim
         (no lowercasing)
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
     - name: providerIdFor preserves leading and trailing whitespace inside providerName
         and modelId verbatim (no trimming)
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
     - name: providerIdFor raises InvalidProviderIdException when LagenConfig.providerName
         contains ':'
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
     - name: providerIdFor raises InvalidProviderIdException when LagenConfig.modelId
         contains ':'
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
   - ruleId: F-LAGEN-R010
-    state: FAILING
+    state: PASSING
     tests:
     - name: "parse accepts a quizSentence whose plain-text length looks unusually\
         \ short or long: only structural validation applies"
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse accepts a response without re-checking that misplacedLemmas were
         replaced or that new words come from suggestedLemmas
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse accepts a response without re-tokenizing the quizSentence to verify
         its CEFR level
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: "parse accepts a quizSentence regardless of whether it parses as the FEAT-QSENT\
         \ DSL: grammar validation is delegated downstream"
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
   - ruleId: F-LAGEN-R011
-    state: FAILING
+    state: PASSING
     tests:
     - name: create applies LagenDefaults.temperature (0.7) when LagenConfig.temperature
         is null
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
   - ruleId: F-LAGEN-R012
-    state: FAILING
+    state: PASSING
     tests:
     - name: "generate returns the same (cannedQuizSentence, cannedTranslation) pair\
         \ on every invocation"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: CannedLemmaAbsenceQuizCandidateGenerator
     - name: generate returns the injected cannedQuizSentence and cannedTranslation
         verbatim with no transformation
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: CannedLemmaAbsenceQuizCandidateGenerator
     - name: "generate returns the same response regardless of differences in the LemmaAbsenceCorrectionContext\
         \ (quizSentence, cefrLevel, misplacedLemmas, suggestedLemmas)"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: CannedLemmaAbsenceQuizCandidateGenerator
     - name: generate performs no I/O and never contacts an external provider
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: CannedLemmaAbsenceQuizCandidateGenerator
   - ruleId: F-LAGEN-R013
@@ -8207,84 +8262,84 @@ features:
       implementation: DefaultLagenConfigResolver
   journeysCoverage:
   - journeyId: F-LAGEN-J001
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_laRespuestaCumpleLaEstructuraExigida_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-infrastructure
         implementation: FLagenJ001JourneyTest
     - pathId: path-2
       result: failure
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path2_laRespuestaNoCumpleLaEstructuraExigida_failure
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-infrastructure
         implementation: FLagenJ001JourneyTest
   - journeyId: F-LAGEN-J002
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: failure
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_failure
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-infrastructure
         implementation: FLagenJ002JourneyTest
   - journeyId: F-LAGEN-J003
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: failure
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_failure
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-infrastructure
         implementation: FLagenJ003JourneyTest
   - journeyId: F-LAGEN-J004
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: failure
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_failure
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-infrastructure
         implementation: FLagenJ004JourneyTest
   - journeyId: F-LAGEN-J005
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: failure
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_failure
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-infrastructure
         implementation: FLagenJ005JourneyTest
   - journeyId: F-LAGEN-J006
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: failure
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_failure
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-infrastructure
         implementation: FLagenJ006JourneyTest
   quality:
@@ -8336,201 +8391,201 @@ features:
     healthScore: 51
     verdict: PASSED
 - id: FEAT-RCLA
-  state: IMPLEMENTING
-  requirementFile: requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
+  state: IMPLEMENTED
+  requirementFile: ./requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLA-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: should include LEMMA_ABSENCE tasks targeting QUIZ when quiz has lemma-absence
         score below 1.0
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: DefaultRefinerEngine
     - name: should not include LEMMA_ABSENCE tasks targeting MILESTONE or COURSE in
         the refinement plan
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: DefaultRefinerEngine
     - name: should not generate LEMMA_ABSENCE task for quiz with lemma-absence score
         equal to 1.0
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: DefaultRefinerEngine
     - name: should still generate COCA_BUCKETS and LEMMA_RECURRENCE tasks at MILESTONE
         and COURSE level after re-routing
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: DefaultRefinerEngine
   - ruleId: F-RCLA-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: should resolve context with all fields populated from quiz diagnosis and
         ancestor entities
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should populate sentence and translation from AuditableQuiz entity on
         the quiz node
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should populate knowledgeTitle and knowledgeInstructions from AuditableKnowledge
         on knowledge ancestor
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should populate topicLabel from AuditableTopic on topic ancestor
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should populate cefrLevel from milestone ancestor
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should set taskId from the RefinementTask id
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
   - ruleId: F-RCLA-R004
-    state: FAILING
+    state: PASSING
     tests:
     - name: should populate misplacedLemmas from LemmaPlacementDiagnosis on quiz node
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should map MisplacedLemma fields to MisplacedLemmaContext fields correctly
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should include expectedLevel and quizLevel in each MisplacedLemmaContext
         entry
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should include cocaRank as null in MisplacedLemmaContext when not available
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
   - ruleId: F-RCLA-R004b
-    state: FAILING
+    state: PASSING
     tests:
     - name: should include only COMPLETELY_ABSENT and APPEARS_TOO_LATE lemmas in suggestedLemmas
         and exclude APPEARS_TOO_EARLY
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should order suggested lemmas by COCA rank ascending with lowest rank
         first
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should place lemmas without COCA rank after lemmas with COCA rank in suggestedLemmas
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should map AbsentLemma fields to SuggestedLemma fields correctly
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should limit suggested lemmas to 10 when more than 10 qualify after filtering
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
   - ruleId: F-RCLA-R004c
-    state: FAILING
+    state: PASSING
     tests:
     - name: should return context with empty suggested lemmas when milestone has no
         LemmaAbsenceLevelDiagnosis
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should return context with empty suggested lemmas when milestone ancestor
         is not found
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should return context with empty suggested lemmas when all absent lemmas
         are APPEARS_TOO_EARLY
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
   - ruleId: F-RCLA-R005
-    state: FAILING
+    state: PASSING
     tests:
     - name: should return empty when quiz node is not found in the audit tree
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should return empty when task nodeTarget does not match any node target
         in the tree
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should locate the correct quiz node when multiple quiz nodes exist in
         the tree
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
   - ruleId: F-RCLA-R006
-    state: FAILING
+    state: PASSING
     tests:
     - name: should return empty when quiz node has no LemmaPlacementDiagnosis
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
   - ruleId: F-RCLA-R007
-    state: FAILING
+    state: PASSING
     tests:
     - name: should delegate to sentenceLengthResolver when task diagnosis is SENTENCE_LENGTH
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: DispatchingCorrectionContextResolver
     - name: should delegate to lemmaAbsenceResolver when task diagnosis is LEMMA_ABSENCE
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: DispatchingCorrectionContextResolver
     - name: should return empty for unsupported diagnosis kind COCA_BUCKETS
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: DispatchingCorrectionContextResolver
     - name: should return empty for unsupported diagnosis kind LEMMA_RECURRENCE
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: DispatchingCorrectionContextResolver
     - name: should propagate empty from delegate when delegate returns empty
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: DispatchingCorrectionContextResolver
   - ruleId: F-RCLA-R008
@@ -8738,141 +8793,141 @@ features:
     - lineCoverage 57% < 70%
     - branchCoverage 50% < 60%
 - id: FEAT-RCSL
-  state: IMPLEMENTING
-  requirementFile: requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
+  state: IMPLEMENTED
+  requirementFile: ./requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCSL-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: should resolve context with all fields populated from quiz diagnosis and
         ancestor entities
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: SentenceLengthContextResolver
     - name: should populate sentence and translation from AuditableQuiz entity on
         the quiz node
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: SentenceLengthContextResolver
     - name: should populate knowledgeTitle and knowledgeInstructions from AuditableKnowledge
         on knowledge ancestor
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: SentenceLengthContextResolver
     - name: should populate topicLabel from AuditableTopic on topic ancestor
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: SentenceLengthContextResolver
     - name: should populate cefrLevel tokenCount targetMin targetMax and delta from
         SentenceLengthDiagnosis
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: SentenceLengthContextResolver
     - name: should resolve context with negative delta for a sentence shorter than
         target range
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: SentenceLengthContextResolver
     - name: should resolve context with zero delta when sentence is within target
         range
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: SentenceLengthContextResolver
     - name: should set taskId from the RefinementTask id
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: SentenceLengthContextResolver
   - ruleId: F-RCSL-R002
-    state: FAILING
+    state: PASSING
     tests:
     - name: should return empty when quiz node is not found in the audit tree
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: SentenceLengthContextResolver
     - name: should return empty when task nodeTarget does not match any node target
         in the tree
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: SentenceLengthContextResolver
     - name: should locate the correct quiz node when multiple quiz nodes exist in
         the tree
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: SentenceLengthContextResolver
   - ruleId: F-RCSL-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: should include only COMPLETELY_ABSENT and APPEARS_TOO_LATE lemmas and
         exclude APPEARS_TOO_EARLY
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: SentenceLengthContextResolver
     - name: should order suggested lemmas by COCA rank ascending with lowest rank
         first
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: SentenceLengthContextResolver
     - name: should place lemmas without COCA rank after lemmas with COCA rank
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: SentenceLengthContextResolver
     - name: should map AbsentLemma fields to SuggestedLemma fields correctly
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: SentenceLengthContextResolver
     - name: should return empty suggested lemmas when all absent lemmas are APPEARS_TOO_EARLY
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: SentenceLengthContextResolver
     - name: should return suggested lemmas from the milestone ancestor of the quiz
         node
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: SentenceLengthContextResolver
   - ruleId: F-RCSL-R004
-    state: FAILING
+    state: PASSING
     tests:
     - name: should return context with empty suggested lemmas when milestone has no
         LemmaAbsenceLevelDiagnosis
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: SentenceLengthContextResolver
     - name: should return context with empty suggested lemmas when milestone ancestor
         is not found
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: SentenceLengthContextResolver
     - name: should return context with empty suggested lemmas when absent lemmas list
         is empty
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: SentenceLengthContextResolver
   - ruleId: F-RCSL-R005
-    state: FAILING
+    state: PASSING
     tests:
     - name: should limit suggested lemmas to 10 when more than 10 qualify after filtering
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: SentenceLengthContextResolver
   - ruleId: F-RCSL-R006
@@ -9599,6 +9654,25 @@ elements:
   - name: IAuditEngine
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/IAuditEngine.java
+    tests:
+    - name: "Given a course with milestones, topics and knowledges, when AuditEngine.runAudit\
+        \ is invoked with both KTLEN analyzers, then the report root contains aggregated\
+        \ knowledge-title-length and knowledge-instructions-length scores at every\
+        \ hierarchy level"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/IAuditEngineTest.java
+    - name: "Given a course with knowledges whose title weighted length exceeds 28,\
+        \ when AuditEngine.runAudit is invoked, then the affected knowledge nodes\
+        \ carry knowledge-title-length scores below 1.0 enabling identification of\
+        \ overlong titles"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/IAuditEngineTest.java
+    - name: "Given a course with mixed title and instruction lengths, when AuditEngine.runAudit\
+        \ is invoked, then per-level scores for knowledge-title-length and knowledge-instructions-length\
+        \ are reported independently per AuditNode allowing the user to compare both\
+        \ dimensions"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/IAuditEngineTest.java
     quality:
       coverage:
         linesCovered: 0
@@ -10353,6 +10427,10 @@ elements:
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerTest.java
     - name: should produce correct scores for three knowledges with different instruction
         lengths
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerTest.java
+    - name: should use weighted character length not plain string length for scoring
+        instructions
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerTest.java
     testCleanViews:
@@ -31670,8 +31748,8 @@ elements:
     healthScore: 0
     verdict: PASSED
 testSummary:
-  total: 846
-  passing: 845
+  total: 850
+  passing: 849
   failing: 0
   notImplemented: 1
 qualitySummary:

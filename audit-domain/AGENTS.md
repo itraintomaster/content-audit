@@ -357,6 +357,12 @@ Methods:
 - `contentAnalyzers`: `List<ContentAnalyzer>`
 - `scoreAggregator`: `ScoreAggregator`
 
+**Tests that must pass:**
+
+- Given a course with milestones, topics and knowledges, when AuditEngine.runAudit is invoked with both KTLEN analyzers, then the report root contains aggregated knowledge-title-length and knowledge-instructions-length scores at every hierarchy level → FEAT-KTLEN
+- Given a course with knowledges whose title weighted length exceeds 28, when AuditEngine.runAudit is invoked, then the affected knowledge nodes carry knowledge-title-length scores below 1.0 enabling identification of overlong titles → FEAT-KTLEN
+- Given a course with mixed title and instruction lengths, when AuditEngine.runAudit is invoked, then per-level scores for knowledge-title-length and knowledge-instructions-length are reported independently per AuditNode allowing the user to compare both dimensions → FEAT-KTLEN
+
 ### KnowledgeTitleLengthAnalyzer
 
 **Implements:** ContentAnalyzer
@@ -405,18 +411,19 @@ Methods:
 - should return KNOWLEDGE as audit target → FEAT-KTLEN/F-KTLEN-R008
 - should score 1.0 for knowledge with null instructions → FEAT-KTLEN/F-KTLEN-R006
 - should score 1.0 for knowledge with empty instructions → FEAT-KTLEN/F-KTLEN-R006
-- should score 1.0 for instructions exactly at soft limit of 70 chars → FEAT-KTLEN/F-KTLEN-R005
+- should score 1.0 for instructions exactly at soft limit of 70 chars → FEAT-KTLEN/F-KTLEN-R006
 - should score 1.0 for instructions of 30 chars within soft limit → FEAT-KTLEN/F-KTLEN-R006
-- should score 0.5 for instructions of 71 chars just above soft limit → FEAT-KTLEN/F-KTLEN-R005
-- should score 0.5 for instructions exactly at hard limit of 100 chars → FEAT-KTLEN/F-KTLEN-R005
+- should score 0.5 for instructions of 71 chars just above soft limit → FEAT-KTLEN/F-KTLEN-R006
+- should score 0.5 for instructions exactly at hard limit of 100 chars → FEAT-KTLEN/F-KTLEN-R006
 - should score 0.5 for instructions of 85 chars between soft and hard limits → FEAT-KTLEN/F-KTLEN-R006
-- should score 0.0 for instructions of 101 chars just above hard limit → FEAT-KTLEN/F-KTLEN-R005
+- should score 0.0 for instructions of 101 chars just above hard limit → FEAT-KTLEN/F-KTLEN-R006
 - should score 0.0 for instructions of 200 chars well above hard limit → FEAT-KTLEN/F-KTLEN-R006
 - should complete without error when onQuiz is called → FEAT-KTLEN/F-KTLEN-R008
 - should complete without error when onMilestone is called → FEAT-KTLEN/F-KTLEN-R008
 - should complete without error when onTopic is called → FEAT-KTLEN/F-KTLEN-R008
 - should complete without error when onCourseComplete is called → FEAT-KTLEN/F-KTLEN-R008
 - should produce correct scores for three knowledges with different instruction lengths → FEAT-KTLEN/F-KTLEN-R006
+- should use weighted character length not plain string length for scoring instructions → FEAT-KTLEN/F-KTLEN-R002
 
 ### SentenceLengthAnalyzer
 
