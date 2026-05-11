@@ -12,7 +12,7 @@ Per-requirement memory directories. Each requirement has a `memory/` folder with
 | [2026-03-25.01_coca-buckets-distribution](2026-03-25.01_coca-buckets-distribution/memory/README.md) | empty | empty | empty | 2026-04-18 |
 | [2026-03-25.02_nlp-tokenizer-evolution](2026-03-25.02_nlp-tokenizer-evolution/memory/README.md) | empty | empty | empty | 2026-04-18 |
 | [2026-03-28.01_lemma-recurrence](2026-03-28.01_lemma-recurrence/memory/README.md) | 2 lines | 4 lines | empty | 2026-05-09 |
-| [2026-03-28.02_lemma-count](2026-03-28.02_lemma-count/memory/README.md) | empty | empty | empty | 2026-04-18 |
+| [2026-03-28.02_lemma-count](2026-03-28.02_lemma-count/memory/README.md) | 10 lines | 32 lines | empty | 2026-05-10 |
 | [2026-03-28.03_lemma-absence](2026-03-28.03_lemma-absence/memory/README.md) | 2 lines | empty | 2 lines | 2026-05-09 |
 | [2026-04-04.01_typed-diagnostics-lemma-absence](2026-04-04.01_typed-diagnostics-lemma-absence/memory/README.md) | empty | empty | empty | 2026-04-18 |
 | [2026-04-04.02_typed-diagnostics-coca-buckets](2026-04-04.02_typed-diagnostics-coca-buckets/memory/README.md) | empty | empty | empty | 2026-04-18 |

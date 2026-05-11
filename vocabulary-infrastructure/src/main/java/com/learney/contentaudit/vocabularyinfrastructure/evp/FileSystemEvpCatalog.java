@@ -24,6 +24,8 @@ import java.util.Set;
 public class FileSystemEvpCatalog implements EvpCatalogPort {
 
     private final Map<CefrLevel, Set<LemmaAndPos>> expectedByLevel = new EnumMap<>(CefrLevel.class);
+    // Reverse index: lemma+pos -> its CEFR level (first/lowest level wins on collision)
+    private final Map<LemmaAndPos, CefrLevel> levelByLemma = new HashMap<>();
     private final Map<LemmaAndPos, Integer> cocaRanks = new HashMap<>();
     private final Map<LemmaAndPos, String> semanticCategories = new HashMap<>();
     private final Set<String> phrases = new HashSet<>();
@@ -57,6 +59,8 @@ public class FileSystemEvpCatalog implements EvpCatalogPort {
 
                 LemmaAndPos lp = new LemmaAndPos(lemma, posTag);
                 expectedByLevel.get(level).add(lp);
+                // Keep the first (lowest ordinal) level if a lemma appears in multiple levels
+                levelByLemma.putIfAbsent(lp, level);
 
                 if (freqRank > 0) {
                     cocaRanks.putIfAbsent(lp, freqRank);
@@ -110,4 +114,10 @@ public class FileSystemEvpCatalog implements EvpCatalogPort {
     public Optional<String> getSemanticCategory(LemmaAndPos lemmaAndPos) {
         return Optional.ofNullable(semanticCategories.get(lemmaAndPos));
     }
+
+    @Override
+    public Optional<CefrLevel> lookupLevel(LemmaAndPos lemmaAndPos) {
+        return Optional.ofNullable(levelByLemma.get(lemmaAndPos));
+    }
+
 }

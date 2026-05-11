@@ -172,6 +172,7 @@ Examples:
 | `isPhrase(String lemma): boolean` | (none) |
 | `getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>` | (none) |
 | `getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>` | (none) |
+| `lookupLevel(LemmaAndPos lemmaAndPos): Optional<CefrLevel>` | (none) |
 
 #### AuditableEntity (port)
 
@@ -203,6 +204,7 @@ Examples:
 |--------|--------|
 | `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>` | (none) |
 | `getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>` | (none) |
+| `getLemmaCountDiagnosis(): Optional<LemmaCountCourseDiagnosis>` | (none) |
 
 #### LevelDiagnoses (port)
 
@@ -212,6 +214,7 @@ Examples:
 |--------|--------|
 | `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceLevelDiagnosis>` | (none) |
 | `getCocaBucketsDiagnosis(): Optional<CocaBucketsLevelDiagnosis>` | (none) |
+| `getLemmaCountDiagnosis(): Optional<LemmaCountLevelDiagnosis>` | (none) |
 
 #### TopicDiagnoses (port)
 
@@ -290,6 +293,16 @@ Examples:
 |--------|--------|
 | `build(AuditReport report): AuditNodeIndex` | (none) |
 
+#### LemmaCountConfig [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+**Implemented by:** DefaultLemmaCountConfig (audit-application)
+
+| Method | Throws |
+|--------|--------|
+| `getThreshold(): int` | (none) |
+
 #### TokenClassifier (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
@@ -335,6 +348,15 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `classify(double meanInterval,LemmaRecurrenceConfig config): ExposureStatus` | (none) |
+
+#### LemmaCefrLevelResolver (package: lemmacount)
+
+**Package:** `com.learney.contentaudit.auditdomain.lemmacount`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `resolve(LemmaAndPos lemmaAndPos): Optional<CefrLevel>` | (none) |
 
 ### Module: course-domain
 

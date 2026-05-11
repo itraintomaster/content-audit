@@ -1,0 +1,70 @@
+code: FEAT-LCOUNT
+description: Architecture for Content-Word Lemma Repetition Analysis (F-LCOUNT)
+modules:
+- name: lcount-domain
+  description: Core logic and models for lemma counting
+  models:
+  - name: LemmaCount
+    type: record
+    fields:
+    - name: lemma
+      type: String
+    - name: count
+      type: int
+    - name: posTag
+      type: String
+  - name: AnalysisResult
+    type: record
+    fields:
+    - name: counts
+      type: java.util.List<LemmaCount>
+    - name: totalContentWords
+      type: int
+  - name: LemmaAnalysisException
+    type: exception
+    fields:
+    - name: reason
+      type: String
+    message: "Failed to analyze text: %s"
+    extends: RuntimeException
+  interfaces:
+  - name: LemmaAnalyzer
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "analyze(String text): AnalysisResult"
+  layer: domain
+  _change: add
+- name: lcount-infra
+  description: NLP implementations for lemma analysis
+  dependsOn:
+  - lcount-domain
+  implementations:
+  - name: OpenNlpLemmaAnalyzer
+    types:
+    - Adapter
+    visibility: public
+    implements:
+    - LemmaAnalyzer
+  layer: infrastructure
+  _change: add
+- name: lcount-app
+  description: Application entry point for lemma counting
+  dependsOn:
+  - lcount-domain
+  - lcount-infra
+  implementations:
+  - name: LCountOrchestrator
+    requiresInject:
+    - name: analyzer
+      type: LemmaAnalyzer
+    types:
+    - UseCase
+    visibility: public
+    stereotype: class
+    exposes:
+    - signature: "processText(String text): AnalysisResult"
+  layer: application
+  _change: add
+features:
+- code: F-LCOUNT

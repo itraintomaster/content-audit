@@ -59,6 +59,12 @@ public class SentinelArchitectureTest {
   }
 
   @Test
+  public void enforcePackageLemmacountVisibility() {
+    JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
+    ArchRuleDefinition.noClasses().that().resideOutsideOfPackages("..auditdomain..", "java..").should().dependOnClassesThat().resideInAPackage("..auditdomain.lemmacount..").allowEmptyShould(true).check(classes);
+  }
+
+  @Test
   public void enforceAllDeclaredClassesExist() {
     try {
       Class.forName("com.learney.contentaudit.auditdomain.AuditReport");
@@ -254,6 +260,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditdomain.AuditNodeIndexFactory");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AuditNodeIndexFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.LemmaCountConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaCountConfig - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditdomain.IAuditEngine");
@@ -559,6 +570,51 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditdomain.auditnodeindex.MapAuditNodeIndex");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: MapAuditNodeIndex - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lemmacount.LemmaCountStats");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaCountStats - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lemmacount.LevelLemmaCountResult");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LevelLemmaCountResult - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lemmacount.UnassignedLemmaEntry");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: UnassignedLemmaEntry - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lemmacount.LemmaCountResult");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaCountResult - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lemmacount.LemmaCountCourseDiagnosis");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaCountCourseDiagnosis - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lemmacount.LemmaCountLevelDiagnosis");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaCountLevelDiagnosis - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lemmacount.LemmaCefrLevelResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaCefrLevelResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lemmacount.EvpThenNlpLemmaCefrLevelResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: EvpThenNlpLemmaCefrLevelResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaCountAnalyzer - " + e.getMessage());
     }
   }
 }

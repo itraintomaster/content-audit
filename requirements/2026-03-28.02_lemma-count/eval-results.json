@@ -1,0 +1,258 @@
+{
+  "scores": {
+    "a1": {
+      "a1aPassed": true,
+      "a1aViolations": [],
+      "a1bScore": 1,
+      "a1bDetails": [],
+      "a1cScore": 1,
+      "a1dScore": 1,
+      "compositeScore": 1
+    },
+    "a2": {
+      "structurallySound": true,
+      "a2a": {
+        "id": "A2a",
+        "name": "Structural Integrity",
+        "score": 1,
+        "violations": []
+      },
+      "a2b": {
+        "id": "A2b",
+        "name": "Port Coverage",
+        "score": 1,
+        "violations": []
+      },
+      "a2c": {
+        "id": "A2c",
+        "name": "Reachability",
+        "score": 0.60625,
+        "violations": []
+      },
+      "a2d": {
+        "id": "A2d",
+        "name": "Contract Utilization",
+        "score": 1,
+        "violations": []
+      },
+      "a2e": {
+        "id": "A2e",
+        "name": "Path Traceability",
+        "score": 1,
+        "violations": []
+      },
+      "composite": 0.8425
+    },
+    "a3": {
+      "modules": [],
+      "componentCount": 0,
+      "threshold": 30,
+      "ramp": 0,
+      "rawScore": 1,
+      "effectiveScore": 1
+    },
+    "a4": {
+      "dependencyInversionHolds": true,
+      "acyclic": true,
+      "a4a": {
+        "id": "A4a",
+        "name": "Dependency Inversion",
+        "score": 1,
+        "violations": [
+          {
+            "code": "A4-NOLAYER",
+            "severity": "warning",
+            "message": "No modules declare a layer — A4 cannot be evaluated"
+          }
+        ]
+      },
+      "a4b": {
+        "id": "A4b",
+        "name": "Acyclicity",
+        "score": 1,
+        "violations": []
+      },
+      "a4c": {
+        "id": "A4c",
+        "name": "Adapter Polarity",
+        "score": 1,
+        "violations": []
+      },
+      "a4d": {
+        "id": "A4d",
+        "name": "Layer Isolation",
+        "score": 1,
+        "violations": []
+      },
+      "a4e": {
+        "id": "A4e",
+        "name": "Composition Root Discipline",
+        "score": 1,
+        "violations": []
+      },
+      "composite": 1
+    },
+    "a5": {
+      "a5aScore": 0.5599999999999999,
+      "a5bScore": 1,
+      "a5cScore": 0,
+      "a5dScore": 1,
+      "a5eScore": 1,
+      "violations": [
+        {
+          "code": "A5a",
+          "severity": "warning",
+          "message": "Factory pattern 'AuditNodeIndexFactory' has 1 implementation(s) — needs ≥2 to justify"
+        },
+        {
+          "code": "A5a",
+          "severity": "warning",
+          "message": "Factory pattern 'NlpTokenizerFactory' has 1 implementation(s) — needs ≥2 to justify"
+        },
+        {
+          "code": "A5a",
+          "severity": "warning",
+          "message": "Strategy pattern 'LemmaAbsenceProposalStrategy' has 1 implementation(s) — needs ≥2 for polymorphism"
+        },
+        {
+          "code": "A5a",
+          "severity": "warning",
+          "message": "Factory pattern 'LemmaAbsenceLlmGeneratorFactory' has 1 implementation(s) — needs ≥2 to justify"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'DefaultAuditNodeIndexFactory' declared in Factory pattern but not found in any module"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'TextReportFormatter' declared in Strategy pattern but not found in any module"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'JsonReportFormatter' declared in Strategy pattern but not found in any module"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'TableReportFormatter' declared in Strategy pattern but not found in any module"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'SpacyNlpTokenizerFactory' declared in Factory pattern but not found in any module"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'LemmaAbsenceMvpStrategy' declared in Strategy pattern but not found in any module"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'DefaultLemmaAbsenceLlmGeneratorFactory' declared in Factory pattern but not found in any module"
+        }
+      ],
+      "composite": 0.618
+    },
+    "a6": {
+      "score": 1,
+      "totalInterfaces": 0,
+      "inflatedCount": 0,
+      "inflated": []
+    },
+    "c1": {
+      "score": 1,
+      "maxDepth": 0,
+      "avgDepth": 0,
+      "entries": [
+        {
+          "entryPoint": "audit-cli.commands.ContentAuditCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.AnalyzeCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.GetCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.DeleteCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.PruneCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.PlanCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.ReviseCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.ConfigAnalyzerCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.StatsAnalyzerCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.ApproveCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.RejectCmd",
+          "depth": 0
+        }
+      ]
+    },
+    "c3": {
+      "score": 1,
+      "details": []
+    },
+    "mode": "PATCH_ONLY",
+    "compositeScore": 0.9079285714285715
+  },
+  "timestamp": "2026-05-11T00:57:13.643Z",
+  "b3": {
+    "score": 0.9,
+    "direction": "balanced",
+    "justification": "The patch accurately maps the multi-source CEFR resolution and hierarchical scoring rules into a clean, encapsulated package with appropriate seams for future expansion.",
+    "findings": [
+      {
+        "element": "LemmaCefrLevelResolver",
+        "issue": "While justified by R009-R011, creating a separate port and implementation for a three-step fallback chain could be seen as slightly preemptive given the current lack of NLP-provided CEFR data.",
+        "severity": "warning"
+      },
+      {
+        "element": "LemmaCountLevelDiagnosis",
+        "issue": "The requirement focuses heavily on the course-level report; providing a per-level diagnosis record is a good architectural practice for the tree structure but technically exceeds the explicit reporting needs of Group D.",
+        "severity": "warning"
+      }
+    ]
+  },
+  "b4": {
+    "score": 1,
+    "justification": "Every element in the patch is directly mapped to the business rules for counting, CEFR resolution, and reporting, including necessary technical carriers for the audit tree integration.",
+    "findings": []
+  },
+  "b2": {
+    "score": 1,
+    "justification": "The patch demonstrates excellent adherence to SRP by encapsulating the new analysis logic within a dedicated internal package and separating CEFR resolution from the core counting and scoring logic.",
+    "findings": []
+  },
+  "b1": {
+    "score": 1,
+    "justification": "The architectural patch perfectly mirrors the ubiquitous language of the requirement, using domain terms like 'sub-exposed', 'content-word', and 'unassigned' while maintaining a clean hexagonal structure.",
+    "findings": []
+  },
+  "judgeProfile": "google-gemini"
+}

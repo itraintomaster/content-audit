@@ -164,6 +164,12 @@ Methods:
 - `analyzers`: `List<ContentAnalyzer>`
 - `configs`: `List<SelfDescribingConfig>`
 
+### DefaultLemmaCountConfig
+
+**Implements:** LemmaCountConfig
+
+**Types:** Component
+
 ## Dependency Contracts
 
 The following models and interfaces are available from dependencies. You can use these types but cannot see their implementations.
@@ -414,6 +420,7 @@ Methods:
 - `isPhrase(String lemma): boolean`
 - `getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>`
 - `getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>`
+- `lookupLevel(LemmaAndPos lemmaAndPos): Optional<CefrLevel>`
 
 ### AuditableEntity (port)
 
@@ -437,6 +444,7 @@ Methods:
 
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>`
 - `getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>`
+- `getLemmaCountDiagnosis(): Optional<LemmaCountCourseDiagnosis>`
 
 ### LevelDiagnoses (port)
 
@@ -444,6 +452,7 @@ Methods:
 
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceLevelDiagnosis>`
 - `getCocaBucketsDiagnosis(): Optional<CocaBucketsLevelDiagnosis>`
+- `getLemmaCountDiagnosis(): Optional<LemmaCountLevelDiagnosis>`
 
 ### TopicDiagnoses (port)
 
@@ -499,6 +508,12 @@ Methods:
 Methods:
 
 - `build(AuditReport report): AuditNodeIndex`
+
+### LemmaCountConfig (port) [sealed]
+
+Methods:
+
+- `getThreshold(): int`
 
 ### From course-domain
 

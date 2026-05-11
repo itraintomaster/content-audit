@@ -17,4 +17,6 @@ public interface EvpCatalogPort {
     Optional<Integer> getCocaRank(LemmaAndPos lemmaAndPos);
 
     Optional<String> getSemanticCategory(LemmaAndPos lemmaAndPos);
+
+    Optional<CefrLevel> lookupLevel(LemmaAndPos lemmaAndPos);
 }

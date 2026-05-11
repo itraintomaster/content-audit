@@ -251,6 +251,7 @@ Methods:
 - `isPhrase(String lemma): boolean`
 - `getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>`
 - `getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>`
+- `lookupLevel(LemmaAndPos lemmaAndPos): Optional<CefrLevel>`
 
 ### AuditableEntity (port)
 
@@ -274,6 +275,7 @@ Methods:
 
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>`
 - `getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>`
+- `getLemmaCountDiagnosis(): Optional<LemmaCountCourseDiagnosis>`
 
 ### LevelDiagnoses (port)
 
@@ -281,6 +283,7 @@ Methods:
 
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceLevelDiagnosis>`
 - `getCocaBucketsDiagnosis(): Optional<CocaBucketsLevelDiagnosis>`
+- `getLemmaCountDiagnosis(): Optional<LemmaCountLevelDiagnosis>`
 
 ### TopicDiagnoses (port)
 
@@ -336,6 +339,12 @@ Methods:
 Methods:
 
 - `build(AuditReport report): AuditNodeIndex`
+
+### LemmaCountConfig (port) [sealed]
+
+Methods:
+
+- `getThreshold(): int`
 
 ## Implementations
 

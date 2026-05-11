@@ -8,6 +8,7 @@ import com.learney.contentaudit.auditapplication.DefaultAnalyzerRegistry;
 import com.learney.contentaudit.auditapplication.DefaultCocaBucketsConfig;
 import com.learney.contentaudit.auditapplication.DefaultLemmaRecurrenceConfig;
 import com.learney.contentaudit.auditapplication.DefaultLemmaAbsenceConfig;
+import com.learney.contentaudit.auditapplication.DefaultLemmaCountConfig;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.IAuditEngine;
 import com.learney.contentaudit.auditdomain.IScoreAggregator;
@@ -30,6 +31,8 @@ import com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter;
 import com.learney.contentaudit.auditdomain.lrec.DefaultIntervalCalculator;
 import com.learney.contentaudit.auditdomain.lrec.DefaultExposureClassifier;
 import com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer;
+import com.learney.contentaudit.auditdomain.lemmacount.EvpThenNlpLemmaCefrLevelResolver;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzer;
 import com.learney.contentaudit.vocabularyinfrastructure.evp.FileSystemEvpCatalog;
 import com.learney.contentaudit.nlpinfrastructure.NlpTokenizerConfig;
 import com.learney.contentaudit.nlpinfrastructure.spacy.SpacyNlpTokenizerFactory;
@@ -242,13 +245,20 @@ class Main {
         LemmaByLevelAbsenceAnalyzer lemmaAbsenceAnalyzer = new LemmaByLevelAbsenceAnalyzer(
                 evpCatalog, new DefaultContentWordFilter(), lemmaAbsenceConfig);
 
+        DefaultLemmaCountConfig lemmaCountConfig = new DefaultLemmaCountConfig();
+        LemmaCountAnalyzer lemmaCountAnalyzer = new LemmaCountAnalyzer(
+                new DefaultContentWordFilter(),
+                new EvpThenNlpLemmaCefrLevelResolver(evpCatalog),
+                lemmaCountConfig);
+
         List<ContentAnalyzer> contentAnalyzers = List.of(
                 sentenceLengthAnalyzer,
                 knowledgeTitleLengthAnalyzer,
                 knowledgeInstructionsLengthAnalyzer,
                 cocaBucketsAnalyzer,
                 lemmaRecurrenceAnalyzer,
-                lemmaAbsenceAnalyzer
+                lemmaAbsenceAnalyzer,
+                lemmaCountAnalyzer
         );
 
         ScoreAggregator scoreAggregator =
@@ -276,7 +286,8 @@ class Main {
                 (SelfDescribingConfig) sentenceLengthConfig,
                 (SelfDescribingConfig) cocaBucketsConfig,
                 (SelfDescribingConfig) lemmaRecurrenceConfig,
-                (SelfDescribingConfig) lemmaAbsenceConfig);
+                (SelfDescribingConfig) lemmaAbsenceConfig,
+                (SelfDescribingConfig) lemmaCountConfig);
         DefaultAnalyzerRegistry analyzerRegistry = new DefaultAnalyzerRegistry(
                 contentAnalyzers, describableConfigs);
         AnalyzerStatsTransformer analyzerStatsTransformer = new DefaultAnalyzerStatsTransformer();

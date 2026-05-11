@@ -1,0 +1,176 @@
+code: FEAT-LCOUNT
+description: "FEAT-LCOUNT: Analisis de conteo de repeticiones de lemas content-word.\
+  \ Anade el analyzer 'lemma-count' en audit-domain (paquete lemmacount), el config\
+  \ sealed asociado, un resolver dedicado para la cadena CEFR (EVP -> NLP -> no asignado),\
+  \ diagnoses tipados a nivel curso y nivel CEFR, una nueva firma en EvpCatalogPort\
+  \ para resolver CEFR por lema, y el wiring del config default en audit-application."
+modules:
+- name: audit-domain
+  interfaces:
+  - name: EvpCatalogPort
+    sealed: false
+    exposes:
+    - signature: "lookupLevel(LemmaAndPos lemmaAndPos): Optional<CefrLevel>"
+      _change: add
+    _change: modify
+  - name: LemmaCountConfig
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "getThreshold(): int"
+    _change: modify
+    extends:
+    - SelfDescribingConfig
+  - name: CourseDiagnoses
+    sealed: false
+    exposes:
+    - signature: "getLemmaCountDiagnosis(): Optional<LemmaCountCourseDiagnosis>"
+      _change: add
+    _change: modify
+  - name: LevelDiagnoses
+    sealed: false
+    exposes:
+    - signature: "getLemmaCountDiagnosis(): Optional<LemmaCountLevelDiagnosis>"
+      _change: add
+    _change: modify
+  packages:
+  - name: lemmacount
+    description: "Conteo de repeticiones de lemas content-word por oraciones distintas\
+      \ en todo el curso. Asigna un nivel CEFR a cada lema con la cadena EVP -> NLP\
+      \ -> 'no asignado', calcula score por lema (min(count/N, 1.0)), agrega por nivel\
+      \ CEFR (promedio simple) y por curso (promedio simple de niveles)."
+    visibility: internal
+    models:
+    - name: LemmaCountStats
+      type: record
+      fields:
+      - name: lemmaAndPos
+        type: LemmaAndPos
+        description: Lema content-word con su POS (par identificador segun R002)
+      - name: count
+        type: int
+        description: "Numero de oraciones distintas del curso que contienen el lema\
+          \ (R004, R005)"
+      - name: score
+        type: double
+        description: "Score del lema: min(count/N, 1.0) (R006)"
+      - name: assignedLevel
+        type: Optional<CefrLevel>
+        description: Nivel CEFR asignado por la cadena R009 -> R010; vacio si el lema
+          cae al grupo 'no asignado' (R011)
+      _change: modify
+    - name: LevelLemmaCountResult
+      type: record
+      fields:
+      - name: level
+        type: CefrLevel
+        description: Nivel CEFR cuyo score se reporta
+      - name: score
+        type: double
+        description: "Score del nivel: promedio simple de los scores de sus lemas\
+          \ (R012)"
+      - name: totalLemmas
+        type: int
+        description: Total de lemas evaluados asignados a este nivel (R017)
+      - name: subExposedLemmas
+        type: List<LemmaCountStats>
+        description: Lemas del nivel con score < 1.0 (R017); ordenados por count ascendente
+          para priorizar
+      _change: modify
+    - name: UnassignedLemmaEntry
+      type: record
+      fields:
+      - name: lemmaAndPos
+        type: LemmaAndPos
+        description: Lema sin nivel CEFR asignado por ninguna fuente (R011)
+      - name: count
+        type: int
+        description: Conteo de oraciones distintas con el lema (R018); no se calcula
+          score
+      _change: modify
+    - name: LemmaCountResult
+      type: record
+      fields:
+      - name: thresholdN
+        type: int
+        description: Umbral N usado para calcular los scores (R016)
+      - name: courseScore
+        type: Optional<Double>
+        description: "Score global del curso: promedio simple de los scores de los\
+          \ niveles CEFR (R013, R015). Vacio si ningun nivel tiene score asignable."
+      - name: levels
+        type: List<LevelLemmaCountResult>
+        description: Detalle por nivel CEFR con score (R017). Niveles sin lemas asignados
+          no aparecen (R012).
+      - name: unassigned
+        type: List<UnassignedLemmaEntry>
+        description: "Lemas que no pudieron clasificarse en ningun nivel CEFR (R011,\
+          \ R018). Informativos: no entran al score del curso (R014)."
+      _change: modify
+    - name: LemmaCountCourseDiagnosis
+      type: record
+      fields:
+      - name: result
+        type: LemmaCountResult
+        description: "Resultado consolidado del analisis: score global, N usado, detalle\
+          \ por nivel y lemas no asignados."
+      _change: modify
+    - name: LemmaCountLevelDiagnosis
+      type: record
+      fields:
+      - name: levelResult
+        type: LevelLemmaCountResult
+        description: "Resultado de este nivel CEFR concreto (score, total de lemas,\
+          \ sub-expuestos)."
+      _change: modify
+    interfaces:
+    - name: LemmaCefrLevelResolver
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "resolve(LemmaAndPos lemmaAndPos): Optional<CefrLevel>"
+      _change: modify
+    implementations:
+    - name: EvpThenNlpLemmaCefrLevelResolver
+      requiresInject:
+      - name: evpCatalogPort
+        type: EvpCatalogPort
+        description: Fuente primaria de nivel CEFR (R009).
+      visibility: public
+      implements:
+      - LemmaCefrLevelResolver
+      _change: modify
+    - name: LemmaCountAnalyzer
+      requiresInject:
+      - name: contentWordFilter
+        type: ContentWordFilter
+        description: Aplica el filtro POS content-word del universo (R001).
+      - name: lemmaCefrLevelResolver
+        type: LemmaCefrLevelResolver
+        description: Asigna CEFR al lema con la cadena R009 -> R010 -> R011.
+      - name: lemmaCountConfig
+        type: LemmaCountConfig
+        description: "Provee el umbral N usado en el score (R006, R007, R008, R016)."
+      visibility: public
+      implements:
+      - ContentAnalyzer
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-application
+  implementations:
+  - name: DefaultLemmaCountConfig
+    types:
+    - Component
+    visibility: public
+    implements:
+    - LemmaCountConfig
+    _change: modify
+  _change: modify
+features:
+- id: FEAT-LCOUNT
+  journeys:
+  - id: F-LCOUNT-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.lemmacount

@@ -775,6 +775,76 @@ new ActiveAnalysisSelection(String auditId, String planId)
 | `cocaRank` | `Integer` |
 | `semanticCategory` | `String` |
 
+#### LemmaCountStats (package: lemmacount)
+
+**Package:** `com.learney.contentaudit.auditdomain.lemmacount`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `lemmaAndPos` | `LemmaAndPos` |
+| `count` | `int` |
+| `score` | `double` |
+| `assignedLevel` | `Optional<CefrLevel>` |
+
+#### LevelLemmaCountResult (package: lemmacount)
+
+**Package:** `com.learney.contentaudit.auditdomain.lemmacount`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `level` | `CefrLevel` |
+| `score` | `double` |
+| `totalLemmas` | `int` |
+| `subExposedLemmas` | `List<LemmaCountStats>` |
+
+#### UnassignedLemmaEntry (package: lemmacount)
+
+**Package:** `com.learney.contentaudit.auditdomain.lemmacount`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `lemmaAndPos` | `LemmaAndPos` |
+| `count` | `int` |
+
+#### LemmaCountResult (package: lemmacount)
+
+**Package:** `com.learney.contentaudit.auditdomain.lemmacount`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `thresholdN` | `int` |
+| `courseScore` | `Optional<Double>` |
+| `levels` | `List<LevelLemmaCountResult>` |
+| `unassigned` | `List<UnassignedLemmaEntry>` |
+
+#### LemmaCountCourseDiagnosis (package: lemmacount)
+
+**Package:** `com.learney.contentaudit.auditdomain.lemmacount`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `result` | `LemmaCountResult` |
+
+#### LemmaCountLevelDiagnosis (package: lemmacount)
+
+**Package:** `com.learney.contentaudit.auditdomain.lemmacount`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `levelResult` | `LevelLemmaCountResult` |
+
 ### Module: course-domain
 
 #### NodeKind

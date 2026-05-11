@@ -1,0 +1,18 @@
+{
+  "runId" : "20260510T221856-8206d03b",
+  "agent" : "architect",
+  "graphKind" : "single-agent",
+  "requirementFolder" : "requirements/2026-03-28.02_lemma-count",
+  "request" : "Propose the architecture for F-LCOUNT Analisis de Conteo de Repeticiones de Lemas Content-Word.",
+  "status" : "failed",
+  "started" : "2026-05-10T22:18:56.823671Z",
+  "updated" : "2026-05-10T22:19:00.895007Z",
+  "metadata" : {
+    "provider" : "gemini",
+    "model" : "gemini-3-flash-preview"
+  },
+  "outcome" : {
+    "haltReason" : "unable to find valid certification path to requested target",
+    "halted" : true
+  }
+}

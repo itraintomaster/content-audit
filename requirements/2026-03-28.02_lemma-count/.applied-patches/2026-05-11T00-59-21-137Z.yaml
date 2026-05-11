@@ -1,0 +1,8 @@
+code: FEAT-LCOUNT
+features:
+- id: FEAT-LCOUNT
+  journeys:
+  - id: F-LCOUNT-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.lemmacount

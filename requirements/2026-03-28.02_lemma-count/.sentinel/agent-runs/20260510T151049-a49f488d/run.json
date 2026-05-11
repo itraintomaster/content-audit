@@ -1,0 +1,18 @@
+{
+  "runId" : "20260510T151049-a49f488d",
+  "agent" : "architect",
+  "graphKind" : "single-agent",
+  "requirementFolder" : "requirements/2026-03-28.02_lemma-count",
+  "request" : "Propose the architecture for F-LCOUNT Analisis de Conteo de Repeticiones de Lemas Content-Word.",
+  "status" : "failed",
+  "started" : "2026-05-10T15:10:49.857243Z",
+  "updated" : "2026-05-10T15:25:37.777594Z",
+  "metadata" : {
+    "provider" : "openai-compat",
+    "model" : "google/gemma-4-31b"
+  },
+  "outcome" : {
+    "halted" : true,
+    "haltReason" : "process terminated unexpectedly (timeout or crash)"
+  }
+}

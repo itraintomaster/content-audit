@@ -219,6 +219,32 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 **Visibility:** internal
 **Implements:** AuditNodeIndex
 
+#### EvpThenNlpLemmaCefrLevelResolver (package: lemmacount)
+
+**Package:** `com.learney.contentaudit.auditdomain.lemmacount`
+**Visibility:** internal
+**Implements:** LemmaCefrLevelResolver
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `evpCatalogPort` | `EvpCatalogPort` |
+
+#### LemmaCountAnalyzer (package: lemmacount)
+
+**Package:** `com.learney.contentaudit.auditdomain.lemmacount`
+**Visibility:** internal
+**Implements:** ContentAnalyzer
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `contentWordFilter` | `ContentWordFilter` |
+| `lemmaCefrLevelResolver` | `LemmaCefrLevelResolver` |
+| `lemmaCountConfig` | `LemmaCountConfig` |
+
 ### Module: course-domain
 
 #### DefaultQuizSentenceConverter (package: quizsentenceengine)
@@ -426,6 +452,14 @@ public DefaultAnalyzerRegistry(List<ContentAnalyzer> analyzers, List<SelfDescrib
     this.configs = configs;
 }
 ```
+
+#### DefaultLemmaCountConfig
+
+**Package:** `com.learney.contentaudit.auditapplication`
+
+**Implements:** LemmaCountConfig
+
+**Framework types:** Component
 
 ### Module: course-infrastructure
 

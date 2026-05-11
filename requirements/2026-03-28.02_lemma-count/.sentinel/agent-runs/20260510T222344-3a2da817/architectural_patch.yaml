@@ -1,0 +1,58 @@
+code: "ARCH-LCOUNT-001"
+description: "Architecture for Content-Word Lemma Repetition Analysis (F-LCOUNT)"
+features:
+  - code: "F-LCOUNT"
+    _change: "add"
+modules:
+  - name: "lcount-domain"
+    _change: "add"
+    layer: "domain"
+    description: "Core logic and models for lemma counting"
+    models:
+      - name: "LemmaCount"
+        type: "record"
+        fields:
+          - { name: "lemma", type: "String" }
+          - { name: "count", type: "int" }
+          - { name: "posTag", type: "String" }
+      - name: "AnalysisResult"
+        type: "record"
+        fields:
+          - { name: "counts", type: "java.util.List<LemmaCount>" }
+          - { name: "totalContentWords", type: "int" }
+      - name: "LemmaAnalysisException"
+        type: "exception"
+        message: "Failed to analyze text: %s"
+        fields:
+          - { name: "reason", type: "String" }
+    interfaces:
+      - name: "LemmaAnalyzer"
+        stereotype: "port"
+        exposes:
+          - signature: "analyze(String text): AnalysisResult"
+            throws: ["LemmaAnalysisException"]
+  - name: "lcount-infra"
+    _change: "add"
+    layer: "infrastructure"
+    dependsOn: ["lcount-domain"]
+    description: "NLP implementations for lemma analysis"
+    implementations:
+      - name: "OpenNlpLemmaAnalyzer"
+        visibility: "public"
+        implements: ["LemmaAnalyzer"]
+        types: ["Adapter"]
+  - name: "lcount-app"
+    _change: "add"
+    layer: "application"
+    dependsOn: ["lcount-domain", "lcount-infra"]
+    description: "Application entry point for lemma counting"
+    implementations:
+      - name: "LCountOrchestrator"
+        stereotype: "class"
+        visibility: "public"
+        requiresInject:
+          - { name: "analyzer", type: "LemmaAnalyzer" }
+        exposes:
+          - signature: "processText(String text): AnalysisResult"
+            throws: ["LemmaAnalysisException"]
+        types: ["UseCase"]

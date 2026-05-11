@@ -601,68 +601,48 @@ Este es el tercer paso de la iniciativa de diagnosticos tipados, tras FEAT-DLABS
   4. Los resultados reflejan los rangos actualizados: las puntuaciones de quizzes se recalculan con los nuevos valores (R002), la plataforma reagrega las puntuaciones a traves de la jerarquia (R003-R005-R008), y las estadisticas y recomendaciones por nivel se actualizan (R006, R007, R014)
   5. El usuario valida que los rangos ajustados se alinean con las expectativas pedagogicas del nuevo curso
 
-### FEAT-LCOUNT: Analisis de Conteo de Apariciones de Lemas EVP [F-LCOUNT]
+### FEAT-LCOUNT: Analisis de Conteo de Repeticiones de Lemas Content-Word [F-LCOUNT]
 
-> Evaluar si cada lema esperado del catalogo EVP (English Vocabulary Profile) aparece un numero adecuado de veces a lo largo del curso, clasificando cada lema segun su nivel de exposicion (ausente, sub-expuesto, normal, sobre-expuesto) y generando puntuaciones que reflejan la adecuacion de la frecuencia de aparicion. Las puntuaciones individuales por lema se agregan a traves de la jerarquia del curso mediante el motor de agregacion generico de la plataforma ContentAudit, permitiendo localizar donde se concentran los problemas de exposicion de vocabulario.
+> **Que**: Mide, para cada lema content-word que aparece al menos una vez en
+el curso, en cuantas oraciones distintas se repite, y resume la
+exposicion por nivel CEFR y a nivel del curso completo.
+
+**Por que**: Una vez que el curso introduce un lema, el aprendizaje
+requiere que se repita varias veces en oraciones distintas. Sin esa
+repeticion, la exposicion es nominal y el lema no se consolida.
 
 **Business Rules:**
 
 | ID | Rule | Severity | Error Message |
 |----|------|----------|---------------|
-| F-LCOUNT-R001 | Conteo de apariciones por lema esperado | critical | Error al contar apariciones del lema {lema} ({parteOracion}) en el nivel {nivel}: {detalle} |
-| F-LCOUNT-R002 | El conteo abarca todo el curso, no solo el nivel del lema | critical | - |
-| F-LCOUNT-R003 | Clasificacion de lemas por nivel de exposicion | critical | Estado de exposicion indeterminado para el lema {lema} ({parteOracion}): apariciones = {count}, umbrales = [{min}, {max}] |
-| F-LCOUNT-R004 | Los lemas esperados se obtienen del catalogo EVP | critical | No se encontraron lemas esperados en el catalogo EVP para el nivel {nivel} |
-| F-LCOUNT-R005 | Los datos de lematizacion provienen de procesamiento linguistico previo | critical | Token sin datos de lematizacion en el quiz {quizId}: el procesamiento linguistico previo no asocio lema |
-| F-LCOUNT-R006 | Puntuacion individual por lema | critical | Puntuacion fuera de rango [0.0, 1.0] calculada para el lema {lema} ({parteOracion}): {puntuacion} |
-| F-LCOUNT-R007 | Puntuacion por oracion (quiz) | critical | Error al calcular la puntuacion de la oracion del quiz {quizId} en el knowledge {knowledgeId}: {detalle} |
-| F-LCOUNT-R008 | Puntuacion general del analisis (overall score) | critical | Error al calcular la puntuacion general: {detalle} |
-| F-LCOUNT-R009 | Exclusion de quizzes que no son oraciones | critical | Se incluyo un quiz no-oracion en el conteo de lemas del knowledge {knowledgeId} |
-| F-LCOUNT-R010 | Resultado detallado por lema | major | - |
-| F-LCOUNT-R011 | Agregacion a traves de la jerarquia (provista por la plataforma) | critical | - |
-| F-LCOUNT-R012 | Nombre del analizador en el informe | major | - |
-| F-LCOUNT-R013 | Los umbrales de exposicion no son configurables en esta version | minor | - |
+| F-LCOUNT-R001 | Solo se evaluan lemas content-word | high | Token sin etiqueta POS en el quiz {quizId}: el procesamiento
+linguistico previo no asigno parte de la oracion |
+| F-LCOUNT-R002 | El lema se identifica por su forma base mas su POS | high | - |
+| F-LCOUNT-R003 | Solo entran al analisis los lemas con al menos una aparicion | high | - |
+| F-LCOUNT-R004 | El conteo es la cantidad de oraciones distintas que contienen el lema | high | Error al contar oraciones para el lema {lema} ({pos}):
+{detalle} |
+| F-LCOUNT-R005 | El conteo abarca todo el curso | high | - |
+| F-LCOUNT-R006 | El score por lema es lineal hasta el umbral N | high | Score fuera de rango [0.0, 1.0] calculado para el lema
+{lema} ({pos}): {score} |
+| F-LCOUNT-R007 | Si N no esta configurado, se aplica el default 4 | medium | - |
+| F-LCOUNT-R008 | Si N esta configurado y es invalido, falla al cargar la configuracion | high | Umbral N invalido en la configuracion: {valor}. Debe ser un
+entero positivo. |
+| F-LCOUNT-R009 | El nivel CEFR del lema se toma del catalogo EVP cuando esta disponible | high | - |
+| F-LCOUNT-R010 | Si el lema no esta en EVP, se intenta el nivel CEFR del procesamiento linguistico (solo si esta disponible) | high | - |
+| F-LCOUNT-R011 | Si ninguna fuente provee nivel CEFR, el lema queda en el grupo "no asignado" | high | - |
+| F-LCOUNT-R012 | El score de un nivel CEFR es el promedio simple de los scores de sus lemas | high | No se pudo calcular el score del nivel CEFR {nivel}: {detalle} |
+| F-LCOUNT-R013 | El score del curso es el promedio simple de los scores de los niveles CEFR | high | No se pudo calcular el score del curso: ningun nivel CEFR
+tiene score asignable |
+| F-LCOUNT-R014 | El grupo "no asignado" no entra al score del curso | high | - |
+| F-LCOUNT-R015 | El reporte expone el score global del curso | medium | - |
+| F-LCOUNT-R016 | El reporte expone explicitamente el umbral N usado | medium | - |
+| F-LCOUNT-R017 | El reporte detalla cada nivel CEFR | medium | - |
+| F-LCOUNT-R018 | El reporte lista los lemas del grupo "no asignado" | medium | - |
+| F-LCOUNT-R019 | El analizador se identifica con el nombre "lemma-count" | low | - |
 
 **User Journeys:**
 
-- **F-LCOUNT-J001**: Auditar el conteo de apariciones de lemas EVP de un curso completo
-  1. El usuario inicia una auditoria de un curso previamente cargado en el sistema
-  2. El sistema recorre todas las oraciones del curso, identificando en cada una los tokens lematizados
-  3. Para cada nivel CEFR, el analizador obtiene los lemas esperados del catalogo EVP
-  4. El analizador cuenta cuantas veces aparece cada lema esperado en el conjunto completo de oraciones del curso
-  5. El analizador clasifica cada lema segun su nivel de exposicion (ausente, sub-expuesto, normal, sobre-expuesto) y le asigna una puntuacion individual
-  6. El analizador calcula la puntuacion de cada oracion como el promedio de las puntuaciones de los lemas esperados que contiene
-  7. La plataforma agrega las puntuaciones de oraciones hacia arriba a traves de la jerarquia: para cada knowledge calcula el promedio de sus quizzes, para cada topic el promedio de sus knowledges, para cada nivel el promedio de sus topics, y para el curso el promedio de sus niveles
-  8. El usuario recibe un informe con la puntuacion general, las puntuaciones por nivel de la jerarquia, y el detalle de la clasificacion de cada lema
-
-- **F-LCOUNT-J002**: Identificar lemas con exposicion insuficiente
-  1. El usuario ha ejecutado la auditoria de conteo de lemas (J001)
-  2. El usuario observa que la puntuacion general del analizador "lemma-count" es baja (por ejemplo, 0.65)
-  3. El usuario consulta el detalle de lemas por nivel y filtra por estado "ausente" y "sub-expuesto"
-  4. El usuario identifica los lemas que requieren mas apariciones en el curso, priorizando los ausentes (puntuacion 0.0) sobre los sub-expuestos
-  5. El usuario puede tomar acciones correctivas: agregar oraciones que incluyan los lemas faltantes o sub-expuestos, o modificar oraciones existentes para incorporarlos
-
-- **F-LCOUNT-J003**: Localizar problemas de exposicion en la jerarquia del curso
-  1. El usuario ha ejecutado la auditoria de conteo de lemas (J001)
-  2. El usuario observa que un nivel (por ejemplo, B1) tiene una puntuacion baja en el analizador "lemma-count"
-  3. El usuario profundiza en los topics del nivel B1 y encuentra que el topic "Travel Vocabulary" tiene la puntuacion mas baja
-  4. El usuario profundiza en los knowledges de "Travel Vocabulary" y revisa las puntuaciones por quiz
-  5. El usuario identifica que varias oraciones contienen unicamente lemas sobre-expuestos (que aportan puntuaciones inferiores a 1.0) y ningun lema sub-expuesto o ausente que podria incorporarse
-  6. El usuario reorganiza el contenido para distribuir mejor los lemas que necesitan mas exposicion
-
-- **F-LCOUNT-J004**: Comparar exposicion de vocabulario entre niveles
-  1. El usuario ha ejecutado la auditoria de conteo de lemas (J001)
-  2. El usuario consulta las puntuaciones del analizador "lemma-count" por nivel CEFR
-  3. El usuario compara la proporcion de lemas ausentes y sub-expuestos entre niveles
-  4. El usuario identifica si los problemas de exposicion se concentran en un nivel especifico (por ejemplo, B2 tiene muchos lemas ausentes porque el contenido de B2 es menos extenso) o se distribuyen uniformemente
-  5. El usuario prioriza las acciones correctivas en los niveles con peor cobertura de vocabulario
-
-- **F-LCOUNT-J005**: Revisar lemas sobre-expuestos para optimizar el contenido
-  1. El usuario ha ejecutado la auditoria de conteo de lemas (J001)
-  2. El usuario filtra los lemas con estado "sobre-expuesto" y revisa cuales son
-  3. El usuario encuentra que lemas como "be" y "have" (nivel A1) tienen mas de 100 apariciones cada uno
-  4. El usuario evalua si estas sobre-exposiciones son realmente problematicas (verbos basicos que naturalmente aparecen con alta frecuencia) o si indican contenido repetitivo que podria mejorarse
-  5. El usuario decide si las sobre-exposiciones de verbos basicos son aceptables o si necesitan revision, considerando que la penalizacion por sobre-exposicion puede producir falsos positivos para vocabulario de muy alta frecuencia
+- **F-LCOUNT-J001**: Consultar la exposicion de los lemas content-word del curso
 
 ### FEAT-RCLA: Re-routing y Contexto de Correccion para LEMMA_ABSENCE en el Refiner [F-RCLA]
 

@@ -1,0 +1,346 @@
+{
+  "scores": {
+    "a1": {
+      "a1aPassed": true,
+      "a1aViolations": [],
+      "a1bScore": 1,
+      "a1bDetails": [],
+      "a1cScore": 0,
+      "a1dScore": 1,
+      "compositeScore": 0.85
+    },
+    "a2": {
+      "structurallySound": true,
+      "a2a": {
+        "id": "A2a",
+        "name": "Structural Integrity",
+        "score": 1,
+        "violations": []
+      },
+      "a2b": {
+        "id": "A2b",
+        "name": "Port Coverage",
+        "score": 1,
+        "violations": []
+      },
+      "a2c": {
+        "id": "A2c",
+        "name": "Reachability",
+        "score": 0.60625,
+        "violations": []
+      },
+      "a2d": {
+        "id": "A2d",
+        "name": "Contract Utilization",
+        "score": 1,
+        "violations": []
+      },
+      "a2e": {
+        "id": "A2e",
+        "name": "Path Traceability",
+        "score": 1,
+        "violations": []
+      },
+      "composite": 0.8425
+    },
+    "a3": {
+      "modules": [
+        {
+          "name": "lcount-app",
+          "ca": 0,
+          "ce": 2,
+          "instability": 1,
+          "abstractness": 0,
+          "distance": 0,
+          "zone": "main_sequence",
+          "score": 1
+        },
+        {
+          "name": "lcount-infra",
+          "ca": 1,
+          "ce": 1,
+          "instability": 0.5,
+          "abstractness": 0,
+          "distance": 0.5,
+          "zone": "off_sequence",
+          "score": 0.5
+        },
+        {
+          "name": "lcount-domain",
+          "ca": 2,
+          "ce": 0,
+          "instability": 0,
+          "abstractness": 0,
+          "distance": 1,
+          "zone": "pain",
+          "score": 0
+        }
+      ],
+      "componentCount": 0,
+      "threshold": 30,
+      "ramp": 0,
+      "rawScore": 0.5,
+      "effectiveScore": 1
+    },
+    "a4": {
+      "dependencyInversionHolds": true,
+      "acyclic": true,
+      "a4a": {
+        "id": "A4a",
+        "name": "Dependency Inversion",
+        "score": 1,
+        "violations": []
+      },
+      "a4b": {
+        "id": "A4b",
+        "name": "Acyclicity",
+        "score": 1,
+        "violations": []
+      },
+      "a4c": {
+        "id": "A4c",
+        "name": "Adapter Polarity",
+        "score": 1,
+        "violations": []
+      },
+      "a4d": {
+        "id": "A4d",
+        "name": "Layer Isolation",
+        "score": 1,
+        "violations": []
+      },
+      "a4e": {
+        "id": "A4e",
+        "name": "Composition Root Discipline",
+        "score": 1,
+        "violations": []
+      },
+      "composite": 1
+    },
+    "a5": {
+      "a5aScore": 0.5599999999999999,
+      "a5bScore": 1,
+      "a5cScore": 0,
+      "a5dScore": 1,
+      "a5eScore": 1,
+      "violations": [
+        {
+          "code": "A5a",
+          "severity": "warning",
+          "message": "Factory pattern 'AuditNodeIndexFactory' has 1 implementation(s) — needs ≥2 to justify"
+        },
+        {
+          "code": "A5a",
+          "severity": "warning",
+          "message": "Factory pattern 'NlpTokenizerFactory' has 1 implementation(s) — needs ≥2 to justify"
+        },
+        {
+          "code": "A5a",
+          "severity": "warning",
+          "message": "Strategy pattern 'LemmaAbsenceProposalStrategy' has 1 implementation(s) — needs ≥2 for polymorphism"
+        },
+        {
+          "code": "A5a",
+          "severity": "warning",
+          "message": "Factory pattern 'LemmaAbsenceLlmGeneratorFactory' has 1 implementation(s) — needs ≥2 to justify"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'DefaultAuditNodeIndexFactory' declared in Factory pattern but not found in any module"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'TextReportFormatter' declared in Strategy pattern but not found in any module"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'JsonReportFormatter' declared in Strategy pattern but not found in any module"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'TableReportFormatter' declared in Strategy pattern but not found in any module"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'SpacyNlpTokenizerFactory' declared in Factory pattern but not found in any module"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'LemmaAbsenceMvpStrategy' declared in Strategy pattern but not found in any module"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'DefaultLemmaAbsenceLlmGeneratorFactory' declared in Factory pattern but not found in any module"
+        }
+      ],
+      "composite": 0.618
+    },
+    "a6": {
+      "score": 1,
+      "totalInterfaces": 0,
+      "inflatedCount": 0,
+      "inflated": []
+    },
+    "c1": {
+      "score": 1,
+      "maxDepth": 0,
+      "avgDepth": 0,
+      "entries": [
+        {
+          "entryPoint": "audit-cli.commands.ContentAuditCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.AnalyzeCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.GetCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.DeleteCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.PruneCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.PlanCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.ReviseCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.ConfigAnalyzerCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.StatsAnalyzerCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.ApproveCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.RejectCmd",
+          "depth": 0
+        }
+      ]
+    },
+    "c3": {
+      "score": 1,
+      "details": []
+    },
+    "mode": "PATCH_ONLY",
+    "compositeScore": 0.8793571428571428
+  },
+  "timestamp": "2026-05-10T23:56:36.152Z",
+  "b3": {
+    "score": 0.4,
+    "direction": "under",
+    "justification": "The patch provides a generic NLP utility but fails to model the core business logic of the requirement, such as CEFR level aggregation, scoring rules (N threshold), and the 'no assigned' group logic.",
+    "findings": [
+      {
+        "element": "lcount-domain",
+        "issue": "Missing models for CEFR level scores, course-level aggregation, and the 'no assigned' group required by Rules R009-R014.",
+        "severity": "error"
+      },
+      {
+        "element": "lcount-domain",
+        "issue": "The LemmaAnalyzer port is too low-level; the requirement asks for an analysis of a 'Course' (hierarchy of sentences), not just a single 'String text'.",
+        "severity": "error"
+      },
+      {
+        "element": "lcount-app",
+        "issue": "The orchestrator lacks the configuration logic for the threshold 'N' (Rules R006-R008) and the integration with the EVP catalog (Rule R009).",
+        "severity": "error"
+      },
+      {
+        "element": "lcount-infra",
+        "issue": "The patch introduces OpenNLP as a new dependency, but the baseline already has a SpaCy-backed NlpTokenizer in nlp-infrastructure that could be reused.",
+        "severity": "warning"
+      }
+    ]
+  },
+  "b4": {
+    "score": 0.6,
+    "justification": "The patch implements a generic text-processing service instead of the specific course-auditing analyzer required by the business rules (CEFR levels, EVP catalog, and course-wide sentence counting).",
+    "findings": [
+      {
+        "element": "lcount-domain",
+        "issue": "The module defines a generic text analyzer instead of an auditor that operates on the course hierarchy (Milestones/Topics/Quizzes) as required by Group C and D rules.",
+        "severity": "error"
+      },
+      {
+        "element": "AnalysisResult",
+        "issue": "Missing fields for CEFR level scores, course global score, and sub-exposed lemma lists required by rules R012, R013, R015, and R017.",
+        "severity": "error"
+      },
+      {
+        "element": "LemmaAnalyzer",
+        "issue": "The signature analyze(String text) is untraceable to the requirement of counting 'distinct sentences' across a course (R004/R005) and ignores the required CEFR/EVP data sources (R009/R010).",
+        "severity": "error"
+      },
+      {
+        "element": "LCountOrchestrator",
+        "issue": "Exposes a 'processText' capability which is speculative; the requirement specifies an auditor identified as 'lemma-count' (R019) that integrates with the existing AuditReport structure.",
+        "severity": "error"
+      }
+    ]
+  },
+  "b2": {
+    "score": 0.9,
+    "justification": "The patch follows the hexagonal architecture layers correctly, but the application layer orchestrator is coupled to a specific infrastructure implementation instead of just the domain port.",
+    "findings": [
+      {
+        "element": "lcount-app",
+        "issue": "The application module depends on 'lcount-infra'. In a clean hexagonal architecture, the application layer should only depend on the domain (ports); the infrastructure dependency should be handled at the composition root to maintain dependency inversion.",
+        "severity": "warning"
+      }
+    ]
+  },
+  "b1": {
+    "score": 0.6,
+    "justification": "The patch correctly identifies the technical layers but fails to adopt the Ubiquitous Language of the requirement, specifically ignoring the CEFR grouping and scoring logic that defines the feature's business value.",
+    "findings": [
+      {
+        "element": "lcount-domain",
+        "issue": "The module name uses a technical abbreviation 'lcount' instead of the domain term 'lemma-repetition' or 'lemma-count' used in the requirement.",
+        "severity": "warning"
+      },
+      {
+        "element": "AnalysisResult",
+        "issue": "The model lacks the CEFR level grouping and scores (Course Score, Level Score) which are central to the business rules (Group C).",
+        "severity": "error"
+      },
+      {
+        "element": "LCountOrchestrator",
+        "issue": "The name 'Orchestrator' is a technical artifact; the requirement describes this as a 'Lemma Repetition Analysis' or 'Analyzer'.",
+        "severity": "warning"
+      },
+      {
+        "element": "LemmaAnalyzer",
+        "issue": "The port signature 'analyze(String text)' contradicts Rule [F-LCOUNT-R005], which states the analysis covers the 'whole course' (AuditableCourse), not just isolated text strings.",
+        "severity": "error"
+      },
+      {
+        "element": "LemmaCount",
+        "issue": "Missing the 'CEFR Level' field which is required by Rule [F-LCOUNT-R009] to aggregate results.",
+        "severity": "error"
+      }
+    ]
+  },
+  "judgeProfile": "google-gemini"
+}

@@ -1,0 +1,22 @@
+{
+  "runId" : "20260510T233045-6b7b8958",
+  "agent" : "llm-judge",
+  "graphKind" : "single-agent",
+  "requirementFolder" : "",
+  "request" : "B-tier eval (LLM-as-Judge) for sentinel.yaml",
+  "status" : "done",
+  "started" : "2026-05-10T23:30:45.321881Z",
+  "updated" : "2026-05-10T23:30:53.935073Z",
+  "metadata" : {
+    "kind" : "llm-judge",
+    "profile" : "google-gemini"
+  },
+  "outcome" : {
+    "halted" : false,
+    "haltReason" : null,
+    "b1" : null,
+    "b2" : 1.0,
+    "b3" : 0.0,
+    "b4" : 0.0
+  }
+}

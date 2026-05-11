@@ -41,6 +41,12 @@ public class SentinelArchitectureTest {
   }
 
   @Test
+  public void enforceLemmaCountConfigSealedImplementation() {
+    JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
+    ArchRuleDefinition.classes().that().implement(com.learney.contentaudit.auditdomain.LemmaCountConfig.class).should().haveSimpleName("DefaultLemmaCountConfig").allowEmptyShould(true).check(classes);
+  }
+
+  @Test
   public void enforceAllDeclaredClassesExist() {
     try {
       Class.forName("com.learney.contentaudit.auditapplication.AuditRunner");
@@ -86,6 +92,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditapplication.DefaultAnalyzerRegistry");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultAnalyzerRegistry - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditapplication.DefaultLemmaCountConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultLemmaCountConfig - " + e.getMessage());
     }
   }
 }
