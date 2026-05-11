@@ -1,8 +1,4 @@
 code: FEAT-NLP
-description: "Retirar F-NLP-J003 del bloque features/FEAT-NLP/journeys. Analyst ya\
-  \ la removió de REQUIREMENT.md (movida a 'Decisiones de simplicidad'); el sentinel.yaml\
-  \ estaba desincronizado. No hay handwrittenTests ni gates referenciando esta journey,\
-  \ por lo que la eliminación es segura."
 modules:
 - name: nlp-infrastructure
   packages:
@@ -185,8 +181,3 @@ modules:
         feature: FEAT-NLP
         rule: F-NLP-R010
         journey: F-NLP-J001
-features:
-- id: FEAT-NLP
-  journeys:
-  - id: F-NLP-J003
-    validation: AUTO_VALIDATED

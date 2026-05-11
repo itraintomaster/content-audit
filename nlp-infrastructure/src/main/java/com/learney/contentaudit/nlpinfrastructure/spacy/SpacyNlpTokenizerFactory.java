@@ -15,6 +15,7 @@ public class SpacyNlpTokenizerFactory implements NlpTokenizerFactory {
         SpacyProcessRunner processRunner = new SpacyProcessRunner(config);
         SpacyResultParser resultParser = new SpacyResultParser();
         SpacyNlpTokenizer spacyTokenizer = new SpacyNlpTokenizer(processRunner, resultParser);
-        return new CachedNlpTokenizer(spacyTokenizer);
+        // R030: FallbackNlpTokenizer catches RuntimeException from SpaCy and returns basic tokens.
+        return new FallbackNlpTokenizer(new CachedNlpTokenizer(spacyTokenizer));
     }
 }

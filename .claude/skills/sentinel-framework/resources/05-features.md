@@ -533,40 +533,16 @@ Este es el tercer paso de la iniciativa de diagnosticos tipados, tras FEAT-DLABS
 | F-SLEN-R005 | Puntuacion por nivel (agregacion de la plataforma) | critical | Error al calcular la puntuacion del nivel {nivel}: {detalle} |
 | F-SLEN-R008 | Puntuacion general del curso (agregacion de la plataforma) | critical | Error al calcular la puntuacion general: {detalle} |
 | F-SLEN-R016 | Puntuaciones disponibles en cada nivel de la jerarquia (agregacion de la plataforma) | major | - |
-| F-SLEN-R006 | Calculo del promedio de longitud por nivel | critical | Error al calcular el promedio de longitud para el nivel {nivel}: {detalle} |
-| F-SLEN-R007 | Evaluacion de estado por nivel | critical | Estado indeterminado para el nivel {nivel}: no se pudo evaluar el promedio {promedio} contra los rangos [{min}, {max}] |
-| F-SLEN-R010 | Evaluacion de progresion entre niveles | major | No se pudo evaluar la progresion: {detalle} |
-| F-SLEN-R011 | Progresion evalua solo niveles con datos | major | - |
-| F-SLEN-R014 | Generacion de recomendaciones por nivel | minor | - |
-| F-SLEN-R015 | Registro de estadisticas por nivel | major | Estadisticas incompletas para el nivel {nivel}: falta el campo {campo} |
 
 **User Journeys:**
 
 - **F-SLEN-J001**: Auditar la longitud de oraciones de un curso completo
   1. El usuario inicia una auditoria de un curso previamente cargado en el sistema
   2. El sistema recorre la jerarquia del curso de arriba hacia abajo: para cada nivel (milestone), sus topics, sus knowledges, y sus quizzes
-  3. Para cada quiz, el analizador de longitud determina si es una oracion valida; los quizzes que no son oraciones se excluyen del analisis
-  4. Para cada quiz valido, el analizador cuenta los tokens linguisticos de su oracion y calcula su puntuacion individual comparando la longitud contra el rango objetivo de su nivel CEFR (R002)
+  3. Para cada quiz, el analizador de longitud determina si es una oracion valida; los quizzes que no son oraciones se excluyen del analisis (R001)
+  4. Para cada quiz valido, el analizador cuenta los tokens linguisticos de su oracion (R013) y calcula su puntuacion individual comparando la longitud contra el rango objetivo de su nivel CEFR (R002)
   5. La plataforma agrega las puntuaciones de quizzes hacia arriba a traves de la jerarquia: para cada knowledge calcula el promedio de sus quizzes (R003), para cada topic el promedio de sus knowledges (R004), para cada nivel el promedio de sus topics (R005), y para el curso el promedio de sus niveles (R008)
-  6. El sistema calcula estadisticas especificas de longitud por nivel: promedio de longitud en tokens (R006), estado respecto a los rangos objetivo (R007), y recomendaciones (R014)
-  7. El sistema evalua la progresion de longitud entre niveles (R010)
-  8. El usuario recibe un informe con la puntuacion general, las puntuaciones y estadisticas por nivel, el estado de progresion, y la posibilidad de profundizar en topics, knowledges y quizzes individuales
-
-- **F-SLEN-J002**: Consultar el detalle de un nivel especifico
-  1. El usuario ha ejecutado la auditoria de longitud de oraciones (J001)
-  2. El usuario selecciona un nivel CEFR especifico (por ejemplo, A2)
-  3. El sistema muestra las estadisticas detalladas del nivel: puntuacion del nivel, cantidad de quizzes validos, cantidad de quizzes excluidos, total de tokens, promedio de longitud, rango objetivo, estado y recomendacion (R015)
-  4. El sistema muestra la lista de topics del nivel con su puntuacion individual, permitiendo identificar que topics contribuyen a una puntuacion baja
-  5. El usuario puede identificar si el nivel esta dentro de los parametros esperados o si requiere ajustes en el contenido
-
-- **F-SLEN-J003**: Identificar problemas de progresion entre niveles
-  1. El usuario ha ejecutado la auditoria de longitud de oraciones (J001)
-  2. El usuario consulta el estado de progresion del curso
-  3. Si la progresion es POSITIVA, el usuario confirma que la dificultad escala correctamente a traves de los niveles
-  4. Si la progresion es REGRESIVA o ESTANCADA, el usuario identifica que hay niveles donde las oraciones no aumentan de longitud como se espera pedagogicamente
-  5. El usuario revisa los promedios de longitud por nivel para localizar en que transicion (por ejemplo, A2 a B1) se rompe la progresion
-  6. El usuario profundiza en el nivel problematico, revisando las puntuaciones por topic y knowledge para localizar donde se concentran las oraciones con longitud inadecuada
-  7. El usuario puede tomar acciones correctivas sobre el contenido de los knowledges y quizzes afectados
+  6. El usuario recibe un informe con la puntuacion general y las puntuaciones disponibles en cada nivel de la jerarquia (R016), pudiendo profundizar en topics, knowledges y quizzes individuales para localizar donde se concentran los problemas de longitud
 
 - **F-SLEN-J004**: Navegar la jerarquia para localizar problemas de longitud
   1. El usuario ha ejecutado la auditoria de longitud de oraciones (J001)
@@ -580,8 +556,8 @@ Este es el tercer paso de la iniciativa de diagnosticos tipados, tras FEAT-DLABS
   1. El usuario tiene un curso con caracteristicas diferentes al curso estandar (por ejemplo, un curso para ninos o un curso intensivo)
   2. El usuario modifica los rangos objetivo de longitud por nivel en la configuracion del sistema
   3. El usuario ejecuta la auditoria con los nuevos rangos
-  4. Los resultados reflejan los rangos actualizados: las puntuaciones de quizzes se recalculan con los nuevos valores (R002), la plataforma reagrega las puntuaciones a traves de la jerarquia (R003-R005-R008), y las estadisticas y recomendaciones por nivel se actualizan (R006, R007, R014)
-  5. El usuario valida que los rangos ajustados se alinean con las expectativas pedagogicas del nuevo curso
+  4. Los resultados reflejan los rangos actualizados: las puntuaciones de quizzes se recalculan con los nuevos valores (R002), y la plataforma reagrega las puntuaciones a traves de la jerarquia (R003-R005-R008)
+  5. El usuario valida que los rangos ajustados se alinean con las expectativas pedagogicas del nuevo curso navegando la jerarquia (R016) y observando como cambian las puntuaciones por nivel
 
 ### FEAT-LCOUNT: Analisis de Conteo de Repeticiones de Lemas Content-Word [F-LCOUNT]
 

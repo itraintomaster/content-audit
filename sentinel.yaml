@@ -6740,6 +6740,22 @@ modules:
       types:
       - Component
       visibility: public
+      handwrittenTests:
+      - name: should invoke the SpaCy-backed pipeline using the pythonScriptPath and
+          cocaDataPath provided in NlpTokenizerConfig (not a hardcoded location) and
+          propagate a clear error citing the missing path when either points to a
+          non-existent or unreadable file
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R021
+      - name: "Given an environment where SpaCy is not available, when the factory\
+          \ creates the tokenizer and an audit runs, then basic-count analyzers complete\
+          \ normally while enriched-token-requiring analyzers are reported as omitted\
+          \ in the final audit report"
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R030
+          journey: F-NLP-J002
       implements:
       - NlpTokenizerFactory
     - name: SpacyNlpTokenizer
@@ -6873,6 +6889,12 @@ modules:
       - name: config
         type: NlpTokenizerConfig
       visibility: package-private
+      handwrittenTests:
+      - name: should terminate the SpaCy python process and return no tokens with
+          a timeout error citing the configured value when processing exceeds NlpTokenizerConfig.timeoutSeconds
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R031
     - name: SpacyResultParser
       visibility: package-private
     - name: CachedNlpTokenizer
@@ -10087,10 +10109,6 @@ features:
   code: F-SLEN
   journeys:
   - id: F-SLEN-J001
-    validation: AUTO_VALIDATED
-  - id: F-SLEN-J002
-    validation: AUTO_VALIDATED
-  - id: F-SLEN-J003
     validation: AUTO_VALIDATED
   - id: F-SLEN-J004
     validation: AUTO_VALIDATED

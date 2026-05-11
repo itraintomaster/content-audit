@@ -111,3 +111,16 @@ should not re-litigate. Newest entries on top.
   - Patch consolidado: 27 handwrittenTests, validado 0 additions, 2 modifications, 0 conflicts.
   - Sentinel CLI prune-warning de J003 confirmado (esperado tras analyst cleanup).
   - 28/28 reglas con tag directo. Cero transitividad.
+
+2026-05-11 — qa-tester — Patch NLP re-emitido limpio (--replace) tras fallo apply por J003 huérfana
+  - Apply previo falló: "Patch references journey 'F-NLP-J003' which does not exist in sentinel.yaml".
+  - Causa: el patch consolidado tenía un bloque heredado `features: - id: FEAT-NLP - journeys: - id: F-NLP-J003`
+    de algún merge previo (probablemente cuando se mergearon los re-tags del analyst).
+    El bloque DECLARABA J003 mientras la description decía "retirarla" — yaml inconsistente.
+  - Solución: --replace desde cero con SOLO handwrittenTests. Validador limpio.
+  - 27 handwrittenTests totales, 0 referencias a J003, 0 bloque features: extra.
+  - Lección operativa: cuando un patch combina contribuciones de roles diferentes (analyst editing features
+    block + qa-tester adding handwrittenTests), el role guard --as=qa-tester rechaza el apply. Mantener
+    los patches de qa-tester ESTRICTAMENTE como handwrittenTests-only.
+  - Observado lateralmente: analyst ya retiró F-SLEN-J002 y F-SLEN-J003 de REQUIREMENT.md (sentinel.yaml
+    aún las tiene en líneas 10091/10093 — orphan, cleanup pending architect/feature-sync).
