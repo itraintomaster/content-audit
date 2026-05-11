@@ -1,11 +1,11 @@
-generatedAt: 2026-05-11T20:35:20.808236Z
+generatedAt: 2026-05-11T20:54:25.064820Z
 system: ContentAudit
 version: 0.0.1
 features:
 - id: FEAT-DLABS
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
-  patchFile: ./requirements/2026-04-04.01_typed-diagnostics-lemma-absence/architectural_patch.yaml
+  requirementFile: requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
+  patchFile: requirements/2026-04-04.01_typed-diagnostics-lemma-absence/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-DLABS-R001
     state: PASSING
@@ -255,8 +255,8 @@ features:
     verdict: PASSED
 - id: FEAT-REVCTX
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-05-09.01_revise-correction-context-override/REQUIREMENT.md
-  patchFile: ./requirements/2026-05-09.01_revise-correction-context-override/architectural_patch.yaml
+  requirementFile: requirements/2026-05-09.01_revise-correction-context-override/REQUIREMENT.md
+  patchFile: requirements/2026-05-09.01_revise-correction-context-override/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-REVCTX-R001
     state: PASSING
@@ -518,7 +518,7 @@ features:
     verdict: PASSED
 - id: FEAT-CLIRV
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md
+  requirementFile: requirements/2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLIRV-R001
     state: PASSING
@@ -1114,8 +1114,8 @@ features:
     verdict: PASSED
 - id: FEAT-LREC
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
-  patchFile: ./requirements/2026-03-28.01_lemma-recurrence/architectural_patch.yaml
+  requirementFile: requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
+  patchFile: requirements/2026-03-28.01_lemma-recurrence/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-LREC-R001
     state: PASSING
@@ -1409,7 +1409,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCLAQS
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
+  requirementFile: requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLAQS-R001
     state: PASSING
@@ -1573,8 +1573,8 @@ features:
     verdict: PASSED
 - id: FEAT-DCOCA
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
-  patchFile: ./requirements/2026-04-04.02_typed-diagnostics-coca-buckets/architectural_patch.yaml
+  requirementFile: requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
+  patchFile: requirements/2026-04-04.02_typed-diagnostics-coca-buckets/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-DCOCA-R001
     state: PASSING
@@ -1731,7 +1731,7 @@ features:
     verdict: PASSED
 - id: FEAT-QSENT
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-22.01_quiz-sentence-dsl/REQUIREMENT.md
+  requirementFile: requirements/2026-04-22.01_quiz-sentence-dsl/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-QSENT-R001
     state: PASSING
@@ -2058,7 +2058,7 @@ features:
     - lineCoverage 0% < 70%
 - id: FEAT-COURSE
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-15.01_course-structure/REQUIREMENT.md
+  requirementFile: requirements/2026-03-15.01_course-structure/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-COURSE-R001
     state: PASSING
@@ -2337,7 +2337,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCLALEN
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-28.02_rcla-length-aware-context/REQUIREMENT.md
+  requirementFile: requirements/2026-04-28.02_rcla-length-aware-context/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLALEN-R001
     state: PASSING
@@ -2596,8 +2596,8 @@ features:
     verdict: PASSED
 - id: FEAT-COCA
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
-  patchFile: ./requirements/2026-03-25.01_coca-buckets-distribution/architectural_patch.yaml
+  requirementFile: requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
+  patchFile: requirements/2026-03-25.01_coca-buckets-distribution/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-COCA-R001
     state: PASSING
@@ -3035,8 +3035,8 @@ features:
     verdict: PASSED
 - id: FEAT-NLP
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
-  patchFile: ./requirements/2026-03-25.02_nlp-tokenizer-evolution/architectural_patch.yaml
+  requirementFile: requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
+  patchFile: requirements/2026-03-25.02_nlp-tokenizer-evolution/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-NLP-R001
     state: PASSING
@@ -3402,8 +3402,8 @@ features:
     verdict: PASSED
 - id: FEAT-LABS
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
-  patchFile: ./requirements/2026-03-28.03_lemma-absence/architectural_patch.yaml
+  requirementFile: requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
+  patchFile: requirements/2026-03-28.03_lemma-absence/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-LABS-R001
     state: PASSING
@@ -4480,8 +4480,8 @@ features:
     verdict: PASSED
 - id: FEAT-CLI
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
-  patchFile: ./requirements/2026-03-21.01_cli-audit-runner/architectural_patch.yaml
+  requirementFile: requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
+  patchFile: requirements/2026-03-21.01_cli-audit-runner/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-CLI-R001
     state: PASSING
@@ -4677,7 +4677,7 @@ features:
     verdict: PASSED
 - id: FEAT-PIPRE
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-05-03.01_proposal-impact-preview/REQUIREMENT.md
+  requirementFile: requirements/2026-05-03.01_proposal-impact-preview/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-PIPRE-R001
     state: PASSING
@@ -4985,8 +4985,8 @@ features:
     verdict: PASSED
 - id: FEAT-KTLEN
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
-  patchFile: ./requirements/2026-03-22.01_knowledge-titles-length/architectural_patch.yaml
+  requirementFile: requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
+  patchFile: requirements/2026-03-22.01_knowledge-titles-length/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-KTLEN-R001
     state: PASSING
@@ -5355,7 +5355,7 @@ features:
     verdict: PASSED
 - id: FEAT-CDIFF
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-05-06.01_consolidated-differential-view/REQUIREMENT.md
+  requirementFile: requirements/2026-05-06.01_consolidated-differential-view/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CDIFF-R001
     state: PASSING
@@ -6124,8 +6124,8 @@ features:
     verdict: PASSED
 - id: FEAT-PLANEF
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-05-07.01_plan-efimero-no-persistido/REQUIREMENT.md
-  patchFile: ./requirements/2026-05-07.01_plan-efimero-no-persistido/architectural_patch.yaml
+  requirementFile: requirements/2026-05-07.01_plan-efimero-no-persistido/REQUIREMENT.md
+  patchFile: requirements/2026-05-07.01_plan-efimero-no-persistido/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-PLANEF-R001
     state: PASSING
@@ -6370,7 +6370,7 @@ features:
     verdict: PASSED
 - id: FEAT-REVAPR
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
+  requirementFile: requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVAPR-R001
     state: PASSING
@@ -7005,8 +7005,8 @@ features:
     verdict: PASSED
 - id: FEAT-LAPS
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
-  patchFile: ./requirements/2026-04-20.02_lemma-absence-proposal-strategy/architectural_patch.yaml
+  requirementFile: requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
+  patchFile: requirements/2026-04-20.02_lemma-absence-proposal-strategy/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-LAPS-R001
     state: PASSING
@@ -7430,8 +7430,8 @@ features:
     verdict: PASSED
 - id: FEAT-DSLEN
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
-  patchFile: ./requirements/2026-04-05.01_typed-diagnostics-sentence-length/architectural_patch.yaml
+  requirementFile: requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
+  patchFile: requirements/2026-04-05.01_typed-diagnostics-sentence-length/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-DSLEN-R001
     state: PASSING
@@ -7543,8 +7543,8 @@ features:
     verdict: PASSED
 - id: FEAT-SLEN
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
-  patchFile: ./requirements/2026-03-18.01_sentence-length/architectural_patch.yaml
+  requirementFile: requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
+  patchFile: requirements/2026-03-18.01_sentence-length/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-SLEN-R001
     state: PASSING
@@ -7776,8 +7776,8 @@ features:
     verdict: PASSED
 - id: FEAT-LCOUNT
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-28.02_lemma-count/REQUIREMENT.md
-  patchFile: ./requirements/2026-03-28.02_lemma-count/architectural_patch.yaml
+  requirementFile: requirements/2026-03-28.02_lemma-count/REQUIREMENT.md
+  patchFile: requirements/2026-03-28.02_lemma-count/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-LCOUNT-R001
     state: PASSING
@@ -8096,7 +8096,7 @@ features:
     verdict: PASSED
 - id: FEAT-REVBYP
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
+  requirementFile: requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVBYP-R001
     state: PASSING
@@ -8346,7 +8346,7 @@ features:
     verdict: PASSED
 - id: FEAT-LAGEN
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
+  requirementFile: requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LAGEN-R001
     state: PASSING
@@ -9034,7 +9034,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCLA
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
+  requirementFile: requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLA-R001
     state: PASSING
@@ -9397,7 +9397,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCSL
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
+  requirementFile: requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCSL-R001
     state: PASSING

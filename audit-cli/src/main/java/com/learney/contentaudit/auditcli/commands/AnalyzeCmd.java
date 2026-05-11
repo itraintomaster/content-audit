@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.Callable;
+import java.util.function.Function;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
@@ -75,6 +76,8 @@ final class AnalyzeCmd implements AnalyzeCommand, Callable<Integer> {
 
     private final AuditReportStore auditReportStore;
 
+    private final Function<String, String> pathResolver;
+
     @Parameters(index = "0", description = "Path to the course directory. "
             + "Defaults to CONTENT_AUDIT_CONTENT_FOLDER env var or .env file.",
             arity = "0..1")
@@ -111,6 +114,16 @@ final class AnalyzeCmd implements AnalyzeCommand, Callable<Integer> {
             DrillDownResolver drillDownResolver,
             Map<String, DetailedFormatter> detailedFormatters,
             AuditReportStore auditReportStore) {
+        this(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter,
+                drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve);
+    }
+
+    AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry,
+            ReportViewModelTransformer viewModelTransformer, RawReportFormatter rawReportFormatter,
+            DrillDownResolver drillDownResolver,
+            Map<String, DetailedFormatter> detailedFormatters,
+            AuditReportStore auditReportStore,
+            Function<String, String> pathResolver) {
         this.auditRunner = auditRunner;
         this.formatterRegistry = formatterRegistry;
         this.viewModelTransformer = viewModelTransformer;
@@ -118,6 +131,7 @@ final class AnalyzeCmd implements AnalyzeCommand, Callable<Integer> {
         this.drillDownResolver = drillDownResolver;
         this.detailedFormatters = detailedFormatters;
         this.auditReportStore = auditReportStore;
+        this.pathResolver = pathResolver;
     }
 
     @Override
@@ -137,7 +151,7 @@ final class AnalyzeCmd implements AnalyzeCommand, Callable<Integer> {
                 return 1;
             }
 
-            String resolvedPath = CoursePathResolver.resolve(coursePath);
+            String resolvedPath = pathResolver.apply(coursePath);
             if (resolvedPath == null) {
                 System.err.println("Error: missing course path. Provide it as argument or set CONTENT_AUDIT_CONTENT_FOLDER.");
                 return 1;

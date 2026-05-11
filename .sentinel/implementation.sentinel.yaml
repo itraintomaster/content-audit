@@ -1,4 +1,4 @@
-analyzedAt: 2026-05-10T01:26:43.466205Z
+analyzedAt: 2026-05-11T20:54:13.703187Z
 system: ContentAudit
 modules:
 - name: audit-infrastructure
@@ -1320,6 +1320,12 @@ modules:
     exposes:
     - signature: "runAudit(Path coursePath, Set<String> analyzerNames): AuditReport"
     - signature: "runDetailedAudit(Path coursePath, String analyzerName): AuditNode"
+  - name: LemmaCountConfigLoader
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "load(String rawThreshold): LemmaCountConfig"
   - name: AnalyzerRegistry
     source: sentinel
     visibility: public
@@ -1328,6 +1334,19 @@ modules:
     - signature: "listAnalyzers(): List<AnalyzerDescriptor>"
     - signature: "getAnalyzerConfig(String analyzerName): Optional<Map<String,Object>>"
   implementations:
+  - name: DefaultLemmaCountConfig
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: threshold
+      type: int
+    implements:
+    - LemmaCountConfig
+  - name: DefaultLemmaCountConfigLoader
+    source: sentinel
+    visibility: public
+    implements:
+    - LemmaCountConfigLoader
   - name: DefaultAnalyzerRegistry
     source: sentinel
     visibility: public
@@ -2122,6 +2141,68 @@ modules:
       type: int
     - name: toleranceMargin
       type: int
+  - name: LevelLemmaCountResult
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: level
+      type: CefrLevel
+    - name: score
+      type: double
+    - name: totalLemmas
+      type: int
+    - name: subExposedLemmas
+      type: List<LemmaCountStats>
+  - name: LemmaCountCourseDiagnosis
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: result
+      type: LemmaCountResult
+  - name: LemmaCountLevelDiagnosis
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: levelResult
+      type: LevelLemmaCountResult
+  - name: UnassignedLemmaEntry
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: lemmaAndPos
+      type: LemmaAndPos
+    - name: count
+      type: int
+  - name: LemmaCountStats
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: lemmaAndPos
+      type: LemmaAndPos
+    - name: count
+      type: int
+    - name: score
+      type: double
+    - name: assignedLevel
+      type: Optional<CefrLevel>
+  - name: LemmaCountResult
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: thresholdN
+      type: int
+    - name: courseScore
+      type: Optional<Double>
+    - name: levels
+      type: List<LevelLemmaCountResult>
+    - name: unassigned
+      type: List<UnassignedLemmaEntry>
   - name: CefrLevel
     source: sentinel
     type: enum
@@ -2306,6 +2387,7 @@ modules:
     exposes:
     - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>"
     - signature: "getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>"
+    - signature: "getLemmaCountDiagnosis(): Optional<LemmaCountCourseDiagnosis>"
   - name: CocaBucketsConfig
     source: sentinel
     visibility: public
@@ -2362,6 +2444,7 @@ modules:
     - signature: "isPhrase(String lemma): boolean"
     - signature: "getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>"
     - signature: "getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>"
+    - signature: "lookupLevel(LemmaAndPos lemmaAndPos): Optional<CefrLevel>"
   - name: AuditNodeIndexFactory
     source: sentinel
     visibility: public
@@ -2419,6 +2502,7 @@ modules:
     exposes:
     - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceLevelDiagnosis>"
     - signature: "getCocaBucketsDiagnosis(): Optional<CocaBucketsLevelDiagnosis>"
+    - signature: "getLemmaCountDiagnosis(): Optional<LemmaCountLevelDiagnosis>"
   - name: ActiveAnalysisSelectionStore
     source: sentinel
     visibility: public
@@ -2433,6 +2517,12 @@ modules:
     sealed: false
     exposes:
     - signature: "map(CourseEntity course): AuditableCourse"
+  - name: LemmaCountConfig
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "getThreshold(): int"
   - name: LemmaRecurrenceConfig
     source: sentinel
     visibility: public
@@ -2479,6 +2569,12 @@ modules:
     - signature: "getLowReportLimit(): int"
     - signature: "getDiscountPerLevel(): double"
     - signature: "getCoverageTarget(CefrLevel level): double"
+  - name: LemmaCefrLevelResolver
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "resolve(LemmaAndPos lemmaAndPos, Optional<CefrLevel> nlpCefr): Optional<CefrLevel>"
   implementations:
   - name: LemmaByLevelAbsenceAnalyzer
     source: sentinel
@@ -2703,6 +2799,26 @@ modules:
       type: String
     implements:
     - AuditableEntity
+  - name: EvpThenNlpLemmaCefrLevelResolver
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: evpCatalogPort
+      type: EvpCatalogPort
+    implements:
+    - LemmaCefrLevelResolver
+  - name: LemmaCountAnalyzer
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: contentWordFilter
+      type: ContentWordFilter
+    - name: lemmaCefrLevelResolver
+      type: LemmaCefrLevelResolver
+    - name: lemmaCountConfig
+      type: LemmaCountConfig
+    implements:
+    - ContentAnalyzer
 - name: refiner-domain
   source: sentinel
   models:
@@ -4028,6 +4144,14 @@ modules:
     visibility: public
     implements:
     - NlpTokenizerFactory
+  - name: FallbackNlpTokenizer
+    source: implementation
+    visibility: package-private
+    requiresInject:
+    - name: primary
+      type: NlpTokenizer
+    implements:
+    - NlpTokenizer
   - name: SpacyProcessRunner
     source: sentinel
     visibility: package-private
@@ -5006,6 +5130,15 @@ graph:
   - from: course-domain.QuizSentenceConverter
     to: course-domain.FormEntity
     relation: references
+  - from: audit-application.DefaultLemmaCountConfig
+    to: audit-domain.LemmaCountConfig
+    relation: references
+  - from: audit-application.DefaultLemmaCountConfigLoader
+    to: audit-domain.LemmaCountConfig
+    relation: references
+  - from: audit-application.DefaultLemmaCountConfigLoader
+    to: audit-application.LemmaCountConfigLoader
+    relation: references
   - from: audit-application.DefaultAnalyzerRegistry
     to: audit-domain.SelfDescribingConfig
     relation: references
@@ -5083,6 +5216,9 @@ graph:
     relation: references
   - from: audit-application.AuditRunner
     to: audit-domain.AuditReport
+    relation: references
+  - from: audit-application.LemmaCountConfigLoader
+    to: audit-domain.LemmaCountConfig
     relation: references
   - from: audit-application.AnalyzerRegistry
     to: audit-domain.AnalyzerDescriptor
@@ -5421,6 +5557,9 @@ graph:
     to: audit-domain.CocaBucketsLevelDiagnosis
     relation: references
   - from: audit-domain.DefaultLevelDiagnoses
+    to: audit-domain.LemmaCountLevelDiagnosis
+    relation: references
+  - from: audit-domain.DefaultLevelDiagnoses
     to: audit-domain.LevelDiagnoses
     relation: references
   - from: audit-domain.DefaultLevelDiagnoses
@@ -5443,6 +5582,9 @@ graph:
     relation: references
   - from: audit-domain.CourseDiagnoses
     to: audit-domain.CocaProgressionDiagnosis
+    relation: references
+  - from: audit-domain.CourseDiagnoses
+    to: audit-domain.LemmaCountCourseDiagnosis
     relation: references
   - from: audit-domain.CourseDiagnoses
     to: audit-domain.LemmaAbsenceCourseDiagnosis
@@ -5560,6 +5702,9 @@ graph:
     relation: references
   - from: audit-domain.DefaultCourseDiagnoses
     to: audit-domain.CocaProgressionDiagnosis
+    relation: references
+  - from: audit-domain.DefaultCourseDiagnoses
+    to: audit-domain.LemmaCountCourseDiagnosis
     relation: references
   - from: audit-domain.DefaultCourseDiagnoses
     to: audit-domain.LemmaAbsenceCourseDiagnosis
@@ -5796,6 +5941,9 @@ graph:
     to: audit-domain.CocaBucketsLevelDiagnosis
     relation: references
   - from: audit-domain.LevelDiagnoses
+    to: audit-domain.LemmaCountLevelDiagnosis
+    relation: references
+  - from: audit-domain.LevelDiagnoses
     to: audit-domain.NodeDiagnoses
     relation: references
   - from: audit-domain.LevelDiagnoses
@@ -5839,6 +5987,9 @@ graph:
     relation: references
   - from: audit-domain.AuditableCourse
     to: audit-domain.AuditableMilestone
+    relation: references
+  - from: audit-domain.LemmaCountConfig
+    to: audit-domain.SelfDescribingConfig
     relation: references
   - from: audit-domain.LemmaRecurrenceConfig
     to: audit-domain.SelfDescribingConfig
@@ -5884,6 +6035,75 @@ graph:
     relation: references
   - from: audit-domain.AuditableTopic
     to: audit-domain.AuditableKnowledge
+    relation: references
+  - from: audit-domain.LevelLemmaCountResult
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: audit-domain.LevelLemmaCountResult
+    to: audit-domain.LemmaCountStats
+    relation: references
+  - from: audit-domain.EvpThenNlpLemmaCefrLevelResolver
+    to: audit-domain.LemmaAndPos
+    relation: references
+  - from: audit-domain.EvpThenNlpLemmaCefrLevelResolver
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: audit-domain.EvpThenNlpLemmaCefrLevelResolver
+    to: audit-domain.LemmaCefrLevelResolver
+    relation: references
+  - from: audit-domain.EvpThenNlpLemmaCefrLevelResolver
+    to: audit-domain.EvpCatalogPort
+    relation: references
+  - from: audit-domain.LemmaCountAnalyzer
+    to: audit-domain.LemmaAndPos
+    relation: references
+  - from: audit-domain.LemmaCountAnalyzer
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: audit-domain.LemmaCountAnalyzer
+    to: audit-domain.ContentAnalyzer
+    relation: references
+  - from: audit-domain.LemmaCountAnalyzer
+    to: audit-domain.LemmaCefrLevelResolver
+    relation: references
+  - from: audit-domain.LemmaCountAnalyzer
+    to: audit-domain.LemmaCountConfig
+    relation: references
+  - from: audit-domain.LemmaCountAnalyzer
+    to: audit-domain.AuditNode
+    relation: references
+  - from: audit-domain.LemmaCountAnalyzer
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: audit-domain.LemmaCountAnalyzer
+    to: audit-domain.ContentWordFilter
+    relation: references
+  - from: audit-domain.LemmaCountCourseDiagnosis
+    to: audit-domain.LemmaCountResult
+    relation: references
+  - from: audit-domain.LemmaCountLevelDiagnosis
+    to: audit-domain.LevelLemmaCountResult
+    relation: references
+  - from: audit-domain.UnassignedLemmaEntry
+    to: audit-domain.LemmaAndPos
+    relation: references
+  - from: audit-domain.LemmaCefrLevelResolver
+    to: audit-domain.LemmaAndPos
+    relation: references
+  - from: audit-domain.LemmaCefrLevelResolver
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: audit-domain.LemmaCountStats
+    to: audit-domain.LemmaAndPos
+    relation: references
+  - from: audit-domain.LemmaCountStats
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: audit-domain.LemmaCountResult
+    to: audit-domain.LevelLemmaCountResult
+    relation: references
+  - from: audit-domain.LemmaCountResult
+    to: audit-domain.UnassignedLemmaEntry
     relation: references
   - from: refiner-domain.RefinementPlanStore
     to: refiner-domain.RefinementPlan
@@ -6740,6 +6960,12 @@ graph:
   - from: nlp-infrastructure.SpacyNlpTokenizerFactory
     to: audit-domain.NlpTokenizer
     relation: references
+  - from: nlp-infrastructure.FallbackNlpTokenizer
+    to: audit-domain.NlpToken
+    relation: references
+  - from: nlp-infrastructure.FallbackNlpTokenizer
+    to: audit-domain.NlpTokenizer
+    relation: references
   - from: nlp-infrastructure.SpacyProcessRunner
     to: nlp-infrastructure.NlpTokenizerConfig
     relation: references
@@ -6769,6 +6995,8 @@ graph:
   - component: audit-domain.AuditNode
     distance: 1
   - component: audit-domain.DefaultQuizDiagnoses
+    distance: 1
+  - component: nlp-infrastructure.FallbackNlpTokenizer
     distance: 1
   - component: revision-domain.IdentityReviser
     distance: 1
@@ -7583,7 +7811,7 @@ methodCallGraph:
     toInterface: SentenceLengthConfig
     toMethod: getToleranceMargin
     toModule: audit-domain
-    fragment: "alt [node.getDiagnoses() instanceof Defaul...]"
+    fragment: "alt [else: rangeOpt.isEmpty()]"
     earlyReturn: false
   - fromInterface: ContentAnalyzer
     fromMethod: onQuiz
@@ -7719,6 +7947,39 @@ methodCallGraph:
     toMethod: findTopicNodeById
     toModule: audit-domain
     fragment: "loop [for each level.getTopicDistributions()]"
+    earlyReturn: false
+  - fromInterface: LemmaCefrLevelResolver
+    fromMethod: resolve
+    toInterface: EvpCatalogPort
+    toMethod: lookupLevel
+    toModule: audit-domain
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onQuiz
+    toInterface: ContentWordFilter
+    toMethod: isContentWord
+    toModule: audit-domain
+    fragment: "alt [!contentWordFilter.isContentWord(token)]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: LemmaCountConfig
+    toMethod: getThreshold
+    toModule: audit-domain
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: LemmaCefrLevelResolver
+    toMethod: resolve
+    toModule: audit-domain
+    fragment: "loop [for each lemmaQuizIds.entrySet()]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: ContentAnalyzer
+    toMethod: findMilestoneNodeForLevel
+    toModule: audit-domain
+    fragment: "loop [for each levelResults]"
     earlyReturn: false
   - fromInterface: CorrectionContextResolver
     fromMethod: resolve
@@ -8301,4 +8562,32 @@ methodCallGraph:
     toInterface: NlpTokenizer
     toMethod: analyzeTokens
     toModule: nlp-infrastructure
+    earlyReturn: false
+  - fromInterface: NlpTokenizer
+    fromMethod: tokenize
+    toInterface: NlpTokenizer
+    toMethod: tokenize
+    toModule: audit-domain
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: NlpTokenizer
+    fromMethod: analyzeTokens
+    toInterface: NlpTokenizer
+    toMethod: analyzeTokens
+    toModule: audit-domain
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: NlpTokenizer
+    fromMethod: analyzeTokens
+    toInterface: NlpTokenizer
+    toMethod: toBasicTokens
+    toModule: nlp-infrastructure
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: NlpTokenizer
+    fromMethod: analyzeTokensBatch
+    toInterface: NlpTokenizer
+    toMethod: analyzeTokensBatch
+    toModule: audit-domain
+    fragment: "opt [try]"
     earlyReturn: false

@@ -58,10 +58,8 @@ public class AnalyzeCmdTest {
     @Tag("F-CLI-R002")
     @Tag("F-CLI-J002")
     public void shouldPrintAnErrorAndReturnNonzeroExitCodeWhenInvokedWithoutACoursePathArgumentAndNoCONTENTAUDITCONTENTFOLDEREnvVarIsSet() {
-        // R002: missing path and no env var set → non-zero exit, error message on stderr
-        // Note: this test relies on CONTENT_AUDIT_CONTENT_FOLDER not being set in the test environment.
-        // If the env var IS set, CoursePathResolver.resolve(null) returns the env value instead of null.
-        // We test via analyze() directly to avoid env var interference.
+        // R002: resolver returns null (no path, no env var) → non-zero exit, error message on stderr.
+        // Inject a resolver that always returns null to isolate from the ambient env var.
         AuditRunner auditRunner = mock(AuditRunner.class);
         FormatterRegistry formatterRegistry = mock(FormatterRegistry.class);
         ReportViewModelTransformer viewModelTransformer = mock(ReportViewModelTransformer.class);
@@ -71,14 +69,14 @@ public class AnalyzeCmdTest {
         Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
 
         AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
-                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore);
+                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore,
+                ignored -> null);
 
         ByteArrayOutputStream errCapture = new ByteArrayOutputStream();
         PrintStream originalErr = System.err;
         System.setErr(new PrintStream(errCapture));
         int exitCode;
         try {
-            // Pass null as coursePath: CoursePathResolver.resolve(null) returns null when env var absent
             exitCode = sut.analyze(null, "text", null, null, null, null, false);
         } finally {
             System.setErr(originalErr);
