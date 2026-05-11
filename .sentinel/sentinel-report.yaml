@@ -1,4 +1,4 @@
-generatedAt: 2026-05-11T20:22:29.298646Z
+generatedAt: 2026-05-11T20:35:20.808236Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -4946,53 +4946,6 @@ features:
     - com.learney.contentaudit.auditinfrastructure.FileSystemImpactPreviewStore
     - com.learney.contentaudit.revisiondomain.engine.DefaultImpactPreviewComputer
     - com.learney.contentaudit.revisiondomain.engine.DefaultRevisionEngine
-    thresholds:
-      lineCoverage: 70
-      branchCoverage: 60
-      mutationScore: 60
-      crapHotspotThreshold: 30
-      crapHotspotsMax: 5
-    coverage:
-      linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
-      lineCoveragePct: 0
-      branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
-      branchCoveragePct: 0
-      blendPct: 0
-    mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
-      timedOut: 0
-      other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
-    crap:
-      totalMethods: 0
-      hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
-      moderate: 0
-      high: 0
-      veryHigh: 0
-      healthPct: 0
-    healthScore: 0
-    verdict: PASSED
-- id: f0b4e57b-7c0f-4e3e-b9b3-843aef216a67
-  state: DRAFT
-  requirementFile: ./requirements/2026-04-28.01_laps-engine-public-visibility/REQUIREMENT.md
-  rulesCoverage:
-  - ruleId: 27ac13c5-bc70-4e9b-96c3-3315542d6835
-    state: NO_TESTS
-  journeysCoverage:
-  - journeyId: 86e348a5-bfdf-4c5e-beef-aa0113168e38
-    state: NO_TESTS
-  quality:
     thresholds:
       lineCoverage: 70
       branchCoverage: 60

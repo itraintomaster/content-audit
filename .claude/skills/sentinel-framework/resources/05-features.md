@@ -850,21 +850,11 @@ Este micro-requerimiento es un delta aislado: agrega el campo `quizSentence` al 
 
 - **F-RCLAQS-J001**: El CorrectionContext de LEMMA_ABSENCE expone quizSentence derivado del quiz original
 
-### f0b4e57b-7c0f-4e3e-b9b3-843aef216a67: LAPS engine public visibility [F-LEPV]
-
-> Describe what problem this feature solves for the user.
-
-**Business Rules:**
-
-| ID | Rule | Severity | Error Message |
-|----|------|----------|---------------|
-| 27ac13c5-bc70-4e9b-96c3-3315542d6835 | Rule name | high | User-facing error message |
+### f0b4e57b-7c0f-4e3e-b9b3-843aef216a67: null [F-LEPV]
 
 **User Journeys:**
 
-- **86e348a5-bfdf-4c5e-beef-aa0113168e38**: Journey name
-  1. Step 1
-  2. Step 2
+- **86e348a5-bfdf-4c5e-beef-aa0113168e38**: null
 
 ### FEAT-LAGEN: Generador real de candidatos de quiz para LEMMA_ABSENCE basado en LLM [F-LAGEN]
 
