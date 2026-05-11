@@ -1,0 +1,207 @@
+code: FEAT-COCA
+modules:
+- name: audit-domain
+  packages:
+  - name: coca
+    implementations:
+    - name: DefaultTokenClassifier
+      handwrittenTests:
+      - name: should place a token with frequencyRank between 1 and 1000 in the top1k
+          band a token between 1001 and 2000 in the top2k band a token between 2001
+          and 3000 in the top3k band and a token with rank 3001 or above in the top4k
+          band
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R001
+      - name: should treat the top4k band as open so tokens with arbitrarily large
+          frequencyRank (e.g. 3500 and 15000) are classified into the same top4k band
+          when the band carries the open flag
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R002
+    - name: CocaBucketsAnalyzer
+      handwrittenTests:
+      - name: should compute the percentage of tokens in each band as (count-in-band
+          / total-classified) times 100 for every level (and quarter when the strategy
+          is quarters) accumulating across all quizzes knowledges and topics in that
+          node
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R005
+      - name: should classify every token using the frequencyRank already attached
+          by the upstream NLP tokenization step and never call a frequency lookup
+          service from inside the analyzer
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R006
+      - name: should produce one of OPTIMO ADEQUATE DEFICIENTE or EXCESIVO for every
+          band-level pair by comparing the band's actual percentage against the configured
+          target taking optimalRange and adequateRange tolerances into account
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R007
+      - name: should interpret target directionality as atLeast (OPTIMO when actual
+          >= target - optimalRange ADEQUATE within adequateRange below DEFICIENTE
+          further below no EXCESIVO state) or atMost (mirror semantics above the target
+          with no DEFICIENTE state) according to the kind configured for each band
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R008
+      - name: "should score each band as 1.0 when OPTIMO 0.8 when ADEQUATE and max(0,\
+          \ 0.8 - (|actual-target| - adequateRange) * 0.04) when DEFICIENTE or EXCESIVO\
+          \ using the same distance-from-target formula in both directions"
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R010
+      - name: should compute the score of a quarter as the simple average of the scores
+          of the bands that have a target defined in that quarter ignoring bands without
+          target in that quarter
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R011
+      - name: should compute the score of a level under strategy LEVELS as the simple
+          average of the scores of the bands with level-level targets and under strategy
+          QUARTERS as a weighted combination of band-level scores quarter-level scores
+          and topic-level scores
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R012
+      - name: should compute the overall course-level coca-buckets-distribution score
+          as the simple average of the scores of the CEFR levels that have classified
+          tokens omitting from the average any level without data
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R013
+          journey: F-COCA-J001
+      - name: should interpolate quarter targets Q2 and Q3 linearly per band using
+          Q1 + (Q4 - Q1) * (1/3) and Q1 + (Q4 - Q1) * (2/3) respectively when running
+          under the QUARTERS strategy
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R015
+      - name: should propagate the directionality kind of Q1 to the interpolated quarters
+          Q2 and Q3 ignoring any kind declared on Q4 when the two would disagree
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R016
+      - name: should evaluate every band against the configured level-level targets
+          directly without subdividing the level into quarters when running under
+          the LEVELS strategy
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R019
+      - name: should compute band scores only at the level and quarter nodes that
+          have configured targets and never publish a band score for KNOWLEDGE or
+          TOPIC nodes regardless of their accumulated counts
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R027
+      - name: should publish on every AuditNode for every band the band name accumulated
+          count and percentage and additionally on nodes with configured targets the
+          target percentage kind band score and evaluation state
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R028
+    - name: CocaTokenAccumulationAggregator
+      handwrittenTests:
+      - name: should accumulate token counts per band by summing the band counts of
+          each child node when rolling up the audit tree (quiz to knowledge to topic
+          to level) so a parent's band count equals the sum of its children's band
+          counts and never a simple average of scores
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R025
+      - name: should publish on every AuditNode of the hierarchy (knowledge topic
+          level) a percentage distribution per band computed as (accumulated-count
+          / total-classified) times 100 from the counts rolled up at that node
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R026
+          journey: F-COCA-J005
+      - name: should be selected by the audit engine as the aggregator for the coca-buckets-distribution
+          analyzer demonstrating that the platform supports per-analyzer aggregation
+          strategies and that the default simple-score-average is not used for this
+          analyzer
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R029
+    - name: DefaultProgressionEvaluator
+      handwrittenTests:
+      - name: should classify the real progression of each band with configured expected
+          progression as ASCENDENTE when only increases between consecutive levels
+          DESCENDENTE when only decreases ESTATICA when no significant changes and
+          IRREGULAR when both increases and decreases occur
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R021
+          journey: F-COCA-J003
+      - name: should evaluate progression only across CEFR levels that have classified
+          tokens skipping levels without data and falling back to ESTATICA when fewer
+          than two levels have data
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R022
+      - name: should produce per-band a progression-assessment record with band name
+          expected progression real progression and a boolean indicating whether real
+          matches expected
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R024
+    - name: DefaultImprovementPlanner
+      handwrittenTests:
+      - name: should emit improvement directives in two categories bucketsToEnrich
+          for bands with DEFICIENTE state (need more tokens of that frequency) and
+          bucketsToReduce for bands with EXCESIVO state (need fewer tokens of that
+          frequency) for every level (and quarter under strategy QUARTERS) where targets
+          are not met
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R030
+          journey: F-COCA-J004
+      - name: should include in every improvement directive the frequency rank range
+          (from/to) of the affected band so the content creator can look up replacement
+          words within that range and for the open band (top4k) the upper bound is
+          expressed as open-ended
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R031
+      - name: should emit improvement directives only for bands whose state is DEFICIENTE
+          or EXCESIVO and never for OPTIMO or ADEQUATE so the content creator is not
+          flooded with unactionable advice
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R032
+- name: audit-application
+  implementations:
+  - name: DefaultCocaBucketsConfig
+    handwrittenTests:
+    - name: should expose the configured frequency bands as a list ordered by ascending
+        limit each band carrying a name and a positive integer limit with at most
+        the last band carrying the open flag
+      traceability:
+        feature: FEAT-COCA
+        rule: F-COCA-R003
+    - name: should expose optimalRange and adequateRange as positive global tolerance
+        values with adequateRange strictly greater than optimalRange so the OPTIMO/ADEQUATE
+        bands are well-defined
+      traceability:
+        feature: FEAT-COCA
+        rule: F-COCA-R009
+    - name: should expose a strategy field configured to either LEVELS or QUARTERS
+        and apply the same chosen strategy to every CEFR level of the course
+      traceability:
+        feature: FEAT-COCA
+        rule: F-COCA-R014
+    - name: should expose for each CEFR level under the QUARTERS strategy the Q1 and
+        Q4 target objectives where each target objective lists the bands and for every
+        band the target percentage and the directionality kind (atLeast or atMost)
+      traceability:
+        feature: FEAT-COCA
+        rule: F-COCA-R018
+    - name: should expose for every band an expected progression direction (e.g. DESCENDENTE
+        for top1k ASCENDENTE for top4k) and leave bands without configured expected
+        progression unevaluated for progression
+      traceability:
+        feature: FEAT-COCA
+        rule: F-COCA-R020
+        journey: F-COCA-J003

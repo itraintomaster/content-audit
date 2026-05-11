@@ -228,6 +228,14 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - Given a course with no milestones, when runAudit is called, then returns the report from contentAudit → FEAT-CLI/F-CLI-R001
 - should expose a public runAudit(Path coursePath) method on the AuditRunner contract that returns the AuditReport produced after loading the course mapping it to AuditableCourse and running the audit engine → FEAT-CLI/F-CLI-R005
 
+### DefaultCocaBucketsConfig (audit-application)
+
+- should expose the configured frequency bands as a list ordered by ascending limit each band carrying a name and a positive integer limit with at most the last band carrying the open flag → FEAT-COCA/F-COCA-R003
+- should expose optimalRange and adequateRange as positive global tolerance values with adequateRange strictly greater than optimalRange so the OPTIMO/ADEQUATE bands are well-defined → FEAT-COCA/F-COCA-R009
+- should expose a strategy field configured to either LEVELS or QUARTERS and apply the same chosen strategy to every CEFR level of the course → FEAT-COCA/F-COCA-R014
+- should expose for each CEFR level under the QUARTERS strategy the Q1 and Q4 target objectives where each target objective lists the bands and for every band the target percentage and the directionality kind (atLeast or atMost) → FEAT-COCA/F-COCA-R018
+- should expose for every band an expected progression direction (e.g. DESCENDENTE for top1k ASCENDENTE for top4k) and leave bands without configured expected progression unevaluated for progression → FEAT-COCA/F-COCA-R020/F-COCA-J003
+
 ### DefaultLemmaRecurrenceConfig (audit-application)
 
 - should expose top subExposed and overExposed values that satisfy 0 less than overExposed strictly less than subExposed and top greater than zero → FEAT-LREC/F-LREC-R014

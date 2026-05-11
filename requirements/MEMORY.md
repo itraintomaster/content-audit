@@ -9,7 +9,7 @@ Per-requirement memory directories. Each requirement has a `memory/` folder with
 | [2026-03-18.01_sentence-length](2026-03-18.01_sentence-length/memory/README.md) | 14 lines | 74 lines | empty | 2026-05-11 |
 | [2026-03-21.01_cli-audit-runner](2026-03-21.01_cli-audit-runner/memory/README.md) | empty | 10 lines | empty | 2026-05-11 |
 | [2026-03-22.01_knowledge-titles-length](2026-03-22.01_knowledge-titles-length/memory/README.md) | 88 lines | 84 lines | empty | 2026-05-10 |
-| [2026-03-25.01_coca-buckets-distribution](2026-03-25.01_coca-buckets-distribution/memory/README.md) | empty | empty | empty | 2026-04-18 |
+| [2026-03-25.01_coca-buckets-distribution](2026-03-25.01_coca-buckets-distribution/memory/README.md) | empty | 17 lines | empty | 2026-05-11 |
 | [2026-03-25.02_nlp-tokenizer-evolution](2026-03-25.02_nlp-tokenizer-evolution/memory/README.md) | 13 lines | 108 lines | empty | 2026-05-11 |
 | [2026-03-28.01_lemma-recurrence](2026-03-28.01_lemma-recurrence/memory/README.md) | 2 lines | 47 lines | empty | 2026-05-10 |
 | [2026-03-28.02_lemma-count](2026-03-28.02_lemma-count/memory/README.md) | 39 lines | 63 lines | 6 lines | 2026-05-10 |

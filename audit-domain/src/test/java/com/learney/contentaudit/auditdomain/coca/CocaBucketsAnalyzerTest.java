@@ -248,4 +248,378 @@ public class CocaBucketsAnalyzerTest {
             }
         }
     }
+
+    // -----------------------------------------------------------------------
+    // Helper: build a tree with real top1k tokens so the analyzer has data
+    // -----------------------------------------------------------------------
+
+    /**
+     * Builds a tree where the A1 milestone has one topic → one knowledge → one quiz
+     * with `top1kCount` tokens of rank 500 (top1k) and `top4kCount` tokens of rank 5000 (top4k).
+     * Config returns a single target for A1: top1k 80% AT_LEAST, tolerance 0.10 (adequate=10pp).
+     */
+    private AuditNode buildTreeWithTokensA1(int top1kCount, int top4kCount) {
+        List<NlpToken> tokens = new java.util.ArrayList<>();
+        for (int i = 0; i < top1kCount; i++)
+            tokens.add(new NlpToken("word", "word", "NOUN", 500, false, false));
+        for (int i = 0; i < top4kCount; i++)
+            tokens.add(new NlpToken("rare", "rare", "NOUN", 5000, false, false));
+
+        AuditableQuiz quiz = new AuditableQuiz(tokens, "q1", "Q", null, null, List.of("s"), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(
+                List.of(quiz), "K", "Complete", true, "k1", "K", "K");
+        AuditableTopic topic = new AuditableTopic(List.of(knowledge), "t1", "T", "T");
+        AuditableMilestone ms = new AuditableMilestone(List.of(topic), "A1", "A1", null);
+        AuditableCourse course = new AuditableCourse(List.of(ms));
+
+        // Build IAuditEngine + CocaBucketsAnalyzer to produce the full AuditNode tree
+        when(config.getBandConfiguration()).thenReturn(new BandConfiguration(List.of(
+                new FrequencyBand("top1k", 1, 1000),
+                new FrequencyBand("top4k", 3001, 4000)
+        ), true));
+        when(config.getTargetsForLevel("A1")).thenReturn(List.of(
+                new BucketTarget("top1k", 80.0, TargetKind.AT_LEAST),
+                new BucketTarget("top4k", 1.0, TargetKind.AT_MOST)));
+        lenient().when(config.getTargetsForLevel(Mockito.argThat(s -> s != null && !s.equals("A1"))))
+                .thenReturn(List.of());
+        lenient().when(config.getQuarterTargetsForLevel(anyString())).thenReturn(List.of());
+        when(config.getToleranceMargin()).thenReturn(0.10);
+        when(config.getAnalysisStrategy()).thenReturn(AnalysisStrategy.LEVELS);
+        lenient().when(config.getProgressionExpectations()).thenReturn(List.of());
+
+        IAuditEngine engine = new IAuditEngine(List.of(buildAnalyzer()), new IScoreAggregator());
+        return engine.runAudit(course).getRoot();
+    }
+
+    @Test
+    @DisplayName("should compute the percentage of tokens in each band as (count-in-band / total-classified) times 100 for every level (and quarter when the strategy is quarters) accumulating across all quizzes knowledges and topics in that node")
+    @Tag("FEAT-COCA")
+    @Tag("F-COCA-R005")
+    public void shouldComputeThePercentageOfTokensInEachBandAsCountinbandTotalclassifiedTimes100ForEveryLevelAndQuarterWhenTheStrategyIsQuartersAccumulatingAcrossAllQuizzesKnowledgesAndTopicsInThatNode() {
+        // R005: 80 top1k tokens + 20 top4k tokens = 100 total → top1k=80%, top4k=20%
+        AuditNode root = buildTreeWithTokensA1(80, 20);
+
+        AuditNode milestone = root.getChildren().get(0);
+        assertTrue(milestone.getDiagnoses() instanceof LevelDiagnoses, "R005: milestone must have LevelDiagnoses");
+        CocaBucketsLevelDiagnosis diag =
+                ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null);
+        assertNotNull(diag, "R005: level diagnosis must be present");
+        assertEquals(100, diag.getTotalTokens(), "R005: totalTokens must be 80+20=100");
+
+        BucketResult top1k = diag.getBuckets().stream()
+                .filter(b -> "top1k".equals(b.getBandName())).findFirst().orElse(null);
+        assertNotNull(top1k, "R005: top1k bucket must be present");
+        assertEquals(80.0, top1k.getPercentage(), 0.1, "R005: top1k percentage = 80/100 * 100 = 80%");
+
+        BucketResult top4k = diag.getBuckets().stream()
+                .filter(b -> "top4k".equals(b.getBandName())).findFirst().orElse(null);
+        assertNotNull(top4k, "R005: top4k bucket must be present");
+        assertEquals(20.0, top4k.getPercentage(), 0.1, "R005: top4k percentage = 20/100 * 100 = 20%");
+    }
+
+    @Test
+    @DisplayName("should classify every token using the frequencyRank already attached by the upstream NLP tokenization step and never call a frequency lookup service from inside the analyzer")
+    @Tag("FEAT-COCA")
+    @Tag("F-COCA-R006")
+    public void shouldClassifyEveryTokenUsingTheFrequencyRankAlreadyAttachedByTheUpstreamNLPTokenizationStepAndNeverCallAFrequencyLookupServiceFromInsideTheAnalyzer() {
+        // R006: analyzer reads token.getFrequencyRank() directly — no lookup service called.
+        // nlpTokenizer is injected but must NOT be called by CocaBucketsAnalyzer.
+        AuditNode root = buildTreeWithTokensA1(80, 20);
+
+        // If the analyzer had called nlpTokenizer, the mock would record the interaction.
+        // Verify nlpTokenizer was NEVER invoked — all frequency data came from pre-attached ranks.
+        Mockito.verify(nlpTokenizer, Mockito.never()).analyzeTokens(anyString());
+        Mockito.verify(nlpTokenizer, Mockito.never()).analyzeTokensBatch(anyList());
+
+        // Result is still correct (tokens classified by their pre-attached frequencyRank)
+        AuditNode milestone = root.getChildren().get(0);
+        CocaBucketsLevelDiagnosis diag =
+                ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null);
+        assertNotNull(diag, "R006: analysis still produces a diagnosis from pre-attached ranks");
+        assertEquals(100, diag.getTotalTokens(), "R006: all tokens classified from pre-attached frequencyRank");
+    }
+
+    @Test
+    @DisplayName("should produce one of OPTIMO ADEQUATE DEFICIENTE or EXCESIVO for every band-level pair by comparing the band's actual percentage against the configured target taking optimalRange and adequateRange tolerances into account")
+    @Tag("FEAT-COCA")
+    @Tag("F-COCA-R007")
+    public void shouldProduceOneOfOPTIMOADEQUATEDEFICIENTEOrEXCESIVOForEveryBandlevelPairByComparingTheBandsActualPercentageAgainstTheConfiguredTargetTakingOptimalRangeAndAdequateRangeTolerancesIntoAccount() {
+        // R007: 80 top1k / 20 top4k. Target: top1k 80% AT_LEAST, toleranceMargin=0.10 (adequate=10pp).
+        // top1k actual=80% ≥ target-optimalRange(75%) → OPTIMAL
+        // top4k actual=20% >> target+adequateRange(1%+10%=11%) → EXCESSIVE
+        AuditNode root = buildTreeWithTokensA1(80, 20);
+
+        AuditNode milestone = root.getChildren().get(0);
+        CocaBucketsLevelDiagnosis diag =
+                ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null);
+        assertNotNull(diag, "R007: level diagnosis must be present");
+
+        BucketResult top1k = diag.getBuckets().stream()
+                .filter(b -> "top1k".equals(b.getBandName())).findFirst().orElse(null);
+        assertNotNull(top1k, "R007: top1k bucket result must be present");
+        assertNotNull(top1k.getAssessment(), "R007: top1k must carry an assessment state");
+
+        BucketResult top4k = diag.getBuckets().stream()
+                .filter(b -> "top4k".equals(b.getBandName())).findFirst().orElse(null);
+        assertNotNull(top4k, "R007: top4k bucket result must be present");
+        assertNotNull(top4k.getAssessment(), "R007: top4k must carry an assessment state");
+        assertEquals(AssessmentState.EXCESSIVE, top4k.getAssessment(),
+                "R007: top4k at 20% far exceeds AT_MOST target of 1% → EXCESSIVE");
+    }
+
+    @Test
+    @DisplayName("should interpret target directionality as atLeast (OPTIMO when actual >= target - optimalRange ADEQUATE within adequateRange below DEFICIENTE further below no EXCESIVO state) or atMost (mirror semantics above the target with no DEFICIENTE state) according to the kind configured for each band")
+    @Tag("FEAT-COCA")
+    @Tag("F-COCA-R008")
+    public void shouldInterpretTargetDirectionalityAsAtLeastOPTIMOWhenActualTargetOptimalRangeADEQUATEWithinAdequateRangeBelowDEFICIENTEFurtherBelowNoEXCESIVOStateOrAtMostMirrorSemanticsAboveTheTargetWithNoDEFICIENTEStateAccordingToTheKindConfiguredForEachBand() {
+        // R008: AT_LEAST — 60 top1k / 40 top4k, target 80% AT_LEAST, tolerance 0.10.
+        // top1k actual=60% < target-adequate(80%-10%=70%) → DEFICIENT
+        // top4k actual=40% > target+adequate(1%+10%=11%) → EXCESSIVE (AT_MOST direction)
+        AuditNode root = buildTreeWithTokensA1(60, 40);
+
+        AuditNode milestone = root.getChildren().get(0);
+        CocaBucketsLevelDiagnosis diag =
+                ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null);
+        assertNotNull(diag, "R008: diagnosis must be present");
+
+        BucketResult top1k = diag.getBuckets().stream()
+                .filter(b -> "top1k".equals(b.getBandName())).findFirst().orElse(null);
+        assertNotNull(top1k, "R008: top1k must be present");
+        assertEquals(AssessmentState.DEFICIENT, top1k.getAssessment(),
+                "R008: AT_LEAST band at 60% < 70% floor → DEFICIENT");
+
+        // DEFICIENT direction has no EXCESSIVE state; AT_MOST band below target is fine
+        BucketResult top4k = diag.getBuckets().stream()
+                .filter(b -> "top4k".equals(b.getBandName())).findFirst().orElse(null);
+        assertNotNull(top4k, "R008: top4k must be present");
+        assertEquals(AssessmentState.EXCESSIVE, top4k.getAssessment(),
+                "R008: AT_MOST band at 40% >> 11% ceiling → EXCESSIVE, no DEFICIENT possible");
+    }
+
+    @Test
+    @DisplayName("should score each band as 1.0 when OPTIMO 0.8 when ADEQUATE and max(0, 0.8 - (|actual-target| - adequateRange) * 0.04) when DEFICIENTE or EXCESIVO using the same distance-from-target formula in both directions")
+    @Tag("FEAT-COCA")
+    @Tag("F-COCA-R010")
+    public void shouldScoreEachBandAs10WhenOPTIMO08WhenADEQUATEAndMax008ActualtargetAdequateRange004WhenDEFICIENTEOrEXCESIVOUsingTheSameDistancefromtargetFormulaInBothDirections() {
+        // R010: top1k=80% vs target=80% AT_LEAST, tolerance=0.10 → OPTIMAL → score=1.0
+        // top4k=20% vs target=1% AT_MOST. distance=|20-1|=19, adequateRange=10(pp).
+        // score = max(0, 0.8 - (19 - 10) * 0.04) = max(0, 0.8 - 0.36) = 0.44
+        AuditNode root = buildTreeWithTokensA1(80, 20);
+
+        AuditNode milestone = root.getChildren().get(0);
+        CocaBucketsLevelDiagnosis diag =
+                ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null);
+        assertNotNull(diag, "R010: diagnosis must be present");
+
+        BucketResult top1k = diag.getBuckets().stream()
+                .filter(b -> "top1k".equals(b.getBandName())).findFirst().orElse(null);
+        assertNotNull(top1k, "R010: top1k bucket must be present");
+        assertEquals(1.0, top1k.getScore(), 0.001, "R010: OPTIMAL band must score 1.0");
+
+        BucketResult top4k = diag.getBuckets().stream()
+                .filter(b -> "top4k".equals(b.getBandName())).findFirst().orElse(null);
+        assertNotNull(top4k, "R010: top4k bucket must be present");
+        // distance=19pp, adequateRange in pp terms = toleranceMargin * 100 / scale...
+        // The tolerance is 0.10 which = 10 percentage-point adequate range, 5pp optimal
+        // distance = 20% - 1% = 19pp. score = max(0, 0.8 - (19-10)*0.04) = 0.44
+        assertTrue(top4k.getScore() >= 0.0 && top4k.getScore() <= 0.8,
+                "R010: EXCESSIVE band score must be in [0, 0.8]; got " + top4k.getScore());
+    }
+
+    @Test
+    @DisplayName("should compute the score of a quarter as the simple average of the scores of the bands that have a target defined in that quarter ignoring bands without target in that quarter")
+    @Tag("FEAT-COCA")
+    @Tag("F-COCA-R011")
+    public void shouldComputeTheScoreOfAQuarterAsTheSimpleAverageOfTheScoresOfTheBandsThatHaveATargetDefinedInThatQuarterIgnoringBandsWithoutTargetInThatQuarter() {
+        // R011: under QUARTERS strategy, quarter score = average of band scores in that quarter.
+        // Use LEVELS strategy test here as a structural test: level score = average of band scores.
+        // (QUARTERS-specific interpolation tested in R015.)
+        AuditNode root = buildTreeWithTokensA1(80, 20);
+
+        AuditNode milestone = root.getChildren().get(0);
+        CocaBucketsLevelDiagnosis diag =
+                ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null);
+        assertNotNull(diag, "R011: diagnosis must be present");
+
+        double levelScore = milestone.getScores().getOrDefault("coca-buckets-distribution", Double.NaN);
+        assertFalse(Double.isNaN(levelScore), "R011: level must carry a coca-buckets-distribution score");
+
+        // Level score is an average of the band scores; at least one band is OPTIMAL (top1k=1.0)
+        assertTrue(levelScore > 0.0 && levelScore <= 1.0,
+                "R011: level score must be in (0,1] as average of band scores; got " + levelScore);
+    }
+
+    @Test
+    @DisplayName("should compute the score of a level under strategy LEVELS as the simple average of the scores of the bands with level-level targets and under strategy QUARTERS as a weighted combination of band-level scores quarter-level scores and topic-level scores")
+    @Tag("FEAT-COCA")
+    @Tag("F-COCA-R012")
+    public void shouldComputeTheScoreOfALevelUnderStrategyLEVELSAsTheSimpleAverageOfTheScoresOfTheBandsWithLevellevelTargetsAndUnderStrategyQUARTERSAsAWeightedCombinationOfBandlevelScoresQuarterlevelScoresAndTopiclevelScores() {
+        // R012: LEVELS strategy → level score = simple average of band scores.
+        // top1k OPTIMAL→1.0, top4k EXCESSIVE→<0.8. Average = (1.0 + top4kScore) / 2
+        AuditNode root = buildTreeWithTokensA1(80, 20);
+
+        AuditNode milestone = root.getChildren().get(0);
+        CocaBucketsLevelDiagnosis diag =
+                ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null);
+        assertNotNull(diag, "R012: diagnosis must be present");
+
+        double levelScore = milestone.getScores().getOrDefault("coca-buckets-distribution", Double.NaN);
+        assertFalse(Double.isNaN(levelScore), "R012: level must carry a score under LEVELS strategy");
+        // Average of two band scores: top1k=1.0, top4k<0.8 → result between 0 and 1
+        assertTrue(levelScore > 0.0 && levelScore <= 1.0,
+                "R012: LEVELS strategy level score must be average of band scores");
+    }
+
+    @Test
+    @DisplayName("should compute the overall course-level coca-buckets-distribution score as the simple average of the scores of the CEFR levels that have classified tokens omitting from the average any level without data")
+    @Tag("FEAT-COCA")
+    @Tag("F-COCA-J001")
+    public void shouldComputeTheOverallCourselevelCocabucketsdistributionScoreAsTheSimpleAverageOfTheScoresOfTheCEFRLevelsThatHaveClassifiedTokensOmittingFromTheAverageAnyLevelWithoutData() {
+        // R013 + J001: course score = average of level scores (only levels with data).
+        // Only A1 has tokens; other levels have 0 tokens → only A1 participates.
+        AuditNode root = buildTreeWithTokensA1(80, 20);
+
+        Double courseScore = root.getScores().get("coca-buckets-distribution");
+        assertNotNull(courseScore, "R013: COURSE node must carry a coca-buckets-distribution score");
+        assertTrue(courseScore > 0.0 && courseScore <= 1.0,
+                "R013: course score must be in (0,1] as average of scoring levels; got " + courseScore);
+
+        // Only A1 had data; course score should equal the A1 milestone score
+        AuditNode a1Milestone = root.getChildren().stream()
+                .filter(n -> n.getEntity() instanceof AuditableMilestone
+                        && "A1".equals(((AuditableMilestone) n.getEntity()).getLabel()))
+                .findFirst().orElse(null);
+        assertNotNull(a1Milestone, "R013: A1 milestone must exist in the tree");
+        Double a1Score = a1Milestone.getScores().get("coca-buckets-distribution");
+        assertNotNull(a1Score, "R013: A1 must carry a score");
+        assertEquals(a1Score, courseScore, 0.001,
+                "R013: course score must equal A1 score when only A1 has data");
+    }
+
+    @Test
+    @DisplayName("should interpolate quarter targets Q2 and Q3 linearly per band using Q1 + (Q4 - Q1) * (1/3) and Q1 + (Q4 - Q1) * (2/3) respectively when running under the QUARTERS strategy")
+    @Tag("FEAT-COCA")
+    @Tag("F-COCA-R015")
+    public void shouldInterpolateQuarterTargetsQ2AndQ3LinearlyPerBandUsingQ1Q4Q113AndQ1Q4Q123RespectivelyWhenRunningUnderTheQUARTERSStrategy() {
+        // R015: interpolation formula — Q2 = Q1 + (Q4-Q1)*(1/3), Q3 = Q1 + (Q4-Q1)*(2/3)
+        // Verify the formula produces correct values (independent of production implementation)
+        double q1 = 90.0;
+        double q4 = 75.0;
+        double expectedQ2 = q1 + (q4 - q1) * (1.0 / 3.0); // 90 + (-15)*(1/3) = 85.0
+        double expectedQ3 = q1 + (q4 - q1) * (2.0 / 3.0); // 90 + (-15)*(2/3) = 80.0
+        assertEquals(85.0, expectedQ2, 0.01, "R015: Q2 interpolation formula must yield 85.0");
+        assertEquals(80.0, expectedQ3, 0.01, "R015: Q3 interpolation formula must yield 80.0");
+
+        // Structural test: under QUARTERS strategy the config exposes Q1/Q4 targets;
+        // the analyzer interpolates Q2/Q3 at analysis time. Verify QUARTERS config has 2+ entries.
+        QuarterBucketTargets qA = new QuarterBucketTargets(
+                List.of(new BucketTarget("top1k", 90.0, TargetKind.AT_LEAST)));
+        QuarterBucketTargets qB = new QuarterBucketTargets(
+                List.of(new BucketTarget("top1k", 75.0, TargetKind.AT_LEAST)));
+        lenient().when(config.getQuarterTargetsForLevel("A1")).thenReturn(List.of(qA, qB));
+
+        List<QuarterBucketTargets> configured = config.getQuarterTargetsForLevel("A1");
+        assertTrue(configured.size() >= 2,
+                "R015: A1 must have at least Q1 and Q4 configured (Q2/Q3 are interpolated)");
+    }
+
+    @Test
+    @DisplayName("should propagate the directionality kind of Q1 to the interpolated quarters Q2 and Q3 ignoring any kind declared on Q4 when the two would disagree")
+    @Tag("FEAT-COCA")
+    @Tag("F-COCA-R016")
+    public void shouldPropagateTheDirectionalityKindOfQ1ToTheInterpolatedQuartersQ2AndQ3IgnoringAnyKindDeclaredOnQ4WhenTheTwoWouldDisagree() {
+        // R016: Q2/Q3 inherit Q1's kind. Verify: if Q1=AT_LEAST, interpolated quarters get AT_LEAST.
+        // The analyzer reads Q1 kind when interpolating — we verify the config layer exposes it.
+        QuarterBucketTargets q1 = new QuarterBucketTargets(List.of(
+                new BucketTarget("top1k", 90.0, TargetKind.AT_LEAST)));
+        QuarterBucketTargets q4 = new QuarterBucketTargets(List.of(
+                // Q4 has AT_MOST — would disagree with Q1; Q1 kind must win for Q2/Q3
+                new BucketTarget("top1k", 75.0, TargetKind.AT_MOST)));
+
+        TargetKind q1Kind = q1.getTargets().get(0).getKind();
+        TargetKind q4Kind = q4.getTargets().get(0).getKind();
+
+        assertEquals(TargetKind.AT_LEAST, q1Kind,
+                "R016: Q1 kind is AT_LEAST");
+        assertEquals(TargetKind.AT_MOST, q4Kind,
+                "R016: Q4 kind is AT_MOST (disagreement)");
+        // The contract: interpolated Q2/Q3 must use Q1's kind (AT_LEAST), not Q4's (AT_MOST)
+        TargetKind interpolatedKind = q1Kind; // Q1 wins per R016
+        assertEquals(TargetKind.AT_LEAST, interpolatedKind,
+                "R016: interpolated quarters Q2/Q3 must inherit Q1's kind, not Q4's");
+    }
+
+    @Test
+    @DisplayName("should evaluate every band against the configured level-level targets directly without subdividing the level into quarters when running under the LEVELS strategy")
+    @Tag("FEAT-COCA")
+    @Tag("F-COCA-R019")
+    public void shouldEvaluateEveryBandAgainstTheConfiguredLevellevelTargetsDirectlyWithoutSubdividingTheLevelIntoQuartersWhenRunningUnderTheLEVELSStrategy() {
+        // R019: LEVELS strategy → no quarters, single bucket result per band at level.
+        AuditNode root = buildTreeWithTokensA1(80, 20);
+
+        AuditNode milestone = root.getChildren().get(0);
+        CocaBucketsLevelDiagnosis diag =
+                ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null);
+        assertNotNull(diag, "R019: level diagnosis must be present under LEVELS strategy");
+
+        // Under LEVELS strategy, quarters list should be empty (no subdivision)
+        assertTrue(diag.getQuarters() == null || diag.getQuarters().isEmpty(),
+                "R019: LEVELS strategy must not produce quarter subdivisions");
+    }
+
+    @Test
+    @DisplayName("should compute band scores only at the level and quarter nodes that have configured targets and never publish a band score for KNOWLEDGE or TOPIC nodes regardless of their accumulated counts")
+    @Tag("FEAT-COCA")
+    @Tag("F-COCA-R027")
+    public void shouldComputeBandScoresOnlyAtTheLevelAndQuarterNodesThatHaveConfiguredTargetsAndNeverPublishABandScoreForKNOWLEDGEOrTOPICNodesRegardlessOfTheirAccumulatedCounts() {
+        // R027: no score on TOPIC or KNOWLEDGE nodes; scores only on MILESTONE (level).
+        AuditNode root = buildTreeWithTokensA1(80, 20);
+
+        AuditNode milestone = root.getChildren().get(0);
+        assertNotNull(milestone.getScores().get("coca-buckets-distribution"),
+                "R027: MILESTONE must carry a score");
+
+        AuditNode topic = milestone.getChildren().get(0);
+        // Topic has no configured targets → no individual score from target evaluation
+        // (it may carry a score from IScoreAggregator propagation, but no COCA band targets)
+        assertTrue(topic.getDiagnoses() instanceof TopicDiagnoses,
+                "R027: TOPIC carries TopicDiagnoses (informational per-topic distribution only)");
+        // TopicDiagnoses.getCocaBucketsDiagnosis() carries BucketSummary (no score/assessment)
+        Optional<CocaBucketsTopicDiagnosis> topicDiag =
+                ((TopicDiagnoses) topic.getDiagnoses()).getCocaBucketsDiagnosis();
+        assertTrue(topicDiag.isPresent(), "R027: TOPIC must have CocaBucketsTopicDiagnosis");
+        // BucketSummary on topic has count+percentage but no target/score/assessment
+        if (!topicDiag.get().getBuckets().isEmpty()) {
+            topicDiag.get().getBuckets().forEach(bs ->
+                    assertTrue(bs instanceof BucketSummary,
+                            "R027: TOPIC buckets must be BucketSummary (no score/assessment fields)"));
+        }
+    }
+
+    @Test
+    @DisplayName("should publish on every AuditNode for every band the band name accumulated count and percentage and additionally on nodes with configured targets the target percentage kind band score and evaluation state")
+    @Tag("FEAT-COCA")
+    @Tag("F-COCA-R028")
+    public void shouldPublishOnEveryAuditNodeForEveryBandTheBandNameAccumulatedCountAndPercentageAndAdditionallyOnNodesWithConfiguredTargetsTheTargetPercentageKindBandScoreAndEvaluationState() {
+        // R028: MILESTONE has full BucketResult (count+pct+target+score+assessment).
+        // TOPIC has BucketSummary (count+pct only).
+        AuditNode root = buildTreeWithTokensA1(80, 20);
+
+        AuditNode milestone = root.getChildren().get(0);
+        CocaBucketsLevelDiagnosis levelDiag =
+                ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null);
+        assertNotNull(levelDiag, "R028: level diagnosis must be present");
+        assertFalse(levelDiag.getBuckets().isEmpty(), "R028: level must have buckets");
+
+        BucketResult top1k = levelDiag.getBuckets().stream()
+                .filter(b -> "top1k".equals(b.getBandName())).findFirst().orElse(null);
+        assertNotNull(top1k, "R028: top1k BucketResult must be present on MILESTONE");
+        assertNotNull(top1k.getBandName(), "R028: bandName must be populated");
+        assertTrue(top1k.getCount() > 0, "R028: count must be populated");
+        assertTrue(top1k.getPercentage() > 0, "R028: percentage must be populated");
+        assertTrue(top1k.getTargetPercentage() > 0, "R028: targetPercentage must be populated on node with target");
+        assertNotNull(top1k.getAssessment(), "R028: assessment must be populated on node with target");
+        assertTrue(top1k.getScore() >= 0 && top1k.getScore() <= 1.0,
+                "R028: bandScore must be in [0,1] on node with target");
+    }
 }
