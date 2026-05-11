@@ -644,6 +644,82 @@ public class CourseToAuditableMapperTest {
     @Tag("F-NLP-R010")
     @Tag("F-NLP-J001")
     public void givenTwoAuditableCoursesProducedByMappingACourseThatHasKnowledgeQuizzesContainingSentencesWithEnrichedtokenrequiringVocabularyFrequencyrankedWordsViaSpaCyWhenAuditEngineRunsBothAuditsThenEveryAuditableQuizProducedByTheMapperCarriesAListNlpTokenPopulatedByAnalyzeTokensBatchCoveringTokenizationLemmatizationPOSTaggingFrequencyRankStopwordAndPunctuationFlagsSoDownstreamAnalyzersCanReadEnrichedTokensWithoutRetokenizing() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R010: tokens are generated ONCE during mapping via analyzeTokensBatch and stored
+        // in AuditableQuiz.getTokens() — downstream analyzers read pre-computed tokens, no re-tokenizing.
+        // J001 step 5-6: tokenizer returns enriched tokens (lemma, posTag, frequencyRank, isStop, isPunct).
+
+        // Two enriched tokens representing frequency-ranked vocabulary
+        NlpToken runToken = new NlpToken("running", "run", "VERB", 150, false, false);
+        NlpToken sheToken = new NlpToken("She", "she", "PRON", 12, true, false);
+
+        NlpTokenizer nlpTokenizer = mock(NlpTokenizer.class);
+        // Both mapping calls return the same enriched batch result
+        when(nlpTokenizer.analyzeTokensBatch(anyList()))
+                .thenReturn(Map.of("She was running", List.of(sheToken, runToken)));
+
+        QuizSentenceConverter quizSentenceConverter = mock(QuizSentenceConverter.class);
+        when(quizSentenceConverter.toPlainSentences(any())).thenReturn(List.of("She was running"));
+
+        // Build a course with one quiz whose sentence contains frequency-ranked vocabulary
+        SentencePartEntity part = new SentencePartEntity(SentencePartKind.TEXT, "She was running", null);
+        FormEntity form = new FormEntity(null, 0, null, null, List.of(part));
+        QuizTemplateEntity qt = new QuizTemplateEntity();
+        qt.setId("q1");
+        qt.setForm(form);
+        KnowledgeEntity ke = new KnowledgeEntity();
+        ke.setId("k1");
+        ke.setLabel("Present Continuous");
+        ke.setQuizTemplates(List.of(qt));
+        TopicEntity te = new TopicEntity();
+        te.setId("t1");
+        te.setLabel("Verbs");
+        te.setKnowledges(List.of(ke));
+        MilestoneEntity me = new MilestoneEntity();
+        me.setId("m1");
+        me.setLabel("A2");
+        me.setTopics(List.of(te));
+        RootNodeEntity root = new RootNodeEntity();
+        root.setMilestones(List.of(me));
+        CourseEntity course = new CourseEntity();
+        course.setRoot(root);
+
+        CourseToAuditableMapper mapper = new CourseToAuditableMapper(nlpTokenizer, quizSentenceConverter);
+
+        // Map the same course twice — two independent AuditableCourse instances
+        AuditableCourse first = mapper.map(course);
+        AuditableCourse second = mapper.map(course);
+
+        // Both mappings must have invoked analyzeTokensBatch (R010: tokens generated at mapping time)
+        verify(nlpTokenizer, times(2)).analyzeTokensBatch(anyList());
+
+        // Verify that every AuditableQuiz in both results carries the enriched token list
+        for (AuditableCourse auditableCourse : List.of(first, second)) {
+            AuditableMilestone milestone = auditableCourse.getMilestones().get(0);
+            AuditableTopic topic = milestone.getTopics().get(0);
+            AuditableKnowledge knowledge = topic.getKnowledge().get(0);
+            AuditableQuiz quiz = knowledge.getQuizzes().get(0);
+
+            List<NlpToken> tokens = quiz.getTokens();
+            assertNotNull(tokens, "R010: AuditableQuiz.getTokens() must not be null after mapping");
+            assertFalse(tokens.isEmpty(), "R010: AuditableQuiz must carry the enriched token list");
+
+            // Verify enriched fields are present on the tokens (lemma, posTag, frequencyRank, isStop, isPunct)
+            NlpToken verbToken = tokens.stream()
+                    .filter(t -> "run".equals(t.getLemma()))
+                    .findFirst()
+                    .orElse(null);
+            assertNotNull(verbToken, "R010: token with lemma 'run' must be present from enriched batch");
+            assertEquals("VERB", verbToken.getPosTag(), "R010: POS tag must be populated from enriched tokenization");
+            assertEquals(150, verbToken.getFrequencyRank(), "R010: frequencyRank must be populated from COCA frequency data");
+            assertFalse(verbToken.isIsStop(), "R010: isStop flag must be set from enriched tokenization");
+            assertFalse(verbToken.isIsPunct(), "R010: isPunct flag must be set from enriched tokenization");
+
+            NlpToken pronToken = tokens.stream()
+                    .filter(t -> "she".equals(t.getLemma()))
+                    .findFirst()
+                    .orElse(null);
+            assertNotNull(pronToken, "R010: token with lemma 'she' must be present from enriched batch");
+            assertTrue(pronToken.isIsStop(), "R010: stop-word flag must be populated from enriched tokenization");
+        }
     }
 }

@@ -31,6 +31,11 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - Given a course with knowledges whose title weighted length exceeds 28, when AuditEngine.runAudit is invoked, then the affected knowledge nodes carry knowledge-title-length scores below 1.0 enabling identification of overlong titles → FEAT-KTLEN/F-KTLEN-J002
 - Given a course with mixed title and instruction lengths, when AuditEngine.runAudit is invoked, then per-level scores for knowledge-title-length and knowledge-instructions-length are reported independently per AuditNode allowing the user to compare both dimensions → FEAT-KTLEN/F-KTLEN-J004
 - Given two AuditableCourses with identical content but milestones declared in different orders, when AuditEngine.runAudit is invoked on each with the LemmaRecurrenceAnalyzer registered, then both AuditReports produce the same lemma-recurrence score confirming a deterministic CEFR-ordered traversal independent of input declaration order → FEAT-LREC/F-LREC-R002
+- should aggregate quiz-level sentence-length scores into each KNOWLEDGE node as the simple average of the scoring quizzes under it omitting from the average any quiz excluded by F-SLEN-R001 and leaving the knowledge score unavailable when no quiz under it has a score → FEAT-SLEN/F-SLEN-R003
+- should aggregate knowledge-level sentence-length scores into each TOPIC node as the simple average of the scoring knowledges under it omitting from the average any knowledge without a score and leaving the topic score unavailable when no knowledge under it has a score → FEAT-SLEN/F-SLEN-R004
+- should aggregate topic-level sentence-length scores into each MILESTONE node as the simple average of the scoring topics under it omitting from the average any topic without a score and leaving the level score unavailable when no topic under it has a score → FEAT-SLEN/F-SLEN-R005
+- should aggregate milestone-level sentence-length scores into the COURSE root node as the simple average of the scoring milestones omitting from the average any milestone without a score and returning zero as the course overall score when no milestone has a score → FEAT-SLEN/F-SLEN-R008
+- should publish the sentence-length score on every AuditNode of the hierarchy (quiz knowledge topic milestone course) so consumers can read it at any level via node.getScores().get('sentence-length') → FEAT-SLEN/F-SLEN-R016/F-SLEN-J004
 
 ### KnowledgeTitleLengthAnalyzer (audit-domain)
 
@@ -113,6 +118,7 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should NOT emit a SentenceLengthDiagnosis on a quiz node that is excluded as non-sentence (no scoring produced) → FEAT-DSLEN/F-DSLEN-R002
 - should NOT emit a SentenceLengthDiagnosis on knowledge topic milestone or course nodes traversed by the analyzer → FEAT-DSLEN/F-DSLEN-R003
 - should make the emitted SentenceLengthDiagnosis retrievable via QuizDiagnoses getSentenceLengthDiagnosis on the same quiz node → FEAT-DSLEN/F-DSLEN-R004
+- should compute each quiz score using the linguistic token count from the precomputed NLP tokenization of the quiz sentence and never from a whitespace-based string split → FEAT-SLEN/F-SLEN-R013
 
 ### SentenceLengthContextResolver (refiner-domain)
 

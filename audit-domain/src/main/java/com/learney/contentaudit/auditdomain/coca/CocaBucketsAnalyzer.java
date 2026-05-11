@@ -108,8 +108,8 @@ public CocaBucketsAnalyzer(NlpTokenizer nlpTokenizer, CocaBucketsConfig cocaBuck
         Map<String, Integer> bandCounts = topicCounts.get(currentTopicIndexInLevel);
 
         for (NlpToken token : tokens) {
-            // Tokens with rank <= 0 are excluded (R004)
-            if (token.getFrequencyRank() <= 0) {
+            // Tokens without COCA rank (null) or with rank <= 0 are excluded (R004, R028)
+            if (token.getFrequencyRank() == null || token.getFrequencyRank() <= 0) {
                 continue;
             }
             try {

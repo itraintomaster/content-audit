@@ -1,5 +1,21 @@
 package com.learney.contentaudit.auditcli.formatting;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.CourseDiagnoses;
+import com.learney.contentaudit.auditdomain.LevelDiagnoses;
+import com.learney.contentaudit.auditdomain.TopicDiagnoses;
+import com.learney.contentaudit.auditdomain.coca.CocaBucketsLevelDiagnosis;
+import com.learney.contentaudit.auditdomain.coca.CocaBucketsTopicDiagnosis;
+import com.learney.contentaudit.auditdomain.coca.CocaProgressionDiagnosis;
+import java.util.List;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -16,6 +32,50 @@ public class CocaBucketsDetailedFormatterTest {
     @Tag("F-DCOCA-R006")
     public void shouldReadCocabucketsDiagnosesExclusivelyThroughTheTypedNodeDiagnosesGettersCourseDiagnosesLevelDiagnosesTopicDiagnosesGetCocaBucketsDiagnosisAndNeverCallGetMetadataOrPerformUncheckedCastsWhenRenderingTheDetailedView(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: formatter must read from typed getCocaBucketsDiagnosis() getters on
+        // CourseDiagnoses / LevelDiagnoses / TopicDiagnoses — never from getMetadata().
+
+        // Build a minimal tree: COURSE → MILESTONE → TOPIC
+        CourseDiagnoses courseDiagnoses = mock(CourseDiagnoses.class);
+        CocaProgressionDiagnosis progressionDiag = new CocaProgressionDiagnosis(
+                0.75, List.of(), List.of());
+        when(courseDiagnoses.getCocaBucketsDiagnosis()).thenReturn(Optional.of(progressionDiag));
+
+        LevelDiagnoses levelDiagnoses = mock(LevelDiagnoses.class);
+        CocaBucketsLevelDiagnosis levelDiag = mock(CocaBucketsLevelDiagnosis.class);
+        when(levelDiag.getTotalTokens()).thenReturn(100);
+        when(levelDiag.getBuckets()).thenReturn(List.of());
+        when(levelDiag.getQuarters()).thenReturn(List.of());
+        when(levelDiagnoses.getCocaBucketsDiagnosis()).thenReturn(Optional.of(levelDiag));
+
+        TopicDiagnoses topicDiagnoses = mock(TopicDiagnoses.class);
+        CocaBucketsTopicDiagnosis topicDiag = mock(CocaBucketsTopicDiagnosis.class);
+        when(topicDiag.getTotalTokens()).thenReturn(50);
+        when(topicDiag.getBuckets()).thenReturn(List.of());
+        when(topicDiagnoses.getCocaBucketsDiagnosis()).thenReturn(Optional.of(topicDiag));
+
+        AuditNode topicNode = new AuditNode();
+        topicNode.setDiagnoses(topicDiagnoses);
+
+        AuditNode milestoneNode = new AuditNode();
+        milestoneNode.setDiagnoses(levelDiagnoses);
+        milestoneNode.setChildren(List.of(topicNode));
+
+        AuditNode courseNode = new AuditNode();
+        courseNode.setDiagnoses(courseDiagnoses);
+        courseNode.setChildren(List.of(milestoneNode));
+
+        CocaBucketsDetailedFormatter formatter = new CocaBucketsDetailedFormatter();
+
+        // Act — use "json" format to exercise the topic-level path (text format skips topicDiagnosis())
+        String result = formatter.format("coca-buckets-distribution", courseNode, "json");
+        assertNotNull(result, "R006: formatter must produce output without exception");
+        assertFalse(result.isEmpty(), "R006: formatter output must not be empty");
+
+        // Assert — typed getters were called on each NodeDiagnoses subtype (R006 constraint)
+        // The formatter reads via instanceof + getCocaBucketsDiagnosis(), not via getMetadata().
+        verify(courseDiagnoses, atLeastOnce()).getCocaBucketsDiagnosis();
+        verify(levelDiagnoses, atLeastOnce()).getCocaBucketsDiagnosis();
+        verify(topicDiagnoses, atLeastOnce()).getCocaBucketsDiagnosis();
     }
 }

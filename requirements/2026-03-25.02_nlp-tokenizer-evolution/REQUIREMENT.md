@@ -243,6 +243,16 @@ Este catalogo podria usarse como **complemento** al procesamiento con SpaCy:
 
 Sin embargo, el catalogo **no puede ser la fuente primaria** porque: (a) solo contiene 15.696 palabras del EVP, no todas las palabras posibles del ingles, y (b) no puede lematizar formas flexionadas que no estan explicitamente listadas.
 
+### Decisiones de simplicidad (fuera del alcance de esta version)
+
+Esta primera version del tokenizador enriquecido adopta varias decisiones de simplicidad para acotar el alcance. Estas decisiones no son reglas de negocio: describen cosas que el sistema **no hace** (o hace de manera deliberadamente simple) y no tienen superficie observable que un usuario o un analizador pueda verificar. Si el rendimiento o las necesidades evolucionan, cualquiera de estas puede revisarse en iteraciones posteriores.
+
+- **Comunicacion entre Java y Python via archivos JSON** (transporte interno): se eligen archivos JSON sobre stdin/stdout o un servicio persistente por ser el mecanismo mas simple y consistente con el script de referencia. Esta eleccion es interna y no es observable desde la perspectiva de los analizadores ni del usuario; lo que importa son los tokens enriquecidos resultantes. Si el rendimiento futuro lo justifica, se puede evolucionar el transporte sin afectar la logica de negocio.
+- **Procesamiento sincrono**: ContentAudit invoca al proceso Python y espera el resultado en la misma ejecucion. No se contempla procesamiento asincrono ni paralelo de multiples lotes simultaneos. El volumen actual (~11.500 quizzes) hace innecesaria la complejidad de un modelo asincrono.
+- **Cache persistente en disco**: queda **fuera de alcance** en esta version. El sistema original mantenia un cache persistente de los resultados de SpaCy (~61 MB de archivos por nivel), pero su implementacion se difiere a una iteracion posterior. El cache en memoria por sesion (R023) es suficiente para una auditoria individual.
+- **Volumetria del cache en memoria**: se estima ~11 MB para un curso completo (~11.500 oraciones, ~10 tokens por oracion, ~100 bytes por token), valor manejable sin necesidad de mecanismos de eviccion. Si en el futuro se auditan cursos significativamente mas grandes o multiples cursos en la misma sesion, podria evaluarse agregar un mecanismo LRU o un limite de tamano configurable.
+- **Inclusion de tokens de puntuacion y espacios en la salida**: el tokenizador emite tokens para signos de puntuacion y espacios (con su marcacion correspondiente segun R001/R004), en lugar de filtrarlos a la salida. Esta inclusion preserva fidelidad con el texto original y deja la decision de filtrado a cada analizador. Una alternativa seria excluir estos tokens desde el tokenizador, pero reduciria flexibilidad para futuros analizadores que puedan requerirlos (por ejemplo, complejidad sintactica).
+
 ---
 
 ## Reglas de Negocio
@@ -252,9 +262,11 @@ Las reglas se organizan en seis grupos:
 - **Grupo A - Modelo NlpToken (R001-R005)**: datos que cada token enriquecido debe contener.
 - **Grupo B - Evolucion de la interfaz NlpTokenizer (R006-R010)**: como cambia la interfaz del tokenizador y compatibilidad con analizadores existentes.
 - **Grupo C - Busqueda de frecuencia COCA (R011-R016)**: como se obtiene el ranking de frecuencia de cada token.
-- **Grupo D - Integracion con SpaCy (R017-R022)**: como se invoca el procesamiento NLP desde Python/SpaCy.
-- **Grupo E - Cache de resultados (R023-R027)**: como se cachean los resultados para evitar reprocesamiento.
-- **Grupo F - Manejo de errores y fallbacks (R028-R033)**: que ocurre cuando el procesamiento falla o no se encuentra informacion.
+- **Grupo D - Integracion con SpaCy (R017, R019, R020, R021)**: como se invoca el procesamiento NLP desde Python/SpaCy y como se configura.
+- **Grupo E - Cache de resultados (R023, R024, R026)**: como se cachean los resultados para evitar reprocesamiento.
+- **Grupo F - Manejo de errores y fallbacks (R028-R032)**: que ocurre cuando el procesamiento falla o no se encuentra informacion.
+
+> **Nota sobre numeracion**: R018, R022, R025, R027 y R033 fueron retirados como reglas numeradas. Describian decisiones de simplicidad de transporte (JSON files), modelo de ejecucion (sincrono), scope futuro del cache persistente, volumetria estimada del cache en memoria, y politica de inclusion de tokens de puntuacion/espacios en la salida del tokenizador. Ninguna agregaba comportamiento observable adicional al cubierto por R001/R004/R017/R019/R023/R024/R026. Su contenido se documenta en "Decisiones de simplicidad (fuera del alcance de esta version)" del Contexto. Los IDs R018, R022, R025, R027 y R033 quedan retirados; los demas mantienen su numeracion para no romper trazabilidad con commits historicos.
 
 ---
 
@@ -500,29 +512,6 @@ SpaCy se ejecuta como un proceso Python externo. El sistema ContentAudit (Java) 
 
 **Error**: "No se pudo iniciar el motor SpaCy: {detalle}"
 
-### Rule[F-NLP-R018] - Comunicacion con el proceso Python via archivos JSON
-**Severity**: major | **Validation**: ASSUMPTION
-
-La comunicacion entre ContentAudit (Java) y el script Python se realiza mediante archivos JSON:
-
-1. ContentAudit escribe un archivo JSON de entrada con las oraciones a procesar
-2. ContentAudit invoca el proceso Python pasando las rutas de los archivos de entrada y salida
-3. El proceso Python lee el archivo de entrada, procesa las oraciones con SpaCy y los datos COCA, y escribe un archivo JSON de salida
-4. ContentAudit lee el archivo JSON de salida y convierte los resultados en tokens enriquecidos
-
-El formato del archivo de entrada es:
-```
-{
-  "sentences": ["She likes cats.", "He was running quickly."]
-}
-```
-
-El formato del archivo de salida contiene, para cada oracion, la lista de tokens procesados con su informacion linguistica y de frecuencia.
-
-[ASSUMPTION] Se asume que la comunicacion via archivos JSON es la estrategia elegida. Alternativas como stdin/stdout o un servicio persistente podrian ofrecer mejor rendimiento para volumenes grandes, pero la comunicacion por archivos es la mas simple y es consistente con el script original. Si el rendimiento resulta insuficiente, se puede evolucionar a stdin/stdout sin cambiar la logica de negocio.
-
-**Error**: "Error en la comunicacion con el proceso Python: no se pudo leer/escribir el archivo {ruta}"
-
 ### Rule[F-NLP-R019] - El proceso Python integra lematizacion y busqueda de frecuencia
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
@@ -548,26 +537,14 @@ Si alguno de estos componentes no esta disponible, el tokenizador no puede produ
 
 **Error**: "Requisito de entorno faltante: {componente}. Consulte la documentacion de instalacion."
 
-### Rule[F-NLP-R021] - La ruta del script Python y de los datos COCA es configurable
-**Severity**: minor | **Validation**: ASSUMPTION
+### Rule[F-NLP-R021] - Las rutas del script Python y de los datos COCA se proveen al tokenizador
+**Severity**: minor | **Validation**: AUTO_VALIDATED
 
-Las rutas del script Python (`sample_processor.py`) y del archivo de datos de frecuencia COCA (`lemmas_20k_words.txt`) deben ser configurables, no estar hardcodeadas. Esto permite:
-- Diferentes entornos (desarrollo, CI, produccion) con diferentes ubicaciones de archivos
-- Versionar el script y los datos de forma independiente
-- Facilitar las pruebas con datos o scripts alternativos
+Las rutas del script Python (`sample_processor.py`) y del archivo de datos de frecuencia COCA (`lemmas_20k_words.txt`) se proveen al tokenizador como parte de su configuracion de entrada, no aparecen hardcodeadas en su logica interna. Cuando se crea un tokenizador con configuracion que apunta a un script o a datos COCA en cierta ruta, el tokenizador utiliza esas rutas para invocar a Python y cargar los datos correspondientes. Si la ruta provista no existe o no es accesible, el tokenizador reporta el error claramente con la ruta involucrada.
 
-[ASSUMPTION] Se asume que la configuracion se realiza mediante parametros de configuracion del sistema. El mecanismo exacto de configuracion (archivo de propiedades, variables de entorno, parametros de linea de comandos) se definira en la fase de diseno.
+Esto permite que diferentes entornos (desarrollo, CI, produccion) usen ubicaciones distintas para el script y para los datos sin tocar el codigo de tokenizacion, y permite las pruebas con datos o scripts alternativos.
 
 **Error**: "Ruta del script Python no configurada o no encontrada: {ruta}"
-
-### Rule[F-NLP-R022] - El procesamiento es sincrono
-**Severity**: minor | **Validation**: ASSUMPTION
-
-El procesamiento de tokenizacion enriquecida es sincrono: ContentAudit invoca al proceso Python, espera a que termine, y luego procesa los resultados. No hay procesamiento asincrono ni paralelo de multiples lotes simultaneos.
-
-[ASSUMPTION] Se asume que el procesamiento sincrono es suficiente para los volumenes actuales del curso (~11.500 quizzes). Si se necesita procesar cursos significativamente mas grandes o multiples cursos en paralelo, se podria evolucionar a procesamiento asincrono, pero eso queda fuera del alcance de esta funcionalidad.
-
-**Error**: N/A (esta regla describe el modelo de ejecucion)
 
 ---
 
@@ -589,15 +566,6 @@ La clave del cache de tokenizacion es la oracion completa (texto exacto). Dos or
 
 **Error**: N/A (esta regla describe el criterio de identidad del cache)
 
-### Rule[F-NLP-R025] - Cache persistente opcional en disco
-**Severity**: minor | **Validation**: ASSUMPTION
-
-El sistema original mantenia un cache persistente en disco de los resultados de SpaCy (archivos `spacy-results-{A1,A2,B1,B2}.json`, totalizando ~61 MB). Este cache se identificaba por un hash SHA-256 del contenido de las oraciones y tenia una expiracion de 30 dias.
-
-[ASSUMPTION] Se asume que el cache persistente en disco es una optimizacion deseable pero **no es obligatorio** para la primera version de esta funcionalidad. El cache en memoria (R023) es suficiente para una sesion de auditoria individual. El cache en disco evita reprocesar las mismas oraciones en ejecuciones sucesivas, lo cual es valioso pero puede implementarse en una iteracion posterior.
-
-**Error**: N/A (esta regla describe una optimizacion opcional)
-
 ### Rule[F-NLP-R026] - El cache del CachedNlpTokenizer debe evolucionar
 **Severity**: major | **Validation**: AUTO_VALIDATED
 
@@ -606,15 +574,6 @@ El decorador `CachedNlpTokenizer` actualmente cachea dos tipos de resultados: li
 El principio del decorador permanece igual: intercepta la llamada al tokenizador, busca en el cache, y si no encuentra el resultado, delega al tokenizador real y almacena el resultado en cache.
 
 **Error**: N/A (esta regla describe la evolucion de un componente existente)
-
-### Rule[F-NLP-R027] - Volumetria del cache
-**Severity**: minor | **Validation**: ASSUMPTION
-
-Un curso tipico tiene ~11.500 quizzes con una oracion por quiz. Con ~10 tokens enriquecidos por oracion y ~100 bytes por token enriquecido (estimacion conservadora para los campos de R001), el cache en memoria para un curso completo ocuparia aproximadamente 11 MB.
-
-[ASSUMPTION] Se asume que 11 MB es un tamano aceptable para un cache en memoria durante una sesion de auditoria. Si los cursos son significativamente mas grandes o si se auditan multiples cursos en la misma sesion, podria necesitarse un mecanismo de eviccion del cache (como LRU) o un limite de tamano. Para la primera version, se asume que el consumo de memoria es manejable.
-
-**Error**: N/A (esta regla describe una estimacion de recursos)
 
 ---
 
@@ -648,22 +607,25 @@ En todos estos casos, la auditoria debe poder continuar con funcionalidad reduci
 **Error**: "El procesamiento NLP fallo: {causa}. Verifique que Python 3.11+, SpaCy y el modelo en_core_web_sm estan instalados."
 
 ### Rule[F-NLP-R030] - Fallback cuando SpaCy no esta disponible
-**Severity**: major | **Validation**: ASSUMPTION
+**Severity**: major | **Validation**: AUTO_VALIDATED
 
-Si el motor SpaCy no esta disponible (Python no instalado, SpaCy no instalado, etc.), el sistema debe ofrecer un modo de **funcionalidad reducida** que permita ejecutar al menos los analizadores que no requieren datos linguisticos enriquecidos.
+Si el motor SpaCy no esta disponible (Python no instalado, SpaCy no instalado, modelo `en_core_web_sm` ausente, etc.), el sistema debe ejecutar la auditoria en un modo de **funcionalidad reducida** con el siguiente comportamiento observable:
 
-[ASSUMPTION] Se asume que el fallback consiste en: (a) el tokenizador regresa a la tokenizacion basica por espacios en blanco, (b) los analizadores que solo necesitan conteo de tokens (como SentenceLengthAnalyzer) siguen funcionando normalmente, y (c) los analizadores que requieren tokens enriquecidos (como el analizador COCA) reportan que no pueden ejecutarse por falta de datos linguisticos. El usuario recibe un mensaje claro indicando que funcionalidades estan disponibles y cuales no.
+1. El tokenizador retorna tokens basicos (sin lema, sin POS, sin frequencyRank), suficientes para los analizadores que solo necesitan conteo.
+2. Los analizadores que solo dependen del conteo de tokens (como `SentenceLengthAnalyzer`) completan su evaluacion normalmente.
+3. Los analizadores que requieren datos linguisticos enriquecidos (como el analizador COCA) reportan en sus resultados que no pudieron ejecutarse por falta de SpaCy.
+4. El informe de auditoria final indica al usuario cuales analizadores se ejecutaron y cuales fueron omitidos por la ausencia de SpaCy.
 
-Alternativa: se podria usar el catalogo enriquecido (`enriched_vocabulary_catalog.json`) como fuente de datos de fallback para tokens que esten en el catalogo, aunque con cobertura limitada.
+Este fallback garantiza que la ausencia de un componente opcional del entorno no bloquee la ejecucion completa de la auditoria.
 
 **Error**: "SpaCy no disponible: los analizadores que requieren datos linguisticos enriquecidos no se ejecutaran. Los analizadores basicos (longitud de oracion) funcionan normalmente."
 
 ### Rule[F-NLP-R031] - Timeout del proceso Python
-**Severity**: major | **Validation**: ASSUMPTION
+**Severity**: major | **Validation**: AUTO_VALIDATED
 
-El proceso Python debe tener un timeout configurable. Si el proceso no completa dentro del tiempo limite, se termina forzosamente y se reporta como error.
+El proceso Python tiene un timeout maximo provisto al tokenizador como parte de su configuracion de entrada. Si el proceso no completa el procesamiento dentro del tiempo limite, el sistema termina el proceso forzosamente, no retorna tokens parciales, y reporta error de timeout indicando el limite excedido.
 
-[ASSUMPTION] Se asume un timeout por defecto de 5 minutos (300 segundos) para el procesamiento de un lote de oraciones. Este valor es una estimacion basada en el volumen del curso actual (~11.500 oraciones) y el rendimiento reportado del procesamiento SpaCy (~10-50 oraciones por segundo). Un curso completo deberia procesarse en 2-20 minutos dependiendo del hardware. El timeout debe ser configurable para adaptarse a diferentes entornos.
+El valor por defecto recomendado es 300 segundos (5 minutos), estimado para procesar el volumen actual del curso (~11.500 oraciones) con el rendimiento reportado de SpaCy (~10-50 oraciones por segundo). El valor concreto puede ajustarse al crear el tokenizador. El comportamiento observable verificable es: superado el limite, no se reciben tokens y se emite el mensaje de error de timeout citando el valor configurado.
 
 **Error**: "El procesamiento NLP excedio el tiempo limite de {timeout} segundos. Considere procesar en lotes mas pequenos o aumentar el timeout."
 
@@ -683,18 +645,6 @@ Esto garantiza que un token problematico no impida la auditoria de todo el curso
 
 **Error**: "Error al procesar el token '{text}' en la oracion '{oracion}': {detalle}. Se uso fallback basico."
 
-### Rule[F-NLP-R033] - Signos de puntuacion y espacios no participan como tokens linguisticos
-**Severity**: minor | **Validation**: ASSUMPTION
-
-Los signos de puntuacion (comas, puntos, signos de interrogacion, etc.) y los espacios producen tokens con `isPunct = true` y/o `posTag = PUNCT/SPACE`. Estos tokens se incluyen en la lista de tokens enriquecidos pero los analizadores los filtran segun sus necesidades:
-
-- El analizador COCA (FEAT-COCA) no cuenta tokens de puntuacion para la distribucion de frecuencia (solo cuenta tokens con `frequencyRank` valido)
-- El ContentWordFilter excluye explicitamente los tokens con POS "PUNCT" y "SYM"
-
-[ASSUMPTION] Se asume que los tokens de puntuacion se incluyen en la salida del tokenizador para mantener la fidelidad con el texto original, pero que cada analizador los filtra segun su logica. Alternativamente, se podrian excluir desde el tokenizador, pero esto reduciria la flexibilidad para futuros analizadores que si necesiten la puntuacion (por ejemplo, analisis de complejidad sintactica).
-
-**Error**: N/A (esta regla describe el tratamiento de puntuacion)
-
 ---
 
 ## User Journeys
@@ -712,33 +662,30 @@ Los signos de puntuacion (comas, puntos, signos de interrogacion, etc.) y los es
 8. El usuario recibe los resultados de la auditoria con las evaluaciones de todos los analizadores
 
 ### Journey[F-NLP-J002] - El usuario no tiene SpaCy instalado
-**Validation**: ASSUMPTION
+**Validation**: AUTO_VALIDATED
 
 1. El usuario inicia una auditoria sin tener Python o SpaCy instalados en su entorno
-2. El sistema intenta invocar el proceso Python para la tokenizacion enriquecida
-3. El proceso falla porque Python no esta disponible (o SpaCy no esta instalado)
-4. El sistema reporta un mensaje claro: "SpaCy no disponible. Los analizadores que requieren datos linguisticos (distribucion COCA) no se ejecutaran."
-5. El sistema ejecuta la auditoria con funcionalidad reducida: solo los analizadores que no requieren tokens enriquecidos (como el analizador de longitud de oraciones) producen resultados
-6. El usuario recibe los resultados parciales con una nota indicando que analizadores no se ejecutaron y por que
-7. El usuario consulta la documentacion para instalar Python, SpaCy y el modelo requerido
+2. El sistema intenta invocar el proceso Python para la tokenizacion enriquecida y detecta que SpaCy no esta disponible
+3. El sistema continua la auditoria en modo de funcionalidad reducida (R030): los analizadores que solo necesitan conteo de tokens completan su evaluacion; los analizadores que requieren datos linguisticos reportan que fueron omitidos
+4. El informe de auditoria final indica al usuario cuales analizadores se ejecutaron y cuales no, con el motivo (SpaCy no disponible)
 
-[ASSUMPTION] Se asume que el sistema puede operar en modo reducido. Si la tokenizacion enriquecida es absolutamente obligatoria (porque todos los analizadores la requieren), la auditoria deberia terminar con un error en lugar de producir resultados parciales. La decision depende de si existen analizadores que funcionen sin tokens enriquecidos.
-
-### Journey[F-NLP-J003] - Diagnosticar problemas de tokenizacion en una oracion especifica
-**Validation**: ASSUMPTION
-
-1. El usuario ejecuta la auditoria y observa resultados inesperados en el analizador COCA para un knowledge especifico
-2. El usuario consulta los tokens enriquecidos de una oracion problematica
-3. El usuario observa que un token tiene `frequencyRank` nulo cuando esperaba un valor
-4. El usuario verifica el lema y el POS del token para entender por que la busqueda COCA fallo
-5. El usuario descubre que el lema fue asignado incorrectamente por SpaCy (por ejemplo, "lead" como sustantivo en lugar de verbo) lo que provoco que la busqueda por lema+POS no encontrara resultado
-6. El usuario anota el caso como una limitacion del modelo de SpaCy y decide si ajustar el contenido o aceptar la limitacion
-
-[ASSUMPTION] Se asume que el usuario tiene acceso a los detalles de tokenizacion de cada oracion para propositos de diagnostico. El formato y mecanismo de acceso a esta informacion de detalle se definira en la implementacion.
+> **Nota sobre J003**: El journey original "Diagnosticar problemas de tokenizacion en una oracion especifica" fue retirado porque describia una interaccion humana de inspeccion de tokens sin contrato definido del sistema. El mecanismo de acceso a los tokens de una oracion para diagnostico no es parte del alcance funcional de esta version; queda como una capacidad a definir si en el futuro aparece un caso de uso concreto.
 
 ---
 
 ## Open Questions
+
+### Doubt[DOUBT-NLP-FALLBACK-SOURCE] - Fuente del modo reducido cuando SpaCy no esta disponible
+**Status**: OPEN
+
+R030 define que cuando SpaCy no esta disponible el sistema continua en modo reducido (analizadores que solo necesitan conteo siguen funcionando; analizadores ricos reportan omision). Una alternativa que aparecio durante la discusion fue **enriquecer el modo reducido usando el catalogo `enriched_vocabulary_catalog.json`** (15.696 entradas con lema, POS y frequencyRank precalculados) para que algunos tokens conserven informacion linguistica aun sin SpaCy.
+
+**Pregunta**: Cuando SpaCy no esta disponible, el modo reducido debe limitarse a tokenizacion basica (sin lema ni POS), o debe consultar el catalogo enriquecido como fuente alternativa de datos linguisticos para los tokens que esten en el catalogo?
+
+- [ ] Opcion A: Modo reducido limitado a tokenizacion basica. Los analizadores ricos se omiten en su totalidad. Maxima simplicidad; sin ambiguedad sobre el origen de los datos.
+- [ ] Opcion B: Modo reducido usa el catalogo enriquecido cuando el token esta presente. Los analizadores ricos pueden ejecutarse parcialmente sobre el subconjunto de tokens cubiertos por el catalogo. Mas cobertura, pero introduce dos fuentes de verdad y casos limite (tokens en catalogo vs no, comportamiento mixto del analizador).
+
+**Notas**: La opcion B fue mencionada como "alternativa" en versiones previas de R030, pero no quedo claro si es parte del alcance de esta version o un enriquecimiento futuro. La decision afecta el test directo de R030 (Opcion A → testear solo modo basico; Opcion B → testear ambos casos).
 
 ### Doubt[DOUBT-BATCH-SIZE] - Tamano optimo de lote para el procesamiento SpaCy
 **Status**: RESOLVED

@@ -549,4 +549,36 @@ public class SentenceLengthAnalyzerTest {
         Assertions.assertEquals(6, sldOpt.get().getTokenCount(), "R004: tokenCount accessible as typed int");
         Assertions.assertEquals(CefrLevel.A1, sldOpt.get().getCefrLevel(), "R004: cefrLevel accessible as typed CefrLevel");
     }
+
+    @Test
+    @DisplayName("should compute each quiz score using the linguistic token count from the precomputed NLP tokenization of the quiz sentence and never from a whitespace-based string split")
+    @Tag("FEAT-SLEN")
+    @Tag("F-SLEN-R013")
+    public void shouldComputeEachQuizScoreUsingTheLinguisticTokenCountFromThePrecomputedNLPTokenizationOfTheQuizSentenceAndNeverFromAWhitespacebasedStringSplit() {
+        // R013: token count comes from quiz.getTokens().size(), not sentence.split(" ").length
+        // "She's running" → whitespace split = 2, but NLP tokenization = 3 ("She", "'s", "running")
+        // We model this by giving the quiz 3 NlpTokens but a sentence string with only 2 whitespace words.
+        setupA1Range(); // [5,8] range
+
+        // 3 tokens from NLP (in-range for A1 → but wait, range is [5,8], so 3 tokens → out of range)
+        // Use 6 tokens to get a clear in-range score, with sentence text having only 2 words
+        AuditableKnowledge knowledge = new AuditableKnowledge(
+                List.of(), "Sentences", "Complete", true, "k1", "K", null);
+        // 6 linguistic tokens but only 2 whitespace-delimited words in the sentence text
+        List<NlpToken> sixTokens = tokens(6);
+        AuditableQuiz quiz = new AuditableQuiz(
+                sixTokens, "q1", "Q", null, null,
+                List.of("She's running"), // 2 whitespace words, 3 would be out-of-range; NLP gives 6
+                null);
+        AuditNode quizNode = fullTree("A1", knowledge, quiz);
+
+        sut.onQuiz(quizNode);
+
+        // Score must be present and reflect 6 linguistic tokens (in range [5,8] → score 1.0)
+        Assertions.assertTrue(quizNode.getScores().containsKey("sentence-length"),
+                "R013: sentence-length score must be produced");
+        double score = quizNode.getScores().get("sentence-length");
+        Assertions.assertEquals(1.0, score, 0.001,
+                "R013: score must reflect 6 NLP tokens (in range [5,8]), not 2 whitespace words");
+    }
 }

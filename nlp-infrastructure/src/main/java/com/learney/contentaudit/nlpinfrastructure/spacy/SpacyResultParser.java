@@ -50,14 +50,15 @@ class SpacyResultParser {
             String text = wordNode.path("word").asText("");
             String lemma = wordNode.path("lemma").asText(text.toLowerCase());
             String posTag = wordNode.path("pos_tag").asText("X");
-            int frequencyRank = wordNode.path("frequency_rank").asInt(0);
+            Integer frequencyRank = wordNode.has("frequency_rank") && !wordNode.get("frequency_rank").isNull()
+                    ? wordNode.path("frequency_rank").asInt() : null;
             boolean isStop = wordNode.path("is_stop_word").asBoolean(false);
             boolean isPunct = wordNode.path("is_punctuation").asBoolean(false);
 
             return new NlpToken(text, lemma, posTag, frequencyRank, isStop, isPunct);
         } catch (Exception e) {
             String text = wordNode.path("word").asText("?");
-            return new NlpToken(text, text.toLowerCase(), "X", 0, false,
+            return new NlpToken(text, text.toLowerCase(), "X", null, false,
                     text.length() == 1 && !Character.isLetter(text.charAt(0)));
         }
     }

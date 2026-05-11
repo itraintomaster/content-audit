@@ -1,9 +1,9 @@
-generatedAt: 2026-05-11T11:04:55.959783Z
+generatedAt: 2026-05-11T11:23:30.883521Z
 system: ContentAudit
 version: 0.0.1
 features:
 - id: FEAT-DLABS
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: ./requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
   patchFile: ./requirements/2026-04-04.01_typed-diagnostics-lemma-absence/architectural_patch.yaml
   rulesCoverage:
@@ -122,13 +122,13 @@ features:
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-DLABS-R013
-    state: FAILING
+    state: PASSING
     tests:
     - name: should read lemma-absence diagnoses exclusively through the typed NodeDiagnoses
         getters (getLemmaAbsenceDiagnosis) and not fall back to any untyped metadata
         map when rendering the detailed view
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: LemmaAbsenceDetailedFormatter
   - ruleId: F-DLABS-R014
@@ -1443,8 +1443,8 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 0
-      linesMissed: 8
-      linesTotal: 8
+      linesMissed: 0
+      linesTotal: 0
       lineCoveragePct: 0
       branchesCovered: 0
       branchesMissed: 0
@@ -1461,19 +1461,17 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 5
+      totalMethods: 0
       hotspots: 0
-      maxCrap: 2.0
-      averageCrap: 2.0
-      simple: 5
+      maxCrap: 0.0
+      averageCrap: 0.0
+      simple: 0
       moderate: 0
       high: 0
       veryHigh: 0
-      healthPct: 100
-    healthScore: 25
-    verdict: WARNED
-    violations:
-    - lineCoverage 0% < 70%
+      healthPct: 0
+    healthScore: 0
+    verdict: PASSED
 - id: FEAT-RCLAQS
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
@@ -1608,15 +1606,15 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 477
-      linesMissed: 310
-      linesTotal: 787
-      lineCoveragePct: 60
-      branchesCovered: 250
-      branchesMissed: 233
-      branchesTotal: 483
-      branchCoveragePct: 51
-      blendPct: 55
+      linesCovered: 396
+      linesMissed: 298
+      linesTotal: 694
+      lineCoveragePct: 57
+      branchesCovered: 219
+      branchesMissed: 216
+      branchesTotal: 435
+      branchCoveragePct: 50
+      blendPct: 53
     mutation:
       totalMutants: 0
       killed: 0
@@ -1627,15 +1625,15 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 70
+      totalMethods: 61
       hotspots: 5
       maxCrap: 143.066588
-      averageCrap: 11.49199467142857
-      simple: 50
-      moderate: 13
+      averageCrap: 12.634438278688522
+      simple: 42
+      moderate: 12
       high: 4
       veryHigh: 3
-      healthPct: 81
+      healthPct: 79
       top:
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: printSnapshotSummary
@@ -1672,13 +1670,13 @@ features:
         cyclomatic: 5
         lineCoveragePct: 0
         crap: 30.0
-    healthScore: 37
+    healthScore: 36
     verdict: WARNED
     violations:
-    - lineCoverage 60% < 70%
-    - branchCoverage 51% < 60%
+    - lineCoverage 57% < 70%
+    - branchCoverage 50% < 60%
 - id: FEAT-DCOCA
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: ./requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
   patchFile: ./requirements/2026-04-04.02_typed-diagnostics-coca-buckets/architectural_patch.yaml
   rulesCoverage:
@@ -1732,14 +1730,14 @@ features:
       module: audit-domain
       implementation: CocaBucketsAnalyzer
   - ruleId: F-DCOCA-R006
-    state: FAILING
+    state: PASSING
     tests:
     - name: should read coca-buckets diagnoses exclusively through the typed NodeDiagnoses
         getters (CourseDiagnoses LevelDiagnoses TopicDiagnoses .getCocaBucketsDiagnosis)
         and never call getMetadata or perform unchecked casts when rendering the detailed
         view
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: CocaBucketsDetailedFormatter
   - ruleId: F-DCOCA-R007
@@ -2148,15 +2146,15 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 81
-      linesMissed: 24
-      linesTotal: 105
-      lineCoveragePct: 77
-      branchesCovered: 31
-      branchesMissed: 17
-      branchesTotal: 48
-      branchCoveragePct: 64
-      blendPct: 70
+      linesCovered: 0
+      linesMissed: 12
+      linesTotal: 12
+      lineCoveragePct: 0
+      branchesCovered: 0
+      branchesMissed: 0
+      branchesTotal: 0
+      branchCoveragePct: 0
+      blendPct: 0
     mutation:
       totalMutants: 0
       killed: 0
@@ -2167,17 +2165,19 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 14
+      totalMethods: 5
       hotspots: 0
-      maxCrap: 11.408375
-      averageCrap: 3.1242065714285716
-      simple: 13
-      moderate: 1
+      maxCrap: 2.0
+      averageCrap: 2.0
+      simple: 5
+      moderate: 0
       high: 0
       veryHigh: 0
-      healthPct: 96
-    healthScore: 45
-    verdict: PASSED
+      healthPct: 100
+    healthScore: 25
+    verdict: WARNED
+    violations:
+    - lineCoverage 0% < 70%
 - id: FEAT-COURSE
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-03-15.01_course-structure/REQUIREMENT.md
@@ -2884,69 +2884,69 @@ features:
   patchFile: ./requirements/2026-03-25.02_nlp-tokenizer-evolution/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-NLP-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: should produce every NlpToken with the six mandatory fields text lemma
         posTag frequencyRank isStop and isPunct populated except frequencyRank which
         may be null when COCA has no entry
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R002
-    state: FAILING
+    state: PASSING
     tests:
     - name: should never fail when the optional NlpToken fields tag isAlpha and dep
         are absent confirming they are not required for the tokenizer contract
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: should populate the lemma field with the lowercased base form returned
         by SpaCy so that running yields run was yields be and children yields child
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R004
-    state: FAILING
+    state: PASSING
     tests:
     - name: should populate the posTag field with one of the Universal Dependencies
         tags (NOUN VERB ADJ ADV PROPN NUM ADP AUX CCONJ DET INTJ PART PRON SCONJ PUNCT
         SYM SPACE X) for every token produced
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R005
-    state: FAILING
+    state: PASSING
     tests:
     - name: should produce a List<NlpToken> from analyzeTokens replacing the legacy
         List<String> tokenize representation as the primary tokenizer output
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R006
-    state: FAILING
+    state: PASSING
     tests:
     - name: should expose analyzeTokens(String) returning a List<NlpToken> for a single
         sentence with linguistic enrichment for every word
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R007
-    state: FAILING
+    state: PASSING
     tests:
     - name: should still report a usable token count via the size of the analyzeTokens
         result without requiring a separate countTokens call so SentenceLengthAnalyzer
         continues to work
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R008
@@ -2959,17 +2959,17 @@ features:
       module: audit-application
       implementation: CourseToAuditableMapper
   - ruleId: F-NLP-R009
-    state: FAILING
+    state: PASSING
     tests:
     - name: should not implement any analyzer interface confirming the tokenizer is
         an infrastructure service that only transforms text into enriched tokens without
         producing scores
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R010
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a course with quizzes, when map is called, then analyzeTokensBatch\
         \ is invoked and returns an AuditableCourse"
@@ -2991,157 +2991,149 @@ features:
         punctuation flags so downstream analyzers can read enriched tokens without
         re-tokenizing
       implemented: true
-      passing: false
+      passing: true
       module: audit-application
       implementation: CourseToAuditableMapper
   - ruleId: F-NLP-R011
-    state: FAILING
+    state: PASSING
     tests:
     - name: should derive the frequencyRank from the COCA entry matched against the
         token's lemma and not the inflected form so that running running and ran all
         carry the same rank as run
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R012
-    state: FAILING
+    state: PASSING
     tests:
     - name: should map every Universal Dependencies posTag emitted by SpaCy to its
         corresponding COCA single-character code (NOUN to n VERB to v ADJ to j ADV
         to r PRON to p DET to a ADP to i CONJ/CCONJ/SCONJ to c NUM to m PART/PRT to
         t INTJ to u SYM/PUNCT/SPACE/X to x) when looking up frequency
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R013
-    state: FAILING
+    state: PASSING
     tests:
     - name: should apply the three-tier COCA lookup strategy resolving frequencyRank
         by exact-word match first then by lemma+pos-code match and finally by lemma-only
         match before giving up
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R014
-    state: FAILING
+    state: PASSING
     tests:
     - name: should ignore the first 8 metadata lines and the column header line of
         lemmas_20k_words.txt and parse the TSV body so that lookups use the correct
         lemRank lemma PoS lemFreq wordFreq and word columns
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R015
-    state: FAILING
+    state: PASSING
     tests:
     - name: should load the COCA frequency data only once during initialization and
         then resolve every subsequent token lookup against the in-memory index without
         re-reading the file
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R016
-    state: FAILING
+    state: PASSING
     tests:
     - name: should set the token frequencyRank to the lemRank column of the matched
         COCA entry not to the wordFreq of the specific inflected form
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R017
-    state: FAILING
+    state: PASSING
     tests:
     - name: should delegate linguistic processing to an external SpaCy-backed pipeline
         (Python process with en_core_web_sm) producing tokenization lemmatization
         POS tagging and stop-word/punctuation detection in a single pass
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: SpacyNlpTokenizer
-  - ruleId: F-NLP-R018
-    state: NO_TESTS
   - ruleId: F-NLP-R019
-    state: FAILING
+    state: PASSING
     tests:
     - name: should perform tokenization lemmatization POS tagging and COCA frequency
         lookup all within the same SpaCy-backed processing step without splitting
         them across multiple external calls
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R020
-    state: FAILING
+    state: PASSING
     tests:
     - name: should produce a clear runtime error indicating the missing environment
         component (Python 3.11+ SpaCy en_core_web_sm or lemmas_20k_words.txt) when
         the tokenizer is invoked without the required environment installed
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R021
     state: NO_TESTS
-  - ruleId: F-NLP-R022
-    state: NO_TESTS
   - ruleId: F-NLP-R023
-    state: FAILING
+    state: PASSING
     tests:
     - name: should serve repeated analyzeTokens calls for the same sentence text from
         an in-memory cache so that the delegate NlpTokenizer is invoked only on the
         first call
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: CachedNlpTokenizer
   - ruleId: F-NLP-R024
-    state: FAILING
+    state: PASSING
     tests:
     - name: should treat two sentences differing in any single character (case spacing
         punctuation) as distinct cache entries triggering a fresh delegate invocation
         for each variant
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: CachedNlpTokenizer
-  - ruleId: F-NLP-R025
-    state: NO_TESTS
   - ruleId: F-NLP-R026
-    state: FAILING
+    state: PASSING
     tests:
     - name: should cache List<NlpToken> produced by analyzeTokens with the same decorator
         pattern previously used for tokenize String results so cached entries match
         the enriched signature
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: CachedNlpTokenizer
-  - ruleId: F-NLP-R027
-    state: NO_TESTS
   - ruleId: F-NLP-R028
-    state: FAILING
+    state: PASSING
     tests:
     - name: should produce a valid NlpToken with frequencyRank set to null and all
         other linguistic fields populated when the three-tier COCA lookup finds no
         entry for the token
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R029
-    state: FAILING
+    state: PASSING
     tests:
     - name: should propagate a descriptive exception (and not return partial or corrupt
         tokens) when the underlying Python process fails to start exits abnormally
         or returns invalid JSON output
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: SpacyNlpTokenizer
   - ruleId: F-NLP-R030
@@ -3149,20 +3141,18 @@ features:
   - ruleId: F-NLP-R031
     state: NO_TESTS
   - ruleId: F-NLP-R032
-    state: FAILING
+    state: PASSING
     tests:
     - name: should continue tokenizing the remaining sentences of a batch and emit
         a fallback NlpToken (text as-is lemma=lowercased text posTag=X frequencyRank=null
         isStop=false isPunct=heuristic) when a single token inside SpaCy fails
       implemented: true
-      passing: false
+      passing: true
       module: nlp-infrastructure
       implementation: SpacyNlpTokenizer
-  - ruleId: F-NLP-R033
-    state: NO_TESTS
   journeysCoverage:
   - journeyId: F-NLP-J001
-    state: FAILING
+    state: PASSING
     tests:
     - name: Given two AuditableCourses produced by mapping a course that has knowledge
         quizzes containing sentences with enriched-token-requiring vocabulary (frequency-ranked
@@ -3172,12 +3162,10 @@ features:
         punctuation flags so downstream analyzers can read enriched tokens without
         re-tokenizing
       implemented: true
-      passing: false
+      passing: true
       module: audit-application
       implementation: CourseToAuditableMapper
   - journeyId: F-NLP-J002
-    state: NO_TESTS
-  - journeyId: F-NLP-J003
     state: NO_TESTS
   quality:
     classes:
@@ -3191,15 +3179,15 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 81
-      linesMissed: 12
-      linesTotal: 93
-      lineCoveragePct: 87
-      branchesCovered: 31
-      branchesMissed: 17
-      branchesTotal: 48
-      branchCoveragePct: 64
-      blendPct: 75
+      linesCovered: 0
+      linesMissed: 0
+      linesTotal: 0
+      lineCoveragePct: 0
+      branchesCovered: 0
+      branchesMissed: 0
+      branchesTotal: 0
+      branchCoveragePct: 0
+      blendPct: 0
     mutation:
       totalMutants: 0
       killed: 0
@@ -3210,16 +3198,16 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 9
+      totalMethods: 0
       hotspots: 0
-      maxCrap: 11.408375
-      averageCrap: 3.748765777777778
-      simple: 8
-      moderate: 1
+      maxCrap: 0.0
+      averageCrap: 0.0
+      simple: 0
+      moderate: 0
       high: 0
       veryHigh: 0
-      healthPct: 94
-    healthScore: 46
+      healthPct: 0
+    healthScore: 0
     verdict: PASSED
 - id: FEAT-LABS
   state: IMPLEMENTED
@@ -4269,15 +4257,15 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 31
-      linesMissed: 27
-      linesTotal: 58
-      lineCoveragePct: 53
-      branchesCovered: 14
-      branchesMissed: 2
-      branchesTotal: 16
-      branchCoveragePct: 87
-      blendPct: 70
+      linesCovered: 0
+      linesMissed: 0
+      linesTotal: 0
+      lineCoveragePct: 0
+      branchesCovered: 0
+      branchesMissed: 0
+      branchesTotal: 0
+      branchCoveragePct: 0
+      blendPct: 0
     mutation:
       totalMutants: 0
       killed: 0
@@ -4288,21 +4276,19 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 18
+      totalMethods: 0
       hotspots: 0
-      maxCrap: 6.0
-      averageCrap: 1.8333333333333333
-      simple: 18
+      maxCrap: 0.0
+      averageCrap: 0.0
+      simple: 0
       moderate: 0
       high: 0
       veryHigh: 0
-      healthPct: 100
-    healthScore: 46
-    verdict: WARNED
-    violations:
-    - lineCoverage 53% < 70%
+      healthPct: 0
+    healthScore: 0
+    verdict: PASSED
 - id: FEAT-CLI
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: ./requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
   patchFile: ./requirements/2026-03-21.01_cli-audit-runner/architectural_patch.yaml
   rulesCoverage:
@@ -4358,48 +4344,48 @@ features:
       module: audit-application
       implementation: DefaultAuditRunner
   - ruleId: F-CLI-R002
-    state: FAILING
+    state: PASSING
     tests:
     - name: should print an error and return non-zero exit code when invoked without
         a course path argument and no CONTENT_AUDIT_CONTENT_FOLDER env var is set
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: AnalyzeCmd
     - name: should print an error and return non-zero exit code when invoked with
         a course path that does not exist on disk
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: AnalyzeCmd
   - ruleId: F-CLI-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: should produce a plain-text formatted summary on stdout when invoked without
         a --format option using text as the default format
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: AnalyzeCmd
     - name: should produce a JSON-formatted summary on stdout when invoked with --format
         json
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: AnalyzeCmd
   - ruleId: F-CLI-R004
-    state: FAILING
+    state: PASSING
     tests:
     - name: should return exit code zero when the audit completes successfully regardless
         of the overall score produced
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: AnalyzeCmd
     - name: should return a non-zero exit code when AuditRunner throws a RuntimeException
         during the audit pipeline and print a descriptive error message to stderr
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: AnalyzeCmd
   - ruleId: F-CLI-R005
@@ -4413,13 +4399,13 @@ features:
       module: audit-application
       implementation: DefaultAuditRunner
   - ruleId: F-CLI-R006
-    state: FAILING
+    state: PASSING
     tests:
     - name: should instantiate and wire CourseRepository NlpTokenizer all analyzer
         configs all analyzers ScoreAggregator AuditEngine and DefaultAuditRunner via
         manual constructor injection before any CLI subcommand executes
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: Main
   journeysCoverage:
@@ -4433,27 +4419,27 @@ features:
       module: audit-application
       implementation: DefaultAuditRunner
   - journeyId: F-CLI-J002
-    state: FAILING
+    state: PASSING
     tests:
     - name: should print an error and return non-zero exit code when invoked without
         a course path argument and no CONTENT_AUDIT_CONTENT_FOLDER env var is set
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: AnalyzeCmd
     - name: should print an error and return non-zero exit code when invoked with
         a course path that does not exist on disk
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: AnalyzeCmd
   - journeyId: F-CLI-J003
-    state: FAILING
+    state: PASSING
     tests:
     - name: should return a non-zero exit code when AuditRunner throws a RuntimeException
         during the audit pipeline and print a descriptive error message to stderr
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: AnalyzeCmd
   quality:
@@ -4468,15 +4454,15 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 12
-      linesMissed: 264
-      linesTotal: 276
-      lineCoveragePct: 4
-      branchesCovered: 1
-      branchesMissed: 45
-      branchesTotal: 46
-      branchCoveragePct: 2
-      blendPct: 3
+      linesCovered: 0
+      linesMissed: 248
+      linesTotal: 248
+      lineCoveragePct: 0
+      branchesCovered: 0
+      branchesMissed: 40
+      branchesTotal: 40
+      branchCoveragePct: 0
+      blendPct: 0
     mutation:
       totalMutants: 0
       killed: 0
@@ -4487,15 +4473,15 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 13
+      totalMethods: 7
       hotspots: 2
       maxCrap: 182.0
-      averageCrap: 23.01926330769231
-      simple: 11
+      averageCrap: 40.285714285714285
+      simple: 5
       moderate: 0
       high: 0
       veryHigh: 2
-      healthPct: 85
+      healthPct: 71
       top:
       - className: com.learney.contentaudit.auditcli.commands.AnalyzeCmd
         methodName: analyze
@@ -4511,11 +4497,11 @@ features:
         cyclomatic: 9
         lineCoveragePct: 0
         crap: 90.0
-    healthScore: 22
+    healthScore: 18
     verdict: WARNED
     violations:
-    - lineCoverage 4% < 70%
-    - branchCoverage 2% < 60%
+    - lineCoverage 0% < 70%
+    - branchCoverage 0% < 60%
 - id: FEAT-PIPRE
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-05-03.01_proposal-impact-preview/REQUIREMENT.md
@@ -6983,6 +6969,7 @@ features:
 - id: FEAT-LAPS
   state: IMPLEMENTING
   requirementFile: ./requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
+  patchFile: ./requirements/2026-04-20.02_lemma-absence-proposal-strategy/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-LAPS-R001
     state: PASSING
@@ -7097,15 +7084,56 @@ features:
       module: revision-domain
       implementation: DispatchingReviser
   - ruleId: F-LAPS-R007
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should produce a LemmaAbsenceQuizCandidate by consuming exclusively the
+        CorrectionContext fields (quizSentence translation knowledgeTitle knowledgeInstructions
+        topicLabel cefrLevel misplacedLemmas suggestedLemmas) and never reading directly
+        from AuditReport or the diagnoses tree
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: LemmaAbsenceMvpStrategy
   - ruleId: F-LAPS-R008
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should return exactly one LemmaAbsenceQuizCandidate per single propose
+        invocation without ever surfacing multiple alternatives for the operator to
+        choose from
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: LemmaAbsenceMvpStrategy
   - ruleId: F-LAPS-R009
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: "should produce a LemmaAbsenceQuizCandidate that carries exactly two fields:\
+        \ a quizSentence string and a translation string with both populated and no\
+        \ other element-level field present on the candidate"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: LemmaAbsenceMvpStrategy
   - ruleId: F-LAPS-R010
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should not require successive invocations on the same RefinementTask to
+        return equal candidates documenting that the strategy is non-deterministic
+        by contract
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: LemmaAbsenceMvpStrategy
   - ruleId: F-LAPS-R011
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should emit only a candidate whose quizSentence is a string in the FEAT-QSENT
+        DSL grammar plus a translation string so that the strategy never returns plain
+        sentence text quizForm parts or a fully built elementAfter
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: LemmaAbsenceMvpStrategy
   - ruleId: F-LAPS-R012
     state: PASSING
     tests:
@@ -7193,9 +7221,25 @@ features:
       module: revision-domain
       implementation: DispatchingReviser
   - ruleId: F-LAPS-R017
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should not invoke any CEFR-level validator on the produced candidate's
+        quizSentence so that even when the generator returns vocabulary above cefrLevel
+        the strategy returns the candidate as-is without filtering
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: LemmaAbsenceMvpStrategy
   - ruleId: F-LAPS-R018
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should not apply any length limit to the produced candidate's quizSentence
+        so that even an unusually short or unusually long candidate is returned as-is
+        without rejection
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: LemmaAbsenceMvpStrategy
   - ruleId: F-LAPS-R019
     state: PASSING
     tests:
@@ -7309,6 +7353,7 @@ features:
     - com.learney.contentaudit.revisiondomain.engine.DefaultLemmaAbsenceProposalDeriver
     - com.learney.contentaudit.revisiondomain.engine.DefaultLemmaAbsenceProposalStrategyRegistry
     - com.learney.contentaudit.revisiondomain.engine.DispatchingReviser
+    - com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceMvpStrategy
     thresholds:
       lineCoverage: 70
       branchCoverage: 60
@@ -7460,8 +7505,9 @@ features:
     healthScore: 0
     verdict: PASSED
 - id: FEAT-SLEN
-  state: IMPLEMENTING
+  state: ANALYSED
   requirementFile: ./requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
+  patchFile: ./requirements/2026-03-18.01_sentence-length/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-SLEN-R001
     state: PASSING
@@ -7576,17 +7622,69 @@ features:
       module: audit-domain
       implementation: SentenceLengthAnalyzer
   - ruleId: F-SLEN-R013
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should compute each quiz score using the linguistic token count from the
+        precomputed NLP tokenization of the quiz sentence and never from a whitespace-based
+        string split
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
   - ruleId: F-SLEN-R003
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should aggregate quiz-level sentence-length scores into each KNOWLEDGE
+        node as the simple average of the scoring quizzes under it omitting from the
+        average any quiz excluded by F-SLEN-R001 and leaving the knowledge score unavailable
+        when no quiz under it has a score
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: IAuditEngine
   - ruleId: F-SLEN-R004
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should aggregate knowledge-level sentence-length scores into each TOPIC
+        node as the simple average of the scoring knowledges under it omitting from
+        the average any knowledge without a score and leaving the topic score unavailable
+        when no knowledge under it has a score
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: IAuditEngine
   - ruleId: F-SLEN-R005
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should aggregate topic-level sentence-length scores into each MILESTONE
+        node as the simple average of the scoring topics under it omitting from the
+        average any topic without a score and leaving the level score unavailable
+        when no topic under it has a score
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: IAuditEngine
   - ruleId: F-SLEN-R008
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should aggregate milestone-level sentence-length scores into the COURSE
+        root node as the simple average of the scoring milestones omitting from the
+        average any milestone without a score and returning zero as the course overall
+        score when no milestone has a score
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: IAuditEngine
   - ruleId: F-SLEN-R016
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should publish the sentence-length score on every AuditNode of the hierarchy
+        (quiz knowledge topic milestone course) so consumers can read it at any level
+        via node.getScores().get('sentence-length')
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: IAuditEngine
   - ruleId: F-SLEN-R006
     state: NO_TESTS
   - ruleId: F-SLEN-R007
@@ -7607,11 +7705,20 @@ features:
   - journeyId: F-SLEN-J003
     state: NO_TESTS
   - journeyId: F-SLEN-J004
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should publish the sentence-length score on every AuditNode of the hierarchy
+        (quiz knowledge topic milestone course) so consumers can read it at any level
+        via node.getScores().get('sentence-length')
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: IAuditEngine
   - journeyId: F-SLEN-J005
     state: NO_TESTS
   quality:
     classes:
+    - com.learney.contentaudit.auditdomain.IAuditEngine
     - com.learney.contentaudit.auditdomain.SentenceLengthAnalyzer
     thresholds:
       lineCoverage: 70
@@ -7940,15 +8047,15 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 14
-      linesMissed: 1
-      linesTotal: 15
-      lineCoveragePct: 93
-      branchesCovered: 7
-      branchesMissed: 1
-      branchesTotal: 8
-      branchCoveragePct: 87
-      blendPct: 90
+      linesCovered: 0
+      linesMissed: 0
+      linesTotal: 0
+      lineCoveragePct: 0
+      branchesCovered: 0
+      branchesMissed: 0
+      branchesTotal: 0
+      branchCoveragePct: 0
+      blendPct: 0
     mutation:
       totalMutants: 0
       killed: 0
@@ -7959,16 +8066,16 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 2
+      totalMethods: 0
       hotspots: 0
-      maxCrap: 5.0128
-      averageCrap: 3.0064
-      simple: 2
+      maxCrap: 0.0
+      averageCrap: 0.0
+      simple: 0
       moderate: 0
       high: 0
       veryHigh: 0
-      healthPct: 100
-    healthScore: 52
+      healthPct: 0
+    healthScore: 0
     verdict: PASSED
 - id: FEAT-REVBYP
   state: IMPLEMENTED
@@ -10198,6 +10305,35 @@ elements:
         \ independent of input declaration order"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/IAuditEngineTest.java
+    - name: should aggregate quiz-level sentence-length scores into each KNOWLEDGE
+        node as the simple average of the scoring quizzes under it omitting from the
+        average any quiz excluded by F-SLEN-R001 and leaving the knowledge score unavailable
+        when no quiz under it has a score
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/IAuditEngineTest.java
+    - name: should aggregate knowledge-level sentence-length scores into each TOPIC
+        node as the simple average of the scoring knowledges under it omitting from
+        the average any knowledge without a score and leaving the topic score unavailable
+        when no knowledge under it has a score
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/IAuditEngineTest.java
+    - name: should aggregate topic-level sentence-length scores into each MILESTONE
+        node as the simple average of the scoring topics under it omitting from the
+        average any topic without a score and leaving the level score unavailable
+        when no topic under it has a score
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/IAuditEngineTest.java
+    - name: should aggregate milestone-level sentence-length scores into the COURSE
+        root node as the simple average of the scoring milestones omitting from the
+        average any milestone without a score and returning zero as the course overall
+        score when no milestone has a score
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/IAuditEngineTest.java
+    - name: should publish the sentence-length score on every AuditNode of the hierarchy
+        (quiz knowledge topic milestone course) so consumers can read it at any level
+        via node.getScores().get('sentence-length')
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/IAuditEngineTest.java
     testCleanViews:
     - |
       test: "Given a course with milestones, topics and knowledges, when AuditEngine.runAudit is invoked with both KTLEN analyzers, then the report root contains aggregated knowledge-title-length and knowledge-instructions-length scores at every hierarchy level"
@@ -11071,6 +11207,11 @@ elements:
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     - name: should make the emitted SentenceLengthDiagnosis retrievable via QuizDiagnoses
         getSentenceLengthDiagnosis on the same quiz node
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
+    - name: should compute each quiz score using the linguistic token count from the
+        precomputed NLP tokenization of the quiz sentence and never from a whitespace-based
+        string split
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     testCleanViews:
@@ -18471,281 +18612,39 @@ elements:
 
       when:
         sut.setId("q-rclaqs-r004c-valid")
-    quality:
-      coverage:
-        linesCovered: 81
-        linesMissed: 12
-        linesTotal: 93
-        lineCoveragePct: 87
-        branchesCovered: 31
-        branchesMissed: 17
-        branchesTotal: 48
-        branchCoveragePct: 64
-        blendPct: 75
-      mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
-        noCoverage: 0
-        timedOut: 0
-        other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
-      crap:
-        totalMethods: 9
-        hotspots: 0
-        maxCrap: 11.408375
-        averageCrap: 3.748765777777778
-        simple: 8
-        moderate: 1
-        high: 0
-        veryHigh: 0
-        healthPct: 94
-      methods:
-      - name: <init>
-        desc: (Lcom/learney/contentaudit/auditdomain/NlpTokenizer;Lcom/learney/contentaudit/coursedomain/quizsentence/QuizSentenceConverter;)V
-        line: 35
-        cyclomatic: 1
-        linesCovered: 7
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: map
-        desc: (Lcom/learney/contentaudit/coursedomain/CourseEntity;)Lcom/learney/contentaudit/auditdomain/AuditableCourse;
-        line: 52
-        cyclomatic: 4
-        linesCovered: 13
-        linesMissed: 2
-        lineCoveragePct: 86
-        branchesCovered: 4
-        branchesMissed: 2
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 4.043904
-      - name: mapMilestone
-        desc: (Lcom/learney/contentaudit/coursedomain/MilestoneEntity;)Lcom/learney/contentaudit/auditdomain/AuditableMilestone;
-        line: 75
-        cyclomatic: 2
-        linesCovered: 6
-        linesMissed: 1
-        lineCoveragePct: 85
-        branchesCovered: 1
-        branchesMissed: 1
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0135
-      - name: mapTopic
-        desc: (Lcom/learney/contentaudit/coursedomain/TopicEntity;)Lcom/learney/contentaudit/auditdomain/AuditableTopic;
-        line: 86
-        cyclomatic: 2
-        linesCovered: 6
-        linesMissed: 1
-        lineCoveragePct: 85
-        branchesCovered: 1
-        branchesMissed: 1
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0135
-      - name: mapKnowledge
-        desc: (Lcom/learney/contentaudit/coursedomain/KnowledgeEntity;)Lcom/learney/contentaudit/auditdomain/AuditableKnowledge;
-        line: 97
-        cyclomatic: 2
-        linesCovered: 7
-        linesMissed: 1
-        lineCoveragePct: 87
-        branchesCovered: 1
-        branchesMissed: 1
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.008788
-      - name: hasSentenceParts
-        desc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Z
-        line: 109
-        cyclomatic: 4
-        linesCovered: 4
-        linesMissed: 1
-        lineCoveragePct: 80
-        branchesCovered: 3
-        branchesMissed: 3
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 4.128
-      - name: mapQuiz
-        desc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Lcom/learney/contentaudit/auditdomain/AuditableQuiz;
-        line: 121
-        cyclomatic: 2
-        linesCovered: 5
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 1
-        branchesMissed: 1
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: deriveSentences
-        desc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/util/List;
-        line: 135
-        cyclomatic: 5
-        linesCovered: 10
-        linesMissed: 2
-        lineCoveragePct: 83
-        branchesCovered: 5
-        branchesMissed: 3
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 5.122825
-      - name: collectAllCanonicalSentences
-        desc: (Lcom/learney/contentaudit/coursedomain/CourseEntity;)Ljava/util/List;
-        line: 155
-        cyclomatic: 11
-        linesCovered: 23
-        linesMissed: 4
-        lineCoveragePct: 85
-        branchesCovered: 15
-        branchesMissed: 5
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 11.408375
+    - |
+      test: "Given two AuditableCourses produced by mapping a course that has knowledge quizzes containing sentences with enriched-token-requiring vocabulary (frequency-ranked words via SpaCy) when AuditEngine runs both audits then every AuditableQuiz produced by the mapper carries a List<NlpToken> populated by analyzeTokensBatch covering tokenization lemmatization POS tagging frequency rank stop-word and punctuation flags so downstream analyzers can read enriched tokens without re-tokenizing"
+      trace: FEAT-NLP / F-NLP-R010 / F-NLP-J001
+
+      given:
+        runToken = NlpToken("running", "run", "VERB", 150, false, false)
+        sheToken = NlpToken("She", "she", "PRON", 12, true, false)
+        nlpTokenizer = mock(NlpTokenizer.class)
+        quizSentenceConverter = mock(QuizSentenceConverter.class)
+        part = SentencePartEntity(SentencePartKind.TEXT, "She was running", null)
+        form = FormEntity(null, 0, null, null, List.of(part))
+        qt = QuizTemplateEntity()
+        ke = KnowledgeEntity()
+        te = TopicEntity()
+        me = MilestoneEntity()
+        root = RootNodeEntity()
+        course = CourseEntity()
+        mapper = CourseToAuditableMapper(nlpTokenizer, quizSentenceConverter)
+        first = mapper.map(course)
+        second = mapper.map(course)
+
+      mock:
+        nlpTokenizer.analyzeTokensBatch(anyList()) -> Map.of("She was running", List.of(sheToken, runToken))
+        quizSentenceConverter.toPlainSentences(any()) -> List.of("She was running")
+
+      when:
+        sut.setId("q1")
+
+      then:
+        verify: nlpTokenizer.analyzeTokensBatch(anyList()) x 2
   - name: DefaultSentenceLengthConfig
     status: EXISTS
     filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultSentenceLengthConfig.java
-    quality:
-      coverage:
-        linesCovered: 6
-        linesMissed: 12
-        linesTotal: 18
-        lineCoveragePct: 33
-        branchesCovered: 0
-        branchesMissed: 2
-        branchesTotal: 2
-        branchCoveragePct: 0
-        blendPct: 16
-      mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
-        noCoverage: 0
-        timedOut: 0
-        other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
-      crap:
-        totalMethods: 5
-        hotspots: 0
-        maxCrap: 6.0
-        averageCrap: 2.6
-        simple: 5
-        moderate: 0
-        high: 0
-        veryHigh: 0
-        healthPct: 100
-      methods:
-      - name: <init>
-        desc: ()V
-        line: 16
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: getTargetRange
-        desc: (Lcom/learney/contentaudit/auditdomain/CefrLevel;)Ljava/util/Optional;
-        line: 30
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: getToleranceMargin
-        desc: ()I
-        line: 35
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: describe
-        desc: ()Ljava/util/Map;
-        line: 39
-        cyclomatic: 2
-        linesCovered: 0
-        linesMissed: 9
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 2
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 6.0
-      - name: <clinit>
-        desc: ()V
-        line: 19
-        cyclomatic: 1
-        linesCovered: 6
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
   - name: DefaultAuditRunner
     status: EXISTS
     filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultAuditRunner.java
@@ -18906,326 +18805,9 @@ elements:
         verify: courseRepository.load(coursePath)
         verify: courseToAuditableMapper.map(courseEntity)
         verify: auditEngine.runAudit(auditableCourse)
-    quality:
-      coverage:
-        linesCovered: 12
-        linesMissed: 16
-        linesTotal: 28
-        lineCoveragePct: 42
-        branchesCovered: 1
-        branchesMissed: 5
-        branchesTotal: 6
-        branchCoveragePct: 16
-        blendPct: 29
-      mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
-        noCoverage: 0
-        timedOut: 0
-        other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
-      crap:
-        totalMethods: 6
-        hotspots: 0
-        maxCrap: 6.0
-        averageCrap: 2.8750704999999996
-        simple: 6
-        moderate: 0
-        high: 0
-        veryHigh: 0
-        healthPct: 100
-      methods:
-      - name: <init>
-        desc: (Lcom/learney/contentaudit/coursedomain/CourseRepository;Lcom/learney/contentaudit/auditapplication/CourseToAuditableMapper;Lcom/learney/contentaudit/auditdomain/AuditEngine;Ljava/util/List;Lcom/learney/contentaudit/auditdomain/ScoreAggregator;)V
-        line: 32
-        cyclomatic: 1
-        linesCovered: 7
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: runAudit
-        desc: (Ljava/nio/file/Path;Ljava/util/Set;)Lcom/learney/contentaudit/auditdomain/AuditReport;
-        line: 42
-        cyclomatic: 3
-        linesCovered: 3
-        linesMissed: 5
-        lineCoveragePct: 37
-        branchesCovered: 1
-        branchesMissed: 3
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 5.250423
-      - name: runDetailedAudit
-        desc: (Ljava/nio/file/Path;Ljava/lang/String;)Lcom/learney/contentaudit/auditdomain/AuditNode;
-        line: 57
-        cyclomatic: 2
-        linesCovered: 0
-        linesMissed: 9
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 2
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 6.0
-      - name: loadCourse
-        desc: (Ljava/nio/file/Path;)Lcom/learney/contentaudit/auditdomain/AuditableCourse;
-        line: 72
-        cyclomatic: 1
-        linesCovered: 2
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: lambda$runDetailedAudit$0
-        desc: (Ljava/lang/String;Lcom/learney/contentaudit/auditdomain/ContentAnalyzer;)Z
-        line: 60
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: lambda$runAudit$0
-        desc: (Ljava/util/Set;Lcom/learney/contentaudit/auditdomain/ContentAnalyzer;)Z
-        line: 49
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
   - name: DefaultCocaBucketsConfig
     status: EXISTS
     filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultCocaBucketsConfig.java
-    quality:
-      coverage:
-        linesCovered: 21
-        linesMissed: 27
-        linesTotal: 48
-        lineCoveragePct: 43
-        branchesCovered: 0
-        branchesMissed: 2
-        branchesTotal: 2
-        branchCoveragePct: 0
-        blendPct: 21
-      mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
-        noCoverage: 0
-        timedOut: 0
-        other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
-      crap:
-        totalMethods: 11
-        hotspots: 0
-        maxCrap: 6.0
-        averageCrap: 2.272727272727273
-        simple: 11
-        moderate: 0
-        high: 0
-        veryHigh: 0
-        healthPct: 100
-      methods:
-      - name: <init>
-        desc: ()V
-        line: 20
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: getBandConfiguration
-        desc: ()Lcom/learney/contentaudit/auditdomain/coca/BandConfiguration;
-        line: 119
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: getTargetsForLevel
-        desc: (Ljava/lang/String;)Ljava/util/List;
-        line: 124
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: getQuarterTargetsForLevel
-        desc: (Ljava/lang/String;)Ljava/util/List;
-        line: 129
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: getToleranceMargin
-        desc: ()D
-        line: 134
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: getAnalysisStrategy
-        desc: ()Lcom/learney/contentaudit/auditdomain/coca/AnalysisStrategy;
-        line: 139
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: getProgressionExpectations
-        desc: ()Ljava/util/List;
-        line: 144
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: describe
-        desc: ()Ljava/util/Map;
-        line: 148
-        cyclomatic: 2
-        linesCovered: 0
-        linesMissed: 12
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 2
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 6.0
-      - name: lambda$describe$1
-        desc: (Lcom/learney/contentaudit/auditdomain/coca/BucketTarget;)Ljava/util/Map;
-        line: 157
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 4
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: lambda$describe$0
-        desc: (Lcom/learney/contentaudit/auditdomain/coca/FrequencyBand;)Ljava/util/Map;
-        line: 149
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 4
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: <clinit>
-        desc: ()V
-        line: 23
-        cyclomatic: 1
-        linesCovered: 21
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
   - name: DefaultLemmaRecurrenceConfig
     status: EXISTS
     filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultLemmaRecurrenceConfig.java
@@ -19249,112 +18831,6 @@ elements:
         top > 0 is true
         overExposed > 0 is true
         overExposed < subExposed is true
-    quality:
-      coverage:
-        linesCovered: 0
-        linesMissed: 8
-        linesTotal: 8
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        branchesTotal: 0
-        branchCoveragePct: 0
-        blendPct: 0
-      mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
-        noCoverage: 0
-        timedOut: 0
-        other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
-      crap:
-        totalMethods: 5
-        hotspots: 0
-        maxCrap: 2.0
-        averageCrap: 2.0
-        simple: 5
-        moderate: 0
-        high: 0
-        veryHigh: 0
-        healthPct: 100
-      methods:
-      - name: <init>
-        desc: ()V
-        line: 11
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: getTop
-        desc: ()I
-        line: 14
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: getSubExposedThreshold
-        desc: ()D
-        line: 19
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: getOverExposedThreshold
-        desc: ()D
-        line: 24
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: describe
-        desc: ()Ljava/util/Map;
-        line: 28
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 4
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
   - name: DefaultLemmaAbsenceConfig
     status: EXISTS
     filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfig.java
@@ -19799,495 +19275,12 @@ elements:
         config.getCoverageTarget(CefrLevel.A1) > config.getCoverageTarget(CefrLevel.A2) is true
         config.getCoverageTarget(CefrLevel.A2) > config.getCoverageTarget(CefrLevel.B1) is true
         config.getCoverageTarget(CefrLevel.B1) > config.getCoverageTarget(CefrLevel.B2) is true
-    quality:
-      coverage:
-        linesCovered: 31
-        linesMissed: 27
-        linesTotal: 58
-        lineCoveragePct: 53
-        branchesCovered: 14
-        branchesMissed: 2
-        branchesTotal: 16
-        branchCoveragePct: 87
-        blendPct: 70
-      mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
-        noCoverage: 0
-        timedOut: 0
-        other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
-      crap:
-        totalMethods: 18
-        hotspots: 0
-        maxCrap: 6.0
-        averageCrap: 1.8333333333333333
-        simple: 18
-        moderate: 0
-        high: 0
-        veryHigh: 0
-        healthPct: 100
-      methods:
-      - name: <init>
-        desc: ()V
-        line: 13
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: getAbsoluteThreshold
-        desc: (Lcom/learney/contentaudit/auditdomain/CefrLevel;)I
-        line: 17
-        cyclomatic: 4
-        linesCovered: 5
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 4
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 4.0
-      - name: getPercentageThreshold
-        desc: (Lcom/learney/contentaudit/auditdomain/CefrLevel;)D
-        line: 27
-        cyclomatic: 4
-        linesCovered: 5
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 4
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 4.0
-      - name: getLevelWeight
-        desc: (Lcom/learney/contentaudit/auditdomain/CefrLevel;)D
-        line: 37
-        cyclomatic: 2
-        linesCovered: 3
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 2
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: getHighPriorityBound
-        desc: ()I
-        line: 45
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: getMediumPriorityBound
-        desc: ()I
-        line: 50
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: getLowPriorityBound
-        desc: ()I
-        line: 55
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: getHighPriorityAlertThreshold
-        desc: ()I
-        line: 60
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: getMediumPriorityAlertThreshold
-        desc: ()I
-        line: 65
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: getLowPriorityAlertThreshold
-        desc: ()I
-        line: 70
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: getCriticalAbsenceThreshold
-        desc: ()I
-        line: 75
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: getAcceptableAbsenceThreshold
-        desc: ()I
-        line: 80
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: getHighReportLimit
-        desc: ()I
-        line: 85
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: getMediumReportLimit
-        desc: ()I
-        line: 90
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: getLowReportLimit
-        desc: ()I
-        line: 95
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: getDiscountPerLevel
-        desc: ()D
-        line: 100
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: describe
-        desc: ()Ljava/util/Map;
-        line: 105
-        cyclomatic: 2
-        linesCovered: 0
-        linesMissed: 27
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 2
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 6.0
-      - name: getCoverageTarget
-        desc: (Lcom/learney/contentaudit/auditdomain/CefrLevel;)D
-        line: 137
-        cyclomatic: 4
-        linesCovered: 5
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 4
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 4.0
   - name: DefaultAnalyzerRegistry
     status: EXISTS
     filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultAnalyzerRegistry.java
-    quality:
-      coverage:
-        linesCovered: 0
-        linesMissed: 14
-        linesTotal: 14
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        branchesTotal: 0
-        branchCoveragePct: 0
-        blendPct: 0
-      mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
-        noCoverage: 0
-        timedOut: 0
-        other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
-      crap:
-        totalMethods: 5
-        hotspots: 0
-        maxCrap: 2.0
-        averageCrap: 2.0
-        simple: 5
-        moderate: 0
-        high: 0
-        veryHigh: 0
-        healthPct: 100
-      methods:
-      - name: <init>
-        desc: (Ljava/util/List;Ljava/util/List;)V
-        line: 21
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 4
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: listAnalyzers
-        desc: ()Ljava/util/List;
-        line: 28
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 3
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: getAnalyzerConfig
-        desc: (Ljava/lang/String;)Ljava/util/Optional;
-        line: 35
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 4
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: lambda$getAnalyzerConfig$0
-        desc: (Ljava/lang/String;Lcom/learney/contentaudit/auditdomain/SelfDescribingConfig;)Z
-        line: 37
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 2
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
-      - name: lambda$listAnalyzers$0
-        desc: (Lcom/learney/contentaudit/auditdomain/ContentAnalyzer;)Lcom/learney/contentaudit/auditdomain/AnalyzerDescriptor;
-        line: 29
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
   - name: DefaultLemmaCountConfig
     status: EXISTS
     filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultLemmaCountConfig.java
-    quality:
-      coverage:
-        linesCovered: 4
-        linesMissed: 2
-        linesTotal: 6
-        lineCoveragePct: 66
-        branchesCovered: 0
-        branchesMissed: 0
-        branchesTotal: 0
-        branchCoveragePct: 0
-        blendPct: 66
-      mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
-        noCoverage: 0
-        timedOut: 0
-        other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
-      crap:
-        totalMethods: 3
-        hotspots: 0
-        maxCrap: 2.0
-        averageCrap: 1.3333333333333333
-        simple: 3
-        moderate: 0
-        high: 0
-        veryHigh: 0
-        healthPct: 100
-      methods:
-      - name: <init>
-        desc: (I)V
-        line: 15
-        cyclomatic: 1
-        linesCovered: 3
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: getThreshold
-        desc: ()I
-        line: 21
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: describe
-        desc: ()Ljava/util/Map;
-        line: 26
-        cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 2
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.0
   - name: DefaultLemmaCountConfigLoader
     status: EXISTS
     filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultLemmaCountConfigLoader.java
@@ -20351,67 +19344,6 @@ elements:
 
       when:
         throws IllegalArgumentException: sut.load("")
-    quality:
-      coverage:
-        linesCovered: 14
-        linesMissed: 1
-        linesTotal: 15
-        lineCoveragePct: 93
-        branchesCovered: 7
-        branchesMissed: 1
-        branchesTotal: 8
-        branchCoveragePct: 87
-        blendPct: 90
-      mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
-        noCoverage: 0
-        timedOut: 0
-        other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
-      crap:
-        totalMethods: 2
-        hotspots: 0
-        maxCrap: 5.0128
-        averageCrap: 3.0064
-        simple: 2
-        moderate: 0
-        high: 0
-        veryHigh: 0
-        healthPct: 100
-      methods:
-      - name: <init>
-        desc: ()V
-        line: 10
-        cyclomatic: 1
-        linesCovered: 1
-        linesMissed: 0
-        lineCoveragePct: 100
-        branchesCovered: 0
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 1.0
-      - name: load
-        desc: (Ljava/lang/String;)Lcom/learney/contentaudit/auditdomain/LemmaCountConfig;
-        line: 13
-        cyclomatic: 5
-        linesCovered: 13
-        linesMissed: 1
-        lineCoveragePct: 92
-        branchesCovered: 7
-        branchesMissed: 1
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 5.0128
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -20421,15 +19353,15 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 169
-      linesMissed: 119
-      linesTotal: 288
-      lineCoveragePct: 58
-      branchesCovered: 53
-      branchesMissed: 29
-      branchesTotal: 82
-      branchCoveragePct: 64
-      blendPct: 61
+      linesCovered: 0
+      linesMissed: 0
+      linesTotal: 0
+      lineCoveragePct: 0
+      branchesCovered: 0
+      branchesMissed: 0
+      branchesTotal: 0
+      branchCoveragePct: 0
+      blendPct: 0
     mutation:
       totalMutants: 0
       killed: 0
@@ -20440,19 +19372,17 @@ elements:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 64
+      totalMethods: 0
       hotspots: 0
-      maxCrap: 11.408375
-      averageCrap: 2.375033046875
-      simple: 63
-      moderate: 1
+      maxCrap: 0.0
+      averageCrap: 0.0
+      simple: 0
+      moderate: 0
       high: 0
       veryHigh: 0
-      healthPct: 99
-    healthScore: 43
-    verdict: WARNED
-    violations:
-    - lineCoverage 58% < 70%
+      healthPct: 0
+    healthScore: 0
+    verdict: PASSED
 - module: course-infrastructure
   status: EXISTS
   implementations:
@@ -20843,6 +19773,23 @@ elements:
         manual constructor injection before any CLI subcommand executes
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/MainTest.java
+    testCleanViews:
+    - |
+      test: "should instantiate and wire CourseRepository NlpTokenizer all analyzer configs all analyzers ScoreAggregator AuditEngine and DefaultAuditRunner via manual constructor injection before any CLI subcommand executes"
+      trace: FEAT-CLI / F-CLI-R006
+
+      given:
+        rootCmd = ContentAuditCmd()
+        cmd = picocli.CommandLine(rootCmd)
+        analyzeAnnotation = AnalyzeCmd.class.getAnnotation(picocli.CommandLine.Command.class)
+
+      then:
+        analyzeAnnotation is not null
+        analyzeAnnotation.name() is not null
+        assertDoesNotThrow(() -> {
+          java.lang.reflect.Method mainMethod = Main.class.getDeclaredMethod("main", String[].class);
+          assertNotNull(mainMethod, "R006: Main must declare a static main(String[]) entry point");
+      })
   - name: ContentAuditCmd
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/ContentAuditCmd.java
@@ -20925,6 +19872,179 @@ elements:
       then:
         annotation is not null
         annotation.name() == "analyze"
+    - |
+      test: "should print an error and return non-zero exit code when invoked without a course path argument and no CONTENT_AUDIT_CONTENT_FOLDER env var is set"
+      trace: FEAT-CLI / F-CLI-R002 / F-CLI-J002
+
+      given:
+        auditRunner = mock(AuditRunner.class)
+        formatterRegistry = mock(FormatterRegistry.class)
+        viewModelTransformer = mock(ReportViewModelTransformer.class)
+        rawReportFormatter = mock(RawReportFormatter.class)
+        auditReportStore = mock(AuditReportStore.class)
+        drillDownResolver = DefaultDrillDownResolver()
+        detailedFormatters = HashMap<>()
+        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore)
+        errCapture = ByteArrayOutputStream()
+        originalErr = System.err
+        errOutput = errCapture.toString()
+
+      when:
+        sut.setErr(new PrintStream(errCapture))
+
+      then:
+        0 != null
+        errOutput.contains("Error") || errOutput.contains("missing") || errOutput.contains("course") is true
+    - |
+      test: "should print an error and return non-zero exit code when invoked with a course path that does not exist on disk"
+      trace: FEAT-CLI / F-CLI-R002 / F-CLI-J002
+
+      given:
+        auditRunner = mock(AuditRunner.class)
+        formatterRegistry = mock(FormatterRegistry.class)
+        viewModelTransformer = mock(ReportViewModelTransformer.class)
+        rawReportFormatter = mock(RawReportFormatter.class)
+        auditReportStore = mock(AuditReportStore.class)
+        drillDownResolver = DefaultDrillDownResolver()
+        detailedFormatters = HashMap<>()
+        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore)
+        errCapture = ByteArrayOutputStream()
+        originalErr = System.err
+        errOutput = errCapture.toString()
+
+      mock:
+        auditRunner.runAudit(any(Path.class), any()) -> throws RuntimeException("File not found: /nonexistent/course")
+
+      when:
+        sut.setErr(new PrintStream(errCapture))
+
+      then:
+        0 != null
+        errOutput.length() > 0 is true
+    - |
+      test: "should produce a plain-text formatted summary on stdout when invoked without a --format option using text as the default format"
+      trace: FEAT-CLI / F-CLI-R003
+
+      given:
+        auditRunner = mock(AuditRunner.class)
+        report = AuditReport(new AuditNode())
+        textFormatter = mock(ReportFormatter.class)
+        formatterRegistry = mock(FormatterRegistry.class)
+        viewModel = mock(ReportViewModel.class)
+        viewModelTransformer = mock(ReportViewModelTransformer.class)
+        rawReportFormatter = mock(RawReportFormatter.class)
+        auditReportStore = mock(AuditReportStore.class)
+        drillDownResolver = DefaultDrillDownResolver()
+        detailedFormatters = HashMap<>()
+        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore)
+        outCapture = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outCapture.toString()
+
+      mock:
+        auditRunner.runAudit(any(Path.class), any()) -> report
+        textFormatter.format(any(), any()) -> "PLAIN TEXT REPORT"
+        formatterRegistry.getFormatter("text") -> textFormatter
+        viewModelTransformer.transform(report) -> viewModel
+        auditReportStore.save(any()) -> "audit-123"
+
+      when:
+        sut.setOut(new PrintStream(outCapture))
+
+      then:
+        exitCode == 0
+        output.contains("PLAIN TEXT REPORT") is true
+        verify: formatterRegistry.getFormatter("text")
+    - |
+      test: "should produce a JSON-formatted summary on stdout when invoked with --format json"
+      trace: FEAT-CLI / F-CLI-R003
+
+      given:
+        auditRunner = mock(AuditRunner.class)
+        report = AuditReport(new AuditNode())
+        jsonFormatter = mock(ReportFormatter.class)
+        formatterRegistry = mock(FormatterRegistry.class)
+        viewModel = mock(ReportViewModel.class)
+        viewModelTransformer = mock(ReportViewModelTransformer.class)
+        rawReportFormatter = mock(RawReportFormatter.class)
+        auditReportStore = mock(AuditReportStore.class)
+        drillDownResolver = DefaultDrillDownResolver()
+        detailedFormatters = HashMap<>()
+        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore)
+        outCapture = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outCapture.toString()
+
+      mock:
+        auditRunner.runAudit(any(Path.class), any()) -> report
+        jsonFormatter.format(any(), any()) -> "{\"score\": 0.85}"
+        formatterRegistry.getFormatter("json") -> jsonFormatter
+        viewModelTransformer.transform(report) -> viewModel
+        auditReportStore.save(any()) -> "audit-456"
+
+      when:
+        sut.setOut(new PrintStream(outCapture))
+
+      then:
+        exitCode == 0
+        output.contains("{\"score\": 0.85}") is true
+        verify: formatterRegistry.getFormatter("json")
+    - |
+      test: "should return exit code zero when the audit completes successfully regardless of the overall score produced"
+      trace: FEAT-CLI / F-CLI-R004
+
+      given:
+        auditRunner = mock(AuditRunner.class)
+        report = AuditReport(new AuditNode())
+        textFormatter = mock(ReportFormatter.class)
+        formatterRegistry = mock(FormatterRegistry.class)
+        viewModelTransformer = mock(ReportViewModelTransformer.class)
+        rawReportFormatter = mock(RawReportFormatter.class)
+        auditReportStore = mock(AuditReportStore.class)
+        drillDownResolver = DefaultDrillDownResolver()
+        detailedFormatters = HashMap<>()
+        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore)
+        originalOut = System.out
+
+      mock:
+        auditRunner.runAudit(any(Path.class), any()) -> report
+        textFormatter.format(any(), any()) -> "Score: 0.00 (very poor)"
+        formatterRegistry.getFormatter("text") -> textFormatter
+        viewModelTransformer.transform(report) -> mock(ReportViewModel.class)
+        auditReportStore.save(any()) -> "audit-789"
+
+      when:
+        sut.setOut(new PrintStream(new ByteArrayOutputStream()))
+
+      then:
+        exitCode == 0
+    - |
+      test: "should return a non-zero exit code when AuditRunner throws a RuntimeException during the audit pipeline and print a descriptive error message to stderr"
+      trace: FEAT-CLI / F-CLI-R004 / F-CLI-J003
+
+      given:
+        auditRunner = mock(AuditRunner.class)
+        formatterRegistry = mock(FormatterRegistry.class)
+        viewModelTransformer = mock(ReportViewModelTransformer.class)
+        rawReportFormatter = mock(RawReportFormatter.class)
+        auditReportStore = mock(AuditReportStore.class)
+        drillDownResolver = DefaultDrillDownResolver()
+        detailedFormatters = HashMap<>()
+        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore)
+        errCapture = ByteArrayOutputStream()
+        originalErr = System.err
+        errOutput = errCapture.toString()
+
+      mock:
+        auditRunner.runAudit(any(Path.class), any()) -> throws RuntimeException("malformed JSON in course file")
+
+      when:
+        sut.setErr(new PrintStream(errCapture))
+
+      then:
+        0 != null
+        errOutput.length() > 0 is true
+        errOutput.contains("Error") || errOutput.contains("malformed") || errOutput.contains("audit") is true
   - name: GetCmd
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/GetCmd.java
@@ -24846,6 +23966,43 @@ elements:
         view
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/CocaBucketsDetailedFormatterTest.java
+    testCleanViews:
+    - |
+      test: "should read coca-buckets diagnoses exclusively through the typed NodeDiagnoses getters (CourseDiagnoses LevelDiagnoses TopicDiagnoses .getCocaBucketsDiagnosis) and never call getMetadata or perform unchecked casts when rendering the detailed view"
+      trace: FEAT-DCOCA / F-DCOCA-R006
+
+      given:
+        courseDiagnoses = mock(CourseDiagnoses.class)
+        progressionDiag = CocaProgressionDiagnosis(0.75, List.of(), List.of())
+        levelDiagnoses = mock(LevelDiagnoses.class)
+        levelDiag = mock(CocaBucketsLevelDiagnosis.class)
+        topicDiagnoses = mock(TopicDiagnoses.class)
+        topicDiag = mock(CocaBucketsTopicDiagnosis.class)
+        topicNode = AuditNode()
+        milestoneNode = AuditNode()
+        courseNode = AuditNode()
+        formatter = CocaBucketsDetailedFormatter()
+        result = formatter.format("coca-buckets-distribution", courseNode, "json")
+
+      mock:
+        courseDiagnoses.getCocaBucketsDiagnosis() -> Optional.of(progressionDiag)
+        levelDiag.getTotalTokens() -> 100
+        levelDiag.getBuckets() -> List.of()
+        levelDiag.getQuarters() -> List.of()
+        levelDiagnoses.getCocaBucketsDiagnosis() -> Optional.of(levelDiag)
+        topicDiag.getTotalTokens() -> 50
+        topicDiag.getBuckets() -> List.of()
+        topicDiagnoses.getCocaBucketsDiagnosis() -> Optional.of(topicDiag)
+
+      when:
+        sut.setDiagnoses(topicDiagnoses)
+
+      then:
+        result is not null
+        result.isEmpty() is false
+        verify: courseDiagnoses.getCocaBucketsDiagnosis() x atLeastOnce()
+        verify: levelDiagnoses.getCocaBucketsDiagnosis() x atLeastOnce()
+        verify: topicDiagnoses.getCocaBucketsDiagnosis() x atLeastOnce()
   - name: DefaultImpactPreviewFormatter
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/DefaultImpactPreviewFormatter.java
@@ -25850,6 +25007,387 @@ elements:
         isStop=false isPunct=heuristic) when a single token inside SpaCy fails
       status: EXISTS
       testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizerTest.java
+    testCleanViews:
+    - |
+      test: "should produce every NlpToken with the six mandatory fields text lemma posTag frequencyRank isStop and isPunct populated except frequencyRank which may be null when COCA has no entry"
+      trace: FEAT-NLP / F-NLP-R001
+
+      given:
+        runner = mock(SpacyProcessRunner.class)
+        parser = SpacyResultParser()
+        sentence = "cats"
+        json = sentenceJson(sentence, "cats", "cat", "NOUN", 42, false, false)
+        sut = SpacyNlpTokenizer(runner, parser)
+        tokens = sut.analyzeTokens(sentence)
+        t = tokens.get(0)
+
+      mock:
+        runner.run(anyList()) -> json
+
+      then:
+        tokens.isEmpty() is false
+        t.getText() is not null
+        t.getLemma() is not null
+        t.getPosTag() is not null
+        t.getFrequencyRank() is not null
+    - |
+      test: "should never fail when the optional NlpToken fields tag isAlpha and dep are absent confirming they are not required for the tokenizer contract"
+      trace: FEAT-NLP / F-NLP-R002
+
+      given:
+        runner = mock(SpacyProcessRunner.class)
+        parser = SpacyResultParser()
+        sentence = "hello"
+        json = sentenceJson(sentence, "hello", "hello", "INTJ", null, false, false)
+        sut = SpacyNlpTokenizer(runner, parser)
+        tokens = sut.analyzeTokens(sentence)
+
+      mock:
+        runner.run(anyList()) -> json
+
+      then:
+        tokens is not null
+        tokens.isEmpty() is false
+    - |
+      test: "should populate the lemma field with the lowercased base form returned by SpaCy so that running yields run was yields be and children yields child"
+      trace: FEAT-NLP / F-NLP-R003
+
+      given:
+        runner = mock(SpacyProcessRunner.class)
+        parser = SpacyResultParser()
+        sentence = "running was children"
+        json = multiTokenJson(sentence, List.of(new TokenSpec("running", "run", "VERB", 245, false, false), new TokenSpec("was", "be", "AUX", 2, true, false), new TokenSpec("children", "child", "NOUN", 500, false, false)))
+        sut = SpacyNlpTokenizer(runner, parser)
+        tokens = sut.analyzeTokens(sentence)
+
+      mock:
+        runner.run(anyList()) -> json
+
+      then:
+        tokens.size() == 3
+        tokens.get(0).getLemma() == "run"
+        tokens.get(1).getLemma() == "be"
+        tokens.get(2).getLemma() == "child"
+    - |
+      test: "should populate the posTag field with one of the Universal Dependencies tags (NOUN VERB ADJ ADV PROPN NUM ADP AUX CCONJ DET INTJ PART PRON SCONJ PUNCT SYM SPACE X) for every token produced"
+      trace: FEAT-NLP / F-NLP-R004
+
+      given:
+        runner = mock(SpacyProcessRunner.class)
+        parser = SpacyResultParser()
+        sentence = "She runs quickly ."
+        json = multiTokenJson(sentence, List.of(new TokenSpec("She", "she", "PRON", 12, true, false), new TokenSpec("runs", "run", "VERB", 245, false, false), new TokenSpec("quickly", "quickly", "ADV", 800, false, false), new TokenSpec(".", ".", "PUNCT", null, false, true)))
+        sut = SpacyNlpTokenizer(runner, parser)
+        tokens = sut.analyzeTokens(sentence)
+
+      mock:
+        runner.run(anyList()) -> json
+    - |
+      test: "should produce a List<NlpToken> from analyzeTokens replacing the legacy List<String> tokenize representation as the primary tokenizer output"
+      trace: FEAT-NLP / F-NLP-R005
+
+      given:
+        runner = mock(SpacyProcessRunner.class)
+        parser = SpacyResultParser()
+        sentence = "cats run"
+        json = multiTokenJson(sentence, List.of(new TokenSpec("cats", "cat", "NOUN", 300, false, false), new TokenSpec("run", "run", "VERB", 245, false, false)))
+        sut = SpacyNlpTokenizer(runner, parser)
+        tokens = sut.analyzeTokens(sentence)
+
+      mock:
+        runner.run(anyList()) -> json
+
+      then:
+        tokens is not null
+        tokens.size() == 2
+        tokens.get(0) instanceof NlpToken is true
+        tokens.get(0).getLemma() is not null
+    - |
+      test: "should expose analyzeTokens(String) returning a List<NlpToken> for a single sentence with linguistic enrichment for every word"
+      trace: FEAT-NLP / F-NLP-R006
+
+      given:
+        runner = mock(SpacyProcessRunner.class)
+        parser = SpacyResultParser()
+        sentence = "The cat sat"
+        json = multiTokenJson(sentence, List.of(new TokenSpec("The", "the", "DET", 1, true, false), new TokenSpec("cat", "cat", "NOUN", 300, false, false), new TokenSpec("sat", "sit", "VERB", 400, false, false)))
+        sut = SpacyNlpTokenizer(runner, parser)
+        tokens = sut.analyzeTokens(sentence)
+
+      mock:
+        runner.run(anyList()) -> json
+
+      then:
+        tokens.size() == 3
+    - |
+      test: "should still report a usable token count via the size of the analyzeTokens result without requiring a separate countTokens call so SentenceLengthAnalyzer continues to work"
+      trace: FEAT-NLP / F-NLP-R007
+
+      given:
+        runner = mock(SpacyProcessRunner.class)
+        parser = SpacyResultParser()
+        sentence = "She likes cats"
+        json = multiTokenJson(sentence, List.of(new TokenSpec("She", "she", "PRON", 12, true, false), new TokenSpec("likes", "like", "VERB", 180, false, false), new TokenSpec("cats", "cat", "NOUN", 300, false, false)))
+        sut = SpacyNlpTokenizer(runner, parser)
+        count = sut.countTokens(sentence)
+        tokens = sut.analyzeTokens(sentence)
+
+      mock:
+        runner.run(anyList()) -> json
+
+      then:
+        count == tokens.size()
+        count == 3
+    - |
+      test: "should not implement any analyzer interface confirming the tokenizer is an infrastructure service that only transforms text into enriched tokens without producing scores"
+      trace: FEAT-NLP / F-NLP-R009
+
+      then:
+        ContentAnalyzer.class.isAssignableFrom(SpacyNlpTokenizer.class) is false
+        NlpTokenizer.class.isAssignableFrom(SpacyNlpTokenizer.class) is true
+    - |
+      test: "should derive the frequencyRank from the COCA entry matched against the token's lemma and not the inflected form so that running running and ran all carry the same rank as run"
+      trace: FEAT-NLP / F-NLP-R011
+
+      given:
+        runner = mock(SpacyProcessRunner.class)
+        parser = SpacyResultParser()
+        sentence = "running runs ran"
+        json = multiTokenJson(sentence, List.of(new TokenSpec("running", "run", "VERB", 245, false, false), new TokenSpec("runs", "run", "VERB", 245, false, false), new TokenSpec("ran", "run", "VERB", 245, false, false)))
+        sut = SpacyNlpTokenizer(runner, parser)
+        tokens = sut.analyzeTokens(sentence)
+
+      mock:
+        runner.run(anyList()) -> json
+
+      then:
+        tokens.size() == 3
+        tokens.get(0).getLemma() == "run"
+        tokens.get(1).getLemma() == "run"
+        tokens.get(2).getLemma() == "run"
+        tokens.get(1).getFrequencyRank() == tokens.get(0).getFrequencyRank()
+        tokens.get(2).getFrequencyRank() == tokens.get(0).getFrequencyRank()
+    - |
+      test: "should map every Universal Dependencies posTag emitted by SpaCy to its corresponding COCA single-character code (NOUN to n VERB to v ADJ to j ADV to r PRON to p DET to a ADP to i CONJ/CCONJ/SCONJ to c NUM to m PART/PRT to t INTJ to u SYM/PUNCT/SPACE/X to x) when looking up frequency"
+      trace: FEAT-NLP / F-NLP-R012
+
+      given:
+        runner = mock(SpacyProcessRunner.class)
+        parser = SpacyResultParser()
+        sentence = "The quick brown fox"
+        json = multiTokenJson(sentence, List.of(// DET → a
+      new TokenSpec("The", "the", "DET", 1, true, false), // ADJ → j
+      new TokenSpec("quick", "quick", "ADJ", 900, false, false), // ADJ → j
+      new TokenSpec("brown", "brown", "ADJ", 1100, false, false), // NOUN → n
+      new TokenSpec("fox", "fox", "NOUN", 2000, false, false)))
+        sut = SpacyNlpTokenizer(runner, parser)
+        tokens = sut.analyzeTokens(sentence)
+
+      mock:
+        runner.run(anyList()) -> json
+
+      then:
+        tokens.size() == 4
+        tokens.get(0).getPosTag() == "DET"
+        tokens.get(1).getPosTag() == "ADJ"
+        tokens.get(3).getPosTag() == "NOUN"
+    - |
+      test: "should apply the three-tier COCA lookup strategy resolving frequencyRank by exact-word match first then by lemma+pos-code match and finally by lemma-only match before giving up"
+      trace: FEAT-NLP / F-NLP-R013
+
+      given:
+        runner = mock(SpacyProcessRunner.class)
+        parser = SpacyResultParser()
+        sentence = "run neologism"
+        json = multiTokenJson(sentence, List.of(// found via exact-word or lemma+pos
+      new TokenSpec("run", "run", "VERB", 245, false, false), // not found in any tier
+      new TokenSpec("neologism", "neologism", "NOUN", null, false, false)))
+        sut = SpacyNlpTokenizer(runner, parser)
+        tokens = sut.analyzeTokens(sentence)
+
+      mock:
+        runner.run(anyList()) -> json
+
+      then:
+        tokens.size() == 2
+        tokens.get(0).getFrequencyRank() is not null
+        tokens.get(0).getFrequencyRank() == 245
+        tokens.get(1).getFrequencyRank() is null
+    - |
+      test: "should ignore the first 8 metadata lines and the column header line of lemmas_20k_words.txt and parse the TSV body so that lookups use the correct lemRank lemma PoS lemFreq wordFreq and word columns"
+      trace: FEAT-NLP / F-NLP-R014
+
+      given:
+        runner = mock(SpacyProcessRunner.class)
+        parser = SpacyResultParser()
+        sentence = "run"
+        json = sentenceJson(sentence, "run", "run", "VERB", 245, false, false)
+        sut = SpacyNlpTokenizer(runner, parser)
+        tokens = sut.analyzeTokens(sentence)
+        t = tokens.get(0)
+
+      mock:
+        runner.run(anyList()) -> json
+
+      then:
+        tokens.isEmpty() is false
+        t.getFrequencyRank() == 245
+        t.getLemma() == "run"
+        t.getPosTag() == "VERB"
+    - |
+      test: "should load the COCA frequency data only once during initialization and then resolve every subsequent token lookup against the in-memory index without re-reading the file"
+      trace: FEAT-NLP / F-NLP-R015
+
+      given:
+        runner = mock(SpacyProcessRunner.class)
+        parser = SpacyResultParser()
+        sentence = "run"
+        json = sentenceJson(sentence, "run", "run", "VERB", 245, false, false)
+        sut = SpacyNlpTokenizer(runner, parser)
+        first = sut.analyzeTokens(sentence)
+        second = sut.analyzeTokens(sentence)
+
+      mock:
+        runner.run(anyList()) -> json
+
+      then:
+        second.get(0).getFrequencyRank() == first.get(0).getFrequencyRank()
+        verify: runner.run(anyList()) x 2
+    - |
+      test: "should set the token frequencyRank to the lemRank column of the matched COCA entry not to the wordFreq of the specific inflected form"
+      trace: FEAT-NLP / F-NLP-R016
+
+      given:
+        runner = mock(SpacyProcessRunner.class)
+        parser = SpacyResultParser()
+        sentence = "is was are"
+        json = multiTokenJson(sentence, List.of(new TokenSpec("is", "be", "AUX", 2, true, false), new TokenSpec("was", "be", "AUX", 2, true, false), new TokenSpec("are", "be", "AUX", 2, true, false)))
+        sut = SpacyNlpTokenizer(runner, parser)
+        tokens = sut.analyzeTokens(sentence)
+
+      mock:
+        runner.run(anyList()) -> json
+
+      then:
+        tokens.size() == 3
+    - |
+      test: "should delegate linguistic processing to an external SpaCy-backed pipeline (Python process with en_core_web_sm) producing tokenization lemmatization POS tagging and stop-word/punctuation detection in a single pass"
+      trace: FEAT-NLP / F-NLP-R017
+
+      given:
+        runner = mock(SpacyProcessRunner.class)
+        parser = SpacyResultParser()
+        sentence = "She runs"
+        json = multiTokenJson(sentence, List.of(new TokenSpec("She", "she", "PRON", 12, true, false), new TokenSpec("runs", "run", "VERB", 245, false, false)))
+        sut = SpacyNlpTokenizer(runner, parser)
+        tokens = sut.analyzeTokens(sentence)
+
+      mock:
+        runner.run(anyList()) -> json
+
+      then:
+        tokens.size() == 2
+        tokens.get(0).getLemma() == "she"
+        tokens.get(0).getPosTag() == "PRON"
+        tokens.get(0).isIsStop() is true
+        verify: runner.run(anyList())
+    - |
+      test: "should perform tokenization lemmatization POS tagging and COCA frequency lookup all within the same SpaCy-backed processing step without splitting them across multiple external calls"
+      trace: FEAT-NLP / F-NLP-R019
+
+      given:
+        runner = mock(SpacyProcessRunner.class)
+        parser = SpacyResultParser()
+        sentence = "cats run quickly"
+        json = multiTokenJson(sentence, List.of(new TokenSpec("cats", "cat", "NOUN", 300, false, false), new TokenSpec("run", "run", "VERB", 245, false, false), new TokenSpec("quickly", "quickly", "ADV", 800, false, false)))
+        sut = SpacyNlpTokenizer(runner, parser)
+
+      mock:
+        runner.run(anyList()) -> json
+
+      when:
+        sut.analyzeTokens(sentence)
+
+      then:
+        verify: runner.run(anyList())
+    - |
+      test: "should produce a clear runtime error indicating the missing environment component (Python 3.11+ SpaCy en_core_web_sm or lemmas_20k_words.txt) when the tokenizer is invoked without the required environment installed"
+      trace: FEAT-NLP / F-NLP-R020
+
+      given:
+        runner = mock(SpacyProcessRunner.class)
+        parser = SpacyResultParser()
+        sut = SpacyNlpTokenizer(runner, parser)
+        ex = assertThrows(RuntimeException.class, () -> sut.analyzeTokens("test"), "R020: missing environment must throw RuntimeException")
+
+      mock:
+        runner.run(anyList()) -> throws RuntimeException("Failed to start Python process. Ensure Python 3.11+, SpaCy, and en_core_web_sm are installed.")
+
+      then:
+        ex.getMessage().contains("Python") || ex.getMessage().contains("SpaCy") || ex.getMessage().contains("Failed") is true
+    - |
+      test: "should produce a valid NlpToken with frequencyRank set to null and all other linguistic fields populated when the three-tier COCA lookup finds no entry for the token"
+      trace: FEAT-NLP / F-NLP-R028
+
+      given:
+        runner = mock(SpacyProcessRunner.class)
+        parser = SpacyResultParser()
+        sentence = "neologism"
+        json = "{\"processed_sentences\":[{\"original_sentence\":\"" + sentence + "\"," + "\"processed_words\":[{\"word\":\"neologism\",\"lemma\":\"neologism\"," + "\"pos_tag\":\"NOUN\",\"is_stop_word\":false,\"is_punctuation\":false}]}]}"
+        sut = SpacyNlpTokenizer(runner, parser)
+        tokens = sut.analyzeTokens(sentence)
+        t = tokens.get(0)
+
+      mock:
+        runner.run(anyList()) -> json
+
+      then:
+        tokens.isEmpty() is false
+        t.getFrequencyRank() is null
+        t.getText() is not null
+        t.getLemma() is not null
+        t.getPosTag() is not null
+    - |
+      test: "should propagate a descriptive exception (and not return partial or corrupt tokens) when the underlying Python process fails to start exits abnormally or returns invalid JSON output"
+      trace: FEAT-NLP / F-NLP-R029
+
+      given:
+        runner = mock(SpacyProcessRunner.class)
+        parser = SpacyResultParser()
+        sut = SpacyNlpTokenizer(runner, parser)
+        ex = assertThrows(RuntimeException.class, () -> sut.analyzeTokens("test"), "R029: process failure must propagate as RuntimeException")
+
+      mock:
+        runner.run(anyList()) -> throws RuntimeException("SpaCy processing failed with exit code 1: ModuleNotFoundError: No module named 'spacy'")
+
+      then:
+        ex.getMessage() is not null
+        ex.getMessage().isBlank() is false
+    - |
+      test: "should continue tokenizing the remaining sentences of a batch and emit a fallback NlpToken (text as-is lemma=lowercased text posTag=X frequencyRank=null isStop=false isPunct=heuristic) when a single token inside SpaCy fails"
+      trace: FEAT-NLP / F-NLP-R032
+
+      given:
+        runner = mock(SpacyProcessRunner.class)
+        parser = SpacyResultParser()
+        badTokenJson = "{\"processed_sentences\":[" + // missing lemma/pos → fallback
+      "{\"original_sentence\":\"bad\",\"processed_words\":[{\"word\":\"???\"}]}," + "{\"original_sentence\":\"cat\",\"processed_words\":[{\"word\":\"cat\",\"lemma\":\"cat\"," + "\"pos_tag\":\"NOUN\",\"frequency_rank\":300,\"is_stop_word\":false,\"is_punctuation\":false}]}" + "]}"
+        sut = SpacyNlpTokenizer(runner, parser)
+        result = sut.analyzeTokensBatch(List.of("bad", "cat"))
+        fallbackTokens = result.get("bad")
+        fallback = fallbackTokens.get(0)
+        goodTokens = result.get("cat")
+
+      mock:
+        runner.run(anyList()) -> badTokenJson
+
+      then:
+        result.containsKey("bad") is true
+        result.containsKey("cat") is true
+        fallbackTokens.isEmpty() is false
+        fallback.getPosTag() == "X"
+        goodTokens.isEmpty() is false
+        goodTokens.get(0).getPosTag() == "NOUN"
   - name: SpacyProcessRunner
     status: EXISTS
     filePath: nlp-infrastructure/src/main/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyProcessRunner.java
@@ -25875,6 +25413,70 @@ elements:
         the enriched signature
       status: EXISTS
       testFilePath: nlp-infrastructure/src/test/java/com/learney/contentaudit/nlpinfrastructure/spacy/CachedNlpTokenizerTest.java
+    testCleanViews:
+    - |
+      test: "should serve repeated analyzeTokens calls for the same sentence text from an in-memory cache so that the delegate NlpTokenizer is invoked only on the first call"
+      trace: FEAT-NLP / F-NLP-R023
+
+      given:
+        delegate = mock(NlpTokenizer.class)
+        token = NlpToken("cat", "cat", "NOUN", 300, false, false)
+        sut = CachedNlpTokenizer(delegate)
+        first = sut.analyzeTokens("cats")
+        second = sut.analyzeTokens("cats")
+
+      mock:
+        delegate.analyzeTokens("cats") -> List.of(token)
+
+      then:
+        second == first
+        second is not null
+        verify: delegate.analyzeTokens("cats")
+    - |
+      test: "should treat two sentences differing in any single character (case spacing punctuation) as distinct cache entries triggering a fresh delegate invocation for each variant"
+      trace: FEAT-NLP / F-NLP-R024
+
+      given:
+        delegate = mock(NlpTokenizer.class)
+        lowerToken = NlpToken("cat", "cat", "NOUN", 300, false, false)
+        upperToken = NlpToken("Cat", "cat", "NOUN", 300, false, false)
+        spacedToken = NlpToken("cat", "cat", "NOUN", 300, false, false)
+        sut = CachedNlpTokenizer(delegate)
+
+      mock:
+        delegate.analyzeTokens("cat") -> List.of(lowerToken)
+        delegate.analyzeTokens("Cat") -> List.of(upperToken)
+        delegate.analyzeTokens("cat ") -> List.of(spacedToken)
+
+      when:
+        sut.analyzeTokens("cat")
+
+      then:
+        verify: delegate.analyzeTokens("cat")
+        verify: delegate.analyzeTokens("Cat")
+        verify: delegate.analyzeTokens("cat ")
+    - |
+      test: "should cache List<NlpToken> produced by analyzeTokens with the same decorator pattern previously used for tokenize String results so cached entries match the enriched signature"
+      trace: FEAT-NLP / F-NLP-R026
+
+      given:
+        delegate = mock(NlpTokenizer.class)
+        runToken = NlpToken("running", "run", "VERB", 245, false, false)
+        sheToken = NlpToken("She", "she", "PRON", 12, true, false)
+        sentence = "She running"
+        sut = CachedNlpTokenizer(delegate)
+        result = sut.analyzeTokens(sentence)
+        cached = sut.analyzeTokens(sentence)
+
+      mock:
+        delegate.analyzeTokens(sentence) -> List.of(sheToken, runToken)
+
+      then:
+        cached.size() == 2
+        cached.get(1).getLemma() == "run"
+        cached.get(1).getPosTag() == "VERB"
+        cached.get(1).getFrequencyRank() == 245
+        verify: delegate.analyzeTokens(sentence)
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -30337,6 +29939,42 @@ elements:
         on every proposal
       status: EXISTS
       testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/lemmaabsence/LemmaAbsenceMvpStrategyTest.java
+    - name: should produce a LemmaAbsenceQuizCandidate by consuming exclusively the
+        CorrectionContext fields (quizSentence translation knowledgeTitle knowledgeInstructions
+        topicLabel cefrLevel misplacedLemmas suggestedLemmas) and never reading directly
+        from AuditReport or the diagnoses tree
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/lemmaabsence/LemmaAbsenceMvpStrategyTest.java
+    - name: should return exactly one LemmaAbsenceQuizCandidate per single propose
+        invocation without ever surfacing multiple alternatives for the operator to
+        choose from
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/lemmaabsence/LemmaAbsenceMvpStrategyTest.java
+    - name: "should produce a LemmaAbsenceQuizCandidate that carries exactly two fields:\
+        \ a quizSentence string and a translation string with both populated and no\
+        \ other element-level field present on the candidate"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/lemmaabsence/LemmaAbsenceMvpStrategyTest.java
+    - name: should not require successive invocations on the same RefinementTask to
+        return equal candidates documenting that the strategy is non-deterministic
+        by contract
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/lemmaabsence/LemmaAbsenceMvpStrategyTest.java
+    - name: should emit only a candidate whose quizSentence is a string in the FEAT-QSENT
+        DSL grammar plus a translation string so that the strategy never returns plain
+        sentence text quizForm parts or a fully built elementAfter
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/lemmaabsence/LemmaAbsenceMvpStrategyTest.java
+    - name: should not invoke any CEFR-level validator on the produced candidate's
+        quizSentence so that even when the generator returns vocabulary above cefrLevel
+        the strategy returns the candidate as-is without filtering
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/lemmaabsence/LemmaAbsenceMvpStrategyTest.java
+    - name: should not apply any length limit to the produced candidate's quizSentence
+        so that even an unusually short or unusually long candidate is returned as-is
+        without rejection
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/lemmaabsence/LemmaAbsenceMvpStrategyTest.java
     testCleanViews:
     - |
       test: "should stamp StrategyId.name = 'lemma-absence-llm' on every produced proposal"
@@ -32359,8 +31997,8 @@ elements:
     healthScore: 0
     verdict: PASSED
 testSummary:
-  total: 908
-  passing: 906
+  total: 921
+  passing: 919
   failing: 0
   notImplemented: 2
 qualitySummary:
@@ -32372,15 +32010,15 @@ qualitySummary:
     crapHotspotThreshold: 30
     crapHotspotsMax: 5
   coverage:
-    linesCovered: 1857
-    linesMissed: 2627
-    linesTotal: 4484
-    lineCoveragePct: 41
-    branchesCovered: 829
-    branchesMissed: 1571
-    branchesTotal: 2400
-    branchCoveragePct: 34
-    blendPct: 37
+    linesCovered: 1688
+    linesMissed: 2508
+    linesTotal: 4196
+    lineCoveragePct: 40
+    branchesCovered: 776
+    branchesMissed: 1542
+    branchesTotal: 2318
+    branchCoveragePct: 33
+    blendPct: 36
   mutation:
     totalMutants: 0
     killed: 0
@@ -32391,15 +32029,15 @@ qualitySummary:
     mutationScorePct: 0
     testStrengthPct: 0
   crap:
-    totalMethods: 773
+    totalMethods: 709
     hotspots: 60
     maxCrap: 600.0
-    averageCrap: 11.44660502587322
-    simple: 656
-    moderate: 52
+    averageCrap: 12.265477531734835
+    simple: 593
+    moderate: 51
     high: 20
     veryHigh: 45
-    healthPct: 88
+    healthPct: 87
     top:
     - className: com.learney.contentaudit.coursedomain.QuizTemplateEntity
       methodName: equals
@@ -32474,8 +32112,8 @@ qualitySummary:
   healthScore: 33
   verdict: WARNED
   violations:
-  - lineCoverage 41% < 70%
-  - branchCoverage 34% < 60%
+  - lineCoverage 40% < 70%
+  - branchCoverage 33% < 60%
   - crapHotspots 60 > 5
 patterns:
 - id: declared-1

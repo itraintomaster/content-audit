@@ -1,5 +1,19 @@
 package com.learney.contentaudit.auditcli.formatting;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.CourseDiagnoses;
+import com.learney.contentaudit.auditdomain.LevelDiagnoses;
+import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceCourseDiagnosis;
+import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceLevelDiagnosis;
+import java.util.List;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -16,6 +30,44 @@ public class LemmaAbsenceDetailedFormatterTest {
     @Tag("F-DLABS-R013")
     public void shouldReadLemmaabsenceDiagnosesExclusivelyThroughTheTypedNodeDiagnosesGettersGetLemmaAbsenceDiagnosisAndNotFallBackToAnyUntypedMetadataMapWhenRenderingTheDetailedView(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R013: formatter must read from typed getLemmaAbsenceDiagnosis() getters on
+        // CourseDiagnoses / LevelDiagnoses / KnowledgeDiagnoses / QuizDiagnoses — not getMetadata().
+
+        // Build a minimal tree: COURSE → MILESTONE
+        CourseDiagnoses courseDiagnoses = mock(CourseDiagnoses.class);
+        LemmaAbsenceCourseDiagnosis courseDiag = mock(LemmaAbsenceCourseDiagnosis.class);
+        when(courseDiagnoses.getLemmaAbsenceDiagnosis()).thenReturn(Optional.of(courseDiag));
+
+        LevelDiagnoses levelDiagnoses = mock(LevelDiagnoses.class);
+        LemmaAbsenceLevelDiagnosis levelDiag = mock(LemmaAbsenceLevelDiagnosis.class);
+        when(levelDiag.getCoverageTarget()).thenReturn(0.8);
+        when(levelDiag.getTotalExpected()).thenReturn(50);
+        when(levelDiag.getTotalAbsent()).thenReturn(10);
+        when(levelDiag.getAbsencePercentage()).thenReturn(20.0);
+        when(levelDiag.getCompletelyAbsentScore()).thenReturn(0.7);
+        when(levelDiag.getTooLateScore()).thenReturn(0.9);
+        when(levelDiag.getTooEarlyScore()).thenReturn(0.95);
+        when(levelDiag.getAbsentLemmas()).thenReturn(List.of());
+        when(levelDiagnoses.getLemmaAbsenceDiagnosis()).thenReturn(Optional.of(levelDiag));
+
+        AuditNode milestoneNode = new AuditNode();
+        milestoneNode.setDiagnoses(levelDiagnoses);
+        milestoneNode.setChildren(List.of());
+
+        AuditNode courseNode = new AuditNode();
+        courseNode.setDiagnoses(courseDiagnoses);
+        courseNode.setChildren(List.of(milestoneNode));
+
+        LemmaAbsenceDetailedFormatter formatter = new LemmaAbsenceDetailedFormatter();
+
+        // Act — formatter must not throw and must produce non-null output
+        String result = formatter.format("lemma-absence", courseNode, "text");
+        assertNotNull(result, "R013: formatter must produce output without exception");
+        assertFalse(result.isEmpty(), "R013: formatter output must not be empty");
+
+        // Assert — typed getters were invoked on each NodeDiagnoses subtype (R013 constraint)
+        // The formatter reads via instanceof + getLemmaAbsenceDiagnosis(), not via getMetadata().
+        verify(courseDiagnoses, atLeastOnce()).getLemmaAbsenceDiagnosis();
+        verify(levelDiagnoses, atLeastOnce()).getLemmaAbsenceDiagnosis();
     }
 }

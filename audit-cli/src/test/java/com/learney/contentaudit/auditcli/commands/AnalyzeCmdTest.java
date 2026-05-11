@@ -1,13 +1,39 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import com.learney.contentaudit.auditapplication.AuditRunner;
+import com.learney.contentaudit.auditcli.formatting.DefaultDrillDownResolver;
+import com.learney.contentaudit.auditcli.formatting.DetailedFormatter;
+import com.learney.contentaudit.auditcli.formatting.DrillDownResolver;
+import com.learney.contentaudit.auditcli.formatting.FormatterRegistry;
+import com.learney.contentaudit.auditcli.formatting.RawReportFormatter;
+import com.learney.contentaudit.auditcli.formatting.ReportFormatter;
+import com.learney.contentaudit.auditcli.formatting.ReportViewModel;
+import com.learney.contentaudit.auditcli.formatting.ReportViewModelTransformer;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditReportStore;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import picocli.CommandLine;
 import picocli.CommandLine.Command;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -32,7 +58,36 @@ public class AnalyzeCmdTest {
     @Tag("F-CLI-R002")
     @Tag("F-CLI-J002")
     public void shouldPrintAnErrorAndReturnNonzeroExitCodeWhenInvokedWithoutACoursePathArgumentAndNoCONTENTAUDITCONTENTFOLDEREnvVarIsSet() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: missing path and no env var set → non-zero exit, error message on stderr
+        // Note: this test relies on CONTENT_AUDIT_CONTENT_FOLDER not being set in the test environment.
+        // If the env var IS set, CoursePathResolver.resolve(null) returns the env value instead of null.
+        // We test via analyze() directly to avoid env var interference.
+        AuditRunner auditRunner = mock(AuditRunner.class);
+        FormatterRegistry formatterRegistry = mock(FormatterRegistry.class);
+        ReportViewModelTransformer viewModelTransformer = mock(ReportViewModelTransformer.class);
+        RawReportFormatter rawReportFormatter = mock(RawReportFormatter.class);
+        AuditReportStore auditReportStore = mock(AuditReportStore.class);
+        DrillDownResolver drillDownResolver = new DefaultDrillDownResolver();
+        Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
+
+        AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
+                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore);
+
+        ByteArrayOutputStream errCapture = new ByteArrayOutputStream();
+        PrintStream originalErr = System.err;
+        System.setErr(new PrintStream(errCapture));
+        int exitCode;
+        try {
+            // Pass null as coursePath: CoursePathResolver.resolve(null) returns null when env var absent
+            exitCode = sut.analyze(null, "text", null, null, null, null, false);
+        } finally {
+            System.setErr(originalErr);
+        }
+
+        assertNotEquals(0, exitCode, "R002: missing course path must produce non-zero exit code");
+        String errOutput = errCapture.toString();
+        assertTrue(errOutput.contains("Error") || errOutput.contains("missing") || errOutput.contains("course"),
+                "R002: error message must appear on stderr; got: " + errOutput);
     }
 
     @Test
@@ -41,7 +96,34 @@ public class AnalyzeCmdTest {
     @Tag("F-CLI-R002")
     @Tag("F-CLI-J002")
     public void shouldPrintAnErrorAndReturnNonzeroExitCodeWhenInvokedWithACoursePathThatDoesNotExistOnDisk() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: non-existent path → auditRunner.runAudit throws RuntimeException → non-zero exit
+        AuditRunner auditRunner = mock(AuditRunner.class);
+        when(auditRunner.runAudit(any(Path.class), any())).thenThrow(
+                new RuntimeException("File not found: /nonexistent/course"));
+
+        FormatterRegistry formatterRegistry = mock(FormatterRegistry.class);
+        ReportViewModelTransformer viewModelTransformer = mock(ReportViewModelTransformer.class);
+        RawReportFormatter rawReportFormatter = mock(RawReportFormatter.class);
+        AuditReportStore auditReportStore = mock(AuditReportStore.class);
+        DrillDownResolver drillDownResolver = new DefaultDrillDownResolver();
+        Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
+
+        AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
+                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore);
+
+        ByteArrayOutputStream errCapture = new ByteArrayOutputStream();
+        PrintStream originalErr = System.err;
+        System.setErr(new PrintStream(errCapture));
+        int exitCode;
+        try {
+            exitCode = sut.analyze("/nonexistent/course", "text", null, null, null, null, false);
+        } finally {
+            System.setErr(originalErr);
+        }
+
+        assertNotEquals(0, exitCode, "R002: non-existent path must produce non-zero exit code");
+        String errOutput = errCapture.toString();
+        assertTrue(errOutput.length() > 0, "R002: error message must appear on stderr");
     }
 
     @Test
@@ -49,7 +131,45 @@ public class AnalyzeCmdTest {
     @Tag("FEAT-CLI")
     @Tag("F-CLI-R003")
     public void shouldProduceAPlaintextFormattedSummaryOnStdoutWhenInvokedWithoutAFormatOptionUsingTextAsTheDefaultFormat() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: default format is "text" — formatter for "text" key is invoked and output goes to stdout
+        AuditRunner auditRunner = mock(AuditRunner.class);
+        AuditReport report = new AuditReport(new AuditNode());
+        when(auditRunner.runAudit(any(Path.class), any())).thenReturn(report);
+
+        ReportFormatter textFormatter = mock(ReportFormatter.class);
+        when(textFormatter.format(any(), any())).thenReturn("PLAIN TEXT REPORT");
+
+        FormatterRegistry formatterRegistry = mock(FormatterRegistry.class);
+        when(formatterRegistry.getFormatter("text")).thenReturn(textFormatter);
+
+        ReportViewModel viewModel = mock(ReportViewModel.class);
+        ReportViewModelTransformer viewModelTransformer = mock(ReportViewModelTransformer.class);
+        when(viewModelTransformer.transform(report)).thenReturn(viewModel);
+
+        RawReportFormatter rawReportFormatter = mock(RawReportFormatter.class);
+        AuditReportStore auditReportStore = mock(AuditReportStore.class);
+        when(auditReportStore.save(any())).thenReturn("audit-123");
+
+        DrillDownResolver drillDownResolver = new DefaultDrillDownResolver();
+        Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
+
+        AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
+                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore);
+
+        ByteArrayOutputStream outCapture = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outCapture));
+        int exitCode;
+        try {
+            exitCode = sut.analyze("/some/valid/course", "text", null, null, null, null, false);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exitCode, "R003: successful text-format audit must return exit code 0");
+        verify(formatterRegistry).getFormatter("text");
+        String output = outCapture.toString();
+        assertTrue(output.contains("PLAIN TEXT REPORT"), "R003: text formatter output must appear on stdout");
     }
 
     @Test
@@ -57,7 +177,45 @@ public class AnalyzeCmdTest {
     @Tag("FEAT-CLI")
     @Tag("F-CLI-R003")
     public void shouldProduceAJSONformattedSummaryOnStdoutWhenInvokedWithFormatJson() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: --format json → formatter for "json" key is invoked and output goes to stdout
+        AuditRunner auditRunner = mock(AuditRunner.class);
+        AuditReport report = new AuditReport(new AuditNode());
+        when(auditRunner.runAudit(any(Path.class), any())).thenReturn(report);
+
+        ReportFormatter jsonFormatter = mock(ReportFormatter.class);
+        when(jsonFormatter.format(any(), any())).thenReturn("{\"score\": 0.85}");
+
+        FormatterRegistry formatterRegistry = mock(FormatterRegistry.class);
+        when(formatterRegistry.getFormatter("json")).thenReturn(jsonFormatter);
+
+        ReportViewModel viewModel = mock(ReportViewModel.class);
+        ReportViewModelTransformer viewModelTransformer = mock(ReportViewModelTransformer.class);
+        when(viewModelTransformer.transform(report)).thenReturn(viewModel);
+
+        RawReportFormatter rawReportFormatter = mock(RawReportFormatter.class);
+        AuditReportStore auditReportStore = mock(AuditReportStore.class);
+        when(auditReportStore.save(any())).thenReturn("audit-456");
+
+        DrillDownResolver drillDownResolver = new DefaultDrillDownResolver();
+        Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
+
+        AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
+                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore);
+
+        ByteArrayOutputStream outCapture = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outCapture));
+        int exitCode;
+        try {
+            exitCode = sut.analyze("/some/valid/course", "json", null, null, null, null, false);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exitCode, "R003: successful json-format audit must return exit code 0");
+        verify(formatterRegistry).getFormatter("json");
+        String output = outCapture.toString();
+        assertTrue(output.contains("{\"score\": 0.85}"), "R003: json formatter output must appear on stdout");
     }
 
     @Test
@@ -65,7 +223,40 @@ public class AnalyzeCmdTest {
     @Tag("FEAT-CLI")
     @Tag("F-CLI-R004")
     public void shouldReturnExitCodeZeroWhenTheAuditCompletesSuccessfullyRegardlessOfTheOverallScoreProduced() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: successful audit → exit code 0, regardless of score (even if score is 0.0)
+        AuditRunner auditRunner = mock(AuditRunner.class);
+        AuditReport report = new AuditReport(new AuditNode());
+        when(auditRunner.runAudit(any(Path.class), any())).thenReturn(report);
+
+        ReportFormatter textFormatter = mock(ReportFormatter.class);
+        when(textFormatter.format(any(), any())).thenReturn("Score: 0.00 (very poor)");
+
+        FormatterRegistry formatterRegistry = mock(FormatterRegistry.class);
+        when(formatterRegistry.getFormatter("text")).thenReturn(textFormatter);
+
+        ReportViewModelTransformer viewModelTransformer = mock(ReportViewModelTransformer.class);
+        when(viewModelTransformer.transform(report)).thenReturn(mock(ReportViewModel.class));
+
+        RawReportFormatter rawReportFormatter = mock(RawReportFormatter.class);
+        AuditReportStore auditReportStore = mock(AuditReportStore.class);
+        when(auditReportStore.save(any())).thenReturn("audit-789");
+
+        DrillDownResolver drillDownResolver = new DefaultDrillDownResolver();
+        Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
+
+        AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
+                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore);
+
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(new ByteArrayOutputStream()));
+        int exitCode;
+        try {
+            exitCode = sut.analyze("/valid/course", "text", null, null, null, null, false);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exitCode, "R004: exit code must be 0 on success regardless of score value");
     }
 
     @Test
@@ -74,6 +265,36 @@ public class AnalyzeCmdTest {
     @Tag("F-CLI-R004")
     @Tag("F-CLI-J003")
     public void shouldReturnANonzeroExitCodeWhenAuditRunnerThrowsARuntimeExceptionDuringTheAuditPipelineAndPrintADescriptiveErrorMessageToStderr() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 + J003: RuntimeException in audit pipeline → non-zero exit + error message on stderr
+        AuditRunner auditRunner = mock(AuditRunner.class);
+        when(auditRunner.runAudit(any(Path.class), any())).thenThrow(
+                new RuntimeException("malformed JSON in course file"));
+
+        FormatterRegistry formatterRegistry = mock(FormatterRegistry.class);
+        ReportViewModelTransformer viewModelTransformer = mock(ReportViewModelTransformer.class);
+        RawReportFormatter rawReportFormatter = mock(RawReportFormatter.class);
+        AuditReportStore auditReportStore = mock(AuditReportStore.class);
+        DrillDownResolver drillDownResolver = new DefaultDrillDownResolver();
+        Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
+
+        AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
+                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore);
+
+        ByteArrayOutputStream errCapture = new ByteArrayOutputStream();
+        PrintStream originalErr = System.err;
+        System.setErr(new PrintStream(errCapture));
+        int exitCode;
+        try {
+            exitCode = sut.analyze("/valid/but/broken/course", "text", null, null, null, null, false);
+        } finally {
+            System.setErr(originalErr);
+        }
+
+        assertNotEquals(0, exitCode, "R004: RuntimeException in audit pipeline must produce non-zero exit code");
+        String errOutput = errCapture.toString();
+        assertTrue(errOutput.length() > 0,
+                "R004: a descriptive error message must appear on stderr when the audit pipeline fails");
+        assertTrue(errOutput.contains("Error") || errOutput.contains("malformed") || errOutput.contains("audit"),
+                "R004: stderr must contain a descriptive message; got: " + errOutput);
     }
 }

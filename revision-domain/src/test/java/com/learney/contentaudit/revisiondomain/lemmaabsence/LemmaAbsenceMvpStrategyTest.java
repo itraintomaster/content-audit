@@ -3,6 +3,7 @@ package com.learney.contentaudit.revisiondomain.lemmaabsence;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -113,5 +114,178 @@ public class LemmaAbsenceMvpStrategyTest {
         // The injected PROVIDER_ID must be surfaced verbatim
         assertEquals(PROVIDER_ID, id.getProviderId(),
                 "StrategyId.providerId must be the providerId injected at construction (F-LAGEN-R009)");
+    }
+
+    @Test
+    @DisplayName("should produce a LemmaAbsenceQuizCandidate by consuming exclusively the CorrectionContext fields (quizSentence translation knowledgeTitle knowledgeInstructions topicLabel cefrLevel misplacedLemmas suggestedLemmas) and never reading directly from AuditReport or the diagnoses tree")
+    @Tag("FEAT-LAPS")
+    @Tag("F-LAPS-R007")
+    public void shouldProduceALemmaAbsenceQuizCandidateByConsumingExclusivelyTheCorrectionContextFieldsQuizSentenceTranslationKnowledgeTitleKnowledgeInstructionsTopicLabelCefrLevelMisplacedLemmasSuggestedLemmasAndNeverReadingDirectlyFromAuditReportOrTheDiagnosesTree() {
+        // R007: strategy receives CorrectionContext as its sole data source; generator is called with it
+        LemmaAbsenceCorrectionContext context = buildContext();
+        RefinementTask task = buildTask();
+        LemmaAbsenceGeneratorResponse response = new LemmaAbsenceGeneratorResponse(
+                "She ____[walks|runs] every morning.",
+                "Ella camina cada mañana.");
+        when(mockGenerator.generate(context)).thenReturn(response);
+
+        LemmaAbsenceQuizCandidate candidate = strategy.propose(task, context);
+
+        // The strategy delegated to the generator with the context (not AuditReport)
+        // and returned a candidate derived from the generator's response
+        assertNotNull(candidate, "R007: strategy must produce a non-null candidate");
+        assertEquals("She ____[walks|runs] every morning.", candidate.getQuizSentence(),
+                "R007: candidate must reflect the generator's response driven by CorrectionContext");
+        assertEquals("Ella camina cada mañana.", candidate.getTranslation(),
+                "R007: translation must come from the generator's response");
+    }
+
+    @Test
+    @DisplayName("should return exactly one LemmaAbsenceQuizCandidate per single propose invocation without ever surfacing multiple alternatives for the operator to choose from")
+    @Tag("FEAT-LAPS")
+    @Tag("F-LAPS-R008")
+    public void shouldReturnExactlyOneLemmaAbsenceQuizCandidatePerSingleProposeInvocationWithoutEverSurfacingMultipleAlternativesForTheOperatorToChooseFrom() {
+        // R008: propose() returns exactly one candidate — not a list, not multiple options
+        LemmaAbsenceCorrectionContext context = buildContext();
+        RefinementTask task = buildTask();
+        LemmaAbsenceGeneratorResponse response = new LemmaAbsenceGeneratorResponse(
+                "She ____[walks|runs] every morning.",
+                "Ella camina cada mañana.");
+        when(mockGenerator.generate(context)).thenReturn(response);
+
+        LemmaAbsenceQuizCandidate candidate = strategy.propose(task, context);
+
+        // Return type is a single LemmaAbsenceQuizCandidate — the API enforces one candidate
+        assertNotNull(candidate, "R008: a single candidate must be returned");
+        // The generator was invoked exactly once (no retry loops)
+        org.mockito.Mockito.verify(mockGenerator, org.mockito.Mockito.times(1)).generate(context);
+    }
+
+    @Test
+    @DisplayName("should produce a LemmaAbsenceQuizCandidate that carries exactly two fields: a quizSentence string and a translation string with both populated and no other element-level field present on the candidate")
+    @Tag("FEAT-LAPS")
+    @Tag("F-LAPS-R009")
+    public void shouldProduceALemmaAbsenceQuizCandidateThatCarriesExactlyTwoFieldsAQuizSentenceStringAndATranslationStringWithBothPopulatedAndNoOtherElementlevelFieldPresentOnTheCandidate() {
+        // R009: candidate has exactly two fields — quizSentence (DSL string) + translation
+        LemmaAbsenceCorrectionContext context = buildContext();
+        RefinementTask task = buildTask();
+        LemmaAbsenceGeneratorResponse response = new LemmaAbsenceGeneratorResponse(
+                "She ____[walks|runs] every morning.",
+                "Ella camina cada mañana.");
+        when(mockGenerator.generate(context)).thenReturn(response);
+
+        LemmaAbsenceQuizCandidate candidate = strategy.propose(task, context);
+
+        assertNotNull(candidate.getQuizSentence(), "R009: quizSentence must be populated");
+        assertFalse(candidate.getQuizSentence().isBlank(), "R009: quizSentence must not be blank");
+        assertNotNull(candidate.getTranslation(), "R009: translation must be populated");
+        assertFalse(candidate.getTranslation().isBlank(), "R009: translation must not be blank");
+    }
+
+    @Test
+    @DisplayName("should not require successive invocations on the same RefinementTask to return equal candidates documenting that the strategy is non-deterministic by contract")
+    @Tag("FEAT-LAPS")
+    @Tag("F-LAPS-R010")
+    public void shouldNotRequireSuccessiveInvocationsOnTheSameRefinementTaskToReturnEqualCandidatesDocumentingThatTheStrategyIsNondeterministicByContract() {
+        // R010: strategy is non-deterministic — two calls may return different candidates.
+        // The test documents this by verifying that the strategy doesn't enforce equality between calls.
+        LemmaAbsenceCorrectionContext context = buildContext();
+        RefinementTask task = buildTask();
+        // Simulate two different generator responses (as a real LLM would produce)
+        LemmaAbsenceGeneratorResponse first = new LemmaAbsenceGeneratorResponse(
+                "She ____[walks|runs] every morning.",
+                "Ella camina cada mañana.");
+        LemmaAbsenceGeneratorResponse second = new LemmaAbsenceGeneratorResponse(
+                "She ____[jogs|walks] every day.",
+                "Ella trota cada día.");
+        when(mockGenerator.generate(context))
+                .thenReturn(first)
+                .thenReturn(second);
+
+        LemmaAbsenceQuizCandidate c1 = strategy.propose(task, context);
+        LemmaAbsenceQuizCandidate c2 = strategy.propose(task, context);
+
+        // Both calls return valid candidates — non-determinism is documented by the contract,
+        // not enforced. The test verifies the strategy doesn't filter or deduplicate results.
+        assertNotNull(c1, "R010: first invocation must return a candidate");
+        assertNotNull(c2, "R010: second invocation must return a candidate");
+        // The two candidates differ (since the generator returned different values)
+        assertFalse(c1.getQuizSentence().equals(c2.getQuizSentence()),
+                "R010: strategy does not enforce equality between successive calls (non-deterministic by contract)");
+    }
+
+    @Test
+    @DisplayName("should emit only a candidate whose quizSentence is a string in the FEAT-QSENT DSL grammar plus a translation string so that the strategy never returns plain sentence text quizForm parts or a fully built elementAfter")
+    @Tag("FEAT-LAPS")
+    @Tag("F-LAPS-R011")
+    public void shouldEmitOnlyACandidateWhoseQuizSentenceIsAStringInTheFEATQSENTDSLGrammarPlusATranslationStringSoThatTheStrategyNeverReturnsPlainSentenceTextQuizFormPartsOrAFullyBuiltElementAfter() {
+        // R011: quizSentence is DSL-formatted (contains [variants|separated|by|pipe] syntax)
+        // The strategy just passes through what the generator returns — it doesn't build elementAfter
+        LemmaAbsenceCorrectionContext context = buildContext();
+        RefinementTask task = buildTask();
+        // DSL format: blanks as ____ followed by [option1|option2]
+        LemmaAbsenceGeneratorResponse response = new LemmaAbsenceGeneratorResponse(
+                "She ____[walks|runs] to school.",
+                "Ella camina a la escuela.");
+        when(mockGenerator.generate(context)).thenReturn(response);
+
+        LemmaAbsenceQuizCandidate candidate = strategy.propose(task, context);
+
+        // The quizSentence contains DSL syntax (blank + options block) — not plain text
+        assertNotNull(candidate.getQuizSentence(), "R011: quizSentence must be present");
+        assertTrue(candidate.getQuizSentence().contains("[") && candidate.getQuizSentence().contains("|"),
+                "R011: quizSentence must be in QSENT DSL format (contains [variants|pipe]), not plain text");
+        // Translation is a separate field — not embedded in quizSentence
+        assertNotNull(candidate.getTranslation(), "R011: translation must travel as a separate field");
+    }
+
+    @Test
+    @DisplayName("should not invoke any CEFR-level validator on the produced candidate's quizSentence so that even when the generator returns vocabulary above cefrLevel the strategy returns the candidate as-is without filtering")
+    @Tag("FEAT-LAPS")
+    @Tag("F-LAPS-R017")
+    public void shouldNotInvokeAnyCEFRlevelValidatorOnTheProducedCandidatesQuizSentenceSoThatEvenWhenTheGeneratorReturnsVocabularyAboveCefrLevelTheStrategyReturnsTheCandidateAsisWithoutFiltering() {
+        // R017: strategy returns the candidate as-is — no CEFR check, no token re-analysis
+        // Simulate generator returning vocabulary clearly above A1 (B2 word "sophisticated")
+        LemmaAbsenceCorrectionContext context = buildContext(); // cefrLevel=A1
+        RefinementTask task = buildTask();
+        String aboveLevelSentence = "She ____[utilizes|employs] sophisticated methodologies.";
+        LemmaAbsenceGeneratorResponse response = new LemmaAbsenceGeneratorResponse(
+                aboveLevelSentence,
+                "Ella utiliza metodologías sofisticadas.");
+        when(mockGenerator.generate(context)).thenReturn(response);
+
+        LemmaAbsenceQuizCandidate candidate = strategy.propose(task, context);
+
+        // Strategy must return the candidate verbatim — no CEFR filtering applied
+        assertEquals(aboveLevelSentence, candidate.getQuizSentence(),
+                "R017: strategy must return candidate as-is even if vocabulary exceeds cefrLevel");
+    }
+
+    @Test
+    @DisplayName("should not apply any length limit to the produced candidate's quizSentence so that even an unusually short or unusually long candidate is returned as-is without rejection")
+    @Tag("FEAT-LAPS")
+    @Tag("F-LAPS-R018")
+    public void shouldNotApplyAnyLengthLimitToTheProducedCandidatesQuizSentenceSoThatEvenAnUnusuallyShortOrUnusuallyLongCandidateIsReturnedAsisWithoutRejection() {
+        // R018: no length validation — unusually short or long candidates are returned as-is
+        LemmaAbsenceCorrectionContext context = buildContext();
+        RefinementTask task = buildTask();
+
+        // Unusually short (2 tokens)
+        String shortSentence = "____[Run|Walk].";
+        LemmaAbsenceGeneratorResponse shortResponse = new LemmaAbsenceGeneratorResponse(
+                shortSentence, "Corre.");
+        when(mockGenerator.generate(context)).thenReturn(shortResponse);
+        LemmaAbsenceQuizCandidate shortCandidate = strategy.propose(task, context);
+        assertEquals(shortSentence, shortCandidate.getQuizSentence(),
+                "R018: unusually short quizSentence must be returned as-is without rejection");
+
+        // Unusually long (many tokens)
+        String longSentence = "She ____[walks|runs] to the very large and impressive school building every single morning without fail.";
+        LemmaAbsenceGeneratorResponse longResponse = new LemmaAbsenceGeneratorResponse(
+                longSentence, "Ella camina al colegio cada mañana sin falta.");
+        when(mockGenerator.generate(context)).thenReturn(longResponse);
+        LemmaAbsenceQuizCandidate longCandidate = strategy.propose(task, context);
+        assertEquals(longSentence, longCandidate.getQuizSentence(),
+                "R018: unusually long quizSentence must be returned as-is without rejection");
     }
 }

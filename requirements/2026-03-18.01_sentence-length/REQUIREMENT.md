@@ -55,15 +55,28 @@ Estos rangos son configurables y pueden ajustarse para otros tipos de cursos (po
 
 El curso actual contiene aproximadamente 608 knowledges distribuidos en 4 niveles (A1, A2, B1, B2), con un promedio de aproximadamente 19 quizzes por knowledge (alrededor de 11.500 quizzes en total). El analisis debe procesar todos los quizzes validos del curso.
 
+### Analisis de nivel y progresion: fuera de alcance MVP
+
+Una version previa de esta funcionalidad contemplaba un conjunto de **estadisticas y evaluaciones por nivel CEFR** que iban mas alla de la simple agregacion de puntuaciones: promedio de longitud en tokens por nivel, estado de cobertura (OPTIMO / DEFICIENTE / EXCESIVO / NO APLICA) comparando ese promedio contra los rangos objetivo, evaluacion de progresion entre niveles consecutivos (POSITIVA / REGRESIVA / ESTANCADA / DATOS INSUFICIENTES), recomendaciones textuales por nivel, y registro consolidado de estas estadisticas en el resultado del analisis.
+
+Este bloque de funcionalidad queda **fuera de alcance** para esta version del feature. Las razones:
+
+- El analizador y sus consumidores conocidos (FEAT-RCLALEN, FEAT-LAGEN, refinamiento de longitud de oraciones) trabajan sobre el diagnostico **por quiz** que produce el analizador (`SentenceLengthDiagnosis`: tokenCount, targetMin, targetMax, cefrLevel, delta, toleranceMargin). Ningun consumidor aguas abajo solicita stats agregadas por nivel CEFR.
+- No existe en el sistema un componente que implemente el "procesamiento posterior" requerido para producir estas stats. Anadirlo seria un trabajo arquitectonico significativo motivado por reglas que no tienen demanda real concreta.
+- El usuario que necesita identificar problemas en un nivel especifico ya puede hacerlo a traves de las puntuaciones agregadas por la plataforma (R003-R005-R008-R016) y los diagnosticos por quiz: navegando la jerarquia hasta los nodos con puntuacion baja y consultando el `SentenceLengthDiagnosis` de los quizzes problematicos.
+
+Si en una iteracion posterior aparece un caso de uso concreto que requiera stats agregadas por nivel (por ejemplo, un panel de control que muestre cobertura de longitud por nivel CEFR, o un analizador de progresion pedagogica), esta funcionalidad puede ser disenada como un feature separado, identificando explicitamente el componente que la produce y los consumidores que la requieren. Las reglas R006, R007, R010, R011, R014 y R015 de versiones anteriores de este documento, asi como los journeys J002 y J003, describian este alcance y pueden servir como punto de partida para esa futura iteracion.
+
 ---
 
 ## Reglas de Negocio
 
-Las reglas se organizan en tres grupos segun la fase a la que pertenecen:
+Las reglas se organizan en dos grupos segun la fase a la que pertenecen:
 
 - **Grupo A - Analisis por quiz (R001, R002, R009, R012, R013)**: reglas propias del analizador de longitud de oraciones, que opera a nivel de quiz individual.
 - **Grupo B - Agregacion de puntuaciones (R003, R004, R005, R008, R016)**: reglas que describen como las puntuaciones individuales se agregan a traves de la jerarquia. Estas reglas son cumplidas por el motor de agregacion generico de la plataforma ContentAudit y aplican de manera identica a todos los analizadores del sistema. Se documentan aqui porque son esenciales para que el usuario entienda el resultado completo de esta funcionalidad.
-- **Grupo C - Analisis de nivel y progresion (R006, R007, R010, R011, R014, R015)**: reglas que describen estadisticas, evaluaciones y recomendaciones especificas de la longitud de oraciones a nivel CEFR. Estas van mas alla de la agregacion de puntuaciones y son propias de esta funcionalidad.
+
+> **Nota sobre numeracion**: R006, R007, R010, R011, R014 y R015 fueron retirados como reglas numeradas. Describian estadisticas y evaluaciones por nivel CEFR (promedio de longitud por nivel, estado OPTIMO/DEFICIENTE/EXCESIVO/NO APLICA, progresion entre niveles, recomendaciones, registro consolidado) que dependian de un "procesamiento posterior" que no existe en el sistema y no tiene demanda concreta de ningun consumidor aguas abajo. Su contenido se documenta en "Analisis de nivel y progresion: fuera de alcance MVP" del Contexto. Los IDs R006, R007, R010, R011, R014 y R015 quedan retirados; los demas mantienen su numeracion para no romper trazabilidad con commits historicos.
 
 ---
 
@@ -179,87 +192,6 @@ Esto permite al creador de contenido navegar la jerarquia y localizar exactament
 
 ---
 
-### Grupo C - Analisis de nivel y progresion
-
-> **Nota**: Las reglas de este grupo describen estadisticas, evaluaciones y recomendaciones que son especificas de la longitud de oraciones y van mas alla de la simple agregacion de puntuaciones. Requieren informacion propia de este analisis (longitud en tokens, rangos objetivo por nivel CEFR) que el motor de agregacion generico no maneja. Estas reglas necesitan un procesamiento posterior a la fase de analisis por quiz, que opera sobre los datos producidos por el analizador y los resultados agregados.
-
-### Rule[F-SLEN-R006] - Calculo del promedio de longitud por nivel
-**Severity**: critical | **Validation**: AUTO_VALIDATED
-
-Para cada nivel CEFR, el promedio de longitud se calcula como: total de tokens de todos los quizzes validos del nivel (a traves de todos sus topics y knowledges) dividido por la cantidad de quizzes validos del nivel. Solo se consideran los quizzes que pasan el filtro de la regla R001. Si un nivel no tiene quizzes validos, el promedio es cero.
-
-Este promedio de longitud se usa para la evaluacion de estado (R007) y la evaluacion de progresion (R010), pero es independiente de la cadena de puntuaciones (R002-R005-R008). Es una metrica especifica de este analisis que no tiene equivalente en otros analizadores del sistema.
-
-**Error**: "Error al calcular el promedio de longitud para el nivel {nivel}: {detalle}"
-
-### Rule[F-SLEN-R007] - Evaluacion de estado por nivel
-**Severity**: critical | **Validation**: AUTO_VALIDATED
-
-El promedio de longitud de cada nivel (calculado segun R006) se compara contra sus rangos objetivo (minimo y maximo) para determinar un estado:
-
-| Estado | Condicion |
-|--------|-----------|
-| OPTIMO | El promedio esta dentro del rango (>= minimo Y <= maximo) |
-| DEFICIENTE | El promedio esta por debajo del minimo |
-| EXCESIVO | El promedio esta por encima del maximo |
-| NO APLICA | No hay rango configurado para el nivel, o el promedio es cero |
-
-**Error**: "Estado indeterminado para el nivel {nivel}: no se pudo evaluar el promedio {promedio} contra los rangos [{min}, {max}]"
-
-### Rule[F-SLEN-R010] - Evaluacion de progresion entre niveles
-**Severity**: major | **Validation**: AUTO_VALIDATED
-
-El sistema evalua si la longitud promedio de las oraciones (calculada segun R006) progresa adecuadamente de un nivel al siguiente (A1 hacia A2 hacia B1 hacia B2). El resultado es un estado de progresion:
-
-| Estado | Significado |
-|--------|-------------|
-| POSITIVA | La longitud promedio crece consistentemente de un nivel al siguiente |
-| REGRESIVA | La longitud promedio decrece consistentemente de un nivel al siguiente |
-| ESTANCADA | La longitud promedio sube y baja sin patron consistente (o se mantiene plana) |
-| DATOS INSUFICIENTES | Menos de 2 niveles tienen quizzes validos para comparar |
-
-La evaluacion examina cada par de niveles consecutivos (A1-A2, A2-B1, B1-B2). Si todos los pares muestran crecimiento, la progresion es POSITIVA. Si todos muestran decrecimiento, es REGRESIVA. Cualquier mezcla de crecimiento y decrecimiento resulta en ESTANCADA.
-
-Esta evaluacion es especifica de la longitud de oraciones: depende del promedio de longitud en tokens por nivel (R006), un dato que solo este analizador produce. No es una funcionalidad generica de la plataforma.
-
-**Error**: "No se pudo evaluar la progresion: {detalle}"
-
-### Rule[F-SLEN-R011] - Progresion evalua solo niveles con datos
-**Severity**: major | **Validation**: AUTO_VALIDATED
-
-La evaluacion de progresion solo considera los niveles CEFR que tienen al menos un quiz valido (a traves de toda su cadena de topics y knowledges). Si un curso no tiene contenido en un nivel intermedio (por ejemplo, no tiene quizzes validos en B1), la progresion se evalua entre los niveles que si tienen datos (A1 hacia A2 hacia B2 directamente). Esto puede producir resultados enganosos si hay saltos grandes entre niveles no consecutivos.
-
-**Error**: N/A (esta regla describe un comportamiento, no una condicion de error)
-
-### Rule[F-SLEN-R014] - Generacion de recomendaciones por nivel
-**Severity**: minor | **Validation**: ASSUMPTION
-
-Para cada nivel CEFR evaluado, el sistema genera una recomendacion textual basada en el estado resultante (segun R007). La recomendacion proporciona retroalimentacion al creador de contenido sobre la adecuacion de las oraciones en ese nivel.
-
-[ASSUMPTION] Se asume que las recomendaciones son mensajes descriptivos generados automaticamente a partir del estado (OPTIMO, DEFICIENTE, EXCESIVO, NO APLICA). El contenido exacto de las recomendaciones puede refinarse segun las necesidades del equipo de contenido.
-
-**Error**: N/A (esta regla describe una funcionalidad informativa)
-
-### Rule[F-SLEN-R015] - Registro de estadisticas por nivel
-**Severity**: major | **Validation**: AUTO_VALIDATED
-
-Para cada nivel CEFR, el resultado del analisis debe incluir las siguientes estadisticas especificas de longitud de oraciones:
-- Cantidad de quizzes validos evaluados (oraciones)
-- Cantidad de quizzes excluidos (no oraciones)
-- Total de tokens en los quizzes validos
-- Promedio de longitud (total de tokens / cantidad de quizzes validos)
-- Rango objetivo utilizado (minimo y maximo)
-- Estado resultante (OPTIMO, DEFICIENTE, EXCESIVO, NO APLICA)
-- Puntuacion del nivel (provista por la agregacion de la plataforma, segun R005)
-- Recomendacion textual
-- Cantidad de topics y knowledges con datos
-
-Estas estadisticas combinan datos propios de este analisis (tokens, promedios de longitud, estados, recomendaciones) con datos provenientes de la agregacion generica (puntuacion del nivel, conteos de nodos). Permiten al creador de contenido entender no solo el resultado sino tambien los datos que lo sustentan, y localizar los problemas a la granularidad adecuada.
-
-**Error**: "Estadisticas incompletas para el nivel {nivel}: falta el campo {campo}"
-
----
-
 ## User Journeys
 
 ### Journey[F-SLEN-J001] - Auditar la longitud de oraciones de un curso completo
@@ -267,32 +199,10 @@ Estas estadisticas combinan datos propios de este analisis (tokens, promedios de
 
 1. El usuario inicia una auditoria de un curso previamente cargado en el sistema
 2. El sistema recorre la jerarquia del curso de arriba hacia abajo: para cada nivel (milestone), sus topics, sus knowledges, y sus quizzes
-3. Para cada quiz, el analizador de longitud determina si es una oracion valida; los quizzes que no son oraciones se excluyen del analisis
-4. Para cada quiz valido, el analizador cuenta los tokens linguisticos de su oracion y calcula su puntuacion individual comparando la longitud contra el rango objetivo de su nivel CEFR (R002)
+3. Para cada quiz, el analizador de longitud determina si es una oracion valida; los quizzes que no son oraciones se excluyen del analisis (R001)
+4. Para cada quiz valido, el analizador cuenta los tokens linguisticos de su oracion (R013) y calcula su puntuacion individual comparando la longitud contra el rango objetivo de su nivel CEFR (R002)
 5. La plataforma agrega las puntuaciones de quizzes hacia arriba a traves de la jerarquia: para cada knowledge calcula el promedio de sus quizzes (R003), para cada topic el promedio de sus knowledges (R004), para cada nivel el promedio de sus topics (R005), y para el curso el promedio de sus niveles (R008)
-6. El sistema calcula estadisticas especificas de longitud por nivel: promedio de longitud en tokens (R006), estado respecto a los rangos objetivo (R007), y recomendaciones (R014)
-7. El sistema evalua la progresion de longitud entre niveles (R010)
-8. El usuario recibe un informe con la puntuacion general, las puntuaciones y estadisticas por nivel, el estado de progresion, y la posibilidad de profundizar en topics, knowledges y quizzes individuales
-
-### Journey[F-SLEN-J002] - Consultar el detalle de un nivel especifico
-**Validation**: AUTO_VALIDATED
-
-1. El usuario ha ejecutado la auditoria de longitud de oraciones (J001)
-2. El usuario selecciona un nivel CEFR especifico (por ejemplo, A2)
-3. El sistema muestra las estadisticas detalladas del nivel: puntuacion del nivel, cantidad de quizzes validos, cantidad de quizzes excluidos, total de tokens, promedio de longitud, rango objetivo, estado y recomendacion (R015)
-4. El sistema muestra la lista de topics del nivel con su puntuacion individual, permitiendo identificar que topics contribuyen a una puntuacion baja
-5. El usuario puede identificar si el nivel esta dentro de los parametros esperados o si requiere ajustes en el contenido
-
-### Journey[F-SLEN-J003] - Identificar problemas de progresion entre niveles
-**Validation**: AUTO_VALIDATED
-
-1. El usuario ha ejecutado la auditoria de longitud de oraciones (J001)
-2. El usuario consulta el estado de progresion del curso
-3. Si la progresion es POSITIVA, el usuario confirma que la dificultad escala correctamente a traves de los niveles
-4. Si la progresion es REGRESIVA o ESTANCADA, el usuario identifica que hay niveles donde las oraciones no aumentan de longitud como se espera pedagogicamente
-5. El usuario revisa los promedios de longitud por nivel para localizar en que transicion (por ejemplo, A2 a B1) se rompe la progresion
-6. El usuario profundiza en el nivel problematico, revisando las puntuaciones por topic y knowledge para localizar donde se concentran las oraciones con longitud inadecuada
-7. El usuario puede tomar acciones correctivas sobre el contenido de los knowledges y quizzes afectados
+6. El usuario recibe un informe con la puntuacion general y las puntuaciones disponibles en cada nivel de la jerarquia (R016), pudiendo profundizar en topics, knowledges y quizzes individuales para localizar donde se concentran los problemas de longitud
 
 ### Journey[F-SLEN-J004] - Navegar la jerarquia para localizar problemas de longitud
 **Validation**: AUTO_VALIDATED
@@ -310,8 +220,8 @@ Estas estadisticas combinan datos propios de este analisis (tokens, promedios de
 1. El usuario tiene un curso con caracteristicas diferentes al curso estandar (por ejemplo, un curso para ninos o un curso intensivo)
 2. El usuario modifica los rangos objetivo de longitud por nivel en la configuracion del sistema
 3. El usuario ejecuta la auditoria con los nuevos rangos
-4. Los resultados reflejan los rangos actualizados: las puntuaciones de quizzes se recalculan con los nuevos valores (R002), la plataforma reagrega las puntuaciones a traves de la jerarquia (R003-R005-R008), y las estadisticas y recomendaciones por nivel se actualizan (R006, R007, R014)
-5. El usuario valida que los rangos ajustados se alinean con las expectativas pedagogicas del nuevo curso
+4. Los resultados reflejan los rangos actualizados: las puntuaciones de quizzes se recalculan con los nuevos valores (R002), y la plataforma reagrega las puntuaciones a traves de la jerarquia (R003-R005-R008)
+5. El usuario valida que los rangos ajustados se alinean con las expectativas pedagogicas del nuevo curso navegando la jerarquia (R016) y observando como cambian las puntuaciones por nivel
 
 ---
 
@@ -328,32 +238,16 @@ Actualmente el margen de tolerancia para la puntuacion por quiz (4 tokens) esta 
 - [x] Opcion B: Hacerlo configurable en la configuracion del sistema junto con los rangos
 
 ### Doubt[DOUBT-PROGRESSION-GAPS] - Como tratar la progresion cuando faltan niveles intermedios?
-**Status**: OPEN
+**Status**: RESOLVED (ya no aplica)
 
-Cuando un curso no tiene contenido en un nivel intermedio (por ejemplo, tiene A1, A2 y B2 pero no B1), la evaluacion de progresion compara directamente los niveles disponibles (A1 hacia A2 hacia B2). Esto podria dar un resultado de POSITIVA cuando en realidad el salto de A2 a B2 es muy grande y no necesariamente representa una progresion pedagogica adecuada.
-
-**Pregunta**: Se debe tratar esta situacion de forma especial, o es aceptable evaluar solo los niveles presentes?
-
-- [ ] Opcion A: Evaluar solo los niveles presentes (comportamiento actual, simple)
-- [ ] Opcion B: Reportar una advertencia cuando hay saltos de niveles en la progresion
-- [x] Opcion C: Considerar los niveles faltantes como un problema que afecta el estado de progresion
+Esta pregunta dependia de la existencia de una evaluacion de progresion entre niveles, funcionalidad retirada en esta version (ver "Analisis de nivel y progresion: fuera de alcance MVP" en Contexto). Si la evaluacion de progresion se incorpora en una iteracion futura, esta pregunta debe re-abrirse junto con su diseno.
 
 ### Doubt[DOUBT-EQUAL-AVERAGES] - Que estado de progresion corresponde cuando dos niveles consecutivos tienen el mismo promedio?
-**Status**: OPEN
+**Status**: RESOLVED (ya no aplica)
 
-La evaluacion de progresion determina si los promedios de longitud crecen o decrecen entre niveles. Pero no esta claro que sucede cuando dos niveles consecutivos tienen exactamente el mismo promedio de longitud.
+Esta pregunta dependia de la existencia de una evaluacion de progresion entre niveles, funcionalidad retirada en esta version (ver "Analisis de nivel y progresion: fuera de alcance MVP" en Contexto). La respuesta tentativa (umbral del 50% del avance esperado entre niveles consecutivos calculado sobre los puntos medios de los rangos objetivo) se preserva aqui como referencia para una futura iteracion que reintroduzca la evaluacion de progresion.
 
-**Pregunta**: Si el promedio de A1 y A2 es identico, se considera que hay crecimiento (positivo), decrecimiento (regresivo), o estancamiento?
-
-- [ ] Opcion A: Promedios iguales se tratan como "sin crecimiento" (contribuyen a ESTANCADA)
-- [ ] Opcion B: Promedios iguales se tratan como "no decrecimiento" (no afectan negativamente la progresion)
-- [x] Opcion C: Se debe definir un umbral minimo de diferencia para considerar crecimiento real
-
-**Answer**: El umbral de crecimiento es el 50% del avance esperado entre niveles consecutivos. El avance esperado se calcula como la diferencia entre los promedios de los rangos objetivo de cada nivel (punto medio del rango).
-
-Ejemplo: Si A1 tiene rango [5, 8] (punto medio 6.5) y A2 tiene rango [8, 11] (punto medio 9.5), el avance esperado es 3.0. El umbral minimo de crecimiento es 1.5 (50% de 3.0). Si en la realidad A1 tiene promedio 5.5, con tener 7.0 en A2 (diferencia de 1.5) seria suficiente para considerarlo crecimiento.
-
-Nota importante: el umbral de crecimiento es independiente del cumplimiento del rango objetivo. Un nivel puede mostrar "crecimiento" respecto al anterior pero aun asi estar fuera de su rango objetivo. Son dos evaluaciones separadas.
+Respuesta tentativa preservada: el umbral de crecimiento se calcularia como el 50% del avance esperado entre niveles consecutivos. El avance esperado se calcula como la diferencia entre los puntos medios de los rangos objetivo de cada nivel. Por ejemplo, si A1 tiene rango [5, 8] (punto medio 6.5) y A2 tiene rango [8, 11] (punto medio 9.5), el avance esperado es 3.0 y el umbral minimo de crecimiento seria 1.5. El umbral seria independiente del cumplimiento del rango objetivo: un nivel podria mostrar "crecimiento" respecto al anterior pero aun asi estar fuera de su rango objetivo.
 
 ### Doubt[DOUBT-AGGREGATION-METHOD] - La agregacion intermedia debe ser promedio simple o promedio ponderado?
 **Status**: OPEN
@@ -368,13 +262,8 @@ La cadena de agregacion (quiz -> knowledge -> topic -> nivel -> curso) usa prome
 [ASSUMPTION] Se usa promedio simple en cada nivel de agregacion porque refleja la importancia pedagogica de cada unidad de conocimiento por igual, independientemente de cuantos ejercicios tenga. Un knowledge con 5 quizzes es tan importante como uno con 30 quizzes en terminos de adecuacion del contenido. Si el product owner prefiere que knowledges con mas ejercicios tengan mas peso, deberia seleccionarse la opcion B.
 
 ### Doubt[DOUBT-LEVEL-STATS-LOCATION] - Donde residen las estadisticas especificas de longitud por nivel?
-**Status**: OPEN
+**Status**: RESOLVED (decisor: retiro del alcance MVP)
 
-Las estadisticas por nivel (R006, R007, R014, R015) requieren datos que solo este analizador conoce (longitud en tokens, rangos objetivo CEFR). Sin embargo, con la separacion entre el analizador (que opera a nivel de quiz) y la agregacion (que es generica), surge la pregunta de donde se produce esta informacion complementaria.
+Esta pregunta se mantuvo OPEN durante varias iteraciones sin que aparezca un consumidor concreto que requiera estadisticas agregadas por nivel CEFR (promedio de longitud por nivel, estado de cobertura, progresion entre niveles, recomendaciones). Los consumidores aguas abajo conocidos (FEAT-RCLALEN, FEAT-LAGEN, refinamiento de longitud de oraciones) trabajan sobre el diagnostico por quiz que produce el analizador (`SentenceLengthDiagnosis`), no sobre stats agregadas.
 
-**Pregunta**: Las estadisticas especificas de longitud por nivel deben producirse como un paso posterior al analisis por quiz, o deben incorporarse de alguna otra forma en el flujo de auditoria?
-
-- [x] Opcion A: Se producen como un procesamiento posterior que toma los datos del analizador y los resultados agregados para generar las estadisticas de nivel
-- [ ] Opcion B: Se incorporan como metadatos adicionales que el analizador emite junto con las puntuaciones por quiz
-
-[ASSUMPTION] Se asume que las estadisticas de nivel se producen como un procesamiento posterior, ya que el analizador opera a nivel de quiz y no tiene visibilidad de los niveles superiores de la jerarquia. El promedio de longitud en tokens, el estado de cobertura, la progresion y las recomendaciones se calculan una vez que todas las puntuaciones de quiz han sido producidas y los datos del curso estan disponibles.
+**Resolucion**: Se retiran las stats por nivel del alcance MVP del feature. La pregunta de "donde residen" deja de aplicar porque la funcionalidad misma se retiro. Si en una iteracion posterior aparece un caso de uso concreto que requiera estas stats, esta pregunta debe re-abrirse junto con el diseno del componente que las produce. Ver "Analisis de nivel y progresion: fuera de alcance MVP" en Contexto para los detalles del retiro.

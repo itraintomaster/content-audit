@@ -2,7 +2,9 @@ package com.learney.contentaudit.auditdomain;
 
 import javax.annotation.processing.Generated;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzer;
 import com.learney.contentaudit.auditdomain.lrec.IntervalCalculator;
 import com.learney.contentaudit.auditdomain.lrec.ExposureClassifier;
@@ -14,6 +16,7 @@ import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyDouble;
@@ -39,6 +42,43 @@ public class IAuditEngineTest {
         analyzers.add(new KnowledgeTitleLengthAnalyzer());
         analyzers.add(new KnowledgeInstructionsLengthAnalyzer());
         return new IAuditEngine(analyzers, new IScoreAggregator());
+    }
+
+    private static NlpToken tok() {
+        return new NlpToken("w", "w", "NOUN", 1, false, false);
+    }
+
+    /** Builds a SentenceLengthConfig stub that always returns a [5,8] A1 range. */
+    private SentenceLengthConfig stubSlenConfig() {
+        SentenceLengthConfig cfg = Mockito.mock(SentenceLengthConfig.class);
+        TargetRange range = new TargetRange(CefrLevel.A1, 5, 8);
+        Mockito.lenient().when(cfg.getTargetRange(any())).thenReturn(Optional.of(range));
+        Mockito.lenient().when(cfg.getToleranceMargin()).thenReturn(4);
+        return cfg;
+    }
+
+    private IAuditEngine slenEngine() {
+        return new IAuditEngine(
+                List.of(new SentenceLengthAnalyzer(null, stubSlenConfig())),
+                new IScoreAggregator());
+    }
+
+    /**
+     * Builds course: A1 milestone → 1 topic → 1 knowledge (sentence=true) → quizzes.
+     * Each quiz gets `tokenCount` tokens. Returns the AuditableCourse.
+     */
+    private AuditableCourse slenCourse(int... tokenCounts) {
+        List<AuditableQuiz> quizzes = new ArrayList<>();
+        for (int tc : tokenCounts) {
+            quizzes.add(new AuditableQuiz(
+                    Collections.nCopies(tc, tok()),
+                    "q" + tc, "Quiz", null, null,
+                    List.of("sentence text"), null));
+        }
+        AuditableKnowledge k = new AuditableKnowledge(quizzes, "K", "Complete", true, "k1", "K", "K");
+        AuditableTopic t = new AuditableTopic(List.of(k), "t1", "T", "T");
+        AuditableMilestone m = new AuditableMilestone(List.of(t), "m1", "A1", "A1");
+        return new AuditableCourse(List.of(m));
     }
 
     @Test
@@ -203,5 +243,113 @@ public class IAuditEngineTest {
         assertNotNull(score2, "R002: course2 must produce a lemma-recurrence score");
         assertEquals(score1, score2, 0.001,
                 "R002: deterministic CEFR-ordered traversal must produce equal scores regardless of milestone declaration order");
+    }
+
+    @Test
+    @DisplayName("should aggregate quiz-level sentence-length scores into each KNOWLEDGE node as the simple average of the scoring quizzes under it omitting from the average any quiz excluded by F-SLEN-R001 and leaving the knowledge score unavailable when no quiz under it has a score")
+    @Tag("FEAT-SLEN")
+    @Tag("F-SLEN-R003")
+    public void shouldAggregateQuizlevelSentencelengthScoresIntoEachKNOWLEDGENodeAsTheSimpleAverageOfTheScoringQuizzesUnderItOmittingFromTheAverageAnyQuizExcludedByFSLENR001AndLeavingTheKnowledgeScoreUnavailableWhenNoQuizUnderItHasAScore() {
+        // R003: knowledge score = average of scoring quiz scores; excluded quizzes (non-sentence) skipped
+        // Two scoring quizzes in-range (6 tokens each → score 1.0) under A1 [5,8]
+        AuditableCourse course = slenCourse(6, 6);
+        AuditReport report = slenEngine().runAudit(course);
+
+        AuditNode knowledgeNode = report.getRoot()
+                .getChildren().get(0)   // milestone
+                .getChildren().get(0)   // topic
+                .getChildren().get(0);  // knowledge
+        Double kScore = knowledgeNode.getScores().get("sentence-length");
+        assertNotNull(kScore, "R003: knowledge node must carry a sentence-length score");
+        assertEquals(1.0, kScore, 0.001, "R003: knowledge score must be average of quiz scores");
+    }
+
+    @Test
+    @DisplayName("should aggregate knowledge-level sentence-length scores into each TOPIC node as the simple average of the scoring knowledges under it omitting from the average any knowledge without a score and leaving the topic score unavailable when no knowledge under it has a score")
+    @Tag("FEAT-SLEN")
+    @Tag("F-SLEN-R004")
+    public void shouldAggregateKnowledgelevelSentencelengthScoresIntoEachTOPICNodeAsTheSimpleAverageOfTheScoringKnowledgesUnderItOmittingFromTheAverageAnyKnowledgeWithoutAScoreAndLeavingTheTopicScoreUnavailableWhenNoKnowledgeUnderItHasAScore() {
+        // R004: topic score = average of knowledge scores
+        AuditableCourse course = slenCourse(6); // one quiz, in-range → all scores 1.0
+        AuditReport report = slenEngine().runAudit(course);
+
+        AuditNode topicNode = report.getRoot()
+                .getChildren().get(0)   // milestone
+                .getChildren().get(0);  // topic
+        Double tScore = topicNode.getScores().get("sentence-length");
+        assertNotNull(tScore, "R004: topic node must carry a sentence-length score");
+        assertEquals(1.0, tScore, 0.001, "R004: topic score must be average of knowledge scores");
+    }
+
+    @Test
+    @DisplayName("should aggregate topic-level sentence-length scores into each MILESTONE node as the simple average of the scoring topics under it omitting from the average any topic without a score and leaving the level score unavailable when no topic under it has a score")
+    @Tag("FEAT-SLEN")
+    @Tag("F-SLEN-R005")
+    public void shouldAggregateTopiclevelSentencelengthScoresIntoEachMILESTONENodeAsTheSimpleAverageOfTheScoringTopicsUnderItOmittingFromTheAverageAnyTopicWithoutAScoreAndLeavingTheLevelScoreUnavailableWhenNoTopicUnderItHasAScore() {
+        // R005: milestone score = average of topic scores
+        AuditableCourse course = slenCourse(6); // in-range → score 1.0 propagates up
+        AuditReport report = slenEngine().runAudit(course);
+
+        AuditNode milestoneNode = report.getRoot().getChildren().get(0);
+        Double mScore = milestoneNode.getScores().get("sentence-length");
+        assertNotNull(mScore, "R005: milestone node must carry a sentence-length score");
+        assertEquals(1.0, mScore, 0.001, "R005: milestone score must be average of topic scores");
+    }
+
+    @Test
+    @DisplayName("should aggregate milestone-level sentence-length scores into the COURSE root node as the simple average of the scoring milestones omitting from the average any milestone without a score and returning zero as the course overall score when no milestone has a score")
+    @Tag("FEAT-SLEN")
+    @Tag("F-SLEN-R008")
+    public void shouldAggregateMilestonelevelSentencelengthScoresIntoTheCOURSERootNodeAsTheSimpleAverageOfTheScoringMilestonesOmittingFromTheAverageAnyMilestoneWithoutAScoreAndReturningZeroAsTheCourseOverallScoreWhenNoMilestoneHasAScore() {
+        // R008: course score = average of milestone scores; zero when no milestone has a score
+        // Positive case: one in-range quiz → score propagates to root
+        AuditableCourse course = slenCourse(6);
+        AuditReport report = slenEngine().runAudit(course);
+
+        Double courseScore = report.getRoot().getScores().get("sentence-length");
+        assertNotNull(courseScore, "R008: course root must carry a sentence-length score");
+        assertEquals(1.0, courseScore, 0.001, "R008: course score must be average of milestone scores");
+
+        // Zero case: course with no sentence quizzes → no milestone score → course score not set or zero
+        // Build a course where the milestone has no scoring quizzes (non-sentence knowledge)
+        AuditableQuiz nonSentQuiz = new AuditableQuiz(
+                Collections.nCopies(3, tok()), "q1", "Q", null, null, List.of("word"), null);
+        AuditableKnowledge nonSentK = new AuditableKnowledge(
+                List.of(nonSentQuiz), "K", "Complete", false, "k1", "K", "K");
+        AuditableTopic t = new AuditableTopic(List.of(nonSentK), "t1", "T", "T");
+        AuditableMilestone m = new AuditableMilestone(List.of(t), "m1", "A1", "A1");
+        AuditReport zeroReport = slenEngine().runAudit(new AuditableCourse(List.of(m)));
+        Double zeroCourseScore = zeroReport.getRoot().getScores().get("sentence-length");
+        // R008: no milestone score means course score absent or 0
+        assertTrue(zeroCourseScore == null || zeroCourseScore == 0.0,
+                "R008: course overall score must be zero or absent when no milestone has a score");
+    }
+
+    @Test
+    @DisplayName("should publish the sentence-length score on every AuditNode of the hierarchy (quiz knowledge topic milestone course) so consumers can read it at any level via node.getScores().get('sentence-length')")
+    @Tag("FEAT-SLEN")
+    @Tag("F-SLEN-R016")
+    @Tag("F-SLEN-J004")
+    public void shouldPublishTheSentencelengthScoreOnEveryAuditNodeOfTheHierarchyQuizKnowledgeTopicMilestoneCourseSoConsumersCanReadItAtAnyLevelViaNodegetScoresgetsentencelength() {
+        // R016 + J004: score accessible at every level — quiz, knowledge, topic, milestone, course
+        AuditableCourse course = slenCourse(6); // in-range → 1.0 at all levels
+        AuditReport report = slenEngine().runAudit(course);
+
+        AuditNode root = report.getRoot();                          // COURSE
+        AuditNode milestone = root.getChildren().get(0);            // MILESTONE
+        AuditNode topic = milestone.getChildren().get(0);           // TOPIC
+        AuditNode knowledge = topic.getChildren().get(0);           // KNOWLEDGE
+        AuditNode quiz = knowledge.getChildren().get(0);            // QUIZ
+
+        assertNotNull(root.getScores().get("sentence-length"),
+                "R016: course must expose sentence-length score");
+        assertNotNull(milestone.getScores().get("sentence-length"),
+                "R016: milestone must expose sentence-length score");
+        assertNotNull(topic.getScores().get("sentence-length"),
+                "R016: topic must expose sentence-length score");
+        assertNotNull(knowledge.getScores().get("sentence-length"),
+                "R016: knowledge must expose sentence-length score");
+        assertNotNull(quiz.getScores().get("sentence-length"),
+                "R016: quiz must expose sentence-length score");
     }
 }

@@ -468,41 +468,6 @@ modules:
       traceability:
         feature: FEAT-LREC
         rule: F-LREC-R002
-    - name: should aggregate quiz-level sentence-length scores into each KNOWLEDGE
-        node as the simple average of the scoring quizzes under it omitting from the
-        average any quiz excluded by F-SLEN-R001 and leaving the knowledge score unavailable
-        when no quiz under it has a score
-      traceability:
-        feature: FEAT-SLEN
-        rule: F-SLEN-R003
-    - name: should aggregate knowledge-level sentence-length scores into each TOPIC
-        node as the simple average of the scoring knowledges under it omitting from
-        the average any knowledge without a score and leaving the topic score unavailable
-        when no knowledge under it has a score
-      traceability:
-        feature: FEAT-SLEN
-        rule: F-SLEN-R004
-    - name: should aggregate topic-level sentence-length scores into each MILESTONE
-        node as the simple average of the scoring topics under it omitting from the
-        average any topic without a score and leaving the level score unavailable
-        when no topic under it has a score
-      traceability:
-        feature: FEAT-SLEN
-        rule: F-SLEN-R005
-    - name: should aggregate milestone-level sentence-length scores into the COURSE
-        root node as the simple average of the scoring milestones omitting from the
-        average any milestone without a score and returning zero as the course overall
-        score when no milestone has a score
-      traceability:
-        feature: FEAT-SLEN
-        rule: F-SLEN-R008
-    - name: should publish the sentence-length score on every AuditNode of the hierarchy
-        (quiz knowledge topic milestone course) so consumers can read it at any level
-        via node.getScores().get('sentence-length')
-      traceability:
-        feature: FEAT-SLEN
-        rule: F-SLEN-R016
-        journey: F-SLEN-J004
     implements:
     - AuditEngine
   - name: KnowledgeTitleLengthAnalyzer
@@ -876,12 +841,6 @@ modules:
       traceability:
         feature: FEAT-DSLEN
         rule: F-DSLEN-R004
-    - name: should compute each quiz score using the linguistic token count from the
-        precomputed NLP tokenization of the quiz sentence and never from a whitespace-based
-        string split
-      traceability:
-        feature: FEAT-SLEN
-        rule: F-SLEN-R013
     implements:
     - ContentAnalyzer
   - name: IScoreAggregator

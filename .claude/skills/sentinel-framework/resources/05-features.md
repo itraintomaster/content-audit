@@ -329,22 +329,17 @@ enabling JUnit 5 tag-based filtering (e.g., run only tests for `FEAT-001`).
 | F-NLP-R015 | Los datos de frecuencia se cargan una sola vez al inicio | major | No se pudieron cargar los datos de frecuencia COCA al inicio |
 | F-NLP-R016 | El ranking de frecuencia retornado es el ranking del lema | major | - |
 | F-NLP-R017 | SpaCy como motor de procesamiento linguistico | critical | No se pudo iniciar el motor SpaCy: {detalle} |
-| F-NLP-R018 | Comunicacion con el proceso Python via archivos JSON | major | Error en la comunicacion con el proceso Python: no se pudo leer/escribir el archivo {ruta} |
 | F-NLP-R019 | El proceso Python integra lematizacion y busqueda de frecuencia | critical | - |
 | F-NLP-R020 | Requisitos del entorno de ejecucion | major | Requisito de entorno faltante: {componente}. Consulte la documentacion de instalacion. |
-| F-NLP-R021 | La ruta del script Python y de los datos COCA es configurable | minor | Ruta del script Python no configurada o no encontrada: {ruta} |
-| F-NLP-R022 | El procesamiento es sincrono | minor | - |
+| F-NLP-R021 | Las rutas del script Python y de los datos COCA se proveen al tokenizador | minor | Ruta del script Python no configurada o no encontrada: {ruta} |
 | F-NLP-R023 | Cache en memoria de tokens enriquecidos por oracion | major | - |
 | F-NLP-R024 | El cache usa la oracion completa como clave | minor | - |
-| F-NLP-R025 | Cache persistente opcional en disco | minor | - |
 | F-NLP-R026 | El cache del CachedNlpTokenizer debe evolucionar | major | - |
-| F-NLP-R027 | Volumetria del cache | minor | - |
 | F-NLP-R028 | Tokens sin ranking de frecuencia | major | - |
 | F-NLP-R029 | Fallo del proceso Python | critical | El procesamiento NLP fallo: {causa}. Verifique que Python 3.11+, SpaCy y el modelo en_core_web_sm estan instalados. |
 | F-NLP-R030 | Fallback cuando SpaCy no esta disponible | major | SpaCy no disponible: los analizadores que requieren datos linguisticos enriquecidos no se ejecutaran. Los analizadores basicos (longitud de oracion) funcionan normalmente. |
 | F-NLP-R031 | Timeout del proceso Python | major | El procesamiento NLP excedio el tiempo limite de {timeout} segundos. Considere procesar en lotes mas pequenos o aumentar el timeout. |
 | F-NLP-R032 | Errores de tokens individuales no detienen el lote completo | major | Error al procesar el token '{text}' en la oracion '{oracion}': {detalle}. Se uso fallback basico. |
-| F-NLP-R033 | Signos de puntuacion y espacios no participan como tokens linguisticos | minor | - |
 
 **User Journeys:**
 
@@ -360,20 +355,9 @@ enabling JUnit 5 tag-based filtering (e.g., run only tests for `FEAT-001`).
 
 - **F-NLP-J002**: El usuario no tiene SpaCy instalado
   1. El usuario inicia una auditoria sin tener Python o SpaCy instalados en su entorno
-  2. El sistema intenta invocar el proceso Python para la tokenizacion enriquecida
-  3. El proceso falla porque Python no esta disponible (o SpaCy no esta instalado)
-  4. El sistema reporta un mensaje claro: "SpaCy no disponible. Los analizadores que requieren datos linguisticos (distribucion COCA) no se ejecutaran."
-  5. El sistema ejecuta la auditoria con funcionalidad reducida: solo los analizadores que no requieren tokens enriquecidos (como el analizador de longitud de oraciones) producen resultados
-  6. El usuario recibe los resultados parciales con una nota indicando que analizadores no se ejecutaron y por que
-  7. El usuario consulta la documentacion para instalar Python, SpaCy y el modelo requerido
-
-- **F-NLP-J003**: Diagnosticar problemas de tokenizacion en una oracion especifica
-  1. El usuario ejecuta la auditoria y observa resultados inesperados en el analizador COCA para un knowledge especifico
-  2. El usuario consulta los tokens enriquecidos de una oracion problematica
-  3. El usuario observa que un token tiene `frequencyRank` nulo cuando esperaba un valor
-  4. El usuario verifica el lema y el POS del token para entender por que la busqueda COCA fallo
-  5. El usuario descubre que el lema fue asignado incorrectamente por SpaCy (por ejemplo, "lead" como sustantivo en lugar de verbo) lo que provoco que la busqueda por lema+POS no encontrara resultado
-  6. El usuario anota el caso como una limitacion del modelo de SpaCy y decide si ajustar el contenido o aceptar la limitacion
+  2. El sistema intenta invocar el proceso Python para la tokenizacion enriquecida y detecta que SpaCy no esta disponible
+  3. El sistema continua la auditoria en modo de funcionalidad reducida (R030): los analizadores que solo necesitan conteo de tokens completan su evaluacion; los analizadores que requieren datos linguisticos reportan que fueron omitidos
+  4. El informe de auditoria final indica al usuario cuales analizadores se ejecutaron y cuales no, con el motivo (SpaCy no disponible)
 
 ### FEAT-LABS: Analisis de Ausencia de Lemas por Nivel CEFR [F-LABS]
 

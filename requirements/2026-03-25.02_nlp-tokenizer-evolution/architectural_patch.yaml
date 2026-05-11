@@ -1,4 +1,8 @@
 code: FEAT-NLP
+description: "Retirar F-NLP-J003 del bloque features/FEAT-NLP/journeys. Analyst ya\
+  \ la removió de REQUIREMENT.md (movida a 'Decisiones de simplicidad'); el sentinel.yaml\
+  \ estaba desincronizado. No hay handwrittenTests ni gates referenciando esta journey,\
+  \ por lo que la eliminación es segura."
 modules:
 - name: nlp-infrastructure
   packages:
@@ -142,6 +146,30 @@ modules:
         traceability:
           feature: FEAT-NLP
           rule: F-NLP-R026
+    - name: SpacyNlpTokenizerFactory
+      handwrittenTests:
+      - name: should invoke the SpaCy-backed pipeline using the pythonScriptPath and
+          cocaDataPath provided in NlpTokenizerConfig (not a hardcoded location) and
+          propagate a clear error citing the missing path when either points to a
+          non-existent or unreadable file
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R021
+      - name: "Given an environment where SpaCy is not available, when the factory\
+          \ creates the tokenizer and an audit runs, then basic-count analyzers complete\
+          \ normally while enriched-token-requiring analyzers are reported as omitted\
+          \ in the final audit report"
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R030
+          journey: F-NLP-J002
+    - name: SpacyProcessRunner
+      handwrittenTests:
+      - name: should terminate the SpaCy python process and return no tokens with
+          a timeout error citing the configured value when processing exceeds NlpTokenizerConfig.timeoutSeconds
+        traceability:
+          feature: FEAT-NLP
+          rule: F-NLP-R031
 - name: audit-application
   implementations:
   - name: CourseToAuditableMapper
@@ -157,3 +185,8 @@ modules:
         feature: FEAT-NLP
         rule: F-NLP-R010
         journey: F-NLP-J001
+features:
+- id: FEAT-NLP
+  journeys:
+  - id: F-NLP-J003
+    validation: AUTO_VALIDATED
