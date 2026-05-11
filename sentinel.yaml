@@ -1298,6 +1298,15 @@ modules:
         traceability:
           feature: FEAT-COCA
           rule: F-COCA-R028
+          journey: F-COCA-J002
+        _change: modify
+      - name: should assign every topic of a CEFR level to exactly one quarter when
+          running under the QUARTERS strategy producing a quarter-to-topic partition
+          that covers all topics of the level with no duplicates and no gaps regardless
+          of the precise rounding algorithm used to balance counts
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R017
       implements:
       - ContentAnalyzer
     - name: CocaTokenAccumulationAggregator
@@ -1341,6 +1350,12 @@ modules:
         traceability:
           feature: FEAT-COCA
           rule: F-COCA-R002
+      - name: should exclude tokens whose frequencyRank is null from every BucketResult.count
+          and from the totalTokens of the produced CocaBucketsLevelDiagnosis and CocaBucketsTopicDiagnosis
+          so percentages are computed only over effectively classified tokens
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R004
       implements:
       - TokenClassifier
     - name: DefaultProgressionEvaluator
@@ -1366,6 +1381,13 @@ modules:
         traceability:
           feature: FEAT-COCA
           rule: F-COCA-R024
+      - name: should ignore band percentage changes smaller than the configured significance
+          margin when classifying a band's real progression so two consecutive levels
+          whose percentages differ only by a sub-margin amount contribute neither
+          an increase nor a decrease to the progression evaluation
+        traceability:
+          feature: FEAT-COCA
+          rule: F-COCA-R023
       implements:
       - ProgressionEvaluator
     - name: DefaultImprovementPlanner
@@ -10238,8 +10260,6 @@ features:
     validation: AUTO_VALIDATED
   - id: F-COCA-J005
     validation: AUTO_VALIDATED
-  - id: F-COCA-J006
-    validation: AUTO_VALIDATED
 - id: FEAT-NLP
   code: F-NLP
   journeys:
@@ -10300,11 +10320,7 @@ features:
 - id: FEAT-SLEN
   code: F-SLEN
   journeys:
-  - id: F-SLEN-J001
-    validation: AUTO_VALIDATED
   - id: F-SLEN-J004
-    validation: AUTO_VALIDATED
-  - id: F-SLEN-J005
     validation: AUTO_VALIDATED
 - id: FEAT-LCOUNT
   code: F-LCOUNT

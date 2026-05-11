@@ -65,7 +65,14 @@ Este bloque de funcionalidad queda **fuera de alcance** para esta version del fe
 - No existe en el sistema un componente que implemente el "procesamiento posterior" requerido para producir estas stats. Anadirlo seria un trabajo arquitectonico significativo motivado por reglas que no tienen demanda real concreta.
 - El usuario que necesita identificar problemas en un nivel especifico ya puede hacerlo a traves de las puntuaciones agregadas por la plataforma (R003-R005-R008-R016) y los diagnosticos por quiz: navegando la jerarquia hasta los nodos con puntuacion baja y consultando el `SentenceLengthDiagnosis` de los quizzes problematicos.
 
-Si en una iteracion posterior aparece un caso de uso concreto que requiera stats agregadas por nivel (por ejemplo, un panel de control que muestre cobertura de longitud por nivel CEFR, o un analizador de progresion pedagogica), esta funcionalidad puede ser disenada como un feature separado, identificando explicitamente el componente que la produce y los consumidores que la requieren. Las reglas R006, R007, R010, R011, R014 y R015 de versiones anteriores de este documento, asi como los journeys J002 y J003, describian este alcance y pueden servir como punto de partida para esa futura iteracion.
+Si en una iteracion posterior aparece un caso de uso concreto que requiera stats agregadas por nivel (por ejemplo, un panel de control que muestre cobertura de longitud por nivel CEFR, o un analizador de progresion pedagogica), esta funcionalidad puede ser disenada como un feature separado, identificando explicitamente el componente que la produce y los consumidores que la requieren.
+
+**Elementos retirados** que describian este alcance en versiones anteriores y pueden servir como punto de partida para una futura iteracion:
+
+- Reglas: R006 (promedio de longitud por nivel), R007 (evaluacion de estado por nivel), R010 (evaluacion de progresion entre niveles), R011 (progresion solo sobre niveles con datos), R014 (generacion de recomendaciones), R015 (registro consolidado de estadisticas por nivel).
+- Journeys: J001 (auditar la longitud de oraciones de un curso completo), J002 (consultar el detalle de un nivel especifico), J003 (identificar problemas de progresion entre niveles), J005 (ajustar rangos objetivo para un curso distinto). J001 y J005 describian flujos completos que mezclaban analisis por quiz con estadisticas por nivel; al retirar la fase de estadisticas, los journeys completos quedaron fuera de alcance hasta que esa fase reaparezca.
+
+El analisis por quiz y la agregacion de puntuaciones a traves de la jerarquia siguen siendo parte de esta version (Grupo A y Grupo B de Reglas de Negocio), y el usuario los ejerce a traves del journey J004 (Navegar la jerarquia para localizar problemas de longitud).
 
 ---
 
@@ -76,7 +83,7 @@ Las reglas se organizan en dos grupos segun la fase a la que pertenecen:
 - **Grupo A - Analisis por quiz (R001, R002, R009, R012, R013)**: reglas propias del analizador de longitud de oraciones, que opera a nivel de quiz individual.
 - **Grupo B - Agregacion de puntuaciones (R003, R004, R005, R008, R016)**: reglas que describen como las puntuaciones individuales se agregan a traves de la jerarquia. Estas reglas son cumplidas por el motor de agregacion generico de la plataforma ContentAudit y aplican de manera identica a todos los analizadores del sistema. Se documentan aqui porque son esenciales para que el usuario entienda el resultado completo de esta funcionalidad.
 
-> **Nota sobre numeracion**: R006, R007, R010, R011, R014 y R015 fueron retirados como reglas numeradas. Describian estadisticas y evaluaciones por nivel CEFR (promedio de longitud por nivel, estado OPTIMO/DEFICIENTE/EXCESIVO/NO APLICA, progresion entre niveles, recomendaciones, registro consolidado) que dependian de un "procesamiento posterior" que no existe en el sistema y no tiene demanda concreta de ningun consumidor aguas abajo. Su contenido se documenta en "Analisis de nivel y progresion: fuera de alcance MVP" del Contexto. Los IDs R006, R007, R010, R011, R014 y R015 quedan retirados; los demas mantienen su numeracion para no romper trazabilidad con commits historicos.
+> **Nota sobre numeracion**: R006, R007, R010, R011, R014 y R015 fueron retirados como reglas numeradas, y los journeys J001, J002, J003 y J005 fueron retirados (J002/J003 dependian exclusivamente de las reglas retiradas; J001/J005 mezclaban analisis por quiz con estadisticas por nivel y quedaron fuera de alcance al retirar la fase de estadisticas). Describian estadisticas y evaluaciones por nivel CEFR (promedio de longitud por nivel, estado OPTIMO/DEFICIENTE/EXCESIVO/NO APLICA, progresion entre niveles, recomendaciones, registro consolidado) que dependian de un "procesamiento posterior" que no existe en el sistema y no tiene demanda concreta de ningun consumidor aguas abajo. Su contenido se documenta en "Analisis de nivel y progresion: fuera de alcance MVP" del Contexto. Los IDs retirados (R006, R007, R010, R011, R014, R015, J001, J002, J003, J005) no se reasignan; los demas mantienen su numeracion para no romper trazabilidad con commits historicos.
 
 ---
 
@@ -194,34 +201,15 @@ Esto permite al creador de contenido navegar la jerarquia y localizar exactament
 
 ## User Journeys
 
-### Journey[F-SLEN-J001] - Auditar la longitud de oraciones de un curso completo
-**Validation**: AUTO_VALIDATED
-
-1. El usuario inicia una auditoria de un curso previamente cargado en el sistema
-2. El sistema recorre la jerarquia del curso de arriba hacia abajo: para cada nivel (milestone), sus topics, sus knowledges, y sus quizzes
-3. Para cada quiz, el analizador de longitud determina si es una oracion valida; los quizzes que no son oraciones se excluyen del analisis (R001)
-4. Para cada quiz valido, el analizador cuenta los tokens linguisticos de su oracion (R013) y calcula su puntuacion individual comparando la longitud contra el rango objetivo de su nivel CEFR (R002)
-5. La plataforma agrega las puntuaciones de quizzes hacia arriba a traves de la jerarquia: para cada knowledge calcula el promedio de sus quizzes (R003), para cada topic el promedio de sus knowledges (R004), para cada nivel el promedio de sus topics (R005), y para el curso el promedio de sus niveles (R008)
-6. El usuario recibe un informe con la puntuacion general y las puntuaciones disponibles en cada nivel de la jerarquia (R016), pudiendo profundizar en topics, knowledges y quizzes individuales para localizar donde se concentran los problemas de longitud
-
 ### Journey[F-SLEN-J004] - Navegar la jerarquia para localizar problemas de longitud
 **Validation**: AUTO_VALIDATED
 
-1. El usuario ha ejecutado la auditoria de longitud de oraciones (J001)
+1. El usuario ha ejecutado una auditoria de longitud de oraciones sobre un curso previamente cargado en el sistema (el analizador puntua cada quiz valido segun R001/R002/R013 y la plataforma agrega las puntuaciones a traves de la jerarquia segun R003/R004/R005/R008)
 2. El usuario observa que un nivel (por ejemplo, B1) tiene una puntuacion baja
 3. El usuario profundiza en los topics del nivel B1 y encuentra que el topic "Modal Verbs" tiene la puntuacion mas baja
 4. El usuario profundiza en los knowledges de "Modal Verbs" y encuentra que el knowledge "Should for advice" tiene puntuacion 0.4
 5. El usuario revisa los quizzes de "Should for advice" y encuentra que varias oraciones tienen 18 tokens (demasiado largas para B1, rango 11-14)
 6. El usuario identifica exactamente que oraciones necesitan simplificarse y puede tomar acciones correctivas puntuales
-
-### Journey[F-SLEN-J005] - Ajustar rangos objetivo para un curso distinto
-**Validation**: AUTO_VALIDATED
-
-1. El usuario tiene un curso con caracteristicas diferentes al curso estandar (por ejemplo, un curso para ninos o un curso intensivo)
-2. El usuario modifica los rangos objetivo de longitud por nivel en la configuracion del sistema
-3. El usuario ejecuta la auditoria con los nuevos rangos
-4. Los resultados reflejan los rangos actualizados: las puntuaciones de quizzes se recalculan con los nuevos valores (R002), y la plataforma reagrega las puntuaciones a traves de la jerarquia (R003-R005-R008)
-5. El usuario valida que los rangos ajustados se alinean con las expectativas pedagogicas del nuevo curso navegando la jerarquia (R016) y observando como cambian las puntuaciones por nivel
 
 ---
 

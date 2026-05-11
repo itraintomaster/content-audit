@@ -128,4 +128,37 @@ public class DefaultProgressionEvaluatorTest {
         assertFalse(assessment.isMatches(),
                 "R024: isMatches must be false when actual != expected");
     }
+
+    @Test
+    @DisplayName("should ignore band percentage changes smaller than the configured significance margin when classifying a band's real progression so two consecutive levels whose percentages differ only by a sub-margin amount contribute neither an increase nor a decrease to the progression evaluation")
+    @Tag("FEAT-COCA")
+    @Tag("F-COCA-R023")
+    public void shouldIgnoreBandPercentageChangesSmallerThanTheConfiguredSignificanceMarginWhenClassifyingABandsRealProgressionSoTwoConsecutiveLevelsWhosePercentagesDifferOnlyByASubmarginAmountContributeNeitherAnIncreaseNorADecreaseToTheProgressionEvaluation() {
+        // R023: sub-margin percentage changes must not count as increases or decreases.
+        // The exact margin value is unspecified (ASSUMPTION in the requirement).
+        // Strategy: use values that differ by a very small amount (0.01pp) across all levels.
+        // All consecutive pairs have a negligible difference → no real trend → STATIC.
+        DefaultProgressionEvaluator sut = new DefaultProgressionEvaluator();
+        List<ProgressionExpectation> expectations = List.of(
+                new ProgressionExpectation("top1k", ProgressionState.DESCENDING)
+        );
+
+        // All levels have nearly identical top1k percentage (0.01pp delta between consecutive levels)
+        // — well within any reasonable significance margin
+        List<LevelBucketDistribution> levels = List.of(
+                level("A1", 80.00, 5.0),
+                level("A2", 80.01, 5.0),  // +0.01pp — sub-margin, must not count as increase
+                level("B1", 80.00, 5.0),  // -0.01pp — sub-margin, must not count as decrease
+                level("B2", 80.01, 5.0)   // +0.01pp — sub-margin
+        );
+
+        List<ProgressionAssessment> results = sut.evaluate(levels, expectations);
+
+        assertFalse(results.isEmpty(), "R023: must produce assessment results");
+        ProgressionAssessment assessment = results.get(0);
+        // Sub-margin fluctuations must not yield ASCENDING, DESCENDING, or IRREGULAR
+        // They must result in STATIC (no significant trend detected)
+        assertEquals(ProgressionState.STATIC, assessment.getActualProgression(),
+                "R023: sub-margin changes (0.01pp deltas) must be ignored → STATIC progression");
+    }
 }

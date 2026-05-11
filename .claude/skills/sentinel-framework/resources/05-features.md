@@ -215,7 +215,7 @@ enabling JUnit 5 tag-based filtering (e.g., run only tests for `FEAT-001`).
 | F-COCA-R001 | Clasificacion de tokens en bandas de frecuencia | critical | Token con frequencyRank invalido ({rank}) en el quiz {quizId} del knowledge {knowledgeId} |
 | F-COCA-R002 | Banda abierta (top4k) | major | - |
 | F-COCA-R003 | Configuracion de bandas de frecuencia | major | Configuracion de bandas invalida: los valores deben ser positivos y estar en orden ascendente |
-| F-COCA-R004 | Tokens sin ranking de frecuencia | major | Proporcion alta de tokens sin ranking de frecuencia en el nivel {nivel}: {porcentaje}% de tokens excluidos del analisis |
+| F-COCA-R004 | Tokens sin ranking de frecuencia | major | - |
 | F-COCA-R005 | Calculo de distribucion porcentual | critical | Error al calcular la distribucion porcentual para el nivel {nivel}: total de tokens clasificados es cero |
 | F-COCA-R006 | Los datos de frecuencia provienen de procesamiento linguistico previo | critical | Token sin datos de frecuencia en el quiz {quizId}: el procesamiento linguistico previo no asocio frequencyRank |
 | F-COCA-R007 | Evaluacion de estado por banda (assessment) | critical | Estado indeterminado para la banda {banda} en el nivel {nivel}: porcentaje real {real}%, objetivo {target}% |
@@ -244,8 +244,6 @@ enabling JUnit 5 tag-based filtering (e.g., run only tests for `FEAT-001`).
 | F-COCA-R030 | Generacion de directivas de mejora | major | - |
 | F-COCA-R031 | Rango de frecuencia en directivas | major | - |
 | F-COCA-R032 | Directivas se generan solo para bandas fuera de rango | major | - |
-| F-COCA-R033 | Directivas a nivel de trimestre (estrategia quarters) | minor | - |
-| F-COCA-R034 | Contenido de las directivas de mejora | minor | - |
 
 **User Journeys:**
 
@@ -296,13 +294,6 @@ enabling JUnit 5 tag-based filtering (e.g., run only tests for `FEAT-001`).
   5. El usuario profundiza en los knowledges de "Travel Vocabulary" y encuentra que el knowledge "Airport Procedures" tiene una concentracion inusual de vocabulario tecnico de baja frecuencia
   6. El usuario identifica que varias oraciones de "Airport Procedures" usan vocabulario especializado (boarding, customs, luggage carousel) que infla la banda top4k
   7. El usuario decide si simplificar el vocabulario o aceptar la desviacion como apropiada para el contexto tematico
-
-- **F-COCA-J006**: Comparar resultados entre estrategia levels y quarters
-  1. El usuario ejecuta la auditoria con la estrategia LEVELS
-  2. El usuario observa que el nivel A2 tiene estado OPTIMO con puntuacion 0.95
-  3. El usuario cambia la configuracion a la estrategia QUARTERS y re-ejecuta la auditoria
-  4. El usuario descubre que si bien A2 en promedio es adecuado, Q1 de A2 tiene exceso de vocabulario frecuente (top1k al 85% cuando el objetivo Q1 es 75% atLeast) y Q4 tiene deficit de vocabulario variado (top4k al 5% cuando el objetivo Q4 es 15% atMost)
-  5. El usuario concluye que la estrategia quarters proporciona informacion mas granular y util para mejorar el contenido dentro de cada nivel
 
 ### FEAT-NLP: Evolucion del Tokenizador NLP para Tokenizacion Rica con Datos Linguisticos [F-NLP]
 
@@ -536,28 +527,13 @@ Este es el tercer paso de la iniciativa de diagnosticos tipados, tras FEAT-DLABS
 
 **User Journeys:**
 
-- **F-SLEN-J001**: Auditar la longitud de oraciones de un curso completo
-  1. El usuario inicia una auditoria de un curso previamente cargado en el sistema
-  2. El sistema recorre la jerarquia del curso de arriba hacia abajo: para cada nivel (milestone), sus topics, sus knowledges, y sus quizzes
-  3. Para cada quiz, el analizador de longitud determina si es una oracion valida; los quizzes que no son oraciones se excluyen del analisis (R001)
-  4. Para cada quiz valido, el analizador cuenta los tokens linguisticos de su oracion (R013) y calcula su puntuacion individual comparando la longitud contra el rango objetivo de su nivel CEFR (R002)
-  5. La plataforma agrega las puntuaciones de quizzes hacia arriba a traves de la jerarquia: para cada knowledge calcula el promedio de sus quizzes (R003), para cada topic el promedio de sus knowledges (R004), para cada nivel el promedio de sus topics (R005), y para el curso el promedio de sus niveles (R008)
-  6. El usuario recibe un informe con la puntuacion general y las puntuaciones disponibles en cada nivel de la jerarquia (R016), pudiendo profundizar en topics, knowledges y quizzes individuales para localizar donde se concentran los problemas de longitud
-
 - **F-SLEN-J004**: Navegar la jerarquia para localizar problemas de longitud
-  1. El usuario ha ejecutado la auditoria de longitud de oraciones (J001)
+  1. El usuario ha ejecutado una auditoria de longitud de oraciones sobre un curso previamente cargado en el sistema (el analizador puntua cada quiz valido segun R001/R002/R013 y la plataforma agrega las puntuaciones a traves de la jerarquia segun R003/R004/R005/R008)
   2. El usuario observa que un nivel (por ejemplo, B1) tiene una puntuacion baja
   3. El usuario profundiza en los topics del nivel B1 y encuentra que el topic "Modal Verbs" tiene la puntuacion mas baja
   4. El usuario profundiza en los knowledges de "Modal Verbs" y encuentra que el knowledge "Should for advice" tiene puntuacion 0.4
   5. El usuario revisa los quizzes de "Should for advice" y encuentra que varias oraciones tienen 18 tokens (demasiado largas para B1, rango 11-14)
   6. El usuario identifica exactamente que oraciones necesitan simplificarse y puede tomar acciones correctivas puntuales
-
-- **F-SLEN-J005**: Ajustar rangos objetivo para un curso distinto
-  1. El usuario tiene un curso con caracteristicas diferentes al curso estandar (por ejemplo, un curso para ninos o un curso intensivo)
-  2. El usuario modifica los rangos objetivo de longitud por nivel en la configuracion del sistema
-  3. El usuario ejecuta la auditoria con los nuevos rangos
-  4. Los resultados reflejan los rangos actualizados: las puntuaciones de quizzes se recalculan con los nuevos valores (R002), y la plataforma reagrega las puntuaciones a traves de la jerarquia (R003-R005-R008)
-  5. El usuario valida que los rangos ajustados se alinean con las expectativas pedagogicas del nuevo curso navegando la jerarquia (R016) y observando como cambian las puntuaciones por nivel
 
 ### FEAT-LCOUNT: Analisis de Conteo de Repeticiones de Lemas Content-Word [F-LCOUNT]
 

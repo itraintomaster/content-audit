@@ -4,6 +4,19 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-05-11 — analyst — Segunda pasada: J001 y J005 retirados por instruccion del lead
+  - Lead pidio segunda iteracion: retirar tambien J001 y J005 (no solo reformular).
+  - Recomendacion mia previa era dejarlos reformulados (cubren happy path, tags a reglas
+    vivas). Lead confirmo retiro literal en segundo ping. Aplique.
+  - J004 ajustado: step 1 ya no referencia J001 (lo describe inline: "El usuario ha
+    ejecutado una auditoria de longitud de oraciones...").
+  - Estado final: 10 reglas + 1 journey (J004).
+  - Validacion: sentinel requirement validate → [OK].
+  - IDs retirados ampliados: R006/R007/R010/R011/R014/R015/J001/J002/J003/J005.
+  - Pendiente architect: retirar F-SLEN-J001, J002, J003, J005 de
+    sentinel.yaml:10048-10056 (definitions/FEAT-SLEN/journeys). Antes era J002+J003;
+    ahora son 4 journeys.
+
 2026-05-11 — analyst — REQUIREMENT.md reformulado para desbloquear FEAT-SLEN
   - 6 reglas retiradas (R006, R007, R010, R011, R014, R015): stats por nivel CEFR
     sin owner conocido ni consumidor concreto. Movidas a nueva seccion en Contexto

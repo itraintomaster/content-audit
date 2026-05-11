@@ -2,8 +2,27 @@ package com.learney.contentaudit.auditdomain.coca;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.lenient;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.CocaBucketsConfig;
+import com.learney.contentaudit.auditdomain.IAuditEngine;
+import com.learney.contentaudit.auditdomain.IScoreAggregator;
+import com.learney.contentaudit.auditdomain.LevelDiagnoses;
+import com.learney.contentaudit.auditdomain.NlpToken;
+import com.learney.contentaudit.auditdomain.NlpTokenizer;
+import com.learney.contentaudit.auditdomain.TopicDiagnoses;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -71,5 +90,73 @@ public class DefaultTokenClassifierTest {
         assertEquals("top4k", b15000.getName(), "R002: rank 15000 must fall in same open top4k band");
         assertEquals(b3500.getName(), b15000.getName(),
                 "R002: open band treats all ranks >= 3001 equally regardless of magnitude");
+    }
+
+    @Test
+    @DisplayName("should exclude tokens whose frequencyRank is null from every BucketResult.count and from the totalTokens of the produced CocaBucketsLevelDiagnosis and CocaBucketsTopicDiagnosis so percentages are computed only over effectively classified tokens")
+    @Tag("FEAT-COCA")
+    @Tag("F-COCA-R004")
+    public void shouldExcludeTokensWhoseFrequencyRankIsNullFromEveryBucketResultcountAndFromTheTotalTokensOfTheProducedCocaBucketsLevelDiagnosisAndCocaBucketsTopicDiagnosisSoPercentagesAreComputedOnlyOverEffectivelyClassifiedTokens() {
+        // R004: tokens with null frequencyRank must be excluded from counts and totalTokens.
+        // Mix: 80 classified (rank=500, top1k) + 20 unclassified (rank=null).
+        // Expected: totalTokens=80, top1k percentage=100%, null-rank tokens do NOT appear in any band.
+        List<NlpToken> tokens = new java.util.ArrayList<>();
+        for (int i = 0; i < 80; i++)
+            tokens.add(new NlpToken("word", "word", "NOUN", 500, false, false));   // top1k
+        for (int i = 0; i < 20; i++)
+            tokens.add(new NlpToken("proper", "proper", "PROPN", null, false, false)); // null rank
+
+        AuditableQuiz quiz = new AuditableQuiz(tokens, "q1", "Q", null, null, List.of("s"), null);
+        AuditableKnowledge k = new AuditableKnowledge(
+                List.of(quiz), "K", "C", true, "k1", "K", "K");
+        AuditableTopic t = new AuditableTopic(List.of(k), "t1", "T", "T");
+        AuditableMilestone m = new AuditableMilestone(List.of(t), "A1", "A1", null);
+        AuditableCourse course = new AuditableCourse(List.of(m));
+
+        CocaBucketsConfig cfg = mock(CocaBucketsConfig.class);
+        BandConfiguration bands = new BandConfiguration(List.of(
+                new FrequencyBand("top1k", 1, 1000),
+                new FrequencyBand("top4k", 3001, 4000)
+        ), true);
+        when(cfg.getBandConfiguration()).thenReturn(bands);
+        when(cfg.getTargetsForLevel("A1")).thenReturn(List.of(
+                new BucketTarget("top1k", 80.0, TargetKind.AT_LEAST)));
+        lenient().when(cfg.getTargetsForLevel(anyString())).thenReturn(List.of());
+        lenient().when(cfg.getQuarterTargetsForLevel(anyString())).thenReturn(List.of());
+        when(cfg.getToleranceMargin()).thenReturn(0.10);
+        when(cfg.getAnalysisStrategy()).thenReturn(AnalysisStrategy.LEVELS);
+        lenient().when(cfg.getProgressionExpectations()).thenReturn(List.of());
+
+        NlpTokenizer nlpTokenizer = mock(NlpTokenizer.class);
+        CocaBucketsAnalyzer analyzer = new CocaBucketsAnalyzer(
+                nlpTokenizer, cfg,
+                new DefaultTokenClassifier(),
+                new DefaultProgressionEvaluator(),
+                new DefaultImprovementPlanner());
+        AuditReport report = new IAuditEngine(List.of(analyzer), new IScoreAggregator())
+                .runAudit(course);
+
+        AuditNode milestone = report.getRoot().getChildren().get(0);
+        CocaBucketsLevelDiagnosis levelDiag =
+                ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null);
+        assertNotNull(levelDiag, "R004: level diagnosis must be present");
+        // Only 80 classified tokens — 20 null-rank tokens are excluded
+        assertEquals(80, levelDiag.getTotalTokens(),
+                "R004: totalTokens must count only classified tokens (80), excluding 20 null-rank tokens");
+
+        BucketResult top1k = levelDiag.getBuckets().stream()
+                .filter(b -> "top1k".equals(b.getBandName())).findFirst().orElse(null);
+        assertNotNull(top1k, "R004: top1k bucket must be present");
+        assertEquals(80, top1k.getCount(), "R004: top1k count must be 80 (only classified tokens)");
+        assertEquals(100.0, top1k.getPercentage(), 0.1,
+                "R004: percentage must be 80/80*100=100% (null-rank tokens not in denominator)");
+
+        // Topic diagnosis also must not count null-rank tokens
+        AuditNode topic = milestone.getChildren().get(0);
+        CocaBucketsTopicDiagnosis topicDiag =
+                ((TopicDiagnoses) topic.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null);
+        assertNotNull(topicDiag, "R004: topic diagnosis must be present");
+        assertEquals(80, topicDiag.getTotalTokens(),
+                "R004: topic totalTokens must also exclude null-rank tokens");
     }
 }

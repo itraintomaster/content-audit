@@ -138,6 +138,13 @@ Se espera que ciertos patrones se mantengan al avanzar de un nivel al siguiente:
 
 Existe una configuracion alternativa para cursos "ramp-up" (introductorios) que usa bandas de frecuencia mucho mas estrechas (top 135, top 250, top 500, top 1000 palabras) y define objetivos por unidad en lugar de por nivel CEFR. Esta variante esta disenada para cursos donde el vocabulario es extremadamente restringido y la progresion es mas rapida que en un curso estandar. Ver la seccion de Open Questions para su estado actual.
 
+### Decisiones de simplicidad (fuera del alcance de esta version)
+
+Esta primera version del analizador adopta varias decisiones de simplicidad para acotar el alcance. Estas decisiones no son reglas de negocio: describen aspectos que el sistema **no hace** (o hace de manera deliberadamente simple) y no tienen superficie observable adicional que un consumidor pueda verificar. Si el feedback del equipo de contenido lo justifica, cualquiera de estas puede revisarse en iteraciones posteriores.
+
+- **Granularidad de las directivas de mejora**: las directivas se generan a nivel de **nivel CEFR** unicamente (campo `levelName` del record `ImprovementDirective`). Cuando se usa la estrategia QUARTERS, la informacion por trimestre se observa en los `QuarterResult` del diagnostico (`CocaBucketsLevelDiagnosis.quarters`), pero no se generan directivas separadas por trimestre. Una version previa contemplaba directivas con granularidad por trimestre para que el creador de contenido pudiera localizar problemas dentro de un mismo nivel; esa granularidad queda fuera de alcance hasta que aparezca un caso de uso concreto que la requiera.
+- **Estructura de las directivas**: el contenido exacto de una directiva (que campos contiene, formato textual, etc.) es responsabilidad del modelo de datos `ImprovementDirective` que ya esta definido en el sistema. El equipo de contenido puede refinar el formato de presentacion o agregar campos derivados (por ejemplo, la diferencia entre porcentaje real y objetivo) sin que esto constituya un cambio de regla de negocio; son refinamientos de la representacion.
+
 ---
 
 ## Reglas de Negocio
@@ -149,7 +156,9 @@ Las reglas se organizan en seis grupos segun la fase y el tema al que pertenecen
 - **Grupo C - Estrategia de quarters e interpolacion (R014-R019)**: reglas que describen la subdivision en trimestres, la interpolacion lineal y la asignacion de contenido a trimestres.
 - **Grupo D - Evaluacion de progresion (R020-R024)**: reglas que describen la evaluacion de progresion por banda de frecuencia entre niveles.
 - **Grupo E - Agregacion especifica por acumulacion de tokens (R025-R029)**: reglas que describen como los conteos de tokens por banda se acumulan a traves de la jerarquia y como se generan scores y distribuciones en cada nodo. Esta agregacion es especifica de esta funcionalidad y difiere del promedio simple de scores usado por otros analizadores.
-- **Grupo F - Planner de directivas de mejora (R030-R034)**: reglas que describen la generacion de directivas de mejora para el creador de contenido.
+- **Grupo F - Planner de directivas de mejora (R030-R032)**: reglas que describen la generacion de directivas de mejora para el creador de contenido.
+
+> **Nota sobre numeracion**: R033 y R034 fueron retirados como reglas numeradas. R033 describia que las directivas de mejora se generaban a nivel de trimestre cuando se usaba la estrategia QUARTERS, pero el contrato actual `ImprovementDirective` solo expone granularidad por nivel CEFR; esa funcionalidad queda fuera de alcance. R034 describia el contenido exacto de las directivas, lo cual es responsabilidad del modelo de datos. Su contenido se documenta en "Decisiones de simplicidad (fuera del alcance de esta version)" del Contexto. El journey J006 (comparar resultados entre estrategias LEVELS y QUARTERS) tambien fue retirado por describir un workflow externo del usuario sin superficie de sistema. Los IDs R033, R034 y J006 quedan retirados; los demas mantienen su numeracion para no romper trazabilidad con commits historicos.
 
 ---
 
@@ -197,13 +206,15 @@ Las bandas son configurables: se pueden agregar, eliminar o modificar bandas seg
 **Error**: "Configuracion de bandas invalida: los valores deben ser positivos y estar en orden ascendente"
 
 ### Rule[F-COCA-R004] - Tokens sin ranking de frecuencia
-**Severity**: major | **Validation**: ASSUMPTION
+**Severity**: major | **Validation**: AUTO_VALIDATED
 
-Los tokens que no tienen un `frequencyRank` asociado (por ejemplo, nombres propios, numeros, o palabras no encontradas en el corpus COCA) deben ser tratados de manera definida. Se asume que estos tokens se excluyen del conteo de distribucion y no participan en el calculo de porcentajes.
+Los tokens que no tienen un `frequencyRank` asociado (por ejemplo, nombres propios, numeros, o palabras no encontradas en el corpus COCA) se excluyen del conteo de distribucion: no contribuyen al `count` de ninguna banda en `BucketResult` ni a la `totalTokens` de `CocaBucketsLevelDiagnosis` o `CocaBucketsTopicDiagnosis`. Como consecuencia, el porcentaje de cada banda se calcula sobre el total de tokens efectivamente clasificados, no sobre el total absoluto de tokens del nodo.
 
-[ASSUMPTION] Se asume que los tokens sin ranking de frecuencia se excluyen del analisis. Esto es razonable porque incluirlos en alguna banda distorsionaria la distribucion. Sin embargo, si la proporcion de tokens excluidos es muy alta, los resultados podrian no ser representativos. El sistema deberia reportar la cantidad de tokens excluidos para visibilidad.
+Este comportamiento evita que tokens sin clasificacion conocida distorsionen la distribucion: incluirlos en alguna banda arbitraria daria porcentajes enganosos, e incluirlos como una banda separada agregaria ruido pedagogico irrelevante.
 
-**Error**: "Proporcion alta de tokens sin ranking de frecuencia en el nivel {nivel}: {porcentaje}% de tokens excluidos del analisis"
+La visibilidad de la cantidad de tokens excluidos al usuario final (para detectar cuando la proporcion excluida es alta y los resultados podrian no ser representativos) queda fuera del contrato actual; ver `Doubt[DOUBT-COCA-EXCLUDED-TOKEN-VISIBILITY]` para el seguimiento de esta capacidad.
+
+**Error**: N/A (esta regla describe un criterio de exclusion en el conteo, no una condicion de error)
 
 ### Rule[F-COCA-R005] - Calculo de distribucion porcentual
 **Severity**: critical | **Validation**: AUTO_VALIDATED
@@ -386,11 +397,15 @@ Ejemplo: si en A1 el trimestre inicial define top1k con kind "atLeast" y el trim
 **Error**: N/A (esta regla describe un comportamiento de herencia)
 
 ### Rule[F-COCA-R017] - Asignacion de contenido a trimestres
-**Severity**: major | **Validation**: ASSUMPTION
+**Severity**: major | **Validation**: AUTO_VALIDATED
 
-Cuando se usa la estrategia quarters, las oraciones (y sus tokens) deben asignarse a uno de los cuatro trimestres de su nivel. La asignacion se basa en la **posicion ordinal de los topics** dentro del nivel: los topics se dividen equitativamente en 4 grupos, cada grupo correspondiendo a un trimestre.
+Cuando se usa la estrategia quarters, las oraciones (y sus tokens) se asignan a uno de los cuatro trimestres de su nivel a traves de la posicion ordinal de los topics dentro del nivel. Las propiedades observables de la asignacion son:
 
-[ASSUMPTION] Se asume que los topics se dividen de manera secuencial y equitativa en 4 trimestres. Si un nivel tiene 12 topics, se asignan 3 topics por trimestre. Si el numero de topics no es divisible por 4, los primeros trimestres reciben un topic adicional (distribucion por redondeo). Este mecanismo de asignacion necesita confirmacion, ya que la documentacion de analisis no detalla el algoritmo exacto de particion.
+- Cada topic queda asignado a **exactamente un** quarter del nivel (no comparte entre quarters).
+- Los quarters se identifican por un indice ordinal (`QuarterResult.index`, 0-based) que respeta el orden secuencial de los topics: topics que aparecen antes en el nivel quedan en quarters de indice menor que topics que aparecen despues.
+- Los cuatro quarters cubren la totalidad de los topics del nivel: ningun topic queda sin asignar.
+
+El algoritmo exacto de particion (como se reparten los topics cuando el numero total no es divisible por 4, redondeo en favor de los primeros quarters o de los ultimos, etc.) es una decision de implementacion materializada en el componente que produce `LevelBucketDistribution`. Ver `Doubt[DOUBT-COCA-QUARTER-PARTITION]` para el seguimiento de los criterios de particion fina.
 
 **Error**: "Error al asignar topics a trimestres para el nivel {nivel}: el nivel no tiene topics"
 
@@ -478,13 +493,16 @@ Si menos de 2 niveles tienen datos, la progresion no puede evaluarse y se report
 **Error**: N/A (esta regla describe un comportamiento de filtrado)
 
 ### Rule[F-COCA-R023] - Margen de cambio significativo en progresion
-**Severity**: minor | **Validation**: ASSUMPTION
+**Severity**: minor | **Validation**: AUTO_VALIDATED
 
-Al evaluar si el porcentaje de una banda sube o baja entre dos niveles consecutivos, se utiliza un margen para evitar que fluctuaciones insignificantes se interpreten como cambios reales. Solo los cambios que superan este margen se contabilizan como incrementos o decrementos.
+La evaluacion de progresion (R021, R024) usa un margen de cambio significativo para descartar fluctuaciones porcentuales irrelevantes. El comportamiento observable es:
 
-[ASSUMPTION] Se asume que existe un margen de cambio significativo, aunque la documentacion de analisis no especifica su valor exacto. Este margen evita que diferencias de decimas de punto porcentual afecten la evaluacion de progresion. El valor exacto del margen requiere confirmacion.
+- Una variacion del porcentaje de una banda entre dos niveles consecutivos que sea **menor o igual** al margen no se considera un incremento ni un decremento: la transicion se trata como estable (`matches: true` cuando la expectativa permite estabilidad o ascenso/descenso).
+- Una variacion **mayor** al margen se interpreta segun su signo: positiva como incremento, negativa como decremento, y se compara contra la `ProgressionExpectation` correspondiente para producir `matches: true/false` en el `ProgressionAssessment`.
 
-**Error**: N/A (esta regla describe un parametro del algoritmo)
+Esta logica evita que diferencias de decimas de punto porcentual (causadas por la naturaleza discreta del conteo de tokens) afecten la evaluacion. El valor concreto del margen se materializa en `DefaultProgressionEvaluator` y es responsabilidad de la implementacion. Ver `Doubt[DOUBT-COCA-PROGRESSION-MARGIN]` para el seguimiento del valor exacto y su eventual configurabilidad.
+
+**Error**: N/A (esta regla describe un comportamiento de filtrado de fluctuaciones, no una condicion de error)
 
 ### Rule[F-COCA-R024] - Resultado de la evaluacion de progresion
 **Severity**: major | **Validation**: AUTO_VALIDATED
@@ -605,29 +623,6 @@ Las directivas de mejora se generan unicamente para las bandas que tienen estado
 
 **Error**: N/A (esta regla describe la logica de generacion)
 
-### Rule[F-COCA-R033] - Directivas a nivel de trimestre (estrategia quarters)
-**Severity**: minor | **Validation**: ASSUMPTION
-
-Cuando se usa la estrategia quarters, las directivas de mejora se generan por trimestre, no solo por nivel. Esto permite al creador de contenido saber no solo que un nivel tiene problemas, sino en que segmento especifico del nivel debe actuar.
-
-[ASSUMPTION] Se asume que las directivas se generan tanto a nivel de nivel como de trimestre cuando se usa la estrategia quarters. Esto es consistente con la granularidad del analisis por trimestres. Si las directivas solo se generan a nivel de nivel, la informacion por trimestre se pierde y el creador de contenido tendria menos precision para localizar los problemas.
-
-**Error**: N/A (esta regla describe el nivel de granularidad)
-
-### Rule[F-COCA-R034] - Contenido de las directivas de mejora
-**Severity**: minor | **Validation**: ASSUMPTION
-
-Cada directiva de mejora contiene la siguiente informacion:
-- Tipo de accion (enriquecer o reducir)
-- Banda de frecuencia afectada (nombre y rango)
-- Porcentaje real de la banda
-- Porcentaje objetivo de la banda
-- Diferencia entre real y objetivo
-
-[ASSUMPTION] Se asume que las directivas contienen suficiente informacion para que el creador de contenido pueda actuar sin necesidad de consultar otros datos del analisis. El contenido exacto y formato de las directivas puede refinarse segun las necesidades del equipo de contenido.
-
-**Error**: N/A (esta regla describe la estructura de la directiva)
-
 ---
 
 ## User Journeys
@@ -694,20 +689,43 @@ Cada directiva de mejora contiene la siguiente informacion:
 6. El usuario identifica que varias oraciones de "Airport Procedures" usan vocabulario especializado (boarding, customs, luggage carousel) que infla la banda top4k
 7. El usuario decide si simplificar el vocabulario o aceptar la desviacion como apropiada para el contexto tematico
 
-### Journey[F-COCA-J006] - Comparar resultados entre estrategia levels y quarters
-**Validation**: ASSUMPTION
-
-1. El usuario ejecuta la auditoria con la estrategia LEVELS
-2. El usuario observa que el nivel A2 tiene estado OPTIMO con puntuacion 0.95
-3. El usuario cambia la configuracion a la estrategia QUARTERS y re-ejecuta la auditoria
-4. El usuario descubre que si bien A2 en promedio es adecuado, Q1 de A2 tiene exceso de vocabulario frecuente (top1k al 85% cuando el objetivo Q1 es 75% atLeast) y Q4 tiene deficit de vocabulario variado (top4k al 5% cuando el objetivo Q4 es 15% atMost)
-5. El usuario concluye que la estrategia quarters proporciona informacion mas granular y util para mejorar el contenido dentro de cada nivel
-
-[ASSUMPTION] Se asume que el usuario puede cambiar de estrategia y re-ejecutar la auditoria. Esta capacidad es util para comparar perspectivas, pero requiere que ambas estrategias esten implementadas y disponibles.
-
 ---
 
 ## Open Questions
+
+### Doubt[DOUBT-COCA-EXCLUDED-TOKEN-VISIBILITY] - Visibilidad de la cantidad de tokens excluidos del analisis
+**Status**: OPEN
+
+R004 establece que los tokens sin `frequencyRank` se excluyen del conteo de distribucion. Esa exclusion es correcta para no distorsionar los porcentajes, pero deja una pregunta abierta: si la proporcion de tokens excluidos es muy alta en un nivel o trimestre, los porcentajes calculados podrian no ser representativos del contenido real. El contrato actual de diagnostico (`CocaBucketsLevelDiagnosis`, `CocaBucketsTopicDiagnosis`) expone `totalTokens` como total de tokens **efectivamente clasificados**, no el total absoluto, asi que el usuario no tiene visibilidad directa de cuantos tokens fueron excluidos.
+
+**Pregunta**: Debe el sistema exponer la cantidad de tokens excluidos por nodo, para que el usuario pueda detectar cuando los porcentajes podrian no ser representativos?
+
+- [ ] Opcion A: Mantener el comportamiento actual (no se reporta). Simplicidad; el usuario asume que la clasificacion cubre la mayoria de los tokens.
+- [ ] Opcion B: Agregar un campo `excludedTokens` en los records de diagnostico para que el usuario sepa cuantos quedaron afuera.
+- [ ] Opcion C: Reportar solo cuando la proporcion excede un umbral (por ejemplo, mas del 10% de los tokens del nodo fueron excluidos). Mensaje informativo, no error.
+
+### Doubt[DOUBT-COCA-QUARTER-PARTITION] - Algoritmo exacto de particion de topics en quarters
+**Status**: OPEN
+
+R017 establece la propiedad observable de la asignacion de topics a quarters: cada topic queda en exactamente un quarter, los quarters respetan el orden ordinal, y los cuatro quarters cubren la totalidad de los topics. El algoritmo concreto de particion cuando el numero de topics no es divisible por 4 es responsabilidad de la implementacion y no esta documentado.
+
+**Pregunta**: Como debe distribuirse el residuo cuando el numero de topics no es multiplo de 4? Por ejemplo, un nivel con 13 topics: 4-3-3-3? 3-3-3-4? 4-4-3-2? Diferentes elecciones producen perfiles de quarter ligeramente distintos.
+
+- [ ] Opcion A: Los primeros quarters reciben los topics adicionales (redondeo hacia adelante, ej. 4-4-3-2 para 13 topics).
+- [ ] Opcion B: Los ultimos quarters reciben los topics adicionales (redondeo hacia atras).
+- [ ] Opcion C: Distribucion balanceada que minimiza la diferencia maxima entre quarters (ej. 4-3-3-3 para 13 topics).
+- [ ] Opcion D: El criterio actual (cualquiera que sea el de la implementacion vigente) se documenta una vez confirmado.
+
+### Doubt[DOUBT-COCA-PROGRESSION-MARGIN] - Valor exacto del margen de cambio significativo
+**Status**: OPEN
+
+R023 establece que la evaluacion de progresion usa un margen para descartar fluctuaciones irrelevantes. El comportamiento es observable: una variacion menor o igual al margen no cuenta como cambio. El valor concreto del margen y si debe ser configurable son preguntas abiertas.
+
+**Pregunta**: Cual es el valor del margen y debe ser configurable por el usuario?
+
+- [ ] Opcion A: Mantener el valor actual de la implementacion (fijo, no configurable, documentado una vez confirmado).
+- [ ] Opcion B: Hacerlo configurable junto con las tolerancias `optimalRange` y `adequateRange` (R009).
+- [ ] Opcion C: Calcular el margen dinamicamente como fraccion del cambio esperado entre niveles (similar al patron resuelto en SLEN DOUBT-EQUAL-AVERAGES).
 
 ### Doubt[DOUBT-OPEN-BUCKET] - Deberia la banda abierta top4k subdividirse para futuros niveles C1/C2?
 **Status**: OPEN

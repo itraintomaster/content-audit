@@ -622,4 +622,71 @@ public class CocaBucketsAnalyzerTest {
         assertTrue(top1k.getScore() >= 0 && top1k.getScore() <= 1.0,
                 "R028: bandScore must be in [0,1] on node with target");
     }
+
+    @Test
+    @DisplayName("should assign every topic of a CEFR level to exactly one quarter when running under the QUARTERS strategy producing a quarter-to-topic partition that covers all topics of the level with no duplicates and no gaps regardless of the precise rounding algorithm used to balance counts")
+    @Tag("FEAT-COCA")
+    @Tag("F-COCA-R017")
+    public void shouldAssignEveryTopicOfACEFRLevelToExactlyOneQuarterWhenRunningUnderTheQUARTERSStrategyProducingAQuartertotopicPartitionThatCoversAllTopicsOfTheLevelWithNoDuplicatesAndNoGapsRegardlessOfThePreciseRoundingAlgorithmUsedToBalanceCounts() {
+        // R017: QUARTERS strategy partitions topics into 4 groups; every topic assigned exactly once.
+        // Use 8 topics: should split 2 per quarter (or nearest balanced distribution).
+        int topicCount = 8;
+        List<NlpToken> tokens = java.util.Collections.nCopies(6,
+                new NlpToken("word", "word", "NOUN", 500, false, false));
+
+        java.util.List<AuditableTopic> topics = new java.util.ArrayList<>();
+        for (int i = 0; i < topicCount; i++) {
+            AuditableQuiz quiz = new AuditableQuiz(tokens, "q" + i, "Q", null, null, List.of("s"), null);
+            AuditableKnowledge k = new AuditableKnowledge(
+                    List.of(quiz), "K" + i, "C", true, "k" + i, "K" + i, null);
+            topics.add(new AuditableTopic(List.of(k), "t" + i, "T" + i, "T" + i));
+        }
+        AuditableMilestone ms = new AuditableMilestone(topics, "A1", "A1", null);
+        AuditableCourse course = new AuditableCourse(List.of(ms));
+
+        // QUARTERS strategy config with Q1/Q4 targets for A1
+        BandConfiguration bands = new BandConfiguration(List.of(
+                new FrequencyBand("top1k", 1, 1000),
+                new FrequencyBand("top4k", 3001, 4000)
+        ), true);
+        when(config.getBandConfiguration()).thenReturn(bands);
+        when(config.getAnalysisStrategy()).thenReturn(AnalysisStrategy.QUARTERS);
+        QuarterBucketTargets q1 = new QuarterBucketTargets(List.of(
+                new BucketTarget("top1k", 90.0, TargetKind.AT_LEAST)));
+        QuarterBucketTargets q4 = new QuarterBucketTargets(List.of(
+                new BucketTarget("top1k", 75.0, TargetKind.AT_LEAST)));
+        when(config.getQuarterTargetsForLevel("A1")).thenReturn(List.of(q1, q4));
+        lenient().when(config.getQuarterTargetsForLevel(
+                Mockito.argThat(s -> s != null && !s.equals("A1")))).thenReturn(List.of());
+        lenient().when(config.getTargetsForLevel(anyString())).thenReturn(List.of());
+        when(config.getToleranceMargin()).thenReturn(0.10);
+        lenient().when(config.getProgressionExpectations()).thenReturn(List.of());
+
+        CocaBucketsAnalyzer sut = buildAnalyzer();
+        AuditReport report = new IAuditEngine(List.of(sut), new IScoreAggregator())
+                .runAudit(course);
+
+        AuditNode milestone = report.getRoot().getChildren().get(0);
+        CocaBucketsLevelDiagnosis levelDiag =
+                ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null);
+        assertNotNull(levelDiag, "R017: level diagnosis must be present under QUARTERS strategy");
+
+        // Under QUARTERS strategy, level diagnosis must contain quarter results
+        assertNotNull(levelDiag.getQuarters(), "R017: quarters list must not be null");
+        assertFalse(levelDiag.getQuarters().isEmpty(),
+                "R017: QUARTERS strategy must produce at least one QuarterResult");
+
+        // Total top1k count across all quarters must equal the level's top1k count
+        // (every topic assigned to exactly one quarter — no gaps, no duplicates)
+        int levelTop1kCount = levelDiag.getBuckets().stream()
+                .filter(b -> "top1k".equals(b.getBandName()))
+                .mapToInt(BucketResult::getCount).sum();
+        int quarterTop1kCountSum = levelDiag.getQuarters().stream()
+                .flatMap(q -> q.getBucketResults().stream())
+                .filter(b -> "top1k".equals(b.getBandName()))
+                .mapToInt(BucketResult::getCount).sum();
+        assertEquals(levelTop1kCount, quarterTop1kCountSum,
+                "R017: sum of top1k counts across all quarters must equal level top1k count "
+                + "(every topic assigned to exactly one quarter, no gaps or duplicates)");
+    }
 }

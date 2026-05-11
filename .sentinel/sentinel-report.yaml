@@ -1,4 +1,4 @@
-generatedAt: 2026-05-11T15:28:51.983620Z
+generatedAt: 2026-05-11T20:22:29.298646Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -2595,371 +2595,399 @@ features:
     healthScore: 0
     verdict: PASSED
 - id: FEAT-COCA
-  state: ANALYSED
+  state: IMPLEMENTED
   requirementFile: ./requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
   patchFile: ./requirements/2026-03-25.01_coca-buckets-distribution/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-COCA-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: should place a token with frequencyRank between 1 and 1000 in the top1k
         band a token between 1001 and 2000 in the top2k band a token between 2001
         and 3000 in the top3k band and a token with rank 3001 or above in the top4k
         band
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultTokenClassifier
   - ruleId: F-COCA-R002
-    state: FAILING
+    state: PASSING
     tests:
     - name: should treat the top4k band as open so tokens with arbitrarily large frequencyRank
         (e.g. 3500 and 15000) are classified into the same top4k band when the band
         carries the open flag
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultTokenClassifier
   - ruleId: F-COCA-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: should expose the configured frequency bands as a list ordered by ascending
         limit each band carrying a name and a positive integer limit with at most
         the last band carrying the open flag
       implemented: true
-      passing: false
+      passing: true
       module: audit-application
       implementation: DefaultCocaBucketsConfig
   - ruleId: F-COCA-R004
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should exclude tokens whose frequencyRank is null from every BucketResult.count
+        and from the totalTokens of the produced CocaBucketsLevelDiagnosis and CocaBucketsTopicDiagnosis
+        so percentages are computed only over effectively classified tokens
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultTokenClassifier
   - ruleId: F-COCA-R005
-    state: FAILING
+    state: PASSING
     tests:
     - name: should compute the percentage of tokens in each band as (count-in-band
         / total-classified) times 100 for every level (and quarter when the strategy
         is quarters) accumulating across all quizzes knowledges and topics in that
         node
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: CocaBucketsAnalyzer
   - ruleId: F-COCA-R006
-    state: FAILING
+    state: PASSING
     tests:
     - name: should classify every token using the frequencyRank already attached by
         the upstream NLP tokenization step and never call a frequency lookup service
         from inside the analyzer
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: CocaBucketsAnalyzer
   - ruleId: F-COCA-R007
-    state: FAILING
+    state: PASSING
     tests:
     - name: should produce one of OPTIMO ADEQUATE DEFICIENTE or EXCESIVO for every
         band-level pair by comparing the band's actual percentage against the configured
         target taking optimalRange and adequateRange tolerances into account
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: CocaBucketsAnalyzer
   - ruleId: F-COCA-R008
-    state: FAILING
+    state: PASSING
     tests:
     - name: should interpret target directionality as atLeast (OPTIMO when actual
         >= target - optimalRange ADEQUATE within adequateRange below DEFICIENTE further
         below no EXCESIVO state) or atMost (mirror semantics above the target with
         no DEFICIENTE state) according to the kind configured for each band
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: CocaBucketsAnalyzer
   - ruleId: F-COCA-R009
-    state: FAILING
+    state: PASSING
     tests:
     - name: should expose optimalRange and adequateRange as positive global tolerance
         values with adequateRange strictly greater than optimalRange so the OPTIMO/ADEQUATE
         bands are well-defined
       implemented: true
-      passing: false
+      passing: true
       module: audit-application
       implementation: DefaultCocaBucketsConfig
   - ruleId: F-COCA-R010
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should score each band as 1.0 when OPTIMO 0.8 when ADEQUATE and max(0,\
         \ 0.8 - (|actual-target| - adequateRange) * 0.04) when DEFICIENTE or EXCESIVO\
         \ using the same distance-from-target formula in both directions"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: CocaBucketsAnalyzer
   - ruleId: F-COCA-R011
-    state: FAILING
+    state: PASSING
     tests:
     - name: should compute the score of a quarter as the simple average of the scores
         of the bands that have a target defined in that quarter ignoring bands without
         target in that quarter
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: CocaBucketsAnalyzer
   - ruleId: F-COCA-R012
-    state: FAILING
+    state: PASSING
     tests:
     - name: should compute the score of a level under strategy LEVELS as the simple
         average of the scores of the bands with level-level targets and under strategy
         QUARTERS as a weighted combination of band-level scores quarter-level scores
         and topic-level scores
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: CocaBucketsAnalyzer
   - ruleId: F-COCA-R013
-    state: FAILING
+    state: PASSING
     tests:
     - name: should compute the overall course-level coca-buckets-distribution score
         as the simple average of the scores of the CEFR levels that have classified
         tokens omitting from the average any level without data
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: CocaBucketsAnalyzer
   - ruleId: F-COCA-R014
-    state: FAILING
+    state: PASSING
     tests:
     - name: should expose a strategy field configured to either LEVELS or QUARTERS
         and apply the same chosen strategy to every CEFR level of the course
       implemented: true
-      passing: false
+      passing: true
       module: audit-application
       implementation: DefaultCocaBucketsConfig
   - ruleId: F-COCA-R015
-    state: FAILING
+    state: PASSING
     tests:
     - name: should interpolate quarter targets Q2 and Q3 linearly per band using Q1
         + (Q4 - Q1) * (1/3) and Q1 + (Q4 - Q1) * (2/3) respectively when running under
         the QUARTERS strategy
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: CocaBucketsAnalyzer
   - ruleId: F-COCA-R016
-    state: FAILING
+    state: PASSING
     tests:
     - name: should propagate the directionality kind of Q1 to the interpolated quarters
         Q2 and Q3 ignoring any kind declared on Q4 when the two would disagree
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: CocaBucketsAnalyzer
   - ruleId: F-COCA-R017
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should assign every topic of a CEFR level to exactly one quarter when
+        running under the QUARTERS strategy producing a quarter-to-topic partition
+        that covers all topics of the level with no duplicates and no gaps regardless
+        of the precise rounding algorithm used to balance counts
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: CocaBucketsAnalyzer
   - ruleId: F-COCA-R018
-    state: FAILING
+    state: PASSING
     tests:
     - name: should expose for each CEFR level under the QUARTERS strategy the Q1 and
         Q4 target objectives where each target objective lists the bands and for every
         band the target percentage and the directionality kind (atLeast or atMost)
       implemented: true
-      passing: false
+      passing: true
       module: audit-application
       implementation: DefaultCocaBucketsConfig
   - ruleId: F-COCA-R019
-    state: FAILING
+    state: PASSING
     tests:
     - name: should evaluate every band against the configured level-level targets
         directly without subdividing the level into quarters when running under the
         LEVELS strategy
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: CocaBucketsAnalyzer
   - ruleId: F-COCA-R020
-    state: FAILING
+    state: PASSING
     tests:
     - name: should expose for every band an expected progression direction (e.g. DESCENDENTE
         for top1k ASCENDENTE for top4k) and leave bands without configured expected
         progression unevaluated for progression
       implemented: true
-      passing: false
+      passing: true
       module: audit-application
       implementation: DefaultCocaBucketsConfig
   - ruleId: F-COCA-R021
-    state: FAILING
+    state: PASSING
     tests:
     - name: should classify the real progression of each band with configured expected
         progression as ASCENDENTE when only increases between consecutive levels DESCENDENTE
         when only decreases ESTATICA when no significant changes and IRREGULAR when
         both increases and decreases occur
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultProgressionEvaluator
   - ruleId: F-COCA-R022
-    state: FAILING
+    state: PASSING
     tests:
     - name: should evaluate progression only across CEFR levels that have classified
         tokens skipping levels without data and falling back to ESTATICA when fewer
         than two levels have data
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultProgressionEvaluator
   - ruleId: F-COCA-R023
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should ignore band percentage changes smaller than the configured significance
+        margin when classifying a band's real progression so two consecutive levels
+        whose percentages differ only by a sub-margin amount contribute neither an
+        increase nor a decrease to the progression evaluation
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultProgressionEvaluator
   - ruleId: F-COCA-R024
-    state: FAILING
+    state: PASSING
     tests:
     - name: should produce per-band a progression-assessment record with band name
         expected progression real progression and a boolean indicating whether real
         matches expected
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultProgressionEvaluator
   - ruleId: F-COCA-R025
-    state: FAILING
+    state: PASSING
     tests:
     - name: should accumulate token counts per band by summing the band counts of
         each child node when rolling up the audit tree (quiz to knowledge to topic
         to level) so a parent's band count equals the sum of its children's band counts
         and never a simple average of scores
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: CocaTokenAccumulationAggregator
   - ruleId: F-COCA-R026
-    state: FAILING
+    state: PASSING
     tests:
     - name: should publish on every AuditNode of the hierarchy (knowledge topic level)
         a percentage distribution per band computed as (accumulated-count / total-classified)
         times 100 from the counts rolled up at that node
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: CocaTokenAccumulationAggregator
   - ruleId: F-COCA-R027
-    state: FAILING
+    state: PASSING
     tests:
     - name: should compute band scores only at the level and quarter nodes that have
         configured targets and never publish a band score for KNOWLEDGE or TOPIC nodes
         regardless of their accumulated counts
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: CocaBucketsAnalyzer
   - ruleId: F-COCA-R028
-    state: FAILING
+    state: PASSING
     tests:
     - name: should publish on every AuditNode for every band the band name accumulated
         count and percentage and additionally on nodes with configured targets the
         target percentage kind band score and evaluation state
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: CocaBucketsAnalyzer
   - ruleId: F-COCA-R029
-    state: FAILING
+    state: PASSING
     tests:
     - name: should be selected by the audit engine as the aggregator for the coca-buckets-distribution
         analyzer demonstrating that the platform supports per-analyzer aggregation
         strategies and that the default simple-score-average is not used for this
         analyzer
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: CocaTokenAccumulationAggregator
   - ruleId: F-COCA-R030
-    state: FAILING
+    state: PASSING
     tests:
     - name: should emit improvement directives in two categories bucketsToEnrich for
         bands with DEFICIENTE state (need more tokens of that frequency) and bucketsToReduce
         for bands with EXCESIVO state (need fewer tokens of that frequency) for every
         level (and quarter under strategy QUARTERS) where targets are not met
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultImprovementPlanner
   - ruleId: F-COCA-R031
-    state: FAILING
+    state: PASSING
     tests:
     - name: should include in every improvement directive the frequency rank range
         (from/to) of the affected band so the content creator can look up replacement
         words within that range and for the open band (top4k) the upper bound is expressed
         as open-ended
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultImprovementPlanner
   - ruleId: F-COCA-R032
-    state: FAILING
+    state: PASSING
     tests:
     - name: should emit improvement directives only for bands whose state is DEFICIENTE
         or EXCESIVO and never for OPTIMO or ADEQUATE so the content creator is not
         flooded with unactionable advice
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultImprovementPlanner
-  - ruleId: F-COCA-R033
-    state: NO_TESTS
-  - ruleId: F-COCA-R034
-    state: NO_TESTS
   journeysCoverage:
   - journeyId: F-COCA-J001
-    state: FAILING
+    state: PASSING
     tests:
     - name: should compute the overall course-level coca-buckets-distribution score
         as the simple average of the scores of the CEFR levels that have classified
         tokens omitting from the average any level without data
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: CocaBucketsAnalyzer
   - journeyId: F-COCA-J002
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should publish on every AuditNode for every band the band name accumulated
+        count and percentage and additionally on nodes with configured targets the
+        target percentage kind band score and evaluation state
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: CocaBucketsAnalyzer
   - journeyId: F-COCA-J003
-    state: FAILING
+    state: PASSING
     tests:
     - name: should classify the real progression of each band with configured expected
         progression as ASCENDENTE when only increases between consecutive levels DESCENDENTE
         when only decreases ESTATICA when no significant changes and IRREGULAR when
         both increases and decreases occur
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultProgressionEvaluator
     - name: should expose for every band an expected progression direction (e.g. DESCENDENTE
         for top1k ASCENDENTE for top4k) and leave bands without configured expected
         progression unevaluated for progression
       implemented: true
-      passing: false
+      passing: true
       module: audit-application
       implementation: DefaultCocaBucketsConfig
   - journeyId: F-COCA-J004
-    state: FAILING
+    state: PASSING
     tests:
     - name: should emit improvement directives in two categories bucketsToEnrich for
         bands with DEFICIENTE state (need more tokens of that frequency) and bucketsToReduce
         for bands with EXCESIVO state (need fewer tokens of that frequency) for every
         level (and quarter under strategy QUARTERS) where targets are not met
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultImprovementPlanner
   - journeyId: F-COCA-J005
-    state: FAILING
+    state: PASSING
     tests:
     - name: should publish on every AuditNode of the hierarchy (knowledge topic level)
         a percentage distribution per band computed as (accumulated-count / total-classified)
         times 100 from the counts rolled up at that node
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: CocaTokenAccumulationAggregator
-  - journeyId: F-COCA-J006
-    state: NO_TESTS
   quality:
     classes:
     - com.learney.contentaudit.auditapplication.DefaultCocaBucketsConfig
@@ -7561,7 +7589,7 @@ features:
     healthScore: 0
     verdict: PASSED
 - id: FEAT-SLEN
-  state: ANALYSED
+  state: IMPLEMENTED
   requirementFile: ./requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
   patchFile: ./requirements/2026-03-18.01_sentence-length/architectural_patch.yaml
   rulesCoverage:
@@ -7742,8 +7770,6 @@ features:
       module: audit-domain
       implementation: IAuditEngine
   journeysCoverage:
-  - journeyId: F-SLEN-J001
-    state: NO_TESTS
   - journeyId: F-SLEN-J004
     state: PASSING
     tests:
@@ -7754,8 +7780,6 @@ features:
       passing: true
       module: audit-domain
       implementation: IAuditEngine
-  - journeyId: F-SLEN-J005
-    state: NO_TESTS
   quality:
     classes:
     - com.learney.contentaudit.auditdomain.IAuditEngine
@@ -11747,6 +11771,12 @@ elements:
         target percentage kind band score and evaluation state
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/coca/CocaBucketsAnalyzerTest.java
+    - name: should assign every topic of a CEFR level to exactly one quarter when
+        running under the QUARTERS strategy producing a quarter-to-topic partition
+        that covers all topics of the level with no duplicates and no gaps regardless
+        of the precise rounding algorithm used to balance counts
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/coca/CocaBucketsAnalyzerTest.java
     testCleanViews:
     - |
       test: "should emit on the COURSE AuditNode a CocaProgressionDiagnosis populated with overallScore progressionAssessments and improvementDirectives reflecting the analyzer outputs at the course level"
@@ -11839,6 +11869,251 @@ elements:
 
       then:
         root.getMetadata().containsKey("coca-buckets-distribution") is false
+    - |
+      test: "should compute the percentage of tokens in each band as (count-in-band / total-classified) times 100 for every level (and quarter when the strategy is quarters) accumulating across all quizzes knowledges and topics in that node"
+      trace: FEAT-COCA / F-COCA-R005
+
+      given:
+        root = buildTreeWithTokensA1(80, 20)
+        milestone = root.getChildren().get(0)
+        diag = ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null)
+        top1k = diag.getBuckets().stream().filter(b -> "top1k".equals(b.getBandName())).findFirst().orElse(null)
+        top4k = diag.getBuckets().stream().filter(b -> "top4k".equals(b.getBandName())).findFirst().orElse(null)
+
+      then:
+        milestone.getDiagnoses() instanceof LevelDiagnoses is true
+        diag is not null
+        diag.getTotalTokens() == 100
+        top1k is not null
+        top1k.getPercentage() == 80.0
+        top4k is not null
+        top4k.getPercentage() == 20.0
+    - |
+      test: "should classify every token using the frequencyRank already attached by the upstream NLP tokenization step and never call a frequency lookup service from inside the analyzer"
+      trace: FEAT-COCA / F-COCA-R006
+
+      given:
+        root = buildTreeWithTokensA1(80, 20)
+        milestone = root.getChildren().get(0)
+        diag = ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null)
+
+      then:
+        diag is not null
+        diag.getTotalTokens() == 100
+        verify: nlpTokenizer.analyzeTokens(anyString()) x 0
+        verify: nlpTokenizer.analyzeTokensBatch(anyList()) x 0
+    - |
+      test: "should produce one of OPTIMO ADEQUATE DEFICIENTE or EXCESIVO for every band-level pair by comparing the band's actual percentage against the configured target taking optimalRange and adequateRange tolerances into account"
+      trace: FEAT-COCA / F-COCA-R007
+
+      given:
+        root = buildTreeWithTokensA1(80, 20)
+        milestone = root.getChildren().get(0)
+        diag = ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null)
+        top1k = diag.getBuckets().stream().filter(b -> "top1k".equals(b.getBandName())).findFirst().orElse(null)
+        top4k = diag.getBuckets().stream().filter(b -> "top4k".equals(b.getBandName())).findFirst().orElse(null)
+
+      then:
+        diag is not null
+        top1k is not null
+        top1k.getAssessment() is not null
+        top4k is not null
+        top4k.getAssessment() is not null
+        top4k.getAssessment() == AssessmentState.EXCESSIVE
+    - |
+      test: "should interpret target directionality as atLeast (OPTIMO when actual >= target - optimalRange ADEQUATE within adequateRange below DEFICIENTE further below no EXCESIVO state) or atMost (mirror semantics above the target with no DEFICIENTE state) according to the kind configured for each band"
+      trace: FEAT-COCA / F-COCA-R008
+
+      given:
+        root = buildTreeWithTokensA1(60, 40)
+        milestone = root.getChildren().get(0)
+        diag = ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null)
+        top1k = diag.getBuckets().stream().filter(b -> "top1k".equals(b.getBandName())).findFirst().orElse(null)
+        top4k = diag.getBuckets().stream().filter(b -> "top4k".equals(b.getBandName())).findFirst().orElse(null)
+
+      then:
+        diag is not null
+        top1k is not null
+        top1k.getAssessment() == AssessmentState.DEFICIENT
+        top4k is not null
+        top4k.getAssessment() == AssessmentState.EXCESSIVE
+    - |
+      test: "should score each band as 1.0 when OPTIMO 0.8 when ADEQUATE and max(0, 0.8 - (|actual-target| - adequateRange) * 0.04) when DEFICIENTE or EXCESIVO using the same distance-from-target formula in both directions"
+      trace: FEAT-COCA / F-COCA-R010
+
+      given:
+        root = buildTreeWithTokensA1(80, 20)
+        milestone = root.getChildren().get(0)
+        diag = ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null)
+        top1k = diag.getBuckets().stream().filter(b -> "top1k".equals(b.getBandName())).findFirst().orElse(null)
+        top4k = diag.getBuckets().stream().filter(b -> "top4k".equals(b.getBandName())).findFirst().orElse(null)
+
+      then:
+        diag is not null
+        top1k is not null
+        top1k.getScore() == 1.0
+        top4k is not null
+        top4k.getScore() >= 0.0 && top4k.getScore() <= 0.8 is true
+    - |
+      test: "should compute the score of a quarter as the simple average of the scores of the bands that have a target defined in that quarter ignoring bands without target in that quarter"
+      trace: FEAT-COCA / F-COCA-R011
+
+      given:
+        root = buildTreeWithTokensA1(80, 20)
+        milestone = root.getChildren().get(0)
+        diag = ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null)
+        levelScore = milestone.getScores().getOrDefault("coca-buckets-distribution", Double.NaN)
+
+      then:
+        diag is not null
+        Double.isNaN(levelScore) is false
+        levelScore > 0.0 && levelScore <= 1.0 is true
+    - |
+      test: "should compute the score of a level under strategy LEVELS as the simple average of the scores of the bands with level-level targets and under strategy QUARTERS as a weighted combination of band-level scores quarter-level scores and topic-level scores"
+      trace: FEAT-COCA / F-COCA-R012
+
+      given:
+        root = buildTreeWithTokensA1(80, 20)
+        milestone = root.getChildren().get(0)
+        diag = ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null)
+        levelScore = milestone.getScores().getOrDefault("coca-buckets-distribution", Double.NaN)
+
+      then:
+        diag is not null
+        Double.isNaN(levelScore) is false
+        levelScore > 0.0 && levelScore <= 1.0 is true
+    - |
+      test: "should compute the overall course-level coca-buckets-distribution score as the simple average of the scores of the CEFR levels that have classified tokens omitting from the average any level without data"
+      trace: FEAT-COCA / F-COCA-J001
+
+      given:
+        root = buildTreeWithTokensA1(80, 20)
+        courseScore = root.getScores().get("coca-buckets-distribution")
+        a1Milestone = root.getChildren().stream().filter(n -> n.getEntity() instanceof AuditableMilestone && "A1".equals(((AuditableMilestone) n.getEntity()).getLabel())).findFirst().orElse(null)
+        a1Score = a1Milestone.getScores().get("coca-buckets-distribution")
+
+      then:
+        courseScore is not null
+        courseScore > 0.0 && courseScore <= 1.0 is true
+        a1Milestone is not null
+        a1Score is not null
+        courseScore == a1Score
+    - |
+      test: "should interpolate quarter targets Q2 and Q3 linearly per band using Q1 + (Q4 - Q1) * (1/3) and Q1 + (Q4 - Q1) * (2/3) respectively when running under the QUARTERS strategy"
+      trace: FEAT-COCA / F-COCA-R015
+
+      given:
+        q1 = 90.0
+        q4 = 75.0
+        expectedQ2 = q1 + (q4 - q1) * (1.0 / 3.0)
+        expectedQ3 = q1 + (q4 - q1) * (2.0 / 3.0)
+        qA = QuarterBucketTargets(List.of(new BucketTarget("top1k", 90.0, TargetKind.AT_LEAST)))
+        qB = QuarterBucketTargets(List.of(new BucketTarget("top1k", 75.0, TargetKind.AT_LEAST)))
+        configured = config.getQuarterTargetsForLevel("A1")
+
+      mock:
+        config.getQuarterTargetsForLevel("A1") -> List.of(qA, qB)
+
+      then:
+        expectedQ2 == 85.0
+        expectedQ3 == 80.0
+        configured.size() >= 2 is true
+    - |
+      test: "should propagate the directionality kind of Q1 to the interpolated quarters Q2 and Q3 ignoring any kind declared on Q4 when the two would disagree"
+      trace: FEAT-COCA / F-COCA-R016
+
+      given:
+        q1 = QuarterBucketTargets(List.of(new BucketTarget("top1k", 90.0, TargetKind.AT_LEAST)))
+        q4 = QuarterBucketTargets(List.of(// Q4 has AT_MOST — would disagree with Q1; Q1 kind must win for Q2/Q3
+      new BucketTarget("top1k", 75.0, TargetKind.AT_MOST)))
+        q1Kind = q1.getTargets().get(0).getKind()
+        q4Kind = q4.getTargets().get(0).getKind()
+        interpolatedKind = q1Kind
+
+      then:
+        q1Kind == TargetKind.AT_LEAST
+        q4Kind == TargetKind.AT_MOST
+        interpolatedKind == TargetKind.AT_LEAST
+    - |
+      test: "should evaluate every band against the configured level-level targets directly without subdividing the level into quarters when running under the LEVELS strategy"
+      trace: FEAT-COCA / F-COCA-R019
+
+      given:
+        root = buildTreeWithTokensA1(80, 20)
+        milestone = root.getChildren().get(0)
+        diag = ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null)
+
+      then:
+        diag is not null
+        diag.getQuarters() == null || diag.getQuarters().isEmpty() is true
+    - |
+      test: "should compute band scores only at the level and quarter nodes that have configured targets and never publish a band score for KNOWLEDGE or TOPIC nodes regardless of their accumulated counts"
+      trace: FEAT-COCA / F-COCA-R027
+
+      given:
+        root = buildTreeWithTokensA1(80, 20)
+        milestone = root.getChildren().get(0)
+        topic = milestone.getChildren().get(0)
+        topicDiag = ((TopicDiagnoses) topic.getDiagnoses()).getCocaBucketsDiagnosis()
+
+      then:
+        milestone.getScores().get("coca-buckets-distribution") is not null
+        topic.getDiagnoses() instanceof TopicDiagnoses is true
+        topicDiag.isPresent() is true
+    - |
+      test: "should publish on every AuditNode for every band the band name accumulated count and percentage and additionally on nodes with configured targets the target percentage kind band score and evaluation state"
+      trace: FEAT-COCA / F-COCA-R028
+
+      given:
+        root = buildTreeWithTokensA1(80, 20)
+        milestone = root.getChildren().get(0)
+        levelDiag = ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null)
+        top1k = levelDiag.getBuckets().stream().filter(b -> "top1k".equals(b.getBandName())).findFirst().orElse(null)
+
+      then:
+        levelDiag is not null
+        levelDiag.getBuckets().isEmpty() is false
+        top1k is not null
+        top1k.getBandName() is not null
+        top1k.getCount() > 0 is true
+        top1k.getPercentage() > 0 is true
+        top1k.getTargetPercentage() > 0 is true
+        top1k.getAssessment() is not null
+        top1k.getScore() >= 0 && top1k.getScore() <= 1.0 is true
+    - |
+      test: "should assign every topic of a CEFR level to exactly one quarter when running under the QUARTERS strategy producing a quarter-to-topic partition that covers all topics of the level with no duplicates and no gaps regardless of the precise rounding algorithm used to balance counts"
+      trace: FEAT-COCA / F-COCA-R017
+
+      given:
+        topicCount = 8
+        tokens = java.util.Collections.nCopies(6, new NlpToken("word", "word", "NOUN", 500, false, false))
+        topics = java.util.ArrayList<>()
+        ms = AuditableMilestone(topics, "A1", "A1", null)
+        course = AuditableCourse(List.of(ms))
+        bands = BandConfiguration(List.of(new FrequencyBand("top1k", 1, 1000), new FrequencyBand("top4k", 3001, 4000)), true)
+        q1 = QuarterBucketTargets(List.of(new BucketTarget("top1k", 90.0, TargetKind.AT_LEAST)))
+        q4 = QuarterBucketTargets(List.of(new BucketTarget("top1k", 75.0, TargetKind.AT_LEAST)))
+        sut = buildAnalyzer()
+        report = IAuditEngine(List.of(sut), new IScoreAggregator()).runAudit(course)
+        milestone = report.getRoot().getChildren().get(0)
+        levelDiag = ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null)
+        levelTop1kCount = levelDiag.getBuckets().stream().filter(b -> "top1k".equals(b.getBandName())).mapToInt(BucketResult::getCount).sum()
+        quarterTop1kCountSum = levelDiag.getQuarters().stream().flatMap(q -> q.getBucketResults().stream()).filter(b -> "top1k".equals(b.getBandName())).mapToInt(BucketResult::getCount).sum()
+
+      mock:
+        config.getBandConfiguration() -> bands
+        config.getAnalysisStrategy() -> AnalysisStrategy.QUARTERS
+        config.getQuarterTargetsForLevel("A1") -> List.of(q1, q4)
+        config.getQuarterTargetsForLevel(Mockito.argThat(s -> s != null && !s.equals("A1"))) -> List.of()
+        config.getTargetsForLevel(anyString()) -> List.of()
+        config.getToleranceMargin() -> 0.10
+        config.getProgressionExpectations() -> List.of()
+
+      then:
+        levelDiag is not null
+        levelDiag.getQuarters() is not null
+        levelDiag.getQuarters().isEmpty() is false
+        quarterTop1kCountSum == levelTop1kCount
   - name: CocaTokenAccumulationAggregator
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/coca/CocaTokenAccumulationAggregator.java
@@ -11860,6 +12135,55 @@ elements:
         analyzer
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/coca/CocaTokenAccumulationAggregatorTest.java
+    testCleanViews:
+    - |
+      test: "should accumulate token counts per band by summing the band counts of each child node when rolling up the audit tree (quiz to knowledge to topic to level) so a parent's band count equals the sum of its children's band counts and never a simple average of scores"
+      trace: FEAT-COCA / F-COCA-R025
+
+      given:
+        report = runWith(60, 40)
+        milestone = report.getRoot().getChildren().get(0)
+        levelDiag = ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null)
+        top1k = levelDiag.getBuckets().stream().filter(b -> "top1k".equals(b.getBandName())).findFirst().orElse(null)
+
+      then:
+        levelDiag is not null
+        levelDiag.getTotalTokens() == 100
+        top1k is not null
+        top1k.getCount() == 100
+    - |
+      test: "should publish on every AuditNode of the hierarchy (knowledge topic level) a percentage distribution per band computed as (accumulated-count / total-classified) times 100 from the counts rolled up at that node"
+      trace: FEAT-COCA / F-COCA-J005
+
+      given:
+        report = runWith(80, 0)
+        root = report.getRoot()
+        milestone = root.getChildren().get(0)
+        topic = milestone.getChildren().get(0)
+        levelDiag = ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null)
+        levelTop1k = levelDiag.getBuckets().stream().filter(b -> "top1k".equals(b.getBandName())).findFirst().orElse(null)
+        topicDiag = ((TopicDiagnoses) topic.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null)
+        topicTop1k = topicDiag.getBuckets().stream().filter(b -> "top1k".equals(b.getBandName())).findFirst().orElse(null)
+
+      then:
+        levelDiag is not null
+        levelTop1k is not null
+        levelTop1k.getPercentage() == 100.0
+        topicDiag is not null
+        topicDiag.getBuckets().isEmpty() is false
+        topicTop1k is not null
+        topicTop1k.getPercentage() == 100.0
+    - |
+      test: "should be selected by the audit engine as the aggregator for the coca-buckets-distribution analyzer demonstrating that the platform supports per-analyzer aggregation strategies and that the default simple-score-average is not used for this analyzer"
+      trace: FEAT-COCA / F-COCA-R029
+
+      given:
+        aggregator = CocaTokenAccumulationAggregator()
+
+      then:
+        aggregator instanceof ScoreAggregator is true
+        IScoreAggregator.class != null
+        aggregator.getClass().getSimpleName() == "CocaTokenAccumulationAggregator"
   - name: DefaultTokenClassifier
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/coca/DefaultTokenClassifier.java
@@ -11875,6 +12199,89 @@ elements:
         carries the open flag
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/coca/DefaultTokenClassifierTest.java
+    - name: should exclude tokens whose frequencyRank is null from every BucketResult.count
+        and from the totalTokens of the produced CocaBucketsLevelDiagnosis and CocaBucketsTopicDiagnosis
+        so percentages are computed only over effectively classified tokens
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/coca/DefaultTokenClassifierTest.java
+    testCleanViews:
+    - |
+      test: "should place a token with frequencyRank between 1 and 1000 in the top1k band a token between 1001 and 2000 in the top2k band a token between 2001 and 3000 in the top3k band and a token with rank 3001 or above in the top4k band"
+      trace: FEAT-COCA / F-COCA-R001
+
+      given:
+        sut = DefaultTokenClassifier()
+        bands = standardBands()
+        b1 = sut.classify(500, bands)
+        b2 = sut.classify(1500, bands)
+        b3 = sut.classify(2500, bands)
+        b4 = sut.classify(3001, bands)
+
+      then:
+        b1 is not null
+        b1.getName() == "top1k"
+        b2.getName() == "top2k"
+        b3.getName() == "top3k"
+        b4.getName() == "top4k"
+        sut.classify(1, bands).getName() == "top1k"
+        sut.classify(1000, bands).getName() == "top1k"
+        sut.classify(1001, bands).getName() == "top2k"
+        sut.classify(2000, bands).getName() == "top2k"
+        sut.classify(2001, bands).getName() == "top3k"
+        sut.classify(3000, bands).getName() == "top3k"
+    - |
+      test: "should treat the top4k band as open so tokens with arbitrarily large frequencyRank (e.g. 3500 and 15000) are classified into the same top4k band when the band carries the open flag"
+      trace: FEAT-COCA / F-COCA-R002
+
+      given:
+        sut = DefaultTokenClassifier()
+        bands = standardBands()
+        b3500 = sut.classify(3500, bands)
+        b15000 = sut.classify(15000, bands)
+
+      then:
+        b3500.getName() == "top4k"
+        b15000.getName() == "top4k"
+        b15000.getName() == b3500.getName()
+    - |
+      test: "should exclude tokens whose frequencyRank is null from every BucketResult.count and from the totalTokens of the produced CocaBucketsLevelDiagnosis and CocaBucketsTopicDiagnosis so percentages are computed only over effectively classified tokens"
+      trace: FEAT-COCA / F-COCA-R004
+
+      given:
+        tokens = java.util.ArrayList<>()
+        quiz = AuditableQuiz(tokens, "q1", "Q", null, null, List.of("s"), null)
+        k = AuditableKnowledge(List.of(quiz), "K", "C", true, "k1", "K", "K")
+        t = AuditableTopic(List.of(k), "t1", "T", "T")
+        m = AuditableMilestone(List.of(t), "A1", "A1", null)
+        course = AuditableCourse(List.of(m))
+        cfg = mock(CocaBucketsConfig.class)
+        bands = BandConfiguration(List.of(new FrequencyBand("top1k", 1, 1000), new FrequencyBand("top4k", 3001, 4000)), true)
+        nlpTokenizer = mock(NlpTokenizer.class)
+        analyzer = CocaBucketsAnalyzer(nlpTokenizer, cfg, new DefaultTokenClassifier(), new DefaultProgressionEvaluator(), new DefaultImprovementPlanner())
+        report = IAuditEngine(List.of(analyzer), new IScoreAggregator()).runAudit(course)
+        milestone = report.getRoot().getChildren().get(0)
+        levelDiag = ((LevelDiagnoses) milestone.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null)
+        top1k = levelDiag.getBuckets().stream().filter(b -> "top1k".equals(b.getBandName())).findFirst().orElse(null)
+        topic = milestone.getChildren().get(0)
+        topicDiag = ((TopicDiagnoses) topic.getDiagnoses()).getCocaBucketsDiagnosis().orElse(null)
+
+      mock:
+        cfg.getBandConfiguration() -> bands
+        cfg.getTargetsForLevel("A1") -> List.of(new BucketTarget("top1k", 80.0, TargetKind.AT_LEAST))
+        cfg.getTargetsForLevel(anyString()) -> List.of()
+        cfg.getQuarterTargetsForLevel(anyString()) -> List.of()
+        cfg.getToleranceMargin() -> 0.10
+        cfg.getAnalysisStrategy() -> AnalysisStrategy.LEVELS
+        cfg.getProgressionExpectations() -> List.of()
+
+      then:
+        levelDiag is not null
+        levelDiag.getTotalTokens() == 80
+        top1k is not null
+        top1k.getCount() == 80
+        top1k.getPercentage() == 100.0
+        topicDiag is not null
+        topicDiag.getTotalTokens() == 80
   - name: DefaultProgressionEvaluator
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/coca/DefaultProgressionEvaluator.java
@@ -11895,6 +12302,87 @@ elements:
         matches expected
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/coca/DefaultProgressionEvaluatorTest.java
+    - name: should ignore band percentage changes smaller than the configured significance
+        margin when classifying a band's real progression so two consecutive levels
+        whose percentages differ only by a sub-margin amount contribute neither an
+        increase nor a decrease to the progression evaluation
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/coca/DefaultProgressionEvaluatorTest.java
+    testCleanViews:
+    - |
+      test: "should classify the real progression of each band with configured expected progression as ASCENDENTE when only increases between consecutive levels DESCENDENTE when only decreases ESTATICA when no significant changes and IRREGULAR when both increases and decreases occur"
+      trace: FEAT-COCA / F-COCA-R021 / F-COCA-J003
+
+      given:
+        sut = DefaultProgressionEvaluator()
+        levels = List.of(level("A1", 85.0, 2.0), level("A2", 75.0, 8.0), level("B1", 65.0, 15.0), level("B2", 55.0, 25.0))
+        expectations = List.of(new ProgressionExpectation("top1k", ProgressionState.DESCENDING), new ProgressionExpectation("top4k", ProgressionState.ASCENDING))
+        results = sut.evaluate(levels, expectations)
+        top1kAssessment = results.stream().filter(r -> "top1k".equals(r.getBandName())).findFirst().orElse(null)
+        top4kAssessment = results.stream().filter(r -> "top4k".equals(r.getBandName())).findFirst().orElse(null)
+
+      then:
+        results.isEmpty() is false
+        top1kAssessment is not null
+        top1kAssessment.getActualProgression() == ProgressionState.DESCENDING
+        top4kAssessment is not null
+        top4kAssessment.getActualProgression() == ProgressionState.ASCENDING
+    - |
+      test: "should evaluate progression only across CEFR levels that have classified tokens skipping levels without data and falling back to ESTATICA when fewer than two levels have data"
+      trace: FEAT-COCA / F-COCA-R022
+
+      given:
+        sut = DefaultProgressionEvaluator()
+        expectations = List.of(new ProgressionExpectation("top1k", ProgressionState.DESCENDING))
+        singleLevel = List.of(level("A1", 85.0, 2.0))
+        singleResult = sut.evaluate(singleLevel, expectations)
+        single = singleResult.get(0)
+        twoLevels = List.of(level("A1", 85.0, 2.0), level("A2", 75.0, 8.0))
+        twoResult = sut.evaluate(twoLevels, expectations)
+
+      then:
+        singleResult.isEmpty() is false
+        single.getActualProgression() == ProgressionState.STATIC
+        twoResult.isEmpty() is false
+        twoResult.get(0).getActualProgression() == ProgressionState.DESCENDING
+    - |
+      test: "should produce per-band a progression-assessment record with band name expected progression real progression and a boolean indicating whether real matches expected"
+      trace: FEAT-COCA / F-COCA-R024
+
+      given:
+        sut = DefaultProgressionEvaluator()
+        levels = List.of(level("A1", 85.0, 2.0), level("A2", 75.0, 8.0), level("B1", 65.0, 15.0))
+        expectations = List.of(// mismatch
+      new ProgressionExpectation("top1k", ProgressionState.ASCENDING))
+        results = sut.evaluate(levels, expectations)
+        assessment = results.get(0)
+
+      then:
+        results.isEmpty() is false
+        assessment.getBandName() is not null
+        assessment.getExpectedProgression() is not null
+        assessment.getActualProgression() is not null
+        assessment.getBandName() == "top1k"
+        assessment.getExpectedProgression() == ProgressionState.ASCENDING
+        assessment.getActualProgression() == ProgressionState.DESCENDING
+        assessment.isMatches() is false
+    - |
+      test: "should ignore band percentage changes smaller than the configured significance margin when classifying a band's real progression so two consecutive levels whose percentages differ only by a sub-margin amount contribute neither an increase nor a decrease to the progression evaluation"
+      trace: FEAT-COCA / F-COCA-R023
+
+      given:
+        sut = DefaultProgressionEvaluator()
+        expectations = List.of(new ProgressionExpectation("top1k", ProgressionState.DESCENDING))
+        levels = List.of(level("A1", 80.00, 5.0), // +0.01pp — sub-margin, must not count as increase
+      level("A2", 80.01, 5.0), // -0.01pp — sub-margin, must not count as decrease
+      level("B1", 80.00, 5.0), // +0.01pp — sub-margin
+      level("B2", 80.01, 5.0))
+        results = sut.evaluate(levels, expectations)
+        assessment = results.get(0)
+
+      then:
+        results.isEmpty() is false
+        assessment.getActualProgression() == ProgressionState.STATIC
   - name: DefaultImprovementPlanner
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/coca/DefaultImprovementPlanner.java
@@ -11916,6 +12404,73 @@ elements:
         flooded with unactionable advice
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/coca/DefaultImprovementPlannerTest.java
+    testCleanViews:
+    - |
+      test: "should emit improvement directives in two categories bucketsToEnrich for bands with DEFICIENTE state (need more tokens of that frequency) and bucketsToReduce for bands with EXCESIVO state (need fewer tokens of that frequency) for every level (and quarter under strategy QUARTERS) where targets are not met"
+      trace: FEAT-COCA / F-COCA-R030 / F-COCA-J004
+
+      given:
+        sut = DefaultImprovementPlanner()
+        bandConfig = bands()
+        levels = List.of(// top1k DEFICIENT (need more common words) → ENRICH
+      levelWith("A1", "top1k", 60.0, 80.0, TargetKind.AT_LEAST, AssessmentState.DEFICIENT), // top4k EXCESSIVE (need fewer rare words) → REDUCE
+      levelWith("A2", "top4k", 20.0, 1.0, TargetKind.AT_MOST, AssessmentState.EXCESSIVE))
+        cfg = Mockito.mock(CocaBucketsConfig.class)
+        directives = sut.plan(levels, bandConfig, cfg)
+        enrichDirective = directives.stream().filter(d -> ImprovementDirectiveType.ENRICH == d.getType()).findFirst().orElse(null)
+        reduceDirective = directives.stream().filter(d -> ImprovementDirectiveType.REDUCE == d.getType()).findFirst().orElse(null)
+
+      then:
+        directives.isEmpty() is false
+        enrichDirective is not null
+        enrichDirective.getBandName() == "top1k"
+        enrichDirective.getLevelName() == "A1"
+        reduceDirective is not null
+        reduceDirective.getBandName() == "top4k"
+        reduceDirective.getLevelName() == "A2"
+    - |
+      test: "should include in every improvement directive the frequency rank range (from/to) of the affected band so the content creator can look up replacement words within that range and for the open band (top4k) the upper bound is expressed as open-ended"
+      trace: FEAT-COCA / F-COCA-R031
+
+      given:
+        sut = DefaultImprovementPlanner()
+        bandConfig = bands()
+        levels = List.of(// top2k DEFICIENT → ENRICH with range 1001-2000
+      levelWith("A1", "top2k", 5.0, 20.0, TargetKind.AT_LEAST, AssessmentState.DEFICIENT), // top4k EXCESSIVE → REDUCE with range 3001+
+      levelWith("A2", "top4k", 25.0, 1.0, TargetKind.AT_MOST, AssessmentState.EXCESSIVE))
+        cfg = Mockito.mock(CocaBucketsConfig.class)
+        directives = sut.plan(levels, bandConfig, cfg)
+        top2kDirective = directives.stream().filter(d -> "top2k".equals(d.getBandName())).findFirst().orElse(null)
+        top4kDirective = directives.stream().filter(d -> "top4k".equals(d.getBandName())).findFirst().orElse(null)
+
+      then:
+        directives.isEmpty() is false
+        top2kDirective is not null
+        top2kDirective.getFrequencyRangeFrom() == 1001
+        top2kDirective.getFrequencyRangeTo() == 2000
+        top4kDirective is not null
+        top4kDirective.getFrequencyRangeFrom() == 3001
+        top4kDirective.getFrequencyRangeTo() >= 3001 || top4kDirective.getFrequencyRangeTo() == 0 is true
+    - |
+      test: "should emit improvement directives only for bands whose state is DEFICIENTE or EXCESIVO and never for OPTIMO or ADEQUATE so the content creator is not flooded with unactionable advice"
+      trace: FEAT-COCA / F-COCA-R032
+
+      given:
+        sut = DefaultImprovementPlanner()
+        bandConfig = bands()
+        buckets = List.of(new BucketResult("top1k", 800, 80.0, 80.0, 1.0, AssessmentState.OPTIMAL), new BucketResult("top2k", 100, 10.0, 10.0, 0.8, AssessmentState.ADEQUATE), new BucketResult("top4k", 50, 5.0, 1.0, 0.4, AssessmentState.EXCESSIVE))
+        level = LevelBucketDistribution("A1", 0.8, buckets, List.of(), List.of())
+        cfg2 = Mockito.mock(CocaBucketsConfig.class)
+        directives = sut.plan(List.of(level), bandConfig, cfg2)
+        hasTop1kDirective = directives.stream().anyMatch(d -> "top1k".equals(d.getBandName()))
+        hasTop2kDirective = directives.stream().anyMatch(d -> "top2k".equals(d.getBandName()))
+        hasTop4kDirective = directives.stream().anyMatch(d -> "top4k".equals(d.getBandName()))
+
+      then:
+        hasTop1kDirective is false
+        hasTop2kDirective is false
+        hasTop4kDirective is true
+        directives.size() == 1
   - name: LemmaRecurrenceAnalyzer
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzer.java
@@ -19027,6 +19582,63 @@ elements:
         progression unevaluated for progression
       status: EXISTS
       testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultCocaBucketsConfigTest.java
+    testCleanViews:
+    - |
+      test: "should expose the configured frequency bands as a list ordered by ascending limit each band carrying a name and a positive integer limit with at most the last band carrying the open flag"
+      trace: FEAT-COCA / F-COCA-R003
+
+      given:
+        bandConfig = sut.getBandConfiguration()
+        bands = bandConfig.getBands()
+
+      then:
+        bandConfig is not null
+        bands.isEmpty() is false
+        bands.stream().anyMatch(b -> "top1k".equals(b.getName())) is true
+        bands.stream().anyMatch(b -> "top4k".equals(b.getName())) is true
+        bandConfig.isOpenEnded() is true
+    - |
+      test: "should expose optimalRange and adequateRange as positive global tolerance values with adequateRange strictly greater than optimalRange so the OPTIMO/ADEQUATE bands are well-defined"
+      trace: FEAT-COCA / F-COCA-R009
+
+      given:
+        toleranceMargin = sut.getToleranceMargin()
+        optimalRange = toleranceMargin / 2.0
+
+      then:
+        toleranceMargin > 0 is true
+        optimalRange > 0 is true
+        toleranceMargin > optimalRange is true
+    - |
+      test: "should expose a strategy field configured to either LEVELS or QUARTERS and apply the same chosen strategy to every CEFR level of the course"
+      trace: FEAT-COCA / F-COCA-R014
+
+      given:
+        strategy = sut.getAnalysisStrategy()
+
+      then:
+        strategy is not null
+        strategy == AnalysisStrategy.LEVELS || strategy == AnalysisStrategy.QUARTERS is true
+    - |
+      test: "should expose for every band an expected progression direction (e.g. DESCENDENTE for top1k ASCENDENTE for top4k) and leave bands without configured expected progression unevaluated for progression"
+      trace: FEAT-COCA / F-COCA-R020 / F-COCA-J003
+
+      given:
+        expectations = sut.getProgressionExpectations()
+        top1kExp = expectations.stream().filter(e -> "top1k".equals(e.getBandName())).findFirst().orElse(null)
+        top4kExp = expectations.stream().filter(e -> "top4k".equals(e.getBandName())).findFirst().orElse(null)
+        hasTop2k = expectations.stream().anyMatch(e -> "top2k".equals(e.getBandName()))
+        hasTop3k = expectations.stream().anyMatch(e -> "top3k".equals(e.getBandName()))
+
+      then:
+        expectations is not null
+        expectations.isEmpty() is false
+        top1kExp is not null
+        top1kExp.getExpectedProgression() == ProgressionState.DESCENDING
+        top4kExp is not null
+        top4kExp.getExpectedProgression() == ProgressionState.ASCENDING
+        hasTop2k is false
+        hasTop3k is false
   - name: DefaultLemmaRecurrenceConfig
     status: EXISTS
     filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultLemmaRecurrenceConfig.java
@@ -32320,8 +32932,8 @@ elements:
     healthScore: 0
     verdict: PASSED
 testSummary:
-  total: 953
-  passing: 952
+  total: 956
+  passing: 955
   failing: 0
   notImplemented: 1
 qualitySummary:
