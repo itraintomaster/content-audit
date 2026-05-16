@@ -1,0 +1,20 @@
+{
+  "runId" : "20260515T031003-a1d2010d",
+  "agent" : "analyst-interactive",
+  "graphKind" : "single-agent",
+  "requirementFolder" : "requirements/2026-05-15.04_agregar-lemmacount-como-variable-de-suggestedlemmas-en-el-contexto",
+  "request" : "Agregar LemmaCount como variable de SuggestedLemmas en el contexto 2026-05-15 Ahora tenemos lemmaCount como nuevo análisis que nos ofrece el dato de los lemmas que están expuestos menos de n veces (4 por defecto). Este dato nos servirá para mejorar el algoritmo de sugerencia de lemmas que se ofrece en el contexto de revisión",
+  "status" : "failed",
+  "started" : "2026-05-15T03:10:03.265592Z",
+  "updated" : "2026-05-15T03:10:06.241639Z",
+  "metadata" : {
+    "provider" : "openai",
+    "model" : "gpt-5.5-codex",
+    "base_url" : "https://api.openai.com/v1/",
+    "interactive" : true
+  },
+  "outcome" : {
+    "haltReason" : "{\n    \"error\": {\n        \"message\": \"The model `gpt-5.5-codex` does not exist or you do not have access to it.\",\n        \"type\": \"invalid_request_error\",\n        \"param\": null,\n        \"code\": \"model_not_found\"\n    }\n}\n",
+    "halted" : true
+  }
+}

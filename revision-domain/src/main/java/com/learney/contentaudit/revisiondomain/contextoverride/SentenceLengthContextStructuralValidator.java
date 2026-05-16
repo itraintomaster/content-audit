@@ -109,7 +109,8 @@ class SentenceLengthContextStructuralValidator implements CorrectionContextStruc
                 String pos = sl.has("pos") ? sl.get("pos").asText(null) : null;
                 String reason = sl.has("reason") ? sl.get("reason").asText(null) : null;
                 Integer cocaRank = sl.has("cocaRank") && !sl.get("cocaRank").isNull() ? sl.get("cocaRank").asInt(0) : null;
-                suggestedLemmas.add(new SuggestedLemma(lemma, pos, reason, cocaRank));
+                suggestedLemmas.add(new SuggestedLemma(lemma, pos, reason, cocaRank,
+                        null, null, null));
             }
         }
 

@@ -1045,3 +1045,38 @@ Este micro-requerimiento es un delta aislado: agrega el campo `quizSentence` al 
 
 - **F-REVCTX-J004**: El cliente invoca `revise` con los dos flags de override a la vez
 
+### FEAT-LEMMA-SUGGESTIONS: LemmaCount como variable de SuggestedLemmas [F-SLEM]
+
+> Agregar la señal de `lemma-count` a `correctionContext.suggestedLemmas` en tareas `LEMMA_ABSENCE`.  
+El cambio prioriza lemas ya introducidos pero sub-expuestos antes que lemas completamente ausentes.  
+La funcionalidad se observa mediante `AuditRunner.runAudit(...)`, `AuditRunner.runDetailedAudit(...)`, `PlanCommand.plan(..., true)`, `GetCommand.get(...)` y `ReviseCommand.revise(...)`.  
+No se introduce un comando público nuevo.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-SLEM-R001 | La auditoría con lemma-count provee la señal funcional para suggestedLemmas | critical | No se pudo usar la señal de lemma-count disponible en la auditoría para enriquecer suggestedLemmas |
+| F-SLEM-R002 | Plan con correctionContext enriquece suggestedLemmas para LEMMA_ABSENCE | critical | Las sugerencias de lemas no incorporan la señal disponible de lemma-count |
+| F-SLEM-R003 | Ranking principal prioriza lemas sub-expuestos ya introducidos | critical | El ranking de suggestedLemmas no respeta la prioridad acordada con lemma-count |
+| F-SLEM-R004 | APPEARS_TOO_EARLY se evalúa en el nivel target real | critical | APPEARS_TOO_EARLY fue evaluado fuera de su nivel target real |
+| F-SLEM-R005 | COCA ascendente desempata dentro de cada grupo de prioridad | major | El desempate de suggestedLemmas no respeta COCA ascendente |
+| F-SLEM-R006 | El límite existente de suggestedLemmas se aplica después del nuevo ranking | major | El límite de suggestedLemmas no se aplicó después del ranking con lemma-count |
+| F-SLEM-R007 | COMPLETELY_ABSENT queda detrás de lemas ya introducidos | critical | COMPLETELY_ABSENT fue priorizado antes que un lema ya introducido y sub-expuesto |
+| F-SLEM-R008 | Plan proyectado y consulta de tareas muestran el mismo correctionContext enriquecido | major | El correctionContext observado en el plan no coincide con el observado en la consulta de tareas |
+| F-SLEM-R009 | Revise consume el correctionContext enriquecido derivado por el sistema | major | La revisión no recibió el correctionContext enriquecido con lemma-count |
+| F-SLEM-R010 | Revise acepta override externo válido con la forma observable enriquecida | major | El correctionContext externo no coincide con la forma válida de suggestedLemmas enriquecido |
+| F-SLEM-R011 | Revise rechaza override externo con señal de lemma-count inconsistente | major | El correctionContext es inválido por inconsistencia en la señal de lemma-count dentro de suggestedLemmas |
+| F-SLEM-R012 | Auditoría sin lemma-count conserva suggestedLemmas sin fallar | major | La ausencia de lemma-count impidió generar o consultar suggestedLemmas |
+| F-SLEM-R013 | Forma observable de la señal de lemma-count dentro de suggestedLemmas | critical | La forma observable de lemma-count dentro de suggestedLemmas no respeta el contrato acordado |
+
+**User Journeys:**
+
+- **F-SLEM-J001**: Generar plan con suggestedLemmas enriquecido
+
+- **F-SLEM-J002**: Consultar tareas con paridad respecto del plan
+
+- **F-SLEM-J003**: Revisar usando correctionContext derivado por el sistema
+
+- **F-SLEM-J004**: Revisar usando correctionContext externo enriquecido
+

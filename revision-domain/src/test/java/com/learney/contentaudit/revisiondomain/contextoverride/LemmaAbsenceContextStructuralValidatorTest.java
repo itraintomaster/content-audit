@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @Generated(
@@ -47,5 +48,158 @@ public class LemmaAbsenceContextStructuralValidatorTest {
             JsonNode payload = objectMapper.readTree(incompleteJson);
             sut.validateAndBuild(payload, "quiz-001");
         }, "OverrideRejectedException must be thrown when required LEMMA_ABSENCE fields are missing");
+    }
+
+    @Test
+    @DisplayName("should accept a LEMMA_ABSENCE override payload whose suggestedLemmas carry valid lemmaCount lemmaCountThreshold and isUnderexposed fields in the same observable shape GetCommand returns")
+    @Tag("FEAT-LEMMA-SUGGESTIONS")
+    @Tag("F-SLEM-R010")
+    public void shouldAcceptALEMMAABSENCEOverridePayloadWhoseSuggestedLemmasCarryValidLemmaCountLemmaCountThresholdAndIsUnderexposedFieldsInTheSameObservableShapeGetCommandReturns() {
+        // Arrange: a structurally valid LEMMA_ABSENCE override with suggestedLemmas
+        // that carry the three lemma-count fields (R013 shape): lemmaCount, lemmaCountThreshold,
+        // isUnderexposed — all consistent (lemmaCount=2 < threshold=5 → isUnderexposed=true).
+        // R010: the validator must accept this payload without throwing.
+        String validJson = """
+                {
+                  "taskId": "task-r010",
+                  "sentence": "She runs every morning.",
+                  "translation": "Ella corre cada manana.",
+                  "knowledgeTitle": "Daily Routines",
+                  "knowledgeInstructions": "Complete the sentence.",
+                  "topicLabel": "Habits",
+                  "cefrLevel": "A1",
+                  "misplacedLemmas": [],
+                  "suggestedLemmas": [
+                    {
+                      "lemma": "jog",
+                      "pos": "VERB",
+                      "reason": "APPEARS_TOO_LATE",
+                      "cocaRank": 3500,
+                      "lemmaCount": 2,
+                      "lemmaCountThreshold": 5,
+                      "isUnderexposed": true
+                    }
+                  ]
+                }
+                """;
+
+        // Act + Assert: R010 — must NOT throw; validates and returns a CorrectionContext
+        assertDoesNotThrow(() -> {
+            JsonNode payload = objectMapper.readTree(validJson);
+            sut.validateAndBuild(payload, "task-r010");
+        }, "R010: validator must accept payload with valid lemma-count triple in suggestedLemmas");
+    }
+
+    @Test
+    @DisplayName("should throw OverrideRejectedException when a LEMMA_ABSENCE override payload contains a negative lemmaCount inside any suggestedLemmas entry")
+    @Tag("FEAT-LEMMA-SUGGESTIONS")
+    @Tag("F-SLEM-R011")
+    public void shouldThrowOverrideRejectedExceptionWhenALEMMAABSENCEOverridePayloadContainsANegativeLemmaCountInsideAnySuggestedLemmasEntry() {
+        // Arrange: a structurally otherwise valid payload but with lemmaCount=-1 (negative).
+        // R011: negative lemmaCount is functionally inconsistent — must reject.
+        String invalidJson = """
+                {
+                  "taskId": "task-r011a",
+                  "sentence": "He studies every night.",
+                  "translation": "El estudia cada noche.",
+                  "knowledgeTitle": "Study Habits",
+                  "knowledgeInstructions": "Complete.",
+                  "topicLabel": "Education",
+                  "cefrLevel": "A2",
+                  "misplacedLemmas": [],
+                  "suggestedLemmas": [
+                    {
+                      "lemma": "revise",
+                      "pos": "VERB",
+                      "reason": "APPEARS_TOO_LATE",
+                      "cocaRank": 4200,
+                      "lemmaCount": -1,
+                      "lemmaCountThreshold": 3,
+                      "isUnderexposed": true
+                    }
+                  ]
+                }
+                """;
+
+        // Act + Assert: R011 — negative lemmaCount must be rejected
+        assertThrows(OverrideRejectedException.class, () -> {
+            JsonNode payload = objectMapper.readTree(invalidJson);
+            sut.validateAndBuild(payload, "task-r011a");
+        }, "R011: OverrideRejectedException must be thrown when lemmaCount is negative");
+    }
+
+    @Test
+    @DisplayName("should throw OverrideRejectedException when a LEMMA_ABSENCE override payload contains an isUnderexposed flag inconsistent with the reported lemmaCount and lemmaCountThreshold inside any suggestedLemmas entry")
+    @Tag("FEAT-LEMMA-SUGGESTIONS")
+    @Tag("F-SLEM-R011")
+    public void shouldThrowOverrideRejectedExceptionWhenALEMMAABSENCEOverridePayloadContainsAnIsUnderexposedFlagInconsistentWithTheReportedLemmaCountAndLemmaCountThresholdInsideAnySuggestedLemmasEntry() {
+        // Arrange: lemmaCount=5 >= lemmaCountThreshold=3 → isUnderexposed should be false.
+        // But the payload says isUnderexposed=true — inconsistent → R011 must reject.
+        String inconsistentJson = """
+                {
+                  "taskId": "task-r011b",
+                  "sentence": "They play football.",
+                  "translation": "Ellos juegan al futbol.",
+                  "knowledgeTitle": "Sports",
+                  "knowledgeInstructions": "Complete.",
+                  "topicLabel": "Activities",
+                  "cefrLevel": "B1",
+                  "misplacedLemmas": [],
+                  "suggestedLemmas": [
+                    {
+                      "lemma": "score",
+                      "pos": "VERB",
+                      "reason": "APPEARS_TOO_LATE",
+                      "cocaRank": 1800,
+                      "lemmaCount": 5,
+                      "lemmaCountThreshold": 3,
+                      "isUnderexposed": true
+                    }
+                  ]
+                }
+                """;
+
+        // Act + Assert: R011 — isUnderexposed=true but count(5) >= threshold(3) → inconsistent → reject
+        assertThrows(OverrideRejectedException.class, () -> {
+            JsonNode payload = objectMapper.readTree(inconsistentJson);
+            sut.validateAndBuild(payload, "task-r011b");
+        }, "R011: OverrideRejectedException must be thrown when isUnderexposed is inconsistent with lemmaCount and lemmaCountThreshold");
+    }
+
+    @Test
+    @DisplayName("should throw OverrideRejectedException when a LEMMA_ABSENCE override payload contains a suggestedLemmas element with a partially informed lemma-count triple such as lemmaCount present but lemmaCountThreshold or isUnderexposed missing")
+    @Tag("FEAT-LEMMA-SUGGESTIONS")
+    @Tag("F-SLEM-R013")
+    public void shouldThrowOverrideRejectedExceptionWhenALEMMAABSENCEOverridePayloadContainsASuggestedLemmasElementWithAPartiallyInformedLemmacountTripleSuchAsLemmaCountPresentButLemmaCountThresholdOrIsUnderexposedMissing() {
+        // Arrange: suggestedLemmas entry has lemmaCount=2 but lemmaCountThreshold and isUnderexposed
+        // are absent (null / missing). R013: the triple is all-or-nothing; partially informed is invalid.
+        String partialJson = """
+                {
+                  "taskId": "task-r013c",
+                  "sentence": "She loves music.",
+                  "translation": "Ella ama la musica.",
+                  "knowledgeTitle": "Arts",
+                  "knowledgeInstructions": "Complete.",
+                  "topicLabel": "Culture",
+                  "cefrLevel": "A1",
+                  "misplacedLemmas": [],
+                  "suggestedLemmas": [
+                    {
+                      "lemma": "melody",
+                      "pos": "NOUN",
+                      "reason": "APPEARS_TOO_LATE",
+                      "cocaRank": 6000,
+                      "lemmaCount": 2
+                    }
+                  ]
+                }
+                """;
+        // Note: lemmaCountThreshold and isUnderexposed are absent (partial triple → invalid per R013)
+
+        // Act + Assert: R013 — partial triple must be rejected
+        assertThrows(OverrideRejectedException.class, () -> {
+            JsonNode payload = objectMapper.readTree(partialJson);
+            sut.validateAndBuild(payload, "task-r013c");
+        }, "R013: OverrideRejectedException must be thrown when lemma-count triple is partially informed (lemmaCount present but threshold/isUnderexposed missing)");
     }
 }

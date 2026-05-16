@@ -1031,9 +1031,9 @@ public class GetCmdTest {
 
         // Fixture lemmas taken from R007 example
         List<SuggestedLemma> lemmas = List.of(
-                new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52),
-                new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89),
-                new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201));
+                new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null),
+                new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89, null, null, null),
+                new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201, null, null, null));
         SentenceLengthCorrectionContext ctx = new SentenceLengthCorrectionContext(
                 "task-sl-001",
                 "She plays tennis every afternoon with her friends",
@@ -1343,9 +1343,9 @@ public class GetCmdTest {
 
         // Three lemmas matching R008 example format
         List<SuggestedLemma> lemmas = List.of(
-                new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52),
-                new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89),
-                new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201));
+                new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null),
+                new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89, null, null, null),
+                new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201, null, null, null));
         SentenceLengthCorrectionContext ctx = new SentenceLengthCorrectionContext(
                 "task-sl-001",
                 "She plays tennis every afternoon with her friends",
@@ -1610,7 +1610,7 @@ public class GetCmdTest {
                 "Escribe la forma afirmativa",
                 "Present Simple",
                 CefrLevel.A1, 15, 5, 8, 7, List.of(
-                        new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)));
+                        new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)));
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
 
@@ -1666,7 +1666,7 @@ public class GetCmdTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
-                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null, null, null, null, null, null);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -1718,7 +1718,7 @@ public class GetCmdTest {
                 List.of(
                         new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
                         new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
-                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null, null, null, null, null, null);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -1846,8 +1846,8 @@ public class GetCmdTest {
                 CefrLevel.A1,
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
                 List.of(
-                        new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52),
-                        new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89)),
+                        new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null),
+                        new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89, null, null, null)),
                 null, null, null, null, null, null);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2021,7 +2021,7 @@ public class GetCmdTest {
                 List.of(
                         new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
                         new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
-                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null, null, null, null, null, null);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2142,8 +2142,8 @@ public class GetCmdTest {
                 CefrLevel.A1,
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
                 List.of(
-                        new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52),
-                        new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89)),
+                        new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null),
+                        new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89, null, null, null)),
                 null, null, null, null, null, null);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2660,7 +2660,7 @@ public class GetCmdTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
-                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 dsl, null, null, null, null, null);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2720,7 +2720,7 @@ public class GetCmdTest {
                 "Grammar",
                 CefrLevel.A1,
                 List.of(new MisplacedLemmaContext("great", "ADJ", CefrLevel.A2, CefrLevel.A1, 100)),
-                List.of(new SuggestedLemma("nice", "ADJ", "COMPLETELY_ABSENT", 75)),
+                List.of(new SuggestedLemma("nice", "ADJ", "COMPLETELY_ABSENT", 75, null, null, null)),
                 "He ____ [is|'s] (to be) great.", null, null, null, null, null);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3003,7 +3003,7 @@ public class GetCmdTest {
                 List.of(
                         new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
                         new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
-                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 10, 5, 8, 2, LengthDirection.SHORTEN);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
@@ -3074,7 +3074,7 @@ public class GetCmdTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
-                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 10, 5, 8, 2, LengthDirection.SHORTEN);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
@@ -3138,7 +3138,7 @@ public class GetCmdTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(new MisplacedLemmaContext("tennis", "NOUN", CefrLevel.B1, CefrLevel.A1, 3100)),
-                List.of(new SuggestedLemma("play", "VERB", "APPEARS_TOO_LATE", 78)),
+                List.of(new SuggestedLemma("play", "VERB", "APPEARS_TOO_LATE", 78, null, null, null)),
                 null,
                 6, 5, 8, 0, LengthDirection.KEEP_SAME);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
@@ -3205,7 +3205,7 @@ public class GetCmdTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
-                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 3, 5, 8, -2, LengthDirection.LENGTHEN);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
@@ -3275,7 +3275,7 @@ public class GetCmdTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
-                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 null, null, null, null, LengthDirection.UNKNOWN);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
@@ -3339,7 +3339,7 @@ public class GetCmdTest {
                 List.of(
                         new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
                         new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
-                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 10, 5, 8, 2, LengthDirection.SHORTEN);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
@@ -3402,7 +3402,7 @@ public class GetCmdTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
-                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 10, 5, 8, 2, LengthDirection.SHORTEN);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
@@ -3466,7 +3466,7 @@ public class GetCmdTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(new MisplacedLemmaContext("tennis", "NOUN", CefrLevel.B1, CefrLevel.A1, 3100)),
-                List.of(new SuggestedLemma("play", "VERB", "APPEARS_TOO_LATE", 78)),
+                List.of(new SuggestedLemma("play", "VERB", "APPEARS_TOO_LATE", 78, null, null, null)),
                 null,
                 6, 5, 8, 0, LengthDirection.KEEP_SAME);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
@@ -3530,7 +3530,7 @@ public class GetCmdTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
-                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 3, 5, 8, -2, LengthDirection.LENGTHEN);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
@@ -3594,7 +3594,7 @@ public class GetCmdTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
-                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 null, null, null, null, LengthDirection.UNKNOWN);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))

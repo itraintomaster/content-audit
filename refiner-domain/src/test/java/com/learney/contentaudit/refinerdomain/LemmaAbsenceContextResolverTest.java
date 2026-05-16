@@ -20,6 +20,9 @@ import com.learney.contentaudit.auditdomain.labs.LemmaAndPos;
 import com.learney.contentaudit.auditdomain.labs.LemmaPlacementDiagnosis;
 import com.learney.contentaudit.auditdomain.labs.MisplacedLemma;
 import com.learney.contentaudit.auditdomain.labs.PriorityLevel;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountLevelDiagnosis;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountStats;
+import com.learney.contentaudit.auditdomain.lemmacount.LevelLemmaCountResult;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -1294,5 +1297,908 @@ public class LemmaAbsenceContextResolverTest {
         Assertions.assertFalse(ctx.getMisplacedLemmas().isEmpty());
         // Length fields: discriminator is UNKNOWN, other length fields are placeholder (not asserted here per TECH_SPEC)
         Assertions.assertEquals(LengthDirection.UNKNOWN, ctx.getLengthDirection());
+    }
+
+    @Test
+    @DisplayName("should populate suggestedLemmas with lemmaCount lemmaCountThreshold and isUnderexposed fields when the audit report carries lemma-count diagnoses for the resolved level")
+    @Tag("FEAT-LEMMA-SUGGESTIONS")
+    @Tag("F-SLEM-R002")
+    public void shouldPopulateSuggestedLemmasWithLemmaCountLemmaCountThresholdAndIsUnderexposedFieldsWhenTheAuditReportCarriesLemmacountDiagnosesForTheResolvedLevel() {
+        // Arrange: a quiz at A1 with one APPEARS_TOO_LATE absent lemma "lemma-la".
+        // The audit report carries lemma-count signal for A1 with count=2, threshold=5.
+        // Expected: suggestedLemmas has one entry with lemmaCount=2, lemmaCountThreshold=5, isUnderexposed=true.
+
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r002a", null, null, "El sol.", List.of("The sun."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Nature", "Fill.", true, "know-r002a", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-r002a", "Environment", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r002a", "A1", null);
+
+        AbsentLemma absentLate = new AbsentLemma(
+                new LemmaAndPos("lemma-la", "NOUN"), CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_LATE, List.of(), PriorityLevel.HIGH, 300, null);
+
+        LemmaAbsenceLevelDiagnosis absenceDiag = new LemmaAbsenceLevelDiagnosis(
+                CefrLevel.A1, 100, 1, 10.0, 90.0,
+                0.8, 0.7, 0.5, null,
+                List.of(absentLate), List.of(), 2, 3, 5);
+
+        // count=2, threshold=5 → underexposed (2 < 5)
+        LemmaCountStats stats = new LemmaCountStats(
+                new LemmaAndPos("lemma-la", "NOUN"), 2, 0.4, Optional.of(CefrLevel.A1));
+        LevelLemmaCountResult levelResult = new LevelLemmaCountResult(
+                CefrLevel.A1, 0.4, 1, List.of(stats));
+        LemmaCountLevelDiagnosis lemmaCountDiag = new LemmaCountLevelDiagnosis(levelResult);
+
+        DefaultLevelDiagnoses milestoneDiag = new DefaultLevelDiagnoses();
+        milestoneDiag.setLemmaAbsenceDiagnosis(absenceDiag);
+        milestoneDiag.setLemmaCountDiagnosis(lemmaCountDiag);
+
+        MisplacedLemma ml = buildMisplacedLemma("sun", "NOUN", CefrLevel.A2, CefrLevel.A1, 150);
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz,
+                buildQuizDiagnosesWithPlacement(List.of(ml)));
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = new RefinementTask(
+                "task-r002a", AuditTarget.QUIZ, "quiz-r002a",
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+
+        // Act
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert: R002 — lemmaCount, lemmaCountThreshold, isUnderexposed are populated
+        Assertions.assertTrue(result.isPresent());
+        List<SuggestedLemma> lemmas = result.get().getSuggestedLemmas();
+        Assertions.assertFalse(lemmas.isEmpty(), "suggestedLemmas must not be empty");
+
+        SuggestedLemma sl = lemmas.stream()
+                .filter(l -> "lemma-la".equals(l.getLemma()))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("lemma-la must be in suggestedLemmas"));
+
+        Assertions.assertNotNull(sl.getLemmaCount(),
+                "lemmaCount must be populated when lemma-count signal is available (R002)");
+        Assertions.assertEquals(2, sl.getLemmaCount(),
+                "lemmaCount must match observed count from LemmaCountStats");
+        Assertions.assertNotNull(sl.getLemmaCountThreshold(),
+                "lemmaCountThreshold must be populated when lemma-count signal is available (R002)");
+        Assertions.assertEquals(5, sl.getLemmaCountThreshold(),
+                "lemmaCountThreshold must match the threshold from the level result");
+        Assertions.assertNotNull(sl.getIsUnderexposed(),
+                "isUnderexposed must be populated when lemma-count signal is available (R002)");
+        Assertions.assertTrue(sl.getIsUnderexposed(),
+                "isUnderexposed must be true when count(2) < threshold(5)");
+    }
+
+    @Test
+    @DisplayName("should include in suggestedLemmas a lemma flagged as underexposed by lemma-count even when that lemma has no LEMMA_ABSENCE diagnosis on the quiz node")
+    @Tag("FEAT-LEMMA-SUGGESTIONS")
+    @Tag("F-SLEM-R002")
+    public void shouldIncludeInSuggestedLemmasALemmaFlaggedAsUnderexposedByLemmacountEvenWhenThatLemmaHasNoLEMMAABSENCEDiagnosisOnTheQuizNode() {
+        // Arrange: quiz at A1 has one APPEARS_TOO_LATE absent lemma ("lemma-with-absence").
+        // The lemma-count signal at A1 also includes "lemma-pure-under" with count=1 < threshold=3,
+        // but "lemma-pure-under" has NO entry in LemmaAbsenceLevelDiagnosis.
+        // R002: the list must include "lemma-pure-under" even though it has no LEMMA_ABSENCE diagnosis.
+
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r002b", null, null, "La luna.", List.of("The moon."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Space", "Fill.", true, "know-r002b", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-r002b", "Universe", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r002b", "A1", null);
+
+        AbsentLemma absentWithAbsence = new AbsentLemma(
+                new LemmaAndPos("lemma-with-absence", "NOUN"), CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_LATE, List.of(), PriorityLevel.HIGH, 200, null);
+
+        LemmaAbsenceLevelDiagnosis absenceDiag = new LemmaAbsenceLevelDiagnosis(
+                CefrLevel.A1, 100, 1, 10.0, 90.0,
+                0.8, 0.7, 0.5, null,
+                List.of(absentWithAbsence), List.of(), 2, 3, 5);
+
+        // "lemma-pure-under" has NO LEMMA_ABSENCE but IS underexposed (count=1 < threshold=3)
+        LemmaCountStats statsWithAbsence = new LemmaCountStats(
+                new LemmaAndPos("lemma-with-absence", "NOUN"), 1, 0.33, Optional.of(CefrLevel.A1));
+        LemmaCountStats statsPureUnder = new LemmaCountStats(
+                new LemmaAndPos("lemma-pure-under", "NOUN"), 1, 0.33, Optional.of(CefrLevel.A1));
+
+        LevelLemmaCountResult levelResult = new LevelLemmaCountResult(
+                CefrLevel.A1, 0.33, 2, List.of(statsWithAbsence, statsPureUnder));
+        LemmaCountLevelDiagnosis lemmaCountDiag = new LemmaCountLevelDiagnosis(levelResult);
+
+        DefaultLevelDiagnoses milestoneDiag = new DefaultLevelDiagnoses();
+        milestoneDiag.setLemmaAbsenceDiagnosis(absenceDiag);
+        milestoneDiag.setLemmaCountDiagnosis(lemmaCountDiag);
+
+        MisplacedLemma ml = buildMisplacedLemma("moon", "NOUN", CefrLevel.A2, CefrLevel.A1, 250);
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz,
+                buildQuizDiagnosesWithPlacement(List.of(ml)));
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = new RefinementTask(
+                "task-r002b", AuditTarget.QUIZ, "quiz-r002b",
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+
+        // Act
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert: R002 — "lemma-pure-under" must appear in suggestedLemmas even without LEMMA_ABSENCE
+        Assertions.assertTrue(result.isPresent());
+        List<SuggestedLemma> lemmas = result.get().getSuggestedLemmas();
+
+        boolean pureUnderPresent = lemmas.stream()
+                .anyMatch(l -> "lemma-pure-under".equals(l.getLemma()));
+        Assertions.assertTrue(pureUnderPresent,
+                "lemma-pure-under must appear in suggestedLemmas based on lemma-count underexposure alone (R002) — no LEMMA_ABSENCE required");
+
+        // R002: the pure-underexposed lemma must also have the triple informed
+        SuggestedLemma pureUnder = lemmas.stream()
+                .filter(l -> "lemma-pure-under".equals(l.getLemma()))
+                .findFirst()
+                .orElseThrow();
+        Assertions.assertNotNull(pureUnder.getLemmaCount());
+        Assertions.assertNotNull(pureUnder.getLemmaCountThreshold());
+        Assertions.assertNotNull(pureUnder.getIsUnderexposed());
+        Assertions.assertTrue(pureUnder.getIsUnderexposed());
+    }
+
+    @Test
+    @DisplayName("should rank suggestedLemmas in the priority order group1 underexposed APPEARS_TOO_LATE then group2 underexposed APPEARS_TOO_EARLY then group3 underexposed without LEMMA_ABSENCE then group4 underexposed other LEMMA_ABSENCE then group5 LEMMA_ABSENCE without underexposure with COMPLETELY_ABSENT last")
+    @Tag("FEAT-LEMMA-SUGGESTIONS")
+    @Tag("F-SLEM-R003")
+    public void shouldRankSuggestedLemmasInThePriorityOrderGroup1UnderexposedAPPEARSTOOLATEThenGroup2UnderexposedAPPEARSTOOEARLYThenGroup3UnderexposedWithoutLEMMAABSENCEThenGroup4UnderexposedOtherLEMMAABSENCEThenGroup5LEMMAABSENCEWithoutUnderexposureWithCOMPLETELYABSENTLast() {
+        // Arrange: threshold = 3 (any count < 3 is underexposed)
+        //
+        // COCA ranks are deliberately shuffled across groups to prove group priority
+        // overrides COCA rank ordering:
+        //   - Group 1 ("lemma-g1-late"):  APPEARS_TOO_LATE + underexposed (count=1)  cocaRank=800
+        //   - Group 2 ("lemma-g2-early"): APPEARS_TOO_EARLY + underexposed at A2 (count=1) cocaRank=200
+        //   - Group 3 ("lemma-g3-pure"):  no LEMMA_ABSENCE + underexposed (count=2)  cocaRank=500
+        //   - Group 5a ("lemma-g5a-late"): APPEARS_TOO_LATE, NOT underexposed (count=5) cocaRank=100
+        //   - Group 5b ("lemma-g5b-absent"): COMPLETELY_ABSENT (R007: triple null)   cocaRank=50
+        //
+        // Expected order: g1-late → g2-early → g3-pure → g5a-late → g5b-absent
+
+        int threshold = 3;
+
+        // Quiz is in level A1
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r003", null, null, "La traduccion.", List.of("The sentence."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Vocab", "Complete.", true, "know-r003", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-r003", "Topic R003", null);
+        AuditableMilestone milestoneA1 = new AuditableMilestone(List.of(), "ms-r003-a1", "A1", null);
+        AuditableMilestone milestoneA2 = new AuditableMilestone(List.of(), "ms-r003-a2", "A2", null);
+
+        // Absent lemmas at A1 level (from LemmaAbsenceLevelDiagnosis):
+        // g1: APPEARS_TOO_LATE + underexposed → Group 1 (cocaRank=800 to prove group beats COCA)
+        AbsentLemma absentG1 = new AbsentLemma(
+                new LemmaAndPos("lemma-g1-late", "NOUN"), CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_LATE, List.of(), PriorityLevel.HIGH, 800, null);
+        // g2: APPEARS_TOO_EARLY → target level is A2; count at A2=1 < 3 → Group 2 (cocaRank=200)
+        AbsentLemma absentG2 = new AbsentLemma(
+                new LemmaAndPos("lemma-g2-early", "NOUN"), CefrLevel.A2,
+                AbsenceType.APPEARS_TOO_EARLY, List.of(CefrLevel.A1), PriorityLevel.HIGH, 200, null);
+        // g5a: APPEARS_TOO_LATE + NOT underexposed (count=5 >= 3) → Group 5 (cocaRank=100)
+        AbsentLemma absentG5a = new AbsentLemma(
+                new LemmaAndPos("lemma-g5a-late", "NOUN"), CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_LATE, List.of(), PriorityLevel.HIGH, 100, null);
+        // g5b: COMPLETELY_ABSENT → always last, triple null (R007) (cocaRank=50)
+        AbsentLemma absentG5b = new AbsentLemma(
+                new LemmaAndPos("lemma-g5b-absent", "NOUN"), CefrLevel.A1,
+                AbsenceType.COMPLETELY_ABSENT, List.of(), PriorityLevel.HIGH, 50, null);
+
+        LemmaAbsenceLevelDiagnosis absenceDiagA1 = new LemmaAbsenceLevelDiagnosis(
+                CefrLevel.A1, 100, 4, 10.0, 90.0,
+                0.8, 0.7, 0.5, null,
+                List.of(absentG1, absentG2, absentG5a, absentG5b),
+                List.of(), 2, 3, 5);
+
+        // LemmaCountLevelDiagnosis at A1:
+        // g1-late: count=1 < 3 (underexposed)
+        // g3-pure: count=2 < 3 (underexposed, no LEMMA_ABSENCE)
+        // g5a-late: count=5 >= 3 (NOT underexposed)
+        LemmaCountStats statsG1 = new LemmaCountStats(new LemmaAndPos("lemma-g1-late", "NOUN"), 1, 0.33, Optional.of(CefrLevel.A1));
+        LemmaCountStats statsG3 = new LemmaCountStats(new LemmaAndPos("lemma-g3-pure", "NOUN"), 2, 0.67, Optional.of(CefrLevel.A1));
+        LemmaCountStats statsG5a = new LemmaCountStats(new LemmaAndPos("lemma-g5a-late", "NOUN"), 5, 1.0, Optional.of(CefrLevel.A1));
+
+        LevelLemmaCountResult levelResultA1 = new LevelLemmaCountResult(
+                CefrLevel.A1, 0.5, 3, List.of(statsG1, statsG3, statsG5a));
+        LemmaCountLevelDiagnosis lemmaCountDiagA1 = new LemmaCountLevelDiagnosis(levelResultA1);
+
+        DefaultLevelDiagnoses milestoneDiagA1 = new DefaultLevelDiagnoses();
+        milestoneDiagA1.setLemmaAbsenceDiagnosis(absenceDiagA1);
+        milestoneDiagA1.setLemmaCountDiagnosis(lemmaCountDiagA1);
+
+        // LemmaCountLevelDiagnosis at A2:
+        // g2-early: count=1 < 3 at A2 (underexposed at target level — R004)
+        LemmaCountStats statsG2atA2 = new LemmaCountStats(new LemmaAndPos("lemma-g2-early", "NOUN"), 1, 0.33, Optional.of(CefrLevel.A2));
+        LevelLemmaCountResult levelResultA2 = new LevelLemmaCountResult(
+                CefrLevel.A2, 0.33, 1, List.of(statsG2atA2));
+        LemmaCountLevelDiagnosis lemmaCountDiagA2 = new LemmaCountLevelDiagnosis(levelResultA2);
+
+        DefaultLevelDiagnoses milestoneDiagA2 = new DefaultLevelDiagnoses();
+        milestoneDiagA2.setLemmaCountDiagnosis(lemmaCountDiagA2);
+
+        // Build tree: COURSE → [MILESTONE(A1) → TOPIC → KNOWLEDGE → QUIZ, MILESTONE(A2)]
+        AuditNode courseNode = buildCourseNode();
+        AuditNode milestoneNodeA1 = buildMilestoneNode(courseNode, milestoneA1, milestoneDiagA1);
+        AuditNode topicNode = buildTopicNode(milestoneNodeA1, topic);
+        AuditNode knowledgeNode = buildKnowledgeNode(topicNode, knowledge);
+        MisplacedLemma ml = buildMisplacedLemma("walk", "VERB", CefrLevel.A2, CefrLevel.A1, 300);
+        DefaultQuizDiagnoses quizDiag = buildQuizDiagnosesWithPlacement(List.of(ml));
+        buildQuizNode(knowledgeNode, quiz, quizDiag);
+        // A2 milestone (sibling) carries lemma-count for target-level evaluation (R004)
+        buildMilestoneNode(courseNode, milestoneA2, milestoneDiagA2);
+
+        AuditReport report = new AuditReport(courseNode);
+        RefinementTask task = new RefinementTask(
+                "task-r003", AuditTarget.QUIZ, "quiz-r003",
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+
+        // Act
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert: present and has the right number of lemmas (5 distinct entries)
+        Assertions.assertTrue(result.isPresent());
+        List<SuggestedLemma> lemmas = result.get().getSuggestedLemmas();
+        Assertions.assertEquals(5, lemmas.size(),
+                "Expected 5 suggested lemmas covering all priority groups");
+
+        // Group 1 (priority 1): underexposed APPEARS_TOO_LATE
+        Assertions.assertEquals("lemma-g1-late", lemmas.get(0).getLemma(),
+                "Group 1 (underexposed APPEARS_TOO_LATE) must be first regardless of high cocaRank");
+
+        // Group 2 (priority 2): underexposed APPEARS_TOO_EARLY at target level
+        Assertions.assertEquals("lemma-g2-early", lemmas.get(1).getLemma(),
+                "Group 2 (underexposed APPEARS_TOO_EARLY at target level) must be second");
+
+        // Group 3 (priority 3): underexposed without LEMMA_ABSENCE
+        Assertions.assertEquals("lemma-g3-pure", lemmas.get(2).getLemma(),
+                "Group 3 (underexposed, no LEMMA_ABSENCE) must be third");
+
+        // Group 5a (priority 5): APPEARS_TOO_LATE without underexposure
+        Assertions.assertEquals("lemma-g5a-late", lemmas.get(3).getLemma(),
+                "Group 5a (APPEARS_TOO_LATE, not underexposed) must be fourth despite lowest cocaRank");
+
+        // Group 5b (priority 5, last): COMPLETELY_ABSENT (R007)
+        Assertions.assertEquals("lemma-g5b-absent", lemmas.get(4).getLemma(),
+                "Group 5b (COMPLETELY_ABSENT) must be last (R007)");
+
+        // R007 + R013: COMPLETELY_ABSENT triple must be all null (not applicable)
+        Assertions.assertNull(lemmas.get(4).getLemmaCount(),
+                "COMPLETELY_ABSENT lemmaCount must be null (R007 + R013)");
+        Assertions.assertNull(lemmas.get(4).getLemmaCountThreshold(),
+                "COMPLETELY_ABSENT lemmaCountThreshold must be null (R007 + R013)");
+        Assertions.assertNull(lemmas.get(4).getIsUnderexposed(),
+                "COMPLETELY_ABSENT isUnderexposed must be null (R007 + R013)");
+
+        // R013: underexposed lemmas (g1, g2, g3) must have the triple all informed and consistent
+        SuggestedLemma g1 = lemmas.get(0);
+        Assertions.assertNotNull(g1.getLemmaCount(), "Group 1 lemmaCount must be informed");
+        Assertions.assertNotNull(g1.getLemmaCountThreshold(), "Group 1 lemmaCountThreshold must be informed");
+        Assertions.assertNotNull(g1.getIsUnderexposed(), "Group 1 isUnderexposed must be informed");
+        Assertions.assertTrue(g1.getIsUnderexposed(),
+                "Group 1 isUnderexposed must be true (count=1 < threshold=3)");
+    }
+
+    @Test
+    @DisplayName("should evaluate APPEARS_TOO_EARLY underexposure against the lema's real target level not against the level where the lema currently appears")
+    @Tag("FEAT-LEMMA-SUGGESTIONS")
+    @Tag("F-SLEM-R004")
+    public void shouldEvaluateAPPEARSTOOEARLYUnderexposureAgainstTheLemasRealTargetLevelNotAgainstTheLevelWhereTheLemaCurrentlyAppears() {
+        // Arrange: quiz is at A1 (current level). Lemma "lemma-early" has APPEARS_TOO_EARLY
+        // meaning it appears at A1 but its real target (expected) level is A2.
+        //
+        // At A1: count=5 >= threshold=3 → NOT underexposed (if evaluated at wrong level)
+        // At A2: count=1 < threshold=3 → underexposed (correct target level)
+        //
+        // R004 says: underexposure must be evaluated at the TARGET level (A2), not the current (A1).
+        // Expected: the lemma is classified as underexposed (Group 2 — underexposed APPEARS_TOO_EARLY)
+        // because the A2 signal shows count=1 < 3.
+
+        int threshold = 3;
+
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r004", null, null, "El libro.", List.of("The book."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Education", "Fill.", true, "know-r004", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-r004", "School", null);
+        AuditableMilestone milestoneA1 = new AuditableMilestone(List.of(), "ms-r004-a1", "A1", null);
+        AuditableMilestone milestoneA2 = new AuditableMilestone(List.of(), "ms-r004-a2", "A2", null);
+
+        // "lemma-early": APPEARS_TOO_EARLY at A1, expectedLevel=A2 → target is A2
+        AbsentLemma absentEarly = new AbsentLemma(
+                new LemmaAndPos("lemma-early", "NOUN"), CefrLevel.A2,
+                AbsenceType.APPEARS_TOO_EARLY, List.of(CefrLevel.A1), PriorityLevel.HIGH, 400, null);
+
+        LemmaAbsenceLevelDiagnosis absenceDiagA1 = new LemmaAbsenceLevelDiagnosis(
+                CefrLevel.A1, 100, 1, 10.0, 90.0,
+                0.8, 0.7, 0.5, null,
+                List.of(absentEarly),
+                List.of(), 2, 3, 5);
+
+        // A1 lemma-count: count=5 >= threshold=3 → not underexposed at A1 (wrong level)
+        LemmaCountStats statsAtA1 = new LemmaCountStats(
+                new LemmaAndPos("lemma-early", "NOUN"), 5, 1.0, Optional.of(CefrLevel.A1));
+        LevelLemmaCountResult levelResultA1 = new LevelLemmaCountResult(
+                CefrLevel.A1, 1.0, 1, List.of(statsAtA1));
+        LemmaCountLevelDiagnosis lemmaCountDiagA1 = new LemmaCountLevelDiagnosis(levelResultA1);
+
+        DefaultLevelDiagnoses milestoneDiagA1 = new DefaultLevelDiagnoses();
+        milestoneDiagA1.setLemmaAbsenceDiagnosis(absenceDiagA1);
+        milestoneDiagA1.setLemmaCountDiagnosis(lemmaCountDiagA1);
+
+        // A2 lemma-count: count=1 < threshold=3 → underexposed at A2 (correct target level)
+        LemmaCountStats statsAtA2 = new LemmaCountStats(
+                new LemmaAndPos("lemma-early", "NOUN"), 1, 0.33, Optional.of(CefrLevel.A2));
+        LevelLemmaCountResult levelResultA2 = new LevelLemmaCountResult(
+                CefrLevel.A2, 0.33, 1, List.of(statsAtA2));
+        LemmaCountLevelDiagnosis lemmaCountDiagA2 = new LemmaCountLevelDiagnosis(levelResultA2);
+
+        DefaultLevelDiagnoses milestoneDiagA2 = new DefaultLevelDiagnoses();
+        milestoneDiagA2.setLemmaCountDiagnosis(lemmaCountDiagA2);
+
+        // Build tree: COURSE → [MILESTONE(A1) → TOPIC → KNOWLEDGE → QUIZ, MILESTONE(A2)]
+        AuditNode courseNode = buildCourseNode();
+        AuditNode milestoneNodeA1 = buildMilestoneNode(courseNode, milestoneA1, milestoneDiagA1);
+        AuditNode topicNode = buildTopicNode(milestoneNodeA1, topic);
+        AuditNode knowledgeNode = buildKnowledgeNode(topicNode, knowledge);
+        MisplacedLemma ml = buildMisplacedLemma("book", "NOUN", CefrLevel.A2, CefrLevel.A1, 200);
+        buildQuizNode(knowledgeNode, quiz, buildQuizDiagnosesWithPlacement(List.of(ml)));
+        buildMilestoneNode(courseNode, milestoneA2, milestoneDiagA2);
+
+        AuditReport report = new AuditReport(courseNode);
+        RefinementTask task = new RefinementTask(
+                "task-r004", AuditTarget.QUIZ, "quiz-r004",
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+
+        // Act
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert
+        Assertions.assertTrue(result.isPresent());
+        List<SuggestedLemma> lemmas = result.get().getSuggestedLemmas();
+        Assertions.assertEquals(1, lemmas.size());
+
+        SuggestedLemma sl = lemmas.get(0);
+        Assertions.assertEquals("lemma-early", sl.getLemma());
+
+        // R004: evaluated at A2 (target level) → count=1 < threshold=3 → underexposed
+        Assertions.assertNotNull(sl.getIsUnderexposed(), "isUnderexposed must be informed (A2 signal available)");
+        Assertions.assertTrue(sl.getIsUnderexposed(),
+                "lemma-early must be underexposed at A2 (count=1 < threshold=3) — must evaluate at target level (R004)");
+        Assertions.assertEquals(1, sl.getLemmaCount(),
+                "lemmaCount must reflect count at A2 target level (count=1), not A1 current level (count=5)");
+    }
+
+    @Test
+    @DisplayName("should break ties within the same priority group by ordering suggestedLemmas by ascending cocaRank")
+    @Tag("FEAT-LEMMA-SUGGESTIONS")
+    @Tag("F-SLEM-R005")
+    public void shouldBreakTiesWithinTheSamePriorityGroupByOrderingSuggestedLemmasByAscendingCocaRank() {
+        // Arrange: 3 lemmas all in the same priority group (Group 1: underexposed APPEARS_TOO_LATE)
+        // with different cocaRanks. They should be ordered by COCA ascending within the group.
+        // cocaRanks: 500, 100, 300 → expected order: 100, 300, 500
+
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r005a", null, null, "Ella corre.", List.of("She runs."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Sports", "Complete.", true, "know-r005a", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-r005a", "Activities", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r005a", "A1", null);
+
+        // All three are APPEARS_TOO_LATE + underexposed (count=1 < threshold=3) → same group 1
+        AbsentLemma absent1 = new AbsentLemma(
+                new LemmaAndPos("lemma-coca-500", "NOUN"), CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_LATE, List.of(), PriorityLevel.HIGH, 500, null);
+        AbsentLemma absent2 = new AbsentLemma(
+                new LemmaAndPos("lemma-coca-100", "NOUN"), CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_LATE, List.of(), PriorityLevel.HIGH, 100, null);
+        AbsentLemma absent3 = new AbsentLemma(
+                new LemmaAndPos("lemma-coca-300", "NOUN"), CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_LATE, List.of(), PriorityLevel.HIGH, 300, null);
+
+        LemmaAbsenceLevelDiagnosis absenceDiag = new LemmaAbsenceLevelDiagnosis(
+                CefrLevel.A1, 100, 3, 10.0, 90.0,
+                0.8, 0.7, 0.5, null,
+                List.of(absent1, absent2, absent3),
+                List.of(), 2, 3, 5);
+
+        // All three underexposed (count=1 < threshold=3)
+        LemmaCountStats stats1 = new LemmaCountStats(new LemmaAndPos("lemma-coca-500", "NOUN"), 1, 0.33, Optional.of(CefrLevel.A1));
+        LemmaCountStats stats2 = new LemmaCountStats(new LemmaAndPos("lemma-coca-100", "NOUN"), 1, 0.33, Optional.of(CefrLevel.A1));
+        LemmaCountStats stats3 = new LemmaCountStats(new LemmaAndPos("lemma-coca-300", "NOUN"), 1, 0.33, Optional.of(CefrLevel.A1));
+
+        LevelLemmaCountResult levelResult = new LevelLemmaCountResult(
+                CefrLevel.A1, 0.33, 3, List.of(stats1, stats2, stats3));
+        LemmaCountLevelDiagnosis lemmaCountDiag = new LemmaCountLevelDiagnosis(levelResult);
+
+        DefaultLevelDiagnoses milestoneDiag = new DefaultLevelDiagnoses();
+        milestoneDiag.setLemmaAbsenceDiagnosis(absenceDiag);
+        milestoneDiag.setLemmaCountDiagnosis(lemmaCountDiag);
+
+        MisplacedLemma ml = buildMisplacedLemma("run", "VERB", CefrLevel.A2, CefrLevel.A1, 300);
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz,
+                buildQuizDiagnosesWithPlacement(List.of(ml)));
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = new RefinementTask(
+                "task-r005a", AuditTarget.QUIZ, "quiz-r005a",
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+
+        // Act
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert: all in group 1, ordered by COCA ascending
+        Assertions.assertTrue(result.isPresent());
+        List<SuggestedLemma> lemmas = result.get().getSuggestedLemmas();
+        Assertions.assertEquals(3, lemmas.size());
+        Assertions.assertEquals("lemma-coca-100", lemmas.get(0).getLemma(),
+                "Lowest cocaRank (100) must be first within the same priority group");
+        Assertions.assertEquals("lemma-coca-300", lemmas.get(1).getLemma(),
+                "Middle cocaRank (300) must be second");
+        Assertions.assertEquals("lemma-coca-500", lemmas.get(2).getLemma(),
+                "Highest cocaRank (500) must be third");
+    }
+
+    @Test
+    @DisplayName("should not use exposure deficit magnitude as tiebreaker within the same priority group leaving COCA ascending as the only intra-group order")
+    @Tag("FEAT-LEMMA-SUGGESTIONS")
+    @Tag("F-SLEM-R005")
+    public void shouldNotUseExposureDeficitMagnitudeAsTiebreakerWithinTheSamePriorityGroupLeavingCOCAAscendingAsTheOnlyIntragroupOrder() {
+        // Arrange: 3 lemmas all in Group 1 (underexposed APPEARS_TOO_LATE) with the same cocaRank (250)
+        // but different deficit magnitudes (count=1, count=0, count=2 — deficits of 2, 3, 1 against threshold=3).
+        // Expected: order is stable by COCA (all equal) — deficit must NOT determine the order.
+        // We verify that the first and last elements are not sorted by deficit.
+        // Since COCA is equal, any stable order is acceptable; the rule forbids deficit-based reordering.
+
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r005b", null, null, "El gato.", List.of("The cat."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Fill.", true, "know-r005b", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-r005b", "Nature", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r005b", "A1", null);
+
+        // All same cocaRank=250, all APPEARS_TOO_LATE + underexposed — different counts (deficit magnitudes)
+        AbsentLemma absent1 = new AbsentLemma(
+                new LemmaAndPos("lemma-def2", "NOUN"), CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_LATE, List.of(), PriorityLevel.HIGH, 250, null);
+        AbsentLemma absent2 = new AbsentLemma(
+                new LemmaAndPos("lemma-def3", "NOUN"), CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_LATE, List.of(), PriorityLevel.HIGH, 250, null);
+        AbsentLemma absent3 = new AbsentLemma(
+                new LemmaAndPos("lemma-def1", "NOUN"), CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_LATE, List.of(), PriorityLevel.HIGH, 250, null);
+
+        LemmaAbsenceLevelDiagnosis absenceDiag = new LemmaAbsenceLevelDiagnosis(
+                CefrLevel.A1, 100, 3, 10.0, 90.0,
+                0.8, 0.7, 0.5, null,
+                List.of(absent1, absent2, absent3),
+                List.of(), 2, 3, 5);
+
+        // Counts: lemma-def2=1 (deficit 2), lemma-def3=0 (deficit 3), lemma-def1=2 (deficit 1)
+        // threshold=3, all underexposed
+        LemmaCountStats stats1 = new LemmaCountStats(new LemmaAndPos("lemma-def2", "NOUN"), 1, 0.33, Optional.of(CefrLevel.A1));
+        LemmaCountStats stats2 = new LemmaCountStats(new LemmaAndPos("lemma-def3", "NOUN"), 0, 0.0, Optional.of(CefrLevel.A1));
+        LemmaCountStats stats3 = new LemmaCountStats(new LemmaAndPos("lemma-def1", "NOUN"), 2, 0.67, Optional.of(CefrLevel.A1));
+
+        LevelLemmaCountResult levelResult = new LevelLemmaCountResult(
+                CefrLevel.A1, 0.33, 3, List.of(stats1, stats2, stats3));
+        LemmaCountLevelDiagnosis lemmaCountDiag = new LemmaCountLevelDiagnosis(levelResult);
+
+        DefaultLevelDiagnoses milestoneDiag = new DefaultLevelDiagnoses();
+        milestoneDiag.setLemmaAbsenceDiagnosis(absenceDiag);
+        milestoneDiag.setLemmaCountDiagnosis(lemmaCountDiag);
+
+        MisplacedLemma ml = buildMisplacedLemma("cat", "NOUN", CefrLevel.A2, CefrLevel.A1, 200);
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz,
+                buildQuizDiagnosesWithPlacement(List.of(ml)));
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = new RefinementTask(
+                "task-r005b", AuditTarget.QUIZ, "quiz-r005b",
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+
+        // Act
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert: all 3 lemmas present (all underexposed, all in group 1)
+        Assertions.assertTrue(result.isPresent());
+        List<SuggestedLemma> lemmas = result.get().getSuggestedLemmas();
+        Assertions.assertEquals(3, lemmas.size(), "All 3 underexposed APPEARS_TOO_LATE lemmas must be included");
+
+        // R005: deficit must NOT determine order; all have same cocaRank → any order is stable
+        // The critical check: if deficit were used, lemma-def3 (deficit=3) would be first.
+        // R005 forbids that. Instead, since COCA is equal, stable insertion order is acceptable.
+        // We verify the 3 lemmas are all present (order is indeterminate but deficit-driven would place lemma-def3 first)
+        List<String> names = lemmas.stream().map(SuggestedLemma::getLemma).toList();
+        Assertions.assertTrue(names.contains("lemma-def2"), "lemma-def2 must be present");
+        Assertions.assertTrue(names.contains("lemma-def3"), "lemma-def3 must be present");
+        Assertions.assertTrue(names.contains("lemma-def1"), "lemma-def1 must be present");
+        // R005 key assertion: lemma-def3 (highest deficit=3) must NOT be first if COCA is equal
+        // (if it were, it would indicate deficit-based ordering, which R005 forbids)
+        // Since all COCA ranks are equal (250), the tiebreaker is NOT deficit — lemma-def3 must NOT jump to front
+        // In a deficit-first approach, order would be: def3, def2, def1 (deficit 3 > 2 > 1)
+        // The rule says COCA ascending is the ONLY tiebreaker — with equal COCA, stable order (not deficit)
+        Assertions.assertNotEquals("lemma-def3", lemmas.get(0).getLemma(),
+                "lemma-def3 (highest deficit magnitude) must NOT be first — deficit is not a tiebreaker (R005)");
+    }
+
+    @Test
+    @DisplayName("should apply the existing suggestedLemmas size limit only after the lemma-count ranking has been computed so the cap never increases the maximum observable list size")
+    @Tag("FEAT-LEMMA-SUGGESTIONS")
+    @Tag("F-SLEM-R006")
+    public void shouldApplyTheExistingSuggestedLemmasSizeLimitOnlyAfterTheLemmacountRankingHasBeenComputedSoTheCapNeverIncreasesTheMaximumObservableListSize() {
+        // Arrange: 15 lemmas all COMPLETELY_ABSENT (group 5) plus 3 lemmas that are underexposed
+        // APPEARS_TOO_LATE (group 1). After ranking: group 1 entries come first.
+        // After applying the cap (10 max), only the top 10 by priority should remain.
+        // The underexposed group-1 lemmas must be kept; the rest come from group 5.
+        // This verifies: (1) cap does not exceed 10, (2) cap is applied after ranking so
+        // the 3 group-1 lemmas are preserved over group-5 lemmas.
+
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r006", null, null, "El perro.", List.of("The dog."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Fill.", true, "know-r006", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-r006", "Nature", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r006", "A1", null);
+
+        List<AbsentLemma> absentLemmas = new ArrayList<>();
+        // 3 underexposed APPEARS_TOO_LATE → group 1 (priority highest)
+        for (int i = 1; i <= 3; i++) {
+            absentLemmas.add(new AbsentLemma(
+                    new LemmaAndPos("lemma-under-" + i, "NOUN"), CefrLevel.A1,
+                    AbsenceType.APPEARS_TOO_LATE, List.of(), PriorityLevel.HIGH, i * 100, null));
+        }
+        // 15 COMPLETELY_ABSENT → group 5 (lowest priority)
+        for (int i = 1; i <= 15; i++) {
+            absentLemmas.add(new AbsentLemma(
+                    new LemmaAndPos("lemma-absent-" + i, "NOUN"), CefrLevel.A1,
+                    AbsenceType.COMPLETELY_ABSENT, List.of(), PriorityLevel.HIGH, i * 50, null));
+        }
+
+        LemmaAbsenceLevelDiagnosis absenceDiag = new LemmaAbsenceLevelDiagnosis(
+                CefrLevel.A1, 100, 18, 10.0, 90.0,
+                0.8, 0.7, 0.5, null,
+                absentLemmas, List.of(), 2, 3, 5);
+
+        // lemma-under-1, -2, -3 all underexposed (count=1 < threshold=3)
+        List<LemmaCountStats> statsList = new ArrayList<>();
+        for (int i = 1; i <= 3; i++) {
+            statsList.add(new LemmaCountStats(
+                    new LemmaAndPos("lemma-under-" + i, "NOUN"), 1, 0.33, Optional.of(CefrLevel.A1)));
+        }
+        LevelLemmaCountResult levelResult = new LevelLemmaCountResult(
+                CefrLevel.A1, 0.33, 3, statsList);
+        LemmaCountLevelDiagnosis lemmaCountDiag = new LemmaCountLevelDiagnosis(levelResult);
+
+        DefaultLevelDiagnoses milestoneDiag = new DefaultLevelDiagnoses();
+        milestoneDiag.setLemmaAbsenceDiagnosis(absenceDiag);
+        milestoneDiag.setLemmaCountDiagnosis(lemmaCountDiag);
+
+        MisplacedLemma ml = buildMisplacedLemma("dog", "NOUN", CefrLevel.A2, CefrLevel.A1, 200);
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz,
+                buildQuizDiagnosesWithPlacement(List.of(ml)));
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = new RefinementTask(
+                "task-r006", AuditTarget.QUIZ, "quiz-r006",
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+
+        // Act
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert
+        Assertions.assertTrue(result.isPresent());
+        List<SuggestedLemma> lemmas = result.get().getSuggestedLemmas();
+
+        // R006: cap must still be 10 (not increased by lemma-count ranking)
+        Assertions.assertEquals(10, lemmas.size(),
+                "suggestedLemmas must be capped at 10 after lemma-count ranking (R006)");
+
+        // R006: cap applied AFTER ranking — the 3 underexposed lemmas must be in the top 10
+        // (if cap were applied before ranking, they might be cut out by the 10-limit)
+        List<String> names = lemmas.stream().map(SuggestedLemma::getLemma).toList();
+        Assertions.assertTrue(names.contains("lemma-under-1"),
+                "Underexposed group-1 lemma must survive the cap (cap applied after ranking)");
+        Assertions.assertTrue(names.contains("lemma-under-2"),
+                "Underexposed group-1 lemma must survive the cap (cap applied after ranking)");
+        Assertions.assertTrue(names.contains("lemma-under-3"),
+                "Underexposed group-1 lemma must survive the cap (cap applied after ranking)");
+    }
+
+    @Test
+    @DisplayName("should place every COMPLETELY_ABSENT lemma behind every already-introduced underexposed lemma in suggestedLemmas regardless of cocaRank")
+    @Tag("FEAT-LEMMA-SUGGESTIONS")
+    @Tag("F-SLEM-R007")
+    public void shouldPlaceEveryCOMPLETELYABSENTLemmaBehindEveryAlreadyintroducedUnderexposedLemmaInSuggestedLemmasRegardlessOfCocaRank() {
+        // Arrange:
+        // - "lemma-absent-low" COMPLETELY_ABSENT, cocaRank=50  (very low COCA — should still be last)
+        // - "lemma-under-high" APPEARS_TOO_LATE + underexposed, cocaRank=900 (high COCA — must come first)
+        // threshold=3, count of underexposed lemma = 1 < 3
+
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r007", null, null, "Ella corre.", List.of("She runs."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Sports", "Complete.", true, "know-r007", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-r007", "Activities", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r007", "A1", null);
+
+        AbsentLemma absentAbsent = new AbsentLemma(
+                new LemmaAndPos("lemma-absent-low", "NOUN"), CefrLevel.A1,
+                AbsenceType.COMPLETELY_ABSENT, List.of(), PriorityLevel.HIGH, 50, null);
+        AbsentLemma absentUnder = new AbsentLemma(
+                new LemmaAndPos("lemma-under-high", "NOUN"), CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_LATE, List.of(), PriorityLevel.HIGH, 900, null);
+
+        LemmaAbsenceLevelDiagnosis absenceDiag = new LemmaAbsenceLevelDiagnosis(
+                CefrLevel.A1, 100, 2, 10.0, 90.0,
+                0.8, 0.7, 0.5, null,
+                List.of(absentAbsent, absentUnder),
+                List.of(), 2, 3, 5);
+
+        // lemma-under-high is in lemma-count with count=1 < threshold=3 → underexposed
+        LemmaCountStats statsUnder = new LemmaCountStats(
+                new LemmaAndPos("lemma-under-high", "NOUN"), 1, 0.33, Optional.of(CefrLevel.A1));
+        LevelLemmaCountResult levelResult = new LevelLemmaCountResult(
+                CefrLevel.A1, 0.5, 1, List.of(statsUnder));
+        LemmaCountLevelDiagnosis lemmaCountDiag = new LemmaCountLevelDiagnosis(levelResult);
+
+        DefaultLevelDiagnoses milestoneDiag = new DefaultLevelDiagnoses();
+        milestoneDiag.setLemmaAbsenceDiagnosis(absenceDiag);
+        milestoneDiag.setLemmaCountDiagnosis(lemmaCountDiag);
+
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz,
+                buildQuizDiagnosesWithPlacement(List.of(buildMisplacedLemma("run", "VERB", CefrLevel.A2, CefrLevel.A1, 300))));
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = new RefinementTask(
+                "task-r007", AuditTarget.QUIZ, "quiz-r007",
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+
+        // Act
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert
+        Assertions.assertTrue(result.isPresent());
+        List<SuggestedLemma> lemmas = result.get().getSuggestedLemmas();
+        Assertions.assertEquals(2, lemmas.size());
+
+        // R007: underexposed lemma (Group 1 — APPEARS_TOO_LATE + underexposed) must come first,
+        // even though it has a higher cocaRank (900) than the COMPLETELY_ABSENT lemma (50)
+        Assertions.assertEquals("lemma-under-high", lemmas.get(0).getLemma(),
+                "Underexposed APPEARS_TOO_LATE must come before COMPLETELY_ABSENT regardless of cocaRank");
+        Assertions.assertEquals("lemma-absent-low", lemmas.get(1).getLemma(),
+                "COMPLETELY_ABSENT must be last even with lowest cocaRank");
+
+        // R007 + R013: COMPLETELY_ABSENT triple must all be null (signal not applicable)
+        SuggestedLemma absentEntry = lemmas.get(1);
+        Assertions.assertNull(absentEntry.getLemmaCount(),
+                "COMPLETELY_ABSENT lemmaCount must be null — signal not applicable (R007 + R013)");
+        Assertions.assertNull(absentEntry.getLemmaCountThreshold(),
+                "COMPLETELY_ABSENT lemmaCountThreshold must be null — signal not applicable (R007 + R013)");
+        Assertions.assertNull(absentEntry.getIsUnderexposed(),
+                "COMPLETELY_ABSENT isUnderexposed must be null — signal not applicable (R007 + R013)");
+    }
+
+    @Test
+    @DisplayName("should still return suggestedLemmas for a LEMMA_ABSENCE task when the audit report has no lemma-count signal leaving lemmaCount lemmaCountThreshold and isUnderexposed marked as unavailable and not throwing")
+    @Tag("FEAT-LEMMA-SUGGESTIONS")
+    @Tag("F-SLEM-R012")
+    public void shouldStillReturnSuggestedLemmasForALEMMAABSENCETaskWhenTheAuditReportHasNoLemmacountSignalLeavingLemmaCountLemmaCountThresholdAndIsUnderexposedMarkedAsUnavailableAndNotThrowing() {
+        // Arrange: audit report with LEMMA_ABSENCE diagnosis but NO lemma-count diagnosis
+        // on any node. The milestone has LemmaAbsenceLevelDiagnosis but no LemmaCountLevelDiagnosis.
+        // R012: suggestedLemmas must still be returned (no exception), and for every element
+        // the triple (lemmaCount, lemmaCountThreshold, isUnderexposed) must be null (all uninformed).
+
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r012", null, null, "El mar.", List.of("The sea."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Geography", "Fill.", true, "know-r012", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-r012", "Environment", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r012", "B1", null);
+
+        AbsentLemma absentLate = new AbsentLemma(
+                new LemmaAndPos("lemma-r012-late", "NOUN"), CefrLevel.B1,
+                AbsenceType.APPEARS_TOO_LATE, List.of(), PriorityLevel.HIGH, 300, null);
+        AbsentLemma absentCompletely = new AbsentLemma(
+                new LemmaAndPos("lemma-r012-absent", "NOUN"), CefrLevel.B1,
+                AbsenceType.COMPLETELY_ABSENT, List.of(), PriorityLevel.HIGH, 100, null);
+
+        LemmaAbsenceLevelDiagnosis absenceDiag = new LemmaAbsenceLevelDiagnosis(
+                CefrLevel.B1, 100, 2, 10.0, 90.0,
+                0.8, 0.7, 0.5, null,
+                List.of(absentLate, absentCompletely),
+                List.of(), 2, 3, 5);
+
+        // NO lemma-count diagnosis set on the milestone — signal unavailable
+        DefaultLevelDiagnoses milestoneDiag = new DefaultLevelDiagnoses();
+        milestoneDiag.setLemmaAbsenceDiagnosis(absenceDiag);
+        // milestoneDiag.setLemmaCountDiagnosis(...) — intentionally omitted
+
+        MisplacedLemma ml = buildMisplacedLemma("sea", "NOUN", CefrLevel.B2, CefrLevel.B1, 500);
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz,
+                buildQuizDiagnosesWithPlacement(List.of(ml)));
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = new RefinementTask(
+                "task-r012", AuditTarget.QUIZ, "quiz-r012",
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+
+        // Act: must NOT throw
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert: R012 — context is returned, suggestedLemmas is non-empty, no exception thrown
+        Assertions.assertTrue(result.isPresent(),
+                "resolve must return a present context even without lemma-count signal (R012)");
+        List<SuggestedLemma> lemmas = result.get().getSuggestedLemmas();
+        Assertions.assertFalse(lemmas.isEmpty(),
+                "suggestedLemmas must not be empty when absence signal is available but lemma-count is not (R012)");
+
+        // R012 + R013: when no lemma-count signal, all three values must be null (not informed) for ALL elements
+        for (SuggestedLemma sl : lemmas) {
+            Assertions.assertNull(sl.getLemmaCount(),
+                    "lemmaCount must be null when no lemma-count signal available (R012 + R013): " + sl.getLemma());
+            Assertions.assertNull(sl.getLemmaCountThreshold(),
+                    "lemmaCountThreshold must be null when no lemma-count signal available (R012 + R013): " + sl.getLemma());
+            Assertions.assertNull(sl.getIsUnderexposed(),
+                    "isUnderexposed must be null when no lemma-count signal available (R012 + R013): " + sl.getLemma());
+        }
+    }
+
+    @Test
+    @DisplayName("should emit every suggestedLemmas element with the three lemma-count fields either all informed or all uninformed never in a mixed state")
+    @Tag("FEAT-LEMMA-SUGGESTIONS")
+    @Tag("F-SLEM-R013")
+    public void shouldEmitEverySuggestedLemmasElementWithTheThreeLemmacountFieldsEitherAllInformedOrAllUninformedNeverInAMixedState() {
+        // Arrange: audit with lemma-count signal at A1.
+        // - "lemma-informed": APPEARS_TOO_LATE + in lemma-count → triple must all be non-null
+        // - "lemma-absent": COMPLETELY_ABSENT → triple must all be null (R007 + R013)
+        // Verifies the "all-or-nothing" block invariant of R013.
+
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r013a", null, null, "La casa.", List.of("The house."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Housing", "Fill.", true, "know-r013a", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-r013a", "Home", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r013a", "A1", null);
+
+        AbsentLemma absentInformed = new AbsentLemma(
+                new LemmaAndPos("lemma-informed", "NOUN"), CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_LATE, List.of(), PriorityLevel.HIGH, 400, null);
+        AbsentLemma absentCompletely = new AbsentLemma(
+                new LemmaAndPos("lemma-absent", "NOUN"), CefrLevel.A1,
+                AbsenceType.COMPLETELY_ABSENT, List.of(), PriorityLevel.HIGH, 100, null);
+
+        LemmaAbsenceLevelDiagnosis absenceDiag = new LemmaAbsenceLevelDiagnosis(
+                CefrLevel.A1, 100, 2, 10.0, 90.0,
+                0.8, 0.7, 0.5, null,
+                List.of(absentInformed, absentCompletely),
+                List.of(), 2, 3, 5);
+
+        // Only "lemma-informed" appears in lemma-count (underexposed: count=1 < threshold=3)
+        LemmaCountStats statsInformed = new LemmaCountStats(
+                new LemmaAndPos("lemma-informed", "NOUN"), 1, 0.33, Optional.of(CefrLevel.A1));
+        LevelLemmaCountResult levelResult = new LevelLemmaCountResult(
+                CefrLevel.A1, 0.33, 1, List.of(statsInformed));
+        LemmaCountLevelDiagnosis lemmaCountDiag = new LemmaCountLevelDiagnosis(levelResult);
+
+        DefaultLevelDiagnoses milestoneDiag = new DefaultLevelDiagnoses();
+        milestoneDiag.setLemmaAbsenceDiagnosis(absenceDiag);
+        milestoneDiag.setLemmaCountDiagnosis(lemmaCountDiag);
+
+        MisplacedLemma ml = buildMisplacedLemma("house", "NOUN", CefrLevel.A2, CefrLevel.A1, 200);
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz,
+                buildQuizDiagnosesWithPlacement(List.of(ml)));
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = new RefinementTask(
+                "task-r013a", AuditTarget.QUIZ, "quiz-r013a",
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+
+        // Act
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert: R013 — no mixed states allowed
+        Assertions.assertTrue(result.isPresent());
+        List<SuggestedLemma> lemmas = result.get().getSuggestedLemmas();
+        Assertions.assertEquals(2, lemmas.size());
+
+        for (SuggestedLemma sl : lemmas) {
+            boolean allInformed = sl.getLemmaCount() != null
+                    && sl.getLemmaCountThreshold() != null
+                    && sl.getIsUnderexposed() != null;
+            boolean allUninformed = sl.getLemmaCount() == null
+                    && sl.getLemmaCountThreshold() == null
+                    && sl.getIsUnderexposed() == null;
+            Assertions.assertTrue(allInformed || allUninformed,
+                    "SuggestedLemma '" + sl.getLemma() + "' must have all-or-nothing triple (R013), "
+                    + "but got lemmaCount=" + sl.getLemmaCount()
+                    + " lemmaCountThreshold=" + sl.getLemmaCountThreshold()
+                    + " isUnderexposed=" + sl.getIsUnderexposed());
+        }
+
+        // lemma-informed: triple must be all non-null
+        SuggestedLemma informed = lemmas.stream()
+                .filter(l -> "lemma-informed".equals(l.getLemma()))
+                .findFirst()
+                .orElseThrow();
+        Assertions.assertNotNull(informed.getLemmaCount(), "lemma-informed lemmaCount must be non-null");
+        Assertions.assertNotNull(informed.getLemmaCountThreshold(), "lemma-informed lemmaCountThreshold must be non-null");
+        Assertions.assertNotNull(informed.getIsUnderexposed(), "lemma-informed isUnderexposed must be non-null");
+
+        // lemma-absent: triple must be all null (COMPLETELY_ABSENT, R007 + R013)
+        SuggestedLemma absent = lemmas.stream()
+                .filter(l -> "lemma-absent".equals(l.getLemma()))
+                .findFirst()
+                .orElseThrow();
+        Assertions.assertNull(absent.getLemmaCount(), "COMPLETELY_ABSENT lemmaCount must be null (R007 + R013)");
+        Assertions.assertNull(absent.getLemmaCountThreshold(), "COMPLETELY_ABSENT lemmaCountThreshold must be null (R007 + R013)");
+        Assertions.assertNull(absent.getIsUnderexposed(), "COMPLETELY_ABSENT isUnderexposed must be null (R007 + R013)");
+    }
+
+    @Test
+    @DisplayName("should emit suggestedLemmas elements whose informed lemma-count triple is internally consistent with isUnderexposed equal to lemmaCount less than lemmaCountThreshold and no negative values")
+    @Tag("FEAT-LEMMA-SUGGESTIONS")
+    @Tag("F-SLEM-R013")
+    public void shouldEmitSuggestedLemmasElementsWhoseInformedLemmacountTripleIsInternallyConsistentWithIsUnderexposedEqualToLemmaCountLessThanLemmaCountThresholdAndNoNegativeValues() {
+        // Arrange: two lemmas with lemma-count signal:
+        // - "lemma-under": count=2, threshold=5 → isUnderexposed should be true (2 < 5)
+        // - "lemma-ok": count=6, threshold=5 → isUnderexposed should be false (6 >= 5, not underexposed)
+        // R013: isUnderexposed must equal (lemmaCount < lemmaCountThreshold), both non-negative.
+
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r013b", null, null, "El agua.", List.of("The water."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Nature", "Fill.", true, "know-r013b", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-r013b", "Elements", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r013b", "A1", null);
+
+        AbsentLemma absentUnder = new AbsentLemma(
+                new LemmaAndPos("lemma-under", "NOUN"), CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_LATE, List.of(), PriorityLevel.HIGH, 300, null);
+        AbsentLemma absentOk = new AbsentLemma(
+                new LemmaAndPos("lemma-ok", "NOUN"), CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_LATE, List.of(), PriorityLevel.HIGH, 700, null);
+
+        LemmaAbsenceLevelDiagnosis absenceDiag = new LemmaAbsenceLevelDiagnosis(
+                CefrLevel.A1, 100, 2, 10.0, 90.0,
+                0.8, 0.7, 0.5, null,
+                List.of(absentUnder, absentOk),
+                List.of(), 2, 3, 5);
+
+        // count=2, threshold=5 → underexposed
+        LemmaCountStats statsUnder = new LemmaCountStats(
+                new LemmaAndPos("lemma-under", "NOUN"), 2, 0.4, Optional.of(CefrLevel.A1));
+        // count=6, threshold=5 → NOT underexposed (score would be 1.0 since min(6/5, 1)=1.0)
+        LemmaCountStats statsOk = new LemmaCountStats(
+                new LemmaAndPos("lemma-ok", "NOUN"), 6, 1.0, Optional.of(CefrLevel.A1));
+
+        LevelLemmaCountResult levelResult = new LevelLemmaCountResult(
+                CefrLevel.A1, 0.7, 2, List.of(statsUnder, statsOk));
+        LemmaCountLevelDiagnosis lemmaCountDiag = new LemmaCountLevelDiagnosis(levelResult);
+
+        DefaultLevelDiagnoses milestoneDiag = new DefaultLevelDiagnoses();
+        milestoneDiag.setLemmaAbsenceDiagnosis(absenceDiag);
+        milestoneDiag.setLemmaCountDiagnosis(lemmaCountDiag);
+
+        MisplacedLemma ml = buildMisplacedLemma("water", "NOUN", CefrLevel.A2, CefrLevel.A1, 100);
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz,
+                buildQuizDiagnosesWithPlacement(List.of(ml)));
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = new RefinementTask(
+                "task-r013b", AuditTarget.QUIZ, "quiz-r013b",
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+
+        // Act
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert: R013 — triple must be internally consistent
+        Assertions.assertTrue(result.isPresent());
+        List<SuggestedLemma> lemmas = result.get().getSuggestedLemmas();
+        Assertions.assertFalse(lemmas.isEmpty());
+
+        for (SuggestedLemma sl : lemmas) {
+            if (sl.getLemmaCount() != null) {
+                // If informed: values must be non-negative and isUnderexposed consistent
+                Assertions.assertTrue(sl.getLemmaCount() >= 0,
+                        "lemmaCount must be non-negative (R013): " + sl.getLemma());
+                Assertions.assertTrue(sl.getLemmaCountThreshold() >= 0,
+                        "lemmaCountThreshold must be non-negative (R013): " + sl.getLemma());
+                boolean expectedUnderexposed = sl.getLemmaCount() < sl.getLemmaCountThreshold();
+                Assertions.assertEquals(expectedUnderexposed, sl.getIsUnderexposed(),
+                        "isUnderexposed must equal (lemmaCount < lemmaCountThreshold) for: " + sl.getLemma()
+                        + " [count=" + sl.getLemmaCount() + " threshold=" + sl.getLemmaCountThreshold() + "]");
+            }
+        }
+
+        // Specific checks for our two lemmas
+        SuggestedLemma slUnder = lemmas.stream()
+                .filter(l -> "lemma-under".equals(l.getLemma()))
+                .findFirst()
+                .orElseThrow();
+        Assertions.assertEquals(2, slUnder.getLemmaCount());
+        Assertions.assertEquals(5, slUnder.getLemmaCountThreshold());
+        Assertions.assertTrue(slUnder.getIsUnderexposed(), "count=2 < threshold=5 → underexposed");
+
+        SuggestedLemma slOk = lemmas.stream()
+                .filter(l -> "lemma-ok".equals(l.getLemma()))
+                .findFirst()
+                .orElseThrow();
+        Assertions.assertEquals(6, slOk.getLemmaCount());
+        Assertions.assertEquals(5, slOk.getLemmaCountThreshold());
+        Assertions.assertFalse(slOk.getIsUnderexposed(), "count=6 >= threshold=5 → NOT underexposed");
     }
 }

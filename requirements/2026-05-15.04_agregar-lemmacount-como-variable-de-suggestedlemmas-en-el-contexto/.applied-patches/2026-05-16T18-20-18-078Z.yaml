@@ -1,0 +1,54 @@
+code: FEAT-LEMMA-SUGGESTIONS
+description: "Extend lemma suggestions with lemma-count metadata and update existing\
+  \ resolver, mapper, and validator surfaces."
+modules:
+- name: refiner-domain
+  models:
+  - name: SuggestedLemma
+    type: record
+    fields:
+    - name: lemmaCount
+      type: Integer
+      description: Observed lemma-count signal for the target level when available;
+        null means unavailable.
+      _change: add
+    - name: lemmaCountThreshold
+      type: Integer
+      description: Minimum lemma-count threshold used to decide underexposure when
+        available; null means unavailable.
+      _change: add
+    - name: isUnderexposed
+      type: Boolean
+      description: Whether lemmaCount is below lemmaCountThreshold when lemma-count
+        data is available; null means unavailable.
+      _change: add
+    _change: modify
+  implementations:
+  - name: LemmaAbsenceContextResolver
+    implements:
+    - CorrectionContextResolver
+    _change: modify
+  _change: modify
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: DefaultCorrectionContextJsonMapper
+      implements:
+      - CorrectionContextJsonMapper
+      _change: modify
+    _change: modify
+  _change: modify
+- name: revision-domain
+  packages:
+  - name: contextoverride
+    implementations:
+    - name: LemmaAbsenceContextStructuralValidator
+      implements:
+      - CorrectionContextStructuralValidator
+      _change: modify
+    _change: modify
+  _change: modify
+features:
+- id: FEAT-LEMMA-SUGGESTIONS
+  code: F-SLEM

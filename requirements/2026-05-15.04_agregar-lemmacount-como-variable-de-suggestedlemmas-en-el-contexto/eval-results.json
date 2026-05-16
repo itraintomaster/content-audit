@@ -1,0 +1,341 @@
+{
+  "scores": {
+    "a1": {
+      "a1aPassed": true,
+      "a1aViolations": [],
+      "a1bScore": 0.5833333333333334,
+      "a1bDetails": [
+        {
+          "elementName": "DefaultCorrectionContextJsonMapper",
+          "kind": "IMPLEMENTATION",
+          "actualLevel": "internal",
+          "optimalLevel": "private",
+          "elementScore": 0.5
+        },
+        {
+          "elementName": "LemmaAbsenceContextStructuralValidator",
+          "kind": "IMPLEMENTATION",
+          "actualLevel": "internal",
+          "optimalLevel": "private",
+          "elementScore": 0.5
+        },
+        {
+          "elementName": "LemmaAbsenceContextResolver",
+          "kind": "IMPLEMENTATION",
+          "actualLevel": "public",
+          "optimalLevel": "public+allowedClients",
+          "elementScore": 0.75
+        }
+      ],
+      "a1cScore": 0,
+      "a1dScore": 0.7999999999999999,
+      "compositeScore": 0.5716666666666667
+    },
+    "a2": {
+      "structurallySound": false,
+      "a2a": {
+        "id": "A2a",
+        "name": "Structural Integrity",
+        "score": 0,
+        "violations": [
+          {
+            "code": "A2a-DEP",
+            "severity": "critical",
+            "message": "LemmaAbsenceContextStructuralValidator requires ObjectMapper but no such interface exists in revision-domain or its dependsOn"
+          }
+        ]
+      },
+      "a2b": {
+        "id": "A2b",
+        "name": "Port Coverage",
+        "score": 0,
+        "violations": []
+      },
+      "a2c": {
+        "id": "A2c",
+        "name": "Reachability",
+        "score": 0,
+        "violations": []
+      },
+      "a2d": {
+        "id": "A2d",
+        "name": "Contract Utilization",
+        "score": 0,
+        "violations": []
+      },
+      "a2e": {
+        "id": "A2e",
+        "name": "Path Traceability",
+        "score": 0,
+        "violations": []
+      },
+      "composite": 0
+    },
+    "a3": {
+      "modules": [
+        {
+          "name": "audit-cli",
+          "ca": 0,
+          "ce": 0,
+          "instability": 0,
+          "abstractness": 0,
+          "distance": 1,
+          "zone": "pain",
+          "score": 0
+        },
+        {
+          "name": "refiner-domain",
+          "ca": 0,
+          "ce": 0,
+          "instability": 0,
+          "abstractness": 0,
+          "distance": 1,
+          "zone": "pain",
+          "score": 0
+        },
+        {
+          "name": "revision-domain",
+          "ca": 0,
+          "ce": 0,
+          "instability": 0,
+          "abstractness": 0,
+          "distance": 1,
+          "zone": "pain",
+          "score": 0
+        }
+      ],
+      "componentCount": 4,
+      "threshold": 30,
+      "ramp": 0.13333333333333333,
+      "rawScore": 0,
+      "effectiveScore": 0.8666666666666667
+    },
+    "a4": {
+      "dependencyInversionHolds": true,
+      "acyclic": true,
+      "a4a": {
+        "id": "A4a",
+        "name": "Dependency Inversion",
+        "score": 1,
+        "violations": [
+          {
+            "code": "A4-NOLAYER",
+            "severity": "warning",
+            "message": "No modules declare a layer — A4 cannot be evaluated"
+          }
+        ]
+      },
+      "a4b": {
+        "id": "A4b",
+        "name": "Acyclicity",
+        "score": 1,
+        "violations": []
+      },
+      "a4c": {
+        "id": "A4c",
+        "name": "Adapter Polarity",
+        "score": 1,
+        "violations": []
+      },
+      "a4d": {
+        "id": "A4d",
+        "name": "Layer Isolation",
+        "score": 1,
+        "violations": []
+      },
+      "a4e": {
+        "id": "A4e",
+        "name": "Composition Root Discipline",
+        "score": 1,
+        "violations": []
+      },
+      "composite": 1
+    },
+    "a5": {
+      "a5aScore": 0.5,
+      "a5bScore": 1,
+      "a5cScore": 0,
+      "a5dScore": 1,
+      "a5eScore": 1,
+      "violations": [
+        {
+          "code": "A5a",
+          "severity": "warning",
+          "message": "Factory pattern 'AuditNodeIndexFactory' has 1 implementation(s) — needs ≥2 to justify"
+        },
+        {
+          "code": "A5a",
+          "severity": "warning",
+          "message": "Factory pattern 'NlpTokenizerFactory' has 1 implementation(s) — needs ≥2 to justify"
+        },
+        {
+          "code": "A5a",
+          "severity": "warning",
+          "message": "Factory pattern 'LemmaAbsenceLlmGeneratorFactory' has 1 implementation(s) — needs ≥2 to justify"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'DefaultAuditNodeIndexFactory' declared in Factory pattern but not found in any module"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'SpacyNlpTokenizerFactory' declared in Factory pattern but not found in any module"
+        },
+        {
+          "code": "A5c",
+          "severity": "critical",
+          "message": "Phantom: 'DefaultLemmaAbsenceLlmGeneratorFactory' declared in Factory pattern but not found in any module"
+        }
+      ],
+      "composite": 0.6
+    },
+    "a6": {
+      "score": 1,
+      "totalInterfaces": 0,
+      "inflatedCount": 0,
+      "inflated": []
+    },
+    "c1": {
+      "score": 1,
+      "maxDepth": 0,
+      "avgDepth": 0,
+      "entries": [
+        {
+          "entryPoint": "audit-cli.commands.ContentAuditCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.AnalyzeCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.GetCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.DeleteCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.PruneCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.PlanCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.ReviseCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.ConfigAnalyzerCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.StatsAnalyzerCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.ApproveCmd",
+          "depth": 0
+        },
+        {
+          "entryPoint": "audit-cli.commands.RejectCmd",
+          "depth": 0
+        }
+      ]
+    },
+    "c3": {
+      "score": 1,
+      "details": [
+        {
+          "name": "LemmaAbsenceContextResolver",
+          "moduleName": "refiner-domain",
+          "cbo": 1,
+          "threshold": 4,
+          "layer": "domain",
+          "score": 1
+        },
+        {
+          "name": "DefaultCorrectionContextJsonMapper",
+          "moduleName": "audit-cli",
+          "cbo": 1,
+          "threshold": 4,
+          "layer": "domain",
+          "score": 1
+        },
+        {
+          "name": "LemmaAbsenceContextStructuralValidator",
+          "moduleName": "revision-domain",
+          "cbo": 2,
+          "threshold": 4,
+          "layer": "domain",
+          "score": 1
+        },
+        {
+          "name": "LemmaAbsenceContextResolver",
+          "moduleName": "refiner-domain",
+          "cbo": 1,
+          "threshold": 4,
+          "layer": "domain",
+          "score": 1
+        },
+        {
+          "name": "DefaultCorrectionContextJsonMapper",
+          "moduleName": "audit-cli",
+          "cbo": 1,
+          "threshold": 4,
+          "layer": "domain",
+          "score": 1
+        },
+        {
+          "name": "LemmaAbsenceContextStructuralValidator",
+          "moduleName": "revision-domain",
+          "cbo": 1,
+          "threshold": 4,
+          "layer": "domain",
+          "score": 1
+        }
+      ]
+    },
+    "mode": "PATCH_ONLY",
+    "compositeScore": 0.6104761904761905
+  },
+  "timestamp": "2026-05-16T13:31:31.926Z",
+  "b3": {
+    "score": 0.9,
+    "direction": "balanced",
+    "justification": "The patch correctly identifies the necessary touchpoints across the hexagonal layers to support the new metadata, though it lacks explicit mention of the ranking logic changes in the resolver.",
+    "findings": [
+      {
+        "element": "refiner-domain/LemmaAbsenceContextResolver",
+        "issue": "While the implementation is modified, the patch doesn't explicitly reflect the complex new ranking and evaluation rules (R003, R004, R007) which are the core of the requirement.",
+        "severity": "warning"
+      },
+      {
+        "element": "refiner-domain/SuggestedLemma",
+        "issue": "The addition of three nullable fields is a proportional way to handle the 'signal unavailable' requirement (R012) without breaking existing contracts.",
+        "severity": "warning"
+      }
+    ]
+  },
+  "b4": {
+    "score": 1,
+    "justification": "Every element in the patch is directly traceable to the requirement's mandate to enrich suggested lemmas with lemma-count signals and ensure consistency across planning, consultation, and revision.",
+    "findings": []
+  },
+  "b2": {
+    "score": 1,
+    "justification": "The patch strictly adheres to SRP by extending existing domain models and implementation logic within their established boundaries without introducing cross-domain contamination.",
+    "findings": []
+  },
+  "b1": {
+    "score": 1,
+    "justification": "The patch perfectly aligns with the ubiquitous language of the requirement, using domain terms like 'lemmaCount', 'isUnderexposed', and 'suggestedLemmas' consistently across the domain and CLI layers.",
+    "findings": []
+  },
+  "judgeProfile": "google-gemini"
+}

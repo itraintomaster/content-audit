@@ -16,14 +16,24 @@ public class SuggestedLemma {
 
     private Integer cocaRank;
 
+    private Integer lemmaCount;
+
+    private Integer lemmaCountThreshold;
+
+    private Boolean isUnderexposed;
+
     public SuggestedLemma() {
     }
 
-    public SuggestedLemma(String lemma, String pos, String reason, Integer cocaRank) {
+    public SuggestedLemma(String lemma, String pos, String reason, Integer cocaRank,
+            Integer lemmaCount, Integer lemmaCountThreshold, Boolean isUnderexposed) {
         this.lemma = lemma;
         this.pos = pos;
         this.reason = reason;
         this.cocaRank = cocaRank;
+        this.lemmaCount = lemmaCount;
+        this.lemmaCountThreshold = lemmaCountThreshold;
+        this.isUnderexposed = isUnderexposed;
     }
 
     public String getLemma() {
@@ -58,6 +68,30 @@ public class SuggestedLemma {
         this.cocaRank = cocaRank;
     }
 
+    public Integer getLemmaCount() {
+        return this.lemmaCount;
+    }
+
+    public void setLemmaCount(Integer lemmaCount) {
+        this.lemmaCount = lemmaCount;
+    }
+
+    public Integer getLemmaCountThreshold() {
+        return this.lemmaCountThreshold;
+    }
+
+    public void setLemmaCountThreshold(Integer lemmaCountThreshold) {
+        this.lemmaCountThreshold = lemmaCountThreshold;
+    }
+
+    public Boolean getIsUnderexposed() {
+        return this.isUnderexposed;
+    }
+
+    public void setIsUnderexposed(Boolean isUnderexposed) {
+        this.isUnderexposed = isUnderexposed;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -66,11 +100,14 @@ public class SuggestedLemma {
         return Objects.equals(this.lemma, that.lemma)
                     && Objects.equals(this.pos, that.pos)
                     && Objects.equals(this.reason, that.reason)
-                    && Objects.equals(this.cocaRank, that.cocaRank);
+                    && Objects.equals(this.cocaRank, that.cocaRank)
+                    && Objects.equals(this.lemmaCount, that.lemmaCount)
+                    && Objects.equals(this.lemmaCountThreshold, that.lemmaCountThreshold)
+                    && Objects.equals(this.isUnderexposed, that.isUnderexposed);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lemma, pos, reason, cocaRank);
+        return Objects.hash(lemma, pos, reason, cocaRank, lemmaCount, lemmaCountThreshold, isUnderexposed);
     }
 }

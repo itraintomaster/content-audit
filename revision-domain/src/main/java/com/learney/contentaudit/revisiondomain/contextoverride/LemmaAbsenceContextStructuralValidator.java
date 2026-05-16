@@ -142,15 +142,64 @@ class LemmaAbsenceContextStructuralValidator implements CorrectionContextStructu
             }
         }
 
-        // suggestedLemmas: optional list
+        // suggestedLemmas: optional list with optional lemma-count triple (F-SLEM-R010/R011/R013)
         List<SuggestedLemma> suggestedLemmas = new ArrayList<>();
         if (ctx.has("suggestedLemmas") && ctx.get("suggestedLemmas").isArray()) {
             for (JsonNode sl : ctx.get("suggestedLemmas")) {
                 String lemma = sl.has("lemma") ? sl.get("lemma").asText(null) : null;
                 String pos = sl.has("pos") ? sl.get("pos").asText(null) : null;
                 String reason = sl.has("reason") ? sl.get("reason").asText(null) : null;
-                Integer cocaRank = sl.has("cocaRank") && !sl.get("cocaRank").isNull() ? sl.get("cocaRank").asInt(0) : null;
-                suggestedLemmas.add(new SuggestedLemma(lemma, pos, reason, cocaRank));
+                Integer cocaRank = sl.has("cocaRank") && !sl.get("cocaRank").isNull()
+                        ? sl.get("cocaRank").asInt(0) : null;
+
+                // F-SLEM-R013: lemma-count triple is all-or-nothing
+                boolean hasLemmaCount = sl.has("lemmaCount") && !sl.get("lemmaCount").isNull();
+                boolean hasThreshold = sl.has("lemmaCountThreshold") && !sl.get("lemmaCountThreshold").isNull();
+                boolean hasUnderexposed = sl.has("isUnderexposed") && !sl.get("isUnderexposed").isNull();
+
+                int presentCount = (hasLemmaCount ? 1 : 0) + (hasThreshold ? 1 : 0) + (hasUnderexposed ? 1 : 0);
+                if (presentCount > 0 && presentCount < 3) {
+                    throw new OverrideRejectedException(
+                            "El correctionContext provisto no es valido para una tarea de tipo 'LEMMA_ABSENCE': "
+                            + "la señal de lemma-count dentro de suggestedLemmas debe ser informada "
+                            + "en bloque (los tres campos lemmaCount, lemmaCountThreshold, isUnderexposed) "
+                            + "o ninguno de ellos");
+                }
+
+                Integer lemmaCount = null;
+                Integer lemmaCountThreshold = null;
+                Boolean isUnderexposed = null;
+
+                if (presentCount == 3) {
+                    lemmaCount = sl.get("lemmaCount").asInt();
+                    lemmaCountThreshold = sl.get("lemmaCountThreshold").asInt();
+                    isUnderexposed = sl.get("isUnderexposed").asBoolean();
+
+                    // F-SLEM-R011: validate consistency
+                    if (lemmaCount < 0) {
+                        throw new OverrideRejectedException(
+                                "El correctionContext es invalido por inconsistencia en la señal de "
+                                + "lemma-count dentro de suggestedLemmas: lemmaCount no puede ser negativo ("
+                                + lemmaCount + ")");
+                    }
+                    if (lemmaCountThreshold < 0) {
+                        throw new OverrideRejectedException(
+                                "El correctionContext es invalido por inconsistencia en la señal de "
+                                + "lemma-count dentro de suggestedLemmas: lemmaCountThreshold no puede ser "
+                                + "negativo (" + lemmaCountThreshold + ")");
+                    }
+                    boolean expectedUnderexposed = lemmaCount < lemmaCountThreshold;
+                    if (isUnderexposed != expectedUnderexposed) {
+                        throw new OverrideRejectedException(
+                                "El correctionContext es invalido por inconsistencia en la señal de "
+                                + "lemma-count dentro de suggestedLemmas: isUnderexposed=" + isUnderexposed
+                                + " no coincide con (lemmaCount=" + lemmaCount
+                                + " < lemmaCountThreshold=" + lemmaCountThreshold + ")");
+                    }
+                }
+
+                suggestedLemmas.add(new SuggestedLemma(lemma, pos, reason, cocaRank,
+                        lemmaCount, lemmaCountThreshold, isUnderexposed));
             }
         }
 

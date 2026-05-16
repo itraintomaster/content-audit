@@ -1178,10 +1178,13 @@ new RefinementPlan(String id, String sourceAuditId, Instant createdAt, List<Refi
 | `pos` | `String` |  |
 | `reason` | `String` |  |
 | `cocaRank` | `Integer` |  |
+| `lemmaCount` | `Integer` |  |
+| `lemmaCountThreshold` | `Integer` |  |
+| `isUnderexposed` | `Boolean` |  |
 
 **Generated constructor:**
 ```java
-new SuggestedLemma(String lemma, String pos, String reason, Integer cocaRank)
+new SuggestedLemma(String lemma, String pos, String reason, Integer cocaRank, Integer lemmaCount, Integer lemmaCountThreshold, Boolean isUnderexposed)
 ```
 
 #### SentenceLengthCorrectionContext

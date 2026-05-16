@@ -475,4 +475,57 @@ public class ReviseCmdTest {
         assertEquals(0, exit, "APPROVED_APPLIED outcome without override should exit 0");
         verify(revisionEngine).revise(eq(planId), eq(taskId), any(Path.class), isNull());
     }
+
+    @Test
+    @DisplayName("should pass the system-derived enriched correctionContext suggestedLemmas to the revision engine when revise is invoked with null correctionContextJson and null correctionContextFilePath on a LEMMA_ABSENCE task")
+    @Tag("FEAT-LEMMA-SUGGESTIONS")
+    @Tag("F-SLEM-R009")
+    public void shouldPassTheSystemderivedEnrichedCorrectionContextSuggestedLemmasToTheRevisionEngineWhenReviseIsInvokedWithNullCorrectionContextJsonAndNullCorrectionContextFilePathOnALEMMAABSENCETask() {
+        // R009: when ReviseCommand.revise(taskId, planId, null, null) is executed on a
+        // LEMMA_ABSENCE task, the revision must consume correctionContext.suggestedLemmas
+        // enriched and ordered with the lemma-count signal — the one derived by the system.
+        //
+        // Observable at ReviseCmd: when both correctionContextJson=null and
+        // correctionContextFilePath=null, ReviseCmd calls revisionEngine.revise(...)
+        // with null as the overridePayload. This signals to the engine: "use the
+        // system-derived correctionContext" — which, for LEMMA_ABSENCE, is the enriched
+        // suggestedLemmas (with lemma-count signal). The engine handles the actual
+        // enrichment; ReviseCmd must NOT intercept or substitute the context.
+        //
+        // This test verifies that ReviseCmd correctly delegates to the engine with
+        // null override, enabling the engine to apply the system-derived enriched
+        // correctionContext for the LEMMA_ABSENCE task.
+
+        String taskId = "task-slem-r009";
+        String planId = "plan-slem-r009";
+
+        // Build a LEMMA_ABSENCE task (not SENTENCE_LENGTH as in other tests)
+        RefinementTask lemmaAbsenceTask = new RefinementTask(
+                taskId,
+                AuditTarget.QUIZ,
+                "quiz-slem-r009",
+                "Animals Quiz — LEMMA_ABSENCE",
+                DiagnosisKind.LEMMA_ABSENCE,
+                1,
+                RefinementTaskStatus.PENDING
+        );
+
+        RefinementPlan latestPlan = plan(planId, "audit-slem-r009", List.of(lemmaAbsenceTask));
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(latestPlan));
+
+        // Engine returns success — the engine consumed the system-derived enriched correctionContext
+        RevisionOutcome outcome = new RevisionOutcome(RevisionOutcomeKind.APPROVED_APPLIED, null, null);
+        when(revisionEngine.revise(eq(planId), eq(taskId), any(Path.class), isNull()))
+                .thenReturn(outcome);
+
+        // Act: revise with null correctionContextJson and null correctionContextFilePath
+        // → ReviseCmd must call the engine with null overridePayload (R009)
+        int exit = reviseCmd.revise(taskId, null, null, null);
+
+        // Assert: R009 — engine must be called with null overridePayload so it can use
+        // the system-derived enriched correctionContext.suggestedLemmas
+        assertEquals(0, exit,
+                "R009: revise on LEMMA_ABSENCE task without override must exit 0 (APPROVED_APPLIED)");
+        verify(revisionEngine).revise(eq(planId), eq(taskId), any(Path.class), isNull());
+    }
 }

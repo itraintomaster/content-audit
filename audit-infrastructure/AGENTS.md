@@ -639,6 +639,9 @@ Methods:
 | pos | `String` |
 | reason | `String` |
 | cocaRank | `Integer` |
+| lemmaCount | `Integer` |
+| lemmaCountThreshold | `Integer` |
+| isUnderexposed | `Boolean` |
 
 ### SentenceLengthCorrectionContext (`record`)
 

@@ -1,0 +1,20 @@
+{
+  "runId" : "20260515T102128-20c4c51b",
+  "agent" : "analyst-interactive",
+  "graphKind" : "single-agent",
+  "requirementFolder" : "requirements/2026-05-15.04_agregar-lemmacount-como-variable-de-suggestedlemmas-en-el-contexto",
+  "request" : "Agregar LemmaCount como variable de SuggestedLemmas en el contexto 2026-05-15 Ahora tenemos lemmaCount como nuevo análisis que nos ofrece el dato de los lemmas que están expuestos menos de n veces (4 por defecto). Este dato nos servirá para mejorar el algoritmo de sugerencia de lemmas que se ofrece en el contexto de revisión",
+  "status" : "failed",
+  "started" : "2026-05-15T10:21:28.751812Z",
+  "updated" : "2026-05-15T10:21:30.341996Z",
+  "metadata" : {
+    "provider" : "openai",
+    "model" : "gpt-5.5",
+    "base_url" : "https://api.openai.com/v1/",
+    "interactive" : true
+  },
+  "outcome" : {
+    "halted" : true,
+    "haltReason" : "{\n  \"error\": {\n    \"message\": \"Unsupported value: 'temperature' does not support 0 with this model. Only the default (1) value is supported.\",\n    \"type\": \"invalid_request_error\",\n    \"param\": \"temperature\",\n    \"code\": \"unsupported_value\"\n  }\n}"
+  }
+}

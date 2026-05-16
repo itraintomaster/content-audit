@@ -85,6 +85,8 @@ Methods:
 - Given contentAudit throws an exception, when runAudit is called, then the exception propagates → FEAT-CLI/F-CLI-R001
 - Given a course with no milestones, when runAudit is called, then returns the report from contentAudit → FEAT-CLI/F-CLI-R001
 - should expose a public runAudit(Path coursePath) method on the AuditRunner contract that returns the AuditReport produced after loading the course mapping it to AuditableCourse and running the audit engine → FEAT-CLI/F-CLI-R005
+- should expose lemma-count diagnoses in the AuditReport when runAudit is invoked with both lemma-count and lemma-absence analyzers so downstream consumers can read the underexposure signal per level → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R001
+- should expose lemma-count diagnoses in the AuditReport when runDetailedAudit is invoked with both lemma-count and lemma-absence analyzers so downstream consumers can read the underexposure signal per level → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R001
 
 ### DefaultCocaBucketsConfig
 
@@ -761,6 +763,9 @@ Methods:
 | pos | `String` |
 | reason | `String` |
 | cocaRank | `Integer` |
+| lemmaCount | `Integer` |
+| lemmaCountThreshold | `Integer` |
+| isUnderexposed | `Boolean` |
 
 ### SentenceLengthCorrectionContext (`record`)
 

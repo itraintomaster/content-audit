@@ -23,6 +23,23 @@ This project has specialized AI agents. **Delegate to them instead of doing thei
 - Test implementation (implement handwritten test stub bodies) → `@test-writer`
 - You should NOT do architecture, implementation, test design, or test implementation work yourself — use the agents.
 
+## Requirement Creation
+
+Three ways to create or refine a `REQUIREMENT.md`, each suited to different contexts:
+
+| Mode | How | Best for |
+|------|-----|----------|
+| **Batch analyst** | Invoke `@analyst` agent | Fast, fire-and-forget. Analyst reads the codebase and writes the requirement autonomously. Less refined. |
+| **VS Code interactive** | Architect Studio → Agent Runs panel | You answer the analyst's questions in real-time via the VS Code UI. Maximum human control. |
+| **MCP interactive** | `/sentinel-analyst-mcp` command | Claude Code acts as the human-in-the-loop, answering questions using its codebase knowledge. Best of both: iterative refinement without interrupting the user. |
+
+**When to choose:**
+- Simple, well-understood feature → batch analyst
+- Complex feature where the user wants to guide every decision → VS Code interactive
+- Complex feature but the codebase context is enough to answer questions → MCP interactive
+
+The MCP mode requires the `sentinel-agents` MCP server (configured in `.mcp.json`).
+
 ## Rule 0 - Generated Files
 
 Never modify files annotated with `@Generated` or containing the header `SENTINEL MANAGED FILE`.

@@ -1,0 +1,22 @@
+{
+  "runId" : "20260516T185527-218baefe",
+  "agent" : "llm-judge",
+  "graphKind" : "single-agent",
+  "requirementFolder" : "requirements/2026-03-28.02_lemma-count/_previous",
+  "request" : "B-tier eval (LLM-as-Judge) for architectural_patch.yaml",
+  "status" : "done",
+  "started" : "2026-05-16T18:55:27.793338Z",
+  "updated" : "2026-05-16T18:55:44.819659Z",
+  "metadata" : {
+    "kind" : "llm-judge",
+    "profile" : "google-gemini"
+  },
+  "outcome" : {
+    "halted" : false,
+    "haltReason" : null,
+    "b1" : 0.9,
+    "b2" : 0.9,
+    "b3" : 0.6,
+    "b4" : 1.0
+  }
+}

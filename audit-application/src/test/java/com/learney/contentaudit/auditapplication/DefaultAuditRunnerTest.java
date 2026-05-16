@@ -5,10 +5,18 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 import com.learney.contentaudit.auditdomain.*;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountCourseDiagnosis;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountLevelDiagnosis;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountResult;
+import com.learney.contentaudit.auditdomain.lemmacount.LevelLemmaCountResult;
+import static org.mockito.Mockito.lenient;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -160,5 +168,149 @@ public class DefaultAuditRunnerTest {
         verify(courseRepository).load(coursePath);
         verify(courseToAuditableMapper).map(courseEntity);
         verify(auditEngine).runAudit(auditableCourse);
+    }
+
+    @Test
+    @DisplayName("should expose lemma-count diagnoses in the AuditReport when runAudit is invoked with both lemma-count and lemma-absence analyzers so downstream consumers can read the underexposure signal per level")
+    @Tag("FEAT-LEMMA-SUGGESTIONS")
+    @Tag("F-SLEM-R001")
+    public void shouldExposeLemmacountDiagnosesInTheAuditReportWhenRunAuditIsInvokedWithBothLemmacountAndLemmaabsenceAnalyzersSoDownstreamConsumersCanReadTheUnderexposureSignalPerLevel() {
+        // R001: when runAudit is executed including "lemma-count" (with or without "lemma-absence"),
+        // the resulting AuditReport must carry the lemma-count signal so downstream consumers
+        // (e.g., LemmaAbsenceContextResolver) can read underexposure per level.
+        //
+        // Observable behavior: the AuditReport returned by DefaultAuditRunner preserves the
+        // lemma-count signal produced by the engine. The test verifies that DefaultAuditRunner
+        // passes through the engine result without stripping the LemmaCountCourseDiagnosis.
+        //
+        // Setup: use analyzerNames=null (fallback to injected auditEngine) so that the mocked
+        // auditEngine is called. The mocked engine returns a pre-built report with lemma-count
+        // signal, and we assert the signal is preserved in the returned AuditReport.
+
+        // Build an AuditReport with lemma-count signal on the root node
+        AuditNode rootNode = new AuditNode();
+        rootNode.setTarget(AuditTarget.COURSE);
+        rootNode.setChildren(new ArrayList<>());
+        rootNode.setScores(new LinkedHashMap<>());
+        rootNode.setMetadata(new LinkedHashMap<>());
+
+        LevelLemmaCountResult levelResult = new LevelLemmaCountResult(
+                CefrLevel.A1, 0.5, 5, List.of());
+        LemmaCountResult lemmaCountResult = new LemmaCountResult(
+                3, Optional.of(0.5), List.of(levelResult), List.of());
+        LemmaCountCourseDiagnosis lemmaCountCourseDiagnosis = new LemmaCountCourseDiagnosis(lemmaCountResult);
+
+        DefaultCourseDiagnoses courseDiagnoses = new DefaultCourseDiagnoses();
+        courseDiagnoses.setLemmaCountDiagnosis(lemmaCountCourseDiagnosis);
+        rootNode.setDiagnoses(courseDiagnoses);
+
+        AuditReport reportWithLemmaCount = new AuditReport(rootNode);
+
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
+        // Engine (injected mock) returns the pre-built report with lemma-count signal
+        when(auditEngine.runAudit(auditableCourse)).thenReturn(reportWithLemmaCount);
+
+        // Act: null analyzerNames → DefaultAuditRunner uses the injected auditEngine directly
+        // (represents the case where all registered analyzers, including lemma-count, are run)
+        AuditReport result = sut.runAudit(coursePath, null);
+
+        // Assert: R001 — the returned report exposes the lemma-count diagnosis
+        assertNotNull(result, "runAudit must return a non-null AuditReport");
+        assertNotNull(result.getRoot(), "AuditReport root must not be null");
+        assertNotNull(result.getRoot().getDiagnoses(),
+                "Root node diagnoses must not be null when lemma-count was included");
+        assertTrue(result.getRoot().getDiagnoses() instanceof CourseDiagnoses,
+                "Root node diagnoses must implement CourseDiagnoses for a course-level node");
+
+        CourseDiagnoses rootDiagnoses = (CourseDiagnoses) result.getRoot().getDiagnoses();
+        assertTrue(rootDiagnoses.getLemmaCountDiagnosis().isPresent(),
+                "R001: AuditReport must carry lemma-count diagnosis when lemma-count analyzer was included");
+        assertEquals(3, rootDiagnoses.getLemmaCountDiagnosis().get().getResult().getThresholdN(),
+                "R001: lemma-count threshold must be accessible from the AuditReport root diagnoses");
+    }
+
+    @Test
+    @DisplayName("should expose lemma-count diagnoses in the AuditReport when runDetailedAudit is invoked with both lemma-count and lemma-absence analyzers so downstream consumers can read the underexposure signal per level")
+    @Tag("FEAT-LEMMA-SUGGESTIONS")
+    @Tag("F-SLEM-R001")
+    public void shouldExposeLemmacountDiagnosesInTheAuditReportWhenRunDetailedAuditIsInvokedWithBothLemmacountAndLemmaabsenceAnalyzersSoDownstreamConsumersCanReadTheUnderexposureSignalPerLevel() {
+        // R001: when runDetailedAudit is executed including "lemma-count", the resulting AuditNode
+        // must carry the lemma-count signal so downstream consumers can read underexposure per level.
+        //
+        // Observable behavior: DefaultAuditRunner.runDetailedAudit returns an AuditNode. The test
+        // verifies that the returned node (or its subtree) carries the lemma-count signal produced
+        // by the engine.
+        //
+        // Setup: the injected auditEngine returns a pre-built AuditReport. DefaultAuditRunner's
+        // runDetailedAudit calls the engine and returns a node from the result. We verify that
+        // the signal is accessible in the returned node structure.
+
+        // Build an AuditReport where the root carries lemma-count at course level
+        // and a milestone node carries lemma-count at level diagnosis
+        AuditNode milestoneNode = new AuditNode();
+        milestoneNode.setTarget(AuditTarget.MILESTONE);
+        milestoneNode.setChildren(new ArrayList<>());
+        milestoneNode.setScores(new LinkedHashMap<>());
+        milestoneNode.setMetadata(new LinkedHashMap<>());
+
+        LevelLemmaCountResult levelResult = new LevelLemmaCountResult(
+                CefrLevel.B1, 0.4, 8, List.of());
+        LemmaCountLevelDiagnosis levelDiagnosis = new LemmaCountLevelDiagnosis(levelResult);
+        DefaultLevelDiagnoses levelDiagnoses = new DefaultLevelDiagnoses();
+        levelDiagnoses.setLemmaCountDiagnosis(levelDiagnosis);
+        milestoneNode.setDiagnoses(levelDiagnoses);
+
+        AuditNode rootNode = new AuditNode();
+        rootNode.setTarget(AuditTarget.COURSE);
+        List<AuditNode> children = new ArrayList<>();
+        children.add(milestoneNode);
+        milestoneNode.setParent(rootNode);
+        rootNode.setChildren(children);
+        rootNode.setScores(new LinkedHashMap<>());
+        rootNode.setMetadata(new LinkedHashMap<>());
+
+        // Also set course-level lemma-count on root
+        LemmaCountCourseDiagnosis courseCountDiag = new LemmaCountCourseDiagnosis(
+                new LemmaCountResult(3, Optional.of(0.4), List.of(levelResult), List.of()));
+        DefaultCourseDiagnoses courseDiag = new DefaultCourseDiagnoses();
+        courseDiag.setLemmaCountDiagnosis(courseCountDiag);
+        rootNode.setDiagnoses(courseDiag);
+
+        AuditReport reportWithLemmaCount = new AuditReport(rootNode);
+
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
+        // Use lenient to allow either engine call pattern
+        lenient().when(auditEngine.runAudit(any(AuditableCourse.class))).thenReturn(reportWithLemmaCount);
+        lenient().when(auditEngine.runAudit(auditableCourse)).thenReturn(reportWithLemmaCount);
+
+        // Act: invoke runDetailedAudit with "lemma-count" as the analyzer name
+        AuditNode result = sut.runDetailedAudit(coursePath, "lemma-count");
+
+        // Assert: R001 — the returned AuditNode (or its subtree) carries the lemma-count signal
+        assertNotNull(result,
+                "R001: runDetailedAudit must return a non-null AuditNode when lemma-count analyzer is included");
+        // Check that lemma-count diagnoses are accessible in the returned subtree
+        assertTrue(hasLemmaCountDiagnosis(result),
+                "R001: runDetailedAudit must return an AuditNode whose subtree carries the lemma-count diagnosis "
+                + "signal — downstream consumers need this signal to identify underexposed lemmas per level");
+    }
+
+    /**
+     * Recursively checks if any AuditNode in the tree has a LemmaCountLevelDiagnosis or
+     * LemmaCountCourseDiagnosis set.
+     */
+    private boolean hasLemmaCountDiagnosis(AuditNode node) {
+        if (node == null) return false;
+        NodeDiagnoses diag = node.getDiagnoses();
+        if (diag instanceof LevelDiagnoses ld && ld.getLemmaCountDiagnosis().isPresent()) return true;
+        if (diag instanceof CourseDiagnoses cd && cd.getLemmaCountDiagnosis().isPresent()) return true;
+        if (node.getChildren() != null) {
+            for (AuditNode child : node.getChildren()) {
+                if (hasLemmaCountDiagnosis(child)) return true;
+            }
+        }
+        return false;
     }
 }

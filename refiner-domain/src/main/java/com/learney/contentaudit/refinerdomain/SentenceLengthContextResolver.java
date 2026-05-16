@@ -103,7 +103,8 @@ public class SentenceLengthContextResolver implements CorrectionContextResolver 
                                 .filter(al -> al.getAbsenceType() == AbsenceType.COMPLETELY_ABSENT
                                         || al.getAbsenceType() == AbsenceType.APPEARS_TOO_LATE)
                                 .sorted(Comparator.comparingInt(
-                                        (AbsentLemma al) -> al.getCocaRank() == 0
+                                        (AbsentLemma al) -> al.getCocaRank() == null
+                                                || al.getCocaRank() == 0
                                                 ? Integer.MAX_VALUE
                                                 : al.getCocaRank()))
                                 .limit(10)
@@ -114,7 +115,10 @@ public class SentenceLengthContextResolver implements CorrectionContextResolver 
                                                 ? al.getLemmaAndPos().getPos() : null,
                                         al.getAbsenceType() != null
                                                 ? al.getAbsenceType().name() : null,
-                                        al.getCocaRank()))
+                                        al.getCocaRank(),
+                                        null,
+                                        null,
+                                        null))
                                 .collect(Collectors.toList());
                     }
                 }
@@ -235,7 +239,8 @@ public class SentenceLengthContextResolver implements CorrectionContextResolver 
                                 .filter(al -> al.getAbsenceType() == AbsenceType.COMPLETELY_ABSENT
                                         || al.getAbsenceType() == AbsenceType.APPEARS_TOO_LATE)
                                 .sorted(Comparator.comparingInt(
-                                        (AbsentLemma al) -> al.getCocaRank() == 0
+                                        (AbsentLemma al) -> al.getCocaRank() == null
+                                                || al.getCocaRank() == 0
                                                 ? Integer.MAX_VALUE
                                                 : al.getCocaRank()))
                                 .limit(10)
@@ -246,7 +251,10 @@ public class SentenceLengthContextResolver implements CorrectionContextResolver 
                                                 ? al.getLemmaAndPos().getPos() : null,
                                         al.getAbsenceType() != null
                                                 ? al.getAbsenceType().name() : null,
-                                        al.getCocaRank()))
+                                        al.getCocaRank(),
+                                        null,
+                                        null,
+                                        null))
                                 .collect(Collectors.toList());
                     }
                 }

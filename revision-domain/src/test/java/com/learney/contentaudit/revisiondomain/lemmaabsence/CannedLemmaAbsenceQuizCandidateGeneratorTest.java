@@ -39,7 +39,7 @@ public class CannedLemmaAbsenceQuizCandidateGeneratorTest {
                 "Education",
                 level,
                 List.of(new MisplacedLemmaContext("go", "VERB", CefrLevel.B2, level, 200)),
-                List.of(new SuggestedLemma("walk", "VERB", "A1 synonym", 80)),
+                List.of(new SuggestedLemma("walk", "VERB", "A1 synonym", 80, null, null, null)),
                 quizSentence,
                 0, 0, 0, 0,
                 com.learney.contentaudit.refinerdomain.LengthDirection.UNKNOWN

@@ -39,7 +39,7 @@ You arrive with **no embedded architecture**. Before implementing a test, gather
 
 1. **The test stub file** — `src/test/java/.../ImplTest.java`. Find the method still throwing `UnsupportedOperationException` and read its `@Tag` annotations. The module owning the stub is derived from its path.
 2. **The implementation declaration via `sentinel tool`** — use `describeComponent --name <ImplName>` to get the impl's `requiresInject` list (needed for mock setup) and the interfaces it implements.
-3. **REQUIREMENT.md** — search under `requirements/*/REQUIREMENT.md`.
+3. **REQUIREMENT.md** — the requirement files for this project: requirements/2026-05-15.04_agregar-lemmacount-como-variable-de-suggestedlemmas-en-el-contexto/REQUIREMENT.md.
 4. **The specific business rule** referenced by `@Tag` (e.g., `F-RCSL-R001`). Extract: expected behavior, constraints, error message, severity.
 5. **The specific user journey** referenced by `@Tag` (if any). Extract: step sequence, preconditions, expected outcomes. If the test has a `@Tag("path-N")`, it covers a specific path through the journey flow graph — follow only that path's decisions and outcome.
 6. **Models and interfaces from the module under test and its dependencies** — use `inspectModule --module <name>` to get model fields, interface signatures, and summaries of transitive dependencies. Drill into specific types with `describeComponent --name <Type>` when you need full field lists or method detail.

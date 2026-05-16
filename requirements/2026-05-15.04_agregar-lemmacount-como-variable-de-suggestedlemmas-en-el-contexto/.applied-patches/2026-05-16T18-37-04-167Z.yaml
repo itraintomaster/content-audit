@@ -1,0 +1,32 @@
+code: FEAT-LEMMA-SUGGESTIONS
+modules:
+- name: refiner-domain
+  implementations:
+  - name: LemmaAbsenceContextResolver
+    handwrittenTests:
+    - name: should emit every suggestedLemmas element with the three lemma-count fields
+        either all informed or all uninformed never in a mixed state
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R013
+    - name: should emit suggestedLemmas elements whose informed lemma-count triple
+        is internally consistent with isUnderexposed equal to lemmaCount less than
+        lemmaCountThreshold and no negative values
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R013
+    _change: modify
+- name: revision-domain
+  packages:
+  - name: contextoverride
+    implementations:
+    - name: LemmaAbsenceContextStructuralValidator
+      handwrittenTests:
+      - name: should throw OverrideRejectedException when a LEMMA_ABSENCE override
+          payload contains a suggestedLemmas element with a partially informed lemma-count
+          triple such as lemmaCount present but lemmaCountThreshold or isUnderexposed
+          missing
+        traceability:
+          feature: FEAT-LEMMA-SUGGESTIONS
+          rule: F-SLEM-R013
+      _change: modify

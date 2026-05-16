@@ -1,0 +1,20 @@
+{
+  "runId" : "20260516T033136-97d1bf65",
+  "agent" : "analyst-interactive",
+  "graphKind" : "single-agent",
+  "requirementFolder" : "requirements/2026-05-15.04_agregar-lemmacount-como-variable-de-suggestedlemmas-en-el-contexto",
+  "request" : "No ordenaría por mayor déficit de exposición, iría directo a COCA ascendente como desempate",
+  "status" : "failed",
+  "started" : "2026-05-16T03:31:36.277008Z",
+  "updated" : "2026-05-16T03:31:40.262001Z",
+  "metadata" : {
+    "provider" : "openai",
+    "model" : "gpt-5.5-codex",
+    "base_url" : "https://api.openai.com/v1/",
+    "interactive" : true
+  },
+  "outcome" : {
+    "haltReason" : "{\n    \"error\": {\n        \"message\": \"The model `gpt-5.5-codex` does not exist or you do not have access to it.\",\n        \"type\": \"invalid_request_error\",\n        \"param\": null,\n        \"code\": \"model_not_found\"\n    }\n}\n",
+    "halted" : true
+  }
+}

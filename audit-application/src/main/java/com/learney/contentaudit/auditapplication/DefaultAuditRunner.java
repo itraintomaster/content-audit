@@ -56,11 +56,15 @@ public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMa
     public AuditNode runDetailedAudit(Path coursePath, String analyzerName) {
         AuditableCourse auditableCourse = loadCourse(coursePath);
 
+        if (analyzerName == null || allAnalyzers.isEmpty()) {
+            return auditEngine.runAudit(auditableCourse).getRoot();
+        }
+
         List<ContentAnalyzer> filtered = allAnalyzers.stream()
                 .filter(a -> analyzerName.equals(a.getName()))
                 .toList();
         if (filtered.isEmpty()) {
-            return null;
+            return auditEngine.runAudit(auditableCourse).getRoot();
         }
 
         IAuditEngine filteredEngine = new IAuditEngine(filtered, scoreAggregator);

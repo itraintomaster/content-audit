@@ -99,6 +99,12 @@ class DefaultCorrectionContextJsonMapper implements CorrectionContextJsonMapper 
                     lm.put("pos", l.getPos());
                     lm.put("reason", l.getReason());
                     lm.put("cocaRank", l.getCocaRank());
+                    // F-SLEM-R013: serialize lemma-count triple (all-or-nothing)
+                    if (l.getLemmaCount() != null) {
+                        lm.put("lemmaCount", l.getLemmaCount());
+                        lm.put("lemmaCountThreshold", l.getLemmaCountThreshold());
+                        lm.put("isUnderexposed", l.getIsUnderexposed());
+                    }
                     return lm;
                 })
                 .collect(Collectors.toList()));

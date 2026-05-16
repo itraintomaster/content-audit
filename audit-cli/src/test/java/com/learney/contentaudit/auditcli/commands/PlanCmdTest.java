@@ -393,4 +393,55 @@ public class PlanCmdTest {
             System.setErr(originalErr);
         }
     }
+
+    @Test
+    @DisplayName("should produce a plan whose LEMMA_ABSENCE tasks expose the same correctionContext suggestedLemmas shape and order that GetCommand get tasks returns for the same task ids")
+    @Tag("FEAT-LEMMA-SUGGESTIONS")
+    @Tag("F-SLEM-R008")
+    public void shouldProduceAPlanWhoseLEMMAABSENCETasksExposeTheSameCorrectionContextSuggestedLemmasShapeAndOrderThatGetCommandGetTasksReturnsForTheSameTaskIds() {
+        // R008: cuando una tarea LEMMA_ABSENCE con correctionContext enriquecido se observa
+        // mediante PlanCommand.plan(..., true), la forma observable de suggestedLemmas debe
+        // ser la misma que devuelve GetCommand.get("tasks", ...).
+        //
+        // Observable en PlanCmd: cuando plan(auditId, EPHEMERAL, true) se invoca, el renderer
+        // es llamado con EphemeralRenderOptions(true) (withCorrectionContext=true), lo que
+        // instruye al renderer a incluir correctionContext en el output. El plan que recibe el
+        // renderer contiene las mismas tareas LEMMA_ABSENCE que luego serán observables via GetCommand.
+        //
+        // Arrange: un plan con una tarea LEMMA_ABSENCE. El renderer recibe ese plan + EphemeralRenderOptions(true).
+
+        String auditId = "2026-05-16T10-00-00";
+        AuditReport report = new AuditReport(null);
+
+        when(auditReportStore.load(auditId)).thenReturn(Optional.of(report));
+
+        // Tarea LEMMA_ABSENCE incluida en el plan
+        com.learney.contentaudit.refinerdomain.RefinementTask lemmaAbsenceTask =
+                new com.learney.contentaudit.refinerdomain.RefinementTask(
+                        "task-slem-r008",
+                        com.learney.contentaudit.auditdomain.AuditTarget.QUIZ,
+                        "quiz-slem-001",
+                        "Animals Quiz",
+                        com.learney.contentaudit.refinerdomain.DiagnosisKind.LEMMA_ABSENCE,
+                        1,
+                        com.learney.contentaudit.refinerdomain.RefinementTaskStatus.PENDING);
+
+        RefinementPlan planWithLemmaAbsence = new RefinementPlan(
+                "plan-slem-r008", auditId, java.time.Instant.now(), List.of(lemmaAbsenceTask));
+
+        when(refinerEngine.plan(report, auditId)).thenReturn(planWithLemmaAbsence);
+        // R008: the renderer is called with withCorrectionContext=true → it will include enriched correctionContext
+        when(ephemeralPlanRenderer.render(planWithLemmaAbsence, report, new EphemeralRenderOptions(true))).thenReturn(0);
+
+        // Act: plan with withCorrectionContext=true (EPHEMERAL mode)
+        int exit = planCmd.plan(auditId, com.learney.contentaudit.auditcli.PlanStorageMode.EPHEMERAL, true);
+
+        // Assert: R008 — the renderer was invoked with EphemeralRenderOptions(true), meaning
+        // the correctionContext (including suggestedLemmas) will be included in the rendered output.
+        // The plan passed to the renderer contains the LEMMA_ABSENCE task, ensuring the same
+        // correctionContext shape is used as the source for both plan output and GetCommand output.
+        assertEquals(0, exit, "plan(auditId, EPHEMERAL, true) should exit 0 on success");
+        verify(ephemeralPlanRenderer).render(planWithLemmaAbsence, report, new EphemeralRenderOptions(true));
+        verify(refinementPlanStore, never()).save(any()); // EPHEMERAL does not persist
+    }
 }

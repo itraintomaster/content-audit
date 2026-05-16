@@ -3278,6 +3278,18 @@ modules:
       type: String
     - name: cocaRank
       type: Integer
+    - name: lemmaCount
+      type: Integer
+      description: Observed lemma-count signal for the target level when available;
+        null means unavailable.
+    - name: lemmaCountThreshold
+      type: Integer
+      description: Minimum lemma-count threshold used to decide underexposure when
+        available; null means unavailable.
+    - name: isUnderexposed
+      type: Boolean
+      description: Whether lemmaCount is below lemmaCountThreshold when lemma-count
+        data is available; null means unavailable.
   - name: SentenceLengthCorrectionContext
     type: record
     fields:
@@ -3735,6 +3747,67 @@ modules:
       traceability:
         feature: FEAT-RCLALEN
         rule: F-RCLALEN-R004
+    - name: should populate suggestedLemmas with lemmaCount lemmaCountThreshold and
+        isUnderexposed fields when the audit report carries lemma-count diagnoses
+        for the resolved level
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R002
+    - name: should include in suggestedLemmas a lemma flagged as underexposed by lemma-count
+        even when that lemma has no LEMMA_ABSENCE diagnosis on the quiz node
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R002
+    - name: should rank suggestedLemmas in the priority order group1 underexposed
+        APPEARS_TOO_LATE then group2 underexposed APPEARS_TOO_EARLY then group3 underexposed
+        without LEMMA_ABSENCE then group4 underexposed other LEMMA_ABSENCE then group5
+        LEMMA_ABSENCE without underexposure with COMPLETELY_ABSENT last
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R003
+    - name: should evaluate APPEARS_TOO_EARLY underexposure against the lema's real
+        target level not against the level where the lema currently appears
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R004
+    - name: should break ties within the same priority group by ordering suggestedLemmas
+        by ascending cocaRank
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R005
+    - name: should not use exposure deficit magnitude as tiebreaker within the same
+        priority group leaving COCA ascending as the only intra-group order
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R005
+    - name: should apply the existing suggestedLemmas size limit only after the lemma-count
+        ranking has been computed so the cap never increases the maximum observable
+        list size
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R006
+    - name: should place every COMPLETELY_ABSENT lemma behind every already-introduced
+        underexposed lemma in suggestedLemmas regardless of cocaRank
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R007
+    - name: should still return suggestedLemmas for a LEMMA_ABSENCE task when the
+        audit report has no lemma-count signal leaving lemmaCount lemmaCountThreshold
+        and isUnderexposed marked as unavailable and not throwing
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R012
+    - name: should emit every suggestedLemmas element with the three lemma-count fields
+        either all informed or all uninformed never in a mixed state
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R013
+    - name: should emit suggestedLemmas elements whose informed lemma-count triple
+        is internally consistent with isUnderexposed equal to lemmaCount less than
+        lemmaCountThreshold and no negative values
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R013
     implements:
     - CorrectionContextResolver
   - name: DispatchingCorrectionContextResolver
@@ -3986,6 +4059,18 @@ modules:
       traceability:
         feature: FEAT-CLI
         rule: F-CLI-R005
+    - name: should expose lemma-count diagnoses in the AuditReport when runAudit is
+        invoked with both lemma-count and lemma-absence analyzers so downstream consumers
+        can read the underexposure signal per level
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R001
+    - name: should expose lemma-count diagnoses in the AuditReport when runDetailedAudit
+        is invoked with both lemma-count and lemma-absence analyzers so downstream
+        consumers can read the underexposure signal per level
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R001
     implements:
     - AuditRunner
   - name: DefaultCocaBucketsConfig
@@ -5801,6 +5886,12 @@ modules:
         traceability:
           feature: FEAT-PLANEF
           rule: F-PLANEF-R002
+      - name: should produce a plan whose LEMMA_ABSENCE tasks expose the same correctionContext
+          suggestedLemmas shape and order that GetCommand get tasks returns for the
+          same task ids
+        traceability:
+          feature: FEAT-LEMMA-SUGGESTIONS
+          rule: F-SLEM-R008
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -5872,6 +5963,12 @@ modules:
         traceability:
           feature: FEAT-REVCTX
           rule: F-REVCTX-R001
+      - name: should pass the system-derived enriched correctionContext suggestedLemmas
+          to the revision engine when revise is invoked with null correctionContextJson
+          and null correctionContextFilePath on a LEMMA_ABSENCE task
+        traceability:
+          feature: FEAT-LEMMA-SUGGESTIONS
+          rule: F-SLEM-R009
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -9620,6 +9717,30 @@ modules:
         traceability:
           feature: FEAT-REVCTX
           rule: F-REVCTX-R003
+      - name: should accept a LEMMA_ABSENCE override payload whose suggestedLemmas
+          carry valid lemmaCount lemmaCountThreshold and isUnderexposed fields in
+          the same observable shape GetCommand returns
+        traceability:
+          feature: FEAT-LEMMA-SUGGESTIONS
+          rule: F-SLEM-R010
+      - name: should throw OverrideRejectedException when a LEMMA_ABSENCE override
+          payload contains a negative lemmaCount inside any suggestedLemmas entry
+        traceability:
+          feature: FEAT-LEMMA-SUGGESTIONS
+          rule: F-SLEM-R011
+      - name: should throw OverrideRejectedException when a LEMMA_ABSENCE override
+          payload contains an isUnderexposed flag inconsistent with the reported lemmaCount
+          and lemmaCountThreshold inside any suggestedLemmas entry
+        traceability:
+          feature: FEAT-LEMMA-SUGGESTIONS
+          rule: F-SLEM-R011
+      - name: should throw OverrideRejectedException when a LEMMA_ABSENCE override
+          payload contains a suggestedLemmas element with a partially informed lemma-count
+          triple such as lemmaCount present but lemmaCountThreshold or isUnderexposed
+          missing
+        traceability:
+          feature: FEAT-LEMMA-SUGGESTIONS
+          rule: F-SLEM-R013
       implements:
       - CorrectionContextStructuralValidator
     - name: SentenceLengthContextStructuralValidator
@@ -10194,6 +10315,8 @@ modules:
           rule: F-LAGEN-R006
       implements:
       - LangChainErrorClassifier
+definitions:
+- requirements/2026-05-15.04_agregar-lemmacount-como-variable-de-suggestedlemmas-en-el-contexto/REQUIREMENT.md
 features:
 - id: FEAT-DLABS
   code: F-DLABS
@@ -10565,6 +10688,25 @@ features:
     testModule: audit-cli
     testPackage: com.learney.contentaudit.auditcli.commands
   - id: F-REVCTX-J004
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands
+- id: FEAT-LEMMA-SUGGESTIONS
+  code: F-SLEM
+  journeys:
+  - id: F-SLEM-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands
+  - id: F-SLEM-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands
+  - id: F-SLEM-J003
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands
+  - id: F-SLEM-J004
     validation: AUTO_VALIDATED
     testModule: audit-cli
     testPackage: com.learney.contentaudit.auditcli.commands

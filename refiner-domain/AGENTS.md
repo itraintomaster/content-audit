@@ -55,6 +55,9 @@ Refinement engine
 | pos | `String` |
 | reason | `String` |
 | cocaRank | `Integer` |
+| lemmaCount | `Integer` |
+| lemmaCountThreshold | `Integer` |
+| isUnderexposed | `Boolean` |
 
 ### SentenceLengthCorrectionContext (`record`)
 
@@ -212,6 +215,17 @@ Methods:
 - should not introduce any new traversal of the audit tree to read SentenceLengthDiagnosis → FEAT-RCLALEN/F-RCLALEN-R003
 - should still produce a correction context when LemmaPlacementDiagnosis is present but SentenceLengthDiagnosis is absent on the quiz node → FEAT-RCLALEN/F-RCLALEN-R004
 - should leave non-length fields of the correction context populated normally when SentenceLengthDiagnosis is absent → FEAT-RCLALEN/F-RCLALEN-R004
+- should populate suggestedLemmas with lemmaCount lemmaCountThreshold and isUnderexposed fields when the audit report carries lemma-count diagnoses for the resolved level → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R002
+- should include in suggestedLemmas a lemma flagged as underexposed by lemma-count even when that lemma has no LEMMA_ABSENCE diagnosis on the quiz node → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R002
+- should rank suggestedLemmas in the priority order group1 underexposed APPEARS_TOO_LATE then group2 underexposed APPEARS_TOO_EARLY then group3 underexposed without LEMMA_ABSENCE then group4 underexposed other LEMMA_ABSENCE then group5 LEMMA_ABSENCE without underexposure with COMPLETELY_ABSENT last → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R003
+- should evaluate APPEARS_TOO_EARLY underexposure against the lema's real target level not against the level where the lema currently appears → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R004
+- should break ties within the same priority group by ordering suggestedLemmas by ascending cocaRank → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R005
+- should not use exposure deficit magnitude as tiebreaker within the same priority group leaving COCA ascending as the only intra-group order → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R005
+- should apply the existing suggestedLemmas size limit only after the lemma-count ranking has been computed so the cap never increases the maximum observable list size → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R006
+- should place every COMPLETELY_ABSENT lemma behind every already-introduced underexposed lemma in suggestedLemmas regardless of cocaRank → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R007
+- should still return suggestedLemmas for a LEMMA_ABSENCE task when the audit report has no lemma-count signal leaving lemmaCount lemmaCountThreshold and isUnderexposed marked as unavailable and not throwing → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R012
+- should emit every suggestedLemmas element with the three lemma-count fields either all informed or all uninformed never in a mixed state → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R013
+- should emit suggestedLemmas elements whose informed lemma-count triple is internally consistent with isUnderexposed equal to lemmaCount less than lemmaCountThreshold and no negative values → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R013
 
 ### DispatchingCorrectionContextResolver
 

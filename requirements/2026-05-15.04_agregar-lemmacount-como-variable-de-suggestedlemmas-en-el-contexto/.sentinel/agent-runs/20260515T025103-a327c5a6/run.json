@@ -1,0 +1,20 @@
+{
+  "runId" : "20260515T025103-a327c5a6",
+  "agent" : "analyst-interactive",
+  "graphKind" : "single-agent",
+  "requirementFolder" : "requirements/2026-05-15.04_agregar-lemmacount-como-variable-de-suggestedlemmas-en-el-contexto",
+  "request" : "Agregar LemmaCount como variable de SuggestedLemmas en el contexto 2026-05-15 Ahora tenemos lemmaCount como nuevo análisis que nos ofrece el dato de los lemmas que están expuestos menos de n veces (4 por defecto). Este dato nos servirá para mejorar el algoritmo de sugerencia de lemmas que se ofrece en el contexto de revisión",
+  "status" : "failed",
+  "started" : "2026-05-15T02:51:03.816737Z",
+  "updated" : "2026-05-15T02:51:06.124728Z",
+  "metadata" : {
+    "provider" : "openai",
+    "model" : "gpt-5.5-pro",
+    "base_url" : "https://api.openai.com/v1/",
+    "interactive" : true
+  },
+  "outcome" : {
+    "haltReason" : "{\n  \"error\": {\n    \"message\": \"This is not a chat model and thus not supported in the v1/chat/completions endpoint. Did you mean to use v1/completions?\",\n    \"type\": \"invalid_request_error\",\n    \"para...",
+    "halted" : true
+  }
+}

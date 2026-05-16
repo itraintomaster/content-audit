@@ -1,0 +1,138 @@
+code: FEAT-LEMMA-SUGGESTIONS
+description: "QA: declare testModule/testPackage for the 4 flow journeys of FEAT-LEMMA-SUGGESTIONS\
+  \ and add handwrittenTests covering rules R001..R012 on the impls that own each\
+  \ rule's observable surface."
+modules:
+- name: audit-application
+  implementations:
+  - name: DefaultAuditRunner
+    handwrittenTests:
+    - name: should expose lemma-count diagnoses in the AuditReport when runAudit is
+        invoked with both lemma-count and lemma-absence analyzers so downstream consumers
+        can read the underexposure signal per level
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R001
+    - name: should expose lemma-count diagnoses in the AuditReport when runDetailedAudit
+        is invoked with both lemma-count and lemma-absence analyzers so downstream
+        consumers can read the underexposure signal per level
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R001
+- name: refiner-domain
+  implementations:
+  - name: LemmaAbsenceContextResolver
+    handwrittenTests:
+    - name: should populate suggestedLemmas with lemmaCount lemmaCountThreshold and
+        isUnderexposed fields when the audit report carries lemma-count diagnoses
+        for the resolved level
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R002
+    - name: should include in suggestedLemmas a lemma flagged as underexposed by lemma-count
+        even when that lemma has no LEMMA_ABSENCE diagnosis on the quiz node
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R002
+    - name: should rank suggestedLemmas in the priority order group1 underexposed
+        APPEARS_TOO_LATE then group2 underexposed APPEARS_TOO_EARLY then group3 underexposed
+        without LEMMA_ABSENCE then group4 underexposed other LEMMA_ABSENCE then group5
+        LEMMA_ABSENCE without underexposure with COMPLETELY_ABSENT last
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R003
+    - name: should evaluate APPEARS_TOO_EARLY underexposure against the lema's real
+        target level not against the level where the lema currently appears
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R004
+    - name: should break ties within the same priority group by ordering suggestedLemmas
+        by ascending cocaRank
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R005
+    - name: should not use exposure deficit magnitude as tiebreaker within the same
+        priority group leaving COCA ascending as the only intra-group order
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R005
+    - name: should apply the existing suggestedLemmas size limit only after the lemma-count
+        ranking has been computed so the cap never increases the maximum observable
+        list size
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R006
+    - name: should place every COMPLETELY_ABSENT lemma behind every already-introduced
+        underexposed lemma in suggestedLemmas regardless of cocaRank
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R007
+    - name: should still return suggestedLemmas for a LEMMA_ABSENCE task when the
+        audit report has no lemma-count signal leaving lemmaCount lemmaCountThreshold
+        and isUnderexposed marked as unavailable and not throwing
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R012
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: PlanCmd
+      handwrittenTests:
+      - name: should produce a plan whose LEMMA_ABSENCE tasks expose the same correctionContext
+          suggestedLemmas shape and order that GetCommand get tasks returns for the
+          same task ids
+        traceability:
+          feature: FEAT-LEMMA-SUGGESTIONS
+          rule: F-SLEM-R008
+    - name: ReviseCmd
+      handwrittenTests:
+      - name: should pass the system-derived enriched correctionContext suggestedLemmas
+          to the revision engine when revise is invoked with null correctionContextJson
+          and null correctionContextFilePath on a LEMMA_ABSENCE task
+        traceability:
+          feature: FEAT-LEMMA-SUGGESTIONS
+          rule: F-SLEM-R009
+- name: revision-domain
+  packages:
+  - name: contextoverride
+    implementations:
+    - name: LemmaAbsenceContextStructuralValidator
+      handwrittenTests:
+      - name: should accept a LEMMA_ABSENCE override payload whose suggestedLemmas
+          carry valid lemmaCount lemmaCountThreshold and isUnderexposed fields in
+          the same observable shape GetCommand returns
+        traceability:
+          feature: FEAT-LEMMA-SUGGESTIONS
+          rule: F-SLEM-R010
+      - name: should throw OverrideRejectedException when a LEMMA_ABSENCE override
+          payload contains a negative lemmaCount inside any suggestedLemmas entry
+        traceability:
+          feature: FEAT-LEMMA-SUGGESTIONS
+          rule: F-SLEM-R011
+      - name: should throw OverrideRejectedException when a LEMMA_ABSENCE override
+          payload contains an isUnderexposed flag inconsistent with the reported lemmaCount
+          and lemmaCountThreshold inside any suggestedLemmas entry
+        traceability:
+          feature: FEAT-LEMMA-SUGGESTIONS
+          rule: F-SLEM-R011
+features:
+- id: FEAT-LEMMA-SUGGESTIONS
+  code: F-SLEM
+  journeys:
+  - id: F-SLEM-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands
+  - id: F-SLEM-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands
+  - id: F-SLEM-J003
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands
+  - id: F-SLEM-J004
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands
