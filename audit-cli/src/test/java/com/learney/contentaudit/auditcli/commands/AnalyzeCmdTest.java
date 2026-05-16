@@ -107,7 +107,8 @@ public class AnalyzeCmdTest {
         Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
 
         AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
-                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore);
+                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore,
+                CoursePathResolver::resolve);
 
         ByteArrayOutputStream errCapture = new ByteArrayOutputStream();
         PrintStream originalErr = System.err;
@@ -152,7 +153,8 @@ public class AnalyzeCmdTest {
         Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
 
         AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
-                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore);
+                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore,
+                CoursePathResolver::resolve);
 
         ByteArrayOutputStream outCapture = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -198,7 +200,8 @@ public class AnalyzeCmdTest {
         Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
 
         AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
-                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore);
+                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore,
+                CoursePathResolver::resolve);
 
         ByteArrayOutputStream outCapture = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -243,7 +246,8 @@ public class AnalyzeCmdTest {
         Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
 
         AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
-                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore);
+                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore,
+                CoursePathResolver::resolve);
 
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(new ByteArrayOutputStream()));
@@ -276,7 +280,8 @@ public class AnalyzeCmdTest {
         Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
 
         AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
-                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore);
+                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore,
+                CoursePathResolver::resolve);
 
         ByteArrayOutputStream errCapture = new ByteArrayOutputStream();
         PrintStream originalErr = System.err;

@@ -109,8 +109,21 @@ final class AnalyzeCmd implements AnalyzeCommand, Callable<Integer> {
             description = "Show detailed analyzer output with metadata. Requires a single --analyzers value.")
     private boolean detailed;
 
-public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, ReportViewModelTransformer viewModelTransformer, RawReportFormatter rawReportFormatter, DrillDownResolver drillDownResolver, Map<String, DetailedFormatter> detailedFormatters, AuditReportStore auditReportStore) {
-}
+    public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry,
+            ReportViewModelTransformer viewModelTransformer, RawReportFormatter rawReportFormatter,
+            DrillDownResolver drillDownResolver,
+            Map<String, DetailedFormatter> detailedFormatters,
+            AuditReportStore auditReportStore,
+            Function<String, String> pathResolver) {
+        this.auditRunner = auditRunner;
+        this.formatterRegistry = formatterRegistry;
+        this.viewModelTransformer = viewModelTransformer;
+        this.rawReportFormatter = rawReportFormatter;
+        this.drillDownResolver = drillDownResolver;
+        this.detailedFormatters = detailedFormatters;
+        this.auditReportStore = auditReportStore;
+        this.pathResolver = pathResolver;
+    }
 
     @Override
     public Integer call() {

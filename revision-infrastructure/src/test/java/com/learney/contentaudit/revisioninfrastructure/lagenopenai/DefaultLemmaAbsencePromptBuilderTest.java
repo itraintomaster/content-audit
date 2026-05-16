@@ -42,8 +42,8 @@ public class DefaultLemmaAbsencePromptBuilderTest {
                         new MisplacedLemmaContext("jog", "VERB", CefrLevel.B2, CefrLevel.A1, 300)
                 ),
                 List.of(
-                        new SuggestedLemma("walk", "VERB", "A1 level synonym", 80),
-                        new SuggestedLemma("go", "VERB", "A1 common verb", 50)
+                        new SuggestedLemma("walk", "VERB", "A1 level synonym", 80, null, null, null),
+                        new SuggestedLemma("go", "VERB", "A1 common verb", 50, null, null, null)
                 ),
                 "She ____[runs|walks] every morning.",
                 null, null, null, null, null
@@ -301,7 +301,7 @@ public class DefaultLemmaAbsencePromptBuilderTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
-                List.of(new SuggestedLemma("like", "VERB", "A1 common verb", 52)),
+                List.of(new SuggestedLemma("like", "VERB", "A1 common verb", 52, null, null, null)),
                 "She ____[needs|wants] to negotiate the contract.",
                 10,
                 5,
@@ -344,7 +344,7 @@ public class DefaultLemmaAbsencePromptBuilderTest {
                 "Everyday Life",
                 CefrLevel.A1,
                 List.of(new MisplacedLemmaContext("run", "VERB", CefrLevel.B1, CefrLevel.A1, 150)),
-                List.of(new SuggestedLemma("walk", "VERB", "A1 level synonym", 80)),
+                List.of(new SuggestedLemma("walk", "VERB", "A1 level synonym", 80, null, null, null)),
                 "She ____[runs|walks] every morning.",
                 null,
                 null,

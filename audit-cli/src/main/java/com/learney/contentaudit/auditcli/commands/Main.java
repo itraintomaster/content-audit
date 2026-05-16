@@ -435,7 +435,7 @@ class Main {
         cmd.addSubcommand("analyze", new picocli.CommandLine(
                 new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
                         rawReportFormatter, drillDownResolver, detailedFormatters,
-                        auditReportStore)));
+                        auditReportStore, CoursePathResolver::resolve)));
 
         // plan
         com.learney.contentaudit.auditdomain.AuditNodeIndexFactory auditNodeIndexFactory =

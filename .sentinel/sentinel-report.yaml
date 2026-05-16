@@ -1,4 +1,4 @@
-generatedAt: 2026-05-16T19:37:27.381895Z
+generatedAt: 2026-05-16T19:49:32.160049Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -222,34 +222,34 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 450
-      linesMissed: 18
-      linesTotal: 468
+      linesCovered: 754
+      linesMissed: 26
+      linesTotal: 780
       lineCoveragePct: 96
-      branchesCovered: 197
-      branchesMissed: 47
-      branchesTotal: 244
-      branchCoveragePct: 80
-      blendPct: 88
+      branchesCovered: 376
+      branchesMissed: 103
+      branchesTotal: 479
+      branchCoveragePct: 78
+      blendPct: 87
     mutation:
-      totalMutants: 196
-      killed: 79
-      survived: 106
-      noCoverage: 11
+      totalMutants: 365
+      killed: 149
+      survived: 193
+      noCoverage: 23
       timedOut: 0
       other: 0
       mutationScorePct: 40
-      testStrengthPct: 42
+      testStrengthPct: 43
     crap:
-      totalMethods: 35
+      totalMethods: 65
       hotspots: 0
-      maxCrap: 25.0
-      averageCrap: 4.8541377428571435
-      simple: 30
-      moderate: 4
-      high: 1
+      maxCrap: 27.0
+      averageCrap: 5.07004696923077
+      simple: 55
+      moderate: 7
+      high: 3
       veryHigh: 0
-      healthPct: 91
+      healthPct: 90
     healthScore: 67
     verdict: WARNED
     violations:
@@ -486,40 +486,63 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 10
-      linesMissed: 9
-      linesTotal: 19
-      lineCoveragePct: 52
-      branchesCovered: 8
-      branchesMissed: 4
-      branchesTotal: 12
-      branchCoveragePct: 66
-      blendPct: 59
+      linesCovered: 316
+      linesMissed: 133
+      linesTotal: 449
+      lineCoveragePct: 70
+      branchesCovered: 187
+      branchesMissed: 135
+      branchesTotal: 322
+      branchCoveragePct: 58
+      blendPct: 64
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 271
+      killed: 86
+      survived: 99
+      noCoverage: 86
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 31
+      testStrengthPct: 46
     crap:
-      totalMethods: 8
-      hotspots: 0
-      maxCrap: 12.0
-      averageCrap: 3.375
-      simple: 7
-      moderate: 1
+      totalMethods: 26
+      hotspots: 3
+      maxCrap: 274.514688
+      averageCrap: 19.558662153846154
+      simple: 19
+      moderate: 4
       high: 0
-      veryHigh: 0
-      healthPct: 94
-    healthScore: 41
+      veryHigh: 3
+      healthPct: 81
+      top:
+      - className: com.learney.contentaudit.auditcli.commands.ReviseCmd
+        methodName: handleOutcome
+        methodDesc: (Lcom/learney/contentaudit/revisiondomain/RevisionOutcome;Ljava/lang/String;Ljava/lang/String;)I
+        line: 219
+        cyclomatic: 28
+        lineCoveragePct: 32
+        crap: 274.514688
+      - className: com.learney.contentaudit.revisiondomain.contextoverride.LemmaAbsenceContextStructuralValidator
+        methodName: validateAndBuild
+        methodDesc: (Lcom/fasterxml/jackson/databind/JsonNode;Ljava/lang/String;)Lcom/learney/contentaudit/refinerdomain/CorrectionContext;
+        line: 30
+        cyclomatic: 65
+        lineCoveragePct: 87
+        crap: 74.282325
+      - className: com.learney.contentaudit.revisiondomain.contextoverride.SentenceLengthContextStructuralValidator
+        methodName: validateAndBuild
+        methodDesc: (Lcom/fasterxml/jackson/databind/JsonNode;Ljava/lang/String;)Lcom/learney/contentaudit/refinerdomain/CorrectionContext;
+        line: 28
+        cyclomatic: 34
+        lineCoveragePct: 70
+        crap: 65.21200000000002
+    healthScore: 53
     verdict: WARNED
     violations:
-    - lineCoverage 52% < 70%
+    - branchCoverage 58% < 60%
+    - mutationScore 31% < 60%
 - id: FEAT-CLIRV
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: requirements/2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLIRV-R001
@@ -867,7 +890,7 @@ features:
       module: audit-cli
       implementation: ConfigAnalyzerCmd
   - ruleId: F-CLIRV-R021
-    state: FAILING
+    state: PASSING
     tests:
     - name: should run the analyzer over the supplied course path and render the stats
         view when invoked with a known analyzer
@@ -884,23 +907,17 @@ features:
     - name: should fall back to CONTENT_AUDIT_CONTENT_FOLDER env var when no course-path
         argument is supplied
       implemented: true
-      passing: false
-      failureMessage: "org.opentest4j.AssertionFailedError: \nstats analyzer must\
-        \ exit 0 when CONTENT_AUDIT_CONTENT_FOLDER provides the course path. Output:\n\
-        Exception in thread \"main\" java.lang.Error: Unresolved compilation ..."
+      passing: true
       module: audit-cli
       implementation: StatsAnalyzerCmd
     - name: should report a missing-course-path error and exit non-zero when neither
         argument nor CONTENT_AUDIT_CONTENT_FOLDER is set
       implemented: true
-      passing: false
-      failureMessage: "org.opentest4j.AssertionFailedError: \nOutput should explain\
-        \ the missing course path; got:\nException in thread \"main\" java.lang.Error:\
-        \ Unresolved compilation problems: \n\tThe blank final field auditRepo..."
+      passing: true
       module: audit-cli
       implementation: StatsAnalyzerCmd
   - ruleId: F-CLIRV-R017
-    state: FAILING
+    state: PASSING
     tests:
     - name: should return the flag value when --workdir is provided and points to
         an existing writable directory
@@ -911,10 +928,7 @@ features:
     - name: "should ignore CONTENT_AUDIT_HOME and use the flag value when both are\
         \ set, validating flag-over-env precedence"
       implemented: true
-      passing: false
-      failureMessage: "org.opentest4j.AssertionFailedError: \nWhen --workdir is valid\
-        \ and CONTENT_AUDIT_HOME is invalid, the launcher must exit 0 (flag wins).\
-        \ Output:\nException in thread \"main\" java.lang.Error: Unresolved co..."
+      passing: true
       module: audit-cli
       implementation: DefaultWorkdirResolver
     - name: should fall back to user.dir when neither --workdir nor CONTENT_AUDIT_HOME
@@ -970,114 +984,90 @@ features:
       implementation: ContentAuditCmd
   journeysCoverage:
   - journeyId: F-CLIRV-J001
-    state: FAILING
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
+      state: PASSING
       tests:
       - name: path1_success
         implemented: true
-        passing: false
-        failureMessage: "org.opentest4j.AssertionFailedError: \nanalyze should exit\
-          \ 0, stderr=Exception in thread \"main\" java.lang.Error: Unresolved compilation\
-          \ problems: \n\tThe blank final field auditReportStore may not have b..."
+        passing: true
         module: audit-cli
         implementation: FClirvJ001JourneyTest
   - journeyId: F-CLIRV-J002
-    state: FAILING
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
+      state: PASSING
       tests:
       - name: path1_theIdMatchesAStoredAudit_success
         implemented: true
-        passing: false
-        failureMessage: "org.opentest4j.AssertionFailedError: \nanalyze must succeed,\
-          \ stderr=Exception in thread \"main\" java.lang.Error: Unresolved compilation\
-          \ problems: \n\tThe blank final field auditReportStore may not have be..."
+        passing: true
         module: audit-cli
         implementation: FClirvJ002JourneyTest
     - pathId: path-2
       result: failure
-      state: FAILING
+      state: PASSING
       tests:
       - name: path2_noStoredAuditMatchesTheId_failure
         implemented: true
-        passing: false
-        failureMessage: "org.opentest4j.AssertionFailedError: analyze must succeed\
-          \ ==> expected: <0> but was: <1>\n\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\
-          \tat org.junit.jupiter..."
+        passing: true
         module: audit-cli
         implementation: FClirvJ002JourneyTest
   - journeyId: F-CLIRV-J003
-    state: FAILING
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
+      state: PASSING
       tests:
       - name: path1_theIdMatchesAStoredPlan_success
         implemented: true
-        passing: false
-        failureMessage: "org.opentest4j.AssertionFailedError: \nanalyze must succeed,\
-          \ stderr=Exception in thread \"main\" java.lang.Error: Unresolved compilation\
-          \ problems: \n\tThe blank final field auditReportStore may not have be..."
+        passing: true
         module: audit-cli
         implementation: FClirvJ003JourneyTest
     - pathId: path-2
       result: failure
-      state: FAILING
+      state: PASSING
       tests:
       - name: path2_noStoredPlanMatchesTheId_failure
         implemented: true
-        passing: false
-        failureMessage: "org.opentest4j.AssertionFailedError: \nerror message must\
-          \ reference the missing plan id, got: Exception in thread \"main\" java.lang.Error:\
-          \ Unresolved compilation problems: \n\tThe blank final field auditR..."
+        passing: true
         module: audit-cli
         implementation: FClirvJ003JourneyTest
   - journeyId: F-CLIRV-J004
-    state: FAILING
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
+      state: PASSING
       tests:
       - name: path1_theRequestIsAListNoNameArgument_success
         implemented: true
-        passing: false
-        failureMessage: "org.opentest4j.AssertionFailedError: first analyze must succeed\
-          \ ==> expected: <0> but was: <1>\n\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\
-          \tat org.junit.j..."
+        passing: true
         module: audit-cli
         implementation: FClirvJ004JourneyTest
     - pathId: path-2
       result: success
-      state: FAILING
+      state: PASSING
       tests:
       - name: path2_theRequestAddressesOneResourceById_success
         implemented: true
-        passing: false
-        failureMessage: "org.opentest4j.AssertionFailedError: analyze must succeed\
-          \ ==> expected: <0> but was: <1>\n\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\
-          \tat org.junit.jupiter..."
+        passing: true
         module: audit-cli
         implementation: FClirvJ004JourneyTest
   - journeyId: F-CLIRV-J005
-    state: FAILING
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
+      state: PASSING
       tests:
       - name: path1_theOverridePathExistsAndIsWritable_success
         implemented: true
-        passing: false
-        failureMessage: "org.opentest4j.AssertionFailedError: \nanalyze in sandbox\
-          \ must exit 0, stderr=Exception in thread \"main\" java.lang.Error: Unresolved\
-          \ compilation problems: \n\tThe blank final field auditReportStore may n..."
+        passing: true
         module: audit-cli
         implementation: FClirvJ005JourneyTest
     - pathId: path-2
@@ -1091,15 +1081,11 @@ features:
         implementation: FClirvJ005JourneyTest
     - pathId: path-3
       result: success
-      state: FAILING
+      state: PASSING
       tests:
       - name: path3_noOverrideIsConfigured_success
         implemented: true
-        passing: false
-        failureMessage: "org.opentest4j.AssertionFailedError: \nseed analyze must\
-          \ exit 0, stderr=Exception in thread \"main\" java.lang.Error: Unresolved\
-          \ compilation problems: \n\tThe blank final field auditReportStore may not\
-          \ hav..."
+        passing: true
         module: audit-cli
         implementation: FClirvJ005JourneyTest
   quality:
@@ -1121,36 +1107,91 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
-      lineCoveragePct: 0
-      branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
-      branchCoveragePct: 0
-      blendPct: 0
+      linesCovered: 680
+      linesMissed: 521
+      linesTotal: 1201
+      lineCoveragePct: 56
+      branchesCovered: 343
+      branchesMissed: 327
+      branchesTotal: 670
+      branchCoveragePct: 51
+      blendPct: 53
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 742
+      killed: 194
+      survived: 230
+      noCoverage: 318
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 26
+      testStrengthPct: 45
     crap:
-      totalMethods: 0
-      hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
-      moderate: 0
-      high: 0
-      veryHigh: 0
-      healthPct: 0
-    healthScore: 0
-    verdict: PASSED
+      totalMethods: 109
+      hotspots: 7
+      maxCrap: 274.514688
+      averageCrap: 11.793473256880732
+      simple: 81
+      moderate: 19
+      high: 5
+      veryHigh: 4
+      healthPct: 83
+      top:
+      - className: com.learney.contentaudit.auditcli.commands.ReviseCmd
+        methodName: handleOutcome
+        methodDesc: (Lcom/learney/contentaudit/revisiondomain/RevisionOutcome;Ljava/lang/String;Ljava/lang/String;)I
+        line: 219
+        cyclomatic: 28
+        lineCoveragePct: 32
+        crap: 274.514688
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: printSnapshotSummary
+        methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
+        line: 1029
+        cyclomatic: 14
+        lineCoveragePct: 13
+        crap: 143.066588
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: renderSentence
+        methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
+        line: 1059
+        cyclomatic: 11
+        lineCoveragePct: 0
+        crap: 132.0
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: handleAnalyzers
+        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
+        line: 1143
+        cyclomatic: 7
+        lineCoveragePct: 0
+        crap: 56.0
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: handleTasks
+        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
+        line: 432
+        cyclomatic: 29
+        lineCoveragePct: 77
+        crap: 39.23244699999999
+      - className: com.learney.contentaudit.auditcli.commands.AnalyzeCmd
+        methodName: analyze
+        methodDesc: (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Z)Ljava/lang/Integer;
+        line: 136
+        cyclomatic: 13
+        lineCoveragePct: 51
+        crap: 32.882681
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: call
+        methodDesc: ()Ljava/lang/Integer;
+        line: 170
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+    healthScore: 48
+    verdict: WARNED
+    violations:
+    - lineCoverage 56% < 70%
+    - branchCoverage 51% < 60%
+    - mutationScore 26% < 60%
+    - crapHotspots 7 > 5
 - id: FEAT-LREC
   state: IMPLEMENTED
   requirementFile: requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
@@ -1579,34 +1620,34 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 328
-      linesMissed: 135
-      linesTotal: 463
-      lineCoveragePct: 70
-      branchesCovered: 158
-      branchesMissed: 130
-      branchesTotal: 288
-      branchCoveragePct: 54
-      blendPct: 62
+      linesCovered: 724
+      linesMissed: 433
+      linesTotal: 1157
+      lineCoveragePct: 62
+      branchesCovered: 377
+      branchesMissed: 346
+      branchesTotal: 723
+      branchCoveragePct: 52
+      blendPct: 57
     mutation:
-      totalMutants: 34
-      killed: 11
-      survived: 19
-      noCoverage: 4
+      totalMutants: 618
+      killed: 214
+      survived: 191
+      noCoverage: 213
       timedOut: 0
       other: 0
-      mutationScorePct: 32
-      testStrengthPct: 36
+      mutationScorePct: 34
+      testStrengthPct: 52
     crap:
-      totalMethods: 25
-      hotspots: 1
+      totalMethods: 86
+      hotspots: 6
       maxCrap: 650.0
-      averageCrap: 32.4507048
-      simple: 20
-      moderate: 2
-      high: 2
-      veryHigh: 1
-      healthPct: 84
+      averageCrap: 18.394980872093022
+      simple: 62
+      moderate: 14
+      high: 6
+      veryHigh: 4
+      healthPct: 80
       top:
       - className: com.learney.contentaudit.refinerdomain.LemmaAbsenceContextResolver
         methodName: resolveWithIndex
@@ -1615,11 +1656,48 @@ features:
         cyclomatic: 25
         lineCoveragePct: 0
         crap: 650.0
-    healthScore: 54
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: printSnapshotSummary
+        methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
+        line: 1029
+        cyclomatic: 14
+        lineCoveragePct: 13
+        crap: 143.066588
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: renderSentence
+        methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
+        line: 1059
+        cyclomatic: 11
+        lineCoveragePct: 0
+        crap: 132.0
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: handleAnalyzers
+        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
+        line: 1143
+        cyclomatic: 7
+        lineCoveragePct: 0
+        crap: 56.0
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: handleTasks
+        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
+        line: 432
+        cyclomatic: 29
+        lineCoveragePct: 77
+        crap: 39.23244699999999
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: call
+        methodDesc: ()Ljava/lang/Integer;
+        line: 170
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+    healthScore: 52
     verdict: WARNED
     violations:
-    - branchCoverage 54% < 60%
-    - mutationScore 32% < 60%
+    - lineCoverage 62% < 70%
+    - branchCoverage 52% < 60%
+    - mutationScore 34% < 60%
+    - crapHotspots 6 > 5
 - id: FEAT-DCOCA
   state: IMPLEMENTED
   requirementFile: requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
@@ -1747,38 +1825,54 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 245
-      linesMissed: 17
-      linesTotal: 262
-      lineCoveragePct: 93
-      branchesCovered: 102
-      branchesMissed: 39
-      branchesTotal: 141
-      branchCoveragePct: 72
-      blendPct: 82
+      linesCovered: 500
+      linesMissed: 123
+      linesTotal: 623
+      lineCoveragePct: 80
+      branchesCovered: 215
+      branchesMissed: 164
+      branchesTotal: 379
+      branchCoveragePct: 56
+      blendPct: 68
     mutation:
-      totalMutants: 126
-      killed: 68
-      survived: 49
-      noCoverage: 9
+      totalMutants: 272
+      killed: 98
+      survived: 122
+      noCoverage: 52
       timedOut: 0
       other: 0
-      mutationScorePct: 53
-      testStrengthPct: 58
+      mutationScorePct: 36
+      testStrengthPct: 44
     crap:
-      totalMethods: 21
-      hotspots: 0
-      maxCrap: 29.0
-      averageCrap: 4.649798047619048
-      simple: 19
-      moderate: 1
-      high: 1
-      veryHigh: 0
-      healthPct: 93
-    healthScore: 72
+      totalMethods: 46
+      hotspots: 2
+      maxCrap: 306.0
+      averageCrap: 12.793734326086955
+      simple: 38
+      moderate: 5
+      high: 2
+      veryHigh: 1
+      healthPct: 88
+      top:
+      - className: com.learney.contentaudit.auditcli.formatting.CocaBucketsDetailedFormatter
+        methodName: formatTable
+        methodDesc: (Lcom/learney/contentaudit/auditcli/formatting/CocaBucketsDetailedFormatter$Partitioned;)Ljava/lang/String;
+        line: 222
+        cyclomatic: 17
+        lineCoveragePct: 0
+        crap: 306.0
+      - className: com.learney.contentaudit.auditcli.formatting.CocaBucketsDetailedFormatter
+        methodName: formatText
+        methodDesc: (Lcom/learney/contentaudit/auditcli/formatting/CocaBucketsDetailedFormatter$Partitioned;)Ljava/lang/String;
+        line: 297
+        cyclomatic: 25
+        lineCoveragePct: 69
+        crap: 43.619375000000005
+    healthScore: 59
     verdict: WARNED
     violations:
-    - mutationScore 53% < 60%
+    - branchCoverage 56% < 60%
+    - mutationScore 36% < 60%
 - id: FEAT-QSENT
   state: IMPLEMENTED
   requirementFile: requirements/2026-04-22.01_quiz-sentence-dsl/REQUIREMENT.md
@@ -2614,34 +2708,34 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 289
-      linesMissed: 123
-      linesTotal: 412
-      lineCoveragePct: 70
-      branchesCovered: 141
-      branchesMissed: 115
-      branchesTotal: 256
-      branchCoveragePct: 55
-      blendPct: 62
+      linesCovered: 685
+      linesMissed: 421
+      linesTotal: 1106
+      lineCoveragePct: 61
+      branchesCovered: 360
+      branchesMissed: 331
+      branchesTotal: 691
+      branchCoveragePct: 52
+      blendPct: 56
     mutation:
-      totalMutants: 8
-      killed: 8
-      survived: 0
-      noCoverage: 0
+      totalMutants: 592
+      killed: 211
+      survived: 172
+      noCoverage: 209
       timedOut: 0
       other: 0
-      mutationScorePct: 100
-      testStrengthPct: 100
+      mutationScorePct: 35
+      testStrengthPct: 55
     crap:
-      totalMethods: 19
-      hotspots: 1
+      totalMethods: 80
+      hotspots: 6
       maxCrap: 650.0
-      averageCrap: 41.501512
-      simple: 15
-      moderate: 1
-      high: 2
-      veryHigh: 1
-      healthPct: 82
+      averageCrap: 19.490368287499997
+      simple: 57
+      moderate: 13
+      high: 6
+      veryHigh: 4
+      healthPct: 79
       top:
       - className: com.learney.contentaudit.refinerdomain.LemmaAbsenceContextResolver
         methodName: resolveWithIndex
@@ -2650,10 +2744,48 @@ features:
         cyclomatic: 25
         lineCoveragePct: 0
         crap: 650.0
-    healthScore: 84
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: printSnapshotSummary
+        methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
+        line: 1029
+        cyclomatic: 14
+        lineCoveragePct: 13
+        crap: 143.066588
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: renderSentence
+        methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
+        line: 1059
+        cyclomatic: 11
+        lineCoveragePct: 0
+        crap: 132.0
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: handleAnalyzers
+        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
+        line: 1143
+        cyclomatic: 7
+        lineCoveragePct: 0
+        crap: 56.0
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: handleTasks
+        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
+        line: 432
+        cyclomatic: 29
+        lineCoveragePct: 77
+        crap: 39.23244699999999
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: call
+        methodDesc: ()Ljava/lang/Integer;
+        line: 170
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+    healthScore: 52
     verdict: WARNED
     violations:
-    - branchCoverage 55% < 60%
+    - lineCoverage 61% < 70%
+    - branchCoverage 52% < 60%
+    - mutationScore 35% < 60%
+    - crapHotspots 6 > 5
 - id: FEAT-COCA
   state: IMPLEMENTED
   requirementFile: requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
@@ -4542,7 +4674,7 @@ features:
     violations:
     - mutationScore 44% < 60%
 - id: FEAT-CLI
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLI-R001
@@ -4597,71 +4729,48 @@ features:
       module: audit-application
       implementation: DefaultAuditRunner
   - ruleId: F-CLI-R002
-    state: FAILING
+    state: PASSING
     tests:
     - name: should print an error and return non-zero exit code when invoked without
         a course path argument and no CONTENT_AUDIT_CONTENT_FOLDER env var is set
       implemented: true
-      passing: false
-      failureMessage: "java.lang.Error: \nUnresolved compilation problem: \n\tThe\
-        \ constructor AnalyzeCmd(AuditRunner, FormatterRegistry, ReportViewModelTransformer,\
-        \ RawReportFormatter, DrillDownResolver, Map<String,DetailedFor..."
+      passing: true
       module: audit-cli
       implementation: AnalyzeCmd
     - name: should print an error and return non-zero exit code when invoked with
         a course path that does not exist on disk
       implemented: true
-      passing: false
-      failureMessage: "java.lang.Error: \nUnresolved compilation problems: \n\tThe\
-        \ blank final field auditReportStore may not have been initialized\n\tThe\
-        \ blank final field auditRunner may not have been initialized\n\tThe blank\
-        \ fi..."
+      passing: true
       module: audit-cli
       implementation: AnalyzeCmd
   - ruleId: F-CLI-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: should produce a plain-text formatted summary on stdout when invoked without
         a --format option using text as the default format
       implemented: true
-      passing: false
-      failureMessage: "java.lang.Error: \nUnresolved compilation problems: \n\tThe\
-        \ blank final field auditReportStore may not have been initialized\n\tThe\
-        \ blank final field auditRunner may not have been initialized\n\tThe blank\
-        \ fi..."
+      passing: true
       module: audit-cli
       implementation: AnalyzeCmd
     - name: should produce a JSON-formatted summary on stdout when invoked with --format
         json
       implemented: true
-      passing: false
-      failureMessage: "java.lang.Error: \nUnresolved compilation problems: \n\tThe\
-        \ blank final field auditReportStore may not have been initialized\n\tThe\
-        \ blank final field auditRunner may not have been initialized\n\tThe blank\
-        \ fi..."
+      passing: true
       module: audit-cli
       implementation: AnalyzeCmd
   - ruleId: F-CLI-R004
-    state: FAILING
+    state: PASSING
     tests:
     - name: should return exit code zero when the audit completes successfully regardless
         of the overall score produced
       implemented: true
-      passing: false
-      failureMessage: "java.lang.Error: \nUnresolved compilation problems: \n\tThe\
-        \ blank final field auditReportStore may not have been initialized\n\tThe\
-        \ blank final field auditRunner may not have been initialized\n\tThe blank\
-        \ fi..."
+      passing: true
       module: audit-cli
       implementation: AnalyzeCmd
     - name: should return a non-zero exit code when AuditRunner throws a RuntimeException
         during the audit pipeline and print a descriptive error message to stderr
       implemented: true
-      passing: false
-      failureMessage: "java.lang.Error: \nUnresolved compilation problems: \n\tThe\
-        \ blank final field auditReportStore may not have been initialized\n\tThe\
-        \ blank final field auditRunner may not have been initialized\n\tThe blank\
-        \ fi..."
+      passing: true
       module: audit-cli
       implementation: AnalyzeCmd
   - ruleId: F-CLI-R005
@@ -4695,38 +4804,27 @@ features:
       module: audit-application
       implementation: DefaultAuditRunner
   - journeyId: F-CLI-J002
-    state: FAILING
+    state: PASSING
     tests:
     - name: should print an error and return non-zero exit code when invoked without
         a course path argument and no CONTENT_AUDIT_CONTENT_FOLDER env var is set
       implemented: true
-      passing: false
-      failureMessage: "java.lang.Error: \nUnresolved compilation problem: \n\tThe\
-        \ constructor AnalyzeCmd(AuditRunner, FormatterRegistry, ReportViewModelTransformer,\
-        \ RawReportFormatter, DrillDownResolver, Map<String,DetailedFor..."
+      passing: true
       module: audit-cli
       implementation: AnalyzeCmd
     - name: should print an error and return non-zero exit code when invoked with
         a course path that does not exist on disk
       implemented: true
-      passing: false
-      failureMessage: "java.lang.Error: \nUnresolved compilation problems: \n\tThe\
-        \ blank final field auditReportStore may not have been initialized\n\tThe\
-        \ blank final field auditRunner may not have been initialized\n\tThe blank\
-        \ fi..."
+      passing: true
       module: audit-cli
       implementation: AnalyzeCmd
   - journeyId: F-CLI-J003
-    state: FAILING
+    state: PASSING
     tests:
     - name: should return a non-zero exit code when AuditRunner throws a RuntimeException
         during the audit pipeline and print a descriptive error message to stderr
       implemented: true
-      passing: false
-      failureMessage: "java.lang.Error: \nUnresolved compilation problems: \n\tThe\
-        \ blank final field auditReportStore may not have been initialized\n\tThe\
-        \ blank final field auditRunner may not have been initialized\n\tThe blank\
-        \ fi..."
+      passing: true
       module: audit-cli
       implementation: AnalyzeCmd
   quality:
@@ -4741,40 +4839,55 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 12
-      linesMissed: 16
-      linesTotal: 28
-      lineCoveragePct: 42
-      branchesCovered: 1
-      branchesMissed: 5
-      branchesTotal: 6
-      branchCoveragePct: 16
-      blendPct: 29
+      linesCovered: 50
+      linesMissed: 229
+      linesTotal: 279
+      lineCoveragePct: 17
+      branchesCovered: 11
+      branchesMissed: 39
+      branchesTotal: 50
+      branchCoveragePct: 22
+      blendPct: 19
     mutation:
-      totalMutants: 11
-      killed: 2
-      survived: 1
-      noCoverage: 8
+      totalMutants: 87
+      killed: 8
+      survived: 11
+      noCoverage: 68
       timedOut: 0
       other: 0
-      mutationScorePct: 18
-      testStrengthPct: 66
+      mutationScorePct: 9
+      testStrengthPct: 42
     crap:
-      totalMethods: 6
-      hotspots: 0
-      maxCrap: 6.0
-      averageCrap: 2.8750704999999996
-      simple: 6
-      moderate: 0
-      high: 0
-      veryHigh: 0
-      healthPct: 100
-    healthScore: 42
+      totalMethods: 13
+      hotspots: 2
+      maxCrap: 90.0
+      averageCrap: 11.79672123076923
+      simple: 10
+      moderate: 1
+      high: 1
+      veryHigh: 1
+      healthPct: 81
+      top:
+      - className: com.learney.contentaudit.auditcli.commands.Main
+        methodName: main
+        methodDesc: "([Ljava/lang/String;)V"
+        line: 142
+        cyclomatic: 9
+        lineCoveragePct: 0
+        crap: 90.0
+      - className: com.learney.contentaudit.auditcli.commands.AnalyzeCmd
+        methodName: analyze
+        methodDesc: (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Z)Ljava/lang/Integer;
+        line: 136
+        cyclomatic: 13
+        lineCoveragePct: 51
+        crap: 32.882681
+    healthScore: 30
     verdict: WARNED
     violations:
-    - lineCoverage 42% < 70%
-    - branchCoverage 16% < 60%
-    - mutationScore 18% < 60%
+    - lineCoverage 17% < 70%
+    - branchCoverage 22% < 60%
+    - mutationScore 9% < 60%
 - id: FEAT-PIPRE
   state: IMPLEMENTED
   requirementFile: requirements/2026-05-03.01_proposal-impact-preview/REQUIREMENT.md
@@ -5053,38 +5166,76 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 46
-      linesMissed: 18
-      linesTotal: 64
-      lineCoveragePct: 71
-      branchesCovered: 11
-      branchesMissed: 5
-      branchesTotal: 16
-      branchCoveragePct: 68
-      blendPct: 69
+      linesCovered: 647
+      linesMissed: 351
+      linesTotal: 998
+      lineCoveragePct: 64
+      branchesCovered: 298
+      branchesMissed: 245
+      branchesTotal: 543
+      branchCoveragePct: 54
+      blendPct: 59
     mutation:
-      totalMutants: 16
-      killed: 9
-      survived: 6
-      noCoverage: 1
+      totalMutants: 545
+      killed: 186
+      survived: 179
+      noCoverage: 180
       timedOut: 0
       other: 0
-      mutationScorePct: 56
-      testStrengthPct: 60
+      mutationScorePct: 34
+      testStrengthPct: 50
     crap:
-      totalMethods: 9
-      hotspots: 0
-      maxCrap: 4.8779520000000005
-      averageCrap: 2.091547888888889
-      simple: 9
-      moderate: 0
-      high: 0
-      veryHigh: 0
-      healthPct: 100
-    healthScore: 71
+      totalMethods: 89
+      hotspots: 5
+      maxCrap: 143.066588
+      averageCrap: 9.667473921348314
+      simple: 69
+      moderate: 13
+      high: 4
+      veryHigh: 3
+      healthPct: 85
+      top:
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: printSnapshotSummary
+        methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
+        line: 1029
+        cyclomatic: 14
+        lineCoveragePct: 13
+        crap: 143.066588
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: renderSentence
+        methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
+        line: 1059
+        cyclomatic: 11
+        lineCoveragePct: 0
+        crap: 132.0
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: handleAnalyzers
+        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
+        line: 1143
+        cyclomatic: 7
+        lineCoveragePct: 0
+        crap: 56.0
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: handleTasks
+        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
+        line: 432
+        cyclomatic: 29
+        lineCoveragePct: 77
+        crap: 39.23244699999999
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: call
+        methodDesc: ()Ljava/lang/Integer;
+        line: 170
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+    healthScore: 54
     verdict: WARNED
     violations:
-    - mutationScore 56% < 60%
+    - lineCoverage 64% < 70%
+    - branchCoverage 54% < 60%
+    - mutationScore 34% < 60%
 - id: FEAT-KTLEN
   state: IMPLEMENTED
   requirementFile: requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
@@ -6193,36 +6344,38 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 31
-      linesMissed: 13
-      linesTotal: 44
-      lineCoveragePct: 70
-      branchesCovered: 5
-      branchesMissed: 1
-      branchesTotal: 6
-      branchCoveragePct: 83
-      blendPct: 76
+      linesCovered: 483
+      linesMissed: 62
+      linesTotal: 545
+      lineCoveragePct: 88
+      branchesCovered: 202
+      branchesMissed: 118
+      branchesTotal: 320
+      branchCoveragePct: 63
+      blendPct: 75
     mutation:
-      totalMutants: 7
-      killed: 7
-      survived: 0
-      noCoverage: 0
+      totalMutants: 272
+      killed: 150
+      survived: 93
+      noCoverage: 29
       timedOut: 0
       other: 0
-      mutationScorePct: 100
-      testStrengthPct: 100
+      mutationScorePct: 55
+      testStrengthPct: 61
     crap:
-      totalMethods: 7
+      totalMethods: 69
       hotspots: 0
-      maxCrap: 3.533871
-      averageCrap: 1.5616294285714285
-      simple: 7
-      moderate: 0
-      high: 0
+      maxCrap: 20.8788
+      averageCrap: 3.524712173913044
+      simple: 64
+      moderate: 3
+      high: 2
       veryHigh: 0
-      healthPct: 100
-    healthScore: 93
-    verdict: PASSED
+      healthPct: 95
+    healthScore: 71
+    verdict: WARNED
+    violations:
+    - mutationScore 55% < 60%
 - id: FEAT-PLANEF
   state: IMPLEMENTED
   requirementFile: requirements/2026-05-07.01_plan-efimero-no-persistido/REQUIREMENT.md
@@ -6438,36 +6591,40 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
-      lineCoveragePct: 0
-      branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
-      branchCoveragePct: 0
-      blendPct: 0
+      linesCovered: 70
+      linesMissed: 74
+      linesTotal: 144
+      lineCoveragePct: 48
+      branchesCovered: 29
+      branchesMissed: 32
+      branchesTotal: 61
+      branchCoveragePct: 47
+      blendPct: 47
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 76
+      killed: 20
+      survived: 15
+      noCoverage: 41
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 26
+      testStrengthPct: 57
     crap:
-      totalMethods: 0
+      totalMethods: 13
       hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
-      moderate: 0
+      maxCrap: 20.0
+      averageCrap: 7.112926153846154
+      simple: 9
+      moderate: 4
       high: 0
       veryHigh: 0
-      healthPct: 0
-    healthScore: 0
-    verdict: PASSED
+      healthPct: 85
+    healthScore: 47
+    verdict: WARNED
+    violations:
+    - lineCoverage 48% < 70%
+    - branchCoverage 47% < 60%
+    - mutationScore 26% < 60%
 - id: FEAT-REVAPR
   state: IMPLEMENTED
   requirementFile: requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
@@ -7073,36 +7230,84 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 79
-      linesMissed: 23
-      linesTotal: 102
-      lineCoveragePct: 77
-      branchesCovered: 25
-      branchesMissed: 5
-      branchesTotal: 30
-      branchCoveragePct: 83
-      blendPct: 80
+      linesCovered: 855
+      linesMissed: 441
+      linesTotal: 1296
+      lineCoveragePct: 65
+      branchesCovered: 385
+      branchesMissed: 290
+      branchesTotal: 675
+      branchCoveragePct: 57
+      blendPct: 61
     mutation:
-      totalMutants: 31
-      killed: 24
-      survived: 6
-      noCoverage: 1
+      totalMutants: 727
+      killed: 253
+      survived: 221
+      noCoverage: 253
       timedOut: 0
       other: 0
-      mutationScorePct: 77
-      testStrengthPct: 80
+      mutationScorePct: 34
+      testStrengthPct: 53
     crap:
-      totalMethods: 13
-      hotspots: 0
-      maxCrap: 5.3456
-      averageCrap: 2.246105076923077
-      simple: 13
-      moderate: 0
-      high: 0
-      veryHigh: 0
-      healthPct: 100
-    healthScore: 84
-    verdict: PASSED
+      totalMethods: 116
+      hotspots: 6
+      maxCrap: 274.514688
+      averageCrap: 10.602820818965517
+      simple: 91
+      moderate: 17
+      high: 4
+      veryHigh: 4
+      healthPct: 86
+      top:
+      - className: com.learney.contentaudit.auditcli.commands.ReviseCmd
+        methodName: handleOutcome
+        methodDesc: (Lcom/learney/contentaudit/revisiondomain/RevisionOutcome;Ljava/lang/String;Ljava/lang/String;)I
+        line: 219
+        cyclomatic: 28
+        lineCoveragePct: 32
+        crap: 274.514688
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: printSnapshotSummary
+        methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
+        line: 1029
+        cyclomatic: 14
+        lineCoveragePct: 13
+        crap: 143.066588
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: renderSentence
+        methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
+        line: 1059
+        cyclomatic: 11
+        lineCoveragePct: 0
+        crap: 132.0
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: handleAnalyzers
+        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
+        line: 1143
+        cyclomatic: 7
+        lineCoveragePct: 0
+        crap: 56.0
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: handleTasks
+        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
+        line: 432
+        cyclomatic: 29
+        lineCoveragePct: 77
+        crap: 39.23244699999999
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: call
+        methodDesc: ()Ljava/lang/Integer;
+        line: 170
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+    healthScore: 55
+    verdict: WARNED
+    violations:
+    - lineCoverage 65% < 70%
+    - branchCoverage 57% < 60%
+    - mutationScore 34% < 60%
+    - crapHotspots 6 > 5
 - id: FEAT-LAPS
   state: IMPLEMENTED
   requirementFile: requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
@@ -7498,36 +7703,38 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
-      lineCoveragePct: 0
-      branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
-      branchCoveragePct: 0
-      blendPct: 0
+      linesCovered: 122
+      linesMissed: 36
+      linesTotal: 158
+      lineCoveragePct: 77
+      branchesCovered: 28
+      branchesMissed: 18
+      branchesTotal: 46
+      branchCoveragePct: 60
+      blendPct: 68
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 49
+      killed: 29
+      survived: 11
+      noCoverage: 9
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 59
+      testStrengthPct: 72
     crap:
-      totalMethods: 0
+      totalMethods: 20
       hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
+      maxCrap: 6.987675
+      averageCrap: 2.4249552000000003
+      simple: 20
       moderate: 0
       high: 0
       veryHigh: 0
-      healthPct: 0
-    healthScore: 0
-    verdict: PASSED
+      healthPct: 100
+    healthScore: 72
+    verdict: WARNED
+    violations:
+    - mutationScore 59% < 60%
 - id: FEAT-DSLEN
   state: IMPLEMENTED
   requirementFile: requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
@@ -7891,34 +8098,34 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 259
-      linesMissed: 139
-      linesTotal: 398
-      lineCoveragePct: 65
-      branchesCovered: 128
-      branchesMissed: 118
-      branchesTotal: 246
+      linesCovered: 450
+      linesMissed: 293
+      linesTotal: 743
+      lineCoveragePct: 60
+      branchesCovered: 263
+      branchesMissed: 236
+      branchesTotal: 499
       branchCoveragePct: 52
-      blendPct: 58
+      blendPct: 56
     mutation:
-      totalMutants: 11
-      killed: 2
-      survived: 1
-      noCoverage: 8
+      totalMutants: 406
+      killed: 146
+      survived: 105
+      noCoverage: 155
       timedOut: 0
       other: 0
-      mutationScorePct: 18
-      testStrengthPct: 66
+      mutationScorePct: 35
+      testStrengthPct: 58
     crap:
-      totalMethods: 22
-      hotspots: 1
+      totalMethods: 40
+      hotspots: 3
       maxCrap: 650.0
-      averageCrap: 36.12632504545454
-      simple: 18
-      moderate: 1
+      averageCrap: 31.568147099999994
+      simple: 27
+      moderate: 8
       high: 2
-      veryHigh: 1
-      healthPct: 84
+      veryHigh: 3
+      healthPct: 78
       top:
       - className: com.learney.contentaudit.refinerdomain.LemmaAbsenceContextResolver
         methodName: resolveWithIndex
@@ -7927,12 +8134,26 @@ features:
         cyclomatic: 25
         lineCoveragePct: 0
         crap: 650.0
-    healthScore: 47
+      - className: com.learney.contentaudit.auditcli.commands.ReviseCmd
+        methodName: handleOutcome
+        methodDesc: (Lcom/learney/contentaudit/revisiondomain/RevisionOutcome;Ljava/lang/String;Ljava/lang/String;)I
+        line: 219
+        cyclomatic: 28
+        lineCoveragePct: 32
+        crap: 274.514688
+      - className: com.learney.contentaudit.revisiondomain.contextoverride.LemmaAbsenceContextStructuralValidator
+        methodName: validateAndBuild
+        methodDesc: (Lcom/fasterxml/jackson/databind/JsonNode;Ljava/lang/String;)Lcom/learney/contentaudit/refinerdomain/CorrectionContext;
+        line: 30
+        cyclomatic: 65
+        lineCoveragePct: 87
+        crap: 74.282325
+    healthScore: 52
     verdict: WARNED
     violations:
-    - lineCoverage 65% < 70%
+    - lineCoverage 60% < 70%
     - branchCoverage 52% < 60%
-    - mutationScore 18% < 60%
+    - mutationScore 35% < 60%
 - id: FEAT-SLEN
   state: IMPLEMENTED
   requirementFile: requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
@@ -8705,36 +8926,38 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 79
-      linesMissed: 23
-      linesTotal: 102
-      lineCoveragePct: 77
-      branchesCovered: 25
-      branchesMissed: 5
-      branchesTotal: 30
-      branchCoveragePct: 83
-      blendPct: 80
+      linesCovered: 253
+      linesMissed: 63
+      linesTotal: 316
+      lineCoveragePct: 80
+      branchesCovered: 65
+      branchesMissed: 21
+      branchesTotal: 86
+      branchCoveragePct: 75
+      blendPct: 77
     mutation:
-      totalMutants: 31
-      killed: 24
-      survived: 6
-      noCoverage: 1
+      totalMutants: 99
+      killed: 59
+      survived: 24
+      noCoverage: 16
       timedOut: 0
       other: 0
-      mutationScorePct: 77
-      testStrengthPct: 80
+      mutationScorePct: 59
+      testStrengthPct: 71
     crap:
-      totalMethods: 13
+      totalMethods: 31
       hotspots: 0
-      maxCrap: 5.3456
-      averageCrap: 2.246105076923077
-      simple: 13
-      moderate: 0
+      maxCrap: 16.543274999999998
+      averageCrap: 2.6964138064516128
+      simple: 30
+      moderate: 1
       high: 0
       veryHigh: 0
-      healthPct: 100
-    healthScore: 84
-    verdict: PASSED
+      healthPct: 98
+    healthScore: 74
+    verdict: WARNED
+    violations:
+    - mutationScore 59% < 60%
 - id: FEAT-LAGEN
   state: IMPLEMENTED
   requirementFile: requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
@@ -9393,35 +9616,35 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 143
-      linesMissed: 7
-      linesTotal: 150
-      lineCoveragePct: 95
-      branchesCovered: 66
-      branchesMissed: 22
-      branchesTotal: 88
-      branchCoveragePct: 75
+      linesCovered: 196
+      linesMissed: 11
+      linesTotal: 207
+      lineCoveragePct: 94
+      branchesCovered: 92
+      branchesMissed: 29
+      branchesTotal: 121
+      branchCoveragePct: 76
       blendPct: 85
     mutation:
-      totalMutants: 60
-      killed: 41
-      survived: 11
-      noCoverage: 8
+      totalMutants: 96
+      killed: 73
+      survived: 13
+      noCoverage: 10
       timedOut: 0
       other: 0
-      mutationScorePct: 68
-      testStrengthPct: 78
+      mutationScorePct: 76
+      testStrengthPct: 84
     crap:
-      totalMethods: 17
+      totalMethods: 30
       hotspots: 0
       maxCrap: 14.042336
-      averageCrap: 3.877608705882353
-      simple: 16
+      averageCrap: 3.2373593666666665
+      simple: 29
       moderate: 1
       high: 0
       veryHigh: 0
-      healthPct: 97
-    healthScore: 80
+      healthPct: 98
+    healthScore: 84
     verdict: PASSED
 - id: FEAT-RCLA
   state: IMPLEMENTED
@@ -9756,34 +9979,34 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 313
-      linesMissed: 149
-      linesTotal: 462
-      lineCoveragePct: 67
-      branchesCovered: 163
-      branchesMissed: 140
-      branchesTotal: 303
-      branchCoveragePct: 53
-      blendPct: 60
+      linesCovered: 709
+      linesMissed: 447
+      linesTotal: 1156
+      lineCoveragePct: 61
+      branchesCovered: 382
+      branchesMissed: 356
+      branchesTotal: 738
+      branchCoveragePct: 51
+      blendPct: 56
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 645
+      killed: 228
+      survived: 186
+      noCoverage: 231
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 35
+      testStrengthPct: 55
     crap:
-      totalMethods: 36
-      hotspots: 1
+      totalMethods: 97
+      hotspots: 6
       maxCrap: 650.0
-      averageCrap: 23.981368222222223
-      simple: 30
-      moderate: 3
-      high: 2
-      veryHigh: 1
-      healthPct: 88
+      averageCrap: 16.845670010309277
+      simple: 72
+      moderate: 15
+      high: 6
+      veryHigh: 4
+      healthPct: 82
       top:
       - className: com.learney.contentaudit.refinerdomain.LemmaAbsenceContextResolver
         methodName: resolveWithIndex
@@ -9792,11 +10015,48 @@ features:
         cyclomatic: 25
         lineCoveragePct: 0
         crap: 650.0
-    healthScore: 40
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: printSnapshotSummary
+        methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
+        line: 1029
+        cyclomatic: 14
+        lineCoveragePct: 13
+        crap: 143.066588
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: renderSentence
+        methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
+        line: 1059
+        cyclomatic: 11
+        lineCoveragePct: 0
+        crap: 132.0
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: handleAnalyzers
+        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
+        line: 1143
+        cyclomatic: 7
+        lineCoveragePct: 0
+        crap: 56.0
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: handleTasks
+        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
+        line: 432
+        cyclomatic: 29
+        lineCoveragePct: 77
+        crap: 39.23244699999999
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: call
+        methodDesc: ()Ljava/lang/Integer;
+        line: 170
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+    healthScore: 53
     verdict: WARNED
     violations:
-    - lineCoverage 67% < 70%
-    - branchCoverage 53% < 60%
+    - lineCoverage 61% < 70%
+    - branchCoverage 51% < 60%
+    - mutationScore 35% < 60%
+    - crapHotspots 6 > 5
 - id: FEAT-RCSL
   state: IMPLEMENTED
   requirementFile: requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
@@ -10142,34 +10402,34 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 89
-      linesMissed: 80
-      linesTotal: 169
-      lineCoveragePct: 52
-      branchesCovered: 42
-      branchesMissed: 64
-      branchesTotal: 106
-      branchCoveragePct: 39
-      blendPct: 45
+      linesCovered: 485
+      linesMissed: 378
+      linesTotal: 863
+      lineCoveragePct: 56
+      branchesCovered: 261
+      branchesMissed: 280
+      branchesTotal: 541
+      branchCoveragePct: 48
+      blendPct: 52
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 493
+      killed: 154
+      survived: 148
+      noCoverage: 191
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 31
+      testStrengthPct: 50
     crap:
-      totalMethods: 11
-      hotspots: 1
+      totalMethods: 72
+      hotspots: 6
       maxCrap: 272.0
-      averageCrap: 32.188497454545455
-      simple: 6
-      moderate: 4
-      high: 0
-      veryHigh: 1
-      healthPct: 73
+      averageCrap: 15.62186398611111
+      simple: 48
+      moderate: 16
+      high: 4
+      veryHigh: 4
+      healthPct: 78
       top:
       - className: com.learney.contentaudit.refinerdomain.SentenceLengthContextResolver
         methodName: resolveWithIndex
@@ -10178,11 +10438,48 @@ features:
         cyclomatic: 16
         lineCoveragePct: 0
         crap: 272.0
-    healthScore: 32
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: printSnapshotSummary
+        methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
+        line: 1029
+        cyclomatic: 14
+        lineCoveragePct: 13
+        crap: 143.066588
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: renderSentence
+        methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
+        line: 1059
+        cyclomatic: 11
+        lineCoveragePct: 0
+        crap: 132.0
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: handleAnalyzers
+        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
+        line: 1143
+        cyclomatic: 7
+        lineCoveragePct: 0
+        crap: 56.0
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: handleTasks
+        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
+        line: 432
+        cyclomatic: 29
+        lineCoveragePct: 77
+        crap: 39.23244699999999
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: call
+        methodDesc: ()Ljava/lang/Integer;
+        line: 170
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+    healthScore: 49
     verdict: WARNED
     violations:
-    - lineCoverage 52% < 70%
-    - branchCoverage 39% < 60%
+    - lineCoverage 56% < 70%
+    - branchCoverage 48% < 60%
+    - mutationScore 31% < 60%
+    - crapHotspots 6 > 5
 elements:
 - module: audit-domain
   status: EXISTS
@@ -18976,14 +19273,14 @@ elements:
         branchCoveragePct: 39
         blendPct: 45
       mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
-        noCoverage: 0
+        totalMutants: 63
+        killed: 33
+        survived: 4
+        noCoverage: 26
         timedOut: 0
         other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
+        mutationScorePct: 52
+        testStrengthPct: 89
       crap:
         totalMethods: 11
         hotspots: 1
@@ -19027,11 +19324,11 @@ elements:
         lineCoveragePct: 95
         branchesCovered: 18
         branchesMissed: 12
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
+        mutantsTotal: 16
+        mutantsKilled: 13
+        mutantsSurvived: 3
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 81
         crap: 16.032
       - name: findNode
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Ljava/lang/String;Lcom/learney/contentaudit/auditdomain/AuditTarget;)Ljava/util/Optional;
@@ -19042,11 +19339,11 @@ elements:
         lineCoveragePct: 92
         branchesCovered: 12
         branchesMissed: 4
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
+        mutantsTotal: 9
+        mutantsKilled: 8
+        mutantsSurvived: 1
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 88
         crap: 9.041472
       - name: resolveWithIndex
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNodeIndex;Lcom/learney/contentaudit/auditdomain/AuditReport;Lcom/learney/contentaudit/refinerdomain/RefinementTask;)Ljava/util/Optional;
@@ -19057,10 +19354,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 30
-        mutantsTotal: 0
+        mutantsTotal: 16
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 16
         mutationScorePct: 0
         crap: 272.0
       - name: supports
@@ -19072,11 +19369,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 2
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 2
+        mutantsKilled: 2
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 2.0
       - name: lambda$resolveWithIndex$2
         desc: (Lcom/learney/contentaudit/auditdomain/labs/AbsentLemma;)Lcom/learney/contentaudit/refinerdomain/SuggestedLemma;
@@ -19087,10 +19384,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 6
-        mutantsTotal: 0
+        mutantsTotal: 4
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 4
         mutationScorePct: 0
         crap: 20.0
       - name: lambda$resolveWithIndex$1
@@ -19102,10 +19399,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 4
-        mutantsTotal: 0
+        mutantsTotal: 3
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 3
         mutationScorePct: 0
         crap: 12.0
       - name: lambda$resolveWithIndex$0
@@ -19117,10 +19414,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 4
-        mutantsTotal: 0
+        mutantsTotal: 3
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 3
         mutationScorePct: 0
         crap: 12.0
       - name: lambda$resolve$2
@@ -19132,11 +19429,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 3
         branchesMissed: 3
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 4
+        mutantsKilled: 4
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 4.0
       - name: lambda$resolve$1
         desc: (Lcom/learney/contentaudit/auditdomain/labs/AbsentLemma;)I
@@ -19147,11 +19444,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 3
         branchesMissed: 1
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 3
+        mutantsKilled: 3
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 3.0
       - name: lambda$resolve$0
         desc: (Lcom/learney/contentaudit/auditdomain/labs/AbsentLemma;)Z
@@ -19162,11 +19459,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 4
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 3
+        mutantsKilled: 3
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 3.0
   - name: LemmaAbsenceContextResolver
     status: EXISTS
@@ -20583,14 +20880,14 @@ elements:
         branchCoveragePct: 52
         blendPct: 59
       mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
-        noCoverage: 0
+        totalMutants: 154
+        killed: 82
+        survived: 28
+        noCoverage: 44
         timedOut: 0
         other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
+        mutationScorePct: 53
+        testStrengthPct: 74
       crap:
         totalMethods: 16
         hotspots: 1
@@ -20634,11 +20931,11 @@ elements:
         lineCoveragePct: 96
         branchesCovered: 32
         branchesMissed: 16
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
+        mutantsTotal: 26
+        mutantsKilled: 22
+        mutantsSurvived: 4
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 84
         crap: 25.04
       - name: buildLemmaCountMap
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/util/Map;
@@ -20649,11 +20946,11 @@ elements:
         lineCoveragePct: 83
         branchesCovered: 9
         branchesMissed: 5
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutantsTotal: 11
+        mutantsKilled: 4
+        mutantsSurvived: 4
+        mutantsNoCoverage: 3
+        mutationScorePct: 36
         crap: 8.314432
       - name: buildAllLevelCountMaps
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/util/Map;
@@ -20664,11 +20961,11 @@ elements:
         lineCoveragePct: 71
         branchesCovered: 9
         branchesMissed: 5
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutantsTotal: 8
+        mutantsKilled: 3
+        mutantsSurvived: 4
+        mutantsNoCoverage: 1
+        mutationScorePct: 37
         crap: 9.560896
       - name: extractThreshold
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Ljava/util/Map;Ljava/util/Map;)Ljava/lang/Integer;
@@ -20679,11 +20976,11 @@ elements:
         lineCoveragePct: 75
         branchesCovered: 8
         branchesMissed: 6
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutantsTotal: 10
+        mutantsKilled: 2
+        mutantsSurvived: 5
+        mutantsNoCoverage: 3
+        mutationScorePct: 20
         crap: 9.0
       - name: deriveThresholdFromStats
         desc: (Ljava/lang/Iterable;)Ljava/lang/Integer;
@@ -20694,11 +20991,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 7
         branchesMissed: 1
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
+        mutantsTotal: 9
+        mutantsKilled: 7
+        mutantsSurvived: 2
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 77
         crap: 5.0
       - name: buildEnrichedSuggestedLemmas
         desc: (Ljava/util/List;Ljava/util/Map;Ljava/util/Map;Ljava/lang/Integer;)Ljava/util/List;
@@ -20709,11 +21006,11 @@ elements:
         lineCoveragePct: 94
         branchesCovered: 35
         branchesMissed: 13
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
+        mutantsTotal: 26
+        mutantsKilled: 19
+        mutantsSurvived: 7
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 73
         crap: 25.135
       - name: resolveThreshold
         desc: (Ljava/lang/Integer;Lcom/learney/contentaudit/auditdomain/lemmacount/LemmaCountStats;)Ljava/lang/Integer;
@@ -20724,11 +21021,11 @@ elements:
         lineCoveragePct: 28
         branchesCovered: 1
         branchesMissed: 9
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 13
+        mutantsKilled: 2
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutantsNoCoverage: 11
+        mutationScorePct: 15
         crap: 19.436927999999998
       - name: findNode
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Ljava/lang/String;Lcom/learney/contentaudit/auditdomain/AuditTarget;)Ljava/util/Optional;
@@ -20739,11 +21036,11 @@ elements:
         lineCoveragePct: 92
         branchesCovered: 12
         branchesMissed: 4
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
+        mutantsTotal: 9
+        mutantsKilled: 8
+        mutantsSurvived: 1
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 88
         crap: 9.041472
       - name: resolveWithIndex
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNodeIndex;Lcom/learney/contentaudit/auditdomain/AuditReport;Lcom/learney/contentaudit/refinerdomain/RefinementTask;)Ljava/util/Optional;
@@ -20754,10 +21051,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 48
-        mutantsTotal: 0
+        mutantsTotal: 26
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 26
         mutationScorePct: 0
         crap: 650.0
       - name: supports
@@ -20769,11 +21066,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 2
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 2
+        mutantsKilled: 2
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 2.0
       - name: lambda$buildEnrichedSuggestedLemmas$4
         desc: (Lcom/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolver$SuggestedLemmaEntry;)Lcom/learney/contentaudit/refinerdomain/SuggestedLemma;
@@ -20784,11 +21081,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 1
+        mutantsKilled: 1
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 1.0
       - name: lambda$buildEnrichedSuggestedLemmas$3
         desc: (Lcom/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolver$SuggestedLemmaEntry;)I
@@ -20799,11 +21096,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 2
         branchesMissed: 2
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
+        mutantsTotal: 3
+        mutantsKilled: 2
+        mutantsSurvived: 1
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 66
         crap: 3.0
       - name: lambda$buildEnrichedSuggestedLemmas$2
         desc: (Lcom/learney/contentaudit/auditdomain/labs/AbsentLemma;)Lcom/learney/contentaudit/refinerdomain/SuggestedLemma;
@@ -20814,11 +21111,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 3
         branchesMissed: 3
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 4
+        mutantsKilled: 4
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 4.0
       - name: lambda$buildEnrichedSuggestedLemmas$1
         desc: (Lcom/learney/contentaudit/auditdomain/labs/AbsentLemma;)I
@@ -20829,11 +21126,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 3
         branchesMissed: 1
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 3
+        mutantsKilled: 3
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 3.0
       - name: lambda$buildEnrichedSuggestedLemmas$0
         desc: (Lcom/learney/contentaudit/auditdomain/labs/AbsentLemma;)Z
@@ -20844,11 +21141,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 4
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 3
+        mutantsKilled: 3
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 3.0
   - name: DispatchingCorrectionContextResolver
     status: EXISTS
@@ -20950,14 +21247,14 @@ elements:
         branchCoveragePct: 66
         blendPct: 59
       mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
-        noCoverage: 0
+        totalMutants: 15
+        killed: 3
+        survived: 4
+        noCoverage: 8
         timedOut: 0
         other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
+        mutationScorePct: 20
+        testStrengthPct: 42
       crap:
         totalMethods: 8
         hotspots: 0
@@ -20993,9 +21290,9 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 4
         branchesMissed: 0
-        mutantsTotal: 0
+        mutantsTotal: 4
         mutantsKilled: 0
-        mutantsSurvived: 0
+        mutantsSurvived: 4
         mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 3.0
@@ -21008,10 +21305,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 4
-        mutantsTotal: 0
+        mutantsTotal: 4
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 4
         mutationScorePct: 0
         crap: 12.0
       - name: supports
@@ -21023,11 +21320,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 4
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 3
+        mutantsKilled: 3
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 3.0
       - name: lambda$resolveWithIndex$1
         desc: (Lcom/learney/contentaudit/refinerdomain/LemmaAbsenceCorrectionContext;)Lcom/learney/contentaudit/refinerdomain/CorrectionContext;
@@ -21038,10 +21335,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
+        mutantsTotal: 1
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 1
         mutationScorePct: 0
         crap: 2.0
       - name: lambda$resolveWithIndex$0
@@ -21053,10 +21350,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
+        mutantsTotal: 1
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 1
         mutationScorePct: 0
         crap: 2.0
       - name: lambda$resolve$1
@@ -21068,10 +21365,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
+        mutantsTotal: 1
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 1
         mutationScorePct: 0
         crap: 2.0
       - name: lambda$resolve$0
@@ -21083,10 +21380,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
+        mutantsTotal: 1
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 1
         mutationScorePct: 0
         crap: 2.0
   - name: DefaultRefinerEngine
@@ -21181,14 +21478,14 @@ elements:
         branchCoveragePct: 54
         blendPct: 65
       mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
-        noCoverage: 0
+        totalMutants: 46
+        killed: 22
+        survived: 10
+        noCoverage: 14
         timedOut: 0
         other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
+        mutationScorePct: 47
+        testStrengthPct: 68
       crap:
         totalMethods: 12
         hotspots: 0
@@ -21224,11 +21521,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 4
         branchesMissed: 2
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
+        mutantsTotal: 9
+        mutantsKilled: 5
+        mutantsSurvived: 4
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 55
         crap: 4.0
       - name: nextTask
         desc: (Lcom/learney/contentaudit/refinerdomain/RefinementPlan;)Ljava/util/Optional;
@@ -21239,10 +21536,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 2
-        mutantsTotal: 0
+        mutantsTotal: 2
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 2
         mutationScorePct: 0
         crap: 6.0
       - name: walkNode
@@ -21254,11 +21551,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 5
         branchesMissed: 1
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 4
+        mutantsKilled: 4
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 4.0
       - name: collectTasksForNode
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Ljava/util/List;)V
@@ -21269,11 +21566,11 @@ elements:
         lineCoveragePct: 94
         branchesCovered: 10
         branchesMissed: 2
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
+        mutantsTotal: 6
+        mutantsKilled: 4
+        mutantsSurvived: 2
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 66
         crap: 7.010584
       - name: isRelevantForTarget
         desc: (Ljava/lang/String;Lcom/learney/contentaudit/auditdomain/AuditTarget;)Z
@@ -21284,11 +21581,11 @@ elements:
         lineCoveragePct: 66
         branchesCovered: 4
         branchesMissed: 4
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutantsTotal: 8
+        mutantsKilled: 4
+        mutantsSurvived: 1
+        mutantsNoCoverage: 3
+        mutationScorePct: 50
         crap: 7.414944
       - name: mapToDiagnosisKind
         desc: (Ljava/lang/String;)Lcom/learney/contentaudit/refinerdomain/DiagnosisKind;
@@ -21299,11 +21596,11 @@ elements:
         lineCoveragePct: 50
         branchesCovered: 3
         branchesMissed: 4
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 6
+        mutantsKilled: 3
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutantsNoCoverage: 3
+        mutationScorePct: 50
         crap: 13.125
       - name: resolveId
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/String;
@@ -21314,11 +21611,11 @@ elements:
         lineCoveragePct: 50
         branchesCovered: 1
         branchesMissed: 3
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutantsTotal: 4
+        mutantsKilled: 1
+        mutantsSurvived: 1
+        mutantsNoCoverage: 2
+        mutationScorePct: 25
         crap: 4.125
       - name: resolveLabel
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/String;
@@ -21329,11 +21626,11 @@ elements:
         lineCoveragePct: 50
         branchesCovered: 1
         branchesMissed: 3
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutantsTotal: 4
+        mutantsKilled: 1
+        mutantsSurvived: 1
+        mutantsNoCoverage: 2
+        mutationScorePct: 25
         crap: 4.125
       - name: lambda$nextTask$0
         desc: (Lcom/learney/contentaudit/refinerdomain/RefinementTask;)Z
@@ -21344,10 +21641,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 2
-        mutantsTotal: 0
+        mutantsTotal: 2
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 2
         mutationScorePct: 0
         crap: 6.0
       - name: lambda$plan$0
@@ -21359,9 +21656,9 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
+        mutantsTotal: 1
         mutantsKilled: 0
-        mutantsSurvived: 0
+        mutantsSurvived: 1
         mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
@@ -21399,14 +21696,14 @@ elements:
       branchCoveragePct: 37
       blendPct: 46
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 415
+      killed: 185
+      survived: 46
+      noCoverage: 184
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 44
+      testStrengthPct: 80
     crap:
       totalMethods: 176
       hotspots: 8
@@ -21474,11 +21771,12 @@ elements:
         cyclomatic: 8
         lineCoveragePct: 0
         crap: 72.0
-    healthScore: 37
+    healthScore: 57
     verdict: WARNED
     violations:
     - lineCoverage 55% < 70%
     - branchCoverage 37% < 60%
+    - mutationScore 44% < 60%
     - crapHotspots 8 > 5
 - module: audit-application
   status: EXISTS
@@ -22463,34 +22761,34 @@ elements:
         hasLemmaCountDiagnosis(result) is true
     quality:
       coverage:
-        linesCovered: 12
-        linesMissed: 16
-        linesTotal: 28
-        lineCoveragePct: 42
-        branchesCovered: 1
-        branchesMissed: 5
-        branchesTotal: 6
-        branchCoveragePct: 16
-        blendPct: 29
+        linesCovered: 15
+        linesMissed: 15
+        linesTotal: 30
+        lineCoveragePct: 50
+        branchesCovered: 3
+        branchesMissed: 7
+        branchesTotal: 10
+        branchCoveragePct: 30
+        blendPct: 40
       mutation:
-        totalMutants: 11
-        killed: 2
-        survived: 1
-        noCoverage: 8
+        totalMutants: 15
+        killed: 3
+        survived: 3
+        noCoverage: 9
         timedOut: 0
         other: 0
-        mutationScorePct: 18
-        testStrengthPct: 66
+        mutationScorePct: 20
+        testStrengthPct: 50
       crap:
         totalMethods: 6
         hotspots: 0
-        maxCrap: 6.0
-        averageCrap: 2.8750704999999996
-        simple: 6
-        moderate: 0
+        maxCrap: 10.224272
+        averageCrap: 3.579115833333333
+        simple: 5
+        moderate: 1
         high: 0
         veryHigh: 0
-        healthPct: 100
+        healthPct: 92
       methods:
       - name: <init>
         desc: (Lcom/learney/contentaudit/coursedomain/CourseRepository;Lcom/learney/contentaudit/auditapplication/CourseToAuditableMapper;Lcom/learney/contentaudit/auditdomain/AuditEngine;Ljava/util/List;Lcom/learney/contentaudit/auditdomain/ScoreAggregator;)V
@@ -22525,21 +22823,21 @@ elements:
       - name: runDetailedAudit
         desc: (Ljava/nio/file/Path;Ljava/lang/String;)Lcom/learney/contentaudit/auditdomain/AuditNode;
         line: 57
-        cyclomatic: 2
-        linesCovered: 0
-        linesMissed: 9
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 2
-        mutantsTotal: 2
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 2
-        mutationScorePct: 0
-        crap: 6.0
+        cyclomatic: 4
+        linesCovered: 3
+        linesMissed: 8
+        lineCoveragePct: 27
+        branchesCovered: 2
+        branchesMissed: 4
+        mutantsTotal: 6
+        mutantsKilled: 1
+        mutantsSurvived: 2
+        mutantsNoCoverage: 3
+        mutationScorePct: 16
+        crap: 10.224272
       - name: loadCourse
         desc: (Ljava/nio/file/Path;)Lcom/learney/contentaudit/auditdomain/AuditableCourse;
-        line: 72
+        line: 76
         cyclomatic: 1
         linesCovered: 2
         linesMissed: 0
@@ -22554,7 +22852,7 @@ elements:
         crap: 1.0
       - name: lambda$runDetailedAudit$0
         desc: (Ljava/lang/String;Lcom/learney/contentaudit/auditdomain/ContentAnalyzer;)Z
-        line: 60
+        line: 64
         cyclomatic: 1
         linesCovered: 0
         linesMissed: 1
@@ -24058,39 +24356,39 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 179
-      linesMissed: 109
-      linesTotal: 288
+      linesCovered: 182
+      linesMissed: 108
+      linesTotal: 290
       lineCoveragePct: 62
-      branchesCovered: 53
-      branchesMissed: 29
-      branchesTotal: 82
-      branchCoveragePct: 64
-      blendPct: 63
+      branchesCovered: 55
+      branchesMissed: 31
+      branchesTotal: 86
+      branchCoveragePct: 63
+      blendPct: 62
     mutation:
-      totalMutants: 91
-      killed: 41
-      survived: 22
-      noCoverage: 28
+      totalMutants: 95
+      killed: 42
+      survived: 24
+      noCoverage: 29
       timedOut: 0
       other: 0
-      mutationScorePct: 45
-      testStrengthPct: 65
+      mutationScorePct: 44
+      testStrengthPct: 63
     crap:
       totalMethods: 64
       hotspots: 0
       maxCrap: 11.408375
-      averageCrap: 2.218783046875
-      simple: 63
-      moderate: 1
+      averageCrap: 2.284787296875
+      simple: 62
+      moderate: 2
       high: 0
       veryHigh: 0
-      healthPct: 99
-    healthScore: 64
+      healthPct: 98
+    healthScore: 63
     verdict: WARNED
     violations:
     - lineCoverage 62% < 70%
-    - mutationScore 45% < 60%
+    - mutationScore 44% < 60%
 - module: course-infrastructure
   status: EXISTS
   implementations:
@@ -25053,7 +25351,7 @@ elements:
         auditReportStore = mock(AuditReportStore.class)
         drillDownResolver = DefaultDrillDownResolver()
         detailedFormatters = HashMap<>()
-        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore)
+        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve)
         errCapture = ByteArrayOutputStream()
         originalErr = System.err
         errOutput = errCapture.toString()
@@ -25082,7 +25380,7 @@ elements:
         auditReportStore = mock(AuditReportStore.class)
         drillDownResolver = DefaultDrillDownResolver()
         detailedFormatters = HashMap<>()
-        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore)
+        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve)
         outCapture = ByteArrayOutputStream()
         originalOut = System.out
         output = outCapture.toString()
@@ -25116,7 +25414,7 @@ elements:
         auditReportStore = mock(AuditReportStore.class)
         drillDownResolver = DefaultDrillDownResolver()
         detailedFormatters = HashMap<>()
-        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore)
+        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve)
         outCapture = ByteArrayOutputStream()
         originalOut = System.out
         output = outCapture.toString()
@@ -25149,7 +25447,7 @@ elements:
         auditReportStore = mock(AuditReportStore.class)
         drillDownResolver = DefaultDrillDownResolver()
         detailedFormatters = HashMap<>()
-        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore)
+        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve)
         originalOut = System.out
 
       mock:
@@ -25176,7 +25474,7 @@ elements:
         auditReportStore = mock(AuditReportStore.class)
         drillDownResolver = DefaultDrillDownResolver()
         detailedFormatters = HashMap<>()
-        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore)
+        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve)
         errCapture = ByteArrayOutputStream()
         originalErr = System.err
         errOutput = errCapture.toString()
@@ -29973,36 +30271,112 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
-      lineCoveragePct: 0
-      branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
-      branchCoveragePct: 0
-      blendPct: 0
+      linesCovered: 1742
+      linesMissed: 1818
+      linesTotal: 3560
+      lineCoveragePct: 48
+      branchesCovered: 796
+      branchesMissed: 1222
+      branchesTotal: 2018
+      branchCoveragePct: 39
+      blendPct: 43
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 1869
+      killed: 451
+      survived: 455
+      noCoverage: 963
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 24
+      testStrengthPct: 49
     crap:
-      totalMethods: 0
-      hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
-      moderate: 0
-      high: 0
-      veryHigh: 0
-      healthPct: 0
-    healthScore: 0
-    verdict: PASSED
+      totalMethods: 498
+      hotspots: 47
+      maxCrap: 306.0
+      averageCrap: 11.806430530120481
+      simple: 401
+      moderate: 45
+      high: 20
+      veryHigh: 32
+      healthPct: 85
+      top:
+      - className: com.learney.contentaudit.auditcli.formatting.CocaBucketsDetailedFormatter
+        methodName: formatTable
+        methodDesc: (Lcom/learney/contentaudit/auditcli/formatting/CocaBucketsDetailedFormatter$Partitioned;)Ljava/lang/String;
+        line: 222
+        cyclomatic: 17
+        lineCoveragePct: 0
+        crap: 306.0
+      - className: com.learney.contentaudit.auditcli.commands.ReviseCmd
+        methodName: handleOutcome
+        methodDesc: (Lcom/learney/contentaudit/revisiondomain/RevisionOutcome;Ljava/lang/String;Ljava/lang/String;)I
+        line: 219
+        cyclomatic: 28
+        lineCoveragePct: 32
+        crap: 274.514688
+      - className: com.learney.contentaudit.auditcli.formatting.DefaultAnalyzerStatsTransformer
+        methodName: transform
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditReport;Ljava/lang/String;Lcom/learney/contentaudit/auditapplication/AnalyzerRegistry;)Lcom/learney/contentaudit/auditcli/formatting/AnalyzerStatsView;
+        line: 24
+        cyclomatic: 15
+        lineCoveragePct: 0
+        crap: 240.0
+      - className: com.learney.contentaudit.auditcli.commands.CoursePathResolver
+        methodName: resolve
+        methodDesc: (Ljava/lang/String;)Ljava/lang/String;
+        line: 13
+        cyclomatic: 15
+        lineCoveragePct: 5
+        crap: 207.90937499999998
+      - className: com.learney.contentaudit.auditcli.formatting.TableReportFormatter
+        methodName: format
+        methodDesc: (Lcom/learney/contentaudit/auditcli/formatting/ReportViewModel;Lcom/learney/contentaudit/auditcli/formatting/DrillDownScope;)Ljava/lang/String;
+        line: 20
+        cyclomatic: 13
+        lineCoveragePct: 0
+        crap: 182.0
+      - className: com.learney.contentaudit.auditcli.formatting.AnalyzerStatsView
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 112
+        cyclomatic: 12
+        lineCoveragePct: 0
+        crap: 156.0
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: printSnapshotSummary
+        methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
+        line: 1029
+        cyclomatic: 14
+        lineCoveragePct: 13
+        crap: 143.066588
+      - className: com.learney.contentaudit.auditcli.formatting.DefaultAnalyzerStatsTransformer
+        methodName: collectScoresAtTarget
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Ljava/lang/String;Lcom/learney/contentaudit/auditdomain/AuditTarget;Ljava/util/List;)V
+        line: 95
+        cyclomatic: 11
+        lineCoveragePct: 0
+        crap: 132.0
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: renderSentence
+        methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
+        line: 1059
+        cyclomatic: 11
+        lineCoveragePct: 0
+        crap: 132.0
+      - className: com.learney.contentaudit.auditcli.formatting.DrillDownView
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 89
+        cyclomatic: 10
+        lineCoveragePct: 0
+        crap: 110.0
+    healthScore: 45
+    verdict: WARNED
+    violations:
+    - lineCoverage 48% < 70%
+    - branchCoverage 39% < 60%
+    - mutationScore 24% < 60%
+    - crapHotspots 47 > 5
 - module: nlp-infrastructure
   status: EXISTS
   models:
@@ -37253,36 +37627,112 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
-      lineCoveragePct: 0
-      branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
-      branchCoveragePct: 0
-      blendPct: 0
+      linesCovered: 1239
+      linesMissed: 807
+      linesTotal: 2046
+      lineCoveragePct: 60
+      branchesCovered: 389
+      branchesMissed: 661
+      branchesTotal: 1050
+      branchCoveragePct: 37
+      blendPct: 48
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 941
+      killed: 324
+      survived: 203
+      noCoverage: 414
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 34
+      testStrengthPct: 61
     crap:
-      totalMethods: 0
-      hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
-      moderate: 0
-      high: 0
-      veryHigh: 0
-      healthPct: 0
-    healthScore: 0
-    verdict: PASSED
+      totalMethods: 486
+      hotspots: 27
+      maxCrap: 342.0
+      averageCrap: 7.609916228395061
+      simple: 448
+      moderate: 10
+      high: 9
+      veryHigh: 19
+      healthPct: 93
+      top:
+      - className: com.learney.contentaudit.revisiondomain.RevisionEngineConfig
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 193
+        cyclomatic: 18
+        lineCoveragePct: 0
+        crap: 342.0
+      - className: com.learney.contentaudit.revisiondomain.engine.DefaultCourseElementLocator
+        methodName: replace
+        methodDesc: (Lcom/learney/contentaudit/coursedomain/CourseEntity;Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)Lcom/learney/contentaudit/coursedomain/CourseEntity;
+        line: 54
+        cyclomatic: 18
+        lineCoveragePct: 0
+        crap: 342.0
+      - className: com.learney.contentaudit.revisiondomain.RevisionProposal
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 168
+        cyclomatic: 17
+        lineCoveragePct: 0
+        crap: 306.0
+      - className: com.learney.contentaudit.revisiondomain.ConsolidatedViewBuilderConfig
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 130
+        cyclomatic: 13
+        lineCoveragePct: 0
+        crap: 182.0
+      - className: com.learney.contentaudit.revisiondomain.RevisionArtifact
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 111
+        cyclomatic: 12
+        lineCoveragePct: 0
+        crap: 156.0
+      - className: com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedView
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 101
+        cyclomatic: 11
+        lineCoveragePct: 0
+        crap: 132.0
+      - className: com.learney.contentaudit.revisiondomain.engine.DefaultCourseElementLocator
+        methodName: snapshot
+        methodDesc: (Lcom/learney/contentaudit/coursedomain/CourseEntity;Lcom/learney/contentaudit/auditdomain/AuditTarget;Ljava/lang/String;)Ljava/util/Optional;
+        line: 26
+        cyclomatic: 10
+        lineCoveragePct: 0
+        crap: 110.0
+      - className: com.learney.contentaudit.revisiondomain.consolidatedview.NodeImpact
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 78
+        cyclomatic: 9
+        lineCoveragePct: 0
+        crap: 90.0
+      - className: com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreview
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 78
+        cyclomatic: 9
+        lineCoveragePct: 0
+        crap: 90.0
+      - className: com.learney.contentaudit.revisiondomain.contextoverride.LemmaAbsenceContextStructuralValidator
+        methodName: validateAndBuild
+        methodDesc: (Lcom/fasterxml/jackson/databind/JsonNode;Ljava/lang/String;)Lcom/learney/contentaudit/refinerdomain/CorrectionContext;
+        line: 30
+        cyclomatic: 65
+        lineCoveragePct: 87
+        crap: 74.282325
+    healthScore: 53
+    verdict: WARNED
+    violations:
+    - lineCoverage 60% < 70%
+    - branchCoverage 37% < 60%
+    - mutationScore 34% < 60%
+    - crapHotspots 27 > 5
 - module: revision-infrastructure
   status: EXISTS
   implementations:
@@ -37986,7 +38436,7 @@ elements:
       trace: FEAT-RCLALEN / F-RCLALEN-R001
 
       given:
-        ctx = LemmaAbsenceCorrectionContext("task-rclalen-r001", "She needs to negotiate the contract before Friday afternoon.", "Ella necesita negociar el contrato antes del viernes por la tarde.", "Affirmative sentences in present simple", "Write affirmative sentences.", "Present Simple", CefrLevel.A1, List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)), List.of(new SuggestedLemma("like", "VERB", "A1 common verb", 52)), "She ____[needs|wants] to negotiate the contract.", 10, 5, 8, 2, LengthDirection.SHORTEN)
+        ctx = LemmaAbsenceCorrectionContext("task-rclalen-r001", "She needs to negotiate the contract before Friday afternoon.", "Ella necesita negociar el contrato antes del viernes por la tarde.", "Affirmative sentences in present simple", "Write affirmative sentences.", "Present Simple", CefrLevel.A1, List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)), List.of(new SuggestedLemma("like", "VERB", "A1 common verb", 52, null, null, null)), "She ____[needs|wants] to negotiate the contract.", 10, 5, 8, 2, LengthDirection.SHORTEN)
         userPrompt = builder.buildUserPrompt(ctx)
 
       then:
@@ -38000,7 +38450,7 @@ elements:
       trace: FEAT-RCLALEN / F-RCLALEN-R004
 
       given:
-        ctx = LemmaAbsenceCorrectionContext("task-rclalen-r004", "She runs every morning.", "Ella corre cada mañana.", "Daily Routines", "Write simple present tense sentences.", "Everyday Life", CefrLevel.A1, List.of(new MisplacedLemmaContext("run", "VERB", CefrLevel.B1, CefrLevel.A1, 150)), List.of(new SuggestedLemma("walk", "VERB", "A1 level synonym", 80)), "She ____[runs|walks] every morning.", null, null, null, null, LengthDirection.UNKNOWN)
+        ctx = LemmaAbsenceCorrectionContext("task-rclalen-r004", "She runs every morning.", "Ella corre cada mañana.", "Daily Routines", "Write simple present tense sentences.", "Everyday Life", CefrLevel.A1, List.of(new MisplacedLemmaContext("run", "VERB", CefrLevel.B1, CefrLevel.A1, 150)), List.of(new SuggestedLemma("walk", "VERB", "A1 level synonym", 80, null, null, null)), "She ____[runs|walks] every morning.", null, null, null, null, LengthDirection.UNKNOWN)
         userPrompt = builder.buildUserPrompt(ctx)
         lowerPrompt = userPrompt.toLowerCase()
 
@@ -38477,34 +38927,34 @@ qualitySummary:
     crapHotspotThreshold: 30
     crapHotspotsMax: 5
   coverage:
-    linesCovered: 3644
-    linesMissed: 2253
-    linesTotal: 5897
-    lineCoveragePct: 61
-    branchesCovered: 1191
-    branchesMissed: 1595
-    branchesTotal: 2786
-    branchCoveragePct: 42
-    blendPct: 51
+    linesCovered: 6628
+    linesMissed: 4877
+    linesTotal: 11505
+    lineCoveragePct: 57
+    branchesCovered: 2378
+    branchesMissed: 3480
+    branchesTotal: 5858
+    branchCoveragePct: 40
+    blendPct: 48
   mutation:
-    totalMutants: 2174
-    killed: 818
-    survived: 443
-    noCoverage: 913
+    totalMutants: 5403
+    killed: 1779
+    survived: 1149
+    noCoverage: 2475
     timedOut: 0
     other: 0
-    mutationScorePct: 37
-    testStrengthPct: 64
+    mutationScorePct: 32
+    testStrengthPct: 60
   crap:
-    totalMethods: 1400
-    hotspots: 59
+    totalMethods: 2384
+    hotspots: 133
     maxCrap: 650.0
-    averageCrap: 7.536097437142855
-    simple: 1301
-    moderate: 36
-    high: 11
-    veryHigh: 52
-    healthPct: 94
+    averageCrap: 8.444959049916108
+    simple: 2149
+    moderate: 92
+    high: 40
+    veryHigh: 103
+    healthPct: 92
     top:
     - className: com.learney.contentaudit.refinerdomain.LemmaAbsenceContextResolver
       methodName: resolveWithIndex
@@ -38534,6 +38984,41 @@ qualitySummary:
       cyclomatic: 18
       lineCoveragePct: 0
       crap: 342.0
+    - className: com.learney.contentaudit.revisiondomain.RevisionEngineConfig
+      methodName: equals
+      methodDesc: (Ljava/lang/Object;)Z
+      line: 193
+      cyclomatic: 18
+      lineCoveragePct: 0
+      crap: 342.0
+    - className: com.learney.contentaudit.revisiondomain.engine.DefaultCourseElementLocator
+      methodName: replace
+      methodDesc: (Lcom/learney/contentaudit/coursedomain/CourseEntity;Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)Lcom/learney/contentaudit/coursedomain/CourseEntity;
+      line: 54
+      cyclomatic: 18
+      lineCoveragePct: 0
+      crap: 342.0
+    - className: com.learney.contentaudit.auditcli.formatting.CocaBucketsDetailedFormatter
+      methodName: formatTable
+      methodDesc: (Lcom/learney/contentaudit/auditcli/formatting/CocaBucketsDetailedFormatter$Partitioned;)Ljava/lang/String;
+      line: 222
+      cyclomatic: 17
+      lineCoveragePct: 0
+      crap: 306.0
+    - className: com.learney.contentaudit.revisiondomain.RevisionProposal
+      methodName: equals
+      methodDesc: (Ljava/lang/Object;)Z
+      line: 168
+      cyclomatic: 17
+      lineCoveragePct: 0
+      crap: 306.0
+    - className: com.learney.contentaudit.auditcli.commands.ReviseCmd
+      methodName: handleOutcome
+      methodDesc: (Lcom/learney/contentaudit/revisiondomain/RevisionOutcome;Ljava/lang/String;Ljava/lang/String;)I
+      line: 219
+      cyclomatic: 28
+      lineCoveragePct: 32
+      crap: 274.514688
     - className: com.learney.contentaudit.refinerdomain.SentenceLengthCorrectionContext
       methodName: equals
       methodDesc: (Ljava/lang/Object;)Z
@@ -38541,48 +39026,13 @@ qualitySummary:
       cyclomatic: 16
       lineCoveragePct: 0
       crap: 272.0
-    - className: com.learney.contentaudit.refinerdomain.SentenceLengthContextResolver
-      methodName: resolveWithIndex
-      methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNodeIndex;Lcom/learney/contentaudit/auditdomain/AuditReport;Lcom/learney/contentaudit/refinerdomain/RefinementTask;)Ljava/util/Optional;
-      line: 170
-      cyclomatic: 16
-      lineCoveragePct: 0
-      crap: 272.0
-    - className: com.learney.contentaudit.coursedomain.TopicEntity
-      methodName: equals
-      methodDesc: (Ljava/lang/Object;)Z
-      line: 143
-      cyclomatic: 15
-      lineCoveragePct: 0
-      crap: 240.0
-    - className: com.learney.contentaudit.coursedomain.KnowledgeEntity
-      methodName: equals
-      methodDesc: (Ljava/lang/Object;)Z
-      line: 143
-      cyclomatic: 15
-      lineCoveragePct: 0
-      crap: 240.0
-    - className: com.learney.contentaudit.coursedomain.MilestoneEntity
-      methodName: equals
-      methodDesc: (Ljava/lang/Object;)Z
-      line: 132
-      cyclomatic: 14
-      lineCoveragePct: 0
-      crap: 210.0
-    - className: com.learney.contentaudit.vocabularyinfrastructure.evp.FileSystemEvpCatalog
-      methodName: loadCatalog
-      methodDesc: (Ljava/nio/file/Path;)V
-      line: 41
-      cyclomatic: 14
-      lineCoveragePct: 0
-      crap: 210.0
-  healthScore: 55
+  healthScore: 52
   verdict: WARNED
   violations:
-  - lineCoverage 61% < 70%
-  - branchCoverage 42% < 60%
-  - mutationScore 37% < 60%
-  - crapHotspots 59 > 5
+  - lineCoverage 57% < 70%
+  - branchCoverage 40% < 60%
+  - mutationScore 32% < 60%
+  - crapHotspots 133 > 5
 patterns:
 - id: declared-1
   pattern: Factory
