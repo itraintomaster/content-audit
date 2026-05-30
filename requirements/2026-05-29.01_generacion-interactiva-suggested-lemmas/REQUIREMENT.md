@@ -1,0 +1,201 @@
+---
+feature:
+  id: FEAT-LAGAG
+  code: F-LAGAG
+  name: Generación interactiva con consulta de suggested lemmas
+  priority: high
+---
+
+# Generación interactiva con consulta de suggested lemmas
+
+## TL;DR
+
+**Qué**: Un modo de generación de candidato de quiz para tareas `LEMMA_ABSENCE`
+en el que el modelo arranca con una semilla de los suggested lemmas más
+prioritarios y, durante la generación, puede solicitar más suggested lemmas
+para la misma task hasta cerrar con un único candidato final.
+
+**Por qué**: Hoy la generación dinámica recibe una lista estática horneada de
+antemano; cuando esa lista no alcanza, el modelo no tiene forma de pedir las
+palabras que necesita. Este modo le da esa capacidad de manera acotada y
+trazable.
+
+## Reglas de Negocio
+
+<a id="F-LAGAG-R001"></a>
+### Rule[F-LAGAG-R001] - Semilla inicial con los lemmas más prioritarios
+**Severity**: high | **Validation**: VALIDATED
+
+> Al iniciar la generación, el modelo recibe una lista semilla con los suggested
+> lemmas más necesarios de la task —no la lista completa—, entendiendo "más
+> necesarios" como los de mayor prioridad de recomendación dentro del nivel
+> aplicable a la task.
+
+<a id="F-LAGAG-R002"></a>
+### Rule[F-LAGAG-R002] - El modelo puede solicitar más suggested lemmas
+**Severity**: high | **Validation**: VALIDATED
+
+> Durante la generación, cuando la semilla no le alcanza, el modelo puede
+> solicitar suggested lemmas adicionales para la misma task, filtrando por tipo
+> gramatical y/o nivel y/o cantidad, con la misma semántica de consulta de
+> [F-CSLATDC-R001](#F-CSLATDC-R001). Debe quedar claro para el modelo que esta
+> capacidad está disponible y cómo expresarla, y el sistema responde con los
+> lemmas aplicables a la task.
+
+<a id="F-LAGAG-R003"></a>
+### Rule[F-LAGAG-R003] - Modo explícito, reconocible y trazable
+**Severity**: high | **Validation**: VALIDATED
+
+> La generación con capacidad de solicitar palabras es un modo explícito,
+> distinto del modo dinámico de un solo paso y del modo fijo. Su selección y su
+> default son inequívocos, y en la trazabilidad de la propuesta producida queda
+> registrado que se usó este modo, junto con la identidad de estrategia y
+> proveedor, de forma consistente con [F-LAGEN-R009](#F-LAGEN-R009).
+
+<a id="F-LAGAG-R004"></a>
+### Rule[F-LAGAG-R004] - Presupuesto de solicitudes acotado
+**Severity**: high | **Validation**: VALIDATED
+
+> La cantidad de solicitudes de suggested lemmas que el modelo puede hacer en una
+> generación está limitada. Si se agota ese presupuesto sin que el modelo entregue
+> un candidato, la generación termina en una falla observable con su propia
+> categoría, en línea con las categorías de falla de [F-LAGEN-R006](#F-LAGEN-R006).
+
+**Error**: "Se agotó el presupuesto de consultas de suggested lemmas sin obtener un candidato"
+
+<a id="F-LAGAG-R005"></a>
+### Rule[F-LAGAG-R005] - Proveedor incapaz de sostener el intercambio
+**Severity**: medium | **Validation**: VALIDATED
+
+> Si el proveedor activo no es capaz de emitir solicitudes de suggested lemmas
+> durante la generación, la situación se reporta como una falla observable y no
+> como un cuelgue silencioso.
+
+**Error**: "El proveedor activo no puede sostener la consulta interactiva de suggested lemmas"
+
+<a id="F-LAGAG-R006"></a>
+### Rule[F-LAGAG-R006] - Candidato final con la forma heredada
+**Severity**: high | **Validation**: VALIDATED
+
+> Al cerrar el intercambio, el modelo entrega exactamente un candidato final con
+> la misma forma y las mismas validaciones estructurales que ya exige la
+> generación dinámica en [F-LAGEN-R005](#F-LAGEN-R005): un solo candidato, sin
+> verificación de calidad, sin reintento automático y con no-determinismo. El
+> modo fijo no usa este intercambio y queda intacto.
+
+## Alcance
+
+- **En alcance**: Modo de generación interactiva para `LEMMA_ABSENCE`: semilla
+  inicial, solicitudes acotadas de más suggested lemmas durante la generación,
+  selección y trazabilidad del modo, y las fallas por presupuesto agotado y por
+  proveedor incapaz.
+- **Fuera de alcance**: La forma y validación del candidato final (heredadas de
+  F-LAGEN), la semántica de consulta de suggested lemmas (definida en F-CSLATDC),
+  el modo fijo/canned, y cualquier verificación de calidad o reintento del
+  candidato.
+
+## User Journeys
+
+### Journey[F-LAGAG-J001] - El modelo solicita más lemmas y entrega un candidato
+**Validation**: AUTO_VALIDATED
+
+Happy path. La semilla inicial no alcanza, el modelo solicita suggested lemmas adicionales dentro del presupuesto y entrega un único candidato final registrado como producido en este modo.
+
+```yaml
+journeys:
+  - id: F-LAGAG-J001
+    name: El modelo solicita más lemmas y entrega un candidato
+    flow:
+      - id: start_with_seed
+        action: "El operador inicia la generación interactiva para una task LEMMA_ABSENCE y el modelo recibe la lista semilla con los suggested lemmas más prioritarios"
+        gate: [F-LAGAG-R001, F-LAGAG-R003]
+        then: evaluate_seed
+      - id: evaluate_seed
+        action: "El sistema determina si la semilla recibida le alcanza al modelo para construir el candidato final"
+        outcomes:
+          - when: "La semilla alcanza para construir el candidato"
+            then: deliver_candidate
+          - when: "La semilla no alcanza y el modelo necesita más palabras"
+            then: request_more
+      - id: request_more
+        action: "El modelo solicita suggested lemmas adicionales para la misma task filtrando por tipo gramatical y/o nivel y/o cantidad, y el sistema responde con los lemmas aplicables"
+        gate: [F-LAGAG-R002]
+        then: deliver_candidate
+      - id: deliver_candidate
+        action: "El modelo entrega exactamente un candidato final válido y la propuesta queda registrada como producida en este modo"
+        gate: [F-LAGAG-R006, F-LAGAG-R003]
+        result: success
+```
+
+### Journey[F-LAGAG-J002] - Se agota el presupuesto de solicitudes sin candidato
+**Validation**: AUTO_VALIDATED
+
+El modelo solicita más suggested lemmas pero agota el presupuesto de solicitudes sin entregar un candidato, terminando en la falla observable por presupuesto agotado.
+
+```yaml
+journeys:
+  - id: F-LAGAG-J002
+    name: Se agota el presupuesto de solicitudes sin candidato
+    flow:
+      - id: start_with_seed
+        action: "El operador inicia la generación interactiva para una task LEMMA_ABSENCE y el modelo recibe la lista semilla"
+        gate: [F-LAGAG-R001]
+        then: request_more
+      - id: request_more
+        action: "El modelo solicita más suggested lemmas para la misma task y el sistema responde con los lemmas aplicables"
+        gate: [F-LAGAG-R002]
+        then: check_budget
+      - id: check_budget
+        action: "El sistema determina si todavía queda presupuesto de solicitudes para que el modelo entregue un candidato"
+        gate: [F-LAGAG-R004]
+        outcomes:
+          - when: "Queda presupuesto y el modelo entrega un candidato final válido dentro del límite"
+            then: deliver_candidate
+          - when: "Se agotó el presupuesto de solicitudes sin que el modelo entregue un candidato"
+            then: budget_exhausted
+      - id: deliver_candidate
+        action: "El modelo entrega exactamente un candidato final válido dentro del presupuesto"
+        gate: [F-LAGAG-R006]
+        result: success
+      - id: budget_exhausted
+        action: "La generación termina con la falla observable por presupuesto de consultas agotado"
+        gate: [F-LAGAG-R004]
+        result: failure
+```
+
+### Journey[F-LAGAG-J003] - El proveedor activo no puede sostener la consulta interactiva
+**Validation**: AUTO_VALIDATED
+
+El proveedor activo no es capaz de sostener la solicitud de suggested lemmas durante la generación y la situación termina en una falla observable, sin cuelgue silencioso.
+
+```yaml
+journeys:
+  - id: F-LAGAG-J003
+    name: El proveedor activo no puede sostener la consulta interactiva
+    flow:
+      - id: start_with_seed
+        action: "El operador inicia la generación interactiva para una task LEMMA_ABSENCE y el modelo recibe la lista semilla"
+        gate: [F-LAGAG-R001]
+        then: attempt_request
+      - id: attempt_request
+        action: "El modelo intenta solicitar suggested lemmas adicionales para la misma task durante la generación"
+        gate: [F-LAGAG-R002]
+        then: provider_incapable
+      - id: provider_incapable
+        action: "El proveedor activo no es capaz de sostener la solicitud y la generación termina con la falla observable de proveedor incapaz, sin cuelgue silencioso"
+        gate: [F-LAGAG-R005]
+        result: failure
+```
+
+## Referencias
+
+- **FEAT-LAGEN** — Define la generación de candidatos de quiz para `LEMMA_ABSENCE`
+  (modo dinámico de un solo paso y modo fijo), la forma del candidato final, las
+  categorías de falla y la trazabilidad de estrategia y proveedor. Este modo
+  reutiliza esas reglas en lugar de redefinirlas. Citada por
+  [F-LAGAG-R003](#F-LAGAG-R003), [F-LAGAG-R004](#F-LAGAG-R004) y
+  [F-LAGAG-R006](#F-LAGAG-R006).
+- **FEAT-CSLATDC** — Define la consulta de suggested lemmas para una task, con
+  filtro obligatorio por nivel, filtro opcional por tipo gramatical, límite de
+  cantidad y orden por prioridad de recomendación. Este modo usa esa misma
+  consulta como comportamiento. Citada por [F-LAGAG-R002](#F-LAGAG-R002).

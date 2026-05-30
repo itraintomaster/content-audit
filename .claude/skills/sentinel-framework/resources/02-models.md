@@ -1014,10 +1014,11 @@ new KnowledgeEntity(String id, String code, NodeKind kind, String label, String 
 | `answerImageUrl` | `String` |  |
 | `miniTheory` | `String` |  |
 | `successMessage` | `String` |  |
+| `sentences` | `List<String>` | Import `java.util.List` |
 
 **Generated constructor:**
 ```java
-new QuizTemplateEntity(String id, String oidId, String kind, String knowledgeId, String title, String instructions, String translation, String theoryId, String topicName, FormEntity form, double difficulty, double retries, double noScoreRetries, String code, String audioUrl, String imageUrl, String answerAudioUrl, String answerImageUrl, String miniTheory, String successMessage)
+new QuizTemplateEntity(String id, String oidId, String kind, String knowledgeId, String title, String instructions, String translation, String theoryId, String topicName, FormEntity form, double difficulty, double retries, double noScoreRetries, String code, String audioUrl, String imageUrl, String answerAudioUrl, String answerImageUrl, String miniTheory, String successMessage, List<String> sentences)
 ```
 
 #### FormEntity
@@ -1277,6 +1278,39 @@ new LemmaAbsenceCorrectionContext(String taskId, String sentence, String transla
 new LengthDirection(null SHORTEN, null LENGTHEN, null KEEP_SAME, null UNKNOWN)
 ```
 
+#### SuggestedLemmaQueryResult
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `taskId` | `String` |  |
+| `cefrLevel` | `CefrLevel` |  |
+| `suggestedLemmas` | `List<SuggestedLemma>` | Import `java.util.List` |
+
+**Generated constructor:**
+```java
+new SuggestedLemmaQueryResult(String taskId, CefrLevel cefrLevel, List<SuggestedLemma> suggestedLemmas)
+```
+
+#### SuggestedLemmaQueryRejectedException
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+**Type:** exception
+**Extends:** `RuntimeException`
+**Message:** `"Suggested lemma query rejected for task %s: %s"`
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `taskId` | `String` |  |
+| `reason` | `String` |  |
+
+**Generated class** extends `RuntimeException` with constructor:
+```java
+new SuggestedLemmaQueryRejectedException(String taskId, String reason)
+```
+
 ### Module: audit-cli
 
 #### GetTasksFilter
@@ -1307,10 +1341,11 @@ new GetTasksFilter(Optional<String> planId, Optional<String> status, boolean sor
 |-------|------|-------|
 | `LLM` | `null` |  |
 | `CANNED` | `null` |  |
+| `LLM_INTERACTIVE` | `null` |  |
 
 **Generated constructor:**
 ```java
-new LagenMode(null LLM, null CANNED)
+new LagenMode(null LLM, null CANNED, null LLM_INTERACTIVE)
 ```
 
 #### PlanStorageMode
@@ -1340,6 +1375,22 @@ new PlanStorageMode(null DISK, null EPHEMERAL)
 **Generated constructor:**
 ```java
 new EphemeralRenderOptions(boolean withCorrectionContext)
+```
+
+#### SuggestedLemmasFilter
+
+**Package:** `com.learney.contentaudit.auditcli`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `limit` | `Optional<Integer>` |  |
+| `partOfSpeech` | `Optional<String>` |  |
+| `level` | `Optional<CefrLevel>` |  |
+
+**Generated constructor:**
+```java
+new SuggestedLemmasFilter(Optional<Integer> limit, Optional<String> partOfSpeech, Optional<CefrLevel> level)
 ```
 
 #### ReportViewModel (package: formatting)
@@ -2216,6 +2267,7 @@ new OverrideRejectedException(String reason)
 | `temperature` | `Double` |
 | `maxTokens` | `Integer` |
 | `timeout` | `Duration` |
+| `maxSuggestedLemmaRequests` | `Integer` |
 
 #### LlmGenerationFailureCategory (package: lagen)
 
@@ -2231,6 +2283,8 @@ new OverrideRejectedException(String reason)
 | `LLM_RESPONSE_EMPTY` | `null` |
 | `LLM_RESPONSE_MALFORMED` | `null` |
 | `LLM_OTHER` | `null` |
+| `LLM_LEMMA_REQUEST_BUDGET_EXHAUSTED` | `null` |
+| `LLM_TOOL_CALLING_UNSUPPORTED` | `null` |
 
 #### LagenDefaults (package: lagen)
 
@@ -2264,4 +2318,16 @@ new OverrideRejectedException(String reason)
 | Field | Type |
 |-------|------|
 | `rawText` | `String` |
+
+#### SuggestedLemmaRequest (package: lageninteractive)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lageninteractive`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `limit` | `Optional<Integer>` |
+| `partOfSpeech` | `Optional<String>` |
+| `level` | `Optional<CefrLevel>` |
 

@@ -1,0 +1,557 @@
+{
+  "scores" : {
+    "a1" : {
+      "a1aPassed" : true,
+      "a1aViolations" : [ ],
+      "a1bScore" : 0.5681818181818182,
+      "a1bDetails" : [ {
+        "elementName" : "DefaultSuggestedLemmaQueryServiceFactory",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "SuggestedLemmaQueryService",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 0.75
+      }, {
+        "elementName" : "DiagnosticSuggestedLemmaCandidateBuilder",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "SuggestedLemmaCandidateBuilder",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "GetCmd",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "SuggestedLemmaLevelResolver",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "AuditReportSuggestedLemmaLevelResolver",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultSuggestedLemmaRanker",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "SuggestedLemmaRanker",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultSuggestedLemmaQueryService",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "SuggestedLemmaQueryServiceFactory",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      } ],
+      "a1cScore" : 0.3333333333333333,
+      "a1dScore" : 0.8,
+      "compositeScore" : 0.614090909090909
+    },
+    "a2" : {
+      "structurallySound" : false,
+      "a2a" : {
+        "id" : "A2a",
+        "name" : "Structural Integrity",
+        "score" : 0.0,
+        "violations" : [ {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires AuditReportStore but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires RefinementPlanStore but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires AnalyzerRegistry but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires CorrectionContextResolver but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires RevisionArtifactStore but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires ImpactPreviewStore but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires SuggestedLemmaQueryService but no such interface exists in audit-cli or its dependsOn"
+        } ]
+      },
+      "a2b" : {
+        "id" : "A2b",
+        "name" : "Port Coverage",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "a2c" : {
+        "id" : "A2c",
+        "name" : "Reachability",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "a2d" : {
+        "id" : "A2d",
+        "name" : "Contract Utilization",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "a2e" : {
+        "id" : "A2e",
+        "name" : "Path Traceability",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "composite" : 0.0
+    },
+    "a3" : {
+      "modules" : [ {
+        "name" : "audit-cli",
+        "ca" : 0,
+        "ce" : 0,
+        "instability" : 0.0,
+        "abstractness" : 0.0,
+        "distance" : 1.0,
+        "zone" : "pain",
+        "score" : 0.0
+      }, {
+        "name" : "refiner-domain",
+        "ca" : 0,
+        "ce" : 0,
+        "instability" : 0.0,
+        "abstractness" : 0.38461538461538464,
+        "distance" : 0.6153846153846154,
+        "zone" : "pain",
+        "score" : 0.3846153846153846
+      } ],
+      "componentCount" : 15,
+      "threshold" : 30,
+      "ramp" : 0.5,
+      "rawScore" : 0.1923076923076923,
+      "effectiveScore" : 0.5961538461538461,
+      "warnings" : [ "rawScore 0,19 boosted to effectiveScore 0,60 by ramp (componentCount=15 < threshold=30). Underlying zones: audit-cli=pain, refiner-domain=pain. The boost is appropriate for small patches but the signal would degrade at scale." ]
+    },
+    "a4" : {
+      "dependencyInversionHolds" : true,
+      "acyclic" : true,
+      "a4a" : {
+        "id" : "A4a",
+        "name" : "Dependency Inversion",
+        "score" : 1.0,
+        "violations" : [ {
+          "code" : "A4-NOLAYER",
+          "severity" : "warning",
+          "message" : "No modules declare a layer — A4 cannot be evaluated"
+        } ]
+      },
+      "a4b" : {
+        "id" : "A4b",
+        "name" : "Acyclicity",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "a4c" : {
+        "id" : "A4c",
+        "name" : "Adapter Polarity",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "a4d" : {
+        "id" : "A4d",
+        "name" : "Layer Isolation",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "a4e" : {
+        "id" : "A4e",
+        "name" : "Composition Root Discipline",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "composite" : 1.0
+    },
+    "a5" : {
+      "a5aScore" : 0.45999999999999996,
+      "a5bScore" : 1.0,
+      "a5cScore" : 0.3333333333333333,
+      "a5dScore" : 1.0,
+      "a5eScore" : 1.0,
+      "violations" : [ {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'AuditNodeIndexFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'SuggestedLemmaQueryServiceFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'NlpTokenizerFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Strategy pattern 'LemmaAbsenceProposalStrategy' has 1 implementation(s) — needs ≥2 for polymorphism"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'LemmaAbsenceLlmGeneratorFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'DefaultAuditNodeIndexFactory' declared in Factory pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'SpacyNlpTokenizerFactory' declared in Factory pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'LemmaAbsenceMvpStrategy' declared in Strategy pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'DefaultLemmaAbsenceLlmGeneratorFactory' declared in Factory pattern but not found in any module"
+      } ],
+      "composite" : 0.6713333333333333
+    },
+    "a6" : {
+      "score" : 1.0,
+      "totalInterfaces" : 5,
+      "inflatedCount" : 0,
+      "inflated" : [ ]
+    },
+    "c1" : {
+      "score" : 1.0,
+      "maxDepth" : 1,
+      "avgDepth" : 0.09090909090909091,
+      "entries" : [ {
+        "entryPoint" : "audit-cli.commands.ContentAuditCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.AnalyzeCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.GetCmd",
+        "depth" : 1
+      }, {
+        "entryPoint" : "audit-cli.commands.DeleteCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.PruneCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.PlanCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.ReviseCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.ConfigAnalyzerCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.StatsAnalyzerCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.ApproveCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.RejectCmd",
+        "depth" : 0
+      } ]
+    },
+    "c3" : {
+      "score" : 0.8571428571428571,
+      "details" : [ {
+        "name" : "GetCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 10,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.0
+      }, {
+        "name" : "GetCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultSuggestedLemmaQueryServiceFactory",
+        "moduleName" : "refiner-domain",
+        "cbo" : 4,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultSuggestedLemmaQueryService",
+        "moduleName" : "refiner-domain",
+        "cbo" : 4,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "AuditReportSuggestedLemmaLevelResolver",
+        "moduleName" : "refiner-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DiagnosticSuggestedLemmaCandidateBuilder",
+        "moduleName" : "refiner-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultSuggestedLemmaRanker",
+        "moduleName" : "refiner-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      } ]
+    },
+    "a1e" : {
+      "totalRules" : 15,
+      "mappedCount" : 0,
+      "unmappedCount" : 15,
+      "score" : 0.0,
+      "mapped" : [ ],
+      "unmapped" : [ "F-CSLATDC-R001", "F-CSLATDC-R002", "F-CSLATDC-R003", "F-CSLATDC-R004", "F-CSLATDC-R005", "F-CSLATDC-R006", "F-CSLATDC-R007", "F-CSLATDC-R008", "F-CSLATDC-R009", "F-CSLATDC-R010", "F-CSLATDC-R011", "F-CSLATDC-R012", "F-CSLATDC-R013", "F-CSLATDC-R014", "F-CSLATDC-R015" ],
+      "violations" : [ {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R001 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R002 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R003 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R004 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R005 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R006 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R007 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R008 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R009 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R010 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R011 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R012 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R013 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R014 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R015 is declared in REQUIREMENT.md but not referenced in the patch."
+      } ]
+    },
+    "mode" : "PATCH_ONLY",
+    "compositeScore" : 0.5443397472093124
+  },
+  "aTierComposite" : 0.5443397472093124,
+  "b1" : {
+    "score" : 0.86,
+    "justification" : "The patch mostly preserves the requirement's ubiquitous language around Suggested Lemmas, taskId, Level, Part of Speech, limit, filtering, ranking, and the existing GetCommand flow. The main DDD concern is that the domain service implementation is declared as an Adapter pattern, which misrepresents a domain use-case/service as an adapter, plus a few internal names lean toward technical algorithm language rather than the business phrase 'priority'.",
+    "findings" : [ {
+      "element" : "refiner-domain.patterns[type=Adapter, interface=SuggestedLemmaQueryService, implementations=[DefaultSuggestedLemmaQueryService]]",
+      "issue" : "DefaultSuggestedLemmaQueryService is a domain service/use-case implementation, not an adapter crossing a boundary; declaring it as an Adapter is a misleading stereotype/pattern for the domain role.",
+      "severity" : "warning"
+    }, {
+      "element" : "refiner-domain.suggestedlemmas.SuggestedLemmaRanker",
+      "issue" : "The requirement consistently speaks of priority/priority of recommendation; 'Ranker' is understandable but more technical/algorithmic than the ubiquitous language. A name such as SuggestedLemmaPrioritizer or SuggestedLemmaPriorityPolicy would align more closely.",
+      "severity" : "warning"
+    } ]
+  },
+  "b2" : {
+    "score" : 0.9,
+    "justification" : "The patch mostly preserves SRP by keeping CLI orchestration in audit-cli and moving level resolution, candidate construction, ranking, and filtering behind a refiner-domain port with focused collaborators. The only minor concern is that the existing task filter carrier is expanded with suggested-lemma-specific criteria, giving it more than one reason to change.",
+    "findings" : [ {
+      "element" : "GetTasksFilter",
+      "issue" : "The filter model now mixes task-listing filters with suggested-lemma query filters such as partOfSpeech and level, so future changes to vocabulary-query criteria may force changes to a task-oriented carrier.",
+      "severity" : "warning"
+    } ]
+  },
+  "b3" : {
+    "score" : 0.62,
+    "direction" : "over",
+    "justification" : "The patch addresses the core need by extending the CLI filter and adding a domain query capability, but it introduces more indirection than the requirement appears to need and leaves several observable CLI behaviors architecturally unspecified. The service/collaborator split is partly defensible, but the factory seam, pattern declarations, and hidden engine are heavy for a single `get(\"suggested-lemmas\")` branch.",
+    "findings" : [ {
+      "element" : "refiner-domain/SuggestedLemmaQueryServiceFactory",
+      "issue" : "A separate public factory seam is not clearly warranted for this feature; the CLI can depend on the public service port and the composition root can wire one default implementation directly.",
+      "severity" : "warning"
+    }, {
+      "element" : "refiner-domain/suggestedlemmas",
+      "issue" : "The package introduces three internal collaborator interfaces plus four implementations for a narrowly scoped query; level resolution, candidate building, and ranking may justify helper classes, but making each a formal interface is likely over-abstracted for the first version.",
+      "severity" : "warning"
+    }, {
+      "element" : "refiner-domain/patterns Adapter",
+      "issue" : "Declaring DefaultSuggestedLemmaQueryService as an Adapter is conceptually weak: it is a domain service implementation, not an adapter crossing a hexagonal boundary.",
+      "severity" : "warning"
+    }, {
+      "element" : "audit-cli/commands/GetCmd",
+      "issue" : "The patch injects SuggestedLemmaQueryService but does not architecturally specify the new `suggested-lemmas` resource branch, taskId lookup, source audit/plan resolution, output shape, or error mapping in GetCmd.",
+      "severity" : "error"
+    }, {
+      "element" : "audit-cli/commands/Main",
+      "issue" : "No composition-root wiring is added, despite the baseline relying on manual constructor injection; the new service and its collaborators may not be constructible or injected.",
+      "severity" : "error"
+    }, {
+      "element" : "refiner-domain/suggestedlemmas/DefaultSuggestedLemmaQueryServiceFactory",
+      "issue" : "The factory implementation is placed in an internal package while intended for assembly by audit-cli; external module access may be blocked by package visibility even though the implementation itself is marked public.",
+      "severity" : "warning"
+    }, {
+      "element" : "audit-cli/GetTasksFilter",
+      "issue" : "The requirement explicitly calls for rejecting unsupported filters such as `isIrregular`, but the model only adds supported fields and provides no architectural representation of unknown or unsupported filter input.",
+      "severity" : "error"
+    }, {
+      "element" : "refiner-domain/SuggestedLemmaQueryRejectedException",
+      "issue" : "The exception is added but the SuggestedLemmaQueryService signature does not declare it in `throws`, making the functional rejection contract less explicit than the requirement needs.",
+      "severity" : "warning"
+    }, {
+      "element" : "agent reviewer instructions",
+      "issue" : "Rule R015 requires functional instructions telling the reviewing agent when and how to call `GetCommand.get(\"suggested-lemmas\", ...)`; the patch does not add any architectural element or documentation hook for those instructions.",
+      "severity" : "warning"
+    } ]
+  },
+  "b4" : {
+    "score" : 0.86,
+    "justification" : "Most new models, ports, and internal collaborators directly support querying suggested lemmas by task, level, part of speech, limit, and priority. The main speculative addition is the factory seam for a single domain service implementation, which is not required or implied by the CLI query requirement.",
+    "findings" : [ {
+      "element" : "SuggestedLemmaQueryServiceFactory",
+      "issue" : "The requirement implies a suggested-lemma query capability, but it does not require or imply a separate factory abstraction for creating the service; with one service implementation and one CLI consumer, this is speculative plumbing.",
+      "severity" : "error"
+    }, {
+      "element" : "DefaultSuggestedLemmaQueryServiceFactory",
+      "issue" : "This implementation exists only to support the speculative factory seam. The requirement does not call for runtime selection, multiple implementations, or a factory-based composition mechanism for the query service.",
+      "severity" : "error"
+    } ]
+  },
+  "globalComposite" : {
+    "value" : 0.21570590070902593,
+    "raw" : 0.6919432614055006,
+    "capped" : true,
+    "reason" : "b3 penalized -0,73 (3 errors, 6 warnings, dir=over)",
+    "aWeight" : 0.4,
+    "bWeight" : 0.6,
+    "bAggregate" : 0.24986148492395813,
+    "aModifier" : 0.8633019241627937,
+    "perDim" : [ {
+      "name" : "b1",
+      "score" : 0.86,
+      "effective" : 0.8,
+      "errors" : 0,
+      "warnings" : 2,
+      "penalty" : 0.06
+    }, {
+      "name" : "b2",
+      "score" : 0.9,
+      "effective" : 0.87,
+      "errors" : 0,
+      "warnings" : 1,
+      "penalty" : 0.03
+    }, {
+      "name" : "b3",
+      "score" : 0.62,
+      "effective" : 0.0,
+      "errors" : 3,
+      "warnings" : 6,
+      "direction" : "over",
+      "penalty" : 0.7299999999999999
+    }, {
+      "name" : "b4",
+      "score" : 0.86,
+      "effective" : 0.56,
+      "errors" : 2,
+      "warnings" : 0,
+      "penalty" : 0.3
+    } ]
+  },
+  "topFindings" : [ {
+    "dim" : "b3",
+    "severity" : "error",
+    "element" : "audit-cli/commands/GetCmd",
+    "issue" : "The patch injects SuggestedLemmaQueryService but does not architecturally specify the new `suggested-lemmas` resource branch, taskId lookup, source audit/plan resolution, output shape, or error mapping in GetCmd."
+  }, {
+    "dim" : "b3",
+    "severity" : "error",
+    "element" : "audit-cli/commands/Main",
+    "issue" : "No composition-root wiring is added, despite the baseline relying on manual constructor injection; the new service and its collaborators may not be constructible or injected."
+  }, {
+    "dim" : "b3",
+    "severity" : "error",
+    "element" : "audit-cli/GetTasksFilter",
+    "issue" : "The requirement explicitly calls for rejecting unsupported filters such as `isIrregular`, but the model only adds supported fields and provides no architectural representation of unknown or unsupported filter input."
+  } ],
+  "judgeProfile" : "openai-5.5",
+  "timestamp" : "2026-05-22T00:14:04.445545Z"
+}

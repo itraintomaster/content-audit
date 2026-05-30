@@ -33,12 +33,12 @@ public class CourseToAuditableMapper implements CourseMapper {
     private final QuizSentenceConverter quizSentenceConverter;
 
     private Map<String, List<NlpToken>> tokenCache = Map.of();
-    // R027: converter must be invoked exactly once per quiz. This map caches
-    // the result of that single call so the canonical-sentence collection
-    // phase and the stamping phase share the same list.
+    // R027 / F-DBSENT-R002: single-pass memoization — deriveSentences is called twice per quiz
+    // (once in collectAllCanonicalSentences, once in mapQuiz). This cache ensures serialize() and
+    // toPlainSentences() are invoked at most once per quiz regardless of the path taken.
     private Map<QuizTemplateEntity, List<String>> sentencesByQuiz = new HashMap<>();
     // FEAT-RCLAQS R002: quizSentence DSL derived in the same single pass as sentences.
-    // Populated by deriveSentences alongside sentencesByQuiz to guarantee R003 consistency.
+    // Populated by deriveSentences to guarantee R003 consistency.
     private Map<QuizTemplateEntity, String> quizSentenceByQuiz = new HashMap<>();
 
     public CourseToAuditableMapper(NlpTokenizer nlpTokenizer,
@@ -115,9 +115,9 @@ public class CourseToAuditableMapper implements CourseMapper {
     }
 
     private AuditableQuiz mapQuiz(QuizTemplateEntity qt) {
-        // Eager delegation to converter (R027): one call per quiz, result stamped on AuditableQuiz.
-        // deriveSentences populates both sentencesByQuiz and quizSentenceByQuiz in a single pass
-        // so serialize() is never called more than once per quiz (FEAT-RCLAQS R002).
+        // F-DBSENT-R002: sentences come from the pre-computed entity field when available;
+        // fall back to toPlainSentences only when the entity field is absent.
+        // serialize() is always invoked for the quizSentence DSL (FEAT-RCLAQS R002).
         List<String> sentences = deriveSentences(qt);
         // Use canonical sentence (index 0) as the key for the NLP token cache
         String canonicalSentence = sentences.isEmpty() ? "" : sentences.get(0);
@@ -129,26 +129,34 @@ public class CourseToAuditableMapper implements CourseMapper {
     }
 
     private List<String> deriveSentences(QuizTemplateEntity qt) {
-        // R027 — memoize per-quiz so the converter is invoked exactly once
-        // regardless of whether we're in the NLP batch collection phase or
-        // the stamping phase.
+        // R027 / F-DBSENT-R002: memoize per-quiz so the converter is invoked at most once
+        // regardless of which phase (NLP collection vs. stamping) calls this method first.
         List<String> cached = sentencesByQuiz.get(qt);
         if (cached != null) {
             return cached;
         }
+
         FormEntity form = qt.getForm();
         if (form == null || form.getSentenceParts() == null || form.getSentenceParts().isEmpty()) {
+            // No form — cannot produce DSL or sentences.
             sentencesByQuiz.put(qt, List.of());
             return List.of();
         }
+
         // FEAT-RCLAQS R002: serialize() produces the DSL in the same single invocation window.
         // QuizSentenceSerializationException propagates unchecked — the quiz must not enter
         // the AuditReport if sentenceParts are invalid (FEAT-RCLAQS R004 fail-fast).
         String dsl = quizSentenceConverter.serialize(form);
         quizSentenceByQuiz.put(qt, dsl);
-        List<String> derived = quizSentenceConverter.toPlainSentences(form);
-        sentencesByQuiz.put(qt, derived);
-        return derived;
+
+        // F-DBSENT-R002: propagate pre-computed sentences from the entity verbatim.
+        // If the field is absent (null or empty), treat as empty list — no runtime derivation.
+        List<String> entitySentences = qt.getSentences();
+        List<String> result = (entitySentences != null && !entitySentences.isEmpty())
+                ? entitySentences
+                : List.of();
+        sentencesByQuiz.put(qt, result);
+        return result;
     }
 
     private List<String> collectAllCanonicalSentences(CourseEntity course) {

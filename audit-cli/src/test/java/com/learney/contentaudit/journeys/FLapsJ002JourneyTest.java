@@ -184,7 +184,8 @@ public class FLapsJ002JourneyTest {
                 "Write the correct form.",
                 "Ella hace ejercicio avanzado cada manana.",
                 "basics.01.DailyRoutines", "Daily Routines",
-                form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "");
+                form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "",
+                List.of("She does advanced exercise every morning."));
         return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz);
     }
 

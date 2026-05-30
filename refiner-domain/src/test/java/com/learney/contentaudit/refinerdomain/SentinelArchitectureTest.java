@@ -35,6 +35,12 @@ public class SentinelArchitectureTest {
   }
 
   @Test
+  public void enforcePackageLemmasuggestionVisibility() {
+    JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
+    ArchRuleDefinition.noClasses().that().resideOutsideOfPackages("..refinerdomain..", "java..").should().dependOnClassesThat().resideInAPackage("..refinerdomain.lemmasuggestion..").allowEmptyShould(true).check(classes);
+  }
+
+  @Test
   public void enforceAllDeclaredClassesExist() {
     try {
       Class.forName("com.learney.contentaudit.refinerdomain.DiagnosisKind");
@@ -82,6 +88,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: LengthDirection - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryResult");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SuggestedLemmaQueryResult - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryRejectedException");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SuggestedLemmaQueryRejectedException - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.refinerdomain.RefinerEngine");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: RefinerEngine - " + e.getMessage());
@@ -102,6 +118,21 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: CorrectionContext - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryPort");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SuggestedLemmaQueryPort - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.SuggestedLemmaQuerySession");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SuggestedLemmaQuerySession - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.SuggestedLemmaQuerySessionFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SuggestedLemmaQuerySessionFactory - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.refinerdomain.SentenceLengthContextResolver");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: SentenceLengthContextResolver - " + e.getMessage());
@@ -120,6 +151,21 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.refinerdomain.DefaultRefinerEngine");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultRefinerEngine - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.lemmasuggestion.LemmaAbsenceContextSuggestedLemmaQueryPort");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaAbsenceContextSuggestedLemmaQueryPort - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.lemmasuggestion.BoundSuggestedLemmaQuerySession");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: BoundSuggestedLemmaQuerySession - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.lemmasuggestion.DefaultSuggestedLemmaQuerySessionFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultSuggestedLemmaQuerySessionFactory - " + e.getMessage());
     }
   }
 }

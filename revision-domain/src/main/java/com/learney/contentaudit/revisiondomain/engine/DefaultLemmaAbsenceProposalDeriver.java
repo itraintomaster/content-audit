@@ -51,8 +51,9 @@ public final class DefaultLemmaAbsenceProposalDeriver implements LemmaAbsencePro
 
         // Derive canonical plain sentence — index 0 of toPlainSentences (R012)
         String newTitle;
+        List<String> plainSentences;
         try {
-            List<String> plainSentences = quizSentenceConverter.toPlainSentences(newForm);
+            plainSentences = quizSentenceConverter.toPlainSentences(newForm);
             if (plainSentences == null || plainSentences.isEmpty()) {
                 throw new ProposalDerivationException(
                         "lemma-absence-mvp",
@@ -91,7 +92,8 @@ public final class DefaultLemmaAbsenceProposalDeriver implements LemmaAbsencePro
                 beforeQuiz.getAnswerAudioUrl(),
                 beforeQuiz.getAnswerImageUrl(),
                 beforeQuiz.getMiniTheory(),
-                beforeQuiz.getSuccessMessage()
+                beforeQuiz.getSuccessMessage(),
+                plainSentences
         );
 
         return new CourseElementSnapshot(before.getNodeTarget(), before.getNodeId(), afterQuiz);

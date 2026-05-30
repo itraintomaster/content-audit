@@ -43,9 +43,6 @@ Methods:
 - Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse → FEAT-NLP/F-NLP-R010
 - Given a course with no milestones, when map is called, then returns an AuditableCourse without error → FEAT-NLP/F-NLP-R010
 - Given nlpTokenizer throws exception during batch processing, when map is called, then exception propagates → FEAT-NLP/F-NLP-R008
-- should emit the canonical first sub-variant rather than the raw pipe literal in the stamped sentences → FEAT-QSENT/F-QSENT-R026
-- should strip hints from the sentences stamped on AuditableQuiz → FEAT-QSENT/F-QSENT-R026
-- should invoke QuizSentenceConverter exactly once per quiz and stamp the list eagerly on AuditableQuiz → FEAT-QSENT/F-QSENT-R027
 - should stamp quizSentence on AuditableQuiz by invoking QuizSentenceConverter.serialize on the same FormEntity used for sentences → FEAT-RCLAQS/F-RCLAQS-R002
 - should invoke QuizSentenceConverter.serialize exactly once per quiz in the same pass that populates sentences → FEAT-RCLAQS/F-RCLAQS-R002
 - should stamp sentences[0] and quizSentence from the same FormEntity so plain sentence and DSL describe the same derivation step → FEAT-RCLAQS/F-RCLAQS-R003
@@ -53,6 +50,9 @@ Methods:
 - should fail atomically without a partial quizSentence when serialize throws for a TEXT form with non-empty options → FEAT-RCLAQS/F-RCLAQS-R004
 - should fail atomically without a partial quizSentence when serialize throws for a CLOZE form with null or empty options → FEAT-RCLAQS/F-RCLAQS-R004
 - Given two AuditableCourses produced by mapping a course that has knowledge quizzes containing sentences with enriched-token-requiring vocabulary (frequency-ranked words via SpaCy) when AuditEngine runs both audits then every AuditableQuiz produced by the mapper carries a List<NlpToken> populated by analyzeTokensBatch covering tokenization lemmatization POS tagging frequency rank stop-word and punctuation flags so downstream analyzers can read enriched tokens without re-tokenizing → FEAT-NLP/F-NLP-R010
+- should propagate QuizTemplateEntity sentences verbatim to AuditableQuiz sentences without modification → FEAT-DBSENT/F-DBSENT-R002
+- should not invoke QuizSentenceConverter.toPlainSentences for any quiz of the audited course → FEAT-DBSENT/F-DBSENT-R002
+- should stamp the canonical sentence at index 0 of QuizTemplateEntity sentences as the NLP batch key for the AuditableQuiz tokens → FEAT-DBSENT/F-DBSENT-R002
 
 ### DefaultSentenceLengthConfig
 
@@ -668,6 +668,7 @@ Methods:
 | answerImageUrl | `String` |
 | miniTheory | `String` |
 | successMessage | `String` |
+| sentences | `List<String>` |
 
 ### FormEntity (`record`)
 
@@ -823,6 +824,25 @@ Methods:
 | KEEP_SAME | `null` |
 | UNKNOWN | `null` |
 
+### SuggestedLemmaQueryResult (`record`)
+
+| Field | Type |
+|-------|------|
+| taskId | `String` |
+| cefrLevel | `CefrLevel` |
+| suggestedLemmas | `List<SuggestedLemma>` |
+
+### SuggestedLemmaQueryRejectedException (`exception`)
+
+**Extends:** `RuntimeException`
+
+**Message:** `Suggested lemma query rejected for task %s: %s`
+
+| Field | Type |
+|-------|------|
+| taskId | `String` |
+| reason | `String` |
+
 ### RefinerEngine (port)
 
 Methods:
@@ -847,6 +867,24 @@ Methods:
 - `supports(DiagnosisKind kind): boolean`
 
 ### CorrectionContext (port)
+
+### SuggestedLemmaQueryPort (port)
+
+Methods:
+
+- `query(AuditReport report, RefinementTask task, Optional<Integer> limit, Optional<String> partOfSpeech, Optional<CefrLevel> explicitLevel): SuggestedLemmaQueryResult`
+
+### SuggestedLemmaQuerySession (port)
+
+Methods:
+
+- `requestMore(Optional<Integer> limit, Optional<String> partOfSpeech, Optional<CefrLevel> explicitLevel): SuggestedLemmaQueryResult`
+
+### SuggestedLemmaQuerySessionFactory (factory)
+
+Methods:
+
+- `bindForTask(RefinementTask task): SuggestedLemmaQuerySession`
 
 ### From nlp-infrastructure
 

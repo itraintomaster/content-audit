@@ -38,3 +38,6 @@ Open doubts remaining: DOUBT-ESCAPE-CHARS (mechanism for reserved chars), DOUBT-
 
 2026-04-20 — architect — post-apply amendment: propuesto patch para declarar testModule: course-domain y testPackage: com.learney.contentaudit.coursedomain.quizsentenceengine en el journey F-QSENT-J001, eliminando el warning de sentinel generate que impedia generar el stub del journey test.
   why: la decision de ubicacion ya estaba tomada por qa-tester (collaborators package-private en quizsentenceengine); solo faltaba reflejarla en sentinel.yaml. Sin estos campos, generate skipea el stub.
+
+2026-05-21 — analyst — R026 y R027 retiradas de REQUIREMENT.md. Superadas por FEAT-DBSENT: el mapper ya no invoca toPlainSentences (contradice F-DBSENT-R002) y la correccion de los dos bugs del buildSentence privado vive ahora en el paso de pre-computo offline que pobla QuizTemplateEntity.sentences, no en el mapper. Patron de retiro al estilo "Nota sobre numeracion" de FEAT-SLEN; IDs no se reasignan; demas IDs (incluido R028) mantienen su numeracion. Validacion sentinel OK. Pendiente: sentinel feature sync (lo corre el usuario).
+  why: el conflicto era directo (R027 vs F-DBSENT-R002); R026 describia una transicion arquitectonica que ya quedo atras. Limpieza incluye referencias inline en R018, Assumption[3], Assumption[5] y DOUBT-MAPPER-DELEGATION.

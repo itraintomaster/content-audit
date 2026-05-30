@@ -1,0 +1,80 @@
+{
+  "runId" : "20260522T000620-d2a6cd6e",
+  "graphName" : "architect",
+  "status" : "running",
+  "started" : "2026-05-22T00:06:20.258189Z",
+  "metadata" : {
+    "provider" : "openai",
+    "model" : "gpt-5.5",
+    "base_url" : "https://api.openai.com/v1/"
+  },
+  "nodeMetas" : {
+    "understand" : {
+      "id" : "understand",
+      "displayName" : "Understand",
+      "description" : "Reads requirement and current architecture"
+    },
+    "propose" : {
+      "id" : "propose",
+      "displayName" : "Propose Patch",
+      "description" : "Produces an architecture YAML patch"
+    },
+    "soft_check" : {
+      "id" : "soft_check",
+      "displayName" : "Soft Check",
+      "description" : "Validates patch against soft quality gates"
+    },
+    "gate_patch" : {
+      "id" : "gate_patch",
+      "displayName" : "Gate Patch",
+      "description" : "Validates patch against hard gates"
+    },
+    "tech_spec" : {
+      "id" : "tech_spec",
+      "displayName" : "Tech Spec",
+      "description" : "Writes a technical specification narrative"
+    },
+    "gate_tech_spec" : {
+      "id" : "gate_tech_spec",
+      "displayName" : "Gate Tech Spec",
+      "description" : "Validates tech spec against hard gates"
+    },
+    "halt" : {
+      "id" : "halt",
+      "displayName" : "Halt",
+      "description" : "Terminates graph after exceeding retry limits"
+    }
+  },
+  "edgeMetas" : {
+    "soft_check" : {
+      "sourceNode" : "soft_check",
+      "displayName" : "Route after soft check",
+      "description" : "Decides whether patch passes, needs retry, or should halt",
+      "branches" : {
+        "propose" : "propose",
+        "gate_patch" : "gate_patch",
+        "halt" : "halt"
+      }
+    },
+    "gate_patch" : {
+      "sourceNode" : "gate_patch",
+      "displayName" : "Route after gate patch",
+      "description" : "Decides whether patch is valid, needs retry, or should halt",
+      "branches" : {
+        "propose" : "propose",
+        "tech_spec" : "tech_spec",
+        "halt" : "halt"
+      }
+    },
+    "gate_tech_spec" : {
+      "sourceNode" : "gate_tech_spec",
+      "displayName" : "Route after gate tech spec",
+      "description" : "Decides whether tech spec is valid, needs retry, or should halt",
+      "branches" : {
+        "done" : "__END__",
+        "tech_spec" : "tech_spec",
+        "halt" : "halt"
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+modules:
+  - name: refiner-domain
+    packages:
+      - name: lemmasuggestion
+        implementations:
+          - name: BoundSuggestedLemmaQuerySession
+            handwrittenTests:
+              - name: "should return suggested lemmas applicable to the bound task filtered by part-of-speech, level and limit when the model requests more"
+                traceability: { feature: FEAT-LAGAG, rule: F-LAGAG-R002 }
+  - name: revision-infrastructure
+    packages:
+      - name: lageninteractive
+        implementations:
+          - name: InteractiveLemmaAbsenceLlmGenerator
+            handwrittenTests:
+              - name: "should seed the model with only the highest recommendation-priority suggested lemmas of the task within its level, not the full list"
+                traceability: { feature: FEAT-LAGAG, rule: F-LAGAG-R001 }
+              - name: "should let the model request additional suggested lemmas for the same task during generation and respond with the applicable lemmas"
+                traceability: { feature: FEAT-LAGAG, rule: F-LAGAG-R002 }
+              - name: "should record on the produced proposal that the interactive mode was used together with the strategy and provider identity"
+                traceability: { feature: FEAT-LAGAG, rule: F-LAGAG-R003 }
+              - name: "should fail with the budget-exhausted category when the request budget is consumed without the model delivering a candidate"
+                traceability: { feature: FEAT-LAGAG, rule: F-LAGAG-R004 }
+              - name: "should fail observably with the provider-incapable category when the active provider cannot sustain suggested-lemma requests, never hanging silently"
+                traceability: { feature: FEAT-LAGAG, rule: F-LAGAG-R005 }
+              - name: "should deliver exactly one final candidate with the inherited LemmaAbsenceGeneratorResponse shape and validations, with no quality check and no automatic retry"
+                traceability: { feature: FEAT-LAGAG, rule: F-LAGAG-R006 }
+features:
+  - id: FEAT-LAGAG
+    journeys:
+      - id: F-LAGAG-J001
+        testModule: revision-infrastructure
+        testPackage: com.learney.contentaudit.revisioninfrastructure.lageninteractive
+      - id: F-LAGAG-J002
+        testModule: revision-infrastructure
+        testPackage: com.learney.contentaudit.revisioninfrastructure.lageninteractive
+      - id: F-LAGAG-J003
+        testModule: revision-infrastructure
+        testPackage: com.learney.contentaudit.revisioninfrastructure.lageninteractive

@@ -11,6 +11,7 @@ import com.learney.contentaudit.auditcli.formatting.ImpactPreviewView;
 import com.learney.contentaudit.auditcli.formatting.LevelImpactView;
 import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
+import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryPort;
 import com.learney.contentaudit.revisiondomain.ImpactPreviewStore;
 import com.learney.contentaudit.revisiondomain.RevisionArtifact;
 import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
@@ -69,8 +70,9 @@ public class FPipreJ002JourneyTest {
 
     @BeforeEach
     void setUp() throws Exception {
+        SuggestedLemmaQueryPort suggestedLemmaQueryPort = mock(SuggestedLemmaQueryPort.class);
         cmd = new GetCmd(auditReportStore, refinementPlanStore, analyzerRegistry,
-                correctionContextResolver, null, null, null);
+                correctionContextResolver, null, null, null, suggestedLemmaQueryPort);
         cmd.setRevisionArtifactStore(revisionArtifactStore);
         try {
             Method setImpactPreviewStore = GetCmd.class.getDeclaredMethod(

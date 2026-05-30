@@ -1,0 +1,21 @@
+code: FEAT-LAGAG
+description: "Fix cross-package compile break in FEAT-LAGAG: the interactive generator\
+  \ (lageninteractive.InteractiveLemmaAbsenceLlmGenerator) reuses two F-LAGEN seams\
+  \ that are package-private in the internal lagenopenai package. Promote LemmaAbsenceResponseParser\
+  \ and LangChainErrorClassifier to public so lageninteractive can import them; F-LAGEN\
+  \ (lagenopenai) keeps using them unchanged. No relocation, no other element touched."
+modules:
+- name: revision-infrastructure
+  packages:
+  - name: lagenopenai
+    interfaces:
+    - name: LemmaAbsenceResponseParser
+      sealed: false
+      visibility: public
+      _change: modify
+    - name: LangChainErrorClassifier
+      sealed: false
+      visibility: public
+      _change: modify
+    _change: modify
+  _change: modify

@@ -1,0 +1,109 @@
+{
+  "runId" : "20260521T231519-9b748aaf",
+  "graphName" : "analyst-interactive",
+  "status" : "running",
+  "started" : "2026-05-21T23:15:19.117738Z",
+  "nodeMetas" : {
+    "gather_context" : {
+      "id" : "gather_context",
+      "displayName" : "Gather Context",
+      "description" : "Reads project files and builds context"
+    },
+    "analysis_draft" : {
+      "id" : "analysis_draft",
+      "displayName" : "Analysis Draft",
+      "description" : "Produces initial analysis for user review"
+    },
+    "usage_walkthrough" : {
+      "id" : "usage_walkthrough",
+      "displayName" : "Usage Walkthrough",
+      "description" : "Presents API usage examples"
+    },
+    "qa_cycle" : {
+      "id" : "qa_cycle",
+      "displayName" : "Q&A Cycle",
+      "description" : "Interactive question-answer loop with user"
+    },
+    "wait_for_input" : {
+      "id" : "wait_for_input",
+      "displayName" : "Wait for Input",
+      "description" : "Pauses for user input"
+    },
+    "consolidate" : {
+      "id" : "consolidate",
+      "displayName" : "Consolidate",
+      "description" : "Summarizes Q&A findings into a brief"
+    },
+    "draft" : {
+      "id" : "draft",
+      "displayName" : "Draft Requirement",
+      "description" : "Produces a formal REQUIREMENT.md draft"
+    },
+    "soft_check" : {
+      "id" : "soft_check",
+      "displayName" : "Soft Check",
+      "description" : "Validates draft against soft quality gates"
+    },
+    "gate_requirement" : {
+      "id" : "gate_requirement",
+      "displayName" : "Gate Requirement",
+      "description" : "Validates requirement against hard gates"
+    },
+    "glossary_sync" : {
+      "id" : "glossary_sync",
+      "displayName" : "Glossary Sync",
+      "description" : "Synchronizes domain glossary"
+    },
+    "gate_glossary" : {
+      "id" : "gate_glossary",
+      "displayName" : "Gate Glossary",
+      "description" : "Validates glossary consistency"
+    },
+    "halt" : {
+      "id" : "halt",
+      "displayName" : "Halt",
+      "description" : "Terminates graph after exceeding retry limits"
+    }
+  },
+  "edgeMetas" : {
+    "qa_cycle" : {
+      "sourceNode" : "qa_cycle",
+      "displayName" : "Route after Q&A",
+      "description" : "Decides whether to wait for more input or consolidate",
+      "branches" : {
+        "consolidate" : "consolidate",
+        "wait_for_input" : "wait_for_input"
+      }
+    },
+    "soft_check" : {
+      "sourceNode" : "soft_check",
+      "displayName" : "Route after soft check",
+      "description" : "Decides whether draft passes, needs retry, or should halt",
+      "branches" : {
+        "draft" : "draft",
+        "halt" : "halt",
+        "gate_requirement" : "gate_requirement"
+      }
+    },
+    "gate_requirement" : {
+      "sourceNode" : "gate_requirement",
+      "displayName" : "Route after gate",
+      "description" : "Decides whether requirement is valid, needs retry, or should halt",
+      "branches" : {
+        "draft" : "draft",
+        "glossary_sync" : "glossary_sync",
+        "halt" : "halt"
+      }
+    },
+    "gate_glossary" : {
+      "sourceNode" : "gate_glossary",
+      "displayName" : "Route after glossary gate",
+      "description" : "Decides whether glossary is valid, needs retry, or should halt",
+      "branches" : {
+        "done" : "__END__",
+        "glossary_sync" : "glossary_sync",
+        "halt" : "halt"
+      }
+    }
+  }
+}

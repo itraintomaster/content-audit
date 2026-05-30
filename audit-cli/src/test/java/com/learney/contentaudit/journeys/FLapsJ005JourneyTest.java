@@ -184,7 +184,8 @@ public class FLapsJ005JourneyTest {
                 "Write the correct form.",
                 "Ella aprende palabras complicadas a diario.",
                 "basics.01.Learning", "Learning",
-                form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "");
+                form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "",
+                List.of("She learns complicated words daily."));
         return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz);
     }
 

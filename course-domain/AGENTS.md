@@ -115,6 +115,7 @@ Domain module for course structure. Contains entity models representing the 5-le
 | answerImageUrl | `String` |
 | miniTheory | `String` |
 | successMessage | `String` |
+| sentences | `List<String>` |
 
 ### FormEntity (`record`)
 

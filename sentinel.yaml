@@ -2953,6 +2953,13 @@ modules:
     - name: successMessage
       type: String
       description: "Success message, currently always empty"
+    - name: sentences
+      type: List<String>
+      description: "Lista de oraciones planas asociadas al template, pre-computada\
+        \ y persistida en la fuente de datos (F-DBSENT-R001). Se propaga sin modificacion\
+        \ a AuditableQuiz.sentences durante el mapping del audit (F-DBSENT-R002).\
+        \ El indice 0 es la oracion canonica consumida por los analyzers actuales;\
+        \ mas elementos quedan disponibles para analisis multi-variante futuro."
   - name: FormEntity
     type: record
     fields:
@@ -3195,6 +3202,11 @@ modules:
         traceability:
           feature: FEAT-QSENT
           rule: F-QSENT-R025
+      - name: should keep toPlainSentences exposed as a public converter operation
+          that derives the same canonical list from a FormEntity
+        traceability:
+          feature: FEAT-DBSENT
+          rule: F-DBSENT-R003
       implements:
       - QuizSentenceConverter
     - name: QuizSentenceSerializer
@@ -3422,6 +3434,36 @@ modules:
       basedOn: refiner-domain/LengthDirection
       rationale: |
         Etiqueta accionable y enumerable que el contexto de correccion expone al LLM. Si surge la necesidad de razonarla en otros contextos (revision, refinement, reportes), promover a termino canonico del glosario.
+  - name: SuggestedLemmaQueryResult
+    type: record
+    fields:
+    - name: taskId
+      type: String
+      description: Identificador de la RefinementTask consultada.
+    - name: cefrLevel
+      type: CefrLevel
+      description: "Nivel CEFR efectivamente aplicado al filtrar (F-CSLATDC-R003,\
+        \ F-CSLATDC-R004, F-CSLATDC-R006). Trazabilidad obligatoria para el agente\
+        \ revisor."
+    - name: suggestedLemmas
+      type: List<SuggestedLemma>
+      description: "Lemmas ya filtrados por nivel + partOfSpeech y ordenados por prioridad\
+        \ (F-CSLATDC-R010, F-CSLATDC-R014). Lista vacía es resultado válido cuando\
+        \ no hay coincidencias (F-CSLATDC-R009, F-CSLATDC-R012)."
+    visibility: public
+  - name: SuggestedLemmaQueryRejectedException
+    type: exception
+    fields:
+    - name: taskId
+      type: String
+      description: Task que originó la consulta rechazada.
+    - name: reason
+      type: String
+      description: Motivo funcional legible (texto exacto pendiente — DOUBT-EXACT-ERROR-COPY
+        del requirement).
+    message: "Suggested lemma query rejected for task %s: %s"
+    visibility: public
+    extends: RuntimeException
   interfaces:
   - name: RefinerEngine
     stereotype: port
@@ -3449,6 +3491,27 @@ modules:
   - name: CorrectionContext
     stereotype: port
     sealed: false
+  - name: SuggestedLemmaQueryPort
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "query(AuditReport report, RefinementTask task, Optional<Integer>\
+        \ limit, Optional<String> partOfSpeech, Optional<CefrLevel> explicitLevel):\
+        \ SuggestedLemmaQueryResult"
+    visibility: public
+  - name: SuggestedLemmaQuerySession
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "requestMore(Optional<Integer> limit, Optional<String> partOfSpeech,\
+        \ Optional<CefrLevel> explicitLevel): SuggestedLemmaQueryResult"
+    visibility: public
+  - name: SuggestedLemmaQuerySessionFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "bindForTask(RefinementTask task): SuggestedLemmaQuerySession"
+    visibility: public
   implementations:
   - name: SentenceLengthContextResolver
     visibility: public
@@ -3870,7 +3933,118 @@ modules:
         rule: F-RCLA-R001
     implements:
     - RefinerEngine
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultSuggestedLemmaQuerySessionFactory
+    suppressed: false
+    interface: SuggestedLemmaQuerySessionFactory
   scope: internal
+  packages:
+  - name: lemmasuggestion
+    description: "Adaptador interno del puerto de consulta de SuggestedLemmas. Encapsula\
+      \ la generación, filtrado y ranking de candidatos sin pasar por el cap fijo\
+      \ del LemmaAbsenceContextResolver, para que el limit solicitado por el agente\
+      \ sea respetado (F-CSLATDC-R011)."
+    visibility: internal
+    implementations:
+    - name: LemmaAbsenceContextSuggestedLemmaQueryPort
+      requiresInject:
+      - name: lemmaAbsenceContextResolver
+        type: CorrectionContextResolver<LemmaAbsenceCorrectionContext>
+        _change: delete
+      visibility: public
+      handwrittenTests:
+      - name: should return the suggested lemmas of the task identified by taskId
+          when invoked through the SuggestedLemmaQueryPort
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R001
+      - name: should include only suggested lemmas whose CefrLevel matches the level
+          applied to the task
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R003
+      - name: should infer the CefrLevel from the task milestone ancestor when no
+          explicit level is provided
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R004
+      - name: should throw SuggestedLemmaQueryRejectedException when no level is provided
+          and none can be inferred from the task
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R005
+      - name: should use the explicit level provided in the filter when the task does
+          not allow level inference
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R006
+      - name: should restrict results to suggested lemmas whose partOfSpeech matches
+          the requested partOfSpeech filter
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R007
+      - name: should return at most N suggested lemmas when the limit filter equals
+          N
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R008
+      - name: should return all available suggested lemmas without error when fewer
+          than the requested limit match the filters
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R009
+      - name: should return suggested lemmas ordered by recommendation priority so
+          the caller does not need to sort them
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R010
+      - name: should return more suggested lemmas than the cap of 10 used by LemmaAbsenceContextResolver
+          when the requested limit exceeds it
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R011
+      - name: should return an empty suggested lemma list with the effective level
+          when the task has no compatible base for suggesting lemmas
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R012
+      - name: should expose each suggested lemma identifiably in the result with the
+          list order representing its relative priority
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R014
+      implements:
+      - SuggestedLemmaQueryPort
+    - name: BoundSuggestedLemmaQuerySession
+      requiresInject:
+      - name: queryPort
+        type: SuggestedLemmaQueryPort
+      - name: report
+        type: AuditReport
+      - name: task
+        type: RefinementTask
+      visibility: public
+      handwrittenTests:
+      - name: "should return suggested lemmas applicable to the bound task filtered\
+          \ by part-of-speech, level and limit when the model requests more"
+        traceability:
+          feature: FEAT-LAGAG
+          rule: F-LAGAG-R002
+      implements:
+      - SuggestedLemmaQuerySession
+    - name: DefaultSuggestedLemmaQuerySessionFactory
+      requiresInject:
+      - name: queryPort
+        type: SuggestedLemmaQueryPort
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: auditReportStore
+        type: AuditReportStore
+      visibility: public
+      implements:
+      - SuggestedLemmaQuerySessionFactory
 - name: audit-application
   dependsOn:
   - audit-domain
@@ -3926,20 +4100,6 @@ modules:
       traceability:
         feature: FEAT-NLP
         rule: F-NLP-R008
-    - name: should emit the canonical first sub-variant rather than the raw pipe literal
-        in the stamped sentences
-      traceability:
-        feature: FEAT-QSENT
-        rule: F-QSENT-R026
-    - name: should strip hints from the sentences stamped on AuditableQuiz
-      traceability:
-        feature: FEAT-QSENT
-        rule: F-QSENT-R026
-    - name: should invoke QuizSentenceConverter exactly once per quiz and stamp the
-        list eagerly on AuditableQuiz
-      traceability:
-        feature: FEAT-QSENT
-        rule: F-QSENT-R027
     - name: should stamp quizSentence on AuditableQuiz by invoking QuizSentenceConverter.serialize
         on the same FormEntity used for sentences
       traceability:
@@ -3981,6 +4141,21 @@ modules:
         feature: FEAT-NLP
         rule: F-NLP-R010
         journey: F-NLP-J001
+    - name: should propagate QuizTemplateEntity sentences verbatim to AuditableQuiz
+        sentences without modification
+      traceability:
+        feature: FEAT-DBSENT
+        rule: F-DBSENT-R002
+    - name: should not invoke QuizSentenceConverter.toPlainSentences for any quiz
+        of the audited course
+      traceability:
+        feature: FEAT-DBSENT
+        rule: F-DBSENT-R002
+    - name: should stamp the canonical sentence at index 0 of QuizTemplateEntity sentences
+        as the NLP batch key for the AuditableQuiz tokens
+      traceability:
+        feature: FEAT-DBSENT
+        rule: F-DBSENT-R002
     implements:
     - CourseMapper
   - name: DefaultSentenceLengthConfig
@@ -4998,6 +5173,22 @@ modules:
         feature: F-COURSE
         journey: F-COURSE-J006
     visibility: public
+    handwrittenTests:
+    - name: should populate QuizTemplateEntity sentences literally from the quiz JSON
+        without deriving from sentenceParts
+      traceability:
+        feature: FEAT-DBSENT
+        rule: F-DBSENT-R001
+    - name: should preserve the order of every entry from the JSON sentences list
+        when loading a quiz with multiple variants
+      traceability:
+        feature: FEAT-DBSENT
+        rule: F-DBSENT-R001
+    - name: should load sentences verbatim for a transformation-pattern quiz even
+        when sentenceParts would yield a different concatenation
+      traceability:
+        feature: FEAT-DBSENT
+        rule: F-DBSENT-R001
     implements:
     - CourseRepository
   scope: internal
@@ -5051,6 +5242,14 @@ modules:
       description: "Opt-in offline mode. The CLI wires CannedLemmaAbsenceQuizCandidateGenerator\
         \ from revision-domain.lemmaabsence with fixed quizSentence/translation. DOUBT-CANNED-MODE-AVAILABILITY\
         \ -> Option B (kept as opt-in, never default)."
+    - name: LLM_INTERACTIVE
+      description: "Modo de generacion interactiva (FEAT-LAGAG). El CLI cablea InteractiveLemmaAbsenceLlmGenerator\
+        \ desde revision-infrastructure.lageninteractive: el modelo arranca con la\
+        \ semilla suggestedLemmas y puede solicitar mas suggested lemmas para la misma\
+        \ task durante la generacion (via SuggestedLemmaQuerySession, semantica F-CSLATDC)\
+        \ de forma acotada. Modo explicito y opt-in (F-LAGAG-R003); el default observable\
+        \ sigue siendo LLM (single-shot, F-LAGEN-R013) y CANNED queda intacto. StrategyId.name\
+        \ = lemma-absence-llm-interactive."
     visibility: public
   - name: PlanStorageMode
     type: enum
@@ -5073,6 +5272,28 @@ modules:
         \ su correctionContext (o correctionContext=null + correctionContextError\
         \ si no es construible). Default OFF (DOUBT-CTX-DEFAULT opcion A)."
     visibility: public
+  - name: SuggestedLemmasFilter
+    type: record
+    fields:
+    - name: limit
+      type: Optional<Integer>
+      description: "Cantidad máxima de SuggestedLemma a devolver (F-CSLATDC-R008).\
+        \ Vacío = el adaptador decide default; cero = lista vacía válida (F-CSLATDC-R009).\
+        \ El adaptador NO está limitado por el cap interno de 10 del LemmaAbsenceContextResolver:\
+        \ lo que se solicite (dentro de límites razonables) se respeta (F-CSLATDC-R011)."
+    - name: partOfSpeech
+      type: Optional<String>
+      description: "Filtro opcional por part-of-speech (F-CSLATDC-R007). Vacío = sin\
+        \ filtro de POS. El record SuggestedLemmasFilter es cerrado: no es posible\
+        \ pasar filtros fuera de los tres declarados (F-CSLATDC-R013)."
+    - name: level
+      type: Optional<CefrLevel>
+      description: "CefrLevel explícito (F-CSLATDC-R006). Vacío = el adaptador intenta\
+        \ inferir desde la task (F-CSLATDC-R004); si no puede inferir y no se informó\
+        , la consulta es rechazada con SuggestedLemmaQueryRejectedException (F-CSLATDC-R005).\
+        \ Cualquier filtro adicional fuera de los tres declarados (p. ej. isIrregular)\
+        \ tampoco puede pasarse: el record cerrado lo impide estructuralmente (F-CSLATDC-R013)."
+    visibility: public
   interfaces:
   - name: AnalyzeCommand
     stereotype: port
@@ -5085,6 +5306,8 @@ modules:
     sealed: true
     exposes:
     - signature: "get(String resource, String name, GetTasksFilter filter): Integer"
+    - signature: "get(String resource, String name, SuggestedLemmasFilter filter):\
+        \ Integer"
   - name: DeleteCommand
     stereotype: port
     sealed: true
@@ -5276,6 +5499,11 @@ modules:
         type: CorrectionContextJsonMapper
         description: Mismo serializador que usa el renderer efimero. Garantiza que
           get task y plan efimero produzcan el mismo schema JSON para correctionContext.
+      - name: suggestedLemmaQueryPort
+        type: SuggestedLemmaQueryPort
+        description: "Resuelve el overload get(resource, name, SuggestedLemmasFilter)\
+          \ cuando resource == \"suggested-lemmas\". Delega en refiner-domain (F-CSLATDC-R001,\
+          \ F-CSLATDC-R002)."
       types:
       - Component
       handwrittenTests:
@@ -5669,6 +5897,11 @@ modules:
         traceability:
           feature: FEAT-RCLALEN
           rule: F-RCLALEN-R006
+      - name: should route the suggested-lemmas resource through GetCommand.get extending
+          the existing verb without invoking a new command type
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R002
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -9781,9 +10014,9 @@ modules:
   patterns:
   - type: Factory
     implementations:
-    - DefaultLemmaAbsenceLlmGeneratorFactory
+    - DefaultInteractiveLemmaAbsenceGeneratorFactory
     suppressed: false
-    interface: LemmaAbsenceLlmGeneratorFactory
+    interface: InteractiveLemmaAbsenceGeneratorFactory
   uses:
   - langchain4j-openai
   - langchain4j-core
@@ -9835,6 +10068,13 @@ modules:
         description: "Per-request budget; once exceeded the adapter raises ProposalStrategyFailedException\
           \ with reason prefixed LLM_TIMEOUT (F-LAGEN-R006). Nullable: when null the\
           \ factory applies a default budget."
+      - name: maxSuggestedLemmaRequests
+        type: Integer
+        description: "Presupuesto de solicitudes de suggested lemmas que el modelo\
+          \ puede hacer en una generacion interactiva (F-LAGAG-R004). Perilla configurable\
+          \ en linea con F-LAGEN-R008, resuelta del env var CONTENT_AUDIT_LAGEN_MAX_LEMMA_REQUESTS.\
+          \ Nullable/0 = sentinel; la factory sustituye con LagenDefaults (default\
+          \ 5). Ignorada por los modos LLM single-shot y CANNED."
       visibility: public
     - name: LlmGenerationFailureCategory
       type: enum
@@ -9858,6 +10098,15 @@ modules:
       - name: LLM_OTHER
         description: Any other generation-time failure not covered by the categories
           above. F-LAGEN-R006.
+      - name: LLM_LEMMA_REQUEST_BUDGET_EXHAUSTED
+        description: El modelo agoto el presupuesto de solicitudes de suggested lemmas
+          (LagenConfig.maxSuggestedLemmaRequests) sin entregar un candidato. F-LAGAG-R004.
+          Solo aplica al modo interactivo.
+      - name: LLM_TOOL_CALLING_UNSUPPORTED
+        description: "El proveedor activo no es capaz de sostener el intercambio interactivo\
+          \ (no soporta tool-calling / function-calling), por lo que el modelo no\
+          \ puede emitir solicitudes de suggested lemmas. F-LAGAG-R005. Solo aplica\
+          \ al modo interactivo. Falla observable, no cuelgue silencioso."
       visibility: public
     - name: LagenDefaults
       type: record
@@ -9896,6 +10145,14 @@ modules:
       - signature: "create(LagenConfig config): LemmaAbsenceQuizCandidateGenerator"
       - signature: "providerIdFor(LagenConfig config): String"
       visibility: public
+    - name: InteractiveLemmaAbsenceGeneratorFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(LagenConfig config, SuggestedLemmaQuerySession session):\
+          \ LemmaAbsenceQuizCandidateGenerator"
+      - signature: "providerIdFor(LagenConfig config): String"
+      visibility: public
   - name: lagenopenai
     description: "Internal LangChain4j-OpenAI engine. Only DefaultLemmaAbsenceLlmGeneratorFactory\
       \ is public (the seam — instantiated once by audit-cli.bootstrap); every collaborator\
@@ -9928,13 +10185,13 @@ modules:
       exposes:
       - signature: "parse(LemmaAbsenceLlmRawResponse raw, String taskId, String strategyName):\
           \ LemmaAbsenceGeneratorResponse"
-      visibility: internal
+      visibility: public
     - name: LangChainErrorClassifier
       stereotype: service
       sealed: false
       exposes:
       - signature: "classify(Throwable cause): LlmGenerationFailureCategory"
-      visibility: internal
+      visibility: public
     implementations:
     - name: DefaultLemmaAbsenceLlmGeneratorFactory
       types:
@@ -10177,6 +10434,7 @@ modules:
     - name: DefaultLemmaAbsenceResponseParser
       types:
       - Component
+      visibility: public
       handwrittenTests:
       - name: "parse returns LemmaAbsenceGeneratorResponse(quizSentence, translation)\
           \ when the raw text is a JSON object with both fields non-empty"
@@ -10262,6 +10520,7 @@ modules:
     - name: DefaultLangChainErrorClassifier
       types:
       - Component
+      visibility: public
       handwrittenTests:
       - name: classify returns LLM_OTHER for a Throwable not matched by any specific
           category
@@ -10315,8 +10574,121 @@ modules:
           rule: F-LAGEN-R006
       implements:
       - LangChainErrorClassifier
+  - name: lageninteractive
+    description: "Adaptador LLM del modo de generacion interactiva (FEAT-LAGAG). Implementa\
+      \ el puerto revision-domain.lemmaabsence.LemmaAbsenceQuizCandidateGenerator\
+      \ usando LangChain4j con tool-calling nativo: arranca con la semilla suggestedLemmas\
+      \ del contexto y, cuando el modelo lo solicita, liga la sesion de la task via\
+      \ SuggestedLemmaQuerySessionFactory.bindForTask(context.getTaskId()) y llama\
+      \ a SuggestedLemmaQuerySession.requestMore (semantica F-CSLATDC, in-process)\
+      \ hasta cerrar con un unico candidato (LemmaAbsenceGeneratorResponse). Acota\
+      \ las solicitudes con LagenConfig.maxSuggestedLemmaRequests y emite LLM_LEMMA_REQUEST_BUDGET_EXHAUSTED\
+      \ / LLM_TOOL_CALLING_UNSUPPORTED ademas de las categorias heredadas de F-LAGEN.\
+      \ Reutiliza el paquete lagen [public] (LagenConfig, LlmGenerationFailureCategory)\
+      \ y las implementaciones publicas DefaultLemmaAbsenceResponseParser / DefaultLangChainErrorClassifier\
+      \ de lagenopenai. Solo el factory seam es publico; el adaptador, el constructor\
+      \ del prompt semilla, el driver del loop de tool-calling y el parser de la solicitud\
+      \ son package-private. allowedClients del modulo = [audit-cli]."
+    visibility: internal
+    models:
+    - name: SuggestedLemmaRequest
+      type: record
+      fields:
+      - name: limit
+        type: Optional<Integer>
+        description: Cantidad maxima de suggested lemmas solicitada por el modelo
+          (F-CSLATDC-R008). Vacio = el adaptador decide default.
+      - name: partOfSpeech
+        type: Optional<String>
+        description: Filtro opcional por part-of-speech solicitado por el modelo (F-CSLATDC-R007).
+      - name: level
+        type: Optional<CefrLevel>
+        description: CefrLevel explicito solicitado por el modelo (F-CSLATDC-R006);
+          vacio = se aplica el nivel de la task.
+      visibility: internal
+    interfaces:
+    - name: InteractiveLemmaAbsencePromptBuilder
+      sealed: false
+      exposes:
+      - signature: "buildSystemPrompt(): String"
+      - signature: "buildSeedUserPrompt(LemmaAbsenceCorrectionContext context): String"
+      visibility: internal
+    - name: SuggestedLemmaToolExchange
+      sealed: false
+      exposes:
+      - signature: "fetchMore(SuggestedLemmaRequest request): SuggestedLemmaQueryResult"
+      visibility: internal
+    implementations:
+    - name: DefaultInteractiveLemmaAbsenceGeneratorFactory
+      visibility: public
+      implements:
+      - InteractiveLemmaAbsenceGeneratorFactory
+    - name: InteractiveLemmaAbsenceLlmGenerator
+      requiresInject:
+      - name: config
+        type: LagenConfig
+      - name: session
+        type: SuggestedLemmaQuerySession
+      - name: seedPromptBuilder
+        type: InteractiveLemmaAbsencePromptBuilder
+      - name: lemmaRequestExchange
+        type: SuggestedLemmaToolExchange
+      - name: responseParser
+        type: LemmaAbsenceResponseParser
+      - name: errorClassifier
+        type: LangChainErrorClassifier
+      - name: strategyName
+        type: String
+      - name: chatModel
+        type: ChatLanguageModel
+      - name: sessionFactory
+        type: SuggestedLemmaQuerySessionFactory
+      handwrittenTests:
+      - name: "should seed the model with only the highest recommendation-priority\
+          \ suggested lemmas of the task within its level, not the full list"
+        traceability:
+          feature: FEAT-LAGAG
+          rule: F-LAGAG-R001
+      - name: should let the model request additional suggested lemmas for the same
+          task during generation and respond with the applicable lemmas
+        traceability:
+          feature: FEAT-LAGAG
+          rule: F-LAGAG-R002
+      - name: should record on the produced proposal that the interactive mode was
+          used together with the strategy and provider identity
+        traceability:
+          feature: FEAT-LAGAG
+          rule: F-LAGAG-R003
+      - name: should fail with the budget-exhausted category when the request budget
+          is consumed without the model delivering a candidate
+        traceability:
+          feature: FEAT-LAGAG
+          rule: F-LAGAG-R004
+      - name: "should fail observably with the provider-incapable category when the\
+          \ active provider cannot sustain suggested-lemma requests, never hanging\
+          \ silently"
+        traceability:
+          feature: FEAT-LAGAG
+          rule: F-LAGAG-R005
+      - name: "should deliver exactly one final candidate with the inherited LemmaAbsenceGeneratorResponse\
+          \ shape and validations, with no quality check and no automatic retry"
+        traceability:
+          feature: FEAT-LAGAG
+          rule: F-LAGAG-R006
+      implements:
+      - LemmaAbsenceQuizCandidateGenerator
+    - name: DefaultInteractiveLemmaAbsencePromptBuilder
+      implements:
+      - InteractiveLemmaAbsencePromptBuilder
+    - name: DefaultSuggestedLemmaToolExchange
+      requiresInject:
+      - name: session
+        type: SuggestedLemmaQuerySession
+      implements:
+      - SuggestedLemmaToolExchange
 definitions:
 - requirements/2026-05-15.04_agregar-lemmacount-como-variable-de-suggestedlemmas-en-el-contexto/REQUIREMENT.md
+- requirements/2026-05-21.05_consultar-suggested-lemmas-a-trav-s-del-cli/REQUIREMENT.md
 features:
 - id: FEAT-DLABS
   code: F-DLABS
@@ -10710,6 +11082,38 @@ features:
     validation: AUTO_VALIDATED
     testModule: audit-cli
     testPackage: com.learney.contentaudit.auditcli.commands
+- id: FEAT-DBSENT
+  code: F-DBSENT
+- id: FEAT-CSLATDC
+  code: F-CSLATDC
+  journeys:
+  - id: F-CSLATDC-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-CSLATDC-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-CSLATDC-J004
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+- id: FEAT-LAGAG
+  code: F-LAGAG
+  journeys:
+  - id: F-LAGAG-J001
+    validation: AUTO_VALIDATED
+    testModule: revision-infrastructure
+    testPackage: com.learney.contentaudit.revisioninfrastructure.lageninteractive
+  - id: F-LAGAG-J002
+    validation: AUTO_VALIDATED
+    testModule: revision-infrastructure
+    testPackage: com.learney.contentaudit.revisioninfrastructure.lageninteractive
+  - id: F-LAGAG-J003
+    validation: AUTO_VALIDATED
+    testModule: revision-infrastructure
+    testPackage: com.learney.contentaudit.revisioninfrastructure.lageninteractive
 dependencies:
 - alias: langchain4j-openai
   artifact: dev.langchain4j:langchain4j-open-ai:0.36.2

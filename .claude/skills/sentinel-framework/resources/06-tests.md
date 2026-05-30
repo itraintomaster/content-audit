@@ -216,9 +216,6 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse → FEAT-NLP/F-NLP-R010
 - Given a course with no milestones, when map is called, then returns an AuditableCourse without error → FEAT-NLP/F-NLP-R010
 - Given nlpTokenizer throws exception during batch processing, when map is called, then exception propagates → FEAT-NLP/F-NLP-R008
-- should emit the canonical first sub-variant rather than the raw pipe literal in the stamped sentences → FEAT-QSENT/F-QSENT-R026
-- should strip hints from the sentences stamped on AuditableQuiz → FEAT-QSENT/F-QSENT-R026
-- should invoke QuizSentenceConverter exactly once per quiz and stamp the list eagerly on AuditableQuiz → FEAT-QSENT/F-QSENT-R027
 - should stamp quizSentence on AuditableQuiz by invoking QuizSentenceConverter.serialize on the same FormEntity used for sentences → FEAT-RCLAQS/F-RCLAQS-R002
 - should invoke QuizSentenceConverter.serialize exactly once per quiz in the same pass that populates sentences → FEAT-RCLAQS/F-RCLAQS-R002
 - should stamp sentences[0] and quizSentence from the same FormEntity so plain sentence and DSL describe the same derivation step → FEAT-RCLAQS/F-RCLAQS-R003
@@ -226,6 +223,9 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should fail atomically without a partial quizSentence when serialize throws for a TEXT form with non-empty options → FEAT-RCLAQS/F-RCLAQS-R004
 - should fail atomically without a partial quizSentence when serialize throws for a CLOZE form with null or empty options → FEAT-RCLAQS/F-RCLAQS-R004
 - Given two AuditableCourses produced by mapping a course that has knowledge quizzes containing sentences with enriched-token-requiring vocabulary (frequency-ranked words via SpaCy) when AuditEngine runs both audits then every AuditableQuiz produced by the mapper carries a List<NlpToken> populated by analyzeTokensBatch covering tokenization lemmatization POS tagging frequency rank stop-word and punctuation flags so downstream analyzers can read enriched tokens without re-tokenizing → FEAT-NLP/F-NLP-R010/F-NLP-J001
+- should propagate QuizTemplateEntity sentences verbatim to AuditableQuiz sentences without modification → FEAT-DBSENT/F-DBSENT-R002
+- should not invoke QuizSentenceConverter.toPlainSentences for any quiz of the audited course → FEAT-DBSENT/F-DBSENT-R002
+- should stamp the canonical sentence at index 0 of QuizTemplateEntity sentences as the NLP batch key for the AuditableQuiz tokens → FEAT-DBSENT/F-DBSENT-R002
 
 ### DefaultAuditRunner (audit-application)
 
@@ -349,6 +349,9 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - Given a loaded course, when navigating from ROOT to milestones to topics to knowledges to quizzes, then each level is accessible and correctly ordered → F-COURSE/F-COURSE-J004
 - Given a loaded course, when a knowledge label is modified and the course is saved and reloaded, then the change is reflected and unmodified data remains intact → F-COURSE/F-COURSE-J005
 - Given a nonexistent path or missing descriptor or malformed JSON, when load is called, then a descriptive error is thrown and no partial course is returned → F-COURSE/F-COURSE-J006
+- should populate QuizTemplateEntity sentences literally from the quiz JSON without deriving from sentenceParts → FEAT-DBSENT/F-DBSENT-R001
+- should preserve the order of every entry from the JSON sentences list when loading a quiz with multiple variants → FEAT-DBSENT/F-DBSENT-R001
+- should load sentences verbatim for a transformation-pattern quiz even when sentenceParts would yield a different concatenation → FEAT-DBSENT/F-DBSENT-R001
 
 ### FileSystemAuditReportStore (audit-infrastructure)
 

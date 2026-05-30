@@ -860,7 +860,8 @@ class FileSystemCourseRepositoryIntegrationTest {
                                         com.learney.contentaudit.coursedomain.SentencePartKind.CLOZE, "", List.of("plays"))
                         )
                 ),
-                0.0, 0.0, 0.0, "", "", "", "A1.01.01.01", "", "", ""
+                0.0, 0.0, 0.0, "", "", "", "A1.01.01.01", "", "", "",
+                null
         );
 
         var knowledge = new KnowledgeEntity(K1_ID, K1_ID, NodeKind.KNOWLEDGE,

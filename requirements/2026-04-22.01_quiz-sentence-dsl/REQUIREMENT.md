@@ -233,7 +233,7 @@ Para cada `SentencePartEntity` de tipo CLOZE, la variante **canonica** (la que c
 - Dado `options = ["'re going to drink|are going to drink"]`, la variante canonica es `"'re going to drink"`.
 - Dado `options = ["He's", "He is"]`, la variante canonica es `"He's"`.
 
-La variante canonica es la que aparece antes del primer `|` del primer entry; si el primer entry no contiene `|`, es el primer entry completo. Esta regla preserva y formaliza el comportamiento que el audit actual tiene **cuando funciona** sobre un CLOZE sin `|` en la primera entry; cuando hay `|`, corrige el bug historico (ver R027).
+La variante canonica es la que aparece antes del primer `|` del primer entry; si el primer entry no contiene `|`, es el primer entry completo. Esta regla preserva y formaliza el comportamiento que el audit actual tiene **cuando funciona** sobre un CLOZE sin `|` en la primera entry; cuando hay `|`, corrige el bug historico del `buildSentence` privado que tomaba `options.get(0)` completo sin resolver el `|`.
 
 **Compatibilidad con el consumidor actual.** El audit actualmente analiza una sola oracion por quiz. Ese comportamiento se preserva consumiendo `list[0]`: siempre hay al menos una oracion en la lista (la canonica), y el audit se suscribe a ella. El soporte para que el analyzer analice todas las variantes es evolucion futura del audit, fuera de alcance de QSENT.
 
@@ -316,26 +316,7 @@ La logica de "`sentenceParts` -> plain sentence" debe vivir en course-domain com
 
 **Error**: N/A (esta regla define el contrato de visibilidad de la funcionalidad)
 
-### Rule[F-QSENT-R026] - La derivacion nueva corrige los dos bugs del buildSentence actual
-**Severity**: critical | **Validation**: VALIDATED
-
-La implementacion nueva de la derivacion a plain sentence corrige explicitamente **dos defectos** del `buildSentence` actual del mapper privado de auditoria:
-
-1. **Bug de variantes.** El mapper actual toma `options.get(0)` completo sin resolver el `|`, emitiendo literales como `"is|'s"` o `"'re going to drink|are going to drink"` en la oracion que consume el analyzer. La implementacion nueva aplica R018: toma la primera sub-variante del primer entry (antes del primer `|`), emitiendo `"is"` o `"'re going to drink"`.
-2. **Bug de hints.** El mapper actual deja los hints en el texto que procesa el analyzer, emitiendo literales como `"(loud / loudly)"` o `"(to be)"` dentro de la oracion plana. La implementacion nueva aplica R019: strippea los hints y normaliza whitespace, emitiendo texto natural como `"He is great."`.
-
-No hay periodo de convivencia: a partir de la migracion, el comportamiento correcto (ambas correcciones aplicadas) es el unico comportamiento.
-
-**Error**: N/A (esta regla define los dos fixes que acompanan al traspaso)
-
-### Rule[F-QSENT-R027] - El mapper de auditoria delega de forma eager y estampa el resultado
-**Severity**: critical | **Validation**: VALIDATED
-
-Despues de la migracion, el mapper de auditoria en audit-application es un **delegador eager** de una sola linea: invoca la conversion publica del course-domain **una vez por quiz**, obtiene la lista de plain sentences (R017) y estampa el resultado en el `AuditableQuiz` que devuelve. No hay evaluacion lazy, no hay caches implicitos, no hay computos diferidos: el consumidor recibe el resultado ya materializado.
-
-Complementariamente, ningun otro modulo puede reimplementar la logica de conversion: cualquier consumidor que necesite la plain sentence o alguna de las conversiones debe delegar en la funcionalidad publica del course-domain.
-
-**Error**: "Modulo '{modulo}' reimplementa la derivacion a plain sentence: debe delegar en course-domain"
+> **Nota sobre numeracion**: R026 y R027 fueron retiradas. Describian la arquitectura transitoria mapper-delega-al-converter (R026: la derivacion nueva corrige los dos bugs del `buildSentence` privado; R027: el mapper de auditoria es un delegador eager que invoca `toPlainSentences` una vez por quiz), superada por FEAT-DBSENT (`requirements/2026-05-20.01_plain-sentences-from-db/REQUIREMENT.md`). La derivacion a plain sentence sigue disponible via `toPlainSentences` (R017-R019), pero el audit ya no la consume; lee `QuizTemplateEntity.sentences` poblado directamente desde la DB. En particular, R027 contradice directamente F-DBSENT-R002 (el mapper ya no invoca el converter para plain sentences), y R026 describe una correccion de bugs que sigue valiendo conceptualmente pero ahora se aplica en el paso de pre-computo offline, no en el mapper. Los IDs R026 y R027 no se reasignan; los demas mantienen su numeracion para no romper trazabilidad con commits historicos.
 
 ### Rule[F-QSENT-R028] - Los fixtures reales del curso son base de pruebas
 **Severity**: major | **Validation**: AUTO_VALIDATED
@@ -472,7 +453,7 @@ Despues de la migracion, el mapper de auditoria de audit-application queda como 
 - [ ] Opcion B: Evaluacion lazy con supplier / cache.
 - [ ] Opcion C: Inlinar la llamada en cada callsite y eliminar el mapper.
 
-**Answer**: El mapper es un delegador eager. Formalizado en R027.
+**Answer**: El mapper es un delegador eager. Formalizado historicamente en R027 (retirada por FEAT-DBSENT; ver "Nota sobre numeracion" en Reglas de Negocio). Bajo FEAT-DBSENT el mapper deja de invocar el converter para plain sentences: lee `QuizTemplateEntity.sentences` pre-computado desde la DB.
 
 ---
 
@@ -480,7 +461,7 @@ Despues de la migracion, el mapper de auditoria de audit-application queda como 
 
 1. **El modelo actual `FormEntity.sentenceParts` es suficiente como base del contrato.** Si el modelo tuviera que crecer (nuevos campos en `SentencePartEntity`, nuevo `kind` de SentencePart, por ejemplo para multiple-choice), eso se trata como un requerimiento aparte; QSENT asume el modelo de FEAT-CSTRUCT tal cual existe hoy. La formalizacion de hints como elemento DSL (R007) es una operacion del parser sobre el `text` existente, no una extension del modelo.
 2. **Los quizzes actuales de `db/english-course/**` son datos validos bajo la convencion que se formalizara.** Es decir: la convencion que este requerimiento fija debe ser retrocompatible con los datos actuales. Si al formalizar encontramos quizzes que no cumplen la convencion (por ejemplo, algun CLOZE con options vacio oculto en los datos), el fix del dato es un trabajo separado; el requerimiento asume que los fixtures actuales son base legitima de prueba (R028).
-3. **El `buildSentence` actual del mapper de auditoria tiene dos bugs reales pero no criticos hoy.** Por eso su correccion puede hacerse como parte de la migracion (R026) en lugar de ser un hotfix aparte. El operador acepta que los dos bugs (variantes y hints) se arreglan en el paquete de QSENT; no se hace pre-emptive fix en el mapper antes de tener la conversion publica en course-domain.
+3. **El `buildSentence` actual del mapper de auditoria tiene dos bugs reales pero no criticos hoy.** Originalmente QSENT proponia corregirlos como parte de la migracion del mapper (en la R026 historica, hoy retirada por FEAT-DBSENT). Bajo el esquema actual la correccion sigue valiendo conceptualmente pero se aplica en el paso de pre-computo offline que pobla `QuizTemplateEntity.sentences`, no en el mapper.
 4. **La DSL se inspira en el pipeline legacy pero no es identica.** El requerimiento decide la gramatica de cero, tomando lo util del legacy (la notacion `____ [correct|variant] (hint)`) sin comprometerse a replicarlo al 100%. Las diferencias (whitespace canonico, hints como elemento formal de la DSL, escape) las decide este requerimiento o se declaran como Doubts.
-5. **Los consumidores actuales de la logica de "sentenceParts -> plain sentence" son identificables.** Hoy el unico consumidor conocido es el mapper privado de auditoria en audit-application. Si aparecen otros consumidores ocultos durante la migracion, cada uno debe ajustarse a R027 (delegar en course-domain); no se permiten reimplementaciones paralelas.
+5. **Los consumidores actuales de la logica de "sentenceParts -> plain sentence" son identificables.** Originalmente el unico consumidor conocido era el mapper privado de auditoria en audit-application, que debia delegar en course-domain (R027 historica). Bajo FEAT-DBSENT el audit deja de derivar plain sentences en runtime y las consume pre-computadas; cualquier consumidor futuro que necesite la derivacion debe delegar en `QuizSentenceConverter` de course-domain (R025) y no reimplementar la logica.
 6. **El audit actual consume solo `list[0]` de la plain sentence.** QSENT produce la lista completa de variantes equivalentes, pero el audit se suscribe a la posicion 0 (la canonica) y sigue analizando una sola oracion por quiz. La capacidad del analyzer para analizar todas las variantes no se implementa en QSENT y es evolucion futura del audit.

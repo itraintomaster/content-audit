@@ -23,11 +23,14 @@ public class LagenConfig {
 
     private Duration timeout;
 
+    private Integer maxSuggestedLemmaRequests;
+
     public LagenConfig() {
     }
 
     public LagenConfig(String providerName, String modelId, String endpoint, String apiKey,
-            Double temperature, Integer maxTokens, Duration timeout) {
+            Double temperature, Integer maxTokens, Duration timeout,
+            Integer maxSuggestedLemmaRequests) {
         this.providerName = providerName;
         this.modelId = modelId;
         this.endpoint = endpoint;
@@ -35,6 +38,7 @@ public class LagenConfig {
         this.temperature = temperature;
         this.maxTokens = maxTokens;
         this.timeout = timeout;
+        this.maxSuggestedLemmaRequests = maxSuggestedLemmaRequests;
     }
 
     public String getProviderName() {
@@ -93,6 +97,14 @@ public class LagenConfig {
         this.timeout = timeout;
     }
 
+    public Integer getMaxSuggestedLemmaRequests() {
+        return this.maxSuggestedLemmaRequests;
+    }
+
+    public void setMaxSuggestedLemmaRequests(Integer maxSuggestedLemmaRequests) {
+        this.maxSuggestedLemmaRequests = maxSuggestedLemmaRequests;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -104,11 +116,12 @@ public class LagenConfig {
                     && Objects.equals(this.apiKey, that.apiKey)
                     && Objects.equals(this.temperature, that.temperature)
                     && Objects.equals(this.maxTokens, that.maxTokens)
-                    && Objects.equals(this.timeout, that.timeout);
+                    && Objects.equals(this.timeout, that.timeout)
+                    && Objects.equals(this.maxSuggestedLemmaRequests, that.maxSuggestedLemmaRequests);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(providerName, modelId, endpoint, apiKey, temperature, maxTokens, timeout);
+        return Objects.hash(providerName, modelId, endpoint, apiKey, temperature, maxTokens, timeout, maxSuggestedLemmaRequests);
     }
 }

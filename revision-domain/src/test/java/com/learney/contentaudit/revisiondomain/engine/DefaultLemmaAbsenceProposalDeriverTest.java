@@ -75,7 +75,8 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
                 "",                        // answerAudioUrl
                 "",                        // answerImageUrl
                 "",                        // miniTheory
-                ""                         // successMessage
+                "",                        // successMessage
+                List.of("She reads (read) books.") // sentences
         );
         return new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-id-001", quiz);
     }

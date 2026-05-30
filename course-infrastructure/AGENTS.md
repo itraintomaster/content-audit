@@ -47,6 +47,9 @@ Infrastructure module for course persistence. Contains the filesystem adapter th
 - Given a loaded course, when navigating from ROOT to milestones to topics to knowledges to quizzes, then each level is accessible and correctly ordered → F-COURSE
 - Given a loaded course, when a knowledge label is modified and the course is saved and reloaded, then the change is reflected and unmodified data remains intact → F-COURSE
 - Given a nonexistent path or missing descriptor or malformed JSON, when load is called, then a descriptive error is thrown and no partial course is returned → F-COURSE
+- should populate QuizTemplateEntity sentences literally from the quiz JSON without deriving from sentenceParts → FEAT-DBSENT/F-DBSENT-R001
+- should preserve the order of every entry from the JSON sentences list when loading a quiz with multiple variants → FEAT-DBSENT/F-DBSENT-R001
+- should load sentences verbatim for a transformation-pattern quiz even when sentenceParts would yield a different concatenation → FEAT-DBSENT/F-DBSENT-R001
 
 ## Dependency Contracts
 
@@ -164,6 +167,7 @@ The following models and interfaces are available from dependencies. You can use
 | answerImageUrl | `String` |
 | miniTheory | `String` |
 | successMessage | `String` |
+| sentences | `List<String>` |
 
 ### FormEntity (`record`)
 

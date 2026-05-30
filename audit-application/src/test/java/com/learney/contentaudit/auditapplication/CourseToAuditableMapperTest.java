@@ -40,6 +40,7 @@ public class CourseToAuditableMapperTest {
         QuizTemplateEntity qt = new QuizTemplateEntity();
         qt.setId("q1");
         qt.setForm(form);
+        qt.setSentences(List.of("cat"));
         KnowledgeEntity ke = new KnowledgeEntity();
         ke.setId("k1");
         ke.setLabel("label");
@@ -58,7 +59,7 @@ public class CourseToAuditableMapperTest {
         course.setRoot(root);
 
         QuizSentenceConverter quizSentenceConverter = mock(QuizSentenceConverter.class);
-        when(quizSentenceConverter.toPlainSentences(any())).thenReturn(List.of("cat"));
+        when(quizSentenceConverter.serialize(form)).thenReturn("cat");
         CourseToAuditableMapper mapper = new CourseToAuditableMapper(nlpTokenizer, quizSentenceConverter);
         AuditableCourse result = mapper.map(course);
 
@@ -100,6 +101,7 @@ public class CourseToAuditableMapperTest {
         QuizTemplateEntity qt = new QuizTemplateEntity();
         qt.setId("q1");
         qt.setForm(form);
+        qt.setSentences(List.of("cat"));
         KnowledgeEntity ke = new KnowledgeEntity();
         ke.setId("k1");
         ke.setQuizTemplates(List.of(qt));
@@ -115,195 +117,9 @@ public class CourseToAuditableMapperTest {
         course.setRoot(root);
 
         QuizSentenceConverter quizSentenceConverter = mock(QuizSentenceConverter.class);
-        when(quizSentenceConverter.toPlainSentences(any())).thenReturn(List.of("cat"));
+        when(quizSentenceConverter.serialize(form)).thenReturn("cat");
         CourseToAuditableMapper mapper = new CourseToAuditableMapper(nlpTokenizer, quizSentenceConverter);
         assertThrows(RuntimeException.class, () -> mapper.map(course));
-    }
-
-    @Test
-    @DisplayName("should emit the canonical first sub-variant rather than the raw pipe literal in the stamped sentences")
-    @Tag("FEAT-QSENT")
-    @Tag("F-QSENT-R026")
-    public void shouldEmitTheCanonicalFirstSubvariantRatherThanTheRawPipeLiteralInTheStampedSentences() {
-        // Arrange
-        NlpTokenizer nlpTokenizer = mock(NlpTokenizer.class);
-        QuizSentenceConverter quizSentenceConverter = mock(QuizSentenceConverter.class);
-
-        // CLOZE with pipe-separated variants: options = ["is|'s"]
-        // The old buggy buildSentence would emit "He is|'s great." (raw pipe literal).
-        // R026 + R018: the converter must resolve to the canonical sub-variant "is".
-        // We stub toPlainSentences to return the corrected result.
-        SentencePartEntity textPart = new SentencePartEntity(SentencePartKind.TEXT, "He", null);
-        SentencePartEntity clozePart = new SentencePartEntity(SentencePartKind.CLOZE, null, List.of("is|'s"));
-        SentencePartEntity tailPart = new SentencePartEntity(SentencePartKind.TEXT, " great.", null);
-        FormEntity form = new FormEntity(null, 0, null, null, List.of(textPart, clozePart, tailPart));
-
-        QuizTemplateEntity qt = new QuizTemplateEntity();
-        qt.setId("q1");
-        qt.setForm(form);
-        KnowledgeEntity ke = new KnowledgeEntity();
-        ke.setId("k1");
-        ke.setLabel("label");
-        ke.setQuizTemplates(List.of(qt));
-        TopicEntity te = new TopicEntity();
-        te.setId("t1");
-        te.setLabel("label");
-        te.setKnowledges(List.of(ke));
-        MilestoneEntity me = new MilestoneEntity();
-        me.setId("m1");
-        me.setLabel("A1");
-        me.setTopics(List.of(te));
-        RootNodeEntity root = new RootNodeEntity();
-        root.setMilestones(List.of(me));
-        CourseEntity course = new CourseEntity();
-        course.setRoot(root);
-
-        // Converter returns the canonical "is" form — not the raw "is|'s" literal
-        List<String> expectedSentences = List.of("He is great.", "He 's great.");
-        when(quizSentenceConverter.toPlainSentences(form)).thenReturn(expectedSentences);
-        when(nlpTokenizer.analyzeTokensBatch(anyList())).thenReturn(Map.of());
-
-        // Act
-        CourseToAuditableMapper mapper = new CourseToAuditableMapper(nlpTokenizer, quizSentenceConverter);
-        AuditableCourse result = mapper.map(course);
-
-        // Assert: sentences on the AuditableQuiz come from the converter (canonical first, no pipe literal)
-        AuditableQuiz auditableQuiz = result.getMilestones().get(0)
-                .getTopics().get(0)
-                .getKnowledge().get(0)
-                .getQuizzes().get(0);
-        assertEquals(expectedSentences, auditableQuiz.getSentences());
-    }
-
-    @Test
-    @DisplayName("should strip hints from the sentences stamped on AuditableQuiz")
-    @Tag("FEAT-QSENT")
-    @Tag("F-QSENT-R026")
-    public void shouldStripHintsFromTheSentencesStampedOnAuditableQuiz() {
-        // Arrange
-        NlpTokenizer nlpTokenizer = mock(NlpTokenizer.class);
-        QuizSentenceConverter quizSentenceConverter = mock(QuizSentenceConverter.class);
-
-        // TEXT with pedagogical hint "(to be)", CLOZE with "is", trailing text.
-        // The old buggy buildSentence would emit "He is (to be) great." — hint not removed.
-        // R026 + R019: the converter must strip the hint, producing "He is great.".
-        SentencePartEntity textPart = new SentencePartEntity(SentencePartKind.TEXT, "He", null);
-        SentencePartEntity clozePart = new SentencePartEntity(SentencePartKind.CLOZE, null, List.of("is"));
-        SentencePartEntity tailPart = new SentencePartEntity(SentencePartKind.TEXT, " (to be) great.", null);
-        FormEntity form = new FormEntity(null, 0, null, null, List.of(textPart, clozePart, tailPart));
-
-        QuizTemplateEntity qt = new QuizTemplateEntity();
-        qt.setId("q2");
-        qt.setForm(form);
-        KnowledgeEntity ke = new KnowledgeEntity();
-        ke.setId("k1");
-        ke.setLabel("label");
-        ke.setQuizTemplates(List.of(qt));
-        TopicEntity te = new TopicEntity();
-        te.setId("t1");
-        te.setLabel("label");
-        te.setKnowledges(List.of(ke));
-        MilestoneEntity me = new MilestoneEntity();
-        me.setId("m1");
-        me.setLabel("A1");
-        me.setTopics(List.of(te));
-        RootNodeEntity root = new RootNodeEntity();
-        root.setMilestones(List.of(me));
-        CourseEntity course = new CourseEntity();
-        course.setRoot(root);
-
-        // Converter returns hint-free plain sentence
-        List<String> expectedSentences = List.of("He is great.");
-        when(quizSentenceConverter.toPlainSentences(form)).thenReturn(expectedSentences);
-        when(nlpTokenizer.analyzeTokensBatch(anyList())).thenReturn(Map.of());
-
-        // Act
-        CourseToAuditableMapper mapper = new CourseToAuditableMapper(nlpTokenizer, quizSentenceConverter);
-        AuditableCourse result = mapper.map(course);
-
-        // Assert: sentences contain no hint — the "(to be)" is absent
-        AuditableQuiz auditableQuiz = result.getMilestones().get(0)
-                .getTopics().get(0)
-                .getKnowledge().get(0)
-                .getQuizzes().get(0);
-        assertEquals(expectedSentences, auditableQuiz.getSentences());
-        assertFalse(
-                auditableQuiz.getSentences().stream().anyMatch(s -> s.contains("(to be)")),
-                "Plain sentences must not contain pedagogical hints");
-    }
-
-    @Test
-    @DisplayName("should invoke QuizSentenceConverter exactly once per quiz and stamp the list eagerly on AuditableQuiz")
-    @Tag("FEAT-QSENT")
-    @Tag("F-QSENT-R027")
-    public void shouldInvokeQuizSentenceConverterExactlyOncePerQuizAndStampTheListEagerlyOnAuditableQuiz() {
-        // Arrange
-        NlpTokenizer nlpTokenizer = mock(NlpTokenizer.class);
-        QuizSentenceConverter quizSentenceConverter = mock(QuizSentenceConverter.class);
-
-        // Two quizzes in the same knowledge node
-        SentencePartEntity part1 = new SentencePartEntity(SentencePartKind.TEXT, "cat", null);
-        FormEntity form1 = new FormEntity(null, 0, null, null, List.of(part1));
-        QuizTemplateEntity qt1 = new QuizTemplateEntity();
-        qt1.setId("q1");
-        qt1.setForm(form1);
-
-        SentencePartEntity part2 = new SentencePartEntity(SentencePartKind.TEXT, "dog", null);
-        FormEntity form2 = new FormEntity(null, 0, null, null, List.of(part2));
-        QuizTemplateEntity qt2 = new QuizTemplateEntity();
-        qt2.setId("q2");
-        qt2.setForm(form2);
-
-        KnowledgeEntity ke = new KnowledgeEntity();
-        ke.setId("k1");
-        ke.setLabel("label");
-        ke.setQuizTemplates(List.of(qt1, qt2));
-        TopicEntity te = new TopicEntity();
-        te.setId("t1");
-        te.setLabel("label");
-        te.setKnowledges(List.of(ke));
-        MilestoneEntity me = new MilestoneEntity();
-        me.setId("m1");
-        me.setLabel("A1");
-        me.setTopics(List.of(te));
-        RootNodeEntity root = new RootNodeEntity();
-        root.setMilestones(List.of(me));
-        CourseEntity course = new CourseEntity();
-        course.setRoot(root);
-
-        List<String> sentencesForQ1 = List.of("The cat sat.");
-        List<String> sentencesForQ2 = List.of("The dog ran.");
-        String dslForQ1 = "The cat sat.";
-        String dslForQ2 = "The dog ran.";
-        when(quizSentenceConverter.serialize(form1)).thenReturn(dslForQ1);
-        when(quizSentenceConverter.serialize(form2)).thenReturn(dslForQ2);
-        when(quizSentenceConverter.toPlainSentences(form1)).thenReturn(sentencesForQ1);
-        when(quizSentenceConverter.toPlainSentences(form2)).thenReturn(sentencesForQ2);
-        when(nlpTokenizer.analyzeTokensBatch(anyList())).thenReturn(Map.of());
-
-        // Act
-        CourseToAuditableMapper mapper = new CourseToAuditableMapper(nlpTokenizer, quizSentenceConverter);
-        AuditableCourse result = mapper.map(course);
-
-        // Assert: serialize() and toPlainSentences() each invoked exactly once per quiz in a single
-        // pass — FEAT-RCLAQS R002 extends R027: both DSL and plain sentences derive from the same
-        // single invocation window, so no quiz is processed more than once by the converter.
-        verify(quizSentenceConverter, times(1)).serialize(form1);
-        verify(quizSentenceConverter, times(1)).serialize(form2);
-        verify(quizSentenceConverter, times(1)).toPlainSentences(form1);
-        verify(quizSentenceConverter, times(1)).toPlainSentences(form2);
-        verifyNoMoreInteractions(quizSentenceConverter);
-
-        // Assert: each AuditableQuiz carries the eagerly stamped list and DSL from its own converter call
-        List<AuditableQuiz> quizzes = result.getMilestones().get(0)
-                .getTopics().get(0)
-                .getKnowledge().get(0)
-                .getQuizzes();
-        assertEquals(2, quizzes.size());
-        assertEquals(sentencesForQ1, quizzes.get(0).getSentences());
-        assertEquals(sentencesForQ2, quizzes.get(1).getSentences());
-        assertEquals(dslForQ1, quizzes.get(0).getQuizSentence());
-        assertEquals(dslForQ2, quizzes.get(1).getQuizSentence());
     }
 
     // -----------------------------------------------------------------------
@@ -329,6 +145,7 @@ public class CourseToAuditableMapperTest {
         QuizTemplateEntity qt = new QuizTemplateEntity();
         qt.setId("q-rclaqs-r002a");
         qt.setForm(form);
+        qt.setSentences(List.of("He is great.", "He 's great."));
         KnowledgeEntity ke = new KnowledgeEntity();
         ke.setId("k-rclaqs-r002a");
         ke.setLabel("label");
@@ -348,7 +165,6 @@ public class CourseToAuditableMapperTest {
 
         String expectedDsl = "He ____ [is|'s] (to be) great.";
         when(quizSentenceConverter.serialize(form)).thenReturn(expectedDsl);
-        when(quizSentenceConverter.toPlainSentences(form)).thenReturn(List.of("He is great.", "He 's great."));
         when(nlpTokenizer.analyzeTokensBatch(anyList())).thenReturn(Map.of());
 
         CourseToAuditableMapper mapper = new CourseToAuditableMapper(nlpTokenizer, quizSentenceConverter);
@@ -382,12 +198,14 @@ public class CourseToAuditableMapperTest {
         QuizTemplateEntity qt1 = new QuizTemplateEntity();
         qt1.setId("q-rclaqs-r002b-1");
         qt1.setForm(form1);
+        qt1.setSentences(List.of("The cat sits."));
 
         SentencePartEntity part2 = new SentencePartEntity(SentencePartKind.TEXT, "The dog runs.", null);
         FormEntity form2 = new FormEntity(null, 0, null, null, List.of(part2));
         QuizTemplateEntity qt2 = new QuizTemplateEntity();
         qt2.setId("q-rclaqs-r002b-2");
         qt2.setForm(form2);
+        qt2.setSentences(List.of("The dog runs."));
 
         KnowledgeEntity ke = new KnowledgeEntity();
         ke.setId("k-rclaqs-r002b");
@@ -408,8 +226,6 @@ public class CourseToAuditableMapperTest {
 
         when(quizSentenceConverter.serialize(form1)).thenReturn("The cat sits.");
         when(quizSentenceConverter.serialize(form2)).thenReturn("The dog runs.");
-        when(quizSentenceConverter.toPlainSentences(form1)).thenReturn(List.of("The cat sits."));
-        when(quizSentenceConverter.toPlainSentences(form2)).thenReturn(List.of("The dog runs."));
         when(nlpTokenizer.analyzeTokensBatch(anyList())).thenReturn(Map.of());
 
         CourseToAuditableMapper mapper = new CourseToAuditableMapper(nlpTokenizer, quizSentenceConverter);
@@ -418,10 +234,6 @@ public class CourseToAuditableMapperTest {
         // R002: serialize called exactly once per quiz — no extra calls
         verify(quizSentenceConverter, times(1)).serialize(form1);
         verify(quizSentenceConverter, times(1)).serialize(form2);
-
-        // R027: toPlainSentences also called exactly once per quiz (existing invariant)
-        verify(quizSentenceConverter, times(1)).toPlainSentences(form1);
-        verify(quizSentenceConverter, times(1)).toPlainSentences(form2);
 
         // Both quizzes carry their respective quizSentence values
         List<AuditableQuiz> quizzes = result.getMilestones().get(0)
@@ -450,6 +262,7 @@ public class CourseToAuditableMapperTest {
         QuizTemplateEntity qt = new QuizTemplateEntity();
         qt.setId("q-rclaqs-r003");
         qt.setForm(form);
+        qt.setSentences(List.of("She sings."));
         KnowledgeEntity ke = new KnowledgeEntity();
         ke.setId("k-rclaqs-r003");
         ke.setLabel("Music");
@@ -470,15 +283,13 @@ public class CourseToAuditableMapperTest {
         String dsl = "She sings.";
         List<String> plains = List.of("She sings.");
         when(quizSentenceConverter.serialize(form)).thenReturn(dsl);
-        when(quizSentenceConverter.toPlainSentences(form)).thenReturn(plains);
         when(nlpTokenizer.analyzeTokensBatch(anyList())).thenReturn(Map.of());
 
         CourseToAuditableMapper mapper = new CourseToAuditableMapper(nlpTokenizer, quizSentenceConverter);
         AuditableCourse result = mapper.map(course);
 
-        // R003 structural: both methods invoked with same FormEntity — same pass, same origin
+        // R003: serialize invoked once — sentences come from the entity, not from toPlainSentences
         verify(quizSentenceConverter, times(1)).serialize(form);
-        verify(quizSentenceConverter, times(1)).toPlainSentences(form);
 
         // Both outputs are present on the same AuditableQuiz
         AuditableQuiz auditableQuiz = result.getMilestones().get(0)
@@ -603,6 +414,7 @@ public class CourseToAuditableMapperTest {
         QuizTemplateEntity qtValid = new QuizTemplateEntity();
         qtValid.setId("q-rclaqs-r004c-valid");
         qtValid.setForm(validForm);
+        qtValid.setSentences(List.of("She runs."));
 
         QuizTemplateEntity qtInvalid = new QuizTemplateEntity();
         qtInvalid.setId("q-rclaqs-r004c-invalid");
@@ -626,7 +438,6 @@ public class CourseToAuditableMapperTest {
         course.setRoot(root);
 
         when(quizSentenceConverter.serialize(validForm)).thenReturn("She runs.");
-        when(quizSentenceConverter.toPlainSentences(validForm)).thenReturn(List.of("She runs."));
         QuizSentenceSerializationException ex =
                 new QuizSentenceSerializationException("CLOZE must have at least one option", "0");
         when(quizSentenceConverter.serialize(invalidForm)).thenThrow(ex);
@@ -658,7 +469,6 @@ public class CourseToAuditableMapperTest {
                 .thenReturn(Map.of("She was running", List.of(sheToken, runToken)));
 
         QuizSentenceConverter quizSentenceConverter = mock(QuizSentenceConverter.class);
-        when(quizSentenceConverter.toPlainSentences(any())).thenReturn(List.of("She was running"));
 
         // Build a course with one quiz whose sentence contains frequency-ranked vocabulary
         SentencePartEntity part = new SentencePartEntity(SentencePartKind.TEXT, "She was running", null);
@@ -666,6 +476,8 @@ public class CourseToAuditableMapperTest {
         QuizTemplateEntity qt = new QuizTemplateEntity();
         qt.setId("q1");
         qt.setForm(form);
+        qt.setSentences(List.of("She was running"));
+        when(quizSentenceConverter.serialize(form)).thenReturn("She was running");
         KnowledgeEntity ke = new KnowledgeEntity();
         ke.setId("k1");
         ke.setLabel("Present Continuous");
@@ -721,5 +533,174 @@ public class CourseToAuditableMapperTest {
             assertNotNull(pronToken, "R010: token with lemma 'she' must be present from enriched batch");
             assertTrue(pronToken.isIsStop(), "R010: stop-word flag must be populated from enriched tokenization");
         }
+    }
+
+    @Test
+    @DisplayName("should propagate QuizTemplateEntity sentences verbatim to AuditableQuiz sentences without modification")
+    @Tag("FEAT-DBSENT")
+    @Tag("F-DBSENT-R002")
+    public void shouldPropagateQuizTemplateEntitySentencesVerbatimToAuditableQuizSentencesWithoutModification() {
+        // R002: sentences come from QuizTemplateEntity.sentences, propagated verbatim — no derivation.
+        NlpTokenizer nlpTokenizer = mock(NlpTokenizer.class);
+        QuizSentenceConverter quizSentenceConverter = mock(QuizSentenceConverter.class);
+
+        List<String> persistedSentences = List.of("The dogs are barking loudly.");
+
+        SentencePartEntity part = new SentencePartEntity(SentencePartKind.TEXT, "The dogs are barking loudly.", null);
+        FormEntity form = new FormEntity(null, 0, null, null, List.of(part));
+
+        QuizTemplateEntity qt = new QuizTemplateEntity();
+        qt.setId("q-dbsent-r002a");
+        qt.setForm(form);
+        qt.setSentences(persistedSentences);
+
+        KnowledgeEntity ke = new KnowledgeEntity();
+        ke.setId("k-dbsent-r002a");
+        ke.setLabel("Present Continuous");
+        ke.setQuizTemplates(List.of(qt));
+        TopicEntity te = new TopicEntity();
+        te.setId("t-dbsent-r002a");
+        te.setLabel("Verbs");
+        te.setKnowledges(List.of(ke));
+        MilestoneEntity me = new MilestoneEntity();
+        me.setId("m-dbsent-r002a");
+        me.setLabel("A1");
+        me.setTopics(List.of(te));
+        RootNodeEntity root = new RootNodeEntity();
+        root.setMilestones(List.of(me));
+        CourseEntity course = new CourseEntity();
+        course.setRoot(root);
+
+        // serialize() is still invoked for the quizSentence DSL (FEAT-RCLAQS-R002)
+        when(quizSentenceConverter.serialize(form)).thenReturn("The dogs are barking loudly.");
+        when(nlpTokenizer.analyzeTokensBatch(anyList())).thenReturn(Map.of());
+
+        CourseToAuditableMapper mapper = new CourseToAuditableMapper(nlpTokenizer, quizSentenceConverter);
+        AuditableCourse result = mapper.map(course);
+
+        AuditableQuiz auditableQuiz = result.getMilestones().get(0)
+                .getTopics().get(0)
+                .getKnowledge().get(0)
+                .getQuizzes().get(0);
+
+        // R002: sentences must be the pre-computed list from the entity — no modification
+        assertEquals(persistedSentences, auditableQuiz.getSentences(),
+                "R002: AuditableQuiz.sentences must equal QuizTemplateEntity.sentences verbatim");
+    }
+
+    @Test
+    @DisplayName("should not invoke QuizSentenceConverter.toPlainSentences for any quiz of the audited course")
+    @Tag("FEAT-DBSENT")
+    @Tag("F-DBSENT-R002")
+    public void shouldNotInvokeQuizSentenceConvertertoPlainSentencesForAnyQuizOfTheAuditedCourse() {
+        // R002: toPlainSentences is no longer invoked during the audit mapping pass.
+        // serialize() is still called per quiz (FEAT-RCLAQS-R002), so verifyNoInteractions is wrong.
+        NlpTokenizer nlpTokenizer = mock(NlpTokenizer.class);
+        QuizSentenceConverter quizSentenceConverter = mock(QuizSentenceConverter.class);
+
+        SentencePartEntity part1 = new SentencePartEntity(SentencePartKind.TEXT, "The cat sat.", null);
+        FormEntity form1 = new FormEntity(null, 0, null, null, List.of(part1));
+        QuizTemplateEntity qt1 = new QuizTemplateEntity();
+        qt1.setId("q-dbsent-r002b-1");
+        qt1.setForm(form1);
+        qt1.setSentences(List.of("The cat sat."));
+
+        SentencePartEntity part2 = new SentencePartEntity(SentencePartKind.TEXT, "The dog ran.", null);
+        FormEntity form2 = new FormEntity(null, 0, null, null, List.of(part2));
+        QuizTemplateEntity qt2 = new QuizTemplateEntity();
+        qt2.setId("q-dbsent-r002b-2");
+        qt2.setForm(form2);
+        qt2.setSentences(List.of("The dog ran."));
+
+        KnowledgeEntity ke = new KnowledgeEntity();
+        ke.setId("k-dbsent-r002b");
+        ke.setLabel("Simple Past");
+        ke.setQuizTemplates(List.of(qt1, qt2));
+        TopicEntity te = new TopicEntity();
+        te.setId("t-dbsent-r002b");
+        te.setLabel("Verbs");
+        te.setKnowledges(List.of(ke));
+        MilestoneEntity me = new MilestoneEntity();
+        me.setId("m-dbsent-r002b");
+        me.setLabel("A1");
+        me.setTopics(List.of(te));
+        RootNodeEntity root = new RootNodeEntity();
+        root.setMilestones(List.of(me));
+        CourseEntity course = new CourseEntity();
+        course.setRoot(root);
+
+        // serialize() must still be stubbed — it is invoked per quiz for the DSL (FEAT-RCLAQS-R002)
+        when(quizSentenceConverter.serialize(form1)).thenReturn("The cat sat.");
+        when(quizSentenceConverter.serialize(form2)).thenReturn("The dog ran.");
+        when(nlpTokenizer.analyzeTokensBatch(anyList())).thenReturn(Map.of());
+
+        CourseToAuditableMapper mapper = new CourseToAuditableMapper(nlpTokenizer, quizSentenceConverter);
+        mapper.map(course);
+
+        // R002: toPlainSentences must never be invoked for any quiz of the audited course
+        verify(quizSentenceConverter, never()).toPlainSentences(any());
+    }
+
+    @Test
+    @DisplayName("should stamp the canonical sentence at index 0 of QuizTemplateEntity sentences as the NLP batch key for the AuditableQuiz tokens")
+    @Tag("FEAT-DBSENT")
+    @Tag("F-DBSENT-R002")
+    public void shouldStampTheCanonicalSentenceAtIndex0OfQuizTemplateEntitySentencesAsTheNLPBatchKeyForTheAuditableQuizTokens() {
+        // R002: the NLP tokenization batch is keyed on sentences.get(0) from the entity,
+        // not on any string derived from sentenceParts at runtime.
+        NlpTokenizer nlpTokenizer = mock(NlpTokenizer.class);
+        QuizSentenceConverter quizSentenceConverter = mock(QuizSentenceConverter.class);
+
+        String canonicalSentence = "The dogs are barking loudly.";
+        List<String> persistedSentences = List.of(canonicalSentence, "The dogs bark loudly.");
+
+        NlpToken dogToken = new NlpToken("dogs", "dog", "NOUN", 300, false, false);
+        NlpToken barkToken = new NlpToken("barking", "bark", "VERB", 850, false, false);
+
+        SentencePartEntity part = new SentencePartEntity(SentencePartKind.TEXT, "The dogs / bark / loudly.", null);
+        FormEntity form = new FormEntity(null, 0, null, null, List.of(part));
+
+        QuizTemplateEntity qt = new QuizTemplateEntity();
+        qt.setId("q-dbsent-r002c");
+        qt.setForm(form);
+        qt.setSentences(persistedSentences);
+
+        KnowledgeEntity ke = new KnowledgeEntity();
+        ke.setId("k-dbsent-r002c");
+        ke.setLabel("Present Continuous");
+        ke.setQuizTemplates(List.of(qt));
+        TopicEntity te = new TopicEntity();
+        te.setId("t-dbsent-r002c");
+        te.setLabel("Verbs");
+        te.setKnowledges(List.of(ke));
+        MilestoneEntity me = new MilestoneEntity();
+        me.setId("m-dbsent-r002c");
+        me.setLabel("B1");
+        me.setTopics(List.of(te));
+        RootNodeEntity root = new RootNodeEntity();
+        root.setMilestones(List.of(me));
+        CourseEntity course = new CourseEntity();
+        course.setRoot(root);
+
+        // NLP batch is called with the canonical sentence (index 0 of entity sentences).
+        when(nlpTokenizer.analyzeTokensBatch(List.of(canonicalSentence)))
+                .thenReturn(Map.of(canonicalSentence, List.of(dogToken, barkToken)));
+        // serialize() is still invoked for the DSL (FEAT-RCLAQS-R002)
+        when(quizSentenceConverter.serialize(form)).thenReturn("The dogs / bark / loudly.");
+
+        CourseToAuditableMapper mapper = new CourseToAuditableMapper(nlpTokenizer, quizSentenceConverter);
+        AuditableCourse result = mapper.map(course);
+
+        AuditableQuiz auditableQuiz = result.getMilestones().get(0)
+                .getTopics().get(0)
+                .getKnowledge().get(0)
+                .getQuizzes().get(0);
+
+        // R002: tokens must come from the batch keyed on sentences.get(0)
+        assertEquals(List.of(dogToken, barkToken), auditableQuiz.getTokens(),
+                "R002: tokens must be those returned for sentences.get(0) as the NLP batch key");
+
+        // R002: analyzeTokensBatch must have been invoked with sentences.get(0) as the key, not a derived string
+        verify(nlpTokenizer).analyzeTokensBatch(List.of(canonicalSentence));
     }
 }

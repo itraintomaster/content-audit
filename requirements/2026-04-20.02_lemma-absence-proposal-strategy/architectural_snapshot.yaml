@@ -168,9 +168,38 @@ modules:
     interface: LemmaAbsenceProposalStrategy
   packages:
   - name: strategy
+    description: "Proposal-strategy SPI for LEMMA_ABSENCE: houses concrete strategies\
+      \ and the candidate-generator port they delegate to. Public so the composition\
+      \ root can instantiate strategies and pass them into the registry builder."
     visibility: internal
+    models:
+    - name: LemmaAbsenceGeneratorResponse
+      type: record
+      fields:
+      - name: quizSentence
+        type: String
+        description: Candidate expressed in the FEAT-QSENT quizSentence DSL; raw generator
+          output before wrapping.
+      - name: translation
+        type: String
+        description: Spanish translation of the candidate.
+      _change: add
+    interfaces:
+    - name: LemmaAbsenceQuizCandidateGenerator
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "generate(LemmaAbsenceCorrectionContext context): LemmaAbsenceGeneratorResponse"
+      visibility: public
+      _change: add
     implementations:
     - name: LemmaAbsenceMvpStrategy
+      requiresInject:
+      - name: generator
+        type: LemmaAbsenceQuizCandidateGenerator
+      types:
+      - Component
+      visibility: public
       handwrittenTests:
       - name: "Given a LemmaAbsenceCorrectionContext with all eight fields populated,\
           \ when propose is called, then the strategy passes that context to the candidate\
@@ -228,12 +257,32 @@ modules:
         traceability:
           feature: FEAT-LAPS
           rule: F-LAPS-R019
+      implements:
+      - LemmaAbsenceProposalStrategy
       _change: add
     _change: add
   - name: engine
     visibility: internal
+    models:
+    - name: LemmaAbsenceProposalStrategyRegistryConfig
+      type: record
+      fields:
+      - name: registered
+        type: List<LemmaAbsenceProposalStrategy>
+        description: All strategies known to the registry (F-LAPS-R004).
+      - name: activeName
+        type: String
+        description: Name of the active strategy; resolved via byName(). Nullable
+          -> active() returns empty -> dispatcher returns NO_ACTIVE_STRATEGY for LEMMA_ABSENCE
+          (F-LAPS-R006).
+      _change: add
     implementations:
     - name: DefaultLemmaAbsenceProposalStrategyRegistry
+      requiresInject:
+      - name: config
+        type: LemmaAbsenceProposalStrategyRegistryConfig
+      types:
+      - Component
       handwrittenTests:
       - name: "Given a config whose activeName matches a registered strategy, when\
           \ active is called, then it returns that strategy wrapped in Optional"
@@ -262,8 +311,18 @@ modules:
         traceability:
           feature: FEAT-LAPS
           rule: F-LAPS-R004
+      implements:
+      - LemmaAbsenceProposalStrategyRegistry
       _change: add
     - name: DefaultLemmaAbsenceProposalDeriver
+      requiresInject:
+      - name: quizSentenceConverter
+        type: QuizSentenceConverter
+        description: "FEAT-QSENT: parses the candidate DSL into a FormEntity. The\
+          \ deriver composes the new QuizTemplateEntity by copying everything from\
+          \ elementBefore.quiz except form and translation (F-LAPS-R012, R013, R014)."
+      types:
+      - Component
       handwrittenTests:
       - name: "Given an elementBefore quiz and a candidate whose quizSentence differs\
           \ from the original, when derive is called, then the returned elementAfter\
@@ -320,8 +379,29 @@ modules:
         traceability:
           feature: FEAT-LAPS
           rule: F-LAPS-R019
+      implements:
+      - LemmaAbsenceProposalDeriver
       _change: add
     - name: DispatchingReviser
+      requiresInject:
+      - name: byKind
+        type: "Map<DiagnosisKind,Reviser>"
+        description: Revisers registered per DiagnosisKind (FEAT-REVBYP R003). Preserved
+          for non-LEMMA_ABSENCE kinds.
+      - name: fallback
+        type: IdentityReviser
+        description: "Bypass fallback for unmatched DiagnosisKinds OTHER THAN LEMMA_ABSENCE\
+          \ (F-LAPS-R002, R006)."
+      - name: strategyRegistry
+        type: LemmaAbsenceProposalStrategyRegistry
+        description: Resolves the active LemmaAbsenceProposalStrategy; LEMMA_ABSENCE
+          tasks route here instead of to fallback (F-LAPS-R002).
+      - name: deriver
+        type: LemmaAbsenceProposalDeriver
+        description: Derives elementAfter deterministically from a LemmaAbsenceQuizCandidate
+          (F-LAPS-R012).
+      types:
+      - Component
       handwrittenTests:
       - name: "Given a task whose diagnosisKind is LEMMA_ABSENCE and a registry with\
           \ an active strategy, when propose is called, then the DispatchingReviser\
@@ -373,6 +453,8 @@ modules:
         traceability:
           feature: FEAT-LAPS
           rule: F-LAPS-R005
+      implements:
+      - Reviser
       _change: modify
     _change: modify
   _change: modify
@@ -389,16 +471,39 @@ modules:
   - revision-domain
   packages:
   - name: bootstrap
+    description: "Env-var -> domain-object parsing plus composition-root helpers translating\
+      \ external inputs (workdir, approval mode, proposal strategy selection) into\
+      \ typed values consumed by the engine factories."
     visibility: internal
+    models:
+    - name: InvalidProposalStrategyException
+      type: exception
+      fields:
+      - name: value
+        type: String
+        description: The raw env-var value that failed parsing.
+      - name: registered
+        type: String
+        description: Comma-separated list of registered strategy names (LemmaAbsenceProposalStrategyRegistry.listAll()).
+      message: "Invalid value for CONTENT_AUDIT_LAPS_STRATEGY: '%s'. Registered: %s"
+      _change: add
+      extends: RuntimeException
+    interfaces:
+    - name: ProposalStrategySelector
+      stereotype: port
+      sealed: true
+      exposes:
+      - signature: "select(String envValue, LemmaAbsenceProposalStrategyRegistry registry):\
+          \ String"
+      _change: add
     implementations:
     - name: DefaultProposalStrategySelector
+      visibility: public
       handwrittenTests:
       - name: "Given CONTENT_AUDIT_LAPS_STRATEGY unset (null or blank), when select\
           \ is called with any registry, then it returns the default strategy name\
           \ 'lemma-absence-mvp'"
-        traceability:
-          feature: FEAT-LAPS
-          rule: F-LAPS-R004
+        _change: delete
       - name: "Given CONTENT_AUDIT_LAPS_STRATEGY set to the name of a registered strategy,\
           \ when select is called, then it returns that exact name (picking one among\
           \ several registered)"
@@ -411,6 +516,14 @@ modules:
         traceability:
           feature: FEAT-LAPS
           rule: F-LAPS-R004
+      - name: "Given CONTENT_AUDIT_LAPS_STRATEGY unset (null or blank), when select\
+          \ is called with any registry, then it returns the default strategy name\
+          \ 'lemma-absence-llm'"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R004
+      implements:
+      - ProposalStrategySelector
       _change: add
     _change: modify
   _change: modify

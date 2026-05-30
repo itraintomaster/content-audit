@@ -102,10 +102,11 @@ public class FRevaprJ005JourneyTest {
                 CorrectionContextResolver.class,
                 Class.forName("com.learney.contentaudit.revisiondomain.ImpactPreviewStore"),
                 Class.forName("com.learney.contentaudit.auditcli.formatting.ImpactPreviewFormatter"),
-                Class.forName("com.learney.contentaudit.auditcli.commands.CorrectionContextJsonMapper"));
+                Class.forName("com.learney.contentaudit.auditcli.commands.CorrectionContextJsonMapper"),
+                Class.forName("com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryPort"));
         ctor.setAccessible(true);
         Object getCmdInstance = ctor.newInstance(
-                auditReportStore, refinementPlanStore, analyzerRegistry, contextResolver, null, null, null);
+                auditReportStore, refinementPlanStore, analyzerRegistry, contextResolver, null, null, null, null);
 
         // Inject formatName (picocli @Option default)
         try {

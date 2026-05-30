@@ -480,6 +480,7 @@ Methods:
 | answerImageUrl | `String` |
 | miniTheory | `String` |
 | successMessage | `String` |
+| sentences | `List<String>` |
 
 ### FormEntity (`record`)
 

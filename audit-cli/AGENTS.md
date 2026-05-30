@@ -24,6 +24,7 @@ CLI entry point
 |-------|------|
 | LLM | `null` |
 | CANNED | `null` |
+| LLM_INTERACTIVE | `null` |
 
 ### PlanStorageMode (`enum`)
 
@@ -38,6 +39,14 @@ CLI entry point
 |-------|------|
 | withCorrectionContext | `boolean` |
 
+### SuggestedLemmasFilter (`record`)
+
+| Field | Type |
+|-------|------|
+| limit | `Optional<Integer>` |
+| partOfSpeech | `Optional<String>` |
+| level | `Optional<CefrLevel>` |
+
 ## Interfaces
 
 ### AnalyzeCommand (port) [sealed]
@@ -51,6 +60,7 @@ Methods:
 Methods:
 
 - `get(String resource, String name, GetTasksFilter filter): Integer`
+- `get(String resource, String name, SuggestedLemmasFilter filter): Integer`
 
 ### DeleteCommand (port) [sealed]
 
@@ -591,6 +601,7 @@ Methods:
 | answerImageUrl | `String` |
 | miniTheory | `String` |
 | successMessage | `String` |
+| sentences | `List<String>` |
 
 ### FormEntity (`record`)
 
@@ -746,6 +757,25 @@ Methods:
 | KEEP_SAME | `null` |
 | UNKNOWN | `null` |
 
+### SuggestedLemmaQueryResult (`record`)
+
+| Field | Type |
+|-------|------|
+| taskId | `String` |
+| cefrLevel | `CefrLevel` |
+| suggestedLemmas | `List<SuggestedLemma>` |
+
+### SuggestedLemmaQueryRejectedException (`exception`)
+
+**Extends:** `RuntimeException`
+
+**Message:** `Suggested lemma query rejected for task %s: %s`
+
+| Field | Type |
+|-------|------|
+| taskId | `String` |
+| reason | `String` |
+
 ### RefinerEngine (port)
 
 Methods:
@@ -770,6 +800,24 @@ Methods:
 - `supports(DiagnosisKind kind): boolean`
 
 ### CorrectionContext (port)
+
+### SuggestedLemmaQueryPort (port)
+
+Methods:
+
+- `query(AuditReport report, RefinementTask task, Optional<Integer> limit, Optional<String> partOfSpeech, Optional<CefrLevel> explicitLevel): SuggestedLemmaQueryResult`
+
+### SuggestedLemmaQuerySession (port)
+
+Methods:
+
+- `requestMore(Optional<Integer> limit, Optional<String> partOfSpeech, Optional<CefrLevel> explicitLevel): SuggestedLemmaQueryResult`
+
+### SuggestedLemmaQuerySessionFactory (factory)
+
+Methods:
+
+- `bindForTask(RefinementTask task): SuggestedLemmaQuerySession`
 
 ### From nlp-infrastructure
 

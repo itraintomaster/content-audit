@@ -1,5 +1,6 @@
 package com.learney.contentaudit.coursedomain;
 
+import java.util.List;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
 
@@ -48,6 +49,8 @@ public class QuizTemplateEntity {
 
     private String successMessage;
 
+    private List<String> sentences;
+
     public QuizTemplateEntity() {
     }
 
@@ -55,8 +58,8 @@ public class QuizTemplateEntity {
             String title, String instructions, String translation, String theoryId,
             String topicName, FormEntity form, double difficulty, double retries,
             double noScoreRetries, String code, String audioUrl, String imageUrl,
-            String answerAudioUrl, String answerImageUrl, String miniTheory,
-            String successMessage) {
+            String answerAudioUrl, String answerImageUrl, String miniTheory, String successMessage,
+            List<String> sentences) {
         this.id = id;
         this.oidId = oidId;
         this.kind = kind;
@@ -77,6 +80,7 @@ public class QuizTemplateEntity {
         this.answerImageUrl = answerImageUrl;
         this.miniTheory = miniTheory;
         this.successMessage = successMessage;
+        this.sentences = sentences;
     }
 
     public String getId() {
@@ -239,6 +243,14 @@ public class QuizTemplateEntity {
         this.successMessage = successMessage;
     }
 
+    public List<String> getSentences() {
+        return this.sentences;
+    }
+
+    public void setSentences(List<String> sentences) {
+        this.sentences = sentences;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -263,11 +275,12 @@ public class QuizTemplateEntity {
                     && Objects.equals(this.answerAudioUrl, that.answerAudioUrl)
                     && Objects.equals(this.answerImageUrl, that.answerImageUrl)
                     && Objects.equals(this.miniTheory, that.miniTheory)
-                    && Objects.equals(this.successMessage, that.successMessage);
+                    && Objects.equals(this.successMessage, that.successMessage)
+                    && Objects.equals(this.sentences, that.sentences);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, oidId, kind, knowledgeId, title, instructions, translation, theoryId, topicName, form, difficulty, retries, noScoreRetries, code, audioUrl, imageUrl, answerAudioUrl, answerImageUrl, miniTheory, successMessage);
+        return Objects.hash(id, oidId, kind, knowledgeId, title, instructions, translation, theoryId, topicName, form, difficulty, retries, noScoreRetries, code, audioUrl, imageUrl, answerAudioUrl, answerImageUrl, miniTheory, successMessage, sentences);
     }
 }

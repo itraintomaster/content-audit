@@ -1,4 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
+import com.learney.contentaudit.auditcli.SuggestedLemmasFilter;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryPort;
 import com.learney.contentaudit.auditcli.formatting.ImpactPreviewFormatter;
 import com.learney.contentaudit.revisiondomain.ImpactPreviewStore;
 import com.learney.contentaudit.revisiondomain.RevisionArtifact;
@@ -52,7 +55,7 @@ import picocli.CommandLine.Parameters;
 @Command(
         name = "get",
         description = "Read one or many resources.%n%n"
-                + "Resources: audits, plans, tasks, analyzers.%n"
+                + "Resources: audits, plans, tasks, analyzers, suggested-lemmas.%n"
                 + "Singular and plural forms are interchangeable (R006).%n%n"
                 + "With no <name>, lists all instances of the resource.%n"
                 + "With <name>, shows the single matching instance (R001).",
@@ -74,6 +77,10 @@ import picocli.CommandLine.Parameters;
                 "",
                 "  # List analyzers",
                 "  content-audit get analyzers",
+                "",
+                "  # Query dynamic suggested-lemmas for a task during review",
+                "  content-audit get suggested-lemmas <taskId> --limit 5 --part-of-speech NOUN",
+                "  content-audit get suggested-lemmas <taskId> --level B1",
         }
 )
 final class GetCmd implements GetCommand, Callable<Integer> {
@@ -93,7 +100,7 @@ final class GetCmd implements GetCommand, Callable<Integer> {
     /** Injected by Main (or via setter) to enable proposal/proposals resource queries. */
     private RevisionArtifactStore revisionArtifactStore;
 
-    @Parameters(index = "0", description = "Resource type: audits, plans, tasks, analyzers")
+    @Parameters(index = "0", description = "Resource type: audits, plans, tasks, analyzers, suggested-lemmas")
     private String resource;
 
     @Parameters(index = "1", arity = "0..1",
@@ -129,13 +136,23 @@ final class GetCmd implements GetCommand, Callable<Integer> {
             description = "For 'tasks': filter by DiagnosisKind enum: SENTENCE_LENGTH, LEMMA_ABSENCE, COCA_BUCKETS, etc.")
     private String diagnosisArg;
 
+    @Option(names = {"--part-of-speech", "--pos"},
+            description = "For 'suggested-lemmas': filter by part-of-speech (e.g. NOUN, VERB).")
+    private String partOfSpeech;
+
+    @Option(names = {"--level"},
+            description = "For 'suggested-lemmas': explicit CefrLevel (e.g. A1, B2). If absent, inferred from the task.")
+    private CefrLevel level;
+
     private ImpactPreviewStore impactPreviewStore;
 
     private ImpactPreviewFormatter impactPreviewFormatter;
 
 private final CorrectionContextJsonMapper correctionContextJsonMapper;
 
-public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore, AnalyzerRegistry analyzerRegistry, CorrectionContextResolver correctionContextResolver, ImpactPreviewStore impactPreviewStore, ImpactPreviewFormatter impactPreviewFormatter, CorrectionContextJsonMapper correctionContextJsonMapper) {
+private final SuggestedLemmaQueryPort suggestedLemmaQueryPort;
+
+public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore, AnalyzerRegistry analyzerRegistry, CorrectionContextResolver correctionContextResolver, ImpactPreviewStore impactPreviewStore, ImpactPreviewFormatter impactPreviewFormatter, CorrectionContextJsonMapper correctionContextJsonMapper, SuggestedLemmaQueryPort suggestedLemmaQueryPort) {
     this.auditReportStore = auditReportStore;
     this.refinementPlanStore = refinementPlanStore;
     this.analyzerRegistry = analyzerRegistry;
@@ -143,6 +160,7 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
     this.impactPreviewStore = impactPreviewStore;
     this.impactPreviewFormatter = impactPreviewFormatter;
     this.correctionContextJsonMapper = correctionContextJsonMapper;
+    this.suggestedLemmaQueryPort = suggestedLemmaQueryPort;
 }
 
     /** Called by Main to inject the resolved working directory (needed for plan listing). */
@@ -151,7 +169,7 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
     }
 
     /** Called by Main to inject the RevisionArtifactStore (needed for proposal/proposals resource). */
-    void setRevisionArtifactStore(RevisionArtifactStore revisionArtifactStore) {
+    public void setRevisionArtifactStore(RevisionArtifactStore revisionArtifactStore) {
         this.revisionArtifactStore = revisionArtifactStore;
     }
 
@@ -167,6 +185,19 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
 
     @Override
     public Integer call() {
+        // Route suggested-lemma/suggested-lemmas before building GetTasksFilter
+        if (resource != null) {
+            String resourceLower = resource.toLowerCase(Locale.ROOT);
+            if ("suggested-lemma".equals(resourceLower) || "suggested-lemmas".equals(resourceLower)) {
+                SuggestedLemmasFilter slFilter = new SuggestedLemmasFilter(
+                        Optional.ofNullable(limit),
+                        Optional.ofNullable(partOfSpeech),
+                        Optional.ofNullable(level)
+                );
+                return get(resource, name, slFilter);
+            }
+        }
+
         Optional<AuditTarget> targetOpt = Optional.empty();
         if (targetArg != null && !targetArg.isBlank()) {
             try {
@@ -198,6 +229,20 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
                 diagnosisOpt
         );
         return get(resource, name, filter);
+    }
+
+    @Override
+    public Integer get(String resource, String name, SuggestedLemmasFilter filter) {
+        if (resource == null || resource.isBlank()) {
+            System.err.println("Error: resource is required.");
+            return 1;
+        }
+        String normalized = resource.toLowerCase(Locale.ROOT);
+        if ("suggested-lemma".equals(normalized) || "suggested-lemmas".equals(normalized)) {
+            return handleSuggestedLemmas(name, filter);
+        }
+        System.err.println("Unknown resource '" + resource + "' for suggested-lemmas query.");
+        return 1;
     }
 
     @Override
@@ -1214,6 +1259,96 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
         System.out.println("Target:      " + (d.getTarget() != null ? d.getTarget().name() : ""));
         System.out.println("Description: " + d.getDescription());
         return 0;
+    }
+
+    // -------------------------------------------------------------------------
+    // Suggested Lemmas (F-CSLATDC-R001, R002)
+    // -------------------------------------------------------------------------
+
+    private int handleSuggestedLemmas(String taskId, SuggestedLemmasFilter filter) {
+        if (taskId == null || taskId.isBlank()) {
+            System.err.println("Error: a task id is required for 'suggested-lemmas'. Usage: get suggested-lemmas <taskId>");
+            return 1;
+        }
+
+        // Step 1: load the latest plan and find the task
+        Optional<com.learney.contentaudit.refinerdomain.RefinementPlan> planOpt = refinementPlanStore.loadLatest();
+        if (planOpt.isEmpty()) {
+            System.err.println("No plans available. Run 'content-audit plan' to create one.");
+            return 1;
+        }
+        com.learney.contentaudit.refinerdomain.RefinementPlan plan = planOpt.get();
+        List<RefinementTask> tasks = plan.getTasks() != null ? plan.getTasks() : List.of();
+        Optional<RefinementTask> taskOpt = tasks.stream()
+                .filter(t -> taskId.equals(t.getId()))
+                .findFirst();
+        if (taskOpt.isEmpty()) {
+            System.err.println("Task '" + taskId + "' not found in the latest plan '" + plan.getId() + "'.");
+            return 1;
+        }
+        RefinementTask task = taskOpt.get();
+
+        // Step 2: load the AuditReport
+        String sourceAuditId = plan.getSourceAuditId();
+        if (sourceAuditId == null || sourceAuditId.isBlank()) {
+            System.err.println("Plan '" + plan.getId() + "' has no sourceAuditId.");
+            return 1;
+        }
+        Optional<AuditReport> reportOpt = auditReportStore.load(sourceAuditId);
+        if (reportOpt.isEmpty()) {
+            System.err.println("Audit report '" + sourceAuditId + "' not found.");
+            return 1;
+        }
+        AuditReport report = reportOpt.get();
+
+        // Step 3 & 4: invoke the port, capturing rejection
+        com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryResult result;
+        try {
+            Optional<Integer> limit = filter != null ? filter.getLimit() : Optional.empty();
+            Optional<String> partOfSpeech = filter != null ? filter.getPartOfSpeech() : Optional.empty();
+            Optional<com.learney.contentaudit.auditdomain.CefrLevel> level =
+                    filter != null ? filter.getLevel() : Optional.empty();
+            result = suggestedLemmaQueryPort.query(report, task, limit, partOfSpeech, level);
+        } catch (com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryRejectedException e) {
+            System.err.println("Suggested lemma query rejected for task '" + e.getTaskId()
+                    + "': " + e.getReason());
+            return 1;
+        }
+
+        // Step 5: format and output (JSON is the convention for structured results)
+        return printSuggestedLemmaQueryResult(result);
+    }
+
+    private int printSuggestedLemmaQueryResult(
+            com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryResult result) {
+        try {
+            ObjectMapper om = new ObjectMapper();
+            om.registerModule(new JavaTimeModule());
+            om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+            om.enable(SerializationFeature.INDENT_OUTPUT);
+            Map<String, Object> output = new LinkedHashMap<>();
+            output.put("taskId", result.getTaskId());
+            output.put("cefrLevel",
+                    result.getCefrLevel() != null ? result.getCefrLevel().name() : null);
+            List<SuggestedLemma> lemmas = result.getSuggestedLemmas();
+            if (lemmas == null) {
+                output.put("suggestedLemmas", List.of());
+            } else {
+                output.put("suggestedLemmas", lemmas.stream().map(l -> {
+                    Map<String, Object> m = new LinkedHashMap<>();
+                    m.put("lemma", l.getLemma());
+                    m.put("pos", l.getPos());
+                    m.put("reason", l.getReason());
+                    m.put("cocaRank", l.getCocaRank());
+                    return m;
+                }).collect(Collectors.toList()));
+            }
+            System.out.println(om.writeValueAsString(output));
+            return 0;
+        } catch (Exception e) {
+            System.err.println("Error formatting JSON: " + e.getMessage());
+            return 1;
+        }
     }
 
     // -------------------------------------------------------------------------

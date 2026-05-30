@@ -8,4 +8,6 @@ import javax.annotation.processing.Generated;
 )
 public interface GetCommand {
     Integer get(String resource, String name, GetTasksFilter filter);
+
+    Integer get(String resource, String name, SuggestedLemmasFilter filter);
 }

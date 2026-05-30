@@ -1,0 +1,98 @@
+code: FEAT-CSLATDC
+modules:
+- name: refiner-domain
+  packages:
+  - name: lemmasuggestion
+    implementations:
+    - name: LemmaAbsenceContextSuggestedLemmaQueryPort
+      handwrittenTests:
+      - name: should return the suggested lemmas of the task identified by taskId
+          when invoked through the SuggestedLemmaQueryPort
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R001
+      - name: should include only suggested lemmas whose CefrLevel matches the level
+          applied to the task
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R003
+      - name: should infer the CefrLevel from the task milestone ancestor when no
+          explicit level is provided
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R004
+      - name: should throw SuggestedLemmaQueryRejectedException when no level is provided
+          and none can be inferred from the task
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R005
+      - name: should use the explicit level provided in the filter when the task does
+          not allow level inference
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R006
+      - name: should restrict results to suggested lemmas whose partOfSpeech matches
+          the requested partOfSpeech filter
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R007
+      - name: should return at most N suggested lemmas when the limit filter equals
+          N
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R008
+      - name: should return all available suggested lemmas without error when fewer
+          than the requested limit match the filters
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R009
+      - name: should return suggested lemmas ordered by recommendation priority so
+          the caller does not need to sort them
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R010
+      - name: should return more suggested lemmas than the cap of 10 used by LemmaAbsenceContextResolver
+          when the requested limit exceeds it
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R011
+      - name: should return an empty suggested lemma list with the effective level
+          when the task has no compatible base for suggesting lemmas
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R012
+      - name: should expose each suggested lemma identifiably in the result with the
+          list order representing its relative priority
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R014
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: GetCmd
+      handwrittenTests:
+      - name: should route the suggested-lemmas resource through GetCommand.get extending
+          the existing verb without invoking a new command type
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R002
+features:
+- id: FEAT-CSLATDC
+  journeys:
+  - id: F-CSLATDC-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-CSLATDC-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-CSLATDC-J003
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-CSLATDC-J004
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys

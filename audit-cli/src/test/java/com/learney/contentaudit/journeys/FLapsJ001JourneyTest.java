@@ -238,7 +238,8 @@ public class FLapsJ001JourneyTest {
                 "Write the correct form.",
                 "Ella lee libros sobre temas avanzados.",
                 "basics.01.Reading", "Reading Comprehension",
-                form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "");
+                form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "",
+                List.of("She reads books about advanced topics."));
         return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz);
     }
 

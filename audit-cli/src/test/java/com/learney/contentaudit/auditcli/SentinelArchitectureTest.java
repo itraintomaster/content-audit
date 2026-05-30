@@ -75,6 +75,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: EphemeralRenderOptions - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.SuggestedLemmasFilter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SuggestedLemmasFilter - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.AnalyzeCommand");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AnalyzeCommand - " + e.getMessage());

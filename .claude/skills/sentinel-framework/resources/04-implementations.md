@@ -332,6 +332,46 @@ public DispatchingCorrectionContextResolver(SentenceLengthContextResolver senten
 
 **Implements:** RefinerEngine
 
+#### LemmaAbsenceContextSuggestedLemmaQueryPort (package: lemmasuggestion)
+
+**Package:** `com.learney.contentaudit.refinerdomain.lemmasuggestion`
+**Visibility:** internal
+**Implements:** SuggestedLemmaQueryPort
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `lemmaAbsenceContextResolver` | `CorrectionContextResolver<LemmaAbsenceCorrectionContext>` |
+
+#### BoundSuggestedLemmaQuerySession (package: lemmasuggestion)
+
+**Package:** `com.learney.contentaudit.refinerdomain.lemmasuggestion`
+**Visibility:** internal
+**Implements:** SuggestedLemmaQuerySession
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `queryPort` | `SuggestedLemmaQueryPort` |
+| `report` | `AuditReport` |
+| `task` | `RefinementTask` |
+
+#### DefaultSuggestedLemmaQuerySessionFactory (package: lemmasuggestion)
+
+**Package:** `com.learney.contentaudit.refinerdomain.lemmasuggestion`
+**Visibility:** internal
+**Implements:** SuggestedLemmaQuerySessionFactory
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `queryPort` | `SuggestedLemmaQueryPort` |
+| `refinementPlanStore` | `RefinementPlanStore` |
+| `auditReportStore` | `AuditReportStore` |
+
 ### Module: audit-application
 
 #### CourseToAuditableMapper
@@ -586,6 +626,7 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | `impactPreviewStore` | `ImpactPreviewStore` |
 | `impactPreviewFormatter` | `ImpactPreviewFormatter` |
 | `correctionContextJsonMapper` | `CorrectionContextJsonMapper` |
+| `suggestedLemmaQueryPort` | `SuggestedLemmaQueryPort` |
 
 #### DeleteCmd (package: commands)
 
@@ -1325,4 +1366,48 @@ public FileSystemImpactPreviewStore(Path baseDir) {
 **Package:** `com.learney.contentaudit.revisioninfrastructure.lagenopenai`
 **Visibility:** internal
 **Implements:** LangChainErrorClassifier
+
+#### DefaultInteractiveLemmaAbsenceGeneratorFactory (package: lageninteractive)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lageninteractive`
+**Visibility:** internal
+**Implements:** InteractiveLemmaAbsenceGeneratorFactory
+
+#### InteractiveLemmaAbsenceLlmGenerator (package: lageninteractive)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lageninteractive`
+**Visibility:** internal
+**Implements:** LemmaAbsenceQuizCandidateGenerator
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `config` | `LagenConfig` |
+| `session` | `SuggestedLemmaQuerySession` |
+| `seedPromptBuilder` | `InteractiveLemmaAbsencePromptBuilder` |
+| `lemmaRequestExchange` | `SuggestedLemmaToolExchange` |
+| `responseParser` | `LemmaAbsenceResponseParser` |
+| `errorClassifier` | `LangChainErrorClassifier` |
+| `strategyName` | `String` |
+| `chatModel` | `ChatLanguageModel` |
+| `sessionFactory` | `SuggestedLemmaQuerySessionFactory` |
+
+#### DefaultInteractiveLemmaAbsencePromptBuilder (package: lageninteractive)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lageninteractive`
+**Visibility:** internal
+**Implements:** InteractiveLemmaAbsencePromptBuilder
+
+#### DefaultSuggestedLemmaToolExchange (package: lageninteractive)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lageninteractive`
+**Visibility:** internal
+**Implements:** SuggestedLemmaToolExchange
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `session` | `SuggestedLemmaQuerySession` |
 

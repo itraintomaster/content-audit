@@ -431,6 +431,30 @@ Examples:
 
 **Package:** `com.learney.contentaudit.refinerdomain`
 
+#### SuggestedLemmaQueryPort (port)
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+
+| Method | Throws |
+|--------|--------|
+| `query(AuditReport report, RefinementTask task, Optional<Integer> limit, Optional<String> partOfSpeech, Optional<CefrLevel> explicitLevel): SuggestedLemmaQueryResult` | (none) |
+
+#### SuggestedLemmaQuerySession (port)
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+
+| Method | Throws |
+|--------|--------|
+| `requestMore(Optional<Integer> limit, Optional<String> partOfSpeech, Optional<CefrLevel> explicitLevel): SuggestedLemmaQueryResult` | (none) |
+
+#### SuggestedLemmaQuerySessionFactory (factory)
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+
+| Method | Throws |
+|--------|--------|
+| `bindForTask(RefinementTask task): SuggestedLemmaQuerySession` | (none) |
+
 ### Module: audit-application
 
 #### AuditRunner (service)
@@ -482,6 +506,7 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `get(String resource, String name, GetTasksFilter filter): Integer` | (none) |
+| `get(String resource, String name, SuggestedLemmasFilter filter): Integer` | (none) |
 
 #### DeleteCommand [SEALED] (port)
 
@@ -963,6 +988,16 @@ Examples:
 | `create(LagenConfig config): LemmaAbsenceQuizCandidateGenerator` | (none) |
 | `providerIdFor(LagenConfig config): String` | (none) |
 
+#### InteractiveLemmaAbsenceGeneratorFactory (package: lagen)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lagen`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `create(LagenConfig config, SuggestedLemmaQuerySession session): LemmaAbsenceQuizCandidateGenerator` | (none) |
+| `providerIdFor(LagenConfig config): String` | (none) |
+
 #### LemmaAbsencePromptBuilder (package: lagenopenai)
 
 **Package:** `com.learney.contentaudit.revisioninfrastructure.lagenopenai`
@@ -990,4 +1025,23 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `classify(Throwable cause): LlmGenerationFailureCategory` | (none) |
+
+#### InteractiveLemmaAbsencePromptBuilder (package: lageninteractive)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lageninteractive`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `buildSystemPrompt(): String` | (none) |
+| `buildSeedUserPrompt(LemmaAbsenceCorrectionContext context): String` | (none) |
+
+#### SuggestedLemmaToolExchange (package: lageninteractive)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lageninteractive`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `fetchMore(SuggestedLemmaRequest request): SuggestedLemmaQueryResult` | (none) |
 

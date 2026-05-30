@@ -115,10 +115,7 @@ public class SentenceLengthContextResolver implements CorrectionContextResolver 
                                                 ? al.getLemmaAndPos().getPos() : null,
                                         al.getAbsenceType() != null
                                                 ? al.getAbsenceType().name() : null,
-                                        al.getCocaRank(),
-                                        null,
-                                        null,
-                                        null))
+                                        al.getCocaRank(), null, null, null))
                                 .collect(Collectors.toList());
                     }
                 }
@@ -251,10 +248,7 @@ public class SentenceLengthContextResolver implements CorrectionContextResolver 
                                                 ? al.getLemmaAndPos().getPos() : null,
                                         al.getAbsenceType() != null
                                                 ? al.getAbsenceType().name() : null,
-                                        al.getCocaRank(),
-                                        null,
-                                        null,
-                                        null))
+                                        al.getCocaRank(), null, null, null))
                                 .collect(Collectors.toList());
                     }
                 }

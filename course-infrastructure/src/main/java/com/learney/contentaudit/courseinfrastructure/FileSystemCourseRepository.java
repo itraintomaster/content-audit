@@ -322,13 +322,15 @@ public class FileSystemCourseRepository implements CourseRepository {
             String miniTheory = (String) q.get("miniTheory");
             String successMessage = (String) q.get("successMessage");
 
-            FormEntity form = loadForm(asMap(q.get("form")));
+            Map<String, Object> formMap = asMap(q.get("form"));
+            FormEntity form = loadForm(formMap);
+            List<String> sentences = extractStringList(formMap, "sentences");
 
             QuizTemplateEntity quiz = new QuizTemplateEntity(
                     id, oidId, kind, knowledgeId, title, instructions, translation,
                     theoryId, topicName, form, difficulty, retries, noScoreRetries,
                     code, audioUrl, imageUrl, answerAudioUrl, answerImageUrl,
-                    miniTheory, successMessage
+                    miniTheory, successMessage, sentences
             );
             quizzes.add(quiz);
         }
@@ -674,6 +676,16 @@ public class FileSystemCourseRepository implements CourseRepository {
     private List<String> extractOidListNullable(Object value) {
         if (value == null) return null;
         return extractOidList(value);
+    }
+
+    @SuppressWarnings("unchecked")
+    private List<String> extractStringList(Map<String, Object> map, String key) {
+        if (map == null) return null;
+        Object value = map.get(key);
+        if (value instanceof List<?> list) {
+            return (List<String>) list;
+        }
+        return null;
     }
 
     private double extractNumberDouble(Object value) {

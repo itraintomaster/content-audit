@@ -37,11 +37,22 @@ class DefaultLemmaAbsencePromptBuilder implements LemmaAbsencePromptBuilder {
                   the bare lemma or a slash-separated cue, e.g. `(to be)`, `(loud / loudly)`,
                   `(not / click)`. A student looking only at the stem plus the hint — without seeing
                   the bracket — should have enough information to produce the correct answer.
+                - Whole-sentence rewrite: the entire stem is a sequence of pedagogical cues
+                  separated by slashes (e.g. `The dogs / bark / loudly.`), and the bracket
+                  immediately after contains the complete rewritten sentence as the answer
+                  (e.g. `[The dogs are barking loudly.]`). In this mold there is no `____`
+                  blank — the whole sentence IS the blank, and the slash-separated cues
+                  play the role hints normally play in the blank-slot mold. The bracket
+                  may contain a single answer or multiple `|`-separated equivalent
+                  rewrites, following the same equivalence rule as `____ [answer]`.
 
                 Examples:
                 - `He ____ [is|'s] (to be) tall.` — both `is` and `'s` are correct.
                 - `You ____ [don't click] (not / click) this icon.` — only `don't click` is correct;
                   the hint signals "negated form of click".
+                - `The dogs / bark / loudly. [The dogs are barking loudly.]` — whole-sentence
+                  mold: the student must produce the full sentence `The dogs are barking loudly.`
+                  using the cues `The dogs`, `bark`, `loudly` as guidance.
 
                 # Your responsibilities
 
@@ -50,6 +61,12 @@ class DefaultLemmaAbsencePromptBuilder implements LemmaAbsencePromptBuilder {
                 3. Replace any misplaced lemmas with words from the suggested lemmas list when applicable.
                 4. Deliver exactly one candidate — not multiple alternatives.
                 5. Replace the original exercise entirely — do not patch individual words.
+                6. Preserve the mold of the original exercise. If the input is a
+                   blank-slot exercise (`____ [answer]`), your candidate must also be
+                   a blank-slot exercise. If the input is a whole-sentence rewrite
+                   (cues separated by `/` with the full rewritten sentence in `[...]`),
+                   your candidate must also be a whole-sentence rewrite. Do not
+                   convert one mold into the other.
 
                 # Self-check before responding
 
@@ -72,6 +89,13 @@ class DefaultLemmaAbsencePromptBuilder implements LemmaAbsencePromptBuilder {
                    blank exercises must match what `knowledgeTitle` and `knowledgeInstructions`
                    describe. If the knowledge is about negation of `have`, the blank must exercise
                    negated `have` — not possession, not a different verb.
+
+                E. Mold preservation. The mold of your candidate (blank-slot vs
+                   whole-sentence rewrite) must match the mold of the input. If the
+                   input contained `____`, your candidate contains `____`. If the
+                   input contained slash-separated cues and a bracketed full sentence,
+                   your candidate keeps that shape. Converting molds is a failure of
+                   this check.
 
                 # Response format
 

@@ -1,0 +1,401 @@
+{
+  "scores" : {
+    "a1" : {
+      "a1aPassed" : true,
+      "a1aViolations" : [ ],
+      "a1bScore" : 0.75,
+      "a1bDetails" : [ {
+        "elementName" : "SuggestedLemmaQueryPort",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 0.75
+      }, {
+        "elementName" : "LemmaAbsenceContextSuggestedLemmaQueryPort",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "GetCmd",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      } ],
+      "a1cScore" : 0.3333333333333333,
+      "a1dScore" : 0.75,
+      "compositeScore" : 0.6875
+    },
+    "a2" : {
+      "structurallySound" : false,
+      "a2a" : {
+        "id" : "A2a",
+        "name" : "Structural Integrity",
+        "score" : 0.0,
+        "violations" : [ {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires AuditReportStore but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires RefinementPlanStore but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires AnalyzerRegistry but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires CorrectionContextResolver but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires RevisionArtifactStore but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires ImpactPreviewStore but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires AuditReportStore but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires RefinementPlanStore but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires AnalyzerRegistry but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires CorrectionContextResolver but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires RevisionArtifactStore but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires ImpactPreviewStore but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires SuggestedLemmaQueryPort but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "LemmaAbsenceContextSuggestedLemmaQueryPort requires CorrectionContextResolver<LemmaAbsenceCorrectionContext> but no such interface exists in refiner-domain or its dependsOn"
+        } ]
+      },
+      "a2b" : {
+        "id" : "A2b",
+        "name" : "Port Coverage",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "a2c" : {
+        "id" : "A2c",
+        "name" : "Reachability",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "a2d" : {
+        "id" : "A2d",
+        "name" : "Contract Utilization",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "a2e" : {
+        "id" : "A2e",
+        "name" : "Path Traceability",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "composite" : 0.0
+    },
+    "a3" : {
+      "modules" : [ {
+        "name" : "audit-cli",
+        "ca" : 0,
+        "ce" : 0,
+        "instability" : 0.0,
+        "abstractness" : 0.0,
+        "distance" : 1.0,
+        "zone" : "pain",
+        "score" : 0.0
+      }, {
+        "name" : "refiner-domain",
+        "ca" : 0,
+        "ce" : 0,
+        "instability" : 0.0,
+        "abstractness" : 0.25,
+        "distance" : 0.75,
+        "zone" : "pain",
+        "score" : 0.25
+      } ],
+      "componentCount" : 6,
+      "threshold" : 30,
+      "ramp" : 0.2,
+      "rawScore" : 0.125,
+      "effectiveScore" : 0.8250000000000001,
+      "warnings" : [ "rawScore 0,13 boosted to effectiveScore 0,83 by ramp (componentCount=6 < threshold=30). Underlying zones: audit-cli=pain, refiner-domain=pain. The boost is appropriate for small patches but the signal would degrade at scale." ]
+    },
+    "a4" : {
+      "dependencyInversionHolds" : true,
+      "acyclic" : true,
+      "a4a" : {
+        "id" : "A4a",
+        "name" : "Dependency Inversion",
+        "score" : 1.0,
+        "violations" : [ {
+          "code" : "A4-NOLAYER",
+          "severity" : "warning",
+          "message" : "No modules declare a layer — A4 cannot be evaluated"
+        } ]
+      },
+      "a4b" : {
+        "id" : "A4b",
+        "name" : "Acyclicity",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "a4c" : {
+        "id" : "A4c",
+        "name" : "Adapter Polarity",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "a4d" : {
+        "id" : "A4d",
+        "name" : "Layer Isolation",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "a4e" : {
+        "id" : "A4e",
+        "name" : "Composition Root Discipline",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "composite" : 1.0
+    },
+    "a5" : {
+      "a5aScore" : 0.45,
+      "a5bScore" : 1.0,
+      "a5cScore" : 0.0,
+      "a5dScore" : 1.0,
+      "a5eScore" : 1.0,
+      "violations" : [ {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'AuditNodeIndexFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'NlpTokenizerFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Strategy pattern 'LemmaAbsenceProposalStrategy' has 1 implementation(s) — needs ≥2 for polymorphism"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'LemmaAbsenceLlmGeneratorFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'DefaultAuditNodeIndexFactory' declared in Factory pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'SpacyNlpTokenizerFactory' declared in Factory pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'LemmaAbsenceMvpStrategy' declared in Strategy pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'DefaultLemmaAbsenceLlmGeneratorFactory' declared in Factory pattern but not found in any module"
+      } ],
+      "composite" : 0.5850000000000001
+    },
+    "a6" : {
+      "score" : 1.0,
+      "totalInterfaces" : 1,
+      "inflatedCount" : 0,
+      "inflated" : [ ]
+    },
+    "c1" : {
+      "score" : 1.0,
+      "maxDepth" : 1,
+      "avgDepth" : 0.09090909090909091,
+      "entries" : [ {
+        "entryPoint" : "audit-cli.commands.ContentAuditCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.AnalyzeCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.GetCmd",
+        "depth" : 1
+      }, {
+        "entryPoint" : "audit-cli.commands.DeleteCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.PruneCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.PlanCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.ReviseCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.ConfigAnalyzerCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.StatsAnalyzerCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.ApproveCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.RejectCmd",
+        "depth" : 0
+      } ]
+    },
+    "c3" : {
+      "score" : 0.3333333333333333,
+      "details" : [ {
+        "name" : "GetCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 10,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.0
+      }, {
+        "name" : "GetCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 10,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.0
+      }, {
+        "name" : "LemmaAbsenceContextSuggestedLemmaQueryPort",
+        "moduleName" : "refiner-domain",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      } ]
+    },
+    "a1e" : {
+      "totalRules" : 15,
+      "mappedCount" : 12,
+      "unmappedCount" : 3,
+      "score" : 0.8,
+      "mapped" : [ "F-CSLATDC-R001", "F-CSLATDC-R002", "F-CSLATDC-R003", "F-CSLATDC-R004", "F-CSLATDC-R005", "F-CSLATDC-R006", "F-CSLATDC-R007", "F-CSLATDC-R008", "F-CSLATDC-R009", "F-CSLATDC-R010", "F-CSLATDC-R012", "F-CSLATDC-R014" ],
+      "unmapped" : [ "F-CSLATDC-R011", "F-CSLATDC-R013", "F-CSLATDC-R015" ],
+      "violations" : [ {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R011 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R013 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R015 is declared in REQUIREMENT.md but not referenced in the patch."
+      } ]
+    },
+    "mode" : "PATCH_ONLY",
+    "compositeScore" : 0.6125362318840579
+  },
+  "aTierComposite" : 0.6125362318840579,
+  "b3" : {
+    "score" : 0.55,
+    "direction" : "under",
+    "justification" : "The patch introduces a reasonably small set of elements, but it does not architecturally expose the new CLI contract correctly and likely cannot satisfy the key requirement of returning more lemmas than the static correctionContext cap. The new domain port is defensible, but the public GetCommand surface remains incompatible with the added filter and several critical behaviors are only described in prose rather than represented in the architecture.",
+    "findings" : [ {
+      "element" : "audit-cli/GetCommand",
+      "issue" : "The public signature remains get(String resource, String name, GetTasksFilter filter), while the patch adds SuggestedLemmasFilter separately without wiring it into the command contract; callers still cannot pass partOfSpeech or level through the declared API.",
+      "severity" : "error"
+    }, {
+      "element" : "audit-cli/SuggestedLemmasFilter",
+      "issue" : "The filter is added as a public model but is not referenced by any interface or implementation signature, making it architecturally orphaned despite being central to the feature.",
+      "severity" : "error"
+    }, {
+      "element" : "refiner-domain/LemmaAbsenceContextSuggestedLemmaQueryPort",
+      "issue" : "Delegating to LemmaAbsenceContextResolver appears insufficient for R011 because the existing resolver produces the static correctionContext suggestedLemmas and is already capped at 10; the patch does not expose a way to query the broader candidate set before that cap.",
+      "severity" : "error"
+    }, {
+      "element" : "audit-cli/commands/GetCmd",
+      "issue" : "The patch injects SuggestedLemmaQueryPort but does not structurally add or test the 'suggested-lemmas' resource branch, taskId lookup behavior, error mapping, or output shape, leaving the main CLI behavior mostly implicit.",
+      "severity" : "warning"
+    }, {
+      "element" : "refiner-domain/SuggestedLemmaQueryResult",
+      "issue" : "The result carries taskId, cefrLevel, and suggestedLemmas, which is useful, but it omits any explicit functional explanation for the valid empty-result case required by R012 unless the implementation invents it in CLI rendering.",
+      "severity" : "warning"
+    }, {
+      "element" : "FEAT-CSLATDC-R015",
+      "issue" : "The requirement asks for reviewer-agent usage instructions, but the patch contains no architectural element, prompt contract, documentation carrier, or test hook representing that obligation.",
+      "severity" : "warning"
+    } ]
+  },
+  "b4" : {
+    "score" : 1.0,
+    "justification" : "All newly added models, interface, package-level implementation, and injected query capability map directly or indirectly to the requirement’s dynamic suggested-lemmas query, supported filters, level validation, prioritized results, and empty/rejected outcomes. No added architectural element appears speculative or unrelated.",
+    "findings" : [ ]
+  },
+  "globalComposite" : {
+    "value" : 0.08837608695652176,
+    "raw" : 0.6554146023823912,
+    "capped" : true,
+    "reason" : "b3 penalized -0,64 (3 errors, 3 warnings, dir=under)",
+    "aWeight" : 0.4,
+    "bWeight" : 0.6,
+    "bAggregate" : 0.10000000000000002,
+    "aModifier" : 0.8837608695652174,
+    "perDim" : [ {
+      "name" : "b3",
+      "score" : 0.55,
+      "effective" : 0.0,
+      "errors" : 3,
+      "warnings" : 3,
+      "direction" : "under",
+      "penalty" : 0.6399999999999999
+    }, {
+      "name" : "b4",
+      "score" : 1.0,
+      "effective" : 1.0,
+      "errors" : 0,
+      "warnings" : 0,
+      "penalty" : 0.0
+    } ]
+  },
+  "topFindings" : [ {
+    "dim" : "b3",
+    "severity" : "error",
+    "element" : "audit-cli/GetCommand",
+    "issue" : "The public signature remains get(String resource, String name, GetTasksFilter filter), while the patch adds SuggestedLemmasFilter separately without wiring it into the command contract; callers still cannot pass partOfSpeech or level through the declared API."
+  }, {
+    "dim" : "b3",
+    "severity" : "error",
+    "element" : "audit-cli/SuggestedLemmasFilter",
+    "issue" : "The filter is added as a public model but is not referenced by any interface or implementation signature, making it architecturally orphaned despite being central to the feature."
+  }, {
+    "dim" : "b3",
+    "severity" : "error",
+    "element" : "refiner-domain/LemmaAbsenceContextSuggestedLemmaQueryPort",
+    "issue" : "Delegating to LemmaAbsenceContextResolver appears insufficient for R011 because the existing resolver produces the static correctionContext suggestedLemmas and is already capped at 10; the patch does not expose a way to query the broader candidate set before that cap."
+  } ],
+  "judgeProfile" : "openai-5.5",
+  "timestamp" : "2026-05-22T00:45:57.038315Z"
+}

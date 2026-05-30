@@ -177,7 +177,8 @@ public class FLapsJ003JourneyTest {
                 "Write the correct form.",
                 "Ella hace cosas complicadas.",
                 "basics.01.Grammar", "Grammar",
-                form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "");
+                form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "",
+                List.of("She does complicated things."));
         return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz);
     }
 

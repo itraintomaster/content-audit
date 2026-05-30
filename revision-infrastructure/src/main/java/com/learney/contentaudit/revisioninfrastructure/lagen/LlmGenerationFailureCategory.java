@@ -17,5 +17,9 @@ public enum LlmGenerationFailureCategory {
 
     LLM_RESPONSE_MALFORMED,
 
-    LLM_OTHER
+    LLM_OTHER,
+
+    LLM_LEMMA_REQUEST_BUDGET_EXHAUSTED,
+
+    LLM_TOOL_CALLING_UNSUPPORTED
 }

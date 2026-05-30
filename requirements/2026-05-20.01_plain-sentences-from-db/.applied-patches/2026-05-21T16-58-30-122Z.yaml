@@ -1,0 +1,59 @@
+code: FEAT-DBSENT
+modules:
+- name: course-infrastructure
+  implementations:
+  - name: FileSystemCourseRepository
+    handwrittenTests:
+    - name: should populate QuizTemplateEntity sentences literally from the quiz JSON
+        without deriving from sentenceParts
+      traceability:
+        feature: FEAT-DBSENT
+        rule: F-DBSENT-R001
+    - name: should preserve the order of every entry from the JSON sentences list
+        when loading a quiz with multiple variants
+      traceability:
+        feature: FEAT-DBSENT
+        rule: F-DBSENT-R001
+    - name: should load sentences verbatim for a transformation-pattern quiz even
+        when sentenceParts would yield a different concatenation
+      traceability:
+        feature: FEAT-DBSENT
+        rule: F-DBSENT-R001
+- name: audit-application
+  implementations:
+  - name: CourseToAuditableMapper
+    handwrittenTests:
+    - name: should emit the canonical first sub-variant rather than the raw pipe literal
+        in the stamped sentences
+      _change: delete
+    - name: should strip hints from the sentences stamped on AuditableQuiz
+      _change: delete
+    - name: should invoke QuizSentenceConverter exactly once per quiz and stamp the
+        list eagerly on AuditableQuiz
+      _change: delete
+    - name: should propagate QuizTemplateEntity sentences verbatim to AuditableQuiz
+        sentences without modification
+      traceability:
+        feature: FEAT-DBSENT
+        rule: F-DBSENT-R002
+    - name: should not invoke QuizSentenceConverter.toPlainSentences for any quiz
+        of the audited course
+      traceability:
+        feature: FEAT-DBSENT
+        rule: F-DBSENT-R002
+    - name: should stamp the canonical sentence at index 0 of QuizTemplateEntity sentences
+        as the NLP batch key for the AuditableQuiz tokens
+      traceability:
+        feature: FEAT-DBSENT
+        rule: F-DBSENT-R002
+- name: course-domain
+  packages:
+  - name: quizsentenceengine
+    implementations:
+    - name: DefaultQuizSentenceConverter
+      handwrittenTests:
+      - name: should keep toPlainSentences exposed as a public converter operation
+          that derives the same canonical list from a FormEntity
+        traceability:
+          feature: FEAT-DBSENT
+          rule: F-DBSENT-R003

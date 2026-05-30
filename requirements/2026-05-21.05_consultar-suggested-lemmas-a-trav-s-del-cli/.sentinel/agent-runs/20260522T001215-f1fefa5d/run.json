@@ -1,0 +1,22 @@
+{
+  "runId" : "20260522T001215-f1fefa5d",
+  "agent" : "llm-judge",
+  "graphKind" : "single-agent",
+  "requirementFolder" : "requirements/2026-05-21.05_consultar-suggested-lemmas-a-trav-s-del-cli",
+  "request" : "B-tier eval (LLM-as-Judge) for architectural_patch.yaml",
+  "status" : "done",
+  "started" : "2026-05-22T00:12:15.772619Z",
+  "updated" : "2026-05-22T00:14:04.428662Z",
+  "metadata" : {
+    "kind" : "llm-judge",
+    "profile" : "openai-5.5"
+  },
+  "outcome" : {
+    "halted" : false,
+    "haltReason" : null,
+    "b1" : 0.86,
+    "b2" : 0.9,
+    "b3" : 0.62,
+    "b4" : 0.86
+  }
+}

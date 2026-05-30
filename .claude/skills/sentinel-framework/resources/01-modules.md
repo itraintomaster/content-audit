@@ -105,10 +105,10 @@ project-root/
 | Depends On | audit-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
-| Models | 9 (DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan, SuggestedLemma, SentenceLengthCorrectionContext, MisplacedLemmaContext, LemmaAbsenceCorrectionContext, LengthDirection) |
-| Interfaces | 4 (RefinerEngine, RefinementPlanStore, CorrectionContextResolver, CorrectionContext) |
+| Models | 11 (DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan, SuggestedLemma, SentenceLengthCorrectionContext, MisplacedLemmaContext, LemmaAbsenceCorrectionContext, LengthDirection, SuggestedLemmaQueryResult, SuggestedLemmaQueryRejectedException) |
+| Interfaces | 7 (RefinerEngine, RefinementPlanStore, CorrectionContextResolver, CorrectionContext, SuggestedLemmaQueryPort, SuggestedLemmaQuerySession, SuggestedLemmaQuerySessionFactory) |
 | Implementations | 4 (SentenceLengthContextResolver, LemmaAbsenceContextResolver, DispatchingCorrectionContextResolver, DefaultRefinerEngine) |
-| Packages | 0 |
+| Packages | 1 (lemmasuggestion [internal]) |
 
 ### audit-application
 
@@ -148,7 +148,7 @@ project-root/
 | Depends On | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
-| Models | 4 (GetTasksFilter, LagenMode, PlanStorageMode, EphemeralRenderOptions) |
+| Models | 5 (GetTasksFilter, LagenMode, PlanStorageMode, EphemeralRenderOptions, SuggestedLemmasFilter) |
 | Interfaces | 12 (AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand, GetConsolidatedCommand, SetActiveAnalysisCommand) |
 | Implementations | 0 |
 | Packages | 3 (commands [internal], formatting [internal], bootstrap [internal]) |
@@ -226,7 +226,7 @@ project-root/
 | Models | 0 |
 | Interfaces | 0 |
 | Implementations | 0 |
-| Packages | 2 (lagen [public], lagenopenai [internal]) |
+| Packages | 3 (lagen [public], lagenopenai [internal], lageninteractive [internal]) |
 
 ## Dependency Graph
 

@@ -175,7 +175,8 @@ public class FLapsJ004JourneyTest {
                 "Write the correct word.",
                 "Ella utiliza vocabulario avanzado.",
                 "basics.01.Vocabulary", "Vocabulary",
-                form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "");
+                form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "",
+                List.of("She uses advanced vocabulary."));
         return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz);
     }
 

@@ -780,8 +780,6 @@ Este requerimiento formaliza el concepto **`quizSentence`**: una representacion 
 | F-QSENT-R023 | La derivacion a plain sentence es estrictamente unidireccional | critical | - |
 | F-QSENT-R024 | Las conversiones fallan de forma atomica | critical | Conversion abortada: {razon} |
 | F-QSENT-R025 | La derivacion a plain sentence es funcionalidad publica del course-domain | critical | - |
-| F-QSENT-R026 | La derivacion nueva corrige los dos bugs del buildSentence actual | critical | - |
-| F-QSENT-R027 | El mapper de auditoria delega de forma eager y estampa el resultado | critical | Modulo '{modulo}' reimplementa la derivacion a plain sentence: debe delegar en course-domain |
 | F-QSENT-R028 | Los fixtures reales del curso son base de pruebas | major | - |
 
 **User Journeys:**
@@ -1079,4 +1077,81 @@ No se introduce un comando público nuevo.
 - **F-SLEM-J003**: Revisar usando correctionContext derivado por el sistema
 
 - **F-SLEM-J004**: Revisar usando correctionContext externo enriquecido
+
+### FEAT-DBSENT: Plain sentences pre-computadas desde la fuente de datos [F-DBSENT]
+
+> **Que**: El campo `sentences: List<String>` de `QuizTemplateEntity.form` ahora se carga **directamente desde la fuente de datos** del curso (JSON de quiz templates) en lugar de derivarse en runtime a partir de la estructura `sentenceParts`. El `CourseToAuditableMapper` consume esa lista pre-computada y la propaga a `AuditableQuiz.sentences` sin reinvocar `QuizSentenceConverter.toPlainSentences`. El converter sigue existiendo y sus contratos no cambian; deja de ser consumidor productivo dentro del flujo del audit.
+
+**Por que**: La derivacion runtime via concatenacion `TEXT + variante canonica de CLOZE` modela correctamente el patron "cloze inline" pero falla para el patron "transformacion", donde el TEXT es scaffolding pedagogico (ej. `"The dogs / bark / loudly."`) y el CLOZE contiene la oracion completa resuelta. En esos casos el output combinaba scaffolding + resolucion (ej. `"The dogs / bark / loudly. The dogs are barking loudly."`), inflando el conteo de tokens y degradando los scores de `SentenceLengthAnalyzer` para niveles bajos. El issue afecta aproximadamente 3.976 de 11.487 quizzes (~35%). La discriminacion entre patron A (cloze inline) y patron B (transformacion) se resolvio out-of-band con una heuristica sobre los datos persistidos (B si existe exactamente un CLOZE cuya variante canonica empieza con mayuscula, termina en puntuacion final y es multi-palabra), y los datos ya estan pre-computados en la fuente. Mover la fuente de verdad de las plain sentences a la DB elimina el codigo de derivacion del path del audit y se apoya en un campo que ya esta resuelto correctamente upstream.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-DBSENT-R001 | QuizTemplateEntity persiste la lista de plain sentences | critical | - |
+| F-DBSENT-R002 | El audit consume las plain sentences pre-computadas | critical | - |
+| F-DBSENT-R003 | El converter sigue siendo contrato disponible pero no consumido por el audit | medium | - |
+
+### FEAT-CSLATDC: Consulta de Suggested Lemmas a través del CLI [F-CSLATDC]
+
+> Se amplía `GetCommand.get(...)` para consultar `Suggested Lemmas` bajo demanda durante la revisión de una `Task/Quiz`.  
+La consulta se identifica por `taskId`, permite pedir un `limit`, filtrar por `Part of Speech` y `Level`, y siempre devuelve resultados priorizados.  
+El cambio complementa los `suggestedLemmas` estáticos del `correctionContext` sin crear un nuevo verbo CLI.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-CSLATDC-R001 | Exposición pública de suggested lemmas por task | critical | No aplica. |
+| F-CSLATDC-R002 | Uso del verbo existente get | major | No aplica. |
+| F-CSLATDC-R003 | Filtrado obligatorio por level | critical | No se pueden sugerir lemas sin un nivel aplicable para filtrar. |
+| F-CSLATDC-R004 | Inferencia de level desde la task | critical | No aplica. |
+| F-CSLATDC-R005 | Validación cuando no hay level disponible | critical | No se pueden sugerir lemas porque falta el nivel necesario para filtrar. |
+| F-CSLATDC-R006 | Uso de level explícito cuando no puede inferirse | major | No aplica. |
+| F-CSLATDC-R007 | Filtro por partOfSpeech | major | No aplica. |
+| F-CSLATDC-R008 | Límite máximo solicitado | major | No aplica. |
+| F-CSLATDC-R009 | Lista parcial sin error | major | No aplica. |
+| F-CSLATDC-R010 | Ordenamiento por prioridad | critical | No aplica. |
+| F-CSLATDC-R011 | Consulta no limitada al top estático del correctionContext | major | No aplica. |
+| F-CSLATDC-R012 | Tasks sin suggested lemmas aplicables | major | No hay lemas sugeridos disponibles para esta task. |
+| F-CSLATDC-R014 | Resultado mínimo observable | major | No aplica. |
+
+**User Journeys:**
+
+- **F-CSLATDC-J001**: El agente pide lemas sugeridos durante la revisión
+
+- **F-CSLATDC-J002**: El agente informa level explícito cuando no puede inferirse
+
+- **F-CSLATDC-J004**: La consulta dinámica supera el conjunto estático del correctionContext
+
+### FEAT-LAGAG: Generación interactiva con consulta de suggested lemmas [F-LAGAG]
+
+> **Qué**: Un modo de generación de candidato de quiz para tareas `LEMMA_ABSENCE`
+en el que el modelo arranca con una semilla de los suggested lemmas más
+prioritarios y, durante la generación, puede solicitar más suggested lemmas
+para la misma task hasta cerrar con un único candidato final.
+
+**Por qué**: Hoy la generación dinámica recibe una lista estática horneada de
+antemano; cuando esa lista no alcanza, el modelo no tiene forma de pedir las
+palabras que necesita. Este modo le da esa capacidad de manera acotada y
+trazable.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-LAGAG-R001 | Semilla inicial con los lemmas más prioritarios | high | - |
+| F-LAGAG-R002 | El modelo puede solicitar más suggested lemmas | high | - |
+| F-LAGAG-R003 | Modo explícito, reconocible y trazable | high | - |
+| F-LAGAG-R004 | Presupuesto de solicitudes acotado | high | Se agotó el presupuesto de consultas de suggested lemmas sin obtener un candidato |
+| F-LAGAG-R005 | Proveedor incapaz de sostener el intercambio | medium | El proveedor activo no puede sostener la consulta interactiva de suggested lemmas |
+| F-LAGAG-R006 | Candidato final con la forma heredada | high | - |
+
+**User Journeys:**
+
+- **F-LAGAG-J001**: El modelo solicita más lemmas y entrega un candidato
+
+- **F-LAGAG-J002**: Se agota el presupuesto de solicitudes sin candidato
+
+- **F-LAGAG-J003**: El proveedor activo no puede sostener la consulta interactiva
 

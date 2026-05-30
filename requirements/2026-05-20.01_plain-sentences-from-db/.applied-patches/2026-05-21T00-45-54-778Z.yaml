@@ -1,0 +1,20 @@
+code: FEAT-DBSENT
+description: QuizTemplateEntity transporta la lista de plain sentences pre-computada
+  desde la fuente de datos para que el flujo del audit consuma una lista resuelta
+  upstream en vez de re-derivarla en runtime via QuizSentenceConverter.toPlainSentences.
+modules:
+- name: course-domain
+  models:
+  - name: QuizTemplateEntity
+    type: record
+    fields:
+    - name: sentences
+      type: List<String>
+      description: "Lista de oraciones planas asociadas al template, pre-computada\
+        \ y persistida en la fuente de datos (F-DBSENT-R001). Se propaga sin modificacion\
+        \ a AuditableQuiz.sentences durante el mapping del audit (F-DBSENT-R002).\
+        \ El indice 0 es la oracion canonica consumida por los analyzers actuales;\
+        \ mas elementos quedan disponibles para analisis multi-variante futuro."
+      _change: add
+    _change: modify
+  _change: modify

@@ -589,6 +589,7 @@ The following models and interfaces are available from dependencies. You can use
 | answerImageUrl | `String` |
 | miniTheory | `String` |
 | successMessage | `String` |
+| sentences | `List<String>` |
 
 ### FormEntity (`record`)
 

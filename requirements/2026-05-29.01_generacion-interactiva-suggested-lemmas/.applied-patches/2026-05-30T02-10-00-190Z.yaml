@@ -1,0 +1,193 @@
+code: FEAT-LAGAG
+description: "FEAT-LAGAG: modo de generacion interactiva de candidatos LEMMA_ABSENCE.\
+  \ El modelo arranca con la semilla suggestedLemmas del LemmaAbsenceCorrectionContext\
+  \ y, durante la generacion, puede solicitar mas suggested lemmas para la MISMA task\
+  \ (filtrando por pos/level/limit, semantica F-CSLATDC) a traves de una sesion de\
+  \ consulta acotada, con presupuesto de solicitudes y nuevas categorias de falla.\
+  \ Evolucion aditiva de F-LAGEN: single-shot (LLM) y canned siguen intactos. El candidato\
+  \ final reusa LemmaAbsenceGeneratorResponse (F-LAGAG-R006)."
+modules:
+- name: refiner-domain
+  interfaces:
+  - name: SuggestedLemmaQuerySession
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "requestMore(Optional<Integer> limit, Optional<String> partOfSpeech,\
+        \ Optional<CefrLevel> explicitLevel): SuggestedLemmaQueryResult"
+    visibility: public
+    _change: add
+  packages:
+  - name: lemmasuggestion
+    implementations:
+    - name: BoundSuggestedLemmaQuerySession
+      requiresInject:
+      - name: queryPort
+        type: SuggestedLemmaQueryPort
+      - name: report
+        type: AuditReport
+      - name: task
+        type: RefinementTask
+      visibility: public
+      implements:
+      - SuggestedLemmaQuerySession
+      _change: add
+    _change: modify
+  _change: modify
+- name: revision-infrastructure
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultInteractiveLemmaAbsenceGeneratorFactory
+    suppressed: false
+    interface: InteractiveLemmaAbsenceGeneratorFactory
+  packages:
+  - name: lagen
+    models:
+    - name: LlmGenerationFailureCategory
+      type: record
+      fields:
+      - name: LLM_LEMMA_REQUEST_BUDGET_EXHAUSTED
+        description: El modelo agoto el presupuesto de solicitudes de suggested lemmas
+          (LagenConfig.maxSuggestedLemmaRequests) sin entregar un candidato. F-LAGAG-R004.
+          Solo aplica al modo interactivo.
+        _change: add
+      - name: LLM_TOOL_CALLING_UNSUPPORTED
+        description: "El proveedor activo no es capaz de sostener el intercambio interactivo\
+          \ (no soporta tool-calling / function-calling), por lo que el modelo no\
+          \ puede emitir solicitudes de suggested lemmas. F-LAGAG-R005. Solo aplica\
+          \ al modo interactivo. Falla observable, no cuelgue silencioso."
+        _change: add
+      _change: modify
+    - name: LagenConfig
+      type: record
+      fields:
+      - name: maxSuggestedLemmaRequests
+        type: Integer
+        description: "Presupuesto de solicitudes de suggested lemmas que el modelo\
+          \ puede hacer en una generacion interactiva (F-LAGAG-R004). Perilla configurable\
+          \ en linea con F-LAGEN-R008, resuelta del env var CONTENT_AUDIT_LAGEN_MAX_LEMMA_REQUESTS.\
+          \ Nullable/0 = sentinel; la factory sustituye con LagenDefaults (default\
+          \ 5). Ignorada por los modos LLM single-shot y CANNED."
+        _change: add
+      _change: modify
+    - name: LagenDefaults
+      type: record
+      fields:
+      - name: maxSuggestedLemmaRequests
+        type: int
+        description: Default del presupuesto de solicitudes de suggested lemmas cuando
+          el operador no lo informa (F-LAGAG-R004). Valor por defecto 5.
+        _change: add
+      _change: modify
+    interfaces:
+    - name: InteractiveLemmaAbsenceGeneratorFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(LagenConfig config, SuggestedLemmaQuerySession session):\
+          \ LemmaAbsenceQuizCandidateGenerator"
+      - signature: "providerIdFor(LagenConfig config): String"
+      visibility: public
+      _change: add
+    _change: modify
+  - name: lageninteractive
+    description: "Adaptador LLM del modo de generacion interactiva (FEAT-LAGAG). Implementa\
+      \ el puerto revision-domain.lemmaabsence.LemmaAbsenceQuizCandidateGenerator\
+      \ usando LangChain4j con tool-calling nativo: arranca con la semilla suggestedLemmas\
+      \ del contexto y, cuando el modelo lo solicita, llama a SuggestedLemmaQuerySession.requestMore\
+      \ (semantica F-CSLATDC, in-process) hasta cerrar con un unico candidato (LemmaAbsenceGeneratorResponse).\
+      \ Acota las solicitudes con LagenConfig.maxSuggestedLemmaRequests y emite LLM_LEMMA_REQUEST_BUDGET_EXHAUSTED\
+      \ / LLM_TOOL_CALLING_UNSUPPORTED ademas de las categorias heredadas de F-LAGEN.\
+      \ Reutiliza el paquete lagen [public] (LagenConfig, LagenDefaults, LlmGenerationFailureCategory).\
+      \ Solo el factory seam es publico; el adaptador, el constructor del prompt semilla,\
+      \ el driver del loop de tool-calling y el parser de la solicitud son package-private.\
+      \ allowedClients del modulo = [audit-cli]."
+    visibility: internal
+    models:
+    - name: SuggestedLemmaRequest
+      type: record
+      fields:
+      - name: limit
+        type: Optional<Integer>
+        description: Cantidad maxima de suggested lemmas solicitada por el modelo
+          (F-CSLATDC-R008). Vacio = el adaptador decide default.
+      - name: partOfSpeech
+        type: Optional<String>
+        description: Filtro opcional por part-of-speech solicitado por el modelo (F-CSLATDC-R007).
+      - name: level
+        type: Optional<CefrLevel>
+        description: CefrLevel explicito solicitado por el modelo (F-CSLATDC-R006);
+          vacio = se aplica el nivel de la task.
+      visibility: internal
+      _change: add
+    interfaces:
+    - name: InteractiveLemmaAbsencePromptBuilder
+      sealed: false
+      exposes:
+      - signature: "buildSystemPrompt(): String"
+      - signature: "buildSeedUserPrompt(LemmaAbsenceCorrectionContext context): String"
+      visibility: internal
+      _change: add
+    - name: SuggestedLemmaToolExchange
+      sealed: false
+      exposes:
+      - signature: "fetchMore(SuggestedLemmaRequest request): SuggestedLemmaQueryResult"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultInteractiveLemmaAbsenceGeneratorFactory
+      visibility: public
+      implements:
+      - InteractiveLemmaAbsenceGeneratorFactory
+      _change: add
+    - name: InteractiveLemmaAbsenceLlmGenerator
+      requiresInject:
+      - name: config
+        type: LagenConfig
+      - name: session
+        type: SuggestedLemmaQuerySession
+      - name: seedPromptBuilder
+        type: InteractiveLemmaAbsencePromptBuilder
+      - name: lemmaRequestExchange
+        type: SuggestedLemmaToolExchange
+      - name: responseParser
+        type: LemmaAbsenceResponseParser
+      - name: errorClassifier
+        type: LangChainErrorClassifier
+      - name: strategyName
+        type: String
+      - name: chatModel
+        type: ChatLanguageModel
+      implements:
+      - LemmaAbsenceQuizCandidateGenerator
+      _change: add
+    - name: DefaultInteractiveLemmaAbsencePromptBuilder
+      implements:
+      - InteractiveLemmaAbsencePromptBuilder
+      _change: add
+    - name: DefaultSuggestedLemmaToolExchange
+      requiresInject:
+      - name: session
+        type: SuggestedLemmaQuerySession
+      implements:
+      - SuggestedLemmaToolExchange
+      _change: add
+    _change: add
+  _change: modify
+- name: audit-cli
+  models:
+  - name: LagenMode
+    type: record
+    fields:
+    - name: LLM_INTERACTIVE
+      description: "Modo de generacion interactiva (FEAT-LAGAG). El CLI cablea InteractiveLemmaAbsenceLlmGenerator\
+        \ desde revision-infrastructure.lageninteractive: el modelo arranca con la\
+        \ semilla suggestedLemmas y puede solicitar mas suggested lemmas para la misma\
+        \ task durante la generacion (via SuggestedLemmaQuerySession, semantica F-CSLATDC)\
+        \ de forma acotada. Modo explicito y opt-in (F-LAGAG-R003); el default observable\
+        \ sigue siendo LLM (single-shot, F-LAGEN-R013) y CANNED queda intacto. StrategyId.name\
+        \ = lemma-absence-llm-interactive."
+      _change: add
+    _change: modify
+  _change: modify

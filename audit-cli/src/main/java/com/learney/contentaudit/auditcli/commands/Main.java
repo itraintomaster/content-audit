@@ -55,6 +55,7 @@ import com.learney.contentaudit.refinerdomain.DefaultRefinerEngine;
 import com.learney.contentaudit.refinerdomain.RefinerEngine;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;
+import com.learney.contentaudit.refinerdomain.lemmasuggestion.LemmaAbsenceContextSuggestedLemmaQueryPort;
 import com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver;
 import com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry;
 import com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException;
@@ -74,8 +75,11 @@ import com.learney.contentaudit.revisiondomain.engine.LemmaAbsenceProposalStrate
 import com.learney.contentaudit.revisiondomain.lemmaabsence.CannedLemmaAbsenceQuizCandidateGenerator;
 import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceMvpStrategy;
 import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceQuizCandidateGenerator;
+import com.learney.contentaudit.refinerdomain.lemmasuggestion.BoundSuggestedLemmaQuerySession;
+import com.learney.contentaudit.revisioninfrastructure.lagen.InteractiveLemmaAbsenceGeneratorFactory;
 import com.learney.contentaudit.revisioninfrastructure.lagen.LagenConfig;
 import com.learney.contentaudit.revisioninfrastructure.lagen.LemmaAbsenceLlmGeneratorFactory;
+import com.learney.contentaudit.revisioninfrastructure.lageninteractive.DefaultInteractiveLemmaAbsenceGeneratorFactory;
 import com.learney.contentaudit.revisioninfrastructure.lagenopenai.DefaultLemmaAbsenceLlmGeneratorFactory;
 import com.learney.contentaudit.auditcli.LagenMode;
 import com.learney.contentaudit.auditcli.bootstrap.DefaultLagenModeResolver;
@@ -179,7 +183,13 @@ class Main {
         LagenMode lagenMode;
         try {
             String lagenModeEnv = System.getenv("CONTENT_AUDIT_LAGEN_MODE");
-            lagenMode = new DefaultLagenModeResolver().resolve(lagenModeEnv);
+            // Intercept LLM_INTERACTIVE before delegating to DefaultLagenModeResolver,
+            // which predates this mode (F-LAGAG-R003).
+            if ("llm_interactive".equalsIgnoreCase(lagenModeEnv != null ? lagenModeEnv.trim() : null)) {
+                lagenMode = LagenMode.LLM_INTERACTIVE;
+            } else {
+                lagenMode = new DefaultLagenModeResolver().resolve(lagenModeEnv);
+            }
         } catch (InvalidLagenModeException e) {
             System.err.println("Error: " + e.getMessage());
             System.exit(1);
@@ -332,6 +342,60 @@ class Main {
                     "She ____ [walks|runs] to school.",
                     "Ella camina a la escuela.");
             providerId = "canned:fixed";
+        } else if (lagenMode == LagenMode.LLM_INTERACTIVE) {
+            // Interactive mode: LLM with tool-calling for incremental suggested-lemma requests
+            // (F-LAGAG-R003). The SuggestedLemmaQuerySession is bound at each revise-task call
+            // via the composition root — here we wire a lazy-deferred generator.
+            // F-LAGEN-R014 deferred-failure pattern applies: if config fails, defer to generate().
+            LagenConfig lagenConfig = null;
+            String lagenSetupError = null;
+            try {
+                lagenConfig = new DefaultLagenConfigResolver().resolve(System.getenv());
+            } catch (InvalidLagenConfigException e) {
+                lagenSetupError = e.getMessage();
+            }
+
+            if (lagenSetupError == null) {
+                final LagenConfig finalLagenConfig = lagenConfig;
+                try {
+                    // Build a session factory that, on each generate() call, binds a fresh
+                    // BoundSuggestedLemmaQuerySession with the AuditReport and RefinementTask
+                    // resolved from the current state of the stores (F-LAGAG functional wiring).
+                    // The factory loads the latest RefinementPlan to resolve the source audit ID,
+                    // then loads the corresponding AuditReport, and wraps them with the task
+                    // (carrying the taskId from the CorrectionContext) into a BoundSession.
+                    // Create the query port inline (lemmaAbsenceContextResolver is already available here).
+                    LemmaAbsenceContextSuggestedLemmaQueryPort interactiveLemmaQueryPort =
+                            new LemmaAbsenceContextSuggestedLemmaQueryPort(lemmaAbsenceContextResolver);
+                    com.learney.contentaudit.refinerdomain.lemmasuggestion.DefaultSuggestedLemmaQuerySessionFactory sessionFactory =
+                            new com.learney.contentaudit.refinerdomain.lemmasuggestion.DefaultSuggestedLemmaQuerySessionFactory(
+                                    interactiveLemmaQueryPort, refinementPlanStore, auditReportStore);
+                    InteractiveLemmaAbsenceGeneratorFactory interactiveFactory =
+                            new DefaultInteractiveLemmaAbsenceGeneratorFactory(sessionFactory);
+                    providerId = interactiveFactory.providerIdFor(lagenConfig);
+                    // Pass a null session placeholder: the generator will bind a real session
+                    // on each generate() call via the sessionFactory (session arg is ignored when
+                    // sessionFactory != null).
+                    generator = interactiveFactory.create(finalLagenConfig, null);
+                } catch (com.learney.contentaudit.revisioninfrastructure.lagen.InvalidProviderIdException e) {
+                    lagenSetupError = e.getMessage();
+                    providerId = "lagen-interactive:misconfigured";
+                    final String deferredMsg = lagenSetupError;
+                    generator = ctx -> {
+                        throw new ProposalStrategyFailedException(
+                                "lemma-absence-llm-interactive", ctx.getTaskId(),
+                                "INVALID_CONFIG: " + deferredMsg);
+                    };
+                }
+            } else {
+                providerId = "lagen-interactive:misconfigured";
+                final String deferredMsg = lagenSetupError;
+                generator = ctx -> {
+                    throw new ProposalStrategyFailedException(
+                            "lemma-absence-llm-interactive", ctx.getTaskId(),
+                            "INVALID_CONFIG: " + deferredMsg);
+                };
+            }
         } else {
             // LLM mode: real adapter backed by LangChain4j (F-LAGEN-R002, R003).
             // F-LAGEN-R014: if config or providerId resolution fails, defer the failure
@@ -469,10 +533,13 @@ class Main {
         cmd.addSubcommand("stats", new picocli.CommandLine(statsAnalyzerCmd));
 
         // get — inject baseDir for plan listing; revisionArtifactStore para proposals;
-        // impactPreviewStore + formatter para el preview de impacto (F-PIPRE-R007)
+        // impactPreviewStore + formatter para el preview de impacto (F-PIPRE-R007);
+        // suggestedLemmaQueryPort para F-CSLATDC-R001/R002
+        LemmaAbsenceContextSuggestedLemmaQueryPort suggestedLemmaQueryPort =
+                new LemmaAbsenceContextSuggestedLemmaQueryPort(lemmaAbsenceContextResolver);
         GetCmd getCmd = new GetCmd(auditReportStore, refinementPlanStore, analyzerRegistry,
                 correctionContextResolver, impactPreviewStore, new DefaultImpactPreviewFormatter(),
-                correctionContextJsonMapper);
+                correctionContextJsonMapper, suggestedLemmaQueryPort);
         getCmd.setBaseDir(baseDir);
         getCmd.setRevisionArtifactStore(revisionArtifactStore);
         cmd.addSubcommand("get", new picocli.CommandLine(getCmd));

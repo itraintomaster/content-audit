@@ -47,6 +47,12 @@ public class SentinelArchitectureTest {
   }
 
   @Test
+  public void enforcePackageLageninteractiveVisibility() {
+    JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
+    ArchRuleDefinition.noClasses().that().resideOutsideOfPackages("..revisioninfrastructure..", "java..").should().dependOnClassesThat().resideInAPackage("..revisioninfrastructure.lageninteractive..").allowEmptyShould(true).check(classes);
+  }
+
+  @Test
   public void enforceAllDeclaredClassesExist() {
     try {
       Class.forName("com.learney.contentaudit.revisioninfrastructure.lagen.LagenConfig");
@@ -72,6 +78,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.revisioninfrastructure.lagen.LemmaAbsenceLlmGeneratorFactory");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LemmaAbsenceLlmGeneratorFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.lagen.InteractiveLemmaAbsenceGeneratorFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: InteractiveLemmaAbsenceGeneratorFactory - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.revisioninfrastructure.lagenopenai.LemmaAbsenceLlmRawResponse");
@@ -117,6 +128,41 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.revisioninfrastructure.lagenopenai.DefaultLangChainErrorClassifier");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultLangChainErrorClassifier - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.lageninteractive.SuggestedLemmaRequest");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SuggestedLemmaRequest - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.lageninteractive.InteractiveLemmaAbsencePromptBuilder");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: InteractiveLemmaAbsencePromptBuilder - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.lageninteractive.SuggestedLemmaToolExchange");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SuggestedLemmaToolExchange - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.lageninteractive.DefaultInteractiveLemmaAbsenceGeneratorFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultInteractiveLemmaAbsenceGeneratorFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.lageninteractive.InteractiveLemmaAbsenceLlmGenerator");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: InteractiveLemmaAbsenceLlmGenerator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.lageninteractive.DefaultInteractiveLemmaAbsencePromptBuilder");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultInteractiveLemmaAbsencePromptBuilder - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.lageninteractive.DefaultSuggestedLemmaToolExchange");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultSuggestedLemmaToolExchange - " + e.getMessage());
     }
   }
 }

@@ -115,6 +115,25 @@ Refinement engine
 | KEEP_SAME | `null` |
 | UNKNOWN | `null` |
 
+### SuggestedLemmaQueryResult (`record`)
+
+| Field | Type |
+|-------|------|
+| taskId | `String` |
+| cefrLevel | `CefrLevel` |
+| suggestedLemmas | `List<SuggestedLemma>` |
+
+### SuggestedLemmaQueryRejectedException (`exception`)
+
+**Extends:** `RuntimeException`
+
+**Message:** `Suggested lemma query rejected for task %s: %s`
+
+| Field | Type |
+|-------|------|
+| taskId | `String` |
+| reason | `String` |
+
 ## Interfaces
 
 ### RefinerEngine (port)
@@ -141,6 +160,24 @@ Methods:
 - `supports(DiagnosisKind kind): boolean`
 
 ### CorrectionContext (port)
+
+### SuggestedLemmaQueryPort (port)
+
+Methods:
+
+- `query(AuditReport report, RefinementTask task, Optional<Integer> limit, Optional<String> partOfSpeech, Optional<CefrLevel> explicitLevel): SuggestedLemmaQueryResult`
+
+### SuggestedLemmaQuerySession (port)
+
+Methods:
+
+- `requestMore(Optional<Integer> limit, Optional<String> partOfSpeech, Optional<CefrLevel> explicitLevel): SuggestedLemmaQueryResult`
+
+### SuggestedLemmaQuerySessionFactory (factory)
+
+Methods:
+
+- `bindForTask(RefinementTask task): SuggestedLemmaQuerySession`
 
 ## Implementations
 
@@ -713,6 +750,7 @@ Methods:
 | answerImageUrl | `String` |
 | miniTheory | `String` |
 | successMessage | `String` |
+| sentences | `List<String>` |
 
 ### FormEntity (`record`)
 

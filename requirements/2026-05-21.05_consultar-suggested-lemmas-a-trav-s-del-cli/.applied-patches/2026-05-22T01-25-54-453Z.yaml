@@ -1,0 +1,147 @@
+code: FEAT-CSLATDC
+description: Consulta dinámica de Suggested Lemmas via GetCommand. Overload del verbo
+  get con SuggestedLemmasFilter propio (no se reutiliza GetTasksFilter). Puerto público
+  SuggestedLemmaQueryPort en refiner-domain con un adaptador que NO depende del cap
+  de 10 del LemmaAbsenceContextResolver para satisfacer F-CSLATDC-R011.
+modules:
+- name: audit-cli
+  models:
+  - name: SuggestedLemmasFilter
+    type: record
+    fields:
+    - name: limit
+      type: Optional<Integer>
+      description: "Cantidad máxima de SuggestedLemma a devolver (F-CSLATDC-R008).\
+        \ Vacío = el adaptador decide default; cero = lista vacía válida (F-CSLATDC-R009).\
+        \ El adaptador NO está limitado por el cap interno de 10 del LemmaAbsenceContextResolver:\
+        \ lo que se solicite (dentro de límites razonables) se respeta (F-CSLATDC-R011)."
+    - name: partOfSpeech
+      type: Optional<String>
+      description: "Filtro opcional por part-of-speech (F-CSLATDC-R007). Vacío = sin\
+        \ filtro de POS. El record SuggestedLemmasFilter es cerrado: no es posible\
+        \ pasar filtros fuera de los tres declarados (F-CSLATDC-R013)."
+    - name: level
+      type: Optional<CefrLevel>
+      description: "CefrLevel explícito (F-CSLATDC-R006). Vacío = el adaptador intenta\
+        \ inferir desde la task (F-CSLATDC-R004); si no puede inferir y no se informó\
+        , la consulta es rechazada con SuggestedLemmaQueryRejectedException (F-CSLATDC-R005).\
+        \ Cualquier filtro adicional fuera de los tres declarados (p. ej. isIrregular)\
+        \ tampoco puede pasarse: el record cerrado lo impide estructuralmente (F-CSLATDC-R013)."
+    visibility: public
+    _change: add
+  interfaces:
+  - name: GetCommand
+    sealed: true
+    exposes:
+    - signature: "get(String resource, String name, GetTasksFilter filter): Integer"
+      _change: add
+    - signature: "get(String resource, String name, SuggestedLemmasFilter filter):\
+        \ Integer"
+      _change: add
+    _change: modify
+  packages:
+  - name: commands
+    implementations:
+    - name: GetCmd
+      requiresInject:
+      - name: auditReportStore
+        type: AuditReportStore
+        _change: add
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+        _change: add
+      - name: analyzerRegistry
+        type: AnalyzerRegistry
+        _change: add
+      - name: correctionContextResolver
+        type: CorrectionContextResolver
+        _change: add
+      - name: revisionArtifactStore
+        type: RevisionArtifactStore
+        description: Needed for the 'proposal'/'proposals' resource branch (R002/R003/F-REVAPR)
+        _change: add
+      - name: impactPreviewStore
+        type: ImpactPreviewStore
+        _change: add
+      - name: impactPreviewFormatter
+        type: ImpactPreviewFormatter
+        _change: add
+      - name: correctionContextJsonMapper
+        type: CorrectionContextJsonMapper
+        description: Mismo serializador que usa el renderer efimero. Garantiza que
+          get task y plan efimero produzcan el mismo schema JSON para correctionContext.
+        _change: add
+      - name: suggestedLemmaQueryPort
+        type: SuggestedLemmaQueryPort
+        description: "Resuelve el overload get(resource, name, SuggestedLemmasFilter)\
+          \ cuando resource == \"suggested-lemmas\". Delega en refiner-domain (F-CSLATDC-R001,\
+          \ F-CSLATDC-R002)."
+        _change: add
+      implements:
+      - GetCommand
+      _change: modify
+    _change: modify
+  _change: modify
+- name: refiner-domain
+  models:
+  - name: SuggestedLemmaQueryResult
+    type: record
+    fields:
+    - name: taskId
+      type: String
+      description: Identificador de la RefinementTask consultada.
+    - name: cefrLevel
+      type: CefrLevel
+      description: "Nivel CEFR efectivamente aplicado al filtrar (F-CSLATDC-R003,\
+        \ F-CSLATDC-R004, F-CSLATDC-R006). Trazabilidad obligatoria para el agente\
+        \ revisor."
+    - name: suggestedLemmas
+      type: List<SuggestedLemma>
+      description: "Lemmas ya filtrados por nivel + partOfSpeech y ordenados por prioridad\
+        \ (F-CSLATDC-R010, F-CSLATDC-R014). Lista vacía es resultado válido cuando\
+        \ no hay coincidencias (F-CSLATDC-R009, F-CSLATDC-R012)."
+    visibility: public
+    _change: add
+  - name: SuggestedLemmaQueryRejectedException
+    type: exception
+    fields:
+    - name: taskId
+      type: String
+      description: Task que originó la consulta rechazada.
+    - name: reason
+      type: String
+      description: Motivo funcional legible (texto exacto pendiente — DOUBT-EXACT-ERROR-COPY
+        del requirement).
+    message: "Suggested lemma query rejected for task %s: %s"
+    visibility: public
+    _change: add
+    extends: RuntimeException
+  interfaces:
+  - name: SuggestedLemmaQueryPort
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "query(AuditReport report, RefinementTask task, Optional<Integer>\
+        \ limit, Optional<String> partOfSpeech, Optional<CefrLevel> explicitLevel):\
+        \ SuggestedLemmaQueryResult"
+    visibility: public
+    _change: add
+  packages:
+  - name: lemmasuggestion
+    description: "Adaptador interno del puerto de consulta de SuggestedLemmas. Encapsula\
+      \ la generación, filtrado y ranking de candidatos sin pasar por el cap fijo\
+      \ del LemmaAbsenceContextResolver, para que el limit solicitado por el agente\
+      \ sea respetado (F-CSLATDC-R011)."
+    visibility: internal
+    implementations:
+    - name: LemmaAbsenceContextSuggestedLemmaQueryPort
+      requiresInject:
+      - name: lemmaAbsenceContextResolver
+        type: CorrectionContextResolver<LemmaAbsenceCorrectionContext>
+        _change: delete
+      visibility: public
+      implements:
+      - SuggestedLemmaQueryPort
+      _change: modify
+    _change: modify
+  _change: modify

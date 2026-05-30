@@ -1,0 +1,434 @@
+{
+  "scores" : {
+    "a1" : {
+      "a1aPassed" : true,
+      "a1aViolations" : [ ],
+      "a1bScore" : 0.5681818181818182,
+      "a1bDetails" : [ {
+        "elementName" : "DefaultSuggestedLemmaQueryServiceFactory",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "SuggestedLemmaQueryService",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 0.75
+      }, {
+        "elementName" : "DiagnosticSuggestedLemmaCandidateBuilder",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "SuggestedLemmaCandidateBuilder",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "GetCmd",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "SuggestedLemmaLevelResolver",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "AuditReportSuggestedLemmaLevelResolver",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultSuggestedLemmaRanker",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "SuggestedLemmaRanker",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultSuggestedLemmaQueryService",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "SuggestedLemmaQueryServiceFactory",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      } ],
+      "a1cScore" : 0.3333333333333333,
+      "a1dScore" : 0.8,
+      "compositeScore" : 0.614090909090909
+    },
+    "a2" : {
+      "structurallySound" : false,
+      "a2a" : {
+        "id" : "A2a",
+        "name" : "Structural Integrity",
+        "score" : 0.0,
+        "violations" : [ {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires AuditReportStore but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires RefinementPlanStore but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires AnalyzerRegistry but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires CorrectionContextResolver but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires RevisionArtifactStore but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires ImpactPreviewStore but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "GetCmd requires SuggestedLemmaQueryService but no such interface exists in audit-cli or its dependsOn"
+        } ]
+      },
+      "a2b" : {
+        "id" : "A2b",
+        "name" : "Port Coverage",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "a2c" : {
+        "id" : "A2c",
+        "name" : "Reachability",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "a2d" : {
+        "id" : "A2d",
+        "name" : "Contract Utilization",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "a2e" : {
+        "id" : "A2e",
+        "name" : "Path Traceability",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "composite" : 0.0
+    },
+    "a3" : {
+      "modules" : [ {
+        "name" : "audit-cli",
+        "ca" : 0,
+        "ce" : 0,
+        "instability" : 0.0,
+        "abstractness" : 0.0,
+        "distance" : 1.0,
+        "zone" : "pain",
+        "score" : 0.0
+      }, {
+        "name" : "refiner-domain",
+        "ca" : 0,
+        "ce" : 0,
+        "instability" : 0.0,
+        "abstractness" : 0.38461538461538464,
+        "distance" : 0.6153846153846154,
+        "zone" : "pain",
+        "score" : 0.3846153846153846
+      } ],
+      "componentCount" : 15,
+      "threshold" : 30,
+      "ramp" : 0.5,
+      "rawScore" : 0.1923076923076923,
+      "effectiveScore" : 0.5961538461538461,
+      "warnings" : [ "rawScore 0,19 boosted to effectiveScore 0,60 by ramp (componentCount=15 < threshold=30). Underlying zones: audit-cli=pain, refiner-domain=pain. The boost is appropriate for small patches but the signal would degrade at scale." ]
+    },
+    "a4" : {
+      "dependencyInversionHolds" : true,
+      "acyclic" : true,
+      "a4a" : {
+        "id" : "A4a",
+        "name" : "Dependency Inversion",
+        "score" : 1.0,
+        "violations" : [ {
+          "code" : "A4-NOLAYER",
+          "severity" : "warning",
+          "message" : "No modules declare a layer — A4 cannot be evaluated"
+        } ]
+      },
+      "a4b" : {
+        "id" : "A4b",
+        "name" : "Acyclicity",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "a4c" : {
+        "id" : "A4c",
+        "name" : "Adapter Polarity",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "a4d" : {
+        "id" : "A4d",
+        "name" : "Layer Isolation",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "a4e" : {
+        "id" : "A4e",
+        "name" : "Composition Root Discipline",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "composite" : 1.0
+    },
+    "a5" : {
+      "a5aScore" : 0.45999999999999996,
+      "a5bScore" : 1.0,
+      "a5cScore" : 0.3333333333333333,
+      "a5dScore" : 1.0,
+      "a5eScore" : 1.0,
+      "violations" : [ {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'AuditNodeIndexFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'SuggestedLemmaQueryServiceFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'NlpTokenizerFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Strategy pattern 'LemmaAbsenceProposalStrategy' has 1 implementation(s) — needs ≥2 for polymorphism"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'LemmaAbsenceLlmGeneratorFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'DefaultAuditNodeIndexFactory' declared in Factory pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'SpacyNlpTokenizerFactory' declared in Factory pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'LemmaAbsenceMvpStrategy' declared in Strategy pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'DefaultLemmaAbsenceLlmGeneratorFactory' declared in Factory pattern but not found in any module"
+      } ],
+      "composite" : 0.6713333333333333
+    },
+    "a6" : {
+      "score" : 1.0,
+      "totalInterfaces" : 5,
+      "inflatedCount" : 0,
+      "inflated" : [ ]
+    },
+    "c1" : {
+      "score" : 1.0,
+      "maxDepth" : 1,
+      "avgDepth" : 0.09090909090909091,
+      "entries" : [ {
+        "entryPoint" : "audit-cli.commands.ContentAuditCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.AnalyzeCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.GetCmd",
+        "depth" : 1
+      }, {
+        "entryPoint" : "audit-cli.commands.DeleteCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.PruneCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.PlanCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.ReviseCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.ConfigAnalyzerCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.StatsAnalyzerCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.ApproveCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.RejectCmd",
+        "depth" : 0
+      } ]
+    },
+    "c3" : {
+      "score" : 0.8571428571428571,
+      "details" : [ {
+        "name" : "GetCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 10,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.0
+      }, {
+        "name" : "GetCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultSuggestedLemmaQueryServiceFactory",
+        "moduleName" : "refiner-domain",
+        "cbo" : 4,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultSuggestedLemmaQueryService",
+        "moduleName" : "refiner-domain",
+        "cbo" : 4,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "AuditReportSuggestedLemmaLevelResolver",
+        "moduleName" : "refiner-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DiagnosticSuggestedLemmaCandidateBuilder",
+        "moduleName" : "refiner-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultSuggestedLemmaRanker",
+        "moduleName" : "refiner-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      } ]
+    },
+    "a1e" : {
+      "totalRules" : 15,
+      "mappedCount" : 0,
+      "unmappedCount" : 15,
+      "score" : 0.0,
+      "mapped" : [ ],
+      "unmapped" : [ "F-CSLATDC-R001", "F-CSLATDC-R002", "F-CSLATDC-R003", "F-CSLATDC-R004", "F-CSLATDC-R005", "F-CSLATDC-R006", "F-CSLATDC-R007", "F-CSLATDC-R008", "F-CSLATDC-R009", "F-CSLATDC-R010", "F-CSLATDC-R011", "F-CSLATDC-R012", "F-CSLATDC-R013", "F-CSLATDC-R014", "F-CSLATDC-R015" ],
+      "violations" : [ {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R001 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R002 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R003 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R004 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R005 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R006 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R007 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R008 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R009 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R010 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R011 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R012 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R013 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R014 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-CSLATDC-R015 is declared in REQUIREMENT.md but not referenced in the patch."
+      } ]
+    },
+    "mode" : "PATCH_ONLY",
+    "compositeScore" : 0.5443397472093124
+  },
+  "aTierComposite" : 0.5443397472093124,
+  "globalComposite" : {
+    "value" : 0.5443397472093124,
+    "raw" : 0.5443397472093124,
+    "capped" : false,
+    "aWeight" : 1.0,
+    "bWeight" : 0.0,
+    "bAggregate" : "NaN",
+    "aModifier" : 1.0,
+    "perDim" : [ ]
+  },
+  "topFindings" : [ ],
+  "timestamp" : "2026-05-22T00:12:03.138390Z"
+}

@@ -829,4 +829,28 @@ public class DefaultQuizSentenceConverterTest {
         assertTrue(converterInterface.isInstance(converter),
                 "DefaultQuizSentenceConverter must implement QuizSentenceConverter");
     }
+
+    @Test
+    @DisplayName("should keep toPlainSentences exposed as a public converter operation that derives the same canonical list from a FormEntity")
+    @Tag("FEAT-DBSENT")
+    @Tag("F-DBSENT-R003")
+    public void shouldKeepToPlainSentencesExposedAsAPublicConverterOperationThatDerivesTheSameCanonicalListFromAFormEntity() {
+        // R003: toPlainSentences remains available on the QuizSentenceConverter contract
+        // as a useful fallback for consumers that need runtime derivation.
+        // A simple cloze-inline quiz: "She is English."
+        FormEntity form = form(
+                text("She "),
+                cloze("is"),
+                text(" English.")
+        );
+
+        List<String> result = converter.toPlainSentences(form);
+
+        assertNotNull(result, "toPlainSentences must return a non-null list");
+        assertFalse(result.isEmpty(), "toPlainSentences must return a non-empty list");
+        assertFalse(result.get(0) == null || result.get(0).isBlank(),
+                "canonical plain sentence (index 0) must be a non-blank string");
+        assertTrue(normalize(result.get(0)).contains("She") && normalize(result.get(0)).contains("English"),
+                "canonical plain sentence must be semantically equivalent to 'She is English.': " + result.get(0));
+    }
 }

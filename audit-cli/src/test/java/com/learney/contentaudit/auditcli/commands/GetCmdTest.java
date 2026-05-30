@@ -6,8 +6,11 @@ import com.learney.contentaudit.auditdomain.AuditReportSummary;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.auditcli.GetTasksFilter;
+import com.learney.contentaudit.auditcli.SuggestedLemmasFilter;
 import com.learney.contentaudit.auditapplication.AnalyzerRegistry;
 import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
+import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryPort;
+import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryResult;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
 import com.learney.contentaudit.refinerdomain.LengthDirection;
@@ -42,6 +45,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -72,8 +76,10 @@ public class GetCmdTest {
 
     @BeforeEach
     void setUp() throws Exception {
+        SuggestedLemmaQueryPort suggestedLemmaQueryPort = mock(SuggestedLemmaQueryPort.class);
         cmd = new GetCmd(auditReportStore, refinementPlanStore, analyzerRegistry,
-                correctionContextResolver, null, null, new DefaultCorrectionContextJsonMapper());
+                correctionContextResolver, null, null, new DefaultCorrectionContextJsonMapper(),
+                suggestedLemmaQueryPort);
         cmd.setRevisionArtifactStore(revisionArtifactStore);
         // GetCmd has a picocli @Option field 'formatName' that picocli normally populates.
         // When constructing directly in unit tests, we must inject a default value so the
@@ -104,7 +110,7 @@ public class GetCmdTest {
         );
         when(auditReportStore.list()).thenReturn(List.of(summary));
 
-        int exit = cmd.get("audits", null, null);
+        int exit = cmd.get("audits", null, (GetTasksFilter) null);
 
         assertEquals(0, exit);
     }
@@ -119,7 +125,7 @@ public class GetCmdTest {
         AuditReport report = new AuditReport();
         when(auditReportStore.load(auditId)).thenReturn(Optional.of(report));
 
-        int exit = cmd.get("audit", auditId, null);
+        int exit = cmd.get("audit", auditId, (GetTasksFilter) null);
 
         assertEquals(0, exit);
     }
@@ -141,7 +147,7 @@ public class GetCmdTest {
         System.setOut(new PrintStream(outBuf));
         int exit;
         try {
-            exit = cmd.get("audit", unknownId, null);
+            exit = cmd.get("audit", unknownId, (GetTasksFilter) null);
         } finally {
             System.setErr(originalErr);
             System.setOut(originalOut);
@@ -170,7 +176,7 @@ public class GetCmdTest {
         System.setOut(new PrintStream(outBuf));
         int exit;
         try {
-            exit = cmd.get("widgets", null, null);
+            exit = cmd.get("widgets", null, (GetTasksFilter) null);
         } finally {
             System.setErr(originalErr);
             System.setOut(originalOut);
@@ -200,8 +206,8 @@ public class GetCmdTest {
         );
         when(auditReportStore.list()).thenReturn(List.of(summary));
 
-        int exitPlural = cmd.get("audits", null, null);
-        int exitSingular = cmd.get("audit", null, null);
+        int exitPlural = cmd.get("audits", null, (GetTasksFilter) null);
+        int exitSingular = cmd.get("audit", null, (GetTasksFilter) null);
 
         assertEquals(exitPlural, exitSingular,
                 "Singular 'audit' and plural 'audits' must produce the same exit code when listing");
@@ -221,8 +227,8 @@ public class GetCmdTest {
         );
         when(refinementPlanStore.load(planId)).thenReturn(Optional.of(plan));
 
-        int exitPlural = cmd.get("plans", planId, null);
-        int exitSingular = cmd.get("plan", planId, null);
+        int exitPlural = cmd.get("plans", planId, (GetTasksFilter) null);
+        int exitSingular = cmd.get("plan", planId, (GetTasksFilter) null);
 
         assertEquals(exitPlural, exitSingular,
                 "Singular 'plan' and plural 'plans' must produce the same exit code when addressing by id");
@@ -250,8 +256,8 @@ public class GetCmdTest {
         when(auditReportStore.load(auditId)).thenReturn(Optional.of(report));
 
         // The id that appears in the listing must be usable to fetch the single resource
-        int listExit = cmd.get("audits", null, null);
-        int getByIdExit = cmd.get("audit", auditId, null);
+        int listExit = cmd.get("audits", null, (GetTasksFilter) null);
+        int getByIdExit = cmd.get("audit", auditId, (GetTasksFilter) null);
 
         assertEquals(0, listExit);
         assertEquals(0, getByIdExit,
@@ -622,7 +628,7 @@ public class GetCmdTest {
         System.setErr(new PrintStream(errBuf));
         int exit;
         try {
-            exit = cmd.get("audits", null, null);
+            exit = cmd.get("audits", null, (GetTasksFilter) null);
         } finally {
             System.setOut(originalOut);
             System.setErr(originalErr);
@@ -3624,5 +3630,53 @@ public class GetCmdTest {
         // R006: a "Length:" label must still appear (not suppressed entirely)
         assertTrue(output.contains("Length"),
                 "Expected 'Length:' label to appear even when UNKNOWN: " + output);
+    }
+
+    @Test
+    @DisplayName("should route the suggested-lemmas resource through GetCommand.get extending the existing verb without invoking a new command type")
+    @Tag("FEAT-CSLATDC")
+    @Tag("F-CSLATDC-R002")
+    public void shouldRouteTheSuggestedlemmasResourceThroughGetCommandgetExtendingTheExistingVerbWithoutInvokingANewCommandType()
+            throws Exception {
+        // Arrange: create a GetCmd with the suggestedLemmaQueryPort injected
+        SuggestedLemmaQueryPort suggestedLemmaQueryPort = mock(SuggestedLemmaQueryPort.class);
+        GetCmd localCmd = new GetCmd(
+                auditReportStore, refinementPlanStore, analyzerRegistry,
+                correctionContextResolver, null, null,
+                new DefaultCorrectionContextJsonMapper(), suggestedLemmaQueryPort);
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(localCmd, "text");
+
+        // A LEMMA_ABSENCE task in the latest plan — needed for the impl to resolve the task
+        String taskId = "task-la-001";
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                taskId, AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // Port returns a valid empty result for the query (level A1 from the task context)
+        SuggestedLemmaQueryResult queryResult =
+                new SuggestedLemmaQueryResult(taskId, CefrLevel.A1, List.of());
+        when(suggestedLemmaQueryPort.query(any(), any(), any(), any(), any()))
+                .thenReturn(queryResult);
+
+        // Filter: limit=5, no partOfSpeech, no explicit level (inferred from task)
+        SuggestedLemmasFilter filter = new SuggestedLemmasFilter(
+                Optional.of(5), Optional.empty(), Optional.empty());
+
+        // Act: dispatch through GetCommand.get — R002 requires NO new command type
+        int exit = localCmd.get("suggested-lemmas", taskId, filter);
+
+        // Assert: exit is zero (dispatch succeeded through the existing verb)
+        // and the port was invoked, proving the routing went through GetCmd.get
+        assertEquals(0, exit);
+        verify(suggestedLemmaQueryPort).query(any(), any(), any(), any(), any());
     }
 }
