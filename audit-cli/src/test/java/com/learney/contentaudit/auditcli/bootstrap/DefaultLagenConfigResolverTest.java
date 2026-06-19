@@ -262,6 +262,15 @@ public class DefaultLagenConfigResolverTest {
     @Tag("FEAT-LASAG")
     @Tag("F-LASAG-R011")
     public void shouldResolveMaxEvalRetriesToTheDefaultOf3WhenNoEvalretriesEnvVarIsPresent() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R011 (mitad observable): sin env-var explícita de maxEvalRetries el resolver
+        // debe producir una LagenConfig con maxEvalRetries == 3.
+        // fullEnv() no incluye ninguna entrada de eval-retries, por lo que
+        // el map ya representa el escenario "env-var ausente".
+        Map<String, String> env = fullEnv();
+
+        LagenConfig config = resolver.resolve(env);
+
+        assertEquals(3, config.getMaxEvalRetries(),
+                "maxEvalRetries must be 3 (default) when no eval-retries env var is present (F-LASAG-R011)");
     }
 }

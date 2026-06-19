@@ -1,5 +1,17 @@
 package com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent;
 
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
+
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryCriteria;
+import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryResult;
+import com.learney.contentaudit.refinerdomain.SuggestedLemmaQuerySession;
+import java.util.List;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -16,6 +28,31 @@ public class DefaultSuggestedLemmaAgentToolTest {
     @Tag("F-LASAG-R001")
     public void shouldQueryTheSuggestedlemmasSessionWithTheGivenCriteriaAndReturnItsResultWhenTheAgentRefinesSuggestedWords(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Arrange
+        SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
+                Optional.of(5),
+                Optional.of("verb"),
+                Optional.of(CefrLevel.A1),
+                false
+        );
+
+        SuggestedLemmaQueryResult expectedResult = new SuggestedLemmaQueryResult(
+                "task-123",
+                CefrLevel.A1,
+                List.of()
+        );
+
+        SuggestedLemmaQuerySession session = mock(SuggestedLemmaQuerySession.class);
+        when(session.requestMore(criteria)).thenReturn(expectedResult);
+
+        DefaultSuggestedLemmaAgentTool tool = new DefaultSuggestedLemmaAgentTool(session);
+
+        // Act
+        SuggestedLemmaQueryResult actualResult = tool.fetchSuggestedLemmas(criteria);
+
+        // Assert: the tool delegates to the session with the exact criteria given and returns its result
+        verify(session).requestMore(criteria);
+        verifyNoMoreInteractions(session);
+        assertSame(expectedResult, actualResult);
     }
 }
