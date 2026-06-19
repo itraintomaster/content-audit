@@ -18,6 +18,9 @@ public final class DefaultLagenConfigResolver implements LagenConfigResolver {
     static final String KEY_TEMPERATURE = "CONTENT_AUDIT_LAGEN_TEMPERATURE";
     static final String KEY_MAX_TOKENS = "CONTENT_AUDIT_LAGEN_MAX_TOKENS";
     static final String KEY_TIMEOUT = "CONTENT_AUDIT_LAGEN_TIMEOUT";
+    static final String KEY_MAX_EVAL_RETRIES = "CONTENT_AUDIT_LAGEN_MAX_EVAL_RETRIES";
+
+    private static final int DEFAULT_MAX_EVAL_RETRIES = 3;
 
     @Override
     public LagenConfig resolve(Map<String, String> env) {
@@ -52,6 +55,14 @@ public final class DefaultLagenConfigResolver implements LagenConfigResolver {
         if (timeoutStr != null && !timeoutStr.isBlank()) {
             int seconds = parsePositiveInt(KEY_TIMEOUT, timeoutStr);
             config.setTimeout(Duration.ofSeconds(seconds));
+        }
+
+        // F-LASAG-R011: maxEvalRetries — default 3 when env-var is absent
+        String maxEvalRetriesStr = env.get(KEY_MAX_EVAL_RETRIES);
+        if (maxEvalRetriesStr != null && !maxEvalRetriesStr.isBlank()) {
+            config.setMaxEvalRetries(parsePositiveInt(KEY_MAX_EVAL_RETRIES, maxEvalRetriesStr));
+        } else {
+            config.setMaxEvalRetries(DEFAULT_MAX_EVAL_RETRIES);
         }
 
         return config;
