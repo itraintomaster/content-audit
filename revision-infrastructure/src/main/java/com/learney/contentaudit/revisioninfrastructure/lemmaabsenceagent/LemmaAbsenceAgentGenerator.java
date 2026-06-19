@@ -5,6 +5,7 @@ import com.learney.contentaudit.refinerdomain.SuggestedLemmaQuerySessionFactory;
 import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceGeneratorResponse;
 import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceQuizCandidateGenerator;
 import com.learney.contentaudit.revisioninfrastructure.lagen.LagenConfig;
+import com.sentinel.agents.framework.state.RunState;
 import dev.langchain4j.model.chat.ChatModel;
 import javax.annotation.processing.Generated;
 
@@ -40,8 +41,111 @@ class LemmaAbsenceAgentGenerator implements LemmaAbsenceQuizCandidateGenerator {
         this.strategyName = strategyName;
     }
 
+    /**
+     * Agent name constant — the declarative graph must live at
+     * {@code .sentinel/agents/lemma-absence-agent/}.
+     *
+     * <p><strong>Adapter↔graph contract (inputs side):</strong>
+     * <pre>
+     *   taskId          — context.getTaskId()
+     *   cefrLevel       — context.getCefrLevel().name()        (e.g. "A1")
+     *   sentence        — context.getSentence()
+     *   quizSentence    — context.getQuizSentence()            (fill-in-blank, [[lemma]] marker)
+     *   translation     — context.getTranslation()
+     *   knowledgeTitle  — context.getKnowledgeTitle()
+     *   suggestedWords  — comma-separated lemmas from context.getSuggestedLemmas() (may be empty)
+     * </pre>
+     *
+     * <p><strong>Adapter↔graph contract (tool side):</strong>
+     * <ul>
+     *   <li>Tool name in the tools map: {@code "get_suggested_lemmas"}</li>
+     *   <li>Tool type: {@link DefaultSuggestedLemmaAgentTool} (implements {@link SuggestedLemmaAgentTool})</li>
+     *   <li>Exactly one tool — no CLI verbs (F-LASAG-R002)</li>
+     * </ul>
+     *
+     * <p><strong>Adapter↔graph contract (output side):</strong>
+     * <ul>
+     *   <li>Artifact key: {@code "quizCandidate"} (see {@link DefaultAgentCandidateParser#ARTIFACT_KEY})</li>
+     *   <li>Format: UTF-8 JSON file — {@code {"quizSentence":"...","translation":"..."}}</li>
+     * </ul>
+     */
+    static final String AGENT_NAME = "lemma-absence-agent";
+
+    /** Tool name used by the declarative graph to invoke get_suggested_lemmas. */
+    static final String TOOL_NAME_SUGGESTED_LEMMAS = "get_suggested_lemmas";
+
     @Override
     public LemmaAbsenceGeneratorResponse generate(LemmaAbsenceCorrectionContext context) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Build inputs map (contract with the declarative graph — see Javadoc above).
+        java.util.Map<String, String> inputs = buildInputs(context);
+
+        // Build tools map: exactly one entry — the suggested-lemmas tool (F-LASAG-R002).
+        com.learney.contentaudit.refinerdomain.RefinementTask minimalTask =
+                new com.learney.contentaudit.refinerdomain.RefinementTask(
+                        context.getTaskId(), null, null, null, null, 0, null);
+        com.learney.contentaudit.refinerdomain.SuggestedLemmaQuerySession session =
+                sessionFactory.bindForTask(minimalTask);
+        SuggestedLemmaAgentTool suggestedLemmaTool = new DefaultSuggestedLemmaAgentTool(session);
+
+        java.util.Map<String, Object> tools = java.util.Map.of(
+                TOOL_NAME_SUGGESTED_LEMMAS, suggestedLemmaTool);
+
+        // Single launch — no retry on runtime failure (F-LASAG-R006).
+        RunState runState;
+        try {
+            runState = agentRuntimeLauncher.launch(AGENT_NAME, inputs, chatModel, tools);
+        } catch (Exception e) {
+            com.learney.contentaudit.revisioninfrastructure.lagen.LlmGenerationFailureCategory category =
+                    errorClassifier.classify(e);
+            throw new com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException(
+                    strategyName,
+                    context.getTaskId(),
+                    category.name() + ": " + e.getMessage());
+        }
+
+        // Check for HALTED (error) state (F-LASAG-R005).
+        if (runState.isHaltedRun()) {
+            com.learney.contentaudit.revisioninfrastructure.lagen.LlmGenerationFailureCategory category =
+                    errorClassifier.classify(runState);
+            throw new com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException(
+                    strategyName,
+                    context.getTaskId(),
+                    category.name() + ": agent run halted — " + runState.terminationReason());
+        }
+
+        // COMPLETED → parse the candidate artifact and return.
+        return candidateParser.parse(runState, context.getTaskId(), strategyName);
+    }
+
+    /**
+     * Builds the inputs map for the declarative graph from the correction context.
+     * Canonical key list is documented in the {@link #generate} Javadoc.
+     */
+    private static java.util.Map<String, String> buildInputs(LemmaAbsenceCorrectionContext context) {
+        java.util.Map<String, String> inputs = new java.util.LinkedHashMap<>();
+        inputs.put("taskId", context.getTaskId() != null ? context.getTaskId() : "");
+        inputs.put("cefrLevel",
+                context.getCefrLevel() != null ? context.getCefrLevel().name() : "");
+        inputs.put("sentence", context.getSentence() != null ? context.getSentence() : "");
+        inputs.put("quizSentence",
+                context.getQuizSentence() != null ? context.getQuizSentence() : "");
+        inputs.put("translation",
+                context.getTranslation() != null ? context.getTranslation() : "");
+        inputs.put("knowledgeTitle",
+                context.getKnowledgeTitle() != null ? context.getKnowledgeTitle() : "");
+
+        // Suggested lemmas as a comma-separated list of lemma strings.
+        java.util.List<com.learney.contentaudit.refinerdomain.SuggestedLemma> lemmas =
+                context.getSuggestedLemmas();
+        String suggestedWords = "";
+        if (lemmas != null && !lemmas.isEmpty()) {
+            suggestedWords = lemmas.stream()
+                    .map(com.learney.contentaudit.refinerdomain.SuggestedLemma::getLemma)
+                    .filter(l -> l != null && !l.isBlank())
+                    .collect(java.util.stream.Collectors.joining(", "));
+        }
+        inputs.put("suggestedWords", suggestedWords);
+
+        return inputs;
     }
 }

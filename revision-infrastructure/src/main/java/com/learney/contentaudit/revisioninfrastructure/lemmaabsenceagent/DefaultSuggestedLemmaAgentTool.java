@@ -18,6 +18,6 @@ class DefaultSuggestedLemmaAgentTool implements SuggestedLemmaAgentTool {
 
     @Override
     public SuggestedLemmaQueryResult fetchSuggestedLemmas(SuggestedLemmaQueryCriteria criteria) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return session.requestMore(criteria);
     }
 }
