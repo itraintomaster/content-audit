@@ -14,6 +14,19 @@
 
 2026-06-19 — architect — DOUBT-TRAZABILIDAD-AGENTE queda ABIERTA (no se resuelve en este patch, por pedido explícito).
 
+2026-06-19 — analyst — Clasificación de Validation para reglas sin superficie JUnit (R007-R010).
+  El DSL com.sentinel.dsl.ValidationStatus admite SOLO {VALIDATED, AUTO_VALIDATED, ASSUMPTION} (verificado por javap sobre el jar). No existe un valor para "validado por el harness de evals del propio agente / fuera del suite JUnit".
+  Decisión: R007-R010 → VALIDATED, con nota explícita en metadata "(validada por el harness de evals del agente, no por el suite JUnit)". Razón: AUTO_VALIDATED implica cobertura por el suite JUnit, que aquí no existe (qa-tester ya rehusó taggearlas); VALIDATED = confirmación humana del usuario sobre la conducta del harness, es el valor más fiel disponible. El "por qué no AUTO_VALIDATED" queda en el Detail de cada regla.
+  why: pedido explícito de usar la clasificación correcta del DSL y dejar explícito el porqué cuando no hay un valor específico.
+
+2026-06-19 — analyst — `sentinel feature sync` es aditivo-only; NO poda journeys huérfanos.
+  Sync agrega journeys nuevos a features[].journeys[] pero deja los que ya no están en REQUIREMENT.md con el aviso "will be pruned at next generate". La poda real (y por tanto la eliminación de los 9 testPackage refs colgantes a lagenopenai/lageninteractive) ocurre en `sentinel generate`, que regenera código/contratos/tests — fuera del lane del analyst. Escalado a @architect.
+  why: el task esperaba que el sync eliminara los refs; el comportamiento real del CLI lo difiere a generate.
+
+2026-06-19 — analyst — Formato de journeys discoverable: 1 heading `### Journey[...]` + 1 fence yaml single-entry por journey.
+  El bloque combinado (9 journeys en un único fence `journeys:`) que tenía F-LASAG era leído como 0 journeys por el parser de `feature sync`. El formato estándar del proyecto (ver FEAT-CDIFF, FEAT-LAGEN) es un fence por journey bajo su heading. Reescrito; los 9 se registraron.
+  why: regla operativa para futuros REQUIREMENT.md con múltiples flow-journeys en este proyecto.
+
 2026-06-19 — architect — Patch + TECH_SPEC entregados (no aplicados).
   Diseño: paquete interno lemmaabsenceagent reemplaza lagenopenai+lageninteractive. Seam público único LemmaAbsenceAgentGeneratorFactory. Adaptador LemmaAbsenceAgentGenerator implementa el puerto existente sin cambiar firma.
   Colaboradores package-private: AgentRuntimeLauncher (aísla AgentRun/AgentRegistry/ExecutionContext, devuelve RunState), SuggestedLemmaAgentTool (delega en SuggestedLemmaQuerySession, F-CSLATDC), AgentRuntimeErrorClassifier (RunState/Throwable -> LlmGenerationFailureCategory -> ProposalStrategyFailedException con categoría), AgentCandidateParser (RunState exitoso -> LemmaAbsenceGeneratorResponse; reemplaza al LemmaAbsenceResponseParser borrado con lagenopenai).

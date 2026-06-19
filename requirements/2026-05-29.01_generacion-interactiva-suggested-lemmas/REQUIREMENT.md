@@ -96,96 +96,15 @@ trazable.
 
 ## User Journeys
 
-### Journey[F-LAGAG-J001] - El modelo solicita más lemmas y entrega un candidato
-**Validation**: AUTO_VALIDATED
-
-Happy path. La semilla inicial no alcanza, el modelo solicita suggested lemmas adicionales dentro del presupuesto y entrega un único candidato final registrado como producido en este modo.
-
-```yaml
-journeys:
-  - id: F-LAGAG-J001
-    name: El modelo solicita más lemmas y entrega un candidato
-    flow:
-      - id: start_with_seed
-        action: "El operador inicia la generación interactiva para una task LEMMA_ABSENCE y el modelo recibe la lista semilla con los suggested lemmas más prioritarios"
-        gate: [F-LAGAG-R001, F-LAGAG-R003]
-        then: evaluate_seed
-      - id: evaluate_seed
-        action: "El sistema determina si la semilla recibida le alcanza al modelo para construir el candidato final"
-        outcomes:
-          - when: "La semilla alcanza para construir el candidato"
-            then: deliver_candidate
-          - when: "La semilla no alcanza y el modelo necesita más palabras"
-            then: request_more
-      - id: request_more
-        action: "El modelo solicita suggested lemmas adicionales para la misma task filtrando por tipo gramatical y/o nivel y/o cantidad, y el sistema responde con los lemmas aplicables"
-        gate: [F-LAGAG-R002]
-        then: deliver_candidate
-      - id: deliver_candidate
-        action: "El modelo entrega exactamente un candidato final válido y la propuesta queda registrada como producida en este modo"
-        gate: [F-LAGAG-R006, F-LAGAG-R003]
-        result: success
-```
-
-### Journey[F-LAGAG-J002] - Se agota el presupuesto de solicitudes sin candidato
-**Validation**: AUTO_VALIDATED
-
-El modelo solicita más suggested lemmas pero agota el presupuesto de solicitudes sin entregar un candidato, terminando en la falla observable por presupuesto agotado.
-
-```yaml
-journeys:
-  - id: F-LAGAG-J002
-    name: Se agota el presupuesto de solicitudes sin candidato
-    flow:
-      - id: start_with_seed
-        action: "El operador inicia la generación interactiva para una task LEMMA_ABSENCE y el modelo recibe la lista semilla"
-        gate: [F-LAGAG-R001]
-        then: request_more
-      - id: request_more
-        action: "El modelo solicita más suggested lemmas para la misma task y el sistema responde con los lemmas aplicables"
-        gate: [F-LAGAG-R002]
-        then: check_budget
-      - id: check_budget
-        action: "El sistema determina si todavía queda presupuesto de solicitudes para que el modelo entregue un candidato"
-        gate: [F-LAGAG-R004]
-        outcomes:
-          - when: "Queda presupuesto y el modelo entrega un candidato final válido dentro del límite"
-            then: deliver_candidate
-          - when: "Se agotó el presupuesto de solicitudes sin que el modelo entregue un candidato"
-            then: budget_exhausted
-      - id: deliver_candidate
-        action: "El modelo entrega exactamente un candidato final válido dentro del presupuesto"
-        gate: [F-LAGAG-R006]
-        result: success
-      - id: budget_exhausted
-        action: "La generación termina con la falla observable por presupuesto de consultas agotado"
-        gate: [F-LAGAG-R004]
-        result: failure
-```
-
-### Journey[F-LAGAG-J003] - El proveedor activo no puede sostener la consulta interactiva
-**Validation**: AUTO_VALIDATED
-
-El proveedor activo no es capaz de sostener la solicitud de suggested lemmas durante la generación y la situación termina en una falla observable, sin cuelgue silencioso.
-
-```yaml
-journeys:
-  - id: F-LAGAG-J003
-    name: El proveedor activo no puede sostener la consulta interactiva
-    flow:
-      - id: start_with_seed
-        action: "El operador inicia la generación interactiva para una task LEMMA_ABSENCE y el modelo recibe la lista semilla"
-        gate: [F-LAGAG-R001]
-        then: attempt_request
-      - id: attempt_request
-        action: "El modelo intenta solicitar suggested lemmas adicionales para la misma task durante la generación"
-        gate: [F-LAGAG-R002]
-        then: provider_incapable
-      - id: provider_incapable
-        action: "El proveedor activo no es capaz de sostener la solicitud y la generación termina con la falla observable de proveedor incapaz, sin cuelgue silencioso"
-        gate: [F-LAGAG-R005]
-        result: failure
-```
+> **Journeys absorbidos por FEAT-LASAG.** Los journeys de la generación
+> interactiva (antes F-LAGAG-J001 … F-LAGAG-J003) fueron reemplazados por la ruta
+> única del agente sentinel-agent y ahora viven como F-LASAG-J001 … F-LASAG-J009
+> en `requirements/2026-06-18.01_lemma-absence-agent-migration/REQUIREMENT.md`. La
+> capacidad de solicitar más suggested lemmas durante la generación (antecedente
+> directo del react con una sola tool) se conserva en el agente; lo que se retira
+> es la **mecánica interactiva separada** que estos journeys describían. Las reglas
+> de negocio de esta feature (F-LAGAG-R001 … F-LAGAG-R006) siguen vigentes como
+> contexto. Ver [FEAT-LASAG](../2026-06-18.01_lemma-absence-agent-migration/REQUIREMENT.md).
 
 ## Referencias
 
