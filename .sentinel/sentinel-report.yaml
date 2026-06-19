@@ -1,4 +1,4 @@
-generatedAt: 2026-06-19T16:54:01.383829Z
+generatedAt: 2026-06-19T19:24:15.783466Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -3600,62 +3600,62 @@ features:
   requirementFile: ./requirements/2026-06-18.01_lemma-absence-agent-migration/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LASAG-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: should query the suggested-lemmas session with the given criteria and
         return its result when the agent refines suggestedWords
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultSuggestedLemmaAgentTool
   - ruleId: F-LASAG-R002
-    state: FAILING
+    state: PASSING
     tests:
     - name: should pass only the suggested-lemmas tool to the agent runtime and no
         other CLI command tool during generation
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceAgentGenerator
   - ruleId: F-LASAG-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: should return exactly one QuizCandidate with non-null quizSentence and
         translation for a valid LEMMA_ABSENCE correction context
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceAgentGenerator
   - ruleId: F-LASAG-R004
-    state: FAILING
+    state: PASSING
     tests:
     - name: should emit a QuizCandidate without exception when the tool budget is
         exhausted during the run
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceAgentGenerator
   - ruleId: F-LASAG-R005
-    state: FAILING
+    state: PASSING
     tests:
     - name: should throw ProposalStrategyFailedException with the preserved category
         instead of an empty or null candidate when the runtime fails during generation
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceAgentGenerator
     - name: should map a runtime timeout to LLM_TIMEOUT preserving the failure category
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultAgentRuntimeErrorClassifier
   - ruleId: F-LASAG-R006
-    state: FAILING
+    state: PASSING
     tests:
     - name: should launch the agent runtime exactly once and propagate the exception
         when generation hits a runtime failure
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceAgentGenerator
   - ruleId: F-LASAG-R007
@@ -3667,21 +3667,21 @@ features:
   - ruleId: F-LASAG-R010
     state: NO_TESTS
   - ruleId: F-LASAG-R011
-    state: FAILING
+    state: PASSING
     tests:
     - name: should resolve maxEvalRetries to the default of 3 when no eval-retries
         env var is present
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultLagenConfigResolver
   - ruleId: F-LASAG-R012
-    state: FAILING
+    state: PASSING
     tests:
     - name: should preserve the runtime failure category when classifying a throwable
         raised during any phase
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultAgentRuntimeErrorClassifier
   journeysCoverage:
@@ -3695,7 +3695,7 @@ features:
       - name: path1_todosLosEvalsBloqueantes1235DanVeredictoPositivo_success
         implemented: false
         passing: false
-        module: audit-cli
+        module: revision-infrastructure
         implementation: FLasagJ001JourneyTest
   - journeyId: F-LASAG-J002
     state: DECLARED
@@ -3707,7 +3707,7 @@ features:
       - name: path1_elAgenteAlcanzaElTopeDeNConsultasALaTool_success
         implemented: false
         passing: false
-        module: audit-cli
+        module: revision-infrastructure
         implementation: FLasagJ002JourneyTest
   - journeyId: F-LASAG-J003
     state: DECLARED
@@ -3719,7 +3719,7 @@ features:
       - name: path1_elRuntimeArrojaTimeoutauthtransporteotroError_failure
         implemented: false
         passing: false
-        module: audit-cli
+        module: revision-infrastructure
         implementation: FLasagJ003JourneyTest
   - journeyId: F-LASAG-J004
     state: DECLARED
@@ -3731,7 +3731,7 @@ features:
       - name: path1_unEvalBloqueanteCorriYReprobYAnQuedanReintentosDentroDeMaxEvalRetries_todosLosEvalsBloqueantesPasanTrasElReintento_success
         implemented: false
         passing: false
-        module: audit-cli
+        module: revision-infrastructure
         implementation: FLasagJ004JourneyTest
     - pathId: path-2
       result: success
@@ -3740,7 +3740,7 @@ features:
       - name: path2_todosLosEvalsBloqueantesPasanEnElPrimerIntento_success
         implemented: false
         passing: false
-        module: audit-cli
+        module: revision-infrastructure
         implementation: FLasagJ004JourneyTest
   - journeyId: F-LASAG-J005
     state: DECLARED
@@ -3752,7 +3752,7 @@ features:
       - name: path1_seAgotanLosReintentosSinCandidatoQuePaseTodosLosBloqueantes_success
         implemented: false
         passing: false
-        module: audit-cli
+        module: revision-infrastructure
         implementation: FLasagJ005JourneyTest
   - journeyId: F-LASAG-J006
     state: DECLARED
@@ -3764,7 +3764,7 @@ features:
       - name: path1_soloElEvalDeseable4DaVeredictoNegativoYTodosLosBloqueantesPasan_success
         implemented: false
         passing: false
-        module: audit-cli
+        module: revision-infrastructure
         implementation: FLasagJ006JourneyTest
   - journeyId: F-LASAG-J007
     state: DECLARED
@@ -3776,7 +3776,7 @@ features:
       - name: path1_unEvalSufreUnErrorDeRuntimeTimeouttransporteotro_failure
         implemented: false
         passing: false
-        module: audit-cli
+        module: revision-infrastructure
         implementation: FLasagJ007JourneyTest
   - journeyId: F-LASAG-J009
     state: DECLARED

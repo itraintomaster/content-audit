@@ -1,5 +1,20 @@
 package com.learney.contentaudit.journeys;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import com.learney.contentaudit.auditcli.bootstrap.DefaultLagenConfigResolver;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
+import com.learney.contentaudit.refinerdomain.LengthDirection;
+import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
+import com.learney.contentaudit.refinerdomain.SuggestedLemma;
+import com.learney.contentaudit.revisioninfrastructure.lagen.LagenConfig;
+import com.learney.contentaudit.revisiondomain.lemmaabsence.CannedLemmaAbsenceQuizCandidateGenerator;
+import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceGeneratorResponse;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -21,6 +36,60 @@ public class FLasagJ009JourneyTest {
     @Tag("path-1")
     @DisplayName("path-1: Se invoca LagenConfigResolver.resolve... → La LagenConfig resultante tiene maxEv... [no hay env-var explícita de maxEvalRetries] → Se ejecuta el modo CANNED con un valo... → CANNED emite su candidato sin dispara... [el modo activo es CANNED] → success")
     public void path1_noHayEnvvarExplcitaDeMaxEvalRetries_elModoActivoEsCANNED_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // ── Paso 1: resolver_sin_envvar / assert_default ──────────────────────────────
+        // Se invoca DefaultLagenConfigResolver.resolve(...) sin la env-var de reintentos.
+        // El env base cubre las perillas requeridas (provider, endpoint, model) pero
+        // intencionalmente NO incluye CONTENT_AUDIT_LAGEN_MAX_EVAL_RETRIES (F-LASAG-R011).
+        DefaultLagenConfigResolver resolver = new DefaultLagenConfigResolver();
+        Map<String, String> env = new HashMap<>();
+        env.put("CONTENT_AUDIT_LAGEN_PROVIDER",  "lmstudio");
+        env.put("CONTENT_AUDIT_LAGEN_ENDPOINT",  "http://localhost:1234/v1");
+        env.put("CONTENT_AUDIT_LAGEN_MODEL",     "gemma-3-4b-it");
+        // CONTENT_AUDIT_LAGEN_MAX_EVAL_RETRIES ausente → el resolver debe devolver el default 3
+
+        LagenConfig config = resolver.resolve(env);
+
+        // gate F-LASAG-R011 (mitad observable): sin env-var explícita el valor debe ser 3
+        assertEquals(3, config.getMaxEvalRetries(),
+                "maxEvalRetries debe ser 3 (default) cuando no hay env-var explícita (F-LASAG-R011)");
+
+        // ── Paso 2: ejecutar_canned / emitir ─────────────────────────────────────────
+        // Se ejecuta el modo CANNED con maxEvalRetries alto para demostrar que CANNED
+        // es indiferente a ese valor: emite su candidato en una única llamada directa,
+        // sin ningún mecanismo de reintento de generación (F-LASAG-R011).
+        final String CANNED_QUIZ        = "She ____[walks|runs] to school every day.";
+        final String CANNED_TRANSLATION = "Ella camina a la escuela todos los días.";
+
+        // Configurar un maxEvalRetries alto (arbitrario) para demostrar que CANNED lo ignora
+        config.setMaxEvalRetries(99);
+
+        LemmaAbsenceCorrectionContext context = new LemmaAbsenceCorrectionContext(
+                "task-j009",
+                "She goes to school every day.",
+                "Ella va a la escuela todos los días.",
+                "School",
+                "Write simple present tense sentences.",
+                "Education",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("go", "VERB", CefrLevel.B2, CefrLevel.A1, 200)),
+                List.of(new SuggestedLemma("walk", "VERB", "A1 synonym", 80, null, null, null)),
+                "She ____[goes|walks] to school.",
+                0, 0, 0, 0,
+                LengthDirection.UNKNOWN
+        );
+
+        CannedLemmaAbsenceQuizCandidateGenerator cannedGenerator =
+                new CannedLemmaAbsenceQuizCandidateGenerator(CANNED_QUIZ, CANNED_TRANSLATION);
+
+        // CANNED.generate() retorna el candidato fijo en una única invocación (sin reintentos)
+        // — la ausencia de colaboradores de retry en el tipo garantiza la independencia de maxEvalRetries
+        LemmaAbsenceGeneratorResponse response = cannedGenerator.generate(context);
+
+        // gate F-LASAG-R011 (CANNED ignora maxEvalRetries): candidato emitido con independencia del valor
+        assertNotNull(response, "CANNED debe emitir un candidato sin disparar reintentos (F-LASAG-R011)");
+        assertEquals(CANNED_QUIZ, response.getQuizSentence(),
+                "CANNED debe retornar el quizSentence fijo sin reintentos (F-LASAG-R011)");
+        assertEquals(CANNED_TRANSLATION, response.getTranslation(),
+                "CANNED debe retornar la translation fija sin reintentos (F-LASAG-R011)");
     }
 }

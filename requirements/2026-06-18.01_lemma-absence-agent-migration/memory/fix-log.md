@@ -38,7 +38,20 @@
   R012 (Throwable): TimeoutException→LLM_TIMEOUT, SecurityException (msg 401)→LLM_AUTH_FAILED, ConnectException→LLM_UNREACHABLE, RuntimeException→LLM_OTHER.
     why: LLM_TRANSPORT no existe en el enum; LLM_UNREACHABLE es el nombre real del enum para errores de transporte/conexión.
 
+2026-06-19 — developer — DefaultAgentRuntimeErrorClassifier: SecurityException requiere match de AUTH_PATTERN en el mensaje para clasificar como LLM_AUTH_FAILED (no solo el tipo).
+  why: el test pasa SecurityException("sentinel-agent: 401 Unauthorized – invalid API key"); sin el regex check se caería a LLM_OTHER.
+
+2026-06-19 — developer — LemmaAbsenceAgentGenerator: se necesitó añadir import de RunState al file @Generated para que el body compilara.
+  why: el stub generado no tenía el import; Sentinel smart-merge preserva el cuerpo, los imports son de la zona de merge también.
+
 2026-06-19 — test-writer — LemmaAbsenceAgentGeneratorTest: 5 stubs implementados (R002-R006).
   Estrategia: Mockito para los interfaces package-private (no hay clases internas anónimas que necesiten el tipo ChatModel). null pasado como ChatModel al constructor (el launcher fake no lo usa). Fakes capturan tools map (R002) via thenAnswer. RunState.empty().withRunStatus(COMPLETED) como estado exitoso.
   PROBLEMA PREEXISTENTE DEL MÓDULO: pom.xml declara langchain4j-core:0.36.2 explícitamente pero el código generado (AgentRuntimeLauncher.java, LemmaAbsenceAgentGenerator.java) usa dev.langchain4j.model.chat.ChatModel que solo existe en langchain4j-core:1.13.0 (transitivo de sentinel-agents, excluido por nearest-wins). El módulo NO compila en clean. Verificado que MI test compila correctamente con javac + classpath que incluye langchain4j-core:1.13.0. @architect debe corregir el pom (excluir la dep directa vieja o actualizar la versión).
   why: clean compile falla en producción, no en el test; la compilación con classpath correcto (1.13.0) pasa sin errores.
+
+2026-06-19 — qa-tester — Re-home de placement journey-tests F-LASAG (ronda 4, NO aplicada).
+  Estado previo aplicado: J001-J007+J009 en audit-cli; J008 degradado a prosa por @analyst (ya no en el gate).
+  PROBLEMA: los journey-tests del agente (J001-J007) no se pueden testear honestamente en audit-cli — el factory público hardcodea el launcher real y no hay LLM en tests. AgentRuntimeLauncher (internal) y el ctor package-private de LemmaAbsenceAgentGenerator solo son accesibles dentro de revision-infrastructure.lemmaabsenceagent (donde ya viven los handwrittenTests que mockean el launcher).
+  RE-HOME: J001-J007 → testModule=revision-infrastructure, testPackage=com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent (launcher mockeable, outcomes conducibles: éxito/budget/falla-runtime/retry). J009 SE QUEDA en audit-cli/journeys (su superficie es DefaultLagenConfigResolver default-3 + modo CANNED).
+  Patrón: "testear el journey donde vive su superficie observable".
+  Sentinel aceptó el re-home sin restricción (0 conflicts). handwrittenTests intactos. NO aplicado (lo aplica el usuario + sentinel generate, que reubica los stubs *JourneyTest).

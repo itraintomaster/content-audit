@@ -1,5 +1,8 @@
 # progress
 
+2026-06-19 — test-writer — FLasagJ001JourneyTest y FLasagJ002JourneyTest implementados y VERDE.
+  Patrón: idéntico a LemmaAbsenceAgentGeneratorTest (Mockito mocks de AgentRuntimeLauncher + AgentCandidateParser + AgentRuntimeErrorClassifier + SuggestedLemmaQuerySessionFactory; null para ChatModel). J001: mock launcher devuelve COMPLETED, parser devuelve candidato → assertNotNull result/quizSentence/translation. J002: budget N=1, launcher devuelve COMPLETED → assertNotNull sin excepción. Tests run: 2, Failures: 0, Errors: 0.
+
 2026-06-19 — architect — Patch F-LASAG propuesto (NO aplicado) y validado.
   Salida: "Validated: 2 additions, 4 modifications, 4 deletions, 0 conflicts."
   Proposal: requirements/2026-06-18.01_lemma-absence-agent-migration/architectural_patch.yaml
@@ -37,7 +40,24 @@
 2026-06-19 — test-writer — LemmaAbsenceAgentGeneratorTest: 5 stubs (R002-R006) implementados con Mockito.
   Mockito permite mockear AgentRuntimeLauncher sin importar ChatModel. null pasado como ChatModel en el constructor (fakes no lo usan). Compilación verificada manualmente con javac + langchain4j-core:1.13.0: 0 errores. mvn test-compile falla porque pom.xml declara langchain4j-core:0.36.2 (no tiene ChatModel) como dep directa que excluye la versión 1.13.0 transitiva de sentinel-agents. @architect debe corregir el pom (excluir o actualizar la dep directa a 1.13.0).
 
+2026-06-19 — developer — Implementación production completa de lemmaabsenceagent (6 clases). 8/8 tests VERDE.
+  DefaultSuggestedLemmaAgentTool: delega session.requestMore(criteria). DefaultAgentRuntimeErrorClassifier: clasifica RunState por terminationReason + Throwable por cadena de causas (TIMEOUT/UNREACHABLE/AUTH/OTHER). DefaultAgentCandidateParser: lee artifact "quizCandidate" (JSON quizSentence+translation desde file path). DefaultAgentRuntimeLauncher: AgentLoader.loadFromDirectory + AgentRun.run con ExecutionContext. LemmaAbsenceAgentGenerator: single-launch + classify-on-exception + no-retry. DefaultLemmaAbsenceAgentGeneratorFactory: ChatModel via OpenAiChatModel.builder() 1.13.0 + wires all deps.
+
 2026-06-19 — architect — Fix langchain4j 0.36.2→1.13.0 propuesto (NO aplicado).
   Salida: "Validated: 0 additions, 1 modifications, 0 deletions, 0 conflicts." + WARNING de modify de 2 deps.
   architectural_patch.yaml ahora contiene SOLO el fix de versiones (langchain4j-openai + langchain4j-core a 1.13.0; ChatLanguageModel→ChatModel en provides). El cleanup de orphans previo ya fue reemplazado (--replace).
   PENDIENTE: este patch + el cleanup de orphans NO están aplicados aún. Si el usuario quiere ambos en una sola pasada, hay que re-proponer combinando (el --replace del fix descartó el cleanup del proposal). Avisar al coordinador/usuario.
+
+2026-06-19 — test-writer — FLasagJ009JourneyTest (path-1) implementado y VERDE.
+  Paso 1 (assert_default): resolver.resolve(env sin CONTENT_AUDIT_LAGEN_MAX_EVAL_RETRIES) → assertEquals(3, getMaxEvalRetries()).
+  Paso 2 (ejecutar_canned): config.setMaxEvalRetries(99); CannedLemmaAbsenceQuizCandidateGenerator.generate(context) → assertEquals candidato fijo.
+  Fix: KEY_* son package-private → literales "CONTENT_AUDIT_LAGEN_*" en vez de DefaultLagenConfigResolver.KEY_*.
+  Tests run: 1, Failures: 0, Errors: 0. BUILD SUCCESS.
+
+2026-06-19 — test-writer — FLasagJ004JourneyTest (path-1 + path-2), FLasagJ005JourneyTest (path-1), FLasagJ006JourneyTest (path-1) implementados y VERDES (4/4).
+  Patrón: mock launcher COMPLETED + parser devuelve candidato fijo → assertNotNull result/quizSentence/translation. Mecánica interna (retry/best-effort/deseable) es graph-internal; el seam asserta solo el outcome "se emite un QuizCandidate sin excepción".
+  J004-path-2: todos los bloqueantes pasan en primer intento (mismo patrón, sin lógica de retry visible).
+
+2026-06-19 — test-writer — FLasagJ003JourneyTest + FLasagJ007JourneyTest implementados y VERDES (2/2).
+  Patrón: mock AgentRuntimeLauncher.launch() arroja RuntimeException → classifier.classify(ex) devuelve LLM_TIMEOUT → assertThrows(ProposalStrategyFailedException) con reason.contains("LLM_TIMEOUT") + verify(launcher, times(1)).
+  J003 cubre el path de error en fase de generación (R005+R006); J007 cubre el path de error en fase de evals (R012), mismo seam observable (un único launch que falla → excepción con categoría preservada, sin retry).
