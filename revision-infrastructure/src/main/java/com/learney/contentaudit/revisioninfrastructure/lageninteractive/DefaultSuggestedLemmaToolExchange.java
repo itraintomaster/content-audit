@@ -1,5 +1,6 @@
 package com.learney.contentaudit.revisioninfrastructure.lageninteractive;
 
+import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryCriteria;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryResult;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQuerySession;
 import javax.annotation.processing.Generated;
@@ -17,10 +18,12 @@ class DefaultSuggestedLemmaToolExchange implements SuggestedLemmaToolExchange {
 
     @Override
     public SuggestedLemmaQueryResult fetchMore(SuggestedLemmaRequest request) {
-        return session.requestMore(
+        SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
                 request.getLimit(),
                 request.getPartOfSpeech(),
-                request.getLevel()
+                request.getLevel(),
+                false   // interactive LAGEN sessions do not expose already-exposed lemmas by default
         );
+        return session.requestMore(criteria);
     }
 }

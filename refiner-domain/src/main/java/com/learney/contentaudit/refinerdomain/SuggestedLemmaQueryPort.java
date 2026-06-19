@@ -1,8 +1,6 @@
 package com.learney.contentaudit.refinerdomain;
 
 import com.learney.contentaudit.auditdomain.AuditReport;
-import com.learney.contentaudit.auditdomain.CefrLevel;
-import java.util.Optional;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -11,6 +9,5 @@ import javax.annotation.processing.Generated;
 )
 public interface SuggestedLemmaQueryPort {
     SuggestedLemmaQueryResult query(AuditReport report, RefinementTask task,
-            Optional<Integer> limit, Optional<String> partOfSpeech,
-            Optional<CefrLevel> explicitLevel);
+            SuggestedLemmaQueryCriteria criteria);
 }

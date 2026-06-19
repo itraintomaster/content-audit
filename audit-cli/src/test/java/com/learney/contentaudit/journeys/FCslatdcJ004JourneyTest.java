@@ -4,8 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.EvpCatalogPort;
+import com.learney.contentaudit.auditdomain.LemmaCountConfig;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.AuditableKnowledge;
@@ -30,12 +33,14 @@ import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
 import com.learney.contentaudit.refinerdomain.SuggestedLemma;
+import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryCriteria;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryResult;
 import com.learney.contentaudit.refinerdomain.lemmasuggestion.LemmaAbsenceContextSuggestedLemmaQueryPort;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -229,16 +234,20 @@ public class FCslatdcJ004JourneyTest {
                 "Precondition R011: requested limit must exceed static lemma count");
 
         CorrectionContextResolver<LemmaAbsenceCorrectionContext> resolver = mockResolver();
+        // Use the static factory to build the port (UnderexposedLemmaInventory path for includeExposed=false).
+        // The level-wide inventory is not exercised since the criteria uses includeExposed=false.
+        EvpCatalogPort mockEvpCatalog = mock(EvpCatalogPort.class);
+        LemmaCountConfig mockLemmaCountConfig = mock(LemmaCountConfig.class);
+        when(mockLemmaCountConfig.getThreshold()).thenReturn(5);
+        when(mockEvpCatalog.getExpectedLemmas(CefrLevel.A1)).thenReturn(Set.of());
         LemmaAbsenceContextSuggestedLemmaQueryPort port =
-                new LemmaAbsenceContextSuggestedLemmaQueryPort(resolver);
+                LemmaAbsenceContextSuggestedLemmaQueryPort.create(resolver, mockEvpCatalog, mockLemmaCountConfig);
 
         // Step 3: dynamic_query_scope — gate R011
         // The system resolves dynamically from the AuditReport, not limited to the static 3.
-        SuggestedLemmaQueryResult result = port.query(
-                report, task,
-                Optional.of(REQUESTED_LIMIT),
-                Optional.of("NOUN"),
-                Optional.of(CefrLevel.A1));
+        SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
+                Optional.of(REQUESTED_LIMIT), Optional.of("NOUN"), Optional.of(CefrLevel.A1), false);
+        SuggestedLemmaQueryResult result = port.query(report, task, criteria);
 
         // Step 4: return_dynamic_results
         // gate R011: result must contain more lemmas than the static correctionContext had.

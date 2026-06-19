@@ -1,0 +1,104 @@
+code: FEAT-INCEXP
+description: "FEAT-INCEXP — opcion includeExposed para la consulta de Suggested Lemmas.\
+  \ Introduce un carrier de criterios (SuggestedLemmaQueryCriteria) que reemplaza\
+  \ los parametros sueltos de query/requestMore, y un contrato LeveledLemmaInventory\
+  \ con dos implementaciones (solo-sub-expuestos vs universo-ampliado) para que el\
+  \ flujo OFF y el flujo ON sean trazables por separado. Evolucion aditiva: OFF (includeExposed=false)\
+  \ = comportamiento identico a FEAT-CSLATDC/FEAT-SLEM."
+modules:
+- name: refiner-domain
+  models:
+  - name: SuggestedLemmaQueryCriteria
+    type: record
+    fields:
+    - name: limit
+      type: Optional<Integer>
+      description: "Cantidad maxima de SuggestedLemma a devolver tras ampliar y ordenar\
+        \ el universo (F-INCEXP-R007). Vacio = el adaptador decide su default historico,\
+        \ identico a FEAT-CSLATDC; el recorte se aplica como ultimo paso (F-INCEXP-R007,\
+        \ F-INCEXP-R010)."
+    - name: partOfSpeech
+      type: Optional<String>
+      description: "Filtro opcional por part-of-speech, aplicado tambien sobre los\
+        \ lemas ya expuestos cuando includeExposed esta activo (F-INCEXP-R006). Vacio\
+        \ = sin filtro de POS."
+    - name: explicitLevel
+      type: Optional<CefrLevel>
+      description: "CefrLevel explicito. Vacio = el adaptador infiere el nivel desde\
+        \ la task; la inferencia y el rechazo por falta de nivel no dependen de includeExposed\
+        \ (F-INCEXP-R005, F-INCEXP-R008)."
+    - name: includeExposed
+      type: boolean
+      description: "Opcion de la consulta. false (default) = la senal de prioridad\
+        \ EXCLUYE los lemas ya suficientemente expuestos, comportamiento identico\
+        \ a FEAT-CSLATDC (F-INCEXP-R001). true = la senal de prioridad solo ORDENA:\
+        \ el universo se amplia a todos los lemas del level+POS incluyendo los ya\
+        \ expuestos (F-INCEXP-R002), que quedan al final como un unico grado de prioridad\
+        \ ordenado por COCA ascendente (F-INCEXP-R003, F-INCEXP-R004)."
+    visibility: public
+    _change: add
+  interfaces:
+  - name: SuggestedLemmaQueryPort
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "query(AuditReport report, RefinementTask task, SuggestedLemmaQueryCriteria\
+        \ criteria): SuggestedLemmaQueryResult"
+      _change: add
+    - signature: "query(AuditReport report, RefinementTask task, Optional<Integer>\
+        \ limit, Optional<String> partOfSpeech, Optional<CefrLevel> explicitLevel):\
+        \ SuggestedLemmaQueryResult"
+      _change: delete
+    _change: modify
+  - name: SuggestedLemmaQuerySession
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "requestMore(SuggestedLemmaQueryCriteria criteria): SuggestedLemmaQueryResult"
+      _change: add
+    - signature: "requestMore(Optional<Integer> limit, Optional<String> partOfSpeech,\
+        \ Optional<CefrLevel> explicitLevel): SuggestedLemmaQueryResult"
+      _change: delete
+    _change: modify
+  packages:
+  - name: lemmasuggestion
+    interfaces:
+    - name: LeveledLemmaInventory
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "lemmasFor(AuditReport report, RefinementTask task, CefrLevel level,\
+          \ Optional<String> partOfSpeech): List<SuggestedLemma>"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: UnderexposedLemmaInventory
+      requiresInject:
+      - name: lemmaAbsenceContextResolver
+        type: CorrectionContextResolver<LemmaAbsenceCorrectionContext>
+      visibility: internal
+      implements:
+      - LeveledLemmaInventory
+      _change: add
+    - name: LevelWideLemmaInventory
+      requiresInject:
+      - name: evpCatalogPort
+        type: EvpCatalogPort
+      - name: lemmaCountConfig
+        type: LemmaCountConfig
+      visibility: internal
+      implements:
+      - LeveledLemmaInventory
+      _change: add
+    - name: LemmaAbsenceContextSuggestedLemmaQueryPort
+      requiresInject:
+      - name: underexposedLemmaInventory
+        type: LeveledLemmaInventory
+      - name: levelWideLemmaInventory
+        type: LeveledLemmaInventory
+      visibility: public
+      implements:
+      - SuggestedLemmaQueryPort
+      _change: modify
+    _change: modify
+  _change: modify

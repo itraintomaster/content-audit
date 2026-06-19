@@ -10,23 +10,30 @@ import com.learney.contentaudit.auditdomain.AuditableQuiz;
 import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.auditdomain.DefaultLevelDiagnoses;
 import com.learney.contentaudit.auditdomain.DefaultQuizDiagnoses;
+import com.learney.contentaudit.auditdomain.EvpCatalogPort;
+import com.learney.contentaudit.auditdomain.LemmaCountConfig;
 import com.learney.contentaudit.auditdomain.labs.AbsenceType;
 import com.learney.contentaudit.auditdomain.labs.AbsentLemma;
 import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceLevelDiagnosis;
 import com.learney.contentaudit.auditdomain.labs.LemmaAndPos;
 import com.learney.contentaudit.auditdomain.labs.PriorityLevel;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountLevelDiagnosis;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountStats;
+import com.learney.contentaudit.auditdomain.lemmacount.LevelLemmaCountResult;
 import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
 import com.learney.contentaudit.refinerdomain.SuggestedLemma;
+import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryCriteria;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryRejectedException;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryResult;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.IntStream;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.Assertions;
@@ -50,7 +57,15 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
 
     @BeforeEach
     void setUp() {
-        sut = new LemmaAbsenceContextSuggestedLemmaQueryPort(resolver);
+        // Use UnderexposedLemmaInventory (same-package) for the underexposed path (includeExposed=false).
+        // For includeExposed=true tests, individual tests build their own sut with a
+        // LevelWideLemmaInventory backed by a mocked EvpCatalogPort.
+        UnderexposedLemmaInventory underexposedInventory = new UnderexposedLemmaInventory(resolver);
+        // levelWide inventory is not exercised by CSLATDC tests (includeExposed defaults to false);
+        // pass a simple stub that returns an empty list to avoid NPE if accidentally called.
+        LeveledLemmaInventory levelWideStub = (report, task, level, pos) -> List.of();
+        sut = new LemmaAbsenceContextSuggestedLemmaQueryPort(
+                resolver, underexposedInventory, levelWideStub);
     }
 
     // ------------------------------------------------------------------
@@ -187,6 +202,32 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
                 null);
     }
 
+    /** Builds a SuggestedLemmaQueryCriteria for the default (includeExposed=false) mode. */
+    private SuggestedLemmaQueryCriteria defaultCriteria(Optional<Integer> limit,
+            Optional<String> partOfSpeech, Optional<CefrLevel> explicitLevel) {
+        return new SuggestedLemmaQueryCriteria(limit, partOfSpeech, explicitLevel, false);
+    }
+
+    /**
+     * Builds a DefaultLevelDiagnoses that contains BOTH a LemmaAbsenceLevelDiagnosis (for level
+     * inference by the port) AND a LemmaCountLevelDiagnosis (for sub-exposed classification by
+     * LevelWideLemmaInventory). The sub-exposed list marks the given lemmas as underexposed
+     * (score < 1.0 means sub-exposed, not yet reaching the threshold).
+     */
+    private DefaultLevelDiagnoses buildMilestoneDiagnosesWithLemmaCount(
+            CefrLevel level,
+            List<AbsentLemma> absentLemmas,
+            List<LemmaAndPos> subExposedLemmasForCount) {
+        DefaultLevelDiagnoses diagnoses = buildMilestoneDiagnoses(level, absentLemmas);
+        List<LemmaCountStats> statsList = subExposedLemmasForCount.stream()
+                .map(lp -> new LemmaCountStats(lp, 2, 0.4, Optional.empty()))
+                .toList();
+        LevelLemmaCountResult levelResult = new LevelLemmaCountResult(level, 0.4, 10, statsList);
+        LemmaCountLevelDiagnosis lemmaCountDiagnosis = new LemmaCountLevelDiagnosis(levelResult);
+        diagnoses.setLemmaCountDiagnosis(lemmaCountDiagnosis);
+        return diagnoses;
+    }
+
     // ------------------------------------------------------------------
     // Tests
     // ------------------------------------------------------------------
@@ -208,7 +249,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
         RefinementTask task = buildLemmaAbsenceTask(quizId);
 
         SuggestedLemmaQueryResult result = sut.query(
-                report, task, Optional.empty(), Optional.empty(), Optional.empty());
+                report, task, defaultCriteria(Optional.empty(), Optional.empty(), Optional.empty()));
 
         Assertions.assertNotNull(result);
         Assertions.assertEquals("task-sq-1", result.getTaskId());
@@ -231,7 +272,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
         RefinementTask task = buildLemmaAbsenceTask(quizId);
 
         SuggestedLemmaQueryResult result = sut.query(
-                report, task, Optional.empty(), Optional.empty(), Optional.empty());
+                report, task, defaultCriteria(Optional.empty(), Optional.empty(), Optional.empty()));
 
         Assertions.assertEquals(CefrLevel.A1, result.getCefrLevel());
         Assertions.assertFalse(result.getSuggestedLemmas().isEmpty());
@@ -253,7 +294,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
         RefinementTask task = buildLemmaAbsenceTask(quizId);
 
         SuggestedLemmaQueryResult result = sut.query(
-                report, task, Optional.empty(), Optional.empty(), Optional.empty());
+                report, task, defaultCriteria(Optional.empty(), Optional.empty(), Optional.empty()));
 
         // The level inferred from the milestone ancestor must be B1 (not provided explicitly)
         Assertions.assertEquals(CefrLevel.B1, result.getCefrLevel());
@@ -276,7 +317,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
         RefinementTask task = buildLemmaAbsenceTask(quizId);
 
         Assertions.assertThrows(SuggestedLemmaQueryRejectedException.class, () ->
-                sut.query(report, task, Optional.empty(), Optional.empty(), Optional.empty()));
+                sut.query(report, task, defaultCriteria(Optional.empty(), Optional.empty(), Optional.empty())));
     }
 
     @Test
@@ -297,7 +338,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
         RefinementTask task = buildLemmaAbsenceTask(quizId);
 
         SuggestedLemmaQueryResult result = sut.query(
-                report, task, Optional.empty(), Optional.empty(), Optional.of(CefrLevel.A2));
+                report, task, defaultCriteria(Optional.empty(), Optional.empty(), Optional.of(CefrLevel.A2)));
 
         Assertions.assertEquals(CefrLevel.A2, result.getCefrLevel());
     }
@@ -321,7 +362,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
         RefinementTask task = buildLemmaAbsenceTask(quizId);
 
         SuggestedLemmaQueryResult result = sut.query(
-                report, task, Optional.empty(), Optional.of("VERB"), Optional.empty());
+                report, task, defaultCriteria(Optional.empty(), Optional.of("VERB"), Optional.empty()));
 
         List<SuggestedLemma> lemmas = result.getSuggestedLemmas();
         Assertions.assertFalse(lemmas.isEmpty());
@@ -350,7 +391,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
 
         int limit = 3;
         SuggestedLemmaQueryResult result = sut.query(
-                report, task, Optional.of(limit), Optional.empty(), Optional.empty());
+                report, task, defaultCriteria(Optional.of(limit), Optional.empty(), Optional.empty()));
 
         Assertions.assertTrue(result.getSuggestedLemmas().size() <= limit);
         Assertions.assertEquals(limit, result.getSuggestedLemmas().size());
@@ -377,7 +418,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
 
         // Request 10 but only 2 are available
         SuggestedLemmaQueryResult result = sut.query(
-                report, task, Optional.of(10), Optional.empty(), Optional.empty());
+                report, task, defaultCriteria(Optional.of(10), Optional.empty(), Optional.empty()));
 
         // No exception thrown; returns the 2 available
         Assertions.assertEquals(2, result.getSuggestedLemmas().size());
@@ -404,7 +445,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
         RefinementTask task = buildLemmaAbsenceTask(quizId);
 
         SuggestedLemmaQueryResult result = sut.query(
-                report, task, Optional.empty(), Optional.empty(), Optional.empty());
+                report, task, defaultCriteria(Optional.empty(), Optional.empty(), Optional.empty()));
 
         List<SuggestedLemma> lemmas = result.getSuggestedLemmas();
         Assertions.assertEquals(3, lemmas.size());
@@ -436,7 +477,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
 
         // Request 12 — must get 12 (not capped at 10)
         SuggestedLemmaQueryResult result = sut.query(
-                report, task, Optional.of(12), Optional.empty(), Optional.empty());
+                report, task, defaultCriteria(Optional.of(12), Optional.empty(), Optional.empty()));
 
         Assertions.assertTrue(result.getSuggestedLemmas().size() > 10,
                 "Port must return more than the resolver's static cap of 10; got: " + result.getSuggestedLemmas().size());
@@ -460,7 +501,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
         RefinementTask task = buildLemmaAbsenceTask(quizId);
 
         SuggestedLemmaQueryResult result = sut.query(
-                report, task, Optional.empty(), Optional.empty(), Optional.empty());
+                report, task, defaultCriteria(Optional.empty(), Optional.empty(), Optional.empty()));
 
         Assertions.assertNotNull(result);
         Assertions.assertTrue(result.getSuggestedLemmas().isEmpty());
@@ -486,7 +527,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
         RefinementTask task = buildLemmaAbsenceTask(quizId);
 
         SuggestedLemmaQueryResult result = sut.query(
-                report, task, Optional.empty(), Optional.empty(), Optional.empty());
+                report, task, defaultCriteria(Optional.empty(), Optional.empty(), Optional.empty()));
 
         List<SuggestedLemma> lemmas = result.getSuggestedLemmas();
         Assertions.assertEquals(2, lemmas.size());
@@ -495,5 +536,620 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
         lemmas.forEach(l -> Assertions.assertNotNull(l.getLemma()));
         // List order represents relative priority: position 0 is higher priority than position 1
         Assertions.assertNotEquals(lemmas.get(0).getLemma(), lemmas.get(1).getLemma());
+    }
+
+    // ------------------------------------------------------------------
+    // FEAT-INCEXP tests
+    // ------------------------------------------------------------------
+
+    /**
+     * Builds a port wired with a real LevelWideLemmaInventory backed by a mock EvpCatalogPort,
+     * for testing the includeExposed=true path.
+     */
+    private LemmaAbsenceContextSuggestedLemmaQueryPort buildSutWithLevelWide(
+            EvpCatalogPort mockEvpCatalog, LemmaCountConfig mockLemmaCountConfig) {
+        UnderexposedLemmaInventory underexposedInventory = new UnderexposedLemmaInventory(resolver);
+        LevelWideLemmaInventory levelWideInventory =
+                new LevelWideLemmaInventory(mockEvpCatalog, mockLemmaCountConfig);
+        return new LemmaAbsenceContextSuggestedLemmaQueryPort(
+                resolver, underexposedInventory, levelWideInventory);
+    }
+
+    @Test
+    @DisplayName("should exclude already-exposed lemmas and recommend only lemmas still needing exposure when includeExposed is false")
+    @Tag("FEAT-INCEXP")
+    @Tag("F-INCEXP-R001")
+    public void shouldExcludeAlreadyexposedLemmasAndRecommendOnlyLemmasStillNeedingExposureWhenIncludeExposedIsFalse() {
+        // Arrange — quiz with two absent (underexposed) lemmas at A1.
+        // The default sut uses UnderexposedLemmaInventory, which only surfaces absent/underexposed lemmas.
+        // The EvpCatalog is NOT consulted when includeExposed=false; the result must NOT contain
+        // any already-exposed lemma (a lemma not in the absent list would be "already exposed").
+        String quizId = "quiz-incexp-r001";
+        AbsentLemma run = buildAbsentLemma("run", "VERB", 200);
+        AbsentLemma walk = buildAbsentLemma("walk", "VERB", 400);
+
+        AuditReport report = buildReport(
+                new AuditableMilestone(List.of(), "ms-incexp-r001", "A1 Milestone", null),
+                buildMilestoneDiagnoses(CefrLevel.A1, List.of(run, walk)),
+                buildQuiz(quizId),
+                new DefaultQuizDiagnoses());
+        RefinementTask task = buildLemmaAbsenceTask(quizId);
+
+        // Act — includeExposed=false (the default OFF mode, F-INCEXP-R001)
+        SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
+                Optional.empty(), Optional.empty(), Optional.empty(), false);
+        SuggestedLemmaQueryResult result = sut.query(report, task, criteria);
+
+        // Assert — only the two underexposed lemmas are returned; none is from the "already-exposed" set.
+        // The result contains exactly the two absent lemmas (run, walk) and no additional ones.
+        List<SuggestedLemma> lemmas = result.getSuggestedLemmas();
+        Assertions.assertEquals(2, lemmas.size(),
+                "F-INCEXP-R001: default (includeExposed=false) must return only the " +
+                "underexposed/absent lemmas. Got: " + lemmas.size());
+        // Verify both returned lemmas are from the absent set (underexposed)
+        List<String> lemmaNames = lemmas.stream().map(SuggestedLemma::getLemma).toList();
+        Assertions.assertTrue(lemmaNames.contains("run"),
+                "F-INCEXP-R001: absent lemma 'run' must be in the result");
+        Assertions.assertTrue(lemmaNames.contains("walk"),
+                "F-INCEXP-R001: absent lemma 'walk' must be in the result");
+    }
+
+    @Test
+    @DisplayName("should include already-exposed lemmas of the requested level and partOfSpeech in the candidate universe when includeExposed is true")
+    @Tag("FEAT-INCEXP")
+    @Tag("F-INCEXP-R002")
+    public void shouldIncludeAlreadyexposedLemmasOfTheRequestedLevelAndPartOfSpeechInTheCandidateUniverseWhenIncludeExposedIsTrue() {
+        // Arrange — Critical regression scenario:
+        // "run" is COMPLETELY_ABSENT in the LemmaAbsence signal (count=0, in absent list) AND
+        // also present in the EVP catalog for A1. "sleep" is in EVP but NOT in the absent list
+        // (already-exposed). This was the exact bug: the old LevelWideLemmaInventory would see
+        // "run" in the EVP, not find it in the sub-exposed list (if LemmaCountLevelDiagnosis was
+        // absent/incomplete), classify it as "already-exposed", and the limit could then drop it.
+        // Result: ON was NOT a superset of OFF. The fix: needs-exposure block = identical to OFF
+        // output; only already-exposed (not in needs-exposure) go into the tail.
+        //
+        // Verified property (F-INCEXP-R002): ON result ⊇ OFF result (strict superset).
+        // Every lemma returned by OFF must also appear in ON.
+        String quizId = "quiz-incexp-r002";
+
+        AbsentLemma run = buildAbsentLemma("run", "VERB", 200);
+        LemmaAndPos runLap = new LemmaAndPos("run", "VERB");
+        // Milestone label "A1" (exact CefrLevel name) so LevelWideLemmaInventory can match it.
+        // LemmaCountLevelDiagnosis marks "run" as sub-exposed (underexposed); "sleep" is not in
+        // the sub-exposed list → already-exposed. This reproduces the COMPLETELY_ABSENT-in-EVP scenario.
+        AuditReport report = buildReport(
+                new AuditableMilestone(List.of(), "ms-incexp-r002", "A1", null),
+                buildMilestoneDiagnosesWithLemmaCount(CefrLevel.A1, List.of(run), List.of(runLap)),
+                buildQuiz(quizId),
+                new DefaultQuizDiagnoses());
+        RefinementTask task = buildLemmaAbsenceTask(quizId);
+
+        // EVP catalog has both "run" (needs exposure, COMPLETELY_ABSENT) and "sleep" (already-exposed).
+        EvpCatalogPort mockEvpCatalog = Mockito.mock(EvpCatalogPort.class);
+        LemmaCountConfig mockLemmaCountConfig = Mockito.mock(LemmaCountConfig.class);
+        Mockito.when(mockLemmaCountConfig.getThreshold()).thenReturn(5);
+        LemmaAndPos sleepLap = new LemmaAndPos("sleep", "VERB");
+        Mockito.when(mockEvpCatalog.getExpectedLemmas(CefrLevel.A1))
+                .thenReturn(Set.of(runLap, sleepLap));
+        Mockito.when(mockEvpCatalog.getCocaRank(runLap)).thenReturn(Optional.of(200));
+        Mockito.when(mockEvpCatalog.getCocaRank(sleepLap)).thenReturn(Optional.of(600));
+
+        LemmaAbsenceContextSuggestedLemmaQueryPort sutWithLevelWide =
+                buildSutWithLevelWide(mockEvpCatalog, mockLemmaCountConfig);
+
+        // OFF query (includeExposed=false) — establishes the baseline set that ON must be a superset of
+        SuggestedLemmaQueryCriteria offCriteria = new SuggestedLemmaQueryCriteria(
+                Optional.empty(), Optional.empty(), Optional.empty(), false);
+        SuggestedLemmaQueryResult offResult = sut.query(report, task, offCriteria);
+        List<String> offLemmaNames = offResult.getSuggestedLemmas().stream()
+                .map(SuggestedLemma::getLemma).toList();
+
+        // Act — ON query (includeExposed=true): must return the needs-exposure set PLUS already-exposed
+        SuggestedLemmaQueryCriteria onCriteria = new SuggestedLemmaQueryCriteria(
+                Optional.empty(), Optional.empty(), Optional.empty(), true);
+        SuggestedLemmaQueryResult onResult = sutWithLevelWide.query(report, task, onCriteria);
+        List<SuggestedLemma> onLemmas = onResult.getSuggestedLemmas();
+        List<String> onLemmaNames = onLemmas.stream().map(SuggestedLemma::getLemma).toList();
+
+        // Assert — superset: ON ⊇ OFF (every lemma the OFF query returned must also be in ON)
+        Assertions.assertFalse(offLemmaNames.isEmpty(),
+                "F-INCEXP-R002: OFF query must return at least 'run' (COMPLETELY_ABSENT)");
+        Assertions.assertTrue(onLemmaNames.containsAll(offLemmaNames),
+                "F-INCEXP-R002: ON result must be a superset of OFF result. " +
+                "OFF=" + offLemmaNames + " ON=" + onLemmaNames +
+                ". The COMPLETELY_ABSENT lemma 'run' must NOT be lost when includeExposed=true");
+        // ON must also include the already-exposed "sleep"
+        Assertions.assertTrue(onLemmaNames.contains("sleep"),
+                "F-INCEXP-R002: already-exposed lemma 'sleep' must be included when includeExposed=true");
+        // Strict superset: ON has MORE lemmas than OFF
+        Assertions.assertTrue(onLemmas.size() > offResult.getSuggestedLemmas().size(),
+                "F-INCEXP-R002: ON must return more lemmas than OFF (adds already-exposed). " +
+                "OFF size=" + offResult.getSuggestedLemmas().size() + " ON size=" + onLemmas.size());
+    }
+
+    @Test
+    @DisplayName("should place lemmas still needing exposure first and already-exposed lemmas last by recommendation priority when includeExposed is true")
+    @Tag("FEAT-INCEXP")
+    @Tag("F-INCEXP-R003")
+    public void shouldPlaceLemmasStillNeedingExposureFirstAndAlreadyexposedLemmasLastByRecommendationPriorityWhenIncludeExposedIsTrue() {
+        // Arrange — Critical regression scenario: two needs-exposure lemmas ("run" COMPLETELY_ABSENT
+        // + "walk" COMPLETELY_ABSENT), both also present in the EVP catalog at A1, plus one
+        // already-exposed lemma ("sleep") that appears only in EVP. "sleep" has the LOWEST cocaRank
+        // (100) — lower than "run" (200) and "walk" (300). Despite this, "sleep" (already-exposed)
+        // must appear AFTER both needs-exposure lemmas (R003). This proves that the priority block
+        // (needs-exposure first) takes precedence over COCA rank.
+        //
+        // This exercises the fixed composition: needs-exposure block = identical to OFF output
+        // (includes COMPLETELY_ABSENT lemmas that are also in EVP), then already-exposed tail.
+        String quizId = "quiz-incexp-r003";
+
+        AbsentLemma run  = buildAbsentLemma("run",  "VERB", 200);
+        AbsentLemma walk = buildAbsentLemma("walk", "VERB", 300);
+        LemmaAndPos runLap  = new LemmaAndPos("run",  "VERB");
+        LemmaAndPos walkLap = new LemmaAndPos("walk", "VERB");
+        // Milestone label "A1" (exact CefrLevel name) for LevelWideLemmaInventory.
+        // LemmaCountLevelDiagnosis marks "run" and "walk" as sub-exposed; "sleep" is not in the
+        // sub-exposed list → already-exposed. This reproduces COMPLETELY_ABSENT-in-EVP for run and walk.
+        AuditReport report = buildReport(
+                new AuditableMilestone(List.of(), "ms-incexp-r003", "A1", null),
+                buildMilestoneDiagnosesWithLemmaCount(CefrLevel.A1, List.of(run, walk),
+                        List.of(runLap, walkLap)),
+                buildQuiz(quizId),
+                new DefaultQuizDiagnoses());
+        RefinementTask task = buildLemmaAbsenceTask(quizId);
+
+        EvpCatalogPort mockEvpCatalog = Mockito.mock(EvpCatalogPort.class);
+        LemmaCountConfig mockLemmaCountConfig = Mockito.mock(LemmaCountConfig.class);
+        Mockito.when(mockLemmaCountConfig.getThreshold()).thenReturn(5);
+        // sleep has cocaRank=100 — lower than both run (200) and walk (300) — yet it is already-exposed.
+        // It must appear AFTER both run and walk because the needs-exposure block is sorted first (R003).
+        LemmaAndPos sleepLap = new LemmaAndPos("sleep", "VERB");
+        Mockito.when(mockEvpCatalog.getExpectedLemmas(CefrLevel.A1))
+                .thenReturn(Set.of(runLap, walkLap, sleepLap));
+        Mockito.when(mockEvpCatalog.getCocaRank(runLap)).thenReturn(Optional.of(200));
+        Mockito.when(mockEvpCatalog.getCocaRank(walkLap)).thenReturn(Optional.of(300));
+        Mockito.when(mockEvpCatalog.getCocaRank(sleepLap)).thenReturn(Optional.of(100));
+
+        LemmaAbsenceContextSuggestedLemmaQueryPort sutWithLevelWide =
+                buildSutWithLevelWide(mockEvpCatalog, mockLemmaCountConfig);
+
+        SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
+                Optional.empty(), Optional.empty(), Optional.empty(), true);
+        SuggestedLemmaQueryResult result = sutWithLevelWide.query(report, task, criteria);
+
+        // Assert — ALL needs-exposure lemmas (run, walk) appear before ALL already-exposed (sleep).
+        // The position of every needs-exposure lemma must be less than the position of every
+        // already-exposed lemma in the list.
+        List<SuggestedLemma> lemmas = result.getSuggestedLemmas();
+        Assertions.assertEquals(3, lemmas.size(),
+                "F-INCEXP-R003: must have exactly 3 lemmas (run + walk needs-exposure, sleep exposed)");
+
+        // Partition by exposure flag
+        int maxNeedsExposurePos = -1;
+        int minAlreadyExposedPos = Integer.MAX_VALUE;
+        boolean runFound = false, walkFound = false, sleepFound = false;
+        for (int i = 0; i < lemmas.size(); i++) {
+            SuggestedLemma sl = lemmas.get(i);
+            if (Boolean.FALSE.equals(sl.getIsUnderexposed())) {
+                // already-exposed
+                minAlreadyExposedPos = Math.min(minAlreadyExposedPos, i);
+                if ("sleep".equals(sl.getLemma())) sleepFound = true;
+            } else {
+                // needs-exposure (isUnderexposed=true or null)
+                maxNeedsExposurePos = Math.max(maxNeedsExposurePos, i);
+                if ("run".equals(sl.getLemma()))  runFound  = true;
+                if ("walk".equals(sl.getLemma())) walkFound = true;
+            }
+        }
+        Assertions.assertTrue(runFound,   "F-INCEXP-R003: COMPLETELY_ABSENT lemma 'run' must be in ON result");
+        Assertions.assertTrue(walkFound,  "F-INCEXP-R003: COMPLETELY_ABSENT lemma 'walk' must be in ON result");
+        Assertions.assertTrue(sleepFound, "F-INCEXP-R003: already-exposed lemma 'sleep' must be in ON result");
+        Assertions.assertTrue(maxNeedsExposurePos < minAlreadyExposedPos,
+                "F-INCEXP-R003: all needs-exposure lemmas (max pos=" + maxNeedsExposurePos + ") must appear " +
+                "before all already-exposed lemmas (min pos=" + minAlreadyExposedPos + "). " +
+                "Even though 'sleep' has lower cocaRank (100), block priority overrides COCA rank.");
+    }
+
+    @Test
+    @DisplayName("should break ties by ascending COCA frequency within both the underexposed block and the already-exposed block when includeExposed is true")
+    @Tag("FEAT-INCEXP")
+    @Tag("F-INCEXP-R004")
+    public void shouldBreakTiesByAscendingCOCAFrequencyWithinBothTheUnderexposedBlockAndTheAlreadyexposedBlockWhenIncludeExposedIsTrue() {
+        // Arrange — two underexposed lemmas (run@200, walk@400) and two already-exposed
+        // lemmas (jump@300, eat@500). Expected order: run, walk (underexposed asc COCA),
+        // then jump, eat (exposed asc COCA). F-INCEXP-R004.
+        String quizId = "quiz-incexp-r004";
+
+        AbsentLemma run = buildAbsentLemma("run", "VERB", 200);
+        AbsentLemma walk = buildAbsentLemma("walk", "VERB", 400);
+        LemmaAndPos runLap  = new LemmaAndPos("run",  "VERB");
+        LemmaAndPos walkLap = new LemmaAndPos("walk", "VERB");
+        // Milestone label must be exactly "A1" so LevelWideLemmaInventory can parse it as CefrLevel.
+        // LemmaCountLevelDiagnosis marks "run" and "walk" as sub-exposed (underexposed); "jump" and
+        // "eat" are NOT in the sub-exposed list, so they get isUnderexposed=false (already-exposed).
+        AuditReport report = buildReport(
+                new AuditableMilestone(List.of(), "ms-incexp-r004", "A1", null),
+                buildMilestoneDiagnosesWithLemmaCount(CefrLevel.A1, List.of(run, walk),
+                        List.of(runLap, walkLap)),
+                buildQuiz(quizId),
+                new DefaultQuizDiagnoses());
+        RefinementTask task = buildLemmaAbsenceTask(quizId);
+
+        EvpCatalogPort mockEvpCatalog = Mockito.mock(EvpCatalogPort.class);
+        LemmaCountConfig mockLemmaCountConfig = Mockito.mock(LemmaCountConfig.class);
+        Mockito.when(mockLemmaCountConfig.getThreshold()).thenReturn(5);
+
+        LemmaAndPos jumpLap = new LemmaAndPos("jump", "VERB");
+        LemmaAndPos eatLap  = new LemmaAndPos("eat",  "VERB");
+        Mockito.when(mockEvpCatalog.getExpectedLemmas(CefrLevel.A1))
+                .thenReturn(Set.of(runLap, walkLap, jumpLap, eatLap));
+        Mockito.when(mockEvpCatalog.getCocaRank(runLap)).thenReturn(Optional.of(200));
+        Mockito.when(mockEvpCatalog.getCocaRank(walkLap)).thenReturn(Optional.of(400));
+        Mockito.when(mockEvpCatalog.getCocaRank(jumpLap)).thenReturn(Optional.of(300));
+        Mockito.when(mockEvpCatalog.getCocaRank(eatLap)).thenReturn(Optional.of(500));
+
+        LemmaAbsenceContextSuggestedLemmaQueryPort sutWithLevelWide =
+                buildSutWithLevelWide(mockEvpCatalog, mockLemmaCountConfig);
+
+        SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
+                Optional.empty(), Optional.empty(), Optional.empty(), true);
+        SuggestedLemmaQueryResult result = sutWithLevelWide.query(report, task, criteria);
+
+        List<SuggestedLemma> lemmas = result.getSuggestedLemmas();
+        Assertions.assertEquals(4, lemmas.size(), "F-INCEXP-R004: expected 4 lemmas in result");
+
+        // First two must be underexposed, ordered by ascending COCA
+        Assertions.assertEquals("run", lemmas.get(0).getLemma(),
+                "F-INCEXP-R004: first lemma must be 'run' (underexposed, coca=200)");
+        Assertions.assertEquals("walk", lemmas.get(1).getLemma(),
+                "F-INCEXP-R004: second lemma must be 'walk' (underexposed, coca=400)");
+
+        // Last two must be already-exposed, ordered by ascending COCA
+        Assertions.assertEquals("jump", lemmas.get(2).getLemma(),
+                "F-INCEXP-R004: third lemma must be 'jump' (exposed, coca=300)");
+        Assertions.assertEquals("eat", lemmas.get(3).getLemma(),
+                "F-INCEXP-R004: fourth lemma must be 'eat' (exposed, coca=500)");
+    }
+
+    @Test
+    @DisplayName("should still restrict results to lemmas matching the applicable level even when includeExposed is true")
+    @Tag("FEAT-INCEXP")
+    @Tag("F-INCEXP-R005")
+    public void shouldStillRestrictResultsToLemmasMatchingTheApplicableLevelEvenWhenIncludeExposedIsTrue() {
+        // Arrange — task at A1 level. EVP catalog is only queried for A1.
+        // With includeExposed=true, only A1 lemmas must be returned (never B1 or other levels).
+        // The level is inferred from the milestone diagnosis (A1).
+        String quizId = "quiz-incexp-r005";
+
+        AbsentLemma run = buildAbsentLemma("run", "VERB", 200);
+        AuditReport report = buildReport(
+                new AuditableMilestone(List.of(), "ms-incexp-r005", "A1 Milestone", null),
+                buildMilestoneDiagnoses(CefrLevel.A1, List.of(run)),
+                buildQuiz(quizId),
+                new DefaultQuizDiagnoses());
+        RefinementTask task = buildLemmaAbsenceTask(quizId);
+
+        EvpCatalogPort mockEvpCatalog = Mockito.mock(EvpCatalogPort.class);
+        LemmaCountConfig mockLemmaCountConfig = Mockito.mock(LemmaCountConfig.class);
+        Mockito.when(mockLemmaCountConfig.getThreshold()).thenReturn(5);
+        LemmaAndPos runLap = new LemmaAndPos("run", "VERB");
+        Mockito.when(mockEvpCatalog.getExpectedLemmas(CefrLevel.A1)).thenReturn(Set.of(runLap));
+        Mockito.when(mockEvpCatalog.getCocaRank(runLap)).thenReturn(Optional.of(200));
+
+        LemmaAbsenceContextSuggestedLemmaQueryPort sutWithLevelWide =
+                buildSutWithLevelWide(mockEvpCatalog, mockLemmaCountConfig);
+
+        SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
+                Optional.empty(), Optional.empty(), Optional.empty(), true);
+        SuggestedLemmaQueryResult result = sutWithLevelWide.query(report, task, criteria);
+
+        // Assert — result level is A1 (the inferred level) and EVP was called only for A1
+        Assertions.assertEquals(CefrLevel.A1, result.getCefrLevel(),
+                "F-INCEXP-R005: level filter must still apply; result level must be A1");
+        Mockito.verify(mockEvpCatalog).getExpectedLemmas(CefrLevel.A1);
+        Mockito.verify(mockEvpCatalog, Mockito.never()).getExpectedLemmas(Mockito.argThat(
+                l -> l != null && l != CefrLevel.A1));
+    }
+
+    @Test
+    @DisplayName("should still restrict results to the requested partOfSpeech among already-exposed lemmas when includeExposed is true")
+    @Tag("FEAT-INCEXP")
+    @Tag("F-INCEXP-R006")
+    public void shouldStillRestrictResultsToTheRequestedPartOfSpeechAmongAlreadyexposedLemmasWhenIncludeExposedIsTrue() {
+        // Arrange — EVP catalog has both VERB ("run") and NOUN ("cat") at A1.
+        // With partOfSpeech="VERB" and includeExposed=true, only VERBs must be returned.
+        // "cat" (NOUN, exposed) must not appear.
+        String quizId = "quiz-incexp-r006";
+
+        AbsentLemma run = buildAbsentLemma("run", "VERB", 200);
+        AuditReport report = buildReport(
+                new AuditableMilestone(List.of(), "ms-incexp-r006", "A1 Milestone", null),
+                buildMilestoneDiagnoses(CefrLevel.A1, List.of(run)),
+                buildQuiz(quizId),
+                new DefaultQuizDiagnoses());
+        RefinementTask task = buildLemmaAbsenceTask(quizId);
+
+        EvpCatalogPort mockEvpCatalog = Mockito.mock(EvpCatalogPort.class);
+        LemmaCountConfig mockLemmaCountConfig = Mockito.mock(LemmaCountConfig.class);
+        Mockito.when(mockLemmaCountConfig.getThreshold()).thenReturn(5);
+        LemmaAndPos runLap = new LemmaAndPos("run", "VERB");
+        // "sleep" is another VERB that is already-exposed (not in absent list)
+        LemmaAndPos sleepLap = new LemmaAndPos("sleep", "VERB");
+        // "cat" is a NOUN that is already-exposed — must be excluded by POS filter
+        LemmaAndPos catLap = new LemmaAndPos("cat", "NOUN");
+        Mockito.when(mockEvpCatalog.getExpectedLemmas(CefrLevel.A1))
+                .thenReturn(Set.of(runLap, sleepLap, catLap));
+        Mockito.when(mockEvpCatalog.getCocaRank(runLap)).thenReturn(Optional.of(200));
+        Mockito.when(mockEvpCatalog.getCocaRank(sleepLap)).thenReturn(Optional.of(600));
+        Mockito.when(mockEvpCatalog.getCocaRank(catLap)).thenReturn(Optional.of(300));
+
+        LemmaAbsenceContextSuggestedLemmaQueryPort sutWithLevelWide =
+                buildSutWithLevelWide(mockEvpCatalog, mockLemmaCountConfig);
+
+        // Act — partOfSpeech="VERB" filter must exclude "cat" (NOUN)
+        SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
+                Optional.empty(), Optional.of("VERB"), Optional.empty(), true);
+        SuggestedLemmaQueryResult result = sutWithLevelWide.query(report, task, criteria);
+
+        // Assert — all returned lemmas are VERBs; "cat" must not be present
+        List<SuggestedLemma> lemmas = result.getSuggestedLemmas();
+        Assertions.assertFalse(lemmas.isEmpty(), "F-INCEXP-R006: result must not be empty");
+        lemmas.forEach(l -> Assertions.assertEquals("VERB", l.getPos(),
+                "F-INCEXP-R006: all lemmas must be VERB when partOfSpeech=VERB; got pos=" + l.getPos()));
+        boolean catPresent = lemmas.stream().anyMatch(l -> "cat".equals(l.getLemma()));
+        Assertions.assertFalse(catPresent,
+                "F-INCEXP-R006: NOUN 'cat' must not appear when partOfSpeech=VERB filter is applied");
+    }
+
+    @Test
+    @DisplayName("should truncate the widened ordered universe to at most the requested limit dropping already-exposed lemmas first when includeExposed is true")
+    @Tag("FEAT-INCEXP")
+    @Tag("F-INCEXP-R007")
+    public void shouldTruncateTheWidenedOrderedUniverseToAtMostTheRequestedLimitDroppingAlreadyexposedLemmasFirstWhenIncludeExposedIsTrue() {
+        // Arrange — Critical regression scenario: "run" and "walk" are COMPLETELY_ABSENT and also
+        // present in the EVP catalog at A1. "jump" and "eat" are EVP lemmas that are already-exposed
+        // (not in the absent list). limit=3, which is >= needs-exposure count (2) but < total (4).
+        //
+        // With the old buggy implementation (ON lost COMPLETELY_ABSENT lemmas from EVP by classifying
+        // them as already-exposed), both "run" and "walk" could end up in the already-exposed tail,
+        // and limit=3 would drop one of them. The fix guarantees the needs-exposure block (= OFF output)
+        // is preserved intact; limit only trims already-exposed entries from the tail.
+        //
+        // F-INCEXP-R007: limit truncates from the already-exposed tail first; no needs-exposure lemma
+        // is ever dropped as long as limit >= needs-exposure count.
+        String quizId = "quiz-incexp-r007";
+
+        AbsentLemma run  = buildAbsentLemma("run",  "VERB", 200);
+        AbsentLemma walk = buildAbsentLemma("walk", "VERB", 400);
+        LemmaAndPos runLap  = new LemmaAndPos("run",  "VERB");
+        LemmaAndPos walkLap = new LemmaAndPos("walk", "VERB");
+        // Milestone label "A1" (exact CefrLevel name) for LevelWideLemmaInventory lookup.
+        // LemmaCountLevelDiagnosis marks "run" and "walk" as sub-exposed; "jump" and "eat" are not
+        // in the sub-exposed list → already-exposed. Reproduces COMPLETELY_ABSENT-in-EVP scenario.
+        AuditReport report = buildReport(
+                new AuditableMilestone(List.of(), "ms-incexp-r007", "A1", null),
+                buildMilestoneDiagnosesWithLemmaCount(CefrLevel.A1, List.of(run, walk),
+                        List.of(runLap, walkLap)),
+                buildQuiz(quizId),
+                new DefaultQuizDiagnoses());
+        RefinementTask task = buildLemmaAbsenceTask(quizId);
+
+        EvpCatalogPort mockEvpCatalog = Mockito.mock(EvpCatalogPort.class);
+        LemmaCountConfig mockLemmaCountConfig = Mockito.mock(LemmaCountConfig.class);
+        Mockito.when(mockLemmaCountConfig.getThreshold()).thenReturn(5);
+
+        // Two exposed lemmas in EVP: jump@300 (lower COCA, kept by limit) and eat@900 (higher, dropped)
+        LemmaAndPos jumpLap = new LemmaAndPos("jump", "VERB");
+        LemmaAndPos eatLap  = new LemmaAndPos("eat",  "VERB");
+        Mockito.when(mockEvpCatalog.getExpectedLemmas(CefrLevel.A1))
+                .thenReturn(Set.of(runLap, walkLap, jumpLap, eatLap));
+        Mockito.when(mockEvpCatalog.getCocaRank(runLap)).thenReturn(Optional.of(200));
+        Mockito.when(mockEvpCatalog.getCocaRank(walkLap)).thenReturn(Optional.of(400));
+        Mockito.when(mockEvpCatalog.getCocaRank(jumpLap)).thenReturn(Optional.of(300));
+        Mockito.when(mockEvpCatalog.getCocaRank(eatLap)).thenReturn(Optional.of(900));
+
+        LemmaAbsenceContextSuggestedLemmaQueryPort sutWithLevelWide =
+                buildSutWithLevelWide(mockEvpCatalog, mockLemmaCountConfig);
+
+        // Act — limit=3, includeExposed=true; 4 candidates total (2 needs-exposure + 2 exposed)
+        SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
+                Optional.of(3), Optional.empty(), Optional.empty(), true);
+        SuggestedLemmaQueryResult result = sutWithLevelWide.query(report, task, criteria);
+
+        // Assert — exactly 3 returned; ALL needs-exposure lemmas kept; only already-exposed trimmed
+        List<SuggestedLemma> lemmas = result.getSuggestedLemmas();
+        List<String> names = lemmas.stream().map(SuggestedLemma::getLemma).toList();
+
+        Assertions.assertEquals(3, lemmas.size(),
+                "F-INCEXP-R007: limit=3 must truncate the result to 3 lemmas. Got: " + names);
+
+        // No needs-exposure lemma must be lost (this is the key regression guard)
+        Assertions.assertTrue(names.contains("run"),
+                "F-INCEXP-R007: COMPLETELY_ABSENT needs-exposure lemma 'run' must NOT be dropped by limit");
+        Assertions.assertTrue(names.contains("walk"),
+                "F-INCEXP-R007: COMPLETELY_ABSENT needs-exposure lemma 'walk' must NOT be dropped by limit");
+
+        // The limit drops from the already-exposed tail; "eat" (highest COCA, already-exposed) must go
+        Assertions.assertFalse(names.contains("eat"),
+                "F-INCEXP-R007: already-exposed 'eat' (highest COCA) must be dropped by limit first");
+
+        // The kept already-exposed entry ("jump", coca=300) must have isUnderexposed=false
+        lemmas.stream()
+                .filter(l -> "jump".equals(l.getLemma()))
+                .forEach(l -> Assertions.assertEquals(Boolean.FALSE, l.getIsUnderexposed(),
+                        "F-INCEXP-R007: kept already-exposed lemma 'jump' must have isUnderexposed=false"));
+    }
+
+    @Test
+    @DisplayName("should infer level from the task and honor explicit level the same way as the default query when includeExposed is true")
+    @Tag("FEAT-INCEXP")
+    @Tag("F-INCEXP-R008")
+    public void shouldInferLevelFromTheTaskAndHonorExplicitLevelTheSameWayAsTheDefaultQueryWhenIncludeExposedIsTrue() {
+        // Arrange — task with no LemmaAbsence diagnosis (cannot infer level).
+        // Explicit level B1 is passed in the criteria. With includeExposed=true,
+        // the port must still honor the explicit level (B1), not throw.
+        String quizId = "quiz-incexp-r008";
+
+        AuditReport report = buildReport(
+                new AuditableMilestone(List.of(), "ms-incexp-r008", "Milestone", null),
+                buildMilestoneDiagnosesNoLevel(),   // no level inferable
+                buildQuiz(quizId),
+                new DefaultQuizDiagnoses());
+        RefinementTask task = buildLemmaAbsenceTask(quizId);
+
+        EvpCatalogPort mockEvpCatalog = Mockito.mock(EvpCatalogPort.class);
+        LemmaCountConfig mockLemmaCountConfig = Mockito.mock(LemmaCountConfig.class);
+        Mockito.when(mockLemmaCountConfig.getThreshold()).thenReturn(5);
+        LemmaAndPos learnLap = new LemmaAndPos("learn", "VERB");
+        Mockito.when(mockEvpCatalog.getExpectedLemmas(CefrLevel.B1)).thenReturn(Set.of(learnLap));
+        Mockito.when(mockEvpCatalog.getCocaRank(learnLap)).thenReturn(Optional.of(500));
+
+        LemmaAbsenceContextSuggestedLemmaQueryPort sutWithLevelWide =
+                buildSutWithLevelWide(mockEvpCatalog, mockLemmaCountConfig);
+
+        // Act — explicit level B1, includeExposed=true
+        SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
+                Optional.empty(), Optional.empty(), Optional.of(CefrLevel.B1), true);
+        SuggestedLemmaQueryResult result = sutWithLevelWide.query(report, task, criteria);
+
+        // Assert — result uses B1 (the explicit level) without error
+        Assertions.assertEquals(CefrLevel.B1, result.getCefrLevel(),
+                "F-INCEXP-R008: explicit level B1 must be honored when includeExposed=true");
+        Assertions.assertFalse(result.getSuggestedLemmas().isEmpty(),
+                "F-INCEXP-R008: must return the B1 EVP lemma 'learn'");
+    }
+
+    @Test
+    @DisplayName("should return an empty lemma list with a functional explanation and no error when no lemma of the requested level and partOfSpeech exists even with includeExposed true")
+    @Tag("FEAT-INCEXP")
+    @Tag("F-INCEXP-R009")
+    public void shouldReturnAnEmptyLemmaListWithAFunctionalExplanationAndNoErrorWhenNoLemmaOfTheRequestedLevelAndPartOfSpeechExistsEvenWithIncludeExposedTrue() {
+        // Arrange — EVP catalog returns an empty set for A1 (no lemmas at all for this level).
+        // With includeExposed=true, the result must still be an empty list, not an error.
+        String quizId = "quiz-incexp-r009";
+
+        AuditReport report = buildReport(
+                new AuditableMilestone(List.of(), "ms-incexp-r009", "A1 Milestone", null),
+                buildMilestoneDiagnoses(CefrLevel.A1, List.of()),
+                buildQuiz(quizId),
+                new DefaultQuizDiagnoses());
+        RefinementTask task = buildLemmaAbsenceTask(quizId);
+
+        EvpCatalogPort mockEvpCatalog = Mockito.mock(EvpCatalogPort.class);
+        LemmaCountConfig mockLemmaCountConfig = Mockito.mock(LemmaCountConfig.class);
+        Mockito.when(mockLemmaCountConfig.getThreshold()).thenReturn(5);
+        // EVP returns empty for A1
+        Mockito.when(mockEvpCatalog.getExpectedLemmas(CefrLevel.A1)).thenReturn(Set.of());
+
+        LemmaAbsenceContextSuggestedLemmaQueryPort sutWithLevelWide =
+                buildSutWithLevelWide(mockEvpCatalog, mockLemmaCountConfig);
+
+        // Act — no exception must be thrown
+        SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
+                Optional.empty(), Optional.empty(), Optional.empty(), true);
+        SuggestedLemmaQueryResult result = sutWithLevelWide.query(report, task, criteria);
+
+        // Assert — empty list returned, no exception, level is still reported
+        Assertions.assertNotNull(result,
+                "F-INCEXP-R009: result must not be null even when no lemmas are found");
+        Assertions.assertTrue(result.getSuggestedLemmas().isEmpty(),
+                "F-INCEXP-R009: result must be an empty list when no lemma is applicable");
+        Assertions.assertEquals(CefrLevel.A1, result.getCefrLevel(),
+                "F-INCEXP-R009: effective level must still be reported");
+    }
+
+    @Test
+    @DisplayName("should return all available lemmas without error when fewer than the requested limit match the filters with includeExposed true")
+    @Tag("FEAT-INCEXP")
+    @Tag("F-INCEXP-R010")
+    public void shouldReturnAllAvailableLemmasWithoutErrorWhenFewerThanTheRequestedLimitMatchTheFiltersWithIncludeExposedTrue() {
+        // Arrange — EVP catalog returns only 1 lemma for A1 VERB; limit=10 requested.
+        // F-INCEXP-R010: partial list (1 < 10) is not an error.
+        String quizId = "quiz-incexp-r010";
+
+        AuditReport report = buildReport(
+                new AuditableMilestone(List.of(), "ms-incexp-r010", "A1 Milestone", null),
+                buildMilestoneDiagnoses(CefrLevel.A1, List.of()),
+                buildQuiz(quizId),
+                new DefaultQuizDiagnoses());
+        RefinementTask task = buildLemmaAbsenceTask(quizId);
+
+        EvpCatalogPort mockEvpCatalog = Mockito.mock(EvpCatalogPort.class);
+        LemmaCountConfig mockLemmaCountConfig = Mockito.mock(LemmaCountConfig.class);
+        Mockito.when(mockLemmaCountConfig.getThreshold()).thenReturn(5);
+        LemmaAndPos runLap = new LemmaAndPos("run", "VERB");
+        Mockito.when(mockEvpCatalog.getExpectedLemmas(CefrLevel.A1)).thenReturn(Set.of(runLap));
+        Mockito.when(mockEvpCatalog.getCocaRank(runLap)).thenReturn(Optional.of(200));
+
+        LemmaAbsenceContextSuggestedLemmaQueryPort sutWithLevelWide =
+                buildSutWithLevelWide(mockEvpCatalog, mockLemmaCountConfig);
+
+        // Act — request 10 but only 1 available; no exception expected
+        SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
+                Optional.of(10), Optional.empty(), Optional.empty(), true);
+        SuggestedLemmaQueryResult result = sutWithLevelWide.query(report, task, criteria);
+
+        // Assert — 1 lemma returned, no error, no exception
+        Assertions.assertNotNull(result, "F-INCEXP-R010: result must not be null");
+        Assertions.assertEquals(1, result.getSuggestedLemmas().size(),
+                "F-INCEXP-R010: all available lemmas (1) must be returned without error even though limit=10");
+    }
+
+    @Test
+    @DisplayName("should preserve the observable shape of each suggested lemma and populate the exposure fields for an already-exposed lemma with isUnderexposed false when includeExposed is true")
+    @Tag("FEAT-INCEXP")
+    @Tag("F-INCEXP-R011")
+    public void shouldPreserveTheObservableShapeOfEachSuggestedLemmaAndPopulateTheExposureFieldsForAnAlreadyexposedLemmaWithIsUnderexposedFalseWhenIncludeExposedIsTrue() {
+        // Arrange — "run" is underexposed (in absent list); "sleep" is already-exposed (only in EVP).
+        // F-INCEXP-R011: for an already-exposed lemma, isUnderexposed=false must be set,
+        // and the lemma must be identifiable (non-null lemma string and pos).
+        String quizId = "quiz-incexp-r011";
+
+        AbsentLemma run = buildAbsentLemma("run", "VERB", 200);
+        AuditReport report = buildReport(
+                new AuditableMilestone(List.of(), "ms-incexp-r011", "A1 Milestone", null),
+                buildMilestoneDiagnoses(CefrLevel.A1, List.of(run)),
+                buildQuiz(quizId),
+                new DefaultQuizDiagnoses());
+        RefinementTask task = buildLemmaAbsenceTask(quizId);
+
+        EvpCatalogPort mockEvpCatalog = Mockito.mock(EvpCatalogPort.class);
+        LemmaCountConfig mockLemmaCountConfig = Mockito.mock(LemmaCountConfig.class);
+        Mockito.when(mockLemmaCountConfig.getThreshold()).thenReturn(5);
+        LemmaAndPos runLap   = new LemmaAndPos("run",   "VERB");
+        LemmaAndPos sleepLap = new LemmaAndPos("sleep", "VERB");
+        Mockito.when(mockEvpCatalog.getExpectedLemmas(CefrLevel.A1))
+                .thenReturn(Set.of(runLap, sleepLap));
+        Mockito.when(mockEvpCatalog.getCocaRank(runLap)).thenReturn(Optional.of(200));
+        Mockito.when(mockEvpCatalog.getCocaRank(sleepLap)).thenReturn(Optional.of(600));
+
+        LemmaAbsenceContextSuggestedLemmaQueryPort sutWithLevelWide =
+                buildSutWithLevelWide(mockEvpCatalog, mockLemmaCountConfig);
+
+        SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
+                Optional.empty(), Optional.empty(), Optional.empty(), true);
+        SuggestedLemmaQueryResult result = sutWithLevelWide.query(report, task, criteria);
+
+        // Assert — find the already-exposed lemma "sleep" and verify isUnderexposed=false
+        List<SuggestedLemma> lemmas = result.getSuggestedLemmas();
+        Assertions.assertTrue(lemmas.size() >= 2,
+                "F-INCEXP-R011: must have at least 2 lemmas (run + sleep)");
+
+        // Each lemma is identifiable
+        lemmas.forEach(l -> {
+            Assertions.assertNotNull(l.getLemma(),
+                    "F-INCEXP-R011: each lemma must have a non-null lemma string");
+            Assertions.assertNotNull(l.getPos(),
+                    "F-INCEXP-R011: each lemma must have a non-null pos");
+        });
+
+        // "sleep" is already-exposed: isUnderexposed must be false
+        SuggestedLemma sleepLemma = lemmas.stream()
+                .filter(l -> "sleep".equals(l.getLemma()))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError(
+                        "F-INCEXP-R011: 'sleep' (already-exposed) must be present in result"));
+        Assertions.assertEquals(Boolean.FALSE, sleepLemma.getIsUnderexposed(),
+                "F-INCEXP-R011: already-exposed lemma 'sleep' must have isUnderexposed=false");
     }
 }

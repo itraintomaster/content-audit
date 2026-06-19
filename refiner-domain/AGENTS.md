@@ -134,6 +134,15 @@ Refinement engine
 | taskId | `String` |
 | reason | `String` |
 
+### SuggestedLemmaQueryCriteria (`record`)
+
+| Field | Type |
+|-------|------|
+| limit | `Optional<Integer>` |
+| partOfSpeech | `Optional<String>` |
+| explicitLevel | `Optional<CefrLevel>` |
+| includeExposed | `boolean` |
+
 ## Interfaces
 
 ### RefinerEngine (port)
@@ -165,13 +174,13 @@ Methods:
 
 Methods:
 
-- `query(AuditReport report, RefinementTask task, Optional<Integer> limit, Optional<String> partOfSpeech, Optional<CefrLevel> explicitLevel): SuggestedLemmaQueryResult`
+- `query(AuditReport report, RefinementTask task, SuggestedLemmaQueryCriteria criteria): SuggestedLemmaQueryResult`
 
 ### SuggestedLemmaQuerySession (port)
 
 Methods:
 
-- `requestMore(Optional<Integer> limit, Optional<String> partOfSpeech, Optional<CefrLevel> explicitLevel): SuggestedLemmaQueryResult`
+- `requestMore(SuggestedLemmaQueryCriteria criteria): SuggestedLemmaQueryResult`
 
 ### SuggestedLemmaQuerySessionFactory (factory)
 

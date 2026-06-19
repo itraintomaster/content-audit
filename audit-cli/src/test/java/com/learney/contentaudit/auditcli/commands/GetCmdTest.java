@@ -3664,12 +3664,12 @@ public class GetCmdTest {
         // Port returns a valid empty result for the query (level A1 from the task context)
         SuggestedLemmaQueryResult queryResult =
                 new SuggestedLemmaQueryResult(taskId, CefrLevel.A1, List.of());
-        when(suggestedLemmaQueryPort.query(any(), any(), any(), any(), any()))
+        when(suggestedLemmaQueryPort.query(any(), any(), any()))
                 .thenReturn(queryResult);
 
         // Filter: limit=5, no partOfSpeech, no explicit level (inferred from task)
         SuggestedLemmasFilter filter = new SuggestedLemmasFilter(
-                Optional.of(5), Optional.empty(), Optional.empty());
+                Optional.of(5), Optional.empty(), Optional.empty(), false);
 
         // Act: dispatch through GetCommand.get — R002 requires NO new command type
         int exit = localCmd.get("suggested-lemmas", taskId, filter);
@@ -3677,6 +3677,6 @@ public class GetCmdTest {
         // Assert: exit is zero (dispatch succeeded through the existing verb)
         // and the port was invoked, proving the routing went through GetCmd.get
         assertEquals(0, exit);
-        verify(suggestedLemmaQueryPort).query(any(), any(), any(), any(), any());
+        verify(suggestedLemmaQueryPort).query(any(), any(), any());
     }
 }

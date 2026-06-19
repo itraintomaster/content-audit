@@ -7,6 +7,7 @@ import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryCriteria;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryPort;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryResult;
 import java.util.ArrayList;
@@ -53,23 +54,25 @@ public class BoundSuggestedLemmaQuerySessionTest {
 
         SuggestedLemmaQueryPort queryPort = Mockito.mock(SuggestedLemmaQueryPort.class);
 
-        Optional<Integer> limit = Optional.of(5);
-        Optional<String> pos = Optional.of("VERB");
-        Optional<CefrLevel> level = Optional.of(CefrLevel.A1);
+        SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
+                Optional.of(5),
+                Optional.of("VERB"),
+                Optional.of(CefrLevel.A1),
+                false);
 
         SuggestedLemmaQueryResult expected =
                 new SuggestedLemmaQueryResult("task-bound-1", CefrLevel.A1, List.of());
-        Mockito.when(queryPort.query(report, task, limit, pos, level)).thenReturn(expected);
+        Mockito.when(queryPort.query(report, task, criteria)).thenReturn(expected);
 
         BoundSuggestedLemmaQuerySession sut =
                 new BoundSuggestedLemmaQuerySession(queryPort, report, task);
 
         // Act
-        SuggestedLemmaQueryResult actual = sut.requestMore(limit, pos, level);
+        SuggestedLemmaQueryResult actual = sut.requestMore(criteria);
 
         // Assert — the session must delegate to the port with the same bound report+task
         // and return the result unchanged
-        Mockito.verify(queryPort).query(report, task, limit, pos, level);
+        Mockito.verify(queryPort).query(report, task, criteria);
         Assertions.assertSame(expected, actual);
     }
 }

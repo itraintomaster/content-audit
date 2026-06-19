@@ -1,0 +1,25 @@
+code: FEAT-INCEXP
+description: "FEAT-INCEXP — agrega el campo includeExposed al filtro de la CLI SuggestedLemmasFilter\
+  \ (audit-cli) para que la opcion pueda viajar desde el contrato publico GetCommand.get(resource,\
+  \ name, SuggestedLemmasFilter) hasta el carrier SuggestedLemmaQueryCriteria del\
+  \ dominio. Adicion unica: paridad con SuggestedLemmaQueryCriteria.includeExposed,\
+  \ default semantico false = comportamiento actual de FEAT-CSLATDC (F-INCEXP-R001)."
+modules:
+- name: audit-cli
+  models:
+  - name: SuggestedLemmasFilter
+    type: record
+    fields:
+    - name: includeExposed
+      type: boolean
+      description: "Opcion de la consulta de suggested-lemmas expuesta por el filtro\
+        \ publico del CLI (F-INCEXP-R002). false (default) = comportamiento identico\
+        \ a FEAT-CSLATDC: la senal de prioridad EXCLUYE los lemas ya suficientemente\
+        \ expuestos (F-INCEXP-R001). true = amplia el universo a todos los lemas del\
+        \ level+partOfSpeech incluyendo los ya expuestos, que quedan al final ordenados\
+        \ por COCA ascendente (F-INCEXP-R002, F-INCEXP-R003, F-INCEXP-R004). Paridad\
+        \ con SuggestedLemmaQueryCriteria.includeExposed (refiner-domain): GetCmd\
+        \ mapea este campo al carrier al construir la consulta."
+      _change: add
+    _change: modify
+  _change: modify

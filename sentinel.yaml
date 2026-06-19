@@ -3464,6 +3464,34 @@ modules:
     message: "Suggested lemma query rejected for task %s: %s"
     visibility: public
     extends: RuntimeException
+  - name: SuggestedLemmaQueryCriteria
+    type: record
+    fields:
+    - name: limit
+      type: Optional<Integer>
+      description: "Cantidad maxima de SuggestedLemma a devolver tras ampliar y ordenar\
+        \ el universo (F-INCEXP-R007). Vacio = el adaptador decide su default historico,\
+        \ identico a FEAT-CSLATDC; el recorte se aplica como ultimo paso (F-INCEXP-R007,\
+        \ F-INCEXP-R010)."
+    - name: partOfSpeech
+      type: Optional<String>
+      description: "Filtro opcional por part-of-speech, aplicado tambien sobre los\
+        \ lemas ya expuestos cuando includeExposed esta activo (F-INCEXP-R006). Vacio\
+        \ = sin filtro de POS."
+    - name: explicitLevel
+      type: Optional<CefrLevel>
+      description: "CefrLevel explicito. Vacio = el adaptador infiere el nivel desde\
+        \ la task; la inferencia y el rechazo por falta de nivel no dependen de includeExposed\
+        \ (F-INCEXP-R005, F-INCEXP-R008)."
+    - name: includeExposed
+      type: boolean
+      description: "Opcion de la consulta. false (default) = la senal de prioridad\
+        \ EXCLUYE los lemas ya suficientemente expuestos, comportamiento identico\
+        \ a FEAT-CSLATDC (F-INCEXP-R001). true = la senal de prioridad solo ORDENA:\
+        \ el universo se amplia a todos los lemas del level+POS incluyendo los ya\
+        \ expuestos (F-INCEXP-R002), que quedan al final como un unico grado de prioridad\
+        \ ordenado por COCA ascendente (F-INCEXP-R003, F-INCEXP-R004)."
+    visibility: public
   interfaces:
   - name: RefinerEngine
     stereotype: port
@@ -3495,16 +3523,14 @@ modules:
     stereotype: port
     sealed: false
     exposes:
-    - signature: "query(AuditReport report, RefinementTask task, Optional<Integer>\
-        \ limit, Optional<String> partOfSpeech, Optional<CefrLevel> explicitLevel):\
-        \ SuggestedLemmaQueryResult"
+    - signature: "query(AuditReport report, RefinementTask task, SuggestedLemmaQueryCriteria\
+        \ criteria): SuggestedLemmaQueryResult"
     visibility: public
   - name: SuggestedLemmaQuerySession
     stereotype: port
     sealed: false
     exposes:
-    - signature: "requestMore(Optional<Integer> limit, Optional<String> partOfSpeech,\
-        \ Optional<CefrLevel> explicitLevel): SuggestedLemmaQueryResult"
+    - signature: "requestMore(SuggestedLemmaQueryCriteria criteria): SuggestedLemmaQueryResult"
     visibility: public
   - name: SuggestedLemmaQuerySessionFactory
     stereotype: factory
@@ -3947,12 +3973,24 @@ modules:
       \ del LemmaAbsenceContextResolver, para que el limit solicitado por el agente\
       \ sea respetado (F-CSLATDC-R011)."
     visibility: internal
+    interfaces:
+    - name: LeveledLemmaInventory
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "lemmasFor(AuditReport report, RefinementTask task, CefrLevel level,\
+          \ Optional<String> partOfSpeech): List<SuggestedLemma>"
+      visibility: internal
     implementations:
     - name: LemmaAbsenceContextSuggestedLemmaQueryPort
       requiresInject:
       - name: lemmaAbsenceContextResolver
         type: CorrectionContextResolver<LemmaAbsenceCorrectionContext>
         _change: delete
+      - name: underexposedLemmaInventory
+        type: LeveledLemmaInventory
+      - name: levelWideLemmaInventory
+        type: LeveledLemmaInventory
       visibility: public
       handwrittenTests:
       - name: should return the suggested lemmas of the task identified by taskId
@@ -4015,6 +4053,63 @@ modules:
         traceability:
           feature: FEAT-CSLATDC
           rule: F-CSLATDC-R014
+      - name: should exclude already-exposed lemmas and recommend only lemmas still
+          needing exposure when includeExposed is false
+        traceability:
+          feature: FEAT-INCEXP
+          rule: F-INCEXP-R001
+      - name: should include already-exposed lemmas of the requested level and partOfSpeech
+          in the candidate universe when includeExposed is true
+        traceability:
+          feature: FEAT-INCEXP
+          rule: F-INCEXP-R002
+      - name: should place lemmas still needing exposure first and already-exposed
+          lemmas last by recommendation priority when includeExposed is true
+        traceability:
+          feature: FEAT-INCEXP
+          rule: F-INCEXP-R003
+      - name: should break ties by ascending COCA frequency within both the underexposed
+          block and the already-exposed block when includeExposed is true
+        traceability:
+          feature: FEAT-INCEXP
+          rule: F-INCEXP-R004
+      - name: should still restrict results to lemmas matching the applicable level
+          even when includeExposed is true
+        traceability:
+          feature: FEAT-INCEXP
+          rule: F-INCEXP-R005
+      - name: should still restrict results to the requested partOfSpeech among already-exposed
+          lemmas when includeExposed is true
+        traceability:
+          feature: FEAT-INCEXP
+          rule: F-INCEXP-R006
+      - name: should truncate the widened ordered universe to at most the requested
+          limit dropping already-exposed lemmas first when includeExposed is true
+        traceability:
+          feature: FEAT-INCEXP
+          rule: F-INCEXP-R007
+      - name: should infer level from the task and honor explicit level the same way
+          as the default query when includeExposed is true
+        traceability:
+          feature: FEAT-INCEXP
+          rule: F-INCEXP-R008
+      - name: should return an empty lemma list with a functional explanation and
+          no error when no lemma of the requested level and partOfSpeech exists even
+          with includeExposed true
+        traceability:
+          feature: FEAT-INCEXP
+          rule: F-INCEXP-R009
+      - name: should return all available lemmas without error when fewer than the
+          requested limit match the filters with includeExposed true
+        traceability:
+          feature: FEAT-INCEXP
+          rule: F-INCEXP-R010
+      - name: should preserve the observable shape of each suggested lemma and populate
+          the exposure fields for an already-exposed lemma with isUnderexposed false
+          when includeExposed is true
+        traceability:
+          feature: FEAT-INCEXP
+          rule: F-INCEXP-R011
       implements:
       - SuggestedLemmaQueryPort
     - name: BoundSuggestedLemmaQuerySession
@@ -4045,6 +4140,22 @@ modules:
       visibility: public
       implements:
       - SuggestedLemmaQuerySessionFactory
+    - name: UnderexposedLemmaInventory
+      requiresInject:
+      - name: lemmaAbsenceContextResolver
+        type: CorrectionContextResolver<LemmaAbsenceCorrectionContext>
+      visibility: internal
+      implements:
+      - LeveledLemmaInventory
+    - name: LevelWideLemmaInventory
+      requiresInject:
+      - name: evpCatalogPort
+        type: EvpCatalogPort
+      - name: lemmaCountConfig
+        type: LemmaCountConfig
+      visibility: internal
+      implements:
+      - LeveledLemmaInventory
 - name: audit-application
   dependsOn:
   - audit-domain
@@ -5293,6 +5404,16 @@ modules:
         , la consulta es rechazada con SuggestedLemmaQueryRejectedException (F-CSLATDC-R005).\
         \ Cualquier filtro adicional fuera de los tres declarados (p. ej. isIrregular)\
         \ tampoco puede pasarse: el record cerrado lo impide estructuralmente (F-CSLATDC-R013)."
+    - name: includeExposed
+      type: boolean
+      description: "Opcion de la consulta de suggested-lemmas expuesta por el filtro\
+        \ publico del CLI (F-INCEXP-R002). false (default) = comportamiento identico\
+        \ a FEAT-CSLATDC: la senal de prioridad EXCLUYE los lemas ya suficientemente\
+        \ expuestos (F-INCEXP-R001). true = amplia el universo a todos los lemas del\
+        \ level+partOfSpeech incluyendo los ya expuestos, que quedan al final ordenados\
+        \ por COCA ascendente (F-INCEXP-R002, F-INCEXP-R003, F-INCEXP-R004). Paridad\
+        \ con SuggestedLemmaQueryCriteria.includeExposed (refiner-domain): GetCmd\
+        \ mapea este campo al carrier al construir la consulta."
     visibility: public
   interfaces:
   - name: AnalyzeCommand
@@ -11114,6 +11235,17 @@ features:
     validation: AUTO_VALIDATED
     testModule: revision-infrastructure
     testPackage: com.learney.contentaudit.revisioninfrastructure.lageninteractive
+- id: FEAT-INCEXP
+  code: F-INCEXP
+  journeys:
+  - id: F-INCEXP-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-INCEXP-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
 dependencies:
 - alias: langchain4j-openai
   artifact: dev.langchain4j:langchain4j-open-ai:0.36.2

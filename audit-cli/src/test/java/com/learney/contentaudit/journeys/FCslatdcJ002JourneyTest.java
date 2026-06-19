@@ -21,6 +21,7 @@ import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
 import com.learney.contentaudit.refinerdomain.SuggestedLemma;
+import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryCriteria;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryPort;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryResult;
 import com.learney.contentaudit.revisiondomain.ImpactPreviewStore;
@@ -182,9 +183,7 @@ public class FCslatdcJ002JourneyTest {
         when(suggestedLemmaQueryPort.query(
                 any(AuditReport.class),
                 eq(task),
-                eq(Optional.of(4)),
-                eq(Optional.of("NOUN")),
-                eq(Optional.of(EXPLICIT_LEVEL)))).thenReturn(queryResult);
+                eq(new SuggestedLemmaQueryCriteria(Optional.of(4), Optional.of("NOUN"), Optional.of(EXPLICIT_LEVEL), false)))).thenReturn(queryResult);
 
         GetCommand cmd = buildGetCmd(auditReportStore, refinementPlanStore, suggestedLemmaQueryPort);
 
@@ -193,7 +192,8 @@ public class FCslatdcJ002JourneyTest {
         SuggestedLemmasFilter filter = new SuggestedLemmasFilter(
                 Optional.of(4),
                 Optional.of("NOUN"),
-                Optional.of(EXPLICIT_LEVEL));   // explicit level — R006
+                Optional.of(EXPLICIT_LEVEL),
+                false);   // explicit level — R006
         int exit = cmd.get("suggested-lemmas", TASK_ID, filter);
 
         // Assert — success: up to N=4 lemmas matching explicit level B1 and NOUN, ordered by priority.
@@ -238,9 +238,7 @@ public class FCslatdcJ002JourneyTest {
         when(suggestedLemmaQueryPort.query(
                 any(AuditReport.class),
                 eq(task),
-                eq(Optional.of(4)),
-                eq(Optional.of("NOUN")),
-                eq(Optional.of(EXPLICIT_LEVEL)))).thenReturn(emptyResult);
+                eq(new SuggestedLemmaQueryCriteria(Optional.of(4), Optional.of("NOUN"), Optional.of(EXPLICIT_LEVEL), false)))).thenReturn(emptyResult);
 
         GetCommand cmd = buildGetCmd(auditReportStore, refinementPlanStore, suggestedLemmaQueryPort);
 
@@ -249,7 +247,8 @@ public class FCslatdcJ002JourneyTest {
         SuggestedLemmasFilter filter = new SuggestedLemmasFilter(
                 Optional.of(4),
                 Optional.of("NOUN"),
-                Optional.of(EXPLICIT_LEVEL));   // explicit level — R006
+                Optional.of(EXPLICIT_LEVEL),
+                false);   // explicit level — R006
         int exit = cmd.get("suggested-lemmas", TASK_ID, filter);
 
         // Assert — success: empty list is valid, not an error (R012). Exit zero with functional explanation.

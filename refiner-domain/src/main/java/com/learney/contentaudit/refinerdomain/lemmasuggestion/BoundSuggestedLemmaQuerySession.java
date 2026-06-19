@@ -1,12 +1,11 @@
 package com.learney.contentaudit.refinerdomain.lemmasuggestion;
+import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryCriteria;
 
 import com.learney.contentaudit.auditdomain.AuditReport;
-import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryPort;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryResult;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQuerySession;
-import java.util.Optional;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -28,8 +27,7 @@ public class BoundSuggestedLemmaQuerySession implements SuggestedLemmaQuerySessi
     }
 
     @Override
-    public SuggestedLemmaQueryResult requestMore(Optional<Integer> limit,
-            Optional<String> partOfSpeech, Optional<CefrLevel> explicitLevel) {
-        return queryPort.query(report, task, limit, partOfSpeech, explicitLevel);
+    public SuggestedLemmaQueryResult requestMore(SuggestedLemmaQueryCriteria criteria) {
+        return queryPort.query(report, task, criteria);
     }
 }

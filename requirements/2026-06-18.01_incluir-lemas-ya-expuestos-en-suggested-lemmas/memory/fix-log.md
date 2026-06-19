@@ -1,0 +1,18 @@
+# Fix Log — FEAT-INCEXP
+
+2026-06-18 — developer — La visibilidad interna de UnderexposedLemmaInventory y LevelWideLemmaInventory impide instanciarlos desde Main.java (fuera del paquete). Solución: static factory `LemmaAbsenceContextSuggestedLemmaQueryPort.create(resolver, evpCatalog, lemmaCountConfig)` dentro del mismo paquete, sin exponer LeveledLemmaInventory al exterior.
+  why: LeveledLemmaInventory es package-private (visibility: internal en sentinel.yaml); la DI manual no puede construirlos directamente desde el composition root.
+
+2026-06-18 — developer — DefaultSuggestedLemmaToolExchange (revision-infrastructure) también usaba la firma vieja de requestMore(); migrado a SuggestedLemmaQueryCriteria con includeExposed=false (modo interactivo LAGEN no amplía el universo por defecto).
+
+2026-06-19 — developer — Bug ON mode: lemas COMPLETELY_ABSENT (count=0) no están en subExposedLemmas → LevelWideLemmaInventory los clasificaba como isUnderexposed=false → iban al final y el limit los cortaba. Fix: composición en el port (LemmaAbsenceContextSuggestedLemmaQueryPort.query). ON = underexposedInventory.lemmasFor() (bloque needs-exposure, idéntico a OFF) + tail de genuinamente-expuestos de levelWideInventory.lemmasFor() (isUnderexposed==false) deduped por (lemma,pos) + COCA sort en el tail. Absent/sub-exposed nunca quedan fuera del bloque prioritario.
+  why: la fuente de verdad para "needs exposure" es el OFF inventory (absentLemmas del audit), no el flag isUnderexposed del wide inventory, que no tiene señal para count=0.
+
+2026-06-18 — test-writer — Tests R003 y R004 fallaban porque el milestone label era "A1 Milestone" en lugar de "A1" (el nombre exacto del enum CefrLevel). LevelWideLemmaInventory.buildSubExposedLookup() parsea el label como CefrLevel y lanza si no coincide. Fix: cambiar label a "A1" y usar buildMilestoneDiagnosesWithLemmaCount() para incluir LemmaCountLevelDiagnosis con los lemas underexposed. Sin este diagnóstico, TODOS los lemas salen con isUnderexposed=false y el orden es sólo COCA (no cumple R003).
+  why: la clasificación underexposed/exposed en LevelWideLemmaInventory depende de la presencia de LemmaCountLevelDiagnosis en el milestone; sin ella, el inventario no puede distinguir los dos bloques.
+
+2026-06-18 — test-writer — Journey tests (audit-cli) fallaban con NoClassDefFound para SuggestedLemmaQueryCriteria porque el jar instalado en ~/.m2 no tenía la clase (build previo al cambio). Fix: mvn install -pl refiner-domain,audit-domain,audit-infrastructure -DskipTests para actualizar el jar antes de correr audit-cli.
+  why: audit-cli depende del jar instalado localmente, no del source de refiner-domain directamente en la misma sesión mvn test.
+
+2026-06-19 — test-writer — Reforzadas R002, R003, R007 para capturar el bug ON ⊉ OFF (COMPLETELY_ABSENT-en-EVP). Los fixtures anteriores no lo reproducían porque: (a) milestone label "A1 Milestone" no parseable por LevelWideLemmaInventory o (b) sin LemmaCountLevelDiagnosis, todos los lemas quedaban como already-exposed y el bug pasaba invisible. Cambios: todos los fixtures usan label "A1" + buildMilestoneDiagnosesWithLemmaCount() marcando los lemas COMPLETELY_ABSENT como sub-expuestos. R002 agrega OFF-como-baseline y assertContainsAll. R003 usa maxPos(needs-exposure)<minPos(already-exposed) para todo el bloque. R007 aserta explícitamente que run+walk (COMPLETELY_ABSENT) no se pierden con limit=3 y que "eat" sí se descarta.
+  why: la última lambda de R007 usaba !Boolean.TRUE como filtro para "no es underexposed", que atrapaba también lemas con isUnderexposed=null (needs-exposure sin señal); reemplazado por check nombrado sobre "jump" específicamente.

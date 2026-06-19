@@ -98,6 +98,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: SuggestedLemmaQueryRejectedException - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryCriteria");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SuggestedLemmaQueryCriteria - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.refinerdomain.RefinerEngine");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: RefinerEngine - " + e.getMessage());
@@ -153,6 +158,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: DefaultRefinerEngine - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.refinerdomain.lemmasuggestion.LeveledLemmaInventory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LeveledLemmaInventory - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.refinerdomain.lemmasuggestion.LemmaAbsenceContextSuggestedLemmaQueryPort");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LemmaAbsenceContextSuggestedLemmaQueryPort - " + e.getMessage());
@@ -166,6 +176,16 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.refinerdomain.lemmasuggestion.DefaultSuggestedLemmaQuerySessionFactory");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultSuggestedLemmaQuerySessionFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.lemmasuggestion.UnderexposedLemmaInventory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: UnderexposedLemmaInventory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.lemmasuggestion.LevelWideLemmaInventory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LevelWideLemmaInventory - " + e.getMessage());
     }
   }
 }

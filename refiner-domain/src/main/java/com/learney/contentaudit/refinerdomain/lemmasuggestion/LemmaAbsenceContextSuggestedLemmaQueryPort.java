@@ -1,4 +1,5 @@
 package com.learney.contentaudit.refinerdomain.lemmasuggestion;
+import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryCriteria;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditReport;
@@ -6,9 +7,10 @@ import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.AuditableEntity;
 import com.learney.contentaudit.auditdomain.AuditableMilestone;
 import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.EvpCatalogPort;
+import com.learney.contentaudit.auditdomain.LemmaCountConfig;
 import com.learney.contentaudit.auditdomain.LevelDiagnoses;
 import com.learney.contentaudit.auditdomain.NodeDiagnoses;
-import com.learney.contentaudit.auditdomain.labs.AbsentLemma;
 import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceLevelDiagnosis;
 import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
@@ -18,12 +20,11 @@ import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryPort;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryRejectedException;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryResult;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -33,15 +34,42 @@ import javax.annotation.processing.Generated;
 public class LemmaAbsenceContextSuggestedLemmaQueryPort implements SuggestedLemmaQueryPort {
     private final CorrectionContextResolver<LemmaAbsenceCorrectionContext> lemmaAbsenceContextResolver;
 
+    private final LeveledLemmaInventory underexposedLemmaInventory;
+
+    private final LeveledLemmaInventory levelWideLemmaInventory;
+
     public LemmaAbsenceContextSuggestedLemmaQueryPort(
-            CorrectionContextResolver<LemmaAbsenceCorrectionContext> lemmaAbsenceContextResolver) {
+            CorrectionContextResolver<LemmaAbsenceCorrectionContext> lemmaAbsenceContextResolver,
+            LeveledLemmaInventory underexposedLemmaInventory,
+            LeveledLemmaInventory levelWideLemmaInventory) {
         this.lemmaAbsenceContextResolver = lemmaAbsenceContextResolver;
+        this.underexposedLemmaInventory = underexposedLemmaInventory;
+        this.levelWideLemmaInventory = levelWideLemmaInventory;
+    }
+
+    /**
+     * Static factory for use by the composition root. Wires the two default inventory
+     * implementations (internal to this package) without exposing LeveledLemmaInventory
+     * to callers outside the package.
+     */
+    public static LemmaAbsenceContextSuggestedLemmaQueryPort create(
+            CorrectionContextResolver<LemmaAbsenceCorrectionContext> lemmaAbsenceContextResolver,
+            EvpCatalogPort evpCatalogPort,
+            LemmaCountConfig lemmaCountConfig) {
+        return new LemmaAbsenceContextSuggestedLemmaQueryPort(
+                lemmaAbsenceContextResolver,
+                new UnderexposedLemmaInventory(lemmaAbsenceContextResolver),
+                new LevelWideLemmaInventory(evpCatalogPort, lemmaCountConfig));
     }
 
     @Override
     public SuggestedLemmaQueryResult query(AuditReport report, RefinementTask task,
-            Optional<Integer> limit, Optional<String> partOfSpeech,
-            Optional<CefrLevel> explicitLevel) {
+            SuggestedLemmaQueryCriteria criteria) {
+
+        Optional<Integer> limit = criteria.getLimit();
+        Optional<String> partOfSpeech = criteria.getPartOfSpeech();
+        Optional<CefrLevel> explicitLevel = criteria.getExplicitLevel();
+        boolean includeExposed = criteria.isIncludeExposed();
 
         // Step 1: Locate the quiz AuditNode in the report tree (R001, R012)
         AuditNode root = report.getRoot();
@@ -49,34 +77,75 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPort implements SuggestedLemm
 
         // Step 2: Resolve the effective CefrLevel (R003, R004, R005, R006)
         CefrLevel effectiveLevel;
-        List<AbsentLemma> absentLemmas;
-
         if (maybeQuizNode.isPresent()) {
             AuditNode quizNode = maybeQuizNode.get();
-            // Navigate to milestone ancestor for level inference
             Optional<AuditNode> milestoneAncestor = quizNode.ancestor(AuditTarget.MILESTONE);
             CefrLevel inferredLevel = inferLevelFromMilestone(milestoneAncestor);
-            absentLemmas = extractAbsentLemmas(milestoneAncestor);
-
             effectiveLevel = resolveEffectiveLevel(task.getId(), inferredLevel, explicitLevel);
         } else {
-            // Quiz node not found: no absent lemmas available (R012)
-            absentLemmas = Collections.emptyList();
+            // Quiz node not found: no ancestor inference available (R012)
             effectiveLevel = resolveEffectiveLevel(task.getId(), null, explicitLevel);
         }
 
-        // Step 3: Build candidates from absentLemmas, ranked by priority (R010)
-        List<SuggestedLemma> candidates = rankCandidates(absentLemmas);
+        // Step 3: Build candidate list.
+        //
+        // OFF mode (includeExposed=false, F-INCEXP-R001):
+        //   Delegates entirely to underexposedLemmaInventory — identical to previous behaviour.
+        //
+        // ON mode (includeExposed=true, F-INCEXP-R002, R003, R007):
+        //   The ON result is a SUPERSET of OFF by construction:
+        //   (a) "needs-exposure" block = exactly what underexposedLemmaInventory returns
+        //       (absent + sub-exposed; preserves OFF order and all fields).
+        //   (b) "already-exposed" tail = lemmas from levelWideLemmaInventory that are
+        //       genuinely exposed (isUnderexposed==false) AND not already in block (a).
+        //       These are appended after the needs-exposure block.
+        //   Dedup key: (lemma, pos) — OFF entries always win.
+        //
+        // This guarantees: limit cuts from already-exposed first, never from absent/sub-exposed.
 
-        // Step 4: Filter by partOfSpeech (R007)
-        if (partOfSpeech.isPresent()) {
-            String pos = partOfSpeech.get();
-            candidates = candidates.stream()
-                    .filter(sl -> pos.equals(sl.getPos()))
-                    .collect(Collectors.toList());
+        List<SuggestedLemma> candidates;
+
+        if (!includeExposed) {
+            // OFF path: unchanged
+            candidates = new ArrayList<>(underexposedLemmaInventory.lemmasFor(
+                    report, task, effectiveLevel, partOfSpeech));
+        } else {
+            // ON path: OFF block + genuinely-exposed tail (deduped)
+            List<SuggestedLemma> needsExposure = underexposedLemmaInventory.lemmasFor(
+                    report, task, effectiveLevel, partOfSpeech);
+
+            // Build dedup key set from needs-exposure block
+            Set<String> seenKeys = new HashSet<>();
+            for (SuggestedLemma sl : needsExposure) {
+                seenKeys.add(lemmaKey(sl));
+            }
+
+            // Collect genuinely-exposed entries from the level-wide inventory, excluding dupes
+            List<SuggestedLemma> alreadyExposedTail = new ArrayList<>();
+            List<SuggestedLemma> levelWideAll = levelWideLemmaInventory.lemmasFor(
+                    report, task, effectiveLevel, partOfSpeech);
+            for (SuggestedLemma sl : levelWideAll) {
+                if (Boolean.FALSE.equals(sl.getIsUnderexposed())
+                        && seenKeys.add(lemmaKey(sl))) {
+                    alreadyExposedTail.add(sl);
+                }
+            }
+
+            // Sort already-exposed tail by COCA ascending, nulls/zeros last
+            alreadyExposedTail.sort(Comparator.comparingInt(sl ->
+                    sl.getCocaRank() == null || sl.getCocaRank() == 0
+                            ? Integer.MAX_VALUE : sl.getCocaRank()));
+
+            candidates = new ArrayList<>(needsExposure.size() + alreadyExposedTail.size());
+            candidates.addAll(needsExposure);
+            candidates.addAll(alreadyExposedTail);
         }
 
-        // Step 5: Apply limit (R008, R009)
+        // Step 5 (OFF): OFF candidates already come sorted from UnderexposedLemmaInventory.
+        // (ON): needs-exposure block preserves OFF order; already-exposed tail is COCA-sorted above.
+        // No additional sort needed here — the structure is already correct.
+
+        // Step 6: Apply limit as last step (R008, R009)
         if (limit.isPresent()) {
             int n = limit.get();
             if (candidates.size() > n) {
@@ -84,8 +153,18 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPort implements SuggestedLemm
             }
         }
 
-        // Step 6: Return result (R001, R003, R012, R014)
+        // Step 7: Return result (R001, R003, R012, R014)
         return new SuggestedLemmaQueryResult(task.getId(), effectiveLevel, candidates);
+    }
+
+    /**
+     * Dedup key for a SuggestedLemma: (lemma, pos) pair.
+     * Null-safe — uses empty string for missing parts.
+     */
+    private static String lemmaKey(SuggestedLemma sl) {
+        return (sl.getLemma() != null ? sl.getLemma() : "")
+                + "\0"
+                + (sl.getPos() != null ? sl.getPos() : "");
     }
 
     /**
@@ -141,54 +220,6 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPort implements SuggestedLemm
             }
         }
         return null;
-    }
-
-    /**
-     * Extracts the absentLemmas list from the milestone's LemmaAbsenceLevelDiagnosis.
-     * Returns empty list when there is no diagnosis.
-     */
-    private List<AbsentLemma> extractAbsentLemmas(Optional<AuditNode> milestoneAncestor) {
-        if (milestoneAncestor.isEmpty()) {
-            return Collections.emptyList();
-        }
-        NodeDiagnoses diagnoses = milestoneAncestor.get().getDiagnoses();
-        if (!(diagnoses instanceof LevelDiagnoses)) {
-            return Collections.emptyList();
-        }
-        Optional<LemmaAbsenceLevelDiagnosis> maybeAbsence =
-                ((LevelDiagnoses) diagnoses).getLemmaAbsenceDiagnosis();
-        if (maybeAbsence.isEmpty()) {
-            return Collections.emptyList();
-        }
-        List<AbsentLemma> lemmas = maybeAbsence.get().getAbsentLemmas();
-        return lemmas != null ? lemmas : Collections.emptyList();
-    }
-
-    /**
-     * Ranks candidates using the same priority groups as F-SLEM-R003..R007,
-     * without the fixed cap of 10 from LemmaAbsenceContextResolver (R011).
-     *
-     * When no lemma-count signal is present (as in this port, which does not
-     * consult lemma-count diagnoses), falls back to COCA-ascending ordering:
-     * lower cocaRank = more frequent = higher recommendation priority.
-     * Null or zero cocaRank sorts last.
-     */
-    private List<SuggestedLemma> rankCandidates(List<AbsentLemma> absentLemmas) {
-        if (absentLemmas == null || absentLemmas.isEmpty()) {
-            return new ArrayList<>();
-        }
-
-        return absentLemmas.stream()
-                .sorted(Comparator.comparingInt(
-                        (AbsentLemma al) -> al.getCocaRank() == null || al.getCocaRank() == 0
-                                ? Integer.MAX_VALUE : al.getCocaRank()))
-                .map(al -> new SuggestedLemma(
-                        al.getLemmaAndPos() != null ? al.getLemmaAndPos().getLemma() : null,
-                        al.getLemmaAndPos() != null ? al.getLemmaAndPos().getPos() : null,
-                        al.getAbsenceType() != null ? al.getAbsenceType().name() : null,
-                        al.getCocaRank(),
-                        null, null, null))
-                .collect(Collectors.toList());
     }
 
     /**

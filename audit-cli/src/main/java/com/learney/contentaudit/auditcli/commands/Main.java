@@ -366,7 +366,8 @@ class Main {
                     // (carrying the taskId from the CorrectionContext) into a BoundSession.
                     // Create the query port inline (lemmaAbsenceContextResolver is already available here).
                     LemmaAbsenceContextSuggestedLemmaQueryPort interactiveLemmaQueryPort =
-                            new LemmaAbsenceContextSuggestedLemmaQueryPort(lemmaAbsenceContextResolver);
+                            LemmaAbsenceContextSuggestedLemmaQueryPort.create(
+                                    lemmaAbsenceContextResolver, evpCatalog, lemmaCountConfig);
                     com.learney.contentaudit.refinerdomain.lemmasuggestion.DefaultSuggestedLemmaQuerySessionFactory sessionFactory =
                             new com.learney.contentaudit.refinerdomain.lemmasuggestion.DefaultSuggestedLemmaQuerySessionFactory(
                                     interactiveLemmaQueryPort, refinementPlanStore, auditReportStore);
@@ -536,7 +537,8 @@ class Main {
         // impactPreviewStore + formatter para el preview de impacto (F-PIPRE-R007);
         // suggestedLemmaQueryPort para F-CSLATDC-R001/R002
         LemmaAbsenceContextSuggestedLemmaQueryPort suggestedLemmaQueryPort =
-                new LemmaAbsenceContextSuggestedLemmaQueryPort(lemmaAbsenceContextResolver);
+                LemmaAbsenceContextSuggestedLemmaQueryPort.create(
+                        lemmaAbsenceContextResolver, evpCatalog, lemmaCountConfig);
         GetCmd getCmd = new GetCmd(auditReportStore, refinementPlanStore, analyzerRegistry,
                 correctionContextResolver, impactPreviewStore, new DefaultImpactPreviewFormatter(),
                 correctionContextJsonMapper, suggestedLemmaQueryPort);

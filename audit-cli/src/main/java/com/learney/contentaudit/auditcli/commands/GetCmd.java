@@ -13,6 +13,7 @@ import com.learney.contentaudit.refinerdomain.LengthDirection;
 import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
 import com.learney.contentaudit.refinerdomain.SentenceLengthCorrectionContext;
 import com.learney.contentaudit.refinerdomain.SuggestedLemma;
+import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryCriteria;
 
 import com.learney.contentaudit.auditapplication.AnalyzerRegistry;
 import com.learney.contentaudit.auditcli.GetCommand;
@@ -144,6 +145,11 @@ final class GetCmd implements GetCommand, Callable<Integer> {
             description = "For 'suggested-lemmas': explicit CefrLevel (e.g. A1, B2). If absent, inferred from the task.")
     private CefrLevel level;
 
+    @Option(names = {"--include-exposed"},
+            description = "For 'suggested-lemmas': include already-exposed lemmas in results (default: false).",
+            defaultValue = "false")
+    private boolean includeExposed;
+
     private ImpactPreviewStore impactPreviewStore;
 
     private ImpactPreviewFormatter impactPreviewFormatter;
@@ -192,7 +198,7 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
                 SuggestedLemmasFilter slFilter = new SuggestedLemmasFilter(
                         Optional.ofNullable(limit),
                         Optional.ofNullable(partOfSpeech),
-                        Optional.ofNullable(level)
+                        Optional.ofNullable(level), includeExposed
                 );
                 return get(resource, name, slFilter);
             }
@@ -1304,11 +1310,14 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
         // Step 3 & 4: invoke the port, capturing rejection
         com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryResult result;
         try {
-            Optional<Integer> limit = filter != null ? filter.getLimit() : Optional.empty();
-            Optional<String> partOfSpeech = filter != null ? filter.getPartOfSpeech() : Optional.empty();
-            Optional<com.learney.contentaudit.auditdomain.CefrLevel> level =
+            Optional<Integer> queryLimit = filter != null ? filter.getLimit() : Optional.empty();
+            Optional<String> queryPartOfSpeech = filter != null ? filter.getPartOfSpeech() : Optional.empty();
+            Optional<com.learney.contentaudit.auditdomain.CefrLevel> queryLevel =
                     filter != null ? filter.getLevel() : Optional.empty();
-            result = suggestedLemmaQueryPort.query(report, task, limit, partOfSpeech, level);
+            boolean queryIncludeExposed = filter != null && filter.isIncludeExposed();
+            SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
+                    queryLimit, queryPartOfSpeech, queryLevel, queryIncludeExposed);
+            result = suggestedLemmaQueryPort.query(report, task, criteria);
         } catch (com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryRejectedException e) {
             System.err.println("Suggested lemma query rejected for task '" + e.getTaskId()
                     + "': " + e.getReason());

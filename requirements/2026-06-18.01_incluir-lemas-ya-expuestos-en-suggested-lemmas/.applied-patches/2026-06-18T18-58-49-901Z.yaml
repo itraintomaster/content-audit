@@ -1,0 +1,76 @@
+code: FEAT-INCEXP
+modules:
+- name: refiner-domain
+  packages:
+  - name: lemmasuggestion
+    implementations:
+    - name: LemmaAbsenceContextSuggestedLemmaQueryPort
+      handwrittenTests:
+      - name: should exclude already-exposed lemmas and recommend only lemmas still
+          needing exposure when includeExposed is false
+        traceability:
+          feature: FEAT-INCEXP
+          rule: F-INCEXP-R001
+      - name: should include already-exposed lemmas of the requested level and partOfSpeech
+          in the candidate universe when includeExposed is true
+        traceability:
+          feature: FEAT-INCEXP
+          rule: F-INCEXP-R002
+      - name: should place lemmas still needing exposure first and already-exposed
+          lemmas last by recommendation priority when includeExposed is true
+        traceability:
+          feature: FEAT-INCEXP
+          rule: F-INCEXP-R003
+      - name: should break ties by ascending COCA frequency within both the underexposed
+          block and the already-exposed block when includeExposed is true
+        traceability:
+          feature: FEAT-INCEXP
+          rule: F-INCEXP-R004
+      - name: should still restrict results to lemmas matching the applicable level
+          even when includeExposed is true
+        traceability:
+          feature: FEAT-INCEXP
+          rule: F-INCEXP-R005
+      - name: should still restrict results to the requested partOfSpeech among already-exposed
+          lemmas when includeExposed is true
+        traceability:
+          feature: FEAT-INCEXP
+          rule: F-INCEXP-R006
+      - name: should truncate the widened ordered universe to at most the requested
+          limit dropping already-exposed lemmas first when includeExposed is true
+        traceability:
+          feature: FEAT-INCEXP
+          rule: F-INCEXP-R007
+      - name: should infer level from the task and honor explicit level the same way
+          as the default query when includeExposed is true
+        traceability:
+          feature: FEAT-INCEXP
+          rule: F-INCEXP-R008
+      - name: should return an empty lemma list with a functional explanation and
+          no error when no lemma of the requested level and partOfSpeech exists even
+          with includeExposed true
+        traceability:
+          feature: FEAT-INCEXP
+          rule: F-INCEXP-R009
+      - name: should return all available lemmas without error when fewer than the
+          requested limit match the filters with includeExposed true
+        traceability:
+          feature: FEAT-INCEXP
+          rule: F-INCEXP-R010
+      - name: should preserve the observable shape of each suggested lemma and populate
+          the exposure fields for an already-exposed lemma with isUnderexposed false
+          when includeExposed is true
+        traceability:
+          feature: FEAT-INCEXP
+          rule: F-INCEXP-R011
+features:
+- id: FEAT-INCEXP
+  journeys:
+  - id: F-INCEXP-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-INCEXP-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
