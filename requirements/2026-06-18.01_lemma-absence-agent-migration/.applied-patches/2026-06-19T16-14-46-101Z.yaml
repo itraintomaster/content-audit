@@ -1,0 +1,29 @@
+code: FEAT-LASAG
+description: "F-LASAG cleanup: poda de dos orphans arquitectonicos que dejo el patch\
+  \ original (sentinel generate no los poda porque no son derivados). (1) Reemplaza\
+  \ la lista completa de patterns de revision-infrastructure por solo el Factory del\
+  \ agente (LemmaAbsenceAgentGeneratorFactory), retirando el Factory huerfano de InteractiveLemmaAbsenceGeneratorFactory\
+  \ cuya interface, impl y paquete lageninteractive ya fueron borrados. El bloque\
+  \ patterns se aplica por reemplazo total (PatchApplier/PatchMerger no honran _change:delete\
+  \ por elemento sobre patterns), asi que la lista entrante debe contener exactamente\
+  \ los patterns deseados. (2) Corrige la descripcion del paquete lagen que aun apuntaba\
+  \ al paquete 'lagenopenai' (vacio/borrado) para que apunte a lemmaabsenceagent.\
+  \ No toca contratos, el puerto, LagenConfig, journeys ni handwrittenTests."
+modules:
+- name: revision-infrastructure
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultLemmaAbsenceAgentGeneratorFactory
+    suppressed: false
+    interface: LemmaAbsenceAgentGeneratorFactory
+  packages:
+  - name: lagen
+    description: "Public contract of the agent-backed candidate generator. Exposes\
+      \ the factory port (LemmaAbsenceAgentGeneratorFactory) + the LagenConfig carrier\
+      \ (knobs from F-LAGEN-R008 y maxEvalRetries de F-LASAG-R011) + the LlmGenerationFailureCategory\
+      \ enum (categories surfaced through the adapter, F-LAGEN-R006 / F-LASAG-R005).\
+      \ Implementations of the factory and all collaborators live in the sibling 'lemmaabsenceagent'\
+      \ internal package."
+    _change: modify
+  _change: modify

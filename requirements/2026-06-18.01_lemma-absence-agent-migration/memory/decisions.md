@@ -37,3 +37,9 @@
   Colaboradores package-private: AgentRuntimeLauncher (aísla AgentRun/AgentRegistry/ExecutionContext, devuelve RunState), SuggestedLemmaAgentTool (delega en SuggestedLemmaQuerySession, F-CSLATDC), AgentRuntimeErrorClassifier (RunState/Throwable -> LlmGenerationFailureCategory -> ProposalStrategyFailedException con categoría), AgentCandidateParser (RunState exitoso -> LemmaAbsenceGeneratorResponse; reemplaza al LemmaAbsenceResponseParser borrado con lagenopenai).
   why: el parser de respuesta vivía en lagenopenai (borrado); el adaptador del agente necesita su propio parser dentro del nuevo paquete — fix en la 2da ronda de propose (merge).
   TECH_SPEC.md: 9 fences, español.
+
+2026-06-19 — architect — Limpieza de 2 orphans post-aplicación de F-LASAG (patch propuesto, NO aplicado).
+  Orphan 1: pattern Factory de InteractiveLemmaAbsenceGeneratorFactory quedó colgando tras borrar su interface/impl/paquete.
+  Orphan 2: descripción del paquete lagen seguía apuntando a 'lagenopenai' (borrado) → corregida a 'lemmaabsenceagent'.
+  HALLAZGO (limitación Sentinel, verificada en código): el bloque `patterns` NO honra `_change: delete` por elemento. PatchMerger:112 y PatchApplier:151 hacen reemplazo TOTAL: `!incoming.patterns().isEmpty() ? incoming.patterns() : existing.patterns()`. Por eso el orphan se creó en el patch original (la lista entrante traía orphan-con-delete + nuevo, y el delete fue ignorado al reemplazar la lista verbatim).
+  why: para retirar un pattern hay que enviar la lista COMPLETA de patterns deseados (sin el orphan), no un `_change: delete`. Usé --replace para arrancar limpio.

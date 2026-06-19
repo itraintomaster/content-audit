@@ -10132,11 +10132,6 @@ modules:
   patterns:
   - type: Factory
     implementations:
-    - DefaultInteractiveLemmaAbsenceGeneratorFactory
-    suppressed: false
-    interface: InteractiveLemmaAbsenceGeneratorFactory
-  - type: Factory
-    implementations:
     - DefaultLemmaAbsenceAgentGeneratorFactory
     suppressed: false
     interface: LemmaAbsenceAgentGeneratorFactory
@@ -10146,11 +10141,12 @@ modules:
   - sentinel-agents
   packages:
   - name: lagen
-    description: "Public contract of the LangChain4j-backed candidate generator. Exposes\
-      \ the factory port + the LagenConfig carrier (knobs from F-LAGEN-R008) + the\
-      \ LlmGenerationFailureCategory enum (categories surfaced through the adapter,\
-      \ F-LAGEN-R006). Implementations of the factory and all collaborators live in\
-      \ the sibling 'lagenopenai' internal package."
+    description: "Public contract of the agent-backed candidate generator. Exposes\
+      \ the factory port (LemmaAbsenceAgentGeneratorFactory) + the LagenConfig carrier\
+      \ (knobs from F-LAGEN-R008 y maxEvalRetries de F-LASAG-R011) + the LlmGenerationFailureCategory\
+      \ enum (categories surfaced through the adapter, F-LAGEN-R006 / F-LASAG-R005).\
+      \ Implementations of the factory and all collaborators live in the sibling 'lemmaabsenceagent'\
+      \ internal package."
     visibility: public
     models:
     - name: LagenConfig

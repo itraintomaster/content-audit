@@ -24,7 +24,6 @@ CLI entry point
 |-------|------|
 | LLM | `null` |
 | CANNED | `null` |
-| LLM_INTERACTIVE | `null` |
 
 ### PlanStorageMode (`enum`)
 

@@ -13,3 +13,8 @@
   Journeys F-LAGEN-J001..J006 y F-LAGAG-J001..J003 retirados de sus REQUIREMENT.md (reemplazados por nota de absorción a F-LASAG). `sentinel feature sync` es ADITIVO: NO podó los 9 refs colgantes a lagenopenai/lageninteractive; dice "will be pruned at next generate". Poda = `sentinel generate` (fuera de lane analyst). ESCALADO a @architect.
   F-LASAG: el bloque combinado de 9 journeys en un solo fence yaml leía 0 journeys en el parser. Reescrito a formato estándar del proyecto (1 `### Journey[...]` + 1 fence single-entry por journey). Sync registró los 9 (AUTO_VALIDATED, sin testModule/testPackage → placement = qa-tester).
   Bug latente corregido: J004 tenía un ciclo (evaluar→reintentar→evaluar); V-MBT-08 prohíbe ciclos. Desenrollado a evaluar_primer_intento→reintentar→evaluar_reintento (DAG). Nunca se detectó antes porque el parser jamás leyó el bloque combinado.
+
+2026-06-19 — architect — Patch de limpieza de orphans propuesto (NO aplicado).
+  Salida: "Validated: 0 additions, 1 modifications, 0 deletions, 0 conflicts."
+  architectural_patch.yaml ahora contiene SOLO la limpieza (reemplazo de la lista patterns + fix descripción lagen). Los patches de diseño previos ya están en .applied-patches/.
+  TECH_SPEC.md (220 líneas / 9 fences) se DEJÓ intacto como foto del diseño F-LASAG: el CLI rechazó encogerlo a 2 fences (guard anti-shrink) y es correcto no degradar la foto del diseño por un cleanup menor. La razón del cleanup vive en la description del patch y en decisions.md.
