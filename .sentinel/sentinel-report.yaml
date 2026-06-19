@@ -1,4 +1,4 @@
-generatedAt: 2026-06-19T16:14:54.168871Z
+generatedAt: 2026-06-19T16:54:01.383829Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -28417,6 +28417,16 @@ elements:
 
       then:
         thrown.getKey() == KEY_PROVIDER
+    - |
+      test: "should resolve maxEvalRetries to the default of 3 when no eval-retries env var is present"
+      trace: FEAT-LASAG / F-LASAG-R011
+
+      given:
+        env = fullEnv()
+        config = resolver.resolve(env)
+
+      then:
+        config.getMaxEvalRetries() == 3
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -34760,6 +34770,121 @@ elements:
         when generation hits a runtime failure
       status: EXISTS
       testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/LemmaAbsenceAgentGeneratorTest.java
+    testCleanViews:
+    - |
+      test: "should pass only the suggested-lemmas tool to the agent runtime and no other CLI command tool during generation"
+      trace: FEAT-LASAG / F-LASAG-R002
+
+      given:
+        successState = RunState.empty().withRunStatus(RunStatus.COMPLETED)
+        capturedTools = AtomicReference<>()
+        launcher = mock(AgentRuntimeLauncher.class)
+        fixedResponse = LemmaAbsenceGeneratorResponse("She [[walks]] to school every day.", "Ella camina a la escuela todos los días.")
+        parser = mock(AgentCandidateParser.class)
+        classifier = mock(AgentRuntimeErrorClassifier.class)
+        generator = generatorWith(lagenConfig(5), launcher, parser, classifier)
+        tools = capturedTools.get()
+        toolInstance = tools.values().iterator().next()
+
+      mock:
+        parser.parse(any(), anyString(), anyString()) -> fixedResponse
+
+      when:
+        sut.thenAnswer(invocation -> {
+          @SuppressWarnings("unchecked")
+          Map<String, Object> tools = invocation.getArgument(3);
+          capturedTools.set(tools);
+          return successState;
+      })
+
+      then:
+        tools is not null
+        tools.size() == 1
+        toolInstance is not null
+        toolInstance instanceof SuggestedLemmaAgentTool == true
+    - |
+      test: "should return exactly one QuizCandidate with non-null quizSentence and translation for a valid LEMMA_ABSENCE correction context"
+      trace: FEAT-LASAG / F-LASAG-R003
+
+      given:
+        successState = RunState.empty().withRunStatus(RunStatus.COMPLETED)
+        launcher = mock(AgentRuntimeLauncher.class)
+        expectedResponse = LemmaAbsenceGeneratorResponse("She [[walks]] to school every day.", "Ella camina a la escuela todos los días.")
+        parser = mock(AgentCandidateParser.class)
+        classifier = mock(AgentRuntimeErrorClassifier.class)
+        generator = generatorWith(lagenConfig(5), launcher, parser, classifier)
+        result = generator.generate(validContext())
+
+      mock:
+        launcher.launch(anyString(), anyMap(), any(), anyMap()) -> successState
+        parser.parse(any(), anyString(), anyString()) -> expectedResponse
+
+      then:
+        result is not null
+        result.getQuizSentence() is not null
+        result.getTranslation() is not null
+    - |
+      test: "should emit a QuizCandidate without exception when the tool budget is exhausted during the run"
+      trace: FEAT-LASAG / F-LASAG-R004
+
+      given:
+        budgetExhaustedButCompleted = RunState.empty().withRunStatus(RunStatus.COMPLETED)
+        launcher = mock(AgentRuntimeLauncher.class)
+        candidateAfterExhaustion = LemmaAbsenceGeneratorResponse("She [[uses]] the bus every day.", "Ella usa el autobús todos los días.")
+        parser = mock(AgentCandidateParser.class)
+        classifier = mock(AgentRuntimeErrorClassifier.class)
+        generator = generatorWith(lagenConfig(1), launcher, parser, classifier)
+        result = generator.generate(validContext())
+
+      mock:
+        launcher.launch(anyString(), anyMap(), any(), anyMap()) -> budgetExhaustedButCompleted
+        parser.parse(any(), anyString(), anyString()) -> candidateAfterExhaustion
+
+      then:
+        result is not null
+        result.getQuizSentence() is not null
+        result.getTranslation() is not null
+    - |
+      test: "should throw ProposalStrategyFailedException with the preserved category instead of an empty or null candidate when the runtime fails during generation"
+      trace: FEAT-LASAG / F-LASAG-R005
+
+      given:
+        runtimeTimeout = RuntimeException("sentinel-agent: request timed out")
+        launcher = mock(AgentRuntimeLauncher.class)
+        parser = mock(AgentCandidateParser.class)
+        classifier = mock(AgentRuntimeErrorClassifier.class)
+        generator = generatorWith(lagenConfig(5), launcher, parser, classifier)
+        ex = assertThrows(ProposalStrategyFailedException.class, () -> generator.generate(validContext()), "a runtime failure must produce ProposalStrategyFailedException, not an empty/null candidate (F-LASAG-R005)")
+
+      mock:
+        launcher.launch(anyString(), anyMap(), any(), anyMap()) -> throws runtimeTimeout
+        classifier.classify(runtimeTimeout) -> LlmGenerationFailureCategory.LLM_TIMEOUT
+        classifier.classify(any(RunState.class)) -> LlmGenerationFailureCategory.LLM_TIMEOUT
+
+      then:
+        ex.getReason() is not null
+        ex.getReason().contains(LlmGenerationFailureCategory.LLM_TIMEOUT.name()) == true
+    - |
+      test: "should launch the agent runtime exactly once and propagate the exception when generation hits a runtime failure"
+      trace: FEAT-LASAG / F-LASAG-R006
+
+      given:
+        runtimeFailure = RuntimeException("sentinel-agent: auth rejected")
+        launcher = mock(AgentRuntimeLauncher.class)
+        parser = mock(AgentCandidateParser.class)
+        classifier = mock(AgentRuntimeErrorClassifier.class)
+        generator = generatorWith(lagenConfig(5), launcher, parser, classifier)
+
+      mock:
+        launcher.launch(anyString(), anyMap(), any(), anyMap()) -> throws runtimeFailure
+        classifier.classify(runtimeFailure) -> LlmGenerationFailureCategory.LLM_AUTH_FAILED
+        classifier.classify(any(RunState.class)) -> LlmGenerationFailureCategory.LLM_AUTH_FAILED
+
+      when:
+        throws ProposalStrategyFailedException: sut.generate(validContext())
+
+      then:
+        verify: launcher.launch(anyString(), anyMap(), any(), anyMap())
   - name: DefaultAgentRuntimeLauncher
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/DefaultAgentRuntimeLauncher.java
@@ -34771,6 +34896,24 @@ elements:
         return its result when the agent refines suggestedWords
       status: EXISTS
       testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/DefaultSuggestedLemmaAgentToolTest.java
+    testCleanViews:
+    - |
+      test: "should query the suggested-lemmas session with the given criteria and return its result when the agent refines suggestedWords"
+      trace: FEAT-LASAG / F-LASAG-R001
+
+      given:
+        criteria = SuggestedLemmaQueryCriteria(Optional.of(5), Optional.of("verb"), Optional.of(CefrLevel.A1), false)
+        expectedResult = SuggestedLemmaQueryResult("task-123", CefrLevel.A1, List.of())
+        session = mock(SuggestedLemmaQuerySession.class)
+        tool = DefaultSuggestedLemmaAgentTool(session)
+        actualResult = tool.fetchSuggestedLemmas(criteria)
+
+      mock:
+        session.requestMore(criteria) -> expectedResult
+
+      then:
+        assertSame(expectedResult)
+        verify: session.requestMore(criteria)
   - name: DefaultAgentRuntimeErrorClassifier
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/DefaultAgentRuntimeErrorClassifier.java
@@ -34782,6 +34925,32 @@ elements:
         raised during any phase
       status: EXISTS
       testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/DefaultAgentRuntimeErrorClassifierTest.java
+    testCleanViews:
+    - |
+      test: "should map a runtime timeout to LLM_TIMEOUT preserving the failure category"
+      trace: FEAT-LASAG / F-LASAG-R005
+
+      given:
+        haltedOnTimeout = RunState.empty().withRunStatus(RunStatus.HALTED).withTerminationReason("TIMEOUT")
+        category = classifier.classify(haltedOnTimeout)
+
+      then:
+        category == LlmGenerationFailureCategory.LLM_TIMEOUT
+    - |
+      test: "should preserve the runtime failure category when classifying a throwable raised during any phase"
+      trace: FEAT-LASAG / F-LASAG-R012
+
+      given:
+        timeoutCause = java.util.concurrent.TimeoutException("sentinel-agent: request timed out")
+        authCause = SecurityException("sentinel-agent: 401 Unauthorized – invalid API key")
+        transportCause = java.net.ConnectException("sentinel-agent: connection refused to provider")
+        otherCause = RuntimeException("sentinel-agent: unexpected error during node execution")
+
+      then:
+        classifier.classify(timeoutCause) == LlmGenerationFailureCategory.LLM_TIMEOUT
+        classifier.classify(authCause) == LlmGenerationFailureCategory.LLM_AUTH_FAILED
+        classifier.classify(transportCause) == LlmGenerationFailureCategory.LLM_UNREACHABLE
+        classifier.classify(otherCause) == LlmGenerationFailureCategory.LLM_OTHER
   - name: DefaultAgentCandidateParser
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/DefaultAgentCandidateParser.java

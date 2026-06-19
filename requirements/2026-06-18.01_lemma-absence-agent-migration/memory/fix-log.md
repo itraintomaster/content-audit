@@ -28,3 +28,17 @@
       why: el único outcome de J008 es result:failure por length-block, pero R009 (best-effort) garantiza que un veredicto de eval NUNCA lanza ProposalStrategyFailedException — emite el mejor candidato. En el seam generate() ese "failure" es inalcanzable; un journey-test solo podría assertear "se emitió un candidato" (cobertura falsa) o un failure que no ocurre. → pedí degradar J008 a escenario en prosa (sacarlo de journeys:).
   Patch: 9 handwrittenTests + 8 placements (J001-J007 sin J008, + J009). Validó 0 conflicts. NO aplicado.
   NOTA: el patch con 8 placements NO desbloquea `sentinel generate` hasta que @analyst quite J008 de journeys: (sigue siendo flow sin placement). Estado intermedio correcto.
+
+2026-06-19 — test-writer — DefaultSuggestedLemmaAgentToolTest: fake de session via Mockito, assertSame del result + verify delegacion unica.
+  why: SuggestedLemmaQuerySession no es sealed; Mockito mock + when/verify es el patron mas limpio para este contrato de 1 metodo sin estado.
+
+2026-06-19 — test-writer — DefaultAgentRuntimeErrorClassifier: throwable → categoría mapping elegido para R005/R012.
+  R005 (RunState): RunState.empty().withRunStatus(HALTED).withTerminationReason("TIMEOUT") → LLM_TIMEOUT.
+    why: terminationReason es la única señal observable en RunState; "TIMEOUT" = HaltReason.TIMEOUT.name().
+  R012 (Throwable): TimeoutException→LLM_TIMEOUT, SecurityException (msg 401)→LLM_AUTH_FAILED, ConnectException→LLM_UNREACHABLE, RuntimeException→LLM_OTHER.
+    why: LLM_TRANSPORT no existe en el enum; LLM_UNREACHABLE es el nombre real del enum para errores de transporte/conexión.
+
+2026-06-19 — test-writer — LemmaAbsenceAgentGeneratorTest: 5 stubs implementados (R002-R006).
+  Estrategia: Mockito para los interfaces package-private (no hay clases internas anónimas que necesiten el tipo ChatModel). null pasado como ChatModel al constructor (el launcher fake no lo usa). Fakes capturan tools map (R002) via thenAnswer. RunState.empty().withRunStatus(COMPLETED) como estado exitoso.
+  PROBLEMA PREEXISTENTE DEL MÓDULO: pom.xml declara langchain4j-core:0.36.2 explícitamente pero el código generado (AgentRuntimeLauncher.java, LemmaAbsenceAgentGenerator.java) usa dev.langchain4j.model.chat.ChatModel que solo existe en langchain4j-core:1.13.0 (transitivo de sentinel-agents, excluido por nearest-wins). El módulo NO compila en clean. Verificado que MI test compila correctamente con javac + classpath que incluye langchain4j-core:1.13.0. @architect debe corregir el pom (excluir la dep directa vieja o actualizar la versión).
+  why: clean compile falla en producción, no en el test; la compilación con classpath correcto (1.13.0) pasa sin errores.

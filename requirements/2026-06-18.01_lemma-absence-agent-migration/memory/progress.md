@@ -18,3 +18,26 @@
   Salida: "Validated: 0 additions, 1 modifications, 0 deletions, 0 conflicts."
   architectural_patch.yaml ahora contiene SOLO la limpieza (reemplazo de la lista patterns + fix descripción lagen). Los patches de diseño previos ya están en .applied-patches/.
   TECH_SPEC.md (220 líneas / 9 fences) se DEJÓ intacto como foto del diseño F-LASAG: el CLI rechazó encogerlo a 2 fences (guard anti-shrink) y es correcto no degradar la foto del diseño por un cleanup menor. La razón del cleanup vive en la description del patch y en decisions.md.
+
+2026-06-19 — test-writer — Implementado stub R011 en DefaultLagenConfigResolverTest.
+  Cuerpo: env = fullEnv() (no incluye env-var de eval-retries); resolver.resolve(env); assertEquals(3, config.getMaxEvalRetries()).
+  NO se referencia KEY_MAX_EVAL_RETRIES (aún no existe en DefaultLagenConfigResolver): la ausencia del env-var en fullEnv() es suficiente para el escenario de la regla.
+  Estado de compilación: audit-cli NO compila hoy — revision-infrastructure falla por langchain4j ChatModel ausente del pom (pendiente @developer); LagenConfig.jar no tiene getMaxEvalRetries() todavía. Test correcto contra el spec; verificación final ocurre post @developer.
+
+2026-06-19 — test-writer — Cuerpo de DefaultSuggestedLemmaAgentToolTest implementado.
+  Fake: Mockito mock de SuggestedLemmaQuerySession; verifica que la tool delega en session.requestMore(criteria) exactamente una vez y devuelve su resultado (assertSame).
+  Build: falla preexistente ChatModel no encontrado en langchain4j-core:0.36.2 en AgentRuntimeLauncher/LemmaAbsenceAgentGenerator; independiente del test.
+
+2026-06-19 — test-writer — Cuerpos R005+R012 en DefaultAgentRuntimeErrorClassifierTest implementados.
+  R005: classify(RunState.empty().withRunStatus(HALTED).withTerminationReason("TIMEOUT")) == LLM_TIMEOUT.
+  R012: classify(Throwable) con 4 throwables (TimeoutException→LLM_TIMEOUT, SecurityException 401→LLM_AUTH_FAILED, ConnectException→LLM_UNREACHABLE, RuntimeException→LLM_OTHER).
+  Nota: REQUIREMENT dice "LLM_TRANSPORT" pero el contrato generado tiene LLM_UNREACHABLE; usé LLM_UNREACHABLE (el nombre real del enum).
+  Compilación: DefaultAgentRuntimeErrorClassifierTest sin errores; LemmaAbsenceAgentGeneratorTest tiene fallas preexistentes (ChatModel no encontrado + SuggestedLemmaQuerySession.requestMore() faltante); pendiente @developer.
+
+2026-06-19 — test-writer — LemmaAbsenceAgentGeneratorTest: 5 stubs (R002-R006) implementados con Mockito.
+  Mockito permite mockear AgentRuntimeLauncher sin importar ChatModel. null pasado como ChatModel en el constructor (fakes no lo usan). Compilación verificada manualmente con javac + langchain4j-core:1.13.0: 0 errores. mvn test-compile falla porque pom.xml declara langchain4j-core:0.36.2 (no tiene ChatModel) como dep directa que excluye la versión 1.13.0 transitiva de sentinel-agents. @architect debe corregir el pom (excluir o actualizar la dep directa a 1.13.0).
+
+2026-06-19 — architect — Fix langchain4j 0.36.2→1.13.0 propuesto (NO aplicado).
+  Salida: "Validated: 0 additions, 1 modifications, 0 deletions, 0 conflicts." + WARNING de modify de 2 deps.
+  architectural_patch.yaml ahora contiene SOLO el fix de versiones (langchain4j-openai + langchain4j-core a 1.13.0; ChatLanguageModel→ChatModel en provides). El cleanup de orphans previo ya fue reemplazado (--replace).
+  PENDIENTE: este patch + el cleanup de orphans NO están aplicados aún. Si el usuario quiere ambos en una sola pasada, hay que re-proponer combinando (el --replace del fix descartó el cleanup del proposal). Avisar al coordinador/usuario.

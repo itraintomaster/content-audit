@@ -1,0 +1,49 @@
+code: FEAT-LASAG
+description: "F-LASAG fix de compilacion: alinear langchain4j-openai y langchain4j-core\
+  \ de 0.36.2 a 1.13.0 para resolver el conflicto de version contra langchain4j 1.13.0\
+  \ que sentinel-agents trae transitivo. El codigo nuevo de lemmaabsenceagent usa\
+  \ dev.langchain4j.model.chat.ChatModel (1.x); 0.36.2 ganaba el conflict-resolution\
+  \ de Maven (nearest-wins) y no tiene ChatModel (era ChatLanguageModel), rompiendo\
+  \ la compilacion. Verificado: el unico uso de langchain4j en produccion son los\
+  \ 3 archivos nuevos de F-LASAG (todos usan ChatModel); cero usos de ChatLanguageModel/OpenAiChatModel/message-types\
+  \ 0.36.x quedan tras borrar lagenopenai/lageninteractive. 1.13.0 matchea exactamente\
+  \ la version que pulle sentinel-agents (langchain4j.version=1.13.0), evitando reintroducir\
+  \ conflicto. Unico cambio de tipo entre 0.36 y 1.13: ChatLanguageModel desaparece\
+  \ -> se reemplaza por ChatModel (mismo paquete dev.langchain4j.model.chat). No toca\
+  \ contratos, el puerto, LagenConfig, journeys ni handwrittenTests. revision-infrastructure\
+  \ se incluye solo como ancla de contexto (ya declara uses de ambos aliases); no\
+  \ cambia ninguno de sus elementos."
+modules:
+- name: revision-infrastructure
+  uses:
+  - langchain4j-openai
+  - langchain4j-core
+  - sentinel-agents
+  _change: modify
+dependencies:
+- alias: langchain4j-openai
+  artifact: dev.langchain4j:langchain4j-open-ai:1.13.0
+  scope: compile
+  provides:
+  - type: OpenAiChatModel
+    package: dev.langchain4j.model.openai
+  - type: OpenAiChatModel.OpenAiChatModelBuilder
+    package: dev.langchain4j.model.openai
+  _change: modify
+- alias: langchain4j-core
+  artifact: dev.langchain4j:langchain4j-core:1.13.0
+  scope: compile
+  provides:
+  - type: ChatModel
+    package: dev.langchain4j.model.chat
+  - type: ChatMessage
+    package: dev.langchain4j.data.message
+  - type: SystemMessage
+    package: dev.langchain4j.data.message
+  - type: UserMessage
+    package: dev.langchain4j.data.message
+  - type: AiMessage
+    package: dev.langchain4j.data.message
+  - type: Response
+    package: dev.langchain4j.model.output
+  _change: modify
