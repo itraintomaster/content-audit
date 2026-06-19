@@ -1,0 +1,88 @@
+#!/bin/bash
+# Combina veredictos (eval #3 longitud via data.length_ok + evals LLM en
+# verdicts.json), mantiene el champion (R009) y escribe carry_forward (R010).
+# Publica `all_blocking_pass` al data bus. Solo stdlib (pitfall #2).
+set -euo pipefail
+
+INPUT="$(cat)"
+
+python3 - "$INPUT" <<'PY'
+import json, sys, os
+
+d = json.loads(sys.argv[1])
+inputs = d.get("inputs", {}) or {}
+data   = d.get("data", {}) or {}
+node   = d.get("node", {}) or {}
+run_dir = (d.get("run_dir") or inputs.get("run_dir") or data.get("run_dir")
+           or node.get("run_dir") or os.environ.get("SENTINEL_RUN_DIR") or ".")
+
+def read_json(name, default=None):
+    try:
+        with open(os.path.join(run_dir, name), "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return default
+
+candidate = read_json("candidate.json", {}) or {}
+verdicts  = read_json("verdicts.json", {}) or {}
+
+# length_ok lo publicó eval_length al data bus.
+length_ok = bool(data.get("length_ok", False))
+
+def passed(key):
+    v = verdicts.get(key) or {}
+    return bool(v.get("pass", False))
+
+# Bloqueantes: #1 sense, #2 solvable, #3 length, #5 translation. (#4 deseable.)
+blocking = {
+    "eval1_sense":       passed("eval1_sense"),
+    "eval2_solvable":    passed("eval2_solvable"),
+    "eval3_length":      length_ok,
+    "eval5_translation": passed("eval5_translation"),
+}
+all_blocking_pass = all(blocking.values())
+blocking_passed_count = sum(1 for ok in blocking.values() if ok)
+
+try:
+    pragmatism = float((verdicts.get("eval4_pragmatism") or {}).get("score", 0.0))
+except (TypeError, ValueError):
+    pragmatism = 0.0
+
+# --- Champion (R009): mejor = más bloqueantes pasados; desempate por pragmatismo.
+meta = read_json("champion_meta.json", None)
+better = (meta is None
+          or blocking_passed_count > meta.get("blocking_passed_count", -1)
+          or (blocking_passed_count == meta.get("blocking_passed_count", -1)
+              and pragmatism > meta.get("pragmatism", -1.0)))
+if better and candidate:
+    with open(os.path.join(run_dir, "champion.json"), "w", encoding="utf-8") as f:
+        json.dump(candidate, f, ensure_ascii=False)
+    with open(os.path.join(run_dir, "champion_meta.json"), "w", encoding="utf-8") as f:
+        json.dump({"blocking_passed_count": blocking_passed_count,
+                   "pragmatism": pragmatism, "all_blocking_pass": all_blocking_pass}, f)
+
+# --- Carry-forward (R010): en fallo, dejá feedback para el próximo intento.
+if not all_blocking_pass:
+    lines = ["# Carry-forward — feedback del intento anterior", ""]
+    if not length_ok:
+        lines.append(f"- ❌ #3 longitud: el candidato ({data.get('length_candidate_words','?')} palabras) "
+                     f"es más corto que el original ({data.get('length_original_words','?')}). Alargá la oración.")
+    for key, label in [("eval1_sense","#1 sentido"),("eval2_solvable","#2 resoluble"),
+                       ("eval5_translation","#5 traducción")]:
+        v = verdicts.get(key) or {}
+        if not v.get("pass", False):
+            lines.append(f"- ❌ {label}: {v.get('reason','(sin detalle)')}")
+    prev = candidate.get("quizSentence", "")
+    if prev:
+        lines.append("")
+        lines.append(f"Candidato previo (no repitas el mismo error): {prev}")
+    with open(os.path.join(run_dir, "carry_forward.md"), "w", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
+
+print(json.dumps({
+    "route": "done",
+    "all_blocking_pass": all_blocking_pass,
+    "blocking_passed_count": blocking_passed_count,
+    "pragmatism": pragmatism,
+}))
+PY

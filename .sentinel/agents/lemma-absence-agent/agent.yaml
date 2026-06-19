@@ -1,0 +1,73 @@
+name: lemma-absence-agent
+description: |
+  Ruta LLM única de lemma-absence (FEAT-LASAG) sobre el framework
+  sentinel-agent. Consume el CorrectionContext de FEAT-RCLA (vía inputs) y
+  emite UN único QuizCandidate {quizSentence, translation} como artifact
+  `quizCandidate`. Es el backend declarativo del puerto
+  LemmaAbsenceQuizCandidateGenerator: el adaptador Java
+  (revision-infrastructure.lemmaabsenceagent) lanza este grafo con
+  AgentRun.run, le inyecta la única tool `get_suggested_lemmas` (read-only,
+  semántica F-CSLATDC) y el ChatModel, y parsea el artifact de salida.
+
+  Flujo:
+
+      generate (react: UNA tool get_suggested_lemmas para filtrar
+        suggestedWords; produce candidate.json)
+        ──▶ eval_length  (script: no-regresión de longitud — bloqueante,
+              determinista, eval #3)
+        ──▶ eval_quality (llm_call: evals #1 oración con sentido, #2 quiz
+              resoluble, #4 pragmatismo [score, deseable], #5 traducción
+              fiel — bloqueantes salvo #4)
+        ──▶ tally        (script: combina veredictos, actualiza el champion,
+              escribe carry_forward en fallo)
+        ──▶ route_verdict (conditional)
+              │ all_blocking_pass ▶ emit
+              │ needs_retry       ▶ generate  (reintento con carry-forward)
+        ──▶ emit (script: escribe el artifact `quizCandidate` — el champion)
+
+  Contrato (R001–R012):
+    - R001/R002: durante generate la única tool es get_suggested_lemmas;
+      ningún otro verbo CLI.
+    - R003: exactamente un QuizCandidate {quizSentence, translation}.
+    - R004: presupuesto de tool por-run (max_tool_calls); agotarlo NO falla.
+    - R005/R006/R012: las fallas de runtime las maneja el adaptador Java
+      (un solo launch, categoría preservada) — NO viven en el grafo.
+    - R007: catálogo fijo de 5 evals con veredicto propio.
+    - R008: un veredicto bloqueante negativo dispara un nuevo run de
+      generación, acotado por maxEvalRetries.
+    - R009: al agotar reintentos, best-effort — se emite el mejor candidato
+      visto (champion), sin falla.
+    - R010: cada reintento recibe el contexto de fallo previo + el historial
+      de filtros de la tool (carry_forward).
+kind: agent
+strategy: graph
+initial_node: generate
+budgets:
+  # Circuit breaker del grafo entero: el lazo generate ↔ eval ↔ route.
+  # Holgado respecto a maxEvalRetries (cada reintento visita ~5 nodos).
+  max_iterations: 40
+nodes:
+  - ./nodes/generate.md
+  - ./nodes/eval_length.md
+  - ./nodes/eval_quality.md
+  - ./nodes/tally.md
+  - ./nodes/route_verdict.md
+  - ./nodes/emit.md
+goal:
+  required_artifacts:
+    - quizCandidate
+  required_nodes_done:
+    - emit
+dependencies:
+  # CorrectionContext de FEAT-RCLA, aplanado por el adaptador Java
+  # (LemmaAbsenceAgentGenerator.buildInputs):
+  - taskId
+  - cefrLevel
+  - sentence          # oración original (baseline de longitud, eval #3)
+  - quizSentence      # quiz original fill-in-blank con [[lemma]]
+  - translation       # traducción original al español
+  - knowledgeTitle    # objetivo pedagógico del ejercicio
+  - suggestedWords    # vocabulario preferido (coma-separado; puede ser "")
+  # Perillas de LagenConfig (coma con default por si vienen vacías):
+  - maxEvalRetries          # default efectivo 3 (R008/R011)
+  - maxSuggestedLemmaRequests   # presupuesto de tool por-run (R004)
