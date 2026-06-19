@@ -27,6 +27,11 @@
   El bloque combinado (9 journeys en un único fence `journeys:`) que tenía F-LASAG era leído como 0 journeys por el parser de `feature sync`. El formato estándar del proyecto (ver FEAT-CDIFF, FEAT-LAGEN) es un fence por journey bajo su heading. Reescrito; los 9 se registraron.
   why: regla operativa para futuros REQUIREMENT.md con múltiples flow-journeys en este proyecto.
 
+2026-06-19 — analyst — J008 degradado a prosa (inconsistencia con R009; bloqueaba `sentinel generate`).
+  F-LASAG-J008 ("eval no-regresión de length bloquea un candidato más corto") tenía único terminal result:failure, pero R009 (best-effort) garantiza que un veredicto de eval NUNCA propaga ProposalStrategyFailedException al consumidor — al agotar maxEvalRetries se emite el mejor candidato (success). El failure de J008 es inalcanzable en generate(); cualquier journey-test sería cobertura falsa. Removido del REQUIREMENT.md; escenario ya cubierto por R007 (eval #3) + nota agregada en su Detail. IDs restantes SIN renumerar: J001-J007, J009 estables (J009 NO pasa a J008) para no romper placement/traceability del patch QA.
+  `sentinel feature sync` (aditivo-only) NO podó J008 de sentinel.yaml: lo flaggea "will be pruned at next generate". sentinel.yaml sigue con 9 (incl. J008) hasta que @architect corra `sentinel generate`. NO hand-edité sentinel.yaml (journeys derivados + single-writer @architect).
+  why: pedido del coordinador; J008 contradecía R009 y rompía generate.
+
 2026-06-19 — architect — Patch + TECH_SPEC entregados (no aplicados).
   Diseño: paquete interno lemmaabsenceagent reemplaza lagenopenai+lageninteractive. Seam público único LemmaAbsenceAgentGeneratorFactory. Adaptador LemmaAbsenceAgentGenerator implementa el puerto existente sin cambiar firma.
   Colaboradores package-private: AgentRuntimeLauncher (aísla AgentRun/AgentRegistry/ExecutionContext, devuelve RunState), SuggestedLemmaAgentTool (delega en SuggestedLemmaQuerySession, F-CSLATDC), AgentRuntimeErrorClassifier (RunState/Throwable -> LlmGenerationFailureCategory -> ProposalStrategyFailedException con categoría), AgentCandidateParser (RunState exitoso -> LemmaAbsenceGeneratorResponse; reemplaza al LemmaAbsenceResponseParser borrado con lagenopenai).

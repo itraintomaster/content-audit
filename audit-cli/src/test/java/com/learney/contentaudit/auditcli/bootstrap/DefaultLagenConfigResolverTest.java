@@ -256,4 +256,12 @@ public class DefaultLagenConfigResolverTest {
         assertEquals(KEY_PROVIDER, thrown.getKey(),
                 "Exception.key() must identify the provider env var (R014)");
     }
+
+    @Test
+    @DisplayName("should resolve maxEvalRetries to the default of 3 when no eval-retries env var is present")
+    @Tag("FEAT-LASAG")
+    @Tag("F-LASAG-R011")
+    public void shouldResolveMaxEvalRetriesToTheDefaultOf3WhenNoEvalretriesEnvVarIsPresent() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

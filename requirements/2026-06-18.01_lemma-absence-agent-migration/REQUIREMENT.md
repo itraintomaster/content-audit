@@ -143,6 +143,8 @@ Honra FEAT-LAPS R016 (sin reintentos) acotado al **run de generación ante falla
 
 **Conducta esperada (harness)**: un candidato más corto que el original recibe veredicto negativo bloqueante por #3; un candidato que solo reprueba #4 (deseable) se entrega igualmente.
 
+**Escenario no-regresión de longitud (sin journey propio)**: el caso "un candidato más corto que el original es bloqueado por #3" es conducta del harness de evals y **no tiene un resultado de falla observable en el límite del sistema**: por el best-effort de [F-LASAG-R009](#F-LASAG-R009), un veredicto bloqueante nunca propaga una falla al consumidor — al agotar los reintentos se emite el mejor candidato visto. Por eso este escenario se valida dentro del catálogo de evals (criterio #3) y no como un journey con terminal de falla.
+
 </details>
 
 <a id="F-LASAG-R008"></a>
@@ -436,29 +438,6 @@ journeys:
       - id: fallar
         action: "Se propaga un ProposalStrategyFailedException con categoría preservada sin disparar ningún reintento de generación"
         gate: [F-LASAG-R012]
-        result: failure
-```
-
-### Journey[F-LASAG-J008] - Eval no-regresión de length bloquea un candidato más corto
-**Validation**: AUTO_VALIDATED
-
-```yaml
-journeys:
-  - id: F-LASAG-J008
-    name: Eval no-regresión de length bloquea un candidato más corto
-    flow:
-      - id: preparar
-        action: "Se construye un candidato más corto que el quiz original pre-corrección, medido con el analyzer de length del audit"
-        then: evaluar
-      - id: evaluar
-        action: "El eval #3 reusa el analyzer de length del audit y compara el candidato contra el baseline pre-corrección"
-        gate: [F-LASAG-R007]
-        outcomes:
-          - when: "length(candidate) < length(original)"
-            then: bloquear
-      - id: bloquear
-        action: "El eval #3 emite veredicto negativo bloqueante; ese candidato no puede emitirse como salida final"
-        gate: [F-LASAG-R007]
         result: failure
 ```
 

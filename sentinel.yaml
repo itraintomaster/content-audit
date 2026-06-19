@@ -7354,6 +7354,11 @@ modules:
         traceability:
           feature: FEAT-LAGEN
           rule: F-LAGEN-R014
+      - name: should resolve maxEvalRetries to the default of 3 when no eval-retries
+          env var is present
+        traceability:
+          feature: FEAT-LASAG
+          rule: F-LASAG-R011
       implements:
       - LagenConfigResolver
 - name: nlp-infrastructure
@@ -10340,6 +10345,32 @@ modules:
         type: String
       types:
       - Component
+      handwrittenTests:
+      - name: should pass only the suggested-lemmas tool to the agent runtime and
+          no other CLI command tool during generation
+        traceability:
+          feature: FEAT-LASAG
+          rule: F-LASAG-R002
+      - name: should return exactly one QuizCandidate with non-null quizSentence and
+          translation for a valid LEMMA_ABSENCE correction context
+        traceability:
+          feature: FEAT-LASAG
+          rule: F-LASAG-R003
+      - name: should emit a QuizCandidate without exception when the tool budget is
+          exhausted during the run
+        traceability:
+          feature: FEAT-LASAG
+          rule: F-LASAG-R004
+      - name: should throw ProposalStrategyFailedException with the preserved category
+          instead of an empty or null candidate when the runtime fails during generation
+        traceability:
+          feature: FEAT-LASAG
+          rule: F-LASAG-R005
+      - name: should launch the agent runtime exactly once and propagate the exception
+          when generation hits a runtime failure
+        traceability:
+          feature: FEAT-LASAG
+          rule: F-LASAG-R006
       implements:
       - LemmaAbsenceQuizCandidateGenerator
     - name: DefaultAgentRuntimeLauncher
@@ -10351,9 +10382,25 @@ modules:
       requiresInject:
       - name: session
         type: SuggestedLemmaQuerySession
+      handwrittenTests:
+      - name: should query the suggested-lemmas session with the given criteria and
+          return its result when the agent refines suggestedWords
+        traceability:
+          feature: FEAT-LASAG
+          rule: F-LASAG-R001
       implements:
       - SuggestedLemmaAgentTool
     - name: DefaultAgentRuntimeErrorClassifier
+      handwrittenTests:
+      - name: should map a runtime timeout to LLM_TIMEOUT preserving the failure category
+        traceability:
+          feature: FEAT-LASAG
+          rule: F-LASAG-R005
+      - name: should preserve the runtime failure category when classifying a throwable
+          raised during any phase
+        traceability:
+          feature: FEAT-LASAG
+          rule: F-LASAG-R012
       implements:
       - AgentRuntimeErrorClassifier
     - name: DefaultAgentCandidateParser
@@ -10620,31 +10667,6 @@ features:
     validation: AUTO_VALIDATED
 - id: FEAT-LAGEN
   code: F-LAGEN
-  journeys:
-  - id: F-LAGEN-J001
-    validation: AUTO_VALIDATED
-    testModule: revision-infrastructure
-    testPackage: com.learney.contentaudit.revisioninfrastructure.lagenopenai
-  - id: F-LAGEN-J002
-    validation: AUTO_VALIDATED
-    testModule: revision-infrastructure
-    testPackage: com.learney.contentaudit.revisioninfrastructure.lagenopenai
-  - id: F-LAGEN-J003
-    validation: AUTO_VALIDATED
-    testModule: revision-infrastructure
-    testPackage: com.learney.contentaudit.revisioninfrastructure.lagenopenai
-  - id: F-LAGEN-J004
-    validation: AUTO_VALIDATED
-    testModule: revision-infrastructure
-    testPackage: com.learney.contentaudit.revisioninfrastructure.lagenopenai
-  - id: F-LAGEN-J005
-    validation: AUTO_VALIDATED
-    testModule: revision-infrastructure
-    testPackage: com.learney.contentaudit.revisioninfrastructure.lagenopenai
-  - id: F-LAGEN-J006
-    validation: AUTO_VALIDATED
-    testModule: revision-infrastructure
-    testPackage: com.learney.contentaudit.revisioninfrastructure.lagenopenai
 - id: FEAT-PIPRE
   code: F-PIPRE
   journeys:
@@ -10774,19 +10796,6 @@ features:
     testPackage: com.learney.contentaudit.journeys
 - id: FEAT-LAGAG
   code: F-LAGAG
-  journeys:
-  - id: F-LAGAG-J001
-    validation: AUTO_VALIDATED
-    testModule: revision-infrastructure
-    testPackage: com.learney.contentaudit.revisioninfrastructure.lageninteractive
-  - id: F-LAGAG-J002
-    validation: AUTO_VALIDATED
-    testModule: revision-infrastructure
-    testPackage: com.learney.contentaudit.revisioninfrastructure.lageninteractive
-  - id: F-LAGAG-J003
-    validation: AUTO_VALIDATED
-    testModule: revision-infrastructure
-    testPackage: com.learney.contentaudit.revisioninfrastructure.lageninteractive
 - id: FEAT-INCEXP
   code: F-INCEXP
   journeys:
@@ -10803,22 +10812,36 @@ features:
   journeys:
   - id: F-LASAG-J001
     validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
   - id: F-LASAG-J002
     validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
   - id: F-LASAG-J003
     validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
   - id: F-LASAG-J004
     validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
   - id: F-LASAG-J005
     validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
   - id: F-LASAG-J006
     validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
   - id: F-LASAG-J007
     validation: AUTO_VALIDATED
-  - id: F-LASAG-J008
-    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
   - id: F-LASAG-J009
     validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
 dependencies:
 - alias: langchain4j-openai
   artifact: dev.langchain4j:langchain4j-open-ai:0.36.2

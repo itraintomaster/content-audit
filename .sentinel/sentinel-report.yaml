@@ -1,4 +1,4 @@
-generatedAt: 2026-06-19T14:44:41.329590Z
+generatedAt: 2026-06-19T16:09:20.774500Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -2832,61 +2832,6 @@ features:
     state: NO_TESTS
   - ruleId: F-LAGAG-R006
     state: NO_TESTS
-  journeysCoverage:
-  - journeyId: F-LAGAG-J001
-    state: DECLARED
-    pathsCoverage:
-    - pathId: path-1
-      result: success
-      state: DECLARED
-      tests:
-      - name: path1_laSemillaAlcanzaParaConstruirElCandidato_success
-        implemented: false
-        passing: false
-        module: revision-infrastructure
-        implementation: FLagagJ001JourneyTest
-    - pathId: path-2
-      result: success
-      state: DECLARED
-      tests:
-      - name: path2_laSemillaNoAlcanzaYElModeloNecesitaMsPalabras_success
-        implemented: false
-        passing: false
-        module: revision-infrastructure
-        implementation: FLagagJ001JourneyTest
-  - journeyId: F-LAGAG-J002
-    state: DECLARED
-    pathsCoverage:
-    - pathId: path-1
-      result: success
-      state: DECLARED
-      tests:
-      - name: path1_quedaPresupuestoYElModeloEntregaUnCandidatoFinalVlidoDentroDelLmite_success
-        implemented: false
-        passing: false
-        module: revision-infrastructure
-        implementation: FLagagJ002JourneyTest
-    - pathId: path-2
-      result: failure
-      state: DECLARED
-      tests:
-      - name: path2_seAgotElPresupuestoDeSolicitudesSinQueElModeloEntregueUnCandidato_failure
-        implemented: false
-        passing: false
-        module: revision-infrastructure
-        implementation: FLagagJ002JourneyTest
-  - journeyId: F-LAGAG-J003
-    state: PASSING
-    pathsCoverage:
-    - pathId: path-1
-      result: failure
-      state: PASSING
-      tests:
-      - name: path1_failure
-        implemented: true
-        passing: true
-        module: revision-infrastructure
-        implementation: FLagagJ003JourneyTest
   quality:
     classes:
     - com.learney.contentaudit.refinerdomain.lemmasuggestion.BoundSuggestedLemmaQuerySession
@@ -3651,21 +3596,68 @@ features:
     healthScore: 0
     verdict: PASSED
 - id: FEAT-LASAG
-  state: DRAFT
+  state: IMPLEMENTING
   requirementFile: ./requirements/2026-06-18.01_lemma-absence-agent-migration/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LASAG-R001
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should query the suggested-lemmas session with the given criteria and
+        return its result when the agent refines suggestedWords
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultSuggestedLemmaAgentTool
   - ruleId: F-LASAG-R002
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should pass only the suggested-lemmas tool to the agent runtime and no
+        other CLI command tool during generation
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: LemmaAbsenceAgentGenerator
   - ruleId: F-LASAG-R003
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should return exactly one QuizCandidate with non-null quizSentence and
+        translation for a valid LEMMA_ABSENCE correction context
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: LemmaAbsenceAgentGenerator
   - ruleId: F-LASAG-R004
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should emit a QuizCandidate without exception when the tool budget is
+        exhausted during the run
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: LemmaAbsenceAgentGenerator
   - ruleId: F-LASAG-R005
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should throw ProposalStrategyFailedException with the preserved category
+        instead of an empty or null candidate when the runtime fails during generation
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: LemmaAbsenceAgentGenerator
+    - name: should map a runtime timeout to LLM_TIMEOUT preserving the failure category
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultAgentRuntimeErrorClassifier
   - ruleId: F-LASAG-R006
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should launch the agent runtime exactly once and propagate the exception
+        when generation hits a runtime failure
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: LemmaAbsenceAgentGenerator
   - ruleId: F-LASAG-R007
     state: NO_TESTS
   - ruleId: F-LASAG-R008
@@ -3675,10 +3667,135 @@ features:
   - ruleId: F-LASAG-R010
     state: NO_TESTS
   - ruleId: F-LASAG-R011
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should resolve maxEvalRetries to the default of 3 when no eval-retries
+        env var is present
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultLagenConfigResolver
   - ruleId: F-LASAG-R012
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should preserve the runtime failure category when classifying a throwable
+        raised during any phase
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultAgentRuntimeErrorClassifier
+  journeysCoverage:
+  - journeyId: F-LASAG-J001
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: DECLARED
+      tests:
+      - name: path1_todosLosEvalsBloqueantes1235DanVeredictoPositivo_success
+        implemented: false
+        passing: false
+        module: audit-cli
+        implementation: FLasagJ001JourneyTest
+  - journeyId: F-LASAG-J002
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: DECLARED
+      tests:
+      - name: path1_elAgenteAlcanzaElTopeDeNConsultasALaTool_success
+        implemented: false
+        passing: false
+        module: audit-cli
+        implementation: FLasagJ002JourneyTest
+  - journeyId: F-LASAG-J003
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: failure
+      state: DECLARED
+      tests:
+      - name: path1_elRuntimeArrojaTimeoutauthtransporteotroError_failure
+        implemented: false
+        passing: false
+        module: audit-cli
+        implementation: FLasagJ003JourneyTest
+  - journeyId: F-LASAG-J004
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: DECLARED
+      tests:
+      - name: path1_unEvalBloqueanteCorriYReprobYAnQuedanReintentosDentroDeMaxEvalRetries_todosLosEvalsBloqueantesPasanTrasElReintento_success
+        implemented: false
+        passing: false
+        module: audit-cli
+        implementation: FLasagJ004JourneyTest
+    - pathId: path-2
+      result: success
+      state: DECLARED
+      tests:
+      - name: path2_todosLosEvalsBloqueantesPasanEnElPrimerIntento_success
+        implemented: false
+        passing: false
+        module: audit-cli
+        implementation: FLasagJ004JourneyTest
+  - journeyId: F-LASAG-J005
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: DECLARED
+      tests:
+      - name: path1_seAgotanLosReintentosSinCandidatoQuePaseTodosLosBloqueantes_success
+        implemented: false
+        passing: false
+        module: audit-cli
+        implementation: FLasagJ005JourneyTest
+  - journeyId: F-LASAG-J006
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: DECLARED
+      tests:
+      - name: path1_soloElEvalDeseable4DaVeredictoNegativoYTodosLosBloqueantesPasan_success
+        implemented: false
+        passing: false
+        module: audit-cli
+        implementation: FLasagJ006JourneyTest
+  - journeyId: F-LASAG-J007
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: failure
+      state: DECLARED
+      tests:
+      - name: path1_unEvalSufreUnErrorDeRuntimeTimeouttransporteotro_failure
+        implemented: false
+        passing: false
+        module: audit-cli
+        implementation: FLasagJ007JourneyTest
+  - journeyId: F-LASAG-J009
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: DECLARED
+      tests:
+      - name: path1_noHayEnvvarExplcitaDeMaxEvalRetries_elModoActivoEsCANNED_success
+        implemented: false
+        passing: false
+        module: audit-cli
+        implementation: FLasagJ009JourneyTest
   quality:
+    classes:
+    - com.learney.contentaudit.auditcli.bootstrap.DefaultLagenConfigResolver
+    - com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent.DefaultAgentRuntimeErrorClassifier
+    - com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent.DefaultSuggestedLemmaAgentTool
+    - com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent.LemmaAbsenceAgentGenerator
     thresholds:
       lineCoverage: 70
       branchCoverage: 60
@@ -9482,88 +9599,6 @@ features:
       passing: true
       module: audit-cli
       implementation: DefaultLagenConfigResolver
-  journeysCoverage:
-  - journeyId: F-LAGEN-J001
-    state: PASSING
-    pathsCoverage:
-    - pathId: path-1
-      result: success
-      state: PASSING
-      tests:
-      - name: path1_laRespuestaCumpleLaEstructuraExigida_success
-        implemented: true
-        passing: true
-        module: revision-infrastructure
-        implementation: FLagenJ001JourneyTest
-    - pathId: path-2
-      result: failure
-      state: PASSING
-      tests:
-      - name: path2_laRespuestaNoCumpleLaEstructuraExigida_failure
-        implemented: true
-        passing: true
-        module: revision-infrastructure
-        implementation: FLagenJ001JourneyTest
-  - journeyId: F-LAGEN-J002
-    state: PASSING
-    pathsCoverage:
-    - pathId: path-1
-      result: failure
-      state: PASSING
-      tests:
-      - name: path1_failure
-        implemented: true
-        passing: true
-        module: revision-infrastructure
-        implementation: FLagenJ002JourneyTest
-  - journeyId: F-LAGEN-J003
-    state: PASSING
-    pathsCoverage:
-    - pathId: path-1
-      result: failure
-      state: PASSING
-      tests:
-      - name: path1_failure
-        implemented: true
-        passing: true
-        module: revision-infrastructure
-        implementation: FLagenJ003JourneyTest
-  - journeyId: F-LAGEN-J004
-    state: PASSING
-    pathsCoverage:
-    - pathId: path-1
-      result: failure
-      state: PASSING
-      tests:
-      - name: path1_failure
-        implemented: true
-        passing: true
-        module: revision-infrastructure
-        implementation: FLagenJ004JourneyTest
-  - journeyId: F-LAGEN-J005
-    state: PASSING
-    pathsCoverage:
-    - pathId: path-1
-      result: failure
-      state: PASSING
-      tests:
-      - name: path1_failure
-        implemented: true
-        passing: true
-        module: revision-infrastructure
-        implementation: FLagenJ005JourneyTest
-  - journeyId: F-LAGEN-J006
-    state: PASSING
-    pathsCoverage:
-    - pathId: path-1
-      result: failure
-      state: PASSING
-      tests:
-      - name: path1_failure
-        implemented: true
-        passing: true
-        module: revision-infrastructure
-        implementation: FLagenJ006JourneyTest
   quality:
     classes:
     - com.learney.contentaudit.auditcli.bootstrap.DefaultLagenConfigResolver
@@ -28242,6 +28277,10 @@ elements:
         env key when its value is missing or empty (fail-fast per R014)
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenConfigResolverTest.java
+    - name: should resolve maxEvalRetries to the default of 3 when no eval-retries
+        env var is present
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenConfigResolverTest.java
     testCleanViews:
     - |
       test: "resolve returns a LagenConfig populated from every CONTENT_AUDIT_LAGEN_* env entry when all required keys are present and valid"
@@ -34700,15 +34739,49 @@ elements:
   - name: LemmaAbsenceAgentGenerator
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/LemmaAbsenceAgentGenerator.java
+    tests:
+    - name: should pass only the suggested-lemmas tool to the agent runtime and no
+        other CLI command tool during generation
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/LemmaAbsenceAgentGeneratorTest.java
+    - name: should return exactly one QuizCandidate with non-null quizSentence and
+        translation for a valid LEMMA_ABSENCE correction context
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/LemmaAbsenceAgentGeneratorTest.java
+    - name: should emit a QuizCandidate without exception when the tool budget is
+        exhausted during the run
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/LemmaAbsenceAgentGeneratorTest.java
+    - name: should throw ProposalStrategyFailedException with the preserved category
+        instead of an empty or null candidate when the runtime fails during generation
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/LemmaAbsenceAgentGeneratorTest.java
+    - name: should launch the agent runtime exactly once and propagate the exception
+        when generation hits a runtime failure
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/LemmaAbsenceAgentGeneratorTest.java
   - name: DefaultAgentRuntimeLauncher
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/DefaultAgentRuntimeLauncher.java
   - name: DefaultSuggestedLemmaAgentTool
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/DefaultSuggestedLemmaAgentTool.java
+    tests:
+    - name: should query the suggested-lemmas session with the given criteria and
+        return its result when the agent refines suggestedWords
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/DefaultSuggestedLemmaAgentToolTest.java
   - name: DefaultAgentRuntimeErrorClassifier
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/DefaultAgentRuntimeErrorClassifier.java
+    tests:
+    - name: should map a runtime timeout to LLM_TIMEOUT preserving the failure category
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/DefaultAgentRuntimeErrorClassifierTest.java
+    - name: should preserve the runtime failure category when classifying a throwable
+        raised during any phase
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/DefaultAgentRuntimeErrorClassifierTest.java
   - name: DefaultAgentCandidateParser
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/DefaultAgentCandidateParser.java
@@ -34752,8 +34825,8 @@ elements:
     healthScore: 0
     verdict: PASSED
 testSummary:
-  total: 937
-  passing: 936
+  total: 946
+  passing: 945
   failing: 0
   notImplemented: 1
 qualitySummary:
