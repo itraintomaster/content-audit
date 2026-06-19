@@ -1,4 +1,4 @@
-analyzedAt: 2026-05-11T20:54:13.703187Z
+analyzedAt: 2026-06-19T13:56:40.196451Z
 system: ContentAudit
 modules:
 - name: audit-infrastructure
@@ -1059,6 +1059,8 @@ modules:
       type: String
     - name: successMessage
       type: String
+    - name: sentences
+      type: List<String>
   - name: CourseValidationException
     source: sentinel
     type: exception
@@ -1444,6 +1446,10 @@ modules:
       type: constant
     - name: LLM_OTHER
       type: constant
+    - name: LLM_LEMMA_REQUEST_BUDGET_EXHAUSTED
+      type: constant
+    - name: LLM_TOOL_CALLING_UNSUPPORTED
+      type: constant
   - name: LagenConfig
     source: sentinel
     type: class
@@ -1463,6 +1469,8 @@ modules:
       type: Integer
     - name: timeout
       type: Duration
+    - name: maxSuggestedLemmaRequests
+      type: Integer
   - name: LemmaAbsenceLlmRawResponse
     source: sentinel
     type: class
@@ -1470,6 +1478,17 @@ modules:
     fields:
     - name: rawText
       type: String
+  - name: SuggestedLemmaRequest
+    source: sentinel
+    type: class
+    visibility: package-private
+    fields:
+    - name: limit
+      type: Optional<Integer>
+    - name: partOfSpeech
+      type: Optional<String>
+    - name: level
+      type: Optional<CefrLevel>
   interfaces:
   - name: LemmaAbsenceLlmGeneratorFactory
     source: sentinel
@@ -1478,6 +1497,15 @@ modules:
     sealed: false
     exposes:
     - signature: "create(LagenConfig config): LemmaAbsenceQuizCandidateGenerator"
+    - signature: "providerIdFor(LagenConfig config): String"
+  - name: InteractiveLemmaAbsenceGeneratorFactory
+    source: sentinel
+    visibility: public
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(LagenConfig config, SuggestedLemmaQuerySession session):\
+        \ LemmaAbsenceQuizCandidateGenerator"
     - signature: "providerIdFor(LagenConfig config): String"
   - name: LemmaAbsencePromptBuilder
     source: sentinel
@@ -1488,17 +1516,30 @@ modules:
     - signature: "buildUserPrompt(LemmaAbsenceCorrectionContext context): String"
   - name: LemmaAbsenceResponseParser
     source: sentinel
-    visibility: package-private
+    visibility: public
     sealed: false
     exposes:
     - signature: "parse(LemmaAbsenceLlmRawResponse raw, String taskId, String strategyName):\
         \ LemmaAbsenceGeneratorResponse"
   - name: LangChainErrorClassifier
     source: sentinel
-    visibility: package-private
+    visibility: public
     sealed: false
     exposes:
     - signature: "classify(Throwable cause): LlmGenerationFailureCategory"
+  - name: SuggestedLemmaToolExchange
+    source: sentinel
+    visibility: package-private
+    sealed: false
+    exposes:
+    - signature: "fetchMore(SuggestedLemmaRequest request): SuggestedLemmaQueryResult"
+  - name: InteractiveLemmaAbsencePromptBuilder
+    source: sentinel
+    visibility: package-private
+    sealed: false
+    exposes:
+    - signature: "buildSystemPrompt(): String"
+    - signature: "buildSeedUserPrompt(LemmaAbsenceCorrectionContext context): String"
   implementations:
   - name: DefaultLemmaAbsenceLlmGeneratorFactory
     source: sentinel
@@ -1512,12 +1553,12 @@ modules:
     - LemmaAbsencePromptBuilder
   - name: DefaultLangChainErrorClassifier
     source: sentinel
-    visibility: package-private
+    visibility: public
     implements:
     - LangChainErrorClassifier
   - name: DefaultLemmaAbsenceResponseParser
     source: sentinel
-    visibility: package-private
+    visibility: public
     implements:
     - LemmaAbsenceResponseParser
   - name: LemmaAbsenceLlmGenerator
@@ -1538,6 +1579,51 @@ modules:
       type: ChatLanguageModel
     implements:
     - LemmaAbsenceQuizCandidateGenerator
+  - name: DefaultInteractiveLemmaAbsenceGeneratorFactory
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: sessionFactory
+      type: SuggestedLemmaQuerySessionFactory
+    implements:
+    - InteractiveLemmaAbsenceGeneratorFactory
+  - name: DefaultInteractiveLemmaAbsencePromptBuilder
+    source: sentinel
+    visibility: package-private
+    implements:
+    - InteractiveLemmaAbsencePromptBuilder
+  - name: InteractiveLemmaAbsenceLlmGenerator
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: config
+      type: LagenConfig
+    - name: session
+      type: SuggestedLemmaQuerySession
+    - name: seedPromptBuilder
+      type: InteractiveLemmaAbsencePromptBuilder
+    - name: lemmaRequestExchange
+      type: SuggestedLemmaToolExchange
+    - name: responseParser
+      type: LemmaAbsenceResponseParser
+    - name: errorClassifier
+      type: LangChainErrorClassifier
+    - name: strategyName
+      type: String
+    - name: chatModel
+      type: ChatLanguageModel
+    - name: sessionFactory
+      type: SuggestedLemmaQuerySessionFactory
+    implements:
+    - LemmaAbsenceQuizCandidateGenerator
+  - name: DefaultSuggestedLemmaToolExchange
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: session
+      type: SuggestedLemmaQuerySession
+    implements:
+    - SuggestedLemmaToolExchange
 - name: vocabulary-infrastructure
   source: sentinel
   implementations:
@@ -2863,6 +2949,33 @@ modules:
       type: String
     - name: cocaRank
       type: Integer
+    - name: lemmaCount
+      type: Integer
+    - name: lemmaCountThreshold
+      type: Integer
+    - name: isUnderexposed
+      type: Boolean
+  - name: SuggestedLemmaQueryRejectedException
+    source: sentinel
+    type: exception
+    visibility: public
+    fields:
+    - name: taskId
+      type: String
+    - name: reason
+      type: String
+    extendsType: RuntimeException
+  - name: SuggestedLemmaQueryResult
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: taskId
+      type: String
+    - name: cefrLevel
+      type: CefrLevel
+    - name: suggestedLemmas
+      type: List<SuggestedLemma>
   - name: DiagnosisKind
     source: sentinel
     type: enum
@@ -2893,6 +3006,19 @@ modules:
       type: Instant
     - name: tasks
       type: List<RefinementTask>
+  - name: SuggestedLemmaQueryCriteria
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: limit
+      type: Optional<Integer>
+    - name: partOfSpeech
+      type: Optional<String>
+    - name: explicitLevel
+      type: Optional<CefrLevel>
+    - name: includeExposed
+      type: boolean
   - name: RefinementTask
     source: sentinel
     type: class
@@ -3022,6 +3148,12 @@ modules:
     - signature: "save(RefinementPlan plan): String"
     - signature: "load(String id): Optional<RefinementPlan>"
     - signature: "loadLatest(): Optional<RefinementPlan>"
+  - name: SuggestedLemmaQuerySession
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "requestMore(SuggestedLemmaQueryCriteria criteria): SuggestedLemmaQueryResult"
   - name: RefinerEngine
     source: sentinel
     visibility: public
@@ -3038,6 +3170,28 @@ modules:
     - signature: "resolveWithIndex(AuditNodeIndex nodeIndex, AuditReport report, RefinementTask\
         \ task): Optional<T>"
     - signature: "supports(DiagnosisKind kind): boolean"
+  - name: LeveledLemmaInventory
+    source: sentinel
+    visibility: package-private
+    sealed: false
+    exposes:
+    - signature: "lemmasFor(AuditReport report, RefinementTask task, CefrLevel level,\
+        \ Optional<String> partOfSpeech): List<SuggestedLemma>"
+  - name: SuggestedLemmaQuerySessionFactory
+    source: sentinel
+    visibility: public
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "bindForTask(RefinementTask task): SuggestedLemmaQuerySession"
+  - name: SuggestedLemmaQueryPort
+    source: sentinel
+    visibility: public
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "query(AuditReport report, RefinementTask task, SuggestedLemmaQueryCriteria\
+        \ criteria): SuggestedLemmaQueryResult"
   - name: CorrectionContext
     source: sentinel
     visibility: public
@@ -3084,6 +3238,60 @@ modules:
     visibility: public
     implements:
     - CorrectionContextResolver
+  - name: LevelWideLemmaInventory
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: evpCatalogPort
+      type: EvpCatalogPort
+    - name: lemmaCountConfig
+      type: LemmaCountConfig
+    implements:
+    - LeveledLemmaInventory
+  - name: LemmaAbsenceContextSuggestedLemmaQueryPort
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: lemmaAbsenceContextResolver
+      type: CorrectionContextResolver<LemmaAbsenceCorrectionContext>
+    - name: underexposedLemmaInventory
+      type: LeveledLemmaInventory
+    - name: levelWideLemmaInventory
+      type: LeveledLemmaInventory
+    implements:
+    - SuggestedLemmaQueryPort
+  - name: DefaultSuggestedLemmaQuerySessionFactory
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: queryPort
+      type: SuggestedLemmaQueryPort
+    - name: refinementPlanStore
+      type: RefinementPlanStore
+    - name: auditReportStore
+      type: AuditReportStore
+    implements:
+    - SuggestedLemmaQuerySessionFactory
+  - name: UnderexposedLemmaInventory
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: lemmaAbsenceContextResolver
+      type: CorrectionContextResolver<LemmaAbsenceCorrectionContext>
+    implements:
+    - LeveledLemmaInventory
+  - name: BoundSuggestedLemmaQuerySession
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: queryPort
+      type: SuggestedLemmaQueryPort
+    - name: report
+      type: AuditReport
+    - name: task
+      type: RefinementTask
+    implements:
+    - SuggestedLemmaQuerySession
   - name: DispatchingCorrectionContextResolver
     source: sentinel
     visibility: public
@@ -3190,6 +3398,8 @@ modules:
       type: constant
     - name: CANNED
       type: constant
+    - name: LLM_INTERACTIVE
+      type: constant
   - name: GetTasksFilter
     source: sentinel
     type: class
@@ -3207,6 +3417,19 @@ modules:
       type: Optional<AuditTarget>
     - name: diagnosisKind
       type: Optional<DiagnosisKind>
+  - name: SuggestedLemmasFilter
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: limit
+      type: Optional<Integer>
+    - name: partOfSpeech
+      type: Optional<String>
+    - name: level
+      type: Optional<CefrLevel>
+    - name: includeExposed
+      type: boolean
   - name: AnalyzerStatsView
     source: sentinel
     type: class
@@ -3629,6 +3852,8 @@ modules:
     sealed: false
     exposes:
     - signature: "get(String resource, String name, GetTasksFilter filter): Integer"
+    - signature: "get(String resource, String name, SuggestedLemmasFilter filter):\
+        \ Integer"
   - name: StatsAnalyzerCommand
     source: sentinel
     visibility: public
@@ -3913,6 +4138,8 @@ modules:
       type: "Map<String,DetailedFormatter>"
     - name: auditReportStore
       type: AuditReportStore
+    - name: pathResolver
+      type: "Function<String,String>"
     annotations:
     - Command
     implements:
@@ -3936,6 +4163,8 @@ modules:
       type: ImpactPreviewFormatter
     - name: correctionContextJsonMapper
       type: CorrectionContextJsonMapper
+    - name: suggestedLemmaQueryPort
+      type: SuggestedLemmaQueryPort
     annotations:
     - Command
     implements:
@@ -4210,6 +4439,23 @@ dependencies:
     imports:
     - javax.annotation.processing.Generated
   - from: revision-infrastructure
+    to: javax.annotation.processing
+    imports:
+    - javax.annotation.processing.Generated
+  - from: revision-infrastructure
+    to: com.fasterxml.jackson.databind
+    imports:
+    - com.fasterxml.jackson.databind.JsonNode
+    - com.fasterxml.jackson.databind.ObjectMapper
+  - from: revision-infrastructure
+    to: dev.langchain4j.data.message
+    imports:
+    - dev.langchain4j.data.message.ToolExecutionResultMessage
+    - dev.langchain4j.data.message.SystemMessage
+    - dev.langchain4j.data.message.UserMessage
+    - dev.langchain4j.data.message.AiMessage
+    - dev.langchain4j.data.message.ChatMessage
+  - from: revision-infrastructure
     to: dev.langchain4j.model.openai
     imports:
     - dev.langchain4j.model.openai.OpenAiChatModel
@@ -4222,21 +4468,9 @@ dependencies:
     imports:
     - dev.ai4j.openai4j.OpenAiHttpException
   - from: revision-infrastructure
-    to: javax.annotation.processing
+    to: dev.langchain4j.agent.tool
     imports:
-    - javax.annotation.processing.Generated
-  - from: revision-infrastructure
-    to: dev.langchain4j.data.message
-    imports:
-    - dev.langchain4j.data.message.UserMessage
-    - dev.langchain4j.data.message.AiMessage
-    - dev.langchain4j.data.message.ChatMessage
-    - dev.langchain4j.data.message.SystemMessage
-  - from: revision-infrastructure
-    to: com.fasterxml.jackson.databind
-    imports:
-    - com.fasterxml.jackson.databind.JsonNode
-    - com.fasterxml.jackson.databind.ObjectMapper
+    - dev.langchain4j.agent.tool.ToolExecutionRequest
   - from: revision-infrastructure
     to: dev.langchain4j.model.output
     imports:
@@ -4270,6 +4504,10 @@ dependencies:
     to: picocli
     imports:
     - picocli.CommandLine
+  - from: audit-cli
+    to: com.fasterxml.jackson.datatype.jdk8
+    imports:
+    - com.fasterxml.jackson.datatype.jdk8.Jdk8Module
   - from: audit-cli
     to: com.fasterxml.jackson.databind.node
     imports:
@@ -5274,6 +5512,15 @@ graph:
   - from: revision-infrastructure.LemmaAbsenceLlmGeneratorFactory
     to: revision-infrastructure.LagenConfig
     relation: references
+  - from: revision-infrastructure.InteractiveLemmaAbsenceGeneratorFactory
+    to: revision-domain.LemmaAbsenceQuizCandidateGenerator
+    relation: references
+  - from: revision-infrastructure.InteractiveLemmaAbsenceGeneratorFactory
+    to: refiner-domain.SuggestedLemmaQuerySession
+    relation: references
+  - from: revision-infrastructure.InteractiveLemmaAbsenceGeneratorFactory
+    to: revision-infrastructure.LagenConfig
+    relation: references
   - from: revision-infrastructure.LemmaAbsencePromptBuilder
     to: refiner-domain.LemmaAbsenceCorrectionContext
     relation: references
@@ -5338,6 +5585,93 @@ graph:
     to: revision-domain.LemmaAbsenceGeneratorResponse
     relation: references
   - from: revision-infrastructure.LemmaAbsenceLlmGenerator
+    to: refiner-domain.LemmaAbsenceCorrectionContext
+    relation: references
+  - from: revision-infrastructure.DefaultInteractiveLemmaAbsenceGeneratorFactory
+    to: revision-infrastructure.InteractiveLemmaAbsenceGeneratorFactory
+    relation: references
+  - from: revision-infrastructure.DefaultInteractiveLemmaAbsenceGeneratorFactory
+    to: revision-infrastructure.LagenDefaults
+    relation: references
+  - from: revision-infrastructure.DefaultInteractiveLemmaAbsenceGeneratorFactory
+    to: refiner-domain.SuggestedLemmaQuerySessionFactory
+    relation: references
+  - from: revision-infrastructure.DefaultInteractiveLemmaAbsenceGeneratorFactory
+    to: revision-domain.LemmaAbsenceQuizCandidateGenerator
+    relation: references
+  - from: revision-infrastructure.DefaultInteractiveLemmaAbsenceGeneratorFactory
+    to: refiner-domain.SuggestedLemmaQuerySession
+    relation: references
+  - from: revision-infrastructure.DefaultInteractiveLemmaAbsenceGeneratorFactory
+    to: revision-infrastructure.LagenConfig
+    relation: references
+  - from: revision-infrastructure.DefaultInteractiveLemmaAbsencePromptBuilder
+    to: revision-infrastructure.InteractiveLemmaAbsencePromptBuilder
+    relation: references
+  - from: revision-infrastructure.DefaultInteractiveLemmaAbsencePromptBuilder
+    to: refiner-domain.LemmaAbsenceCorrectionContext
+    relation: references
+  - from: revision-infrastructure.InteractiveLemmaAbsenceLlmGenerator
+    to: revision-domain.LemmaAbsenceQuizCandidateGenerator
+    relation: references
+  - from: revision-infrastructure.InteractiveLemmaAbsenceLlmGenerator
+    to: revision-infrastructure.SuggestedLemmaRequest
+    relation: references
+  - from: revision-infrastructure.InteractiveLemmaAbsenceLlmGenerator
+    to: revision-infrastructure.LangChainErrorClassifier
+    relation: references
+  - from: revision-infrastructure.InteractiveLemmaAbsenceLlmGenerator
+    to: refiner-domain.SuggestedLemmaQueryResult
+    relation: references
+  - from: revision-infrastructure.InteractiveLemmaAbsenceLlmGenerator
+    to: revision-domain.LemmaAbsenceGeneratorResponse
+    relation: references
+  - from: revision-infrastructure.InteractiveLemmaAbsenceLlmGenerator
+    to: revision-infrastructure.LemmaAbsenceResponseParser
+    relation: references
+  - from: revision-infrastructure.InteractiveLemmaAbsenceLlmGenerator
+    to: refiner-domain.SuggestedLemmaQuerySessionFactory
+    relation: references
+  - from: revision-infrastructure.InteractiveLemmaAbsenceLlmGenerator
+    to: refiner-domain.SuggestedLemmaQuerySession
+    relation: references
+  - from: revision-infrastructure.InteractiveLemmaAbsenceLlmGenerator
+    to: revision-infrastructure.LagenConfig
+    relation: references
+  - from: revision-infrastructure.InteractiveLemmaAbsenceLlmGenerator
+    to: revision-infrastructure.LlmGenerationFailureCategory
+    relation: references
+  - from: revision-infrastructure.InteractiveLemmaAbsenceLlmGenerator
+    to: revision-infrastructure.SuggestedLemmaToolExchange
+    relation: references
+  - from: revision-infrastructure.InteractiveLemmaAbsenceLlmGenerator
+    to: revision-infrastructure.InteractiveLemmaAbsencePromptBuilder
+    relation: references
+  - from: revision-infrastructure.InteractiveLemmaAbsenceLlmGenerator
+    to: refiner-domain.LemmaAbsenceCorrectionContext
+    relation: references
+  - from: revision-infrastructure.SuggestedLemmaRequest
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: revision-infrastructure.DefaultSuggestedLemmaToolExchange
+    to: refiner-domain.SuggestedLemmaQuerySession
+    relation: references
+  - from: revision-infrastructure.DefaultSuggestedLemmaToolExchange
+    to: revision-infrastructure.SuggestedLemmaRequest
+    relation: references
+  - from: revision-infrastructure.DefaultSuggestedLemmaToolExchange
+    to: revision-infrastructure.SuggestedLemmaToolExchange
+    relation: references
+  - from: revision-infrastructure.DefaultSuggestedLemmaToolExchange
+    to: refiner-domain.SuggestedLemmaQueryResult
+    relation: references
+  - from: revision-infrastructure.SuggestedLemmaToolExchange
+    to: revision-infrastructure.SuggestedLemmaRequest
+    relation: references
+  - from: revision-infrastructure.SuggestedLemmaToolExchange
+    to: refiner-domain.SuggestedLemmaQueryResult
+    relation: references
+  - from: revision-infrastructure.InteractiveLemmaAbsencePromptBuilder
     to: refiner-domain.LemmaAbsenceCorrectionContext
     relation: references
   - from: vocabulary-infrastructure.FileSystemEvpCatalog
@@ -6108,6 +6442,12 @@ graph:
   - from: refiner-domain.RefinementPlanStore
     to: refiner-domain.RefinementPlan
     relation: references
+  - from: refiner-domain.SuggestedLemmaQuerySession
+    to: refiner-domain.SuggestedLemmaQueryResult
+    relation: references
+  - from: refiner-domain.SuggestedLemmaQuerySession
+    to: refiner-domain.SuggestedLemmaQueryCriteria
+    relation: references
   - from: refiner-domain.MisplacedLemmaContext
     to: audit-domain.CefrLevel
     relation: references
@@ -6136,10 +6476,7 @@ graph:
     to: refiner-domain.CorrectionContext
     relation: references
   - from: refiner-domain.LemmaAbsenceContextResolver
-    to: audit-domain.AuditNode
-    relation: references
-  - from: refiner-domain.LemmaAbsenceContextResolver
-    to: audit-domain.AuditReport
+    to: audit-domain.LemmaAndPos
     relation: references
   - from: refiner-domain.LemmaAbsenceContextResolver
     to: audit-domain.AuditTarget
@@ -6148,7 +6485,25 @@ graph:
     to: refiner-domain.RefinementTask
     relation: references
   - from: refiner-domain.LemmaAbsenceContextResolver
+    to: refiner-domain.SuggestedLemma
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextResolver
     to: refiner-domain.CorrectionContextResolver
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextResolver
+    to: audit-domain.AbsentLemma
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextResolver
+    to: audit-domain.AuditNode
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextResolver
+    to: audit-domain.AuditReport
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextResolver
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextResolver
+    to: audit-domain.LemmaCountStats
     relation: references
   - from: refiner-domain.LemmaAbsenceContextResolver
     to: audit-domain.AuditNodeIndex
@@ -6171,8 +6526,179 @@ graph:
   - from: refiner-domain.CorrectionContextResolver
     to: refiner-domain.DiagnosisKind
     relation: references
+  - from: refiner-domain.SuggestedLemmaQueryResult
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: refiner-domain.SuggestedLemmaQueryResult
+    to: refiner-domain.SuggestedLemma
+    relation: references
+  - from: refiner-domain.LevelWideLemmaInventory
+    to: audit-domain.LemmaAndPos
+    relation: references
+  - from: refiner-domain.LevelWideLemmaInventory
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: refiner-domain.LevelWideLemmaInventory
+    to: refiner-domain.SuggestedLemma
+    relation: references
+  - from: refiner-domain.LevelWideLemmaInventory
+    to: audit-domain.LemmaCountConfig
+    relation: references
+  - from: refiner-domain.LevelWideLemmaInventory
+    to: audit-domain.AuditReport
+    relation: references
+  - from: refiner-domain.LevelWideLemmaInventory
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: refiner-domain.LevelWideLemmaInventory
+    to: audit-domain.LemmaCountStats
+    relation: references
+  - from: refiner-domain.LevelWideLemmaInventory
+    to: refiner-domain.LeveledLemmaInventory
+    relation: references
+  - from: refiner-domain.LevelWideLemmaInventory
+    to: audit-domain.EvpCatalogPort
+    relation: references
+  - from: refiner-domain.LeveledLemmaInventory
+    to: audit-domain.AuditReport
+    relation: references
+  - from: refiner-domain.LeveledLemmaInventory
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: refiner-domain.LeveledLemmaInventory
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: refiner-domain.LeveledLemmaInventory
+    to: refiner-domain.SuggestedLemma
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextSuggestedLemmaQueryPort
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextSuggestedLemmaQueryPort
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextSuggestedLemmaQueryPort
+    to: refiner-domain.SuggestedLemma
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextSuggestedLemmaQueryPort
+    to: refiner-domain.CorrectionContextResolver
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextSuggestedLemmaQueryPort
+    to: refiner-domain.SuggestedLemmaQueryResult
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextSuggestedLemmaQueryPort
+    to: refiner-domain.SuggestedLemmaQueryCriteria
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextSuggestedLemmaQueryPort
+    to: audit-domain.LemmaCountConfig
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextSuggestedLemmaQueryPort
+    to: audit-domain.AuditNode
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextSuggestedLemmaQueryPort
+    to: refiner-domain.SuggestedLemmaQueryPort
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextSuggestedLemmaQueryPort
+    to: audit-domain.AuditReport
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextSuggestedLemmaQueryPort
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextSuggestedLemmaQueryPort
+    to: refiner-domain.LemmaAbsenceCorrectionContext
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextSuggestedLemmaQueryPort
+    to: refiner-domain.LeveledLemmaInventory
+    relation: references
+  - from: refiner-domain.LemmaAbsenceContextSuggestedLemmaQueryPort
+    to: audit-domain.EvpCatalogPort
+    relation: references
+  - from: refiner-domain.DefaultSuggestedLemmaQuerySessionFactory
+    to: refiner-domain.SuggestedLemmaQuerySessionFactory
+    relation: references
+  - from: refiner-domain.DefaultSuggestedLemmaQuerySessionFactory
+    to: refiner-domain.SuggestedLemmaQueryPort
+    relation: references
+  - from: refiner-domain.DefaultSuggestedLemmaQuerySessionFactory
+    to: refiner-domain.SuggestedLemmaQuerySession
+    relation: references
+  - from: refiner-domain.DefaultSuggestedLemmaQuerySessionFactory
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: refiner-domain.DefaultSuggestedLemmaQuerySessionFactory
+    to: audit-domain.AuditReportStore
+    relation: references
+  - from: refiner-domain.DefaultSuggestedLemmaQuerySessionFactory
+    to: refiner-domain.RefinementPlanStore
+    relation: references
+  - from: refiner-domain.UnderexposedLemmaInventory
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: refiner-domain.UnderexposedLemmaInventory
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: refiner-domain.UnderexposedLemmaInventory
+    to: refiner-domain.SuggestedLemma
+    relation: references
+  - from: refiner-domain.UnderexposedLemmaInventory
+    to: refiner-domain.CorrectionContextResolver
+    relation: references
+  - from: refiner-domain.UnderexposedLemmaInventory
+    to: audit-domain.AbsentLemma
+    relation: references
+  - from: refiner-domain.UnderexposedLemmaInventory
+    to: audit-domain.AuditNode
+    relation: references
+  - from: refiner-domain.UnderexposedLemmaInventory
+    to: audit-domain.AuditReport
+    relation: references
+  - from: refiner-domain.UnderexposedLemmaInventory
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: refiner-domain.UnderexposedLemmaInventory
+    to: refiner-domain.LemmaAbsenceCorrectionContext
+    relation: references
+  - from: refiner-domain.UnderexposedLemmaInventory
+    to: refiner-domain.LeveledLemmaInventory
+    relation: references
+  - from: refiner-domain.BoundSuggestedLemmaQuerySession
+    to: refiner-domain.SuggestedLemmaQueryPort
+    relation: references
+  - from: refiner-domain.BoundSuggestedLemmaQuerySession
+    to: refiner-domain.SuggestedLemmaQuerySession
+    relation: references
+  - from: refiner-domain.BoundSuggestedLemmaQuerySession
+    to: audit-domain.AuditReport
+    relation: references
+  - from: refiner-domain.BoundSuggestedLemmaQuerySession
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: refiner-domain.BoundSuggestedLemmaQuerySession
+    to: refiner-domain.SuggestedLemmaQueryResult
+    relation: references
+  - from: refiner-domain.BoundSuggestedLemmaQuerySession
+    to: refiner-domain.SuggestedLemmaQueryCriteria
+    relation: references
+  - from: refiner-domain.SuggestedLemmaQuerySessionFactory
+    to: refiner-domain.SuggestedLemmaQuerySession
+    relation: references
+  - from: refiner-domain.SuggestedLemmaQuerySessionFactory
+    to: refiner-domain.RefinementTask
+    relation: references
   - from: refiner-domain.RefinementPlan
     to: refiner-domain.RefinementTask
+    relation: references
+  - from: refiner-domain.SuggestedLemmaQueryPort
+    to: audit-domain.AuditReport
+    relation: references
+  - from: refiner-domain.SuggestedLemmaQueryPort
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: refiner-domain.SuggestedLemmaQueryPort
+    to: refiner-domain.SuggestedLemmaQueryResult
+    relation: references
+  - from: refiner-domain.SuggestedLemmaQueryPort
+    to: refiner-domain.SuggestedLemmaQueryCriteria
     relation: references
   - from: refiner-domain.DispatchingCorrectionContextResolver
     to: refiner-domain.SentenceLengthContextResolver
@@ -6197,6 +6723,9 @@ graph:
     relation: references
   - from: refiner-domain.DispatchingCorrectionContextResolver
     to: refiner-domain.DiagnosisKind
+    relation: references
+  - from: refiner-domain.SuggestedLemmaQueryCriteria
+    to: audit-domain.CefrLevel
     relation: references
   - from: refiner-domain.RefinementTask
     to: audit-domain.AuditTarget
@@ -6308,6 +6837,9 @@ graph:
     relation: references
   - from: audit-cli.GetTasksFilter
     to: refiner-domain.DiagnosisKind
+    relation: references
+  - from: audit-cli.SuggestedLemmasFilter
+    to: audit-domain.CefrLevel
     relation: references
   - from: audit-cli.DefaultFormatterRegistry
     to: audit-cli.FormatterRegistry
@@ -6694,6 +7226,9 @@ graph:
     to: refiner-domain.RefinementTask
     relation: references
   - from: audit-cli.GetCmd
+    to: audit-cli.SuggestedLemmasFilter
+    relation: references
+  - from: audit-cli.GetCmd
     to: audit-domain.AuditReportSummary
     relation: references
   - from: audit-cli.GetCmd
@@ -6733,10 +7268,16 @@ graph:
     to: audit-cli.GetCommand
     relation: references
   - from: audit-cli.GetCmd
+    to: refiner-domain.SuggestedLemmaQueryPort
+    relation: references
+  - from: audit-cli.GetCmd
     to: audit-cli.ImpactPreviewFormatter
     relation: references
   - from: audit-cli.GetCmd
     to: audit-domain.AuditReport
+    relation: references
+  - from: audit-cli.GetCmd
+    to: audit-domain.CefrLevel
     relation: references
   - from: audit-cli.GetCmd
     to: revision-domain.RevisionArtifactStore
@@ -6880,6 +7421,9 @@ graph:
     to: audit-cli.EphemeralRenderOptions
     relation: references
   - from: audit-cli.GetCommand
+    to: audit-cli.SuggestedLemmasFilter
+    relation: references
+  - from: audit-cli.GetCommand
     to: audit-cli.GetTasksFilter
     relation: references
   - from: course-infrastructure.CourseValidatorImpl
@@ -6970,29 +7514,13 @@ graph:
     to: nlp-infrastructure.NlpTokenizerConfig
     relation: references
   distances:
-  - component: audit-domain.CourseDiagnoses
-    distance: 1
   - component: course-infrastructure.FileSystemCourseRepository
     distance: 1
   - component: audit-cli.GetConsolidatedCmd
     distance: 1
-  - component: vocabulary-infrastructure.FileSystemEvpCatalog
-    distance: 1
-  - component: audit-domain.QuizDiagnoses
-    distance: 1
-  - component: audit-cli.SetActiveCmd
-    distance: 1
   - component: audit-domain.KnowledgeDiagnoses
     distance: 1
-  - component: audit-infrastructure.FileSystemRevisionArtifactStore
-    distance: 1
-  - component: audit-domain.DefaultLevelDiagnoses
-    distance: 1
   - component: audit-infrastructure.FileSystemAuditReportStore
-    distance: 1
-  - component: refiner-domain.DefaultRefinerEngine
-    distance: 1
-  - component: audit-domain.AuditNode
     distance: 1
   - component: audit-domain.DefaultQuizDiagnoses
     distance: 1
@@ -7001,14 +7529,6 @@ graph:
   - component: revision-domain.IdentityReviser
     distance: 1
   - component: audit-cli.StoreHelper
-    distance: 1
-  - component: audit-domain.DefaultTopicDiagnoses
-    distance: 1
-  - component: audit-domain.LevelDiagnoses
-    distance: 1
-  - component: audit-cli.TextReportFormatter
-    distance: 1
-  - component: audit-cli.RawJsonReportFormatter
     distance: 1
   - component: audit-cli.ScoredItemRow
     distance: 1
@@ -7020,10 +7540,6 @@ graph:
     distance: 1
   - component: audit-cli.AnalyzeCmd
     distance: 1
-  - component: audit-domain.ContentAnalyzer
-    distance: 1
-  - component: audit-domain.DefaultKnowledgeDiagnoses
-    distance: 1
   - component: course-infrastructure.CourseValidatorImpl
     distance: 1
   - component: audit-cli.DefaultReportViewModelTransformer
@@ -7034,15 +7550,43 @@ graph:
     distance: 1
   - component: audit-cli.JsonReportFormatter
     distance: 1
+  - component: audit-domain.CourseDiagnoses
+    distance: 1
+  - component: vocabulary-infrastructure.FileSystemEvpCatalog
+    distance: 1
+  - component: audit-domain.QuizDiagnoses
+    distance: 1
+  - component: audit-cli.SetActiveCmd
+    distance: 1
+  - component: audit-infrastructure.FileSystemRevisionArtifactStore
+    distance: 1
+  - component: audit-domain.DefaultLevelDiagnoses
+    distance: 1
+  - component: refiner-domain.DefaultRefinerEngine
+    distance: 1
+  - component: audit-domain.AuditNode
+    distance: 1
+  - component: audit-domain.DefaultTopicDiagnoses
+    distance: 1
+  - component: audit-domain.LevelDiagnoses
+    distance: 1
+  - component: audit-cli.TextReportFormatter
+    distance: 1
+  - component: audit-cli.RawJsonReportFormatter
+    distance: 1
+  - component: audit-domain.ContentAnalyzer
+    distance: 1
+  - component: audit-domain.DefaultKnowledgeDiagnoses
+    distance: 1
   - component: audit-cli.DefaultDrillDownResolver
     distance: 1
   - component: audit-domain.NodeDiagnoses
     distance: 2
   orphans:
+  - audit-cli.Main
   - audit-infrastructure.AuditReportObjectMapper
   - audit-cli.CoursePathResolver
   - audit-infrastructure.AuditPersistenceException
-  - audit-cli.Main
 methodCallGraph:
   edges:
   - fromInterface: AuditReportStore
@@ -7621,6 +8165,20 @@ methodCallGraph:
     toMethod: loadCourse
     toModule: audit-application
     earlyReturn: false
+  - fromInterface: AuditRunner
+    fromMethod: runDetailedAudit
+    toInterface: AuditEngine
+    toMethod: runAudit
+    toModule: audit-domain
+    fragment: "alt [analyzerName == null || allAnalyzers....]"
+    earlyReturn: true
+  - fromInterface: AuditRunner
+    fromMethod: runDetailedAudit
+    toInterface: AuditEngine
+    toMethod: runAudit
+    toModule: audit-domain
+    fragment: "alt [filtered.isEmpty()]"
+    earlyReturn: true
   - fromInterface: CourseMapper
     fromMethod: map
     toInterface: CourseMapper
@@ -7698,6 +8256,104 @@ methodCallGraph:
     toInterface: LemmaAbsenceResponseParser
     toMethod: parse
     toModule: revision-infrastructure
+    earlyReturn: false
+  - fromInterface: InteractiveLemmaAbsenceGeneratorFactory
+    fromMethod: create
+    toInterface: LagenDefaults
+    toMethod: getTemperature
+    toModule: revision-infrastructure
+    earlyReturn: false
+  - fromInterface: InteractiveLemmaAbsenceGeneratorFactory
+    fromMethod: create
+    toInterface: LagenDefaults
+    toMethod: getMaxTokens
+    toModule: revision-infrastructure
+    earlyReturn: false
+  - fromInterface: InteractiveLemmaAbsenceGeneratorFactory
+    fromMethod: create
+    toInterface: LagenDefaults
+    toMethod: getTimeout
+    toModule: revision-infrastructure
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceQuizCandidateGenerator
+    fromMethod: generate
+    toInterface: LagenConfig
+    toMethod: getMaxSuggestedLemmaRequests
+    toModule: revision-infrastructure
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceQuizCandidateGenerator
+    fromMethod: generate
+    toInterface: SuggestedLemmaQuerySessionFactory
+    toMethod: bindForTask
+    toModule: refiner-domain
+    fragment: "alt [sessionFactory != null]"
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceQuizCandidateGenerator
+    fromMethod: generate
+    toInterface: InteractiveLemmaAbsencePromptBuilder
+    toMethod: buildSystemPrompt
+    toModule: revision-infrastructure
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceQuizCandidateGenerator
+    fromMethod: generate
+    toInterface: InteractiveLemmaAbsencePromptBuilder
+    toMethod: buildSeedUserPrompt
+    toModule: revision-infrastructure
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceQuizCandidateGenerator
+    fromMethod: generate
+    toInterface: LemmaAbsenceQuizCandidateGenerator
+    toMethod: classifyError
+    toModule: revision-infrastructure
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceQuizCandidateGenerator
+    fromMethod: generate
+    toInterface: LemmaAbsenceQuizCandidateGenerator
+    toMethod: parseToolArguments
+    toModule: revision-infrastructure
+    fragment: "alt [aiMessage != null && aiMessage.hasToo...]"
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceQuizCandidateGenerator
+    fromMethod: generate
+    toInterface: LemmaAbsenceQuizCandidateGenerator
+    toMethod: formatLemmaQueryResult
+    toModule: revision-infrastructure
+    fragment: "alt [aiMessage != null && aiMessage.hasToo...]"
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceQuizCandidateGenerator
+    fromMethod: generate
+    toInterface: LemmaAbsenceQuizCandidateGenerator
+    toMethod: isTextToolCallSignal
+    toModule: revision-infrastructure
+    fragment: "alt [rawText != null && isTextToolCallSign...]"
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceQuizCandidateGenerator
+    fromMethod: generate
+    toInterface: LemmaAbsenceQuizCandidateGenerator
+    toMethod: parseTextToolCallSignal
+    toModule: revision-infrastructure
+    fragment: "alt [rawText != null && isTextToolCallSign...]"
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceQuizCandidateGenerator
+    fromMethod: generate
+    toInterface: LemmaAbsenceQuizCandidateGenerator
+    toMethod: formatLemmaQueryResult
+    toModule: revision-infrastructure
+    fragment: "alt [rawText != null && isTextToolCallSign...]"
+    earlyReturn: false
+  - fromInterface: LemmaAbsenceQuizCandidateGenerator
+    fromMethod: generate
+    toInterface: LemmaAbsenceQuizCandidateGenerator
+    toMethod: parseFinalCandidate
+    toModule: revision-infrastructure
+    fragment: "loop [while]"
+    earlyReturn: false
+  - fromInterface: SuggestedLemmaToolExchange
+    fromMethod: fetchMore
+    toInterface: SuggestedLemmaQuerySession
+    toMethod: requestMore
+    toModule: refiner-domain
     earlyReturn: false
   - fromInterface: ContentAnalyzer
     fromMethod: onQuiz
@@ -7981,6 +8637,113 @@ methodCallGraph:
     toModule: audit-domain
     fragment: "loop [for each levelResults]"
     earlyReturn: false
+  - fromInterface: LeveledLemmaInventory
+    fromMethod: lemmasFor
+    toInterface: EvpCatalogPort
+    toMethod: getExpectedLemmas
+    toModule: audit-domain
+    earlyReturn: false
+  - fromInterface: LeveledLemmaInventory
+    fromMethod: lemmasFor
+    toInterface: LeveledLemmaInventory
+    toMethod: buildSubExposedLookup
+    toModule: refiner-domain
+    fragment: "alt [else: expectedLemmas == null || expectedLem...]"
+    earlyReturn: false
+  - fromInterface: LeveledLemmaInventory
+    fromMethod: lemmasFor
+    toInterface: LemmaCountConfig
+    toMethod: getThreshold
+    toModule: audit-domain
+    fragment: "alt [else: expectedLemmas == null || expectedLem...]"
+    earlyReturn: false
+  - fromInterface: LeveledLemmaInventory
+    fromMethod: lemmasFor
+    toInterface: EvpCatalogPort
+    toMethod: getCocaRank
+    toModule: audit-domain
+    fragment: "loop [for each expectedLemmas]"
+    earlyReturn: false
+  - fromInterface: LeveledLemmaInventory
+    fromMethod: lemmasFor
+    toInterface: LeveledLemmaInventory
+    toMethod: resolveThreshold
+    toModule: refiner-domain
+    fragment: "alt [stats != null]"
+    earlyReturn: false
+  - fromInterface: SuggestedLemmaQueryPort
+    fromMethod: query
+    toInterface: SuggestedLemmaQueryPort
+    toMethod: findNode
+    toModule: refiner-domain
+    earlyReturn: false
+  - fromInterface: SuggestedLemmaQueryPort
+    fromMethod: query
+    toInterface: SuggestedLemmaQueryPort
+    toMethod: inferLevelFromMilestone
+    toModule: refiner-domain
+    fragment: "alt [maybeQuizNode.isPresent()]"
+    earlyReturn: false
+  - fromInterface: SuggestedLemmaQueryPort
+    fromMethod: query
+    toInterface: SuggestedLemmaQueryPort
+    toMethod: resolveEffectiveLevel
+    toModule: refiner-domain
+    fragment: "alt [maybeQuizNode.isPresent()]"
+    earlyReturn: false
+  - fromInterface: SuggestedLemmaQueryPort
+    fromMethod: query
+    toInterface: LeveledLemmaInventory
+    toMethod: lemmasFor
+    toModule: refiner-domain
+    fragment: "alt [!includeExposed]"
+    earlyReturn: false
+  - fromInterface: SuggestedLemmaQueryPort
+    fromMethod: query
+    toInterface: SuggestedLemmaQueryPort
+    toMethod: lemmaKey
+    toModule: refiner-domain
+    fragment: "loop [for each needsExposure]"
+    earlyReturn: false
+  - fromInterface: SuggestedLemmaQueryPort
+    fromMethod: query
+    toInterface: SuggestedLemmaQueryPort
+    toMethod: lemmaKey
+    toModule: refiner-domain
+    fragment: "alt [Boolean.FALSE.equals(sl.getIsUnderexp...]"
+    earlyReturn: false
+  - fromInterface: SuggestedLemmaQuerySessionFactory
+    fromMethod: bindForTask
+    toInterface: RefinementPlanStore
+    toMethod: loadLatest
+    toModule: refiner-domain
+    earlyReturn: false
+  - fromInterface: SuggestedLemmaQuerySessionFactory
+    fromMethod: bindForTask
+    toInterface: AuditReportStore
+    toMethod: load
+    toModule: audit-domain
+    fragment: "alt [sourceAuditId != null]"
+    earlyReturn: false
+  - fromInterface: LeveledLemmaInventory
+    fromMethod: lemmasFor
+    toInterface: LeveledLemmaInventory
+    toMethod: findNode
+    toModule: refiner-domain
+    earlyReturn: false
+  - fromInterface: LeveledLemmaInventory
+    fromMethod: lemmasFor
+    toInterface: LeveledLemmaInventory
+    toMethod: extractAbsentLemmas
+    toModule: refiner-domain
+    fragment: "alt [maybeQuizNode.isPresent()]"
+    earlyReturn: false
+  - fromInterface: SuggestedLemmaQuerySession
+    fromMethod: requestMore
+    toInterface: SuggestedLemmaQueryPort
+    toMethod: query
+    toModule: refiner-domain
+    earlyReturn: false
   - fromInterface: CorrectionContextResolver
     fromMethod: resolve
     toInterface: SentenceLengthContextResolver
@@ -8164,6 +8927,13 @@ methodCallGraph:
     earlyReturn: false
   - fromInterface: AnalyzeCommand
     fromMethod: analyze
+    toInterface: Function
+    toMethod: apply
+    toModule: audit-cli
+    fragment: "alt [else: knowledge != null && topic == null]"
+    earlyReturn: false
+  - fromInterface: AnalyzeCommand
+    fromMethod: analyze
     toInterface: AuditRunner
     toMethod: runDetailedAudit
     toModule: audit-application
@@ -8204,6 +8974,13 @@ methodCallGraph:
     toModule: audit-cli
     fragment: "alt [else: formatter == null]"
     earlyReturn: false
+  - fromInterface: GetCommand
+    fromMethod: get
+    toInterface: GetCommand
+    toMethod: handleSuggestedLemmas
+    toModule: audit-cli
+    fragment: "alt [\"suggested-lemma\".equals(normalized) ...]"
+    earlyReturn: true
   - fromInterface: GetCommand
     fromMethod: get
     toInterface: GetCommand

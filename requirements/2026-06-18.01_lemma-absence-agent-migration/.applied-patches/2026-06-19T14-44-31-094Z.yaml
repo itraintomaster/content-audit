@@ -1,0 +1,197 @@
+code: FEAT-LASAG
+description: "F-LASAG: reemplazar los backends LLM single-shot (lagenopenai) e interactivo\
+  \ (lageninteractive) de lemma-absence por un unico adaptador construido sobre el\
+  \ runtime de sentinel-agent. El adaptador implementa el puerto LemmaAbsenceQuizCandidateGenerator\
+  \ (FEAT-LAPS R001-R003) sin cambiar su firma, lanza un agente declarativo via un\
+  \ AgentRuntimeLauncher fino sobre AgentRun/AgentRegistry/ExecutionContext, expone\
+  \ la unica tool (suggested-lemmas, F-CSLATDC) como objeto Java in-process que delega\
+  \ en SuggestedLemmaQuerySession, y mapea fallas de runtime a ProposalStrategyFailedException\
+  \ preservando categoria. Se agrega maxEvalRetries a LagenConfig (R011) y se retira\
+  \ LagenMode.LLM_INTERACTIVE.; F-LASAG: fix — el parser de respuesta del candidato\
+  \ vive ahora dentro del paquete lemmaabsenceagent (LemmaAbsenceResponseParser desaparecio\
+  \ con lagenopenai). El adaptador del agente parsea el candidato emitido con AgentCandidateParser\
+  \ propio."
+modules:
+- name: audit-cli
+  models:
+  - name: LagenMode
+    type: enum
+    fields:
+    - name: LLM_INTERACTIVE
+      _change: delete
+    _change: modify
+  _change: modify
+- name: revision-infrastructure
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultInteractiveLemmaAbsenceGeneratorFactory
+    suppressed: false
+    interface: InteractiveLemmaAbsenceGeneratorFactory
+  - type: Factory
+    implementations:
+    - DefaultLemmaAbsenceAgentGeneratorFactory
+    suppressed: false
+    interface: LemmaAbsenceAgentGeneratorFactory
+  uses:
+  - sentinel-agents
+  packages:
+  - name: lagen
+    models:
+    - name: LagenConfig
+      type: record
+      fields:
+      - name: maxEvalRetries
+        type: Integer
+        description: "Tope de reintentos de generacion disparados por veredictos bloqueantes\
+          \ de eval en una resolucion (F-LASAG-R008, R011). Resuelto del env var por\
+          \ LagenConfigResolver; sin env-var explicita = 3. Nullable/0 = sentinel;\
+          \ la factory sustituye con el default. Ignorada por el modo CANNED (R011)\
+          \ y por cualquier flujo no-agente."
+        _change: add
+      _change: modify
+    interfaces:
+    - name: LemmaAbsenceLlmGeneratorFactory
+      sealed: false
+      _change: delete
+    - name: InteractiveLemmaAbsenceGeneratorFactory
+      sealed: false
+      _change: delete
+    - name: LemmaAbsenceAgentGeneratorFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(LagenConfig config, SuggestedLemmaQuerySessionFactory sessionFactory):\
+          \ LemmaAbsenceQuizCandidateGenerator"
+      - signature: "providerIdFor(LagenConfig config): String"
+      visibility: public
+      _change: add
+    _change: modify
+  - name: lagenopenai
+    _change: delete
+  - name: lageninteractive
+    _change: delete
+  - name: lemmaabsenceagent
+    description: "Motor del adaptador de lemma-absence sobre el runtime de sentinel-agent.\
+      \ Reemplaza a los paquetes lagenopenai (single-shot) y lageninteractive (interactivo):\
+      \ unifica ambas rutas LLM en un unico backend agentico. Solo DefaultLemmaAbsenceAgentGeneratorFactory\
+      \ es publica (el seam, instanciada una vez por audit-cli.bootstrap); el resto\
+      \ es package-private. El adaptador (LemmaAbsenceAgentGenerator) implementa el\
+      \ puerto revision-domain.lemmaabsence.LemmaAbsenceQuizCandidateGenerator sin\
+      \ cambiar su firma (FEAT-LAPS R001-R003) y delega el lanzamiento del agente\
+      \ declarativo en el port AgentRuntimeLauncher (fino sobre AgentRun/AgentRegistry/ExecutionContext),\
+      \ que es el unico punto que conoce los tipos del runtime de sentinel-agent.\
+      \ El nombre del agente declarativo (bajo .sentinel/agents/) es una constante\
+      \ interna del adaptador, no una perilla de LagenConfig. La unica tool del agente,\
+      \ SuggestedLemmaAgentTool, es un objeto Java in-process que delega en SuggestedLemmaQuerySession\
+      \ (semantica F-CSLATDC) sin duplicar la consulta ni invocar el verbo CLI. AgentRuntimeErrorClassifier\
+      \ mapea fallas de runtime (timeout/auth/transporte/otro) a LlmGenerationFailureCategory\
+      \ y de ahi a ProposalStrategyFailedException con categoria preservada (R005/R012).\
+      \ El grafo del agente (react, catalogo de evals R007, lazo de reintentos por\
+      \ veredicto R008-R009, carry-forward R010) es declarativo y NO se modela aqui."
+    visibility: internal
+    interfaces:
+    - name: AgentRuntimeLauncher
+      sealed: false
+      exposes:
+      - signature: "launch(String agentName, Map<String,String> inputs, ChatModel\
+          \ chatModel, Map<String,Object> tools): RunState"
+      visibility: internal
+      _change: add
+    - name: SuggestedLemmaAgentTool
+      sealed: false
+      exposes:
+      - signature: "fetchSuggestedLemmas(SuggestedLemmaQueryCriteria criteria): SuggestedLemmaQueryResult"
+      visibility: internal
+      _change: add
+    - name: AgentRuntimeErrorClassifier
+      sealed: false
+      exposes:
+      - signature: "classify(RunState runState): LlmGenerationFailureCategory"
+      - signature: "classify(Throwable cause): LlmGenerationFailureCategory"
+      visibility: internal
+      _change: add
+    - name: AgentCandidateParser
+      sealed: false
+      exposes:
+      - signature: "parse(RunState runState, String taskId, String strategyName):\
+          \ LemmaAbsenceGeneratorResponse"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultLemmaAbsenceAgentGeneratorFactory
+      types:
+      - Component
+      visibility: public
+      implements:
+      - LemmaAbsenceAgentGeneratorFactory
+      _change: add
+    - name: LemmaAbsenceAgentGenerator
+      requiresInject:
+      - name: config
+        type: LagenConfig
+      - name: agentRuntimeLauncher
+        type: AgentRuntimeLauncher
+      - name: sessionFactory
+        type: SuggestedLemmaQuerySessionFactory
+      - name: errorClassifier
+        type: AgentRuntimeErrorClassifier
+      - name: candidateParser
+        type: AgentCandidateParser
+      - name: chatModel
+        type: ChatModel
+      - name: strategyName
+        type: String
+      types:
+      - Component
+      implements:
+      - LemmaAbsenceQuizCandidateGenerator
+      _change: modify
+    - name: DefaultAgentRuntimeLauncher
+      types:
+      - Component
+      implements:
+      - AgentRuntimeLauncher
+      _change: add
+    - name: DefaultSuggestedLemmaAgentTool
+      requiresInject:
+      - name: session
+        type: SuggestedLemmaQuerySession
+      implements:
+      - SuggestedLemmaAgentTool
+      _change: add
+    - name: DefaultAgentRuntimeErrorClassifier
+      implements:
+      - AgentRuntimeErrorClassifier
+      _change: add
+    - name: DefaultAgentCandidateParser
+      implements:
+      - AgentCandidateParser
+      _change: add
+    _change: modify
+  _change: modify
+dependencies:
+- alias: sentinel-agents
+  artifact: com.sentinel:sentinel-agents:0.0.1-SNAPSHOT
+  scope: compile
+  provides:
+  - type: AgentRun
+    package: com.sentinel.agents.framework.runner
+  - type: ExecutionContext
+    package: com.sentinel.agents.framework.runner
+  - type: NodeRunners
+    package: com.sentinel.agents.framework.runner
+  - type: Node
+    package: com.sentinel.agents.framework.definition
+  - type: AgentRegistry
+    package: com.sentinel.agents.framework.registry
+  - type: AgentLoader
+    package: com.sentinel.agents.framework.loader
+  - type: RunState
+    package: com.sentinel.agents.framework.state
+  - type: RunStatus
+    package: com.sentinel.agents.framework.state
+  - type: ArtifactPointer
+    package: com.sentinel.agents.framework.state
+  - type: ChatModel
+    package: dev.langchain4j.model.chat

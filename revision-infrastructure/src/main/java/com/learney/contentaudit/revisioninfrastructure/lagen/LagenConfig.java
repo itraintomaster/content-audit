@@ -25,12 +25,14 @@ public class LagenConfig {
 
     private Integer maxSuggestedLemmaRequests;
 
+    private Integer maxEvalRetries;
+
     public LagenConfig() {
     }
 
     public LagenConfig(String providerName, String modelId, String endpoint, String apiKey,
             Double temperature, Integer maxTokens, Duration timeout,
-            Integer maxSuggestedLemmaRequests) {
+            Integer maxSuggestedLemmaRequests, Integer maxEvalRetries) {
         this.providerName = providerName;
         this.modelId = modelId;
         this.endpoint = endpoint;
@@ -39,6 +41,7 @@ public class LagenConfig {
         this.maxTokens = maxTokens;
         this.timeout = timeout;
         this.maxSuggestedLemmaRequests = maxSuggestedLemmaRequests;
+        this.maxEvalRetries = maxEvalRetries;
     }
 
     public String getProviderName() {
@@ -105,6 +108,14 @@ public class LagenConfig {
         this.maxSuggestedLemmaRequests = maxSuggestedLemmaRequests;
     }
 
+    public Integer getMaxEvalRetries() {
+        return this.maxEvalRetries;
+    }
+
+    public void setMaxEvalRetries(Integer maxEvalRetries) {
+        this.maxEvalRetries = maxEvalRetries;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -117,11 +128,12 @@ public class LagenConfig {
                     && Objects.equals(this.temperature, that.temperature)
                     && Objects.equals(this.maxTokens, that.maxTokens)
                     && Objects.equals(this.timeout, that.timeout)
-                    && Objects.equals(this.maxSuggestedLemmaRequests, that.maxSuggestedLemmaRequests);
+                    && Objects.equals(this.maxSuggestedLemmaRequests, that.maxSuggestedLemmaRequests)
+                    && Objects.equals(this.maxEvalRetries, that.maxEvalRetries);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(providerName, modelId, endpoint, apiKey, temperature, maxTokens, timeout, maxSuggestedLemmaRequests);
+        return Objects.hash(providerName, modelId, endpoint, apiKey, temperature, maxTokens, timeout, maxSuggestedLemmaRequests, maxEvalRetries);
     }
 }

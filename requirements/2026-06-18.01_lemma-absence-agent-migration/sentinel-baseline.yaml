@@ -5353,6 +5353,14 @@ modules:
       description: "Opt-in offline mode. The CLI wires CannedLemmaAbsenceQuizCandidateGenerator\
         \ from revision-domain.lemmaabsence with fixed quizSentence/translation. DOUBT-CANNED-MODE-AVAILABILITY\
         \ -> Option B (kept as opt-in, never default)."
+    - name: LLM_INTERACTIVE
+      description: "Modo de generacion interactiva (FEAT-LAGAG). El CLI cablea InteractiveLemmaAbsenceLlmGenerator\
+        \ desde revision-infrastructure.lageninteractive: el modelo arranca con la\
+        \ semilla suggestedLemmas y puede solicitar mas suggested lemmas para la misma\
+        \ task durante la generacion (via SuggestedLemmaQuerySession, semantica F-CSLATDC)\
+        \ de forma acotada. Modo explicito y opt-in (F-LAGAG-R003); el default observable\
+        \ sigue siendo LLM (single-shot, F-LAGEN-R013) y CANNED queda intacto. StrategyId.name\
+        \ = lemma-absence-llm-interactive."
     visibility: public
   - name: PlanStorageMode
     type: enum
@@ -10130,15 +10138,9 @@ modules:
     - DefaultInteractiveLemmaAbsenceGeneratorFactory
     suppressed: false
     interface: InteractiveLemmaAbsenceGeneratorFactory
-  - type: Factory
-    implementations:
-    - DefaultLemmaAbsenceAgentGeneratorFactory
-    suppressed: false
-    interface: LemmaAbsenceAgentGeneratorFactory
   uses:
   - langchain4j-openai
   - langchain4j-core
-  - sentinel-agents
   packages:
   - name: lagen
     description: "Public contract of the LangChain4j-backed candidate generator. Exposes\
@@ -10194,13 +10196,6 @@ modules:
           \ en linea con F-LAGEN-R008, resuelta del env var CONTENT_AUDIT_LAGEN_MAX_LEMMA_REQUESTS.\
           \ Nullable/0 = sentinel; la factory sustituye con LagenDefaults (default\
           \ 5). Ignorada por los modos LLM single-shot y CANNED."
-      - name: maxEvalRetries
-        type: Integer
-        description: "Tope de reintentos de generacion disparados por veredictos bloqueantes\
-          \ de eval en una resolucion (F-LASAG-R008, R011). Resuelto del env var por\
-          \ LagenConfigResolver; sin env-var explicita = 3. Nullable/0 = sentinel;\
-          \ la factory sustituye con el default. Ignorada por el modo CANNED (R011)\
-          \ y por cualquier flujo no-agente."
       visibility: public
     - name: LlmGenerationFailureCategory
       type: enum
@@ -10264,101 +10259,554 @@ modules:
       visibility: public
       extends: RuntimeException
     interfaces:
-    - name: LemmaAbsenceAgentGeneratorFactory
+    - name: LemmaAbsenceLlmGeneratorFactory
       stereotype: factory
       sealed: false
       exposes:
-      - signature: "create(LagenConfig config, SuggestedLemmaQuerySessionFactory sessionFactory):\
+      - signature: "create(LagenConfig config): LemmaAbsenceQuizCandidateGenerator"
+      - signature: "providerIdFor(LagenConfig config): String"
+      visibility: public
+    - name: InteractiveLemmaAbsenceGeneratorFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(LagenConfig config, SuggestedLemmaQuerySession session):\
           \ LemmaAbsenceQuizCandidateGenerator"
       - signature: "providerIdFor(LagenConfig config): String"
       visibility: public
-  - name: lemmaabsenceagent
-    description: "Motor del adaptador de lemma-absence sobre el runtime de sentinel-agent.\
-      \ Reemplaza a los paquetes lagenopenai (single-shot) y lageninteractive (interactivo):\
-      \ unifica ambas rutas LLM en un unico backend agentico. Solo DefaultLemmaAbsenceAgentGeneratorFactory\
-      \ es publica (el seam, instanciada una vez por audit-cli.bootstrap); el resto\
-      \ es package-private. El adaptador (LemmaAbsenceAgentGenerator) implementa el\
-      \ puerto revision-domain.lemmaabsence.LemmaAbsenceQuizCandidateGenerator sin\
-      \ cambiar su firma (FEAT-LAPS R001-R003) y delega el lanzamiento del agente\
-      \ declarativo en el port AgentRuntimeLauncher (fino sobre AgentRun/AgentRegistry/ExecutionContext),\
-      \ que es el unico punto que conoce los tipos del runtime de sentinel-agent.\
-      \ El nombre del agente declarativo (bajo .sentinel/agents/) es una constante\
-      \ interna del adaptador, no una perilla de LagenConfig. La unica tool del agente,\
-      \ SuggestedLemmaAgentTool, es un objeto Java in-process que delega en SuggestedLemmaQuerySession\
-      \ (semantica F-CSLATDC) sin duplicar la consulta ni invocar el verbo CLI. AgentRuntimeErrorClassifier\
-      \ mapea fallas de runtime (timeout/auth/transporte/otro) a LlmGenerationFailureCategory\
-      \ y de ahi a ProposalStrategyFailedException con categoria preservada (R005/R012).\
-      \ El grafo del agente (react, catalogo de evals R007, lazo de reintentos por\
-      \ veredicto R008-R009, carry-forward R010) es declarativo y NO se modela aqui."
+  - name: lagenopenai
+    description: "Internal LangChain4j-OpenAI engine. Only DefaultLemmaAbsenceLlmGeneratorFactory\
+      \ is public (the seam — instantiated once by audit-cli.bootstrap); every collaborator\
+      \ (LemmaAbsenceLlmGenerator, LemmaAbsencePromptBuilder, LemmaAbsenceResponseParser,\
+      \ LangChainErrorClassifier) is package-private so other modules cannot bypass\
+      \ the factory port. The generator depends on a ChatLanguageModel that the factory\
+      \ builds from LagenConfig — the engine never sees the LagenConfig itself, only\
+      \ the configured chat-model abstraction. Replacing the LLM client implementation\
+      \ never changes this module's public surface."
     visibility: internal
+    models:
+    - name: LemmaAbsenceLlmRawResponse
+      type: record
+      fields:
+      - name: rawText
+        type: String
+        description: Raw text content returned by the model before JSON parsing. Empty
+          string represents LLM_RESPONSE_EMPTY (F-LAGEN-R006).
     interfaces:
-    - name: AgentRuntimeLauncher
+    - name: LemmaAbsencePromptBuilder
+      stereotype: service
       sealed: false
       exposes:
-      - signature: "launch(String agentName, Map<String,String> inputs, ChatModel\
-          \ chatModel, Map<String,Object> tools): RunState"
+      - signature: "buildSystemPrompt(): String"
+      - signature: "buildUserPrompt(LemmaAbsenceCorrectionContext context): String"
       visibility: internal
-    - name: SuggestedLemmaAgentTool
+    - name: LemmaAbsenceResponseParser
+      stereotype: service
       sealed: false
       exposes:
-      - signature: "fetchSuggestedLemmas(SuggestedLemmaQueryCriteria criteria): SuggestedLemmaQueryResult"
-      visibility: internal
-    - name: AgentRuntimeErrorClassifier
-      sealed: false
-      exposes:
-      - signature: "classify(RunState runState): LlmGenerationFailureCategory"
-      - signature: "classify(Throwable cause): LlmGenerationFailureCategory"
-      visibility: internal
-    - name: AgentCandidateParser
-      sealed: false
-      exposes:
-      - signature: "parse(RunState runState, String taskId, String strategyName):\
+      - signature: "parse(LemmaAbsenceLlmRawResponse raw, String taskId, String strategyName):\
           \ LemmaAbsenceGeneratorResponse"
-      visibility: internal
+      visibility: public
+    - name: LangChainErrorClassifier
+      stereotype: service
+      sealed: false
+      exposes:
+      - signature: "classify(Throwable cause): LlmGenerationFailureCategory"
+      visibility: public
     implementations:
-    - name: DefaultLemmaAbsenceAgentGeneratorFactory
+    - name: DefaultLemmaAbsenceLlmGeneratorFactory
       types:
       - Component
       visibility: public
+      handwrittenTests:
+      - name: create returns a generator whose strategyName is 'lemma-absence-llm'
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R001
+      - name: providerIdFor yields different values for two LagenConfigs that differ
+          in providerName
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R009
+      - name: providerIdFor yields different values for two LagenConfigs that differ
+          in modelId
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R009
+      - name: "create propagates explicit endpoint, modelId and apiKey from LagenConfig\
+          \ into the configured generator"
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R008
+      - name: "create propagates explicit temperature, maxTokens and timeout from\
+          \ LagenConfig into the configured generator"
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R008
+      - name: create sends no Authorization header when LagenConfig.apiKey is null
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R008
+      - name: providerIdFor returns 'providerName:modelId' joining the two LagenConfig
+          fields with a literal ':'
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R009
+      - name: providerIdFor preserves the case of providerName and modelId verbatim
+          (no lowercasing)
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R009
+      - name: providerIdFor preserves leading and trailing whitespace inside providerName
+          and modelId verbatim (no trimming)
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R009
+      - name: providerIdFor raises InvalidProviderIdException when LagenConfig.providerName
+          contains ':'
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R009
+      - name: providerIdFor raises InvalidProviderIdException when LagenConfig.modelId
+          contains ':'
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R009
+      - name: create applies LagenDefaults.temperature (0.7) when LagenConfig.temperature
+          is null
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R011
+      - name: create applies LagenDefaults.maxTokens (2048) when LagenConfig.maxTokens
+          is null
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R008
+      - name: create applies LagenDefaults.timeout (Duration.ofSeconds(30)) when LagenConfig.timeout
+          is null
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R008
       implements:
-      - LemmaAbsenceAgentGeneratorFactory
-    - name: LemmaAbsenceAgentGenerator
+      - LemmaAbsenceLlmGeneratorFactory
+    - name: LemmaAbsenceLlmGenerator
       requiresInject:
       - name: config
         type: LagenConfig
-      - name: agentRuntimeLauncher
-        type: AgentRuntimeLauncher
-      - name: sessionFactory
-        type: SuggestedLemmaQuerySessionFactory
+      - name: promptBuilder
+        type: LemmaAbsencePromptBuilder
+      - name: responseParser
+        type: LemmaAbsenceResponseParser
       - name: errorClassifier
-        type: AgentRuntimeErrorClassifier
-      - name: candidateParser
-        type: AgentCandidateParser
-      - name: chatModel
-        type: ChatModel
+        type: LangChainErrorClassifier
       - name: strategyName
         type: String
+        description: Strategy name embedded in any ProposalStrategyFailedException
+          raised by this adapter. Wired to 'lemma-absence-llm' (F-LAGEN-R001) by the
+          factory.
+      - name: chatModel
+        type: ChatLanguageModel
+        description: "LangChain4j chat-model abstraction the generator calls via generate(List<ChatMessage>).\
+          \ Built once by DefaultLemmaAbsenceLlmGeneratorFactory from a LagenConfig\
+          \ (endpoint + modelId + apiKey + temperature + maxTokens + timeout). The\
+          \ generator never sees the LagenConfig itself, keeping it agnostic of how\
+          \ the model was configured."
       types:
       - Component
+      handwrittenTests:
+      - name: generate returns a LemmaAbsenceGeneratorResponse parsed from the model
+          output on the happy path
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R005
+      - name: generate sends both the system prompt and the user prompt produced from
+          the context to the model
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R003
+      - name: generate issues exactly one round-trip to the model per invocation (no
+          automatic retry)
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R007
+      - name: generate raises ProposalStrategyFailedException without persisting any
+          partial response when the parser rejects the raw text
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R007
+      - name: generate prefixes the failure reason with the LlmGenerationFailureCategory
+          name returned by the classifier
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: generate embeds the strategyName 'lemma-absence-llm' inside the message
+          of any ProposalStrategyFailedException it raises
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R001
+      - name: generate raises ProposalStrategyFailedException with reason prefixed
+          LLM_RESPONSE_EMPTY when the model returns empty text
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: generate raises ProposalStrategyFailedException with reason prefixed
+          LLM_RESPONSE_MALFORMED when the model returns text the parser cannot interpret
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: generate raises ProposalStrategyFailedException with reason prefixed
+          LLM_OTHER when the model client throws a Throwable not matched by any specific
+          category
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: generate raises ProposalStrategyFailedException with reason prefixed
+          LLM_UNREACHABLE when the model client throws ConnectException
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: generate raises ProposalStrategyFailedException with reason prefixed
+          LLM_TIMEOUT when the model client throws SocketTimeoutException
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: generate raises ProposalStrategyFailedException with reason prefixed
+          LLM_AUTH_FAILED when the model client throws an OpenAiHttpException with
+          status 401
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
       implements:
       - LemmaAbsenceQuizCandidateGenerator
-    - name: DefaultAgentRuntimeLauncher
+    - name: DefaultLemmaAbsencePromptBuilder
       types:
       - Component
+      handwrittenTests:
+      - name: buildSystemPrompt instructs the model to return a JSON object with exactly
+          the fields quizSentence and translation
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R004
+      - name: "buildSystemPrompt instructs the model to produce one single candidate,\
+          \ not a list of alternatives"
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R004
+      - name: "buildSystemPrompt instructs the model to express quizSentence in the\
+          \ same DSL of the input quiz, replacing misplacedLemmas with options from\
+          \ suggestedLemmas when applicable"
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R004
+      - name: buildUserPrompt includes quizSentence from the context
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R003
+      - name: buildUserPrompt includes sentence from the context
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R003
+      - name: buildUserPrompt includes translation from the context
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R003
+      - name: buildUserPrompt includes knowledgeTitle from the context
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R003
+      - name: buildUserPrompt includes knowledgeInstructions from the context
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R003
+      - name: buildUserPrompt includes topicLabel from the context
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R003
+      - name: buildUserPrompt includes cefrLevel from the context
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R003
+      - name: buildUserPrompt includes every misplacedLemma from the context
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R003
+      - name: buildUserPrompt includes every suggestedLemma from the context
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R003
+      - name: buildUserPrompt omits a context field that is null without consulting
+          any external source
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R003
+      - name: buildUserPrompt should include a length section with tokenCount targetMin
+          targetMax delta and lengthDirection when the context exposes a known length
+          direction
+        traceability:
+          feature: FEAT-RCLALEN
+          rule: F-RCLALEN-R001
+      - name: buildUserPrompt should omit the length section when lengthDirection
+          is UNKNOWN
+        traceability:
+          feature: FEAT-RCLALEN
+          rule: F-RCLALEN-R004
       implements:
-      - AgentRuntimeLauncher
-    - name: DefaultSuggestedLemmaAgentTool
+      - LemmaAbsencePromptBuilder
+    - name: DefaultLemmaAbsenceResponseParser
+      types:
+      - Component
+      visibility: public
+      handwrittenTests:
+      - name: "parse returns LemmaAbsenceGeneratorResponse(quizSentence, translation)\
+          \ when the raw text is a JSON object with both fields non-empty"
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R005
+      - name: parse ignores extra JSON fields beyond quizSentence and translation
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R005
+      - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_EMPTY
+          when the raw text is empty
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+          when the raw text is not parseable as JSON
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R005
+      - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+          when the JSON object lacks the quizSentence field
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R005
+      - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+          when the JSON object lacks the translation field
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R005
+      - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+          when quizSentence is an empty string
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R005
+      - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+          when translation is an empty string
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R005
+      - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+          when quizSentence is not a JSON string
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R005
+      - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+          when translation is not a JSON string
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R005
+      - name: parse embeds the taskId in the message of any ProposalStrategyFailedException
+          it raises
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: parse embeds the strategyName in the message of any ProposalStrategyFailedException
+          it raises
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: "parse accepts a quizSentence whose plain-text length looks unusually\
+          \ short or long: only structural validation applies"
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R010
+      - name: parse accepts a response without re-checking that misplacedLemmas were
+          replaced or that new words come from suggestedLemmas
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R010
+      - name: parse accepts a response without re-tokenizing the quizSentence to verify
+          its CEFR level
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R010
+      - name: "parse accepts a quizSentence regardless of whether it parses as the\
+          \ FEAT-QSENT DSL: grammar validation is delegated downstream"
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R010
+      implements:
+      - LemmaAbsenceResponseParser
+    - name: DefaultLangChainErrorClassifier
+      types:
+      - Component
+      visibility: public
+      handwrittenTests:
+      - name: classify returns LLM_OTHER for a Throwable not matched by any specific
+          category
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: classify never returns null for any non-null Throwable
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: classify returns LLM_UNREACHABLE for a ConnectException anywhere in
+          the cause chain
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: classify returns LLM_UNREACHABLE for an UnknownHostException anywhere
+          in the cause chain
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: classify returns LLM_UNREACHABLE for a NoRouteToHostException anywhere
+          in the cause chain
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: classify returns LLM_TIMEOUT for a SocketTimeoutException anywhere in
+          the cause chain
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: classify returns LLM_TIMEOUT for a java.util.concurrent.TimeoutException
+          anywhere in the cause chain
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: classify returns LLM_AUTH_FAILED for an OpenAiHttpException whose statusCode
+          is 401
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: classify returns LLM_AUTH_FAILED for an OpenAiHttpException whose statusCode
+          is 403
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: classify returns LLM_AUTH_FAILED when the root cause message matches
+          the auth heuristic regex (case-insensitive 'unauthorized' / 'forbidden'
+          / '401' / '403' / 'invalid api key')
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      implements:
+      - LangChainErrorClassifier
+  - name: lageninteractive
+    description: "Adaptador LLM del modo de generacion interactiva (FEAT-LAGAG). Implementa\
+      \ el puerto revision-domain.lemmaabsence.LemmaAbsenceQuizCandidateGenerator\
+      \ usando LangChain4j con tool-calling nativo: arranca con la semilla suggestedLemmas\
+      \ del contexto y, cuando el modelo lo solicita, liga la sesion de la task via\
+      \ SuggestedLemmaQuerySessionFactory.bindForTask(context.getTaskId()) y llama\
+      \ a SuggestedLemmaQuerySession.requestMore (semantica F-CSLATDC, in-process)\
+      \ hasta cerrar con un unico candidato (LemmaAbsenceGeneratorResponse). Acota\
+      \ las solicitudes con LagenConfig.maxSuggestedLemmaRequests y emite LLM_LEMMA_REQUEST_BUDGET_EXHAUSTED\
+      \ / LLM_TOOL_CALLING_UNSUPPORTED ademas de las categorias heredadas de F-LAGEN.\
+      \ Reutiliza el paquete lagen [public] (LagenConfig, LlmGenerationFailureCategory)\
+      \ y las implementaciones publicas DefaultLemmaAbsenceResponseParser / DefaultLangChainErrorClassifier\
+      \ de lagenopenai. Solo el factory seam es publico; el adaptador, el constructor\
+      \ del prompt semilla, el driver del loop de tool-calling y el parser de la solicitud\
+      \ son package-private. allowedClients del modulo = [audit-cli]."
+    visibility: internal
+    models:
+    - name: SuggestedLemmaRequest
+      type: record
+      fields:
+      - name: limit
+        type: Optional<Integer>
+        description: Cantidad maxima de suggested lemmas solicitada por el modelo
+          (F-CSLATDC-R008). Vacio = el adaptador decide default.
+      - name: partOfSpeech
+        type: Optional<String>
+        description: Filtro opcional por part-of-speech solicitado por el modelo (F-CSLATDC-R007).
+      - name: level
+        type: Optional<CefrLevel>
+        description: CefrLevel explicito solicitado por el modelo (F-CSLATDC-R006);
+          vacio = se aplica el nivel de la task.
+      visibility: internal
+    interfaces:
+    - name: InteractiveLemmaAbsencePromptBuilder
+      sealed: false
+      exposes:
+      - signature: "buildSystemPrompt(): String"
+      - signature: "buildSeedUserPrompt(LemmaAbsenceCorrectionContext context): String"
+      visibility: internal
+    - name: SuggestedLemmaToolExchange
+      sealed: false
+      exposes:
+      - signature: "fetchMore(SuggestedLemmaRequest request): SuggestedLemmaQueryResult"
+      visibility: internal
+    implementations:
+    - name: DefaultInteractiveLemmaAbsenceGeneratorFactory
+      visibility: public
+      implements:
+      - InteractiveLemmaAbsenceGeneratorFactory
+    - name: InteractiveLemmaAbsenceLlmGenerator
+      requiresInject:
+      - name: config
+        type: LagenConfig
+      - name: session
+        type: SuggestedLemmaQuerySession
+      - name: seedPromptBuilder
+        type: InteractiveLemmaAbsencePromptBuilder
+      - name: lemmaRequestExchange
+        type: SuggestedLemmaToolExchange
+      - name: responseParser
+        type: LemmaAbsenceResponseParser
+      - name: errorClassifier
+        type: LangChainErrorClassifier
+      - name: strategyName
+        type: String
+      - name: chatModel
+        type: ChatLanguageModel
+      - name: sessionFactory
+        type: SuggestedLemmaQuerySessionFactory
+      handwrittenTests:
+      - name: "should seed the model with only the highest recommendation-priority\
+          \ suggested lemmas of the task within its level, not the full list"
+        traceability:
+          feature: FEAT-LAGAG
+          rule: F-LAGAG-R001
+      - name: should let the model request additional suggested lemmas for the same
+          task during generation and respond with the applicable lemmas
+        traceability:
+          feature: FEAT-LAGAG
+          rule: F-LAGAG-R002
+      - name: should record on the produced proposal that the interactive mode was
+          used together with the strategy and provider identity
+        traceability:
+          feature: FEAT-LAGAG
+          rule: F-LAGAG-R003
+      - name: should fail with the budget-exhausted category when the request budget
+          is consumed without the model delivering a candidate
+        traceability:
+          feature: FEAT-LAGAG
+          rule: F-LAGAG-R004
+      - name: "should fail observably with the provider-incapable category when the\
+          \ active provider cannot sustain suggested-lemma requests, never hanging\
+          \ silently"
+        traceability:
+          feature: FEAT-LAGAG
+          rule: F-LAGAG-R005
+      - name: "should deliver exactly one final candidate with the inherited LemmaAbsenceGeneratorResponse\
+          \ shape and validations, with no quality check and no automatic retry"
+        traceability:
+          feature: FEAT-LAGAG
+          rule: F-LAGAG-R006
+      implements:
+      - LemmaAbsenceQuizCandidateGenerator
+    - name: DefaultInteractiveLemmaAbsencePromptBuilder
+      implements:
+      - InteractiveLemmaAbsencePromptBuilder
+    - name: DefaultSuggestedLemmaToolExchange
       requiresInject:
       - name: session
         type: SuggestedLemmaQuerySession
       implements:
-      - SuggestedLemmaAgentTool
-    - name: DefaultAgentRuntimeErrorClassifier
-      implements:
-      - AgentRuntimeErrorClassifier
-    - name: DefaultAgentCandidateParser
-      implements:
-      - AgentCandidateParser
+      - SuggestedLemmaToolExchange
 definitions:
 - requirements/2026-05-15.04_agregar-lemmacount-como-variable-de-suggestedlemmas-en-el-contexto/REQUIREMENT.md
 - requirements/2026-05-21.05_consultar-suggested-lemmas-a-trav-s-del-cli/REQUIREMENT.md
@@ -10798,8 +11246,6 @@ features:
     validation: AUTO_VALIDATED
     testModule: audit-cli
     testPackage: com.learney.contentaudit.journeys
-- id: FEAT-LASAG
-  code: F-LASAG
 dependencies:
 - alias: langchain4j-openai
   artifact: dev.langchain4j:langchain4j-open-ai:0.36.2
@@ -10835,30 +11281,6 @@ dependencies:
     package: com.fasterxml.jackson.databind
   - type: JsonProcessingException
     package: com.fasterxml.jackson.core
-- alias: sentinel-agents
-  artifact: com.sentinel:sentinel-agents:0.0.1-SNAPSHOT
-  scope: compile
-  provides:
-  - type: AgentRun
-    package: com.sentinel.agents.framework.runner
-  - type: ExecutionContext
-    package: com.sentinel.agents.framework.runner
-  - type: NodeRunners
-    package: com.sentinel.agents.framework.runner
-  - type: Node
-    package: com.sentinel.agents.framework.definition
-  - type: AgentRegistry
-    package: com.sentinel.agents.framework.registry
-  - type: AgentLoader
-    package: com.sentinel.agents.framework.loader
-  - type: RunState
-    package: com.sentinel.agents.framework.state
-  - type: RunStatus
-    package: com.sentinel.agents.framework.state
-  - type: ArtifactPointer
-    package: com.sentinel.agents.framework.state
-  - type: ChatModel
-    package: dev.langchain4j.model.chat
 language:
   name: java
   version: 17

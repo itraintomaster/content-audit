@@ -9,7 +9,5 @@ import javax.annotation.processing.Generated;
 public enum LagenMode {
     LLM,
 
-    CANNED,
-
-    LLM_INTERACTIVE
+    CANNED
 }
