@@ -43,6 +43,23 @@ blocking = {
 all_blocking_pass = all(blocking.values())
 blocking_passed_count = sum(1 for ok in blocking.values() if ok)
 
+# Visibilidad (#3): resumen a stderr -> aparece en el output del CLI/UI sin
+# tener que bucear events.jsonl. Lista qué bloqueantes reprobaron.
+_failed = [k for k, ok in blocking.items() if not ok]
+sys.stderr.write(
+    "[eval] blocking passed %d/4%s\n" % (
+        blocking_passed_count,
+        ("" if all_blocking_pass else " — FAILED: " + ", ".join(_failed)),
+    )
+)
+for _k in _failed:
+    _v = verdicts.get(_k) or {}
+    _reason = _v.get("reason") if isinstance(_v, dict) else None
+    if _k == "eval3_length":
+        _reason = "length %s < original %s words" % (
+            data.get("length_candidate_words", "?"), data.get("length_original_words", "?"))
+    sys.stderr.write("[eval]   - %s: %s\n" % (_k, _reason or "(no reason)"))
+
 try:
     pragmatism = float((verdicts.get("eval4_pragmatism") or {}).get("score", 0.0))
 except (TypeError, ValueError):
