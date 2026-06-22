@@ -47,13 +47,17 @@ class LemmaAbsenceAgentGenerator implements LemmaAbsenceQuizCandidateGenerator {
      *
      * <p><strong>Adapter↔graph contract (inputs side):</strong>
      * <pre>
-     *   taskId          — context.getTaskId()
-     *   cefrLevel       — context.getCefrLevel().name()        (e.g. "A1")
-     *   sentence        — context.getSentence()
-     *   quizSentence    — context.getQuizSentence()            (fill-in-blank, [[lemma]] marker)
-     *   translation     — context.getTranslation()
-     *   knowledgeTitle  — context.getKnowledgeTitle()
-     *   suggestedWords  — comma-separated lemmas from context.getSuggestedLemmas() (may be empty)
+     *   taskId                — context.getTaskId()
+     *   cefrLevel             — context.getCefrLevel().name()        (e.g. "A1")
+     *   sentence              — context.getSentence()
+     *   quizSentence          — context.getQuizSentence()            (fill-in-blank, [[lemma]] marker)
+     *   translation           — context.getTranslation()
+     *   knowledgeTitle        — context.getKnowledgeTitle()
+     *   suggestedWords        — comma-separated lemmas from context.getSuggestedLemmas() (may be empty)
+     *   knowledgeInstructions — context.getKnowledgeInstructions() (or "")
+     *   topicLabel            — context.getTopicLabel() (or "")
+     *   misplacedLemmas       — formatted list: "&lt;lemma&gt; (expected level: X, found at: Y)" joined by ", " (or "none")
+     *   lengthGuidance        — "current token count: N; target range: A-B tokens; delta: D tokens; direction: dir" (or "none")
      * </pre>
      *
      * <p><strong>Adapter↔graph contract (tool side):</strong>
@@ -78,6 +82,17 @@ class LemmaAbsenceAgentGenerator implements LemmaAbsenceQuizCandidateGenerator {
     public LemmaAbsenceGeneratorResponse generate(LemmaAbsenceCorrectionContext context) {
         // Build inputs map (contract with the declarative graph — see Javadoc above).
         java.util.Map<String, String> inputs = buildInputs(context);
+
+        // Config knobs the graph budgets reference (F-LASAG-R004/R008): the declarative
+        // budget expressions resolve {maxEvalRetries}/{maxSuggestedLemmaRequests} from run
+        // state, so they must be present as inputs (null/non-positive → sane defaults).
+        Integer maxEvalRetries = config.getMaxEvalRetries();
+        inputs.put("maxEvalRetries",
+                String.valueOf(maxEvalRetries != null && maxEvalRetries > 0 ? maxEvalRetries : 3));
+        Integer maxSuggestedLemmaRequests = config.getMaxSuggestedLemmaRequests();
+        inputs.put("maxSuggestedLemmaRequests",
+                String.valueOf(maxSuggestedLemmaRequests != null && maxSuggestedLemmaRequests > 0
+                        ? maxSuggestedLemmaRequests : 3));
 
         // Build tools map: exactly one entry — the suggested-lemmas tool (F-LASAG-R002).
         com.learney.contentaudit.refinerdomain.RefinementTask minimalTask =
@@ -120,6 +135,21 @@ class LemmaAbsenceAgentGenerator implements LemmaAbsenceQuizCandidateGenerator {
     /**
      * Builds the inputs map for the declarative graph from the correction context.
      * Canonical key list is documented in the {@link #generate} Javadoc.
+     *
+     * <p>Full input contract:
+     * <ul>
+     *   <li>{@code taskId} — context.getTaskId()</li>
+     *   <li>{@code cefrLevel} — context.getCefrLevel().name()</li>
+     *   <li>{@code sentence} — context.getSentence()</li>
+     *   <li>{@code quizSentence} — context.getQuizSentence()</li>
+     *   <li>{@code translation} — context.getTranslation()</li>
+     *   <li>{@code knowledgeTitle} — context.getKnowledgeTitle()</li>
+     *   <li>{@code suggestedWords} — comma-separated lemmas from context.getSuggestedLemmas()</li>
+     *   <li>{@code knowledgeInstructions} — context.getKnowledgeInstructions() (or "")</li>
+     *   <li>{@code topicLabel} — context.getTopicLabel() (or "")</li>
+     *   <li>{@code misplacedLemmas} — formatted list of MisplacedLemmaContext items (or "none")</li>
+     *   <li>{@code lengthGuidance} — length guidance string when direction is known (or "none")</li>
+     * </ul>
      */
     private static java.util.Map<String, String> buildInputs(LemmaAbsenceCorrectionContext context) {
         java.util.Map<String, String> inputs = new java.util.LinkedHashMap<>();
@@ -145,6 +175,42 @@ class LemmaAbsenceAgentGenerator implements LemmaAbsenceQuizCandidateGenerator {
                     .collect(java.util.stream.Collectors.joining(", "));
         }
         inputs.put("suggestedWords", suggestedWords);
+
+        // Knowledge instructions (may be null → empty string).
+        inputs.put("knowledgeInstructions",
+                context.getKnowledgeInstructions() != null ? context.getKnowledgeInstructions() : "");
+
+        // Topic label (may be null → empty string).
+        inputs.put("topicLabel",
+                context.getTopicLabel() != null ? context.getTopicLabel() : "");
+
+        // Misplaced lemmas: formatted as "<lemma> (expected level: X, found at: Y)", joined by ", ".
+        java.util.List<com.learney.contentaudit.refinerdomain.MisplacedLemmaContext> misplaced =
+                context.getMisplacedLemmas();
+        String misplacedLemmas;
+        if (misplaced != null && !misplaced.isEmpty()) {
+            misplacedLemmas = misplaced.stream()
+                    .map(m -> m.getLemma()
+                            + " (expected level: " + m.getExpectedLevel()
+                            + ", found at: " + m.getQuizLevel() + ")")
+                    .collect(java.util.stream.Collectors.joining(", "));
+        } else {
+            misplacedLemmas = "none";
+        }
+        inputs.put("misplacedLemmas", misplacedLemmas);
+
+        // Length guidance: only when direction is known (non-null and not UNKNOWN).
+        com.learney.contentaudit.refinerdomain.LengthDirection dir = context.getLengthDirection();
+        String lengthGuidance;
+        if (dir != null && dir != com.learney.contentaudit.refinerdomain.LengthDirection.UNKNOWN) {
+            lengthGuidance = "current token count: " + context.getTokenCount()
+                    + "; target range: " + context.getTargetMin() + "-" + context.getTargetMax()
+                    + " tokens; delta: " + context.getDelta()
+                    + " tokens; direction: " + dir.name().toLowerCase();
+        } else {
+            lengthGuidance = "none";
+        }
+        inputs.put("lengthGuidance", lengthGuidance);
 
         return inputs;
     }

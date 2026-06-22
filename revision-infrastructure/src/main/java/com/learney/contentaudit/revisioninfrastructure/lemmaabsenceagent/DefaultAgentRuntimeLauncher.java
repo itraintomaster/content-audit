@@ -2,6 +2,7 @@ package com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent;
 
 import com.sentinel.agents.framework.definition.Node;
 import com.sentinel.agents.framework.loader.AgentLoader;
+import com.sentinel.agents.framework.persistence.RunPersistence;
 import com.sentinel.agents.framework.runner.AgentRun;
 import com.sentinel.agents.framework.runner.ExecutionContext;
 import com.sentinel.agents.framework.runner.NodeRunners;
@@ -9,8 +10,13 @@ import com.sentinel.agents.framework.state.RunState;
 import dev.langchain4j.model.chat.ChatModel;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Instant;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.UUID;
 import javax.annotation.processing.Generated;
 
 /**
@@ -37,21 +43,46 @@ class DefaultAgentRuntimeLauncher implements AgentRuntimeLauncher {
      */
     private static final String AGENTS_BASE_DIR = ".sentinel/agents";
 
+    private static final DateTimeFormatter RUN_ID_FMT =
+            DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss").withZone(ZoneOffset.UTC);
+
     @Override
     public RunState launch(String agentName, Map<String, String> inputs, ChatModel chatModel,
             Map<String, Object> tools) {
-        Path agentDir = Paths.get(AGENTS_BASE_DIR, agentName);
+        Path agentDir = Paths.get(AGENTS_BASE_DIR, agentName).toAbsolutePath();
         Node entryNode = AgentLoader.loadFromDirectory(agentDir);
+
+        String runId = RUN_ID_FMT.format(Instant.now()) + "-" + UUID.randomUUID().toString().substring(0, 8);
+        Path runDir = Paths.get(".sentinel", "runs", agentName, runId).toAbsolutePath();
+
+        RunPersistence persistence = new RunPersistence(
+                runDir, runId, agentName, "", null, java.util.Map.of());
+
+        Map<String, String> enriched = new LinkedHashMap<>(inputs != null ? inputs : Collections.emptyMap());
+        enriched.put("run_dir", runDir.toString());
 
         ExecutionContext ctx = new ExecutionContext(
                 chatModel,
                 tools != null ? tools : Collections.emptyMap(),
                 Collections.emptyMap(),   // gates  — handled declaratively in the graph
                 Collections.emptyMap(),   // scripts — handled declaratively in the graph
-                agentDir,                 // workDir
+                runDir,                   // workDir = run-dir so graph scripts resolve artifacts by abs path
                 new NodeRunners()         // default dispatcher (no custom runners)
         );
 
-        return AgentRun.run(entryNode, inputs, ctx);
+        RunState state;
+        try {
+            state = AgentRun.run(entryNode, enriched, ctx);
+        } catch (RuntimeException e) {
+            persistence.finish("failed", java.util.Map.of(
+                    "halted", true,
+                    "haltReason", String.valueOf(e.getMessage())));
+            throw e;
+        }
+        persistence.writeEvents(state, null);
+        persistence.writeState(state);
+        boolean halted = state.runStatus().name().equals("HALTED");
+        persistence.finish(halted ? "failed" : "completed", RunPersistence.outcomeOf(state));
+        return state;
     }
 }
