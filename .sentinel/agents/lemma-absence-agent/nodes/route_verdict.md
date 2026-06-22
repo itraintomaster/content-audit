@@ -12,5 +12,7 @@ cases:
 default: retry
 edges:
   - { to: emit, when: emit_now }
-  - { to: generate, when: retry }
+  # Retry vuelve a load_context (no a generate) para recargar el carry-forward
+  # (R010) que tally acaba de escribir → la regeneración ve el fallo previo.
+  - { to: load_context, when: retry }
 ---

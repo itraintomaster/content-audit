@@ -41,13 +41,15 @@ description: |
       de filtros de la tool (carry_forward).
 kind: agent
 strategy: graph
-initial_node: generate
+initial_node: load_context
 budgets:
   # Circuit breaker del grafo entero: el lazo generate ↔ eval ↔ route.
   # Holgado respecto a maxEvalRetries (cada reintento visita ~5 nodos).
   max_iterations: 40
 nodes:
+  - ./nodes/load_context.md
   - ./nodes/generate.md
+  - ./nodes/gate_candidate.md
   - ./nodes/eval_length.md
   - ./nodes/eval_quality.md
   - ./nodes/tally.md

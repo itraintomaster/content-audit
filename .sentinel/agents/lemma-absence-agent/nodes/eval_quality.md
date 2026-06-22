@@ -14,7 +14,9 @@ description: |
   Emite verdicts.json; el combinado bloqueante/champion lo hace `tally`.
 budgets:
   max_tokens: 1200
-  max_attempts: 3
+  # claude -p puede flakear (respuesta vacía/transporte); reintentos para
+  # absorber ruido transitorio antes de degradar.
+  max_attempts: 5
 completion:
   produces:
     - kind: verdicts
@@ -22,6 +24,10 @@ completion:
       required: true
 edges:
   - { to: tally }
+  # Si el juez no produce veredictos tras los reintentos, NO haltees el run:
+  # degradá a tally (que trata la calidad como no-pasada) y dejá que el
+  # best-effort (R009) emita el mejor candidato visto.
+  - { to: tally, when: exhausted }
 ---
 
 # System prompt
@@ -34,7 +40,7 @@ bloqueantes.
 Evaluás cuatro evals (el de longitud lo corre otro nodo, no es tu tarea):
 
 - **#1 sense** (bloqueante): ¿`quizSentence` es una oración gramatical, natural y con sentido?
-- **#2 solvable** (bloqueante): ¿el quiz es resoluble y respeta la consigna del ejercicio — un único hueco `[[lemma]]` con el lemma objetivo, coherente con el objetivo pedagógico?
+- **#2 solvable** (bloqueante): ¿el quiz es resoluble y respeta la consigna del ejercicio — un hueco `____ [answer]` (con hint `(...)` si corresponde), coherente con el objetivo pedagógico?
 - **#4 pragmatism** (deseable): ¿la oración es útil/usable en la vida real? Puntuá 0.0–1.0 (no bloquea).
 - **#5 translation** (bloqueante): ¿la traducción al español es fiel al `quizSentence`?
 
