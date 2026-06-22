@@ -65,6 +65,25 @@ try:
 except (TypeError, ValueError):
     pragmatism = 0.0
 
+# Historial por intento (visibilidad): cada evaluación deja una línea en
+# attempts.jsonl con el candidato evaluado + resultado, así se ve la progresión
+# completa (¿cambió entre reintentos? ¿se alargó?) — candidate.json solo guarda
+# el último. También logueamos el quizSentence a stderr.
+_qs = candidate.get("quizSentence", "")
+sys.stderr.write("[eval]   candidate: %s\n" % _qs)
+try:
+    with open(os.path.join(run_dir, "attempts.jsonl"), "a", encoding="utf-8") as _af:
+        _af.write(json.dumps({
+            "quizSentence": _qs,
+            "translation": candidate.get("translation", ""),
+            "blocking_passed": blocking_passed_count,
+            "all_blocking_pass": all_blocking_pass,
+            "failed": _failed,
+            "pragmatism": pragmatism,
+        }, ensure_ascii=False) + "\n")
+except Exception as _e:
+    sys.stderr.write("[eval]   (could not append attempts.jsonl: %s)\n" % _e)
+
 # --- Champion (R009): mejor = más bloqueantes pasados; desempate por pragmatismo.
 meta = read_json("champion_meta.json", None)
 better = (meta is None
