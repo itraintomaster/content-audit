@@ -237,24 +237,19 @@ public class DefaultLagenConfigResolverTest {
     }
 
     @Test
-    @DisplayName("resolve raises InvalidLagenConfigException identifying the providerName env key when its value is missing or empty (fail-fast per R014)")
+    @DisplayName("resolve defaults providerName to 'claude-cli' when CONTENT_AUDIT_LAGEN_PROVIDER is absent (default provider is claude -p)")
     @Tag("FEAT-LAGEN")
-    @Tag("F-LAGEN-R014")
-    public void resolveRaisesInvalidLagenConfigExceptionIdentifyingTheProviderNameEnvKeyWhenItsValueIsMissingOrEmptyFailfastPerR014(
-            ) {
-        // R014: required knobs (providerName) must be validated at startup; empty/absent provider
-        // must fail before any LLM call is attempted.
+    @Tag("F-LAGEN-R008")
+    public void resolveDefaultsProviderNameToClaudeCliWhenCONTENTAUDITLAGENPROVIDERIsAbsent() {
+        // Provider is optional: absent/blank must default to "claude-cli" (auth via subscription,
+        // no API key required). This is the zero-config default execution path.
         Map<String, String> env = fullEnv();
-        env.remove(KEY_PROVIDER);  // missing required key
+        env.remove(KEY_PROVIDER);  // absent → default "claude-cli"
 
-        InvalidLagenConfigException thrown = assertThrows(
-                InvalidLagenConfigException.class,
-                () -> resolver.resolve(env),
-                "Missing providerName must throw InvalidLagenConfigException (R014)"
-        );
+        LagenConfig config = resolver.resolve(env);
 
-        assertEquals(KEY_PROVIDER, thrown.getKey(),
-                "Exception.key() must identify the provider env var (R014)");
+        assertEquals("claude-cli", config.getProviderName(),
+                "providerName must default to 'claude-cli' when CONTENT_AUDIT_LAGEN_PROVIDER is absent (R008)");
     }
 
     @Test

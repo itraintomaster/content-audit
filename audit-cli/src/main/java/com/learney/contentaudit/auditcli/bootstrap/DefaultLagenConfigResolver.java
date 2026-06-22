@@ -21,13 +21,19 @@ public final class DefaultLagenConfigResolver implements LagenConfigResolver {
     static final String KEY_MAX_EVAL_RETRIES = "CONTENT_AUDIT_LAGEN_MAX_EVAL_RETRIES";
 
     private static final int DEFAULT_MAX_EVAL_RETRIES = 3;
+    private static final String DEFAULT_PROVIDER = "claude-cli";
 
     @Override
     public LagenConfig resolve(Map<String, String> env) {
         // All parsing happens atomically in a single pass at startup (R014)
         LagenConfig config = new LagenConfig();
 
-        config.setProviderName(requireString(env, KEY_PROVIDER));
+        // provider is optional: absent/blank defaults to "claude-cli" (claude -p, auth via subscription)
+        String providerValue = env.get(KEY_PROVIDER);
+        config.setProviderName((providerValue != null && !providerValue.isBlank())
+                ? providerValue.trim()
+                : DEFAULT_PROVIDER);
+
         config.setEndpoint(requireString(env, KEY_ENDPOINT));
         config.setModelId(requireString(env, KEY_MODEL));
 

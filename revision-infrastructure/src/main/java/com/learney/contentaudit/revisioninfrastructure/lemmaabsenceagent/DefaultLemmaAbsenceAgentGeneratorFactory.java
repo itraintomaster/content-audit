@@ -6,8 +6,8 @@ import com.learney.contentaudit.revisioninfrastructure.lagen.InvalidProviderIdEx
 import com.learney.contentaudit.revisioninfrastructure.lagen.LagenConfig;
 import com.learney.contentaudit.revisioninfrastructure.lagen.LagenDefaults;
 import com.learney.contentaudit.revisioninfrastructure.lagen.LemmaAbsenceAgentGeneratorFactory;
+import com.sentinel.agents.analyst.LlmFactory;
 import dev.langchain4j.model.chat.ChatModel;
-import dev.langchain4j.model.openai.OpenAiChatModel;
 import java.time.Duration;
 import javax.annotation.processing.Generated;
 
@@ -60,10 +60,18 @@ public class DefaultLemmaAbsenceAgentGeneratorFactory implements LemmaAbsenceAge
     }
 
     /**
-     * Builds the langchain4j 1.13.0 {@link ChatModel} from a {@link LagenConfig}.
-     * Falls back to {@link LagenDefaults} for absent optional fields.
+     * Builds the langchain4j {@link ChatModel} from a {@link LagenConfig} by delegating to
+     * {@link LlmFactory}. Routes {@code claude-cli}/{@code claude-code} providers to
+     * {@code ClaudeCliChatModel} (shell-out to {@code claude -p}, auth via subscription, no API
+     * key required) and all other providers to an OpenAI-compatible model with full SSL/quirks
+     * handling. Falls back to {@link LagenDefaults} for absent optional fields.
      */
     private static ChatModel buildChatModel(LagenConfig config) {
+        String provider = config.getProviderName();
+        if (provider == null || provider.isBlank()) {
+            provider = "claude-cli";
+        }
+
         Double tempBox = config.getTemperature();
         double temperature = (tempBox != null && tempBox != 0.0)
                 ? tempBox
@@ -74,27 +82,15 @@ public class DefaultLemmaAbsenceAgentGeneratorFactory implements LemmaAbsenceAge
                 ? maxToksBox
                 : DEFAULTS.getMaxTokens();
 
-        Duration timeout = config.getTimeout() != null
-                ? config.getTimeout()
-                : DEFAULTS.getTimeout();
+        LlmFactory.LlmConfig llmConfig = new LlmFactory.LlmConfig(
+                provider,
+                config.getModelId(),
+                config.getEndpoint(),
+                config.getApiKey(),
+                maxTokens,
+                temperature
+        );
 
-        OpenAiChatModel.OpenAiChatModelBuilder builder = OpenAiChatModel.builder()
-                .baseUrl(config.getEndpoint())
-                .modelName(config.getModelId())
-                .temperature(temperature)
-                .maxTokens(maxTokens)
-                .timeout(timeout)
-                .maxRetries(1);
-
-        String apiKey = config.getApiKey();
-        if (apiKey != null && !apiKey.isBlank()) {
-            builder.apiKey(apiKey);
-        } else {
-            // Local providers (LM Studio, Ollama, etc.) don't need a real API key;
-            // use a placeholder to satisfy the builder's non-null requirement.
-            builder.apiKey("no-key");
-        }
-
-        return builder.build();
+        return LlmFactory.build(llmConfig);
     }
 }
