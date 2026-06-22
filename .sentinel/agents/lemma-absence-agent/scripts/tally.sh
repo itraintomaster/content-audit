@@ -97,9 +97,23 @@ if better and candidate:
         json.dump({"blocking_passed_count": blocking_passed_count,
                    "pragmatism": pragmatism, "all_blocking_pass": all_blocking_pass}, f)
 
+# --- Detección de candidato repetido (modelo terco): comparar contra el intento
+# previo registrado en attempts.jsonl (el actual ya se appendeó arriba, así que el
+# previo es la penúltima línea).
+_repeated = False
+try:
+    _att = [json.loads(l) for l in open(os.path.join(run_dir, "attempts.jsonl"), encoding="utf-8") if l.strip()]
+    if len(_att) >= 2 and _att[-1].get("quizSentence") == _att[-2].get("quizSentence"):
+        _repeated = True
+except Exception:
+    _repeated = False
+
 # --- Carry-forward (R010): en fallo, dejá feedback para el próximo intento.
 if not all_blocking_pass:
     lines = ["# Carry-forward — feedback del intento anterior", ""]
+    if _repeated:
+        lines.append("- 🛑 REPETISTE EL MISMO CANDIDATO que ya fue rechazado. NO lo vuelvas a generar: "
+                     "cambiá la oración (otro sujeto/contexto/vocabulario) Y corregí los puntos de abajo.")
     if not length_ok:
         lines.append(f"- ❌ #3 longitud: el candidato ({data.get('length_candidate_words','?')} palabras) "
                      f"es más corto que el original ({data.get('length_original_words','?')}). Alargá la oración.")

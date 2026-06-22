@@ -13,5 +13,7 @@ description: |
   Si no, vuelve a `generate` para reintentar (acotado por max_attempts/R008).
 edges:
   - { to: eval_length, when: passed }
-  - { to: generate, when: failed }
+  # failed → load_context (no directo a generate): el gate escribió carry_forward.md
+  # con el motivo del rechazo de formato, y load_context lo carga para el reintento.
+  - { to: load_context, when: failed }
 ---

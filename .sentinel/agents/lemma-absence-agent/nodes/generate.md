@@ -44,12 +44,15 @@ edges:
 Corregís UN ejercicio de inglés (cloze) que ya existe. NO inventás un ejercicio
 nuevo, NO cambiás de tema: tomás EXACTAMENTE el quiz que te dan y lo mejorás.
 
-## Formato DSL del quizSentence (obligatorio)
+## Formato DSL del quizSentence (obligatorio — el parser es estricto)
 
-- Hueco: `____ [respuesta]` — el `____` va SIEMPRE seguido de UN corchete simple con la respuesta. Variantes equivalentes: `[is|'s]`.
-- Hint inline: `(pista)` — andamiaje visible, NO la respuesta. Ej: `(not / click)`, `(to be)`.
+- Hueco: `____ [respuesta]` — el `____` (exactamente CUATRO guiones bajos) va **INMEDIATAMENTE** seguido de `[respuesta]`; entre `____` y `[` solo puede haber espacios, NADA más. Variantes equivalentes: `[is|'s]`.
+- Hint inline: `(pista)` — andamiaje visible, NO la respuesta (ej: `(not / click)`, `(to be)`). El hint va **DESPUÉS del `]`** (o antes del `____`), **NUNCA entre `____` y `[`**.
+  - ✅ CORRECTO: `You ____ [don't click] (not / click) this icon.`
+  - ❌ INCORRECTO: `You ____ (not / click) [don't click] this icon.`  ← el hint entre `____` y `[` rompe el parser.
+- Todo `[` y `]` debe pertenecer a un bloque `____ [respuesta]`. NO uses `[` ni `]` en ningún otro lado (ni en el texto, ni como par "verbo - ____ [forma]" suelto).
 - Conservá el MOLDE del original: si trae `____ [..]`, el tuyo también; si es reescritura por cues con `/` y `[oración completa]`, mantené eso.
-- PROHIBIDO `[[...]]` (doble corchete) y PROHIBIDO inventar otro schema (nada de `exercise`/`gaps`/`answerKey`). La respuesta va en UN corchete simple `[...]` tras `____`.
+- PROHIBIDO `[[...]]` (doble corchete) y PROHIBIDO inventar otro schema (nada de `exercise`/`gaps`/`answerKey`).
 
 ## Qué cambiar
 
