@@ -72,14 +72,22 @@ class DefaultAgentRuntimeLauncher implements AgentRuntimeLauncher {
 
         RunState state;
         try {
-            state = AgentRun.run(entryNode, enriched, ctx);
+            // Stream both observability channels live to the run log: framework
+            // events AND the llm_request/llm_response roundtrip transcripts. The
+            // roundtrips never enter RunState, so a plain AgentRun.run + a
+            // post-hoc writeEvents(state) would lose every transcript — only
+            // this live sink captures them. The ChatModel must carry a
+            // FrameworkLlmListener (wired in DefaultLemmaAbsenceAgentGeneratorFactory).
+            state = AgentRun.runRecording(
+                    entryNode, enriched, ctx,
+                    (event, stateAfter) -> persistence.appendFrameworkEvent(event),
+                    persistence::appendEvent);
         } catch (RuntimeException e) {
             persistence.finish("failed", java.util.Map.of(
                     "halted", true,
                     "haltReason", String.valueOf(e.getMessage())));
             throw e;
         }
-        persistence.writeEvents(state, null);
         persistence.writeState(state);
         boolean halted = state.runStatus().name().equals("HALTED");
         persistence.finish(halted ? "failed" : "completed", RunPersistence.outcomeOf(state));

@@ -7,8 +7,10 @@ import com.learney.contentaudit.revisioninfrastructure.lagen.LagenConfig;
 import com.learney.contentaudit.revisioninfrastructure.lagen.LagenDefaults;
 import com.learney.contentaudit.revisioninfrastructure.lagen.LemmaAbsenceAgentGeneratorFactory;
 import com.sentinel.agents.analyst.LlmFactory;
+import com.sentinel.agents.framework.runner.FrameworkLlmListener;
 import dev.langchain4j.model.chat.ChatModel;
 import java.time.Duration;
+import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -91,6 +93,10 @@ public class DefaultLemmaAbsenceAgentGeneratorFactory implements LemmaAbsenceAge
                 temperature
         );
 
-        return LlmFactory.build(llmConfig);
+        // Attach a FrameworkLlmListener so the runtime launcher can capture the
+        // full llm_request/llm_response roundtrip transcripts to the run log
+        // (the listener is inert unless an event sink is active during the run —
+        // see DefaultAgentRuntimeLauncher / AgentRun.runRecording).
+        return LlmFactory.build(llmConfig, List.of(new FrameworkLlmListener()));
     }
 }
