@@ -56,8 +56,12 @@ for _k in _failed:
     _v = verdicts.get(_k) or {}
     _reason = _v.get("reason") if isinstance(_v, dict) else None
     if _k == "eval3_length":
-        _reason = "length %s < original %s words" % (
-            data.get("length_candidate_words", "?"), data.get("length_original_words", "?"))
+        _tmin, _tmax = data.get("length_target_min", ""), data.get("length_target_max", "")
+        if _tmin != "" and _tmax != "":
+            _reason = "length %s words out of expected range %s-%s" % (
+                data.get("length_candidate_words", "?"), _tmin, _tmax)
+        else:
+            _reason = "length %s words does not meet the expected length" % data.get("length_candidate_words", "?")
     sys.stderr.write("[eval]   - %s: %s\n" % (_k, _reason or "(no reason)"))
 
 try:
@@ -115,8 +119,14 @@ if not all_blocking_pass:
         lines.append("- 🛑 REPETISTE EL MISMO CANDIDATO que ya fue rechazado. NO lo vuelvas a generar: "
                      "cambiá la oración (otro sujeto/contexto/vocabulario) Y corregí los puntos de abajo.")
     if not length_ok:
-        lines.append(f"- ❌ #3 longitud: el candidato ({data.get('length_candidate_words','?')} palabras) "
-                     f"es más corto que el original ({data.get('length_original_words','?')}). Alargá la oración.")
+        _cw = data.get('length_candidate_words', '?')
+        _tmin, _tmax = data.get('length_target_min', ''), data.get('length_target_max', '')
+        if _tmin != '' and _tmax != '':
+            lines.append(f"- ❌ #3 longitud: el candidato ({_cw} palabras) está FUERA del rango esperado "
+                         f"({_tmin}-{_tmax}). Ajustá la longitud para que quede DENTRO del rango "
+                         f"(si está por debajo, agregá contexto; si está por encima, acortá).")
+        else:
+            lines.append(f"- ❌ #3 longitud: el candidato ({_cw} palabras) no cumple la longitud esperada. Ajustá.")
     for key, label in [("eval1_sense","#1 sentido"),("eval2_solvable","#2 resoluble"),
                        ("eval5_translation","#5 traducción")]:
         v = verdicts.get(key) or {}

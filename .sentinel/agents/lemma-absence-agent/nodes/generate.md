@@ -46,8 +46,8 @@ nuevo, NO cambiás de tema: tomás EXACTAMENTE el quiz que te dan y lo mejorás.
 
 ## REGLAS DURAS (leé esto primero)
 
-1. **El quizSentence DEBE ser una ORACIÓN COMPLETA** con sujeto y predicado, natural y con sentido. NUNCA un par de palabras ni una transformación aislada tipo `verbo - ____ [forma]` (eso se rechaza siempre). Aunque el ejercicio original parezca un par de palabras o una transformación, vos lo convertís en una ORACIÓN que ejercite ese mismo fenómeno gramatical.
-2. **Si recibís "Feedback del intento anterior" (más abajo), está PROHIBIDO devolver el mismo candidato u otro casi igual.** Cambiá sustancialmente la oración (otro sujeto, otro contexto, otro vocabulario) Y corregí cada punto del feedback. Devolver lo mismo es un fallo.
+1. **Respetá el TIPO de ejercicio original.** Mirá el `quizSentence` original: si es una oración con un hueco, tu candidato también es una oración con sentido (sujeto + predicado). Si es de otro tipo (una transformación, un par `verbo → forma`, una construcción por cues, etc.), seguí ESE mismo tipo/molde — NO lo fuerces a oración. En todos los casos mantené el fenómeno gramatical que el ejercicio practica y la consigna del `knowledge`.
+2. **Si recibís "Feedback del intento anterior" (más abajo), está PROHIBIDO devolver el mismo candidato u otro casi igual.** Cambiá sustancialmente el ejercicio (otro sujeto/contexto/vocabulario) Y corregí cada punto del feedback. Devolver lo mismo es un fallo.
 
 ## Formato DSL del quizSentence (obligatorio — el parser es estricto)
 
@@ -56,23 +56,24 @@ nuevo, NO cambiás de tema: tomás EXACTAMENTE el quiz que te dan y lo mejorás.
   - ✅ CORRECTO: `You ____ [don't click] (not / click) this icon.`
   - ❌ INCORRECTO: `You ____ (not / click) [don't click] this icon.`  ← el hint entre `____` y `[` rompe el parser.
 - Todo `[` y `]` debe pertenecer a un bloque `____ [respuesta]`. NO uses `[` ni `]` en ningún otro lado (ni en el texto, ni como par "verbo - ____ [forma]" suelto).
-- Molde: usá el hueco `____ [respuesta]` dentro de una oración completa. Si el original ya es una oración con `____ [..]`, mantené esa forma. Si el original es un par/transformación de palabras, NO lo copies: convertilo en una oración completa con el hueco (regla dura #1).
+- Molde: conservá la forma del ejercicio original (regla dura #1). Si el original es una oración con `____ [..]`, tu candidato es una oración con `____ [..]`. Si el original es una transformación/par de palabras o una construcción por cues, mantené ESE molde, siempre con su hueco `____ [respuesta]`.
 - PROHIBIDO `[[...]]` (doble corchete) y PROHIBIDO inventar otro schema (nada de `exercise`/`gaps`/`answerKey`).
 
 ## Qué cambiar
 
-- Reemplazá los lemmas mal ubicados por palabras del nivel indicado (usá los sugeridos; podés consultar `get_suggested_lemmas` para refinar — única tool, R002; si agotás el presupuesto, seguí igual).
+- Reemplazá los lemmas mal ubicados (`misplacedLemmas`) por vocabulario del nivel del ejercicio. Tenés `suggestedWords` como vocabulario preferido.
+- Si necesitás más opciones de vocabulario, usá `get_suggested_lemmas`. Acepta estos filtros (todos opcionales): nivel CEFR, categoría gramatical (`partOfSpeech`: NOUN/VERB/ADJ/ADV/…), límite de resultados, e incluir o no lemas ya expuestos. Pedí lo que necesites (p.ej. adjetivos del nivel A1). Si no podés consultar más, seguí con lo que ya tengas.
 - Mantené el mismo fenómeno gramatical (knowledge/instructions) y el mismo molde.
-- NO más corto que la oración original (honrá la guía de longitud).
+- Longitud: el candidato debe quedar **DENTRO del rango esperado** que indica `lengthGuidance` (ver "longitud" abajo) — no importa si queda más corto o más largo que el original; lo que importa es estar dentro del rango.
 - Es una mejora real, no una copia.
 
 ## Self-check antes de responder
 
-- Con cada variante del corchete sustituida en `____`, la oración es gramatical y natural.
+- Con cada variante del corchete sustituida en `____`, el resultado es gramatical y correcto para el tipo de ejercicio.
 - Cada forma en `[...]` es correcta en ESE contexto (sin alternativas plausibles-pero-erróneas).
-- Los hints `(...)` hacen el hueco resoluble desde stem + hint.
+- Los hints `(...)` hacen el hueco resoluble desde el stem + hint.
 - El hueco ejercita el fenómeno del knowledge/instructions (p.ej. si es "be o do", el hueco debe ser be/do — NO otro verbo).
-- Molde preservado; sin `[[...]]`; sin schema ajeno.
+- Tipo/molde del original preservado; longitud dentro del rango de `lengthGuidance`; sin `[[...]]`; sin schema ajeno.
 
 ## Salida (CRÍTICO)
 
@@ -90,7 +91,7 @@ Exactamente DOS claves: `quizSentence` y `translation`, ambas no vacías.
 
 Si la sección de arriba NO está vacía, tu intento previo FUE RECHAZADO por esos
 motivos. CORREGÍ EXACTAMENTE cada uno y no repitas el error:
-- Si dice que es más corto que el original → hacelo MÁS LARGO que la oración original (agregá cláusulas/contexto, sin cambiar el fenómeno gramatical ni el molde).
+- Si menciona la longitud → ajustá el ejercicio para que quede DENTRO del rango esperado de `lengthGuidance` (si está por debajo, agregá contexto; si está por encima, acortá), sin cambiar el fenómeno gramatical ni el molde.
 - Si dice que el hueco no ejercita el fenómeno (p.ej. usa otro verbo en vez de be/do) → rehacelo para que el `____ [respuesta]` sea exactamente ese fenómeno.
 
 ## El quiz a corregir (este, no otro)
