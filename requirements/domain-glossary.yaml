@@ -1,0 +1,523 @@
+terms:
+  - name: Lema
+    technicalName: Lemma
+    definition: Forma base de una palabra que se busca enseñar o evaluar; su ausencia motiva la generación de un ejercicio.
+    aliases:
+      - lema
+      - ausencia de lema
+      - lema ausente
+      - lema buscado
+      - lema solicitado
+
+  - name: Oración de quiz
+    technicalName: QuizSentence
+    definition: Oración generada que se presenta al estudiante como ejercicio y que debe contener el lema buscado.
+    aliases:
+      - oración de quiz
+      - oración generada
+      - oración
+
+  - name: Traducción
+    technicalName: Translation
+    definition: Versión en el idioma de destino de la oración de quiz que acompaña al candidato entregado.
+    aliases:
+      - traducción
+
+  - name: Palabra sugerida
+    technicalName: SuggestedWord
+    definition: Término propuesto por la herramienta de listado y filtrado que el agente puede usar como apoyo para construir el candidato.
+    aliases:
+      - palabras sugeridas
+      - palabra sugerida
+      - lemas sugeridos
+      - sugerencias
+      - suggestedWords
+
+  - name: Contexto de corrección
+    technicalName: CorrectionContext
+    definition: Información de entrada proveniente de la corrección de lemas que incluye idiomas de origen y destino y el presupuesto de longitud, y que el agente recibe para resolver la ausencia de lema.
+    aliases:
+      - contexto de corrección
+      - contexto base
+
+  - name: Candidato de ejercicio
+    technicalName: ExerciseCandidate
+    definition: Resultado único que entrega el agente, compuesto por la oración de quiz y su traducción.
+    aliases:
+      - candidato
+      - candidato de ejercicio
+      - único candidato
+
+  - name: Falla controlada de estrategia
+    technicalName: StrategyFailure
+    definition: Resultado de error gobernado que el agente reporta cuando se agota el tiempo de espera o el framework reporta un error, sin realizar reintentos.
+    aliases:
+      - falla controlada de estrategia
+      - falla de estrategia
+      - falla controlada
+
+  - name: Diagnóstico de ausencia de lema
+    technicalName: MissingLemmaDiagnosis
+    definition: Situación detectada en la que falta un lema y que dispara la estrategia de generación de un candidato de ejercicio.
+    aliases:
+      - diagnóstico de ausencia de lema
+      - ausencia de lema
+
+  - name: Presupuesto de longitud
+    technicalName: LengthBudget
+    definition: Límite de extensión indicado en el contexto de corrección que el candidato generado debe respetar.
+    aliases:
+      - presupuesto de longitud
+
+  - name: Framework Sentinel
+    technicalName: SentinelFramework
+    definition: Marco sobre el que se reconstruye el agente que resuelve la ausencia de lema mediante razonamiento corto con una única herramienta.
+    aliases:
+      - framework Sentinel
+      - Sentinel
+      - variante Sentinel
+      - sentinel-agent
+      - framework sentinel-agent
+
+  - name: Corrección de lemas
+    technicalName: LemmaCorrection
+    definition: Proceso orquestador del que proviene el contexto de corrección y que conserva la persistencia de los resultados.
+    aliases:
+      - corrección de lemas
+      - orquestador de corrección de lemas
+
+  - name: Lemma
+    technicalName: Lemma
+    definition: Forma base de una palabra que se busca enseñar o evaluar; su ausencia motiva la generación de un ejercicio.
+    aliases:
+      - lemma
+
+  - name: QuizSentence
+    technicalName: QuizSentence
+    definition: Oración generada que se presenta al estudiante como ejercicio y que debe contener el lema buscado.
+    aliases:
+      - quiz sentence
+      - quizSentence
+      - QSENT
+
+  - name: Translation
+    technicalName: Translation
+    definition: Versión en el idioma de destino de la oración de quiz que acompaña al candidato entregado.
+    aliases:
+      - translation
+
+  - name: SuggestedWord
+    technicalName: SuggestedWord
+    definition: Término propuesto por la herramienta de listado y filtrado que el agente puede usar como apoyo para construir el candidato.
+    aliases:
+      - suggested word
+      - suggestedWords
+
+  - name: CorrectionContext
+    technicalName: CorrectionContext
+    definition: Información de entrada proveniente de la corrección de lemas que incluye idiomas de origen y destino y el presupuesto de longitud, y que el agente recibe para resolver la ausencia de lema.
+    aliases:
+      - correction context
+
+  - name: SuggestedLemma
+    technicalName: SuggestedLemma
+    definition: Lema propuesto por la herramienta de sugerencias que el agente puede usar como apoyo para construir el candidato de ejercicio.
+    aliases:
+      - suggested lemma
+      - lema sugerido
+      - suggestedLemmas
+      - suggested-lemmas
+
+  - name: LemmaAbsence
+    technicalName: LemmaAbsence
+    definition: Situación detectada en la que falta un lema y que dispara la generación de un candidato de ejercicio para resolverla.
+    aliases:
+      - lemma absence
+      - LEMMA_ABSENCE
+
+  - name: LemmaAbsenceProposal
+    technicalName: LemmaAbsenceProposal
+    definition: Propuesta única entregada por el agente para resolver la ausencia de lema, compuesta por la oración de quiz y su traducción.
+    aliases:
+      - lemma absence proposal
+      - propuesta de ausencia de lema
+
+  - name: Tipo de diagnóstico
+    technicalName: DiagnosisKind
+    definition: Clasificación de la situación detectada en una tarea de corrección que determina qué estrategia de generación de candidato se activa.
+    aliases:
+      - tipo de diagnóstico
+      - DiagnosisKind
+
+  - name: Variante sentinel-agent
+    technicalName: SentinelAgentVariant
+    definition: Re-implementación de la estrategia de resolución de ausencia de lema sobre el framework sentinel-agent que sustituye a la estrategia activa, ejecutando un razonamiento corto con una única herramienta y conservando el contrato externo.
+    aliases:
+      - variante sentinel-agent
+      - sentinel-agent variant
+
+  - name: Estrategia activa
+    technicalName: ActiveStrategy
+    definition: Estrategia de resolución actualmente en uso para una clase de diagnóstico, que la nueva variante sustituye conservando entrada y salida.
+    aliases:
+      - estrategia activa
+
+  - name: Generador lemma-absence-llm
+    technicalName: LemmaAbsenceLlmGenerator
+    definition: Estrategia activa de generación que resuelve la ausencia de lema en un único disparo con la lista de lemas sugeridos incluida estáticamente en el prompt, y que la variante sustituye.
+    aliases:
+      - lemma-absence-llm
+      - estrategia lemma-absence-llm
+      - generador lemma-absence-llm
+
+  - name: React corto
+    technicalName: ShortReact
+    definition: Razonamiento breve que la variante ejecuta durante la generación, consultando una única herramienta para listar y filtrar lemas sugeridos en tiempo de generación en lugar de recibir una lista estática.
+    aliases:
+      - react corto
+      - razonamiento corto
+      - react
+
+  - name: Herramienta de lemas sugeridos
+    technicalName: SuggestedLemmasTool
+    definition: Verbo de consulta que lista y filtra los lemas sugeridos de una tarea por nivel, categoría gramatical y límite, devolviendo el resultado ordenado por prioridad, y que es la única herramienta usada por el react.
+    aliases:
+      - get suggested-lemmas
+      - consulta de suggested-lemmas
+      - GetCommand.get suggested-lemmas
+      - GetCommand.get
+
+  - name: Presupuesto de invocaciones
+    technicalName: ToolBudget
+    definition: Límite acotado de solicitudes a la herramienta de lemas sugeridos que el react puede realizar durante la generación.
+    aliases:
+      - presupuesto de invocaciones
+      - presupuesto de solicitudes
+      - presupuesto de tool
+      - maxSuggestedLemmaRequests
+
+  - name: Propuesta de revisión
+    technicalName: RevisionProposal
+    definition: Resultado de revisión producido para una tarea que porta el candidato generado y la trazabilidad mínima de la estrategia que lo generó.
+    aliases:
+      - RevisionProposal
+      - propuesta de revisión
+
+  - name: Identificador de estrategia
+    technicalName: StrategyId
+    definition: Identidad de la estrategia que generó una propuesta de revisión, compuesta por nombre, versión y proveedor.
+    aliases:
+      - StrategyId
+      - identificador de estrategia
+
+  - name: Respuesta del generador de ausencia de lema
+    technicalName: LemmaAbsenceGeneratorResponse
+    definition: Forma de salida del generador que contiene el único candidato compuesto por la oración de quiz y su traducción.
+    aliases:
+      - LemmaAbsenceGeneratorResponse
+      - respuesta del generador de ausencia de lema
+
+  - name: Contexto de corrección de ausencia de lema
+    technicalName: LemmaAbsenceCorrectionContext
+    definition: Contexto de corrección específico de la clase de ausencia de lema que la estrategia consume para generar el candidato.
+    aliases:
+      - LemmaAbsenceCorrectionContext
+      - contexto de corrección de ausencia de lema
+
+  - name: Nivel CEFR
+    technicalName: CefrLevel
+    definition: Nivel de competencia lingüística asociado a la tarea que se usa como filtro obligatorio al consultar los lemas sugeridos.
+    aliases:
+      - cefrLevel
+      - nivel
+      - nivel de la tarea
+
+  - name: Categoría gramatical
+    technicalName: PartOfSpeech
+    definition: Clase de palabra que puede usarse como filtro opcional al consultar los lemas sugeridos.
+    aliases:
+      - partOfSpeech
+      - POS
+      - parte de la oración
+
+  - name: Veredicto de revisión
+    technicalName: RevisionVerdict
+    definition: Resultado de aprobación de una tarea en el flujo de revisión, que la falla de estrategia no debe producir al abortar antes de persistir.
+    aliases:
+      - veredicto
+      - REJECTED
+      - PENDING_APPROVAL
+
+  - name: Tarea de corrección
+    technicalName: CorrectionTask
+    definition: Unidad de trabajo pendiente que contiene el contexto de corrección y el nivel, y sobre la que se dispara la fase de revisión para resolver la estrategia.
+    aliases:
+      - tarea
+      - tarea pendiente
+      - tarea de corrección
+
+  - name: Fase de revisión
+    technicalName: RevisionPhase
+    definition: Etapa disparada con el verbo de revisión sobre una tarea que resuelve la estrategia activa y produce la propuesta de revisión.
+    aliases:
+      - revise task
+      - fase de revisión
+      - revisión
+
+  - name: Estrategia LLM interactiva de ausencia de lema
+    technicalName: InteractiveLemmaAbsenceLlmGenerator
+    definition: Estrategia que resuelve la ausencia de lema mediante un razonamiento corto interactivo apoyado en consultas a la herramienta de lemas sugeridos, y que esta feature re-implementa sobre el runtime de sentinel-agent conservando su contrato y su identidad observable.
+    aliases:
+      - lemma-absence-llm-interactive
+      - InteractiveLemmaAbsenceLlmGenerator
+      - estrategia interactiva
+      - generador interactivo
+      - generador lemma-absence-llm-interactive
+
+  - name: Modo de generación Lagen
+    technicalName: LagenMode
+    definition: Clasificación del modo con el que se genera la propuesta de ausencia de lema, resuelto a partir del entorno y que determina qué estrategia se activa.
+    aliases:
+      - LagenMode
+      - LLM_INTERACTIVE
+      - LLM
+      - LagenModeResolver
+      - modo de generación
+      - modo interactivo
+
+  - name: Configuración Lagen
+    technicalName: LagenConfig
+    definition: Conjunto de parámetros de la generación de ausencia de lema —tiempo de espera, temperatura, máximo de tokens y presupuesto de consultas— resuelto desde el entorno.
+    aliases:
+      - LagenConfig
+      - LagenConfigResolver
+      - configuración Lagen
+      - configuración de generación
+      - timeout
+      - temperature
+      - maxTokens
+      - providerName
+      - modelId
+
+  - name: Selector de estrategia de propuesta
+    technicalName: ProposalStrategySelector
+    definition: Componente que elige la estrategia de propuesta cableada a un modo de generación a partir del registro de estrategias disponibles.
+    aliases:
+      - ProposalStrategySelector
+      - selector de estrategia
+      - selector de estrategia de propuesta
+
+  - name: Registro de estrategias de propuesta de ausencia de lema
+    technicalName: LemmaAbsenceProposalStrategyRegistry
+    definition: Catálogo de las estrategias de propuesta disponibles para la ausencia de lema entre las que el selector elige según el modo.
+    aliases:
+      - LemmaAbsenceProposalStrategyRegistry
+      - registro de estrategias
+
+  - name: Filtro de lemas sugeridos
+    technicalName: SuggestedLemmasFilter
+    definition: Criterio cerrado de búsqueda de lemas sugeridos compuesto por nivel, categoría gramatical y límite, que la única herramienta usa para listar y filtrar.
+    aliases:
+      - SuggestedLemmasFilter
+      - filtro de lemas sugeridos
+
+  - name: Consulta de lemas sugeridos rechazada
+    technicalName: SuggestedLemmaQueryRejectedException
+    definition: Situación en la que la consulta a la herramienta de lemas sugeridos falla o es rechazada; el agente la trata como "sin resultados" sin abortar la generación.
+    aliases:
+      - SuggestedLemmaQueryRejectedException
+      - consulta rechazada
+      - consulta de lemas sugeridos rechazada
+      - consulta fallida
+
+  - name: Falla de estrategia de propuesta
+    technicalName: ProposalStrategyFailedException
+    definition: Error tipado que la estrategia lanza cuando no puede producir una propuesta válida —por tiempo de espera, error del framework, respuesta vacía o malformada, o ausencia del lema— sin realizar reintentos ni emitir propuesta.
+    aliases:
+      - ProposalStrategyFailedException
+      - falla de estrategia de propuesta
+
+  - name: Categoría de falla LLM
+    technicalName: LlmFailureCategory
+    definition: Clasificación con la que se etiqueta una falla de estrategia según su causa —tiempo de espera, fallo de autenticación, respuesta vacía o respuesta malformada.
+    aliases:
+      - LLM_TIMEOUT
+      - LLM_AUTH_FAILED
+      - LLM_EMPTY_RESPONSE
+      - LLM_MALFORMED_RESPONSE
+      - LLM_TRANSPORT
+      - LLM_OTHER
+      - categoría de falla
+      - taxonomía de fallas
+
+  - name: Bucket genérico de falla
+    technicalName: GenericFailureBucket
+    definition: Categoría única a la que se mapea cualquier error del framework no clasificable, conservando la causa nativa sólo como detalle interno de diagnóstico y nunca propagándola cruda.
+    aliases:
+      - LLM_STRATEGY_FAILED
+      - bucket genérico
+      - bucket genérico de falla
+
+  - name: Forma flexionada
+    technicalName: InflectedForm
+    definition: Variante morfológica de un lema que cuenta como presencia válida del lema en la oración de quiz.
+    aliases:
+      - forma flexionada
+      - formas flexionadas
+      - flexión
+      - forma flexionada del lema
+
+  - name: Garantía de presencia del lema ausente
+    technicalName: MissingLemmaPresenceGuarantee
+    definition: Condición que exige que la oración de quiz emitida contenga al menos uno de los lemas ausentes —en cualquier forma flexionada— para poder emitir la propuesta; si ninguno está presente, no se emite candidato y se reporta falla de estrategia.
+    aliases:
+      - garantía de presencia del lema ausente
+      - garantía de presencia del lemma
+      - presencia del lema ausente
+
+  - name: Runtime de sentinel-agent
+    technicalName: SentinelAgentRuntime
+    definition: Motor de ejecución provisto por el framework sentinel-agent que orquesta el razonamiento corto con herramientas, con tiempo de espera configurable y errores tipados, sobre el que se reconstruye la estrategia interactiva.
+    aliases:
+      - runtime de sentinel-agent
+      - runtime react
+      - motor sentinel-agent
+      - motor de ejecución
+      - sentinel-agent runtime
+
+  - name: Candidato de quiz
+    technicalName: QuizCandidate
+    definition: Resultado único que entrega el agente para resolver la ausencia de lema, compuesto por la oración de quiz y su traducción, con ambos campos presentes.
+    aliases:
+      - QuizCandidate
+      - quiz candidate
+
+  - name: Agente sentinel-agent
+    technicalName: SentinelAgent
+    definition: Único agente construido sobre el runtime de sentinel-agent que reemplaza las rutas LLM single-shot e interactiva y pasa a ser la única ruta LLM, ejecutando un react corto con una sola herramienta para generar el candidato de quiz conservando el contrato externo.
+    aliases:
+      - único agente
+      - agente
+
+  - name: Generador de candidatos de quiz
+    technicalName: QuizCandidateGenerator
+    definition: Puerto cuya implementación produce el candidato de quiz a partir del contexto de corrección, cuya firma se conserva al sustituir su backend por el agente sentinel-agent.
+    aliases:
+      - QuizCandidateGenerator
+      - puerto QuizCandidateGenerator
+
+  - name: Gate estructural de propuesta
+    technicalName: StructuralProposalGate
+    definition: Validación cerrada que comprueba el parseo de la oración de quiz, la presencia exacta del lema en el marcado y la traducción no vacía, conservada sin cambios y fuera del agente.
+    aliases:
+      - gate estructural
+      - gate estructural de FEAT-LAPS
+      - gate cerrado
+      - gate de validación cerrado
+
+  - name: Catálogo de evals de calidad
+    technicalName: QualityEvalCatalog
+    definition: Conjunto fijo de evaluaciones de calidad —corrección y buena formación del candidato para el tipo de ejercicio original, resolubilidad, longitud dentro del rango esperado del nivel, pragmatismo y fidelidad de la traducción— al que se somete el candidato tras pasar el gate estructural, cada una con su propio veredicto e independientemente testeable.
+    aliases:
+      - catálogo de evals
+      - evals de calidad
+      - eval de calidad
+      - catálogo fijo de evals
+      - evals
+
+  - name: Veredicto bloqueante
+    technicalName: BlockingVerdict
+    definition: Resultado de un eval de calidad cuyo signo negativo impide emitir el candidato como salida final y dispara un reintento de generación.
+    aliases:
+      - eval bloqueante
+      - bloqueante
+
+  - name: Veredicto deseable
+    technicalName: DesirableVerdict
+    definition: Resultado de un eval de calidad que puntúa pero no bloquea la emisión del candidato cuando es negativo.
+    aliases:
+      - eval deseable
+      - deseable
+
+  - name: Eval de longitud dentro de rango
+    technicalName: LengthWithinRangeEval
+    definition: Evaluación determinista y bloqueante que exige que la longitud del candidato caiga dentro del rango esperado (target range) del nivel, reutilizando el analizador de longitud del audit; no importa si queda más corto o más largo que el quiz original.
+    aliases:
+      - eval de longitud dentro de rango
+      - longitud dentro de rango
+      - longitud dentro del rango esperado
+      - eval #3
+
+  - name: Analizador de longitud
+    technicalName: LengthAnalyzer
+    definition: Componente del audit de quizzes que mide la longitud de una oración y que el eval de longitud reutiliza para verificar que el candidato caiga dentro del rango esperado (target range) del nivel.
+    aliases:
+      - analyzer de length
+      - analizador de length
+      - analyzer de longitud
+
+  - name: Pragmatismo
+    technicalName: PragmatismEval
+    definition: Eval deseable que puntúa qué tan usable o útil es la oración del candidato en la vida real, sin bloquear su emisión.
+    aliases:
+      - eval #4
+      - eval deseable #4
+
+  - name: Reintento de generación por evals
+    technicalName: EvalDrivenRegeneration
+    definition: Nuevo run completo de generación del agente disparado por un veredicto bloqueante negativo, acotado por el máximo de reintentos de eval y separado del lazo de fallas de runtime; cada reintento es una regeneración completa, no ciega.
+    aliases:
+      - reintento de generación
+      - lazo de reintentos de eval
+      - reintento de eval
+      - regeneración completa
+
+  - name: Máximo de reintentos de eval
+    technicalName: MaxEvalRetries
+    definition: Tope configurable de reintentos de generación disparados por veredictos bloqueantes en una resolución, con valor por defecto 3 e ignorado bajo el modo CANNED.
+    aliases:
+      - maxEvalRetries
+      - presupuesto de reintentos de eval
+      - reintentos de eval
+
+  - name: Carry-forward de contexto
+    technicalName: FailureContextCarryForward
+    definition: Entrada adicional que recibe cada reintento de generación, compuesta por el contexto de fallo de los evals previos —qué bloqueantes reprobaron y por qué— y el historial de llamadas a la herramienta —filtros usados y lemmas ya obtenidos—, para mejorar la propuesta sin repetir pasos.
+    aliases:
+      - carry-forward
+      - carry-forward de contexto de fallo
+      - contexto de fallo
+      - historial de tool
+
+  - name: Mejor candidato
+    technicalName: BestEffortCandidate
+    definition: Candidato que el sistema emite al agotar los reintentos de eval sin pasar todos los bloqueantes, elegido por mayor cantidad de evals bloqueantes pasados y, a igualdad, mayor score del eval de pragmatismo.
+    aliases:
+      - mejor candidato visto
+      - best-effort
+
+  - name: Modo CANNED
+    technicalName: CannedMode
+    definition: Modo de generación offline opt-in que emite su candidato sin disparar reintentos de eval, con independencia del máximo de reintentos configurado.
+    aliases:
+      - CANNED
+      - canned
+
+  - name: Fase de plan
+    technicalName: PlanPhase
+    definition: Etapa disparada con el verbo de plan sobre un objetivo de auditoría que necesita una propuesta para un diagnóstico de ausencia de lema.
+    aliases:
+      - PlanCommand.plan
+      - plan
+
+  - name: Objetivo de auditoría
+    technicalName: AuditTarget
+    definition: Entidad sobre la que se ejecuta el plan —por ejemplo un quiz— y que origina el diagnóstico a resolver.
+    aliases:
+      - AuditTarget
+
+  - name: Oraciones planas
+    technicalName: PlainSentences
+    definition: Conjunto de oraciones sin marcado que forma parte del contexto de corrección entregado al generador.
+    aliases:
+      - plainSentences

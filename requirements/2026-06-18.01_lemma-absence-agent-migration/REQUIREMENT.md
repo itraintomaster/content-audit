@@ -127,9 +127,9 @@ Honra FEAT-LAPS R016 (sin reintentos) acotado al **run de generación ante falla
 **Severity**: high | **Validation**: VALIDATED *(validada por el harness de evals del agente, no por el suite JUnit)*
 
 > Antes de entregarse como salida final, todo candidato se somete a un catálogo fijo de criterios de calidad, cada uno con veredicto propio e independiente:
-> 1. `quizSentence` es una oración con sentido — **bloqueante**.
+> 1. el `quizSentence` es correcto y está bien formado **para el mismo tipo/molde de ejercicio que el quiz original** — **bloqueante**. Si el original es una oración, debe ser una oración con sentido; si el original es de otro tipo (transformación, par `palabra → forma`, construcción por cues), debe ser un ejemplar válido de ese tipo, aunque no sea una oración. El candidato debe respetar el tipo del ejercicio original, no convertirlo siempre a oración.
 > 2. el quiz es resoluble y sigue las instrucciones del ejercicio — **bloqueante**.
-> 3. no-regresión de longitud: el candidato no es más corto que el quiz original pre-corrección, medido con el mismo criterio de longitud que aplica el audit — **bloqueante**.
+> 3. la longitud del candidato está **dentro del rango esperado** (target range) del nivel, medida con el mismo criterio de longitud que aplica el audit; no importa si queda más corto o más largo que el quiz original — **bloqueante**.
 > 4. pragmatismo (la oración es usable/útil en la vida real) — **deseable**: puntúa, no bloquea.
 > 5. la traducción es fiel — **bloqueante**.
 > Un veredicto bloqueante negativo impide entregar ese candidato como salida final; un veredicto deseable negativo no.
@@ -138,12 +138,12 @@ Honra FEAT-LAPS R016 (sin reintentos) acotado al **run de generación ante falla
 
 **Superficie de validación**: este catálogo y su clasificación bloqueante/deseable son conducta del agente declarativo y **no tienen superficie observable en el suite JUnit** del adaptador Java: el consumidor invoca el generador y recibe un único `QuizCandidate`, sin observar la corrida del catálogo. La validación de esta regla vive en el **harness de evals del propio agente** (criterios de juicio + corrida de evals), no en una clase de test JUnit. Por eso la clasificación es `VALIDATED` (confirmada por el usuario como conducta del harness) y **no** `AUTO_VALIDATED` (que afirmaría cobertura por el suite JUnit, inexistente aquí).
 
-- El criterio #3 es determinista y aplica el **mismo criterio de longitud** que ya usa el audit de quizzes, comparando contra el baseline pre-corrección; los criterios #1, #2, #4, #5 son juicios cualitativos sobre el texto generado.
-- *Pista de validación (harness)*: #1, #2, #4, #5 como juicios cualitativos; #3 como verificación determinista de longitud. La conducta bloqueante/deseable se ejercita con criterios de veredicto controlado dentro del harness de evals.
+- El criterio #3 es determinista y aplica el **mismo criterio de longitud** que ya usa el audit de quizzes, verificando que la longitud del candidato caiga **dentro del rango esperado (target range) del nivel**; no compara contra la longitud del quiz original (no importa si queda más corto o más largo que él). Los criterios #1, #2, #4, #5 son juicios cualitativos sobre el texto generado; #1 además exige que el candidato respete el tipo/molde del ejercicio original.
+- *Pista de validación (harness)*: #1, #2, #4, #5 como juicios cualitativos; #3 como verificación determinista de longitud contra el rango esperado del nivel. La conducta bloqueante/deseable se ejercita con criterios de veredicto controlado dentro del harness de evals.
 
-**Conducta esperada (harness)**: un candidato más corto que el original recibe veredicto negativo bloqueante por #3; un candidato que solo reprueba #4 (deseable) se entrega igualmente.
+**Conducta esperada (harness)**: un candidato cuya longitud cae fuera del rango esperado del nivel recibe veredicto negativo bloqueante por #3; un candidato cuyo `quizSentence` no respeta el tipo del ejercicio original recibe veredicto negativo bloqueante por #1; un candidato que solo reprueba #4 (deseable) se entrega igualmente.
 
-**Escenario no-regresión de longitud (sin journey propio)**: el caso "un candidato más corto que el original es bloqueado por #3" es conducta del harness de evals y **no tiene un resultado de falla observable en el límite del sistema**: por el best-effort de [F-LASAG-R009](#F-LASAG-R009), un veredicto bloqueante nunca propaga una falla al consumidor — al agotar los reintentos se emite el mejor candidato visto. Por eso este escenario se valida dentro del catálogo de evals (criterio #3) y no como un journey con terminal de falla.
+**Escenario de longitud (sin journey propio)**: el caso "un candidato fuera del rango esperado del nivel es bloqueado por #3" es conducta del harness de evals y **no tiene un resultado de falla observable en el límite del sistema**: por el best-effort de [F-LASAG-R009](#F-LASAG-R009), un veredicto bloqueante nunca propaga una falla al consumidor — al agotar los reintentos se emite el mejor candidato visto. Por eso este escenario se valida dentro del catálogo de evals (criterio #3) y no como un journey con terminal de falla.
 
 </details>
 
