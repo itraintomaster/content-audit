@@ -207,6 +207,12 @@ class LemmaAbsenceContextStructuralValidator implements CorrectionContextStructu
         // The context's taskId is informational and not used for identity checking
         String taskId = ctx.has("taskId") ? ctx.get("taskId").asText(null) : null;
 
+        // sourceAuditId carries the analysis the override was projected from, so
+        // the agent's get_suggested_lemmas tool queries that (projected) analysis
+        // (F-CSLATDC-R015). Absent in legacy payloads -> stays null.
+        String sourceAuditId = ctx.has("sourceAuditId")
+                ? ctx.get("sourceAuditId").asText(null) : null;
+
         return new LemmaAbsenceCorrectionContext(
                 taskId,
                 sentence,
@@ -222,6 +228,7 @@ class LemmaAbsenceContextStructuralValidator implements CorrectionContextStructu
                 targetMin,
                 targetMax,
                 delta,
-                lengthDirection, null);
+                lengthDirection,
+                sourceAuditId);
     }
 }

@@ -4,6 +4,7 @@ import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryCriteria;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryPort;
+import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryRejectedException;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryResult;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQuerySession;
 import javax.annotation.processing.Generated;
@@ -28,6 +29,15 @@ public class BoundSuggestedLemmaQuerySession implements SuggestedLemmaQuerySessi
 
     @Override
     public SuggestedLemmaQueryResult requestMore(SuggestedLemmaQueryCriteria criteria) {
+        if (report == null) {
+            // No analysis was bound (sourceAuditId missing or unresolvable).
+            // Surface the existing "rejected" channel instead of NPE-ing inside
+            // the query port, so callers (CLI / agent tool) get a clear reason.
+            throw new SuggestedLemmaQueryRejectedException(
+                    task != null ? task.getId() : null,
+                    "no source analysis is bound to this query "
+                    + "(missing or unresolvable sourceAuditId)");
+        }
         return queryPort.query(report, task, criteria);
     }
 }
