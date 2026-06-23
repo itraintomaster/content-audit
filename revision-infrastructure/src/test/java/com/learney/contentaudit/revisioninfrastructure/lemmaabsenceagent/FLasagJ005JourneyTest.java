@@ -53,7 +53,8 @@ public class FLasagJ005JourneyTest {
                 10,
                 15,
                 0,
-                LengthDirection.KEEP_SAME
+                LengthDirection.KEEP_SAME,
+                null
         );
     }
 

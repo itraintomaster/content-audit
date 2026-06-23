@@ -219,7 +219,7 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
                 targetMin,
                 targetMax,
                 delta,
-                lengthDirection);
+                lengthDirection, null);
 
         return Optional.of(context);
     }
@@ -711,7 +711,7 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
                 targetMin,
                 targetMax,
                 delta,
-                lengthDirection);
+                lengthDirection, null);
 
         return Optional.of(context);
     }

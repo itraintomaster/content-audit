@@ -40,6 +40,8 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
 
     private LengthDirection lengthDirection;
 
+    private String sourceAuditId;
+
     public LemmaAbsenceCorrectionContext() {
     }
 
@@ -47,7 +49,8 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
             String knowledgeTitle, String knowledgeInstructions, String topicLabel,
             CefrLevel cefrLevel, List<MisplacedLemmaContext> misplacedLemmas,
             List<SuggestedLemma> suggestedLemmas, String quizSentence, Integer tokenCount,
-            Integer targetMin, Integer targetMax, Integer delta, LengthDirection lengthDirection) {
+            Integer targetMin, Integer targetMax, Integer delta, LengthDirection lengthDirection,
+            String sourceAuditId) {
         this.taskId = taskId;
         this.sentence = sentence;
         this.translation = translation;
@@ -63,6 +66,7 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
         this.targetMax = targetMax;
         this.delta = delta;
         this.lengthDirection = lengthDirection;
+        this.sourceAuditId = sourceAuditId;
     }
 
     public String getTaskId() {
@@ -185,6 +189,14 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
         this.lengthDirection = lengthDirection;
     }
 
+    public String getSourceAuditId() {
+        return this.sourceAuditId;
+    }
+
+    public void setSourceAuditId(String sourceAuditId) {
+        this.sourceAuditId = sourceAuditId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -204,11 +216,12 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
                     && Objects.equals(this.targetMin, that.targetMin)
                     && Objects.equals(this.targetMax, that.targetMax)
                     && Objects.equals(this.delta, that.delta)
-                    && Objects.equals(this.lengthDirection, that.lengthDirection);
+                    && Objects.equals(this.lengthDirection, that.lengthDirection)
+                    && Objects.equals(this.sourceAuditId, that.sourceAuditId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(taskId, sentence, translation, knowledgeTitle, knowledgeInstructions, topicLabel, cefrLevel, misplacedLemmas, suggestedLemmas, quizSentence, tokenCount, targetMin, targetMax, delta, lengthDirection);
+        return Objects.hash(taskId, sentence, translation, knowledgeTitle, knowledgeInstructions, topicLabel, cefrLevel, misplacedLemmas, suggestedLemmas, quizSentence, tokenCount, targetMin, targetMax, delta, lengthDirection, sourceAuditId);
     }
 }

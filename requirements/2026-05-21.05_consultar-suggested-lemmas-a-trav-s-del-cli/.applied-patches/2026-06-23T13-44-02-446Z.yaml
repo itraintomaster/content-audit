@@ -1,0 +1,20 @@
+code: FEAT-CSLATDC
+modules:
+- name: refiner-domain
+  packages:
+  - name: lemmasuggestion
+    implementations:
+    - name: DefaultSuggestedLemmaQuerySessionFactory
+      handwrittenTests:
+      - name: should bind the query session to the task's source analysis so consumed
+          lemmas do not reappear even when a newer analysis still exposes them
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R015
+features:
+- id: FEAT-CSLATDC
+  journeys:
+  - id: F-CSLATDC-J005
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys

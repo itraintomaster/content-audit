@@ -354,7 +354,7 @@ class Main {
                                 lemmaAbsenceContextResolver, evpCatalog, lemmaCountConfig);
                 com.learney.contentaudit.refinerdomain.lemmasuggestion.DefaultSuggestedLemmaQuerySessionFactory sessionFactory =
                         new com.learney.contentaudit.refinerdomain.lemmasuggestion.DefaultSuggestedLemmaQuerySessionFactory(
-                                agentLemmaQueryPort, refinementPlanStore, auditReportStore);
+                                agentLemmaQueryPort, auditReportStore);
 
                 LemmaAbsenceAgentGeneratorFactory factory = new DefaultLemmaAbsenceAgentGeneratorFactory();
                 try {

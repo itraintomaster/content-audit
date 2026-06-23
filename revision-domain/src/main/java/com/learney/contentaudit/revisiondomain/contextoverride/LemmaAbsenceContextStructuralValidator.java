@@ -222,6 +222,6 @@ class LemmaAbsenceContextStructuralValidator implements CorrectionContextStructu
                 targetMin,
                 targetMax,
                 delta,
-                lengthDirection);
+                lengthDirection, null);
     }
 }

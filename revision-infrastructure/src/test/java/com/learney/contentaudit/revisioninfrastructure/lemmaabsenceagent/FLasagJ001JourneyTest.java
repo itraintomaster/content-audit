@@ -57,7 +57,8 @@ public class FLasagJ001JourneyTest {
                 10,
                 15,
                 0,
-                LengthDirection.KEEP_SAME
+                LengthDirection.KEEP_SAME,
+                null
         );
 
         LagenConfig config = new LagenConfig(

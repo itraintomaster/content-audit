@@ -12,6 +12,7 @@ import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
 import com.learney.contentaudit.refinerdomain.CorrectionContext;
 import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
+import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
@@ -143,6 +144,13 @@ class DefaultRevisionEngine implements RevisionEngine {
             }
             context = contextOpt.get();
             contextSource = CorrectionContextSource.DERIVED;
+            // R015: stamp the sourceAuditId so that downstream components (e.g. the agent
+            // session factory) can load the same analysis that produced this context, without
+            // falling back to loadLatest(). Only on the derived path — the override path already
+            // carries sourceAuditId from the JSON payload and must not be overwritten.
+            if (context instanceof LemmaAbsenceCorrectionContext lac) {
+                lac.setSourceAuditId(plan.getSourceAuditId());
+            }
         }
 
         // Guard for override path: pending proposal check (also applies to override path, R006)

@@ -75,7 +75,8 @@ public class FLasagJ009JourneyTest {
                 List.of(new SuggestedLemma("walk", "VERB", "A1 synonym", 80, null, null, null)),
                 "She ____[goes|walks] to school.",
                 0, 0, 0, 0,
-                LengthDirection.UNKNOWN
+                LengthDirection.UNKNOWN,
+                null
         );
 
         CannedLemmaAbsenceQuizCandidateGenerator cannedGenerator =

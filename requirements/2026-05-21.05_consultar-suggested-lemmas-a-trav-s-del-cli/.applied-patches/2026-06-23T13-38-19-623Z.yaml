@@ -1,0 +1,49 @@
+code: FEAT-CSLATDC
+description: "F-CSLATDC-R015: la consulta dinamica de suggested-lemmas opera sobre\
+  \ el MISMO analisis fuente del que se derivo el contexto de la task. Se cambia el\
+  \ seam bindForTask para recibir el sourceAuditId (identidad del analisis resoluble)\
+  \ en lugar de resolver loadLatest() por su cuenta, y se transporta sourceAuditId\
+  \ en LemmaAbsenceCorrectionContext para que el camino revise pueda bindear al analisis\
+  \ fuente correcto."
+modules:
+- name: refiner-domain
+  models:
+  - name: LemmaAbsenceCorrectionContext
+    type: record
+    fields:
+    - name: sourceAuditId
+      type: String
+      description: "Identificador del AuditReport del que se derivo este contexto\
+        \ de correccion (igual a RefinementPlan.sourceAuditId del plan que el operador\
+        \ selecciono para la revision, incluido el seleccionado con --audit). Lo estampa\
+        \ LemmaAbsenceContextResolver al construir el contexto. Lo consume el camino\
+        \ revise (LemmaAbsenceAgentGenerator) para bindear la consulta dinamica de\
+        \ suggested-lemmas al MISMO analisis fuente de la task, en lugar de resolver\
+        \ el mas reciente por su cuenta (F-CSLATDC-R015). Liviano (String): identifica\
+        \ el analisis sin transportar el AuditReport entero por el carrier que cruza\
+        \ a JSON en revise --correction-context."
+      _change: add
+    _change: modify
+  interfaces:
+  - name: SuggestedLemmaQuerySessionFactory
+    sealed: false
+    exposes:
+    - signature: "bindForTask(RefinementTask task): SuggestedLemmaQuerySession"
+      _change: delete
+    - signature: "bindForTask(String sourceAuditId, RefinementTask task): SuggestedLemmaQuerySession"
+      _change: add
+    _change: modify
+  packages:
+  - name: lemmasuggestion
+    implementations:
+    - name: DefaultSuggestedLemmaQuerySessionFactory
+      requiresInject:
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+        _change: delete
+      visibility: public
+      implements:
+      - SuggestedLemmaQuerySessionFactory
+      _change: modify
+    _change: modify
+  _change: modify

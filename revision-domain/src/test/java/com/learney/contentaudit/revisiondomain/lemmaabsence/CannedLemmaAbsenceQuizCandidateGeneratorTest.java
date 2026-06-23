@@ -42,7 +42,8 @@ public class CannedLemmaAbsenceQuizCandidateGeneratorTest {
                 List.of(new SuggestedLemma("walk", "VERB", "A1 synonym", 80, null, null, null)),
                 quizSentence,
                 0, 0, 0, 0,
-                com.learney.contentaudit.refinerdomain.LengthDirection.UNKNOWN
+                com.learney.contentaudit.refinerdomain.LengthDirection.UNKNOWN,
+                null
         );
     }
 
@@ -112,7 +113,8 @@ public class CannedLemmaAbsenceQuizCandidateGeneratorTest {
                 List.of(),  // no suggestedLemmas
                 "I ____[study|learn] English.",
                 0, 0, 0, 0,
-                com.learney.contentaudit.refinerdomain.LengthDirection.UNKNOWN
+                com.learney.contentaudit.refinerdomain.LengthDirection.UNKNOWN,
+                null
         );
 
         LemmaAbsenceGeneratorResponse forA1 = generator.generate(contextA1);

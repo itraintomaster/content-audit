@@ -3409,6 +3409,17 @@ modules:
       type: LengthDirection
       description: |
         Direccion accionable derivada del signo de delta por el resolver (F-RCLALEN-R002). Cuando no hay SentenceLengthDiagnosis se establece a UNKNOWN (F-RCLALEN-R004), nunca null. Pre-calculado del lado del sistema para que el prompt LLM sea deterministico y la salida CLI tenga una etiqueta legible para humanos.
+    - name: sourceAuditId
+      type: String
+      description: "Identificador del AuditReport del que se derivo este contexto\
+        \ de correccion (igual a RefinementPlan.sourceAuditId del plan que el operador\
+        \ selecciono para la revision, incluido el seleccionado con --audit). Lo estampa\
+        \ LemmaAbsenceContextResolver al construir el contexto. Lo consume el camino\
+        \ revise (LemmaAbsenceAgentGenerator) para bindear la consulta dinamica de\
+        \ suggested-lemmas al MISMO analisis fuente de la task, en lugar de resolver\
+        \ el mas reciente por su cuenta (F-CSLATDC-R015). Liviano (String): identifica\
+        \ el analisis sin transportar el AuditReport entero por el carrier que cruza\
+        \ a JSON en revise --correction-context."
     implements:
     - CorrectionContext
   - name: LengthDirection
@@ -3536,7 +3547,7 @@ modules:
     stereotype: factory
     sealed: false
     exposes:
-    - signature: "bindForTask(RefinementTask task): SuggestedLemmaQuerySession"
+    - signature: "bindForTask(String sourceAuditId, RefinementTask task): SuggestedLemmaQuerySession"
     visibility: public
   implementations:
   - name: SentenceLengthContextResolver
@@ -4133,11 +4144,15 @@ modules:
       requiresInject:
       - name: queryPort
         type: SuggestedLemmaQueryPort
-      - name: refinementPlanStore
-        type: RefinementPlanStore
       - name: auditReportStore
         type: AuditReportStore
       visibility: public
+      handwrittenTests:
+      - name: should bind the query session to the task's source analysis so consumed
+          lemmas do not reappear even when a newer analysis still exposes them
+        traceability:
+          feature: FEAT-CSLATDC
+          rule: F-CSLATDC-R015
       implements:
       - SuggestedLemmaQuerySessionFactory
     - name: UnderexposedLemmaInventory
@@ -10792,6 +10807,8 @@ features:
     testPackage: com.learney.contentaudit.journeys
   - id: F-CSLATDC-J005
     validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
 - id: FEAT-LAGAG
   code: F-LAGAG
 - id: FEAT-INCEXP

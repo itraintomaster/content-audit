@@ -55,7 +55,8 @@ public class LemmaAbsenceMvpStrategyTest {
                 List.of(new SuggestedLemma("walk", "VERB", "A1 level synonym", 80, null, null, null)),
                 "She ____[runs|walks] every morning.",
                 0, 0, 0, 0,
-                com.learney.contentaudit.refinerdomain.LengthDirection.UNKNOWN
+                com.learney.contentaudit.refinerdomain.LengthDirection.UNKNOWN,
+                null
         );
     }
 

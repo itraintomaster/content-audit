@@ -114,7 +114,8 @@ public class DispatchingReviserTest {
                 java.util.List.of(),
                 "She ____ [reads] (read) books.",
                 0, 0, 0, 0,
-                com.learney.contentaudit.refinerdomain.LengthDirection.UNKNOWN
+                com.learney.contentaudit.refinerdomain.LengthDirection.UNKNOWN,
+                null
         );
     }
 

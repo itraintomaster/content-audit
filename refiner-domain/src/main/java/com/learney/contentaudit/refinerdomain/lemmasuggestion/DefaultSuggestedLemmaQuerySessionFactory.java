@@ -2,13 +2,10 @@ package com.learney.contentaudit.refinerdomain.lemmasuggestion;
 
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
-import com.learney.contentaudit.refinerdomain.RefinementPlan;
-import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryPort;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQuerySession;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQuerySessionFactory;
-import java.util.Optional;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -18,34 +15,20 @@ import javax.annotation.processing.Generated;
 public class DefaultSuggestedLemmaQuerySessionFactory implements SuggestedLemmaQuerySessionFactory {
     private final SuggestedLemmaQueryPort queryPort;
 
-    private final RefinementPlanStore refinementPlanStore;
-
     private final AuditReportStore auditReportStore;
 
     public DefaultSuggestedLemmaQuerySessionFactory(SuggestedLemmaQueryPort queryPort,
-            RefinementPlanStore refinementPlanStore, AuditReportStore auditReportStore) {
+            AuditReportStore auditReportStore) {
         this.queryPort = queryPort;
-        this.refinementPlanStore = refinementPlanStore;
         this.auditReportStore = auditReportStore;
     }
 
     @Override
-    public SuggestedLemmaQuerySession bindForTask(RefinementTask task) {
-        // Load the latest refinement plan to resolve the source audit ID, then load the
-        // AuditReport so the session can call queryPort.query(report, task, ...) correctly.
-        // If the plan or report cannot be resolved, return a session that fails observably
-        // (NullPointerException avoided: pass null report — the port must handle null gracefully,
-        // or a proper session with the resolved report if available).
-        AuditReport report = null;
-        Optional<RefinementPlan> planOpt = refinementPlanStore.loadLatest();
-        if (planOpt.isPresent()) {
-            RefinementPlan plan = planOpt.get();
-            // Resolve the task from the plan if needed; the factory only needs the report.
-            String sourceAuditId = plan.getSourceAuditId();
-            if (sourceAuditId != null) {
-                report = auditReportStore.load(sourceAuditId).orElse(null);
-            }
-        }
+    public SuggestedLemmaQuerySession bindForTask(String sourceAuditId, RefinementTask task) {
+        // R015: load the AuditReport identified by the explicit sourceAuditId that was stamped
+        // on the task's context at derivation time. Never call loadLatest() — the task must
+        // always be evaluated against the same analysis from which its context was derived.
+        AuditReport report = auditReportStore.load(sourceAuditId).orElse(null);
         return new BoundSuggestedLemmaQuerySession(queryPort, report, task);
     }
 }
