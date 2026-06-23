@@ -117,6 +117,33 @@ Toda respuesta exitosa de `GetCommand.get("suggested-lemmas", <taskId>, ...)` de
 
 **Error**: "No aplica."
 
+<a id="F-CSLATDC-R015"></a>
+### Rule[F-CSLATDC-R015] - La consulta dinámica opera sobre el MISMO análisis fuente del que se derivó el contexto de la task
+**Severity**: critical | **Validation**: VALIDATED
+
+> Cuando se consulta `GetCommand.get("suggested-lemmas", <taskId>, ...)`, los `Suggested Lemmas` que devuelve el sistema deben derivarse del **mismo análisis fuente** del que se derivó el contexto de corrección de esa `Task/Quiz` —el análisis que el operador seleccionó para la revisión que está en curso, incluido el análisis seleccionado explícitamente con `--audit <id>`—. El resultado de la consulta dinámica no debe depender de "cuál es el análisis más reciente" ni de un análisis fijo resuelto por su cuenta, sino del análisis fuente de la task consultada.
+
+<details><summary>Detalle</summary>
+
+Esta regla cierra una inconsistencia entre dos vías por las que el agente recibe vocabulario candidato durante la revisión de una task `LEMMA_ABSENCE`:
+
+1. La lista **estática** que viaja en el `correctionContext` de la task, derivada del análisis fuente de esa task (el análisis seleccionado para la revisión).
+2. La consulta **dinámica** `get suggested-lemmas`, que el agente puede pedir para traer más candidatos.
+
+El comportamiento previo resolvía la consulta dinámica contra un análisis elegido por su cuenta (el más reciente, o un análisis fijo), ignorando cuál es el análisis fuente de la task que se está revisando. Cuando el operador apunta la revisión a un análisis **distinto** del más reciente —en particular un análisis **proyectado**, persistido por el cliente y seleccionado con `--audit <id>` ([F-CLIRV-R014](../2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md#F-CLIRV-R014)), que ya refleja el efecto de las propuestas activas y pendientes ([FEAT-PLANEF](../2026-05-07.01_plan-efimero-no-persistido/REQUIREMENT.md), [FEAT-CDIFF](../2026-05-06.01_consolidated-differential-view/REQUIREMENT.md))— las dos vías quedaban inconsistentes: la lista estática reflejaba el análisis proyectado, pero la consulta dinámica seguía devolviendo lemas del análisis viejo. La consecuencia observable es que la consulta dinámica reintroduce lemas que el análisis proyectado ya consideraba consumidos (por ejemplo, la palabra "butter" reaparece una y otra vez aunque una propuesta previa ya la haya consumido).
+
+**Contrato observable**: para una misma `Task/Quiz`, los lemas que devuelve `get suggested-lemmas` deben ser consistentes con el análisis fuente del que se derivó el contexto de esa task. Verificable comparando, para una misma task:
+
+- Si el contexto de esa task se derivó del análisis A, la consulta dinámica para esa task devuelve lemas del análisis A (mismo universo de exposición), no de otro análisis.
+- Si se revisa una task cuyo análisis fuente es un análisis **proyectado** (donde un lema ya fue consumido por una propuesta previa), la consulta dinámica refleja ese análisis proyectado: ese lema ya consumido NO reaparece como candidato sub-expuesto, en paridad con lo que muestra la lista estática del mismo contexto.
+- El resultado de la consulta dinámica para esa task NO cambia según cuál análisis sea el más reciente en el sistema al momento de consultar.
+
+Esta regla NO cambia los filtros existentes (`Level`, `Part of Speech`, `limit`, orden por prioridad): sólo fija **de qué análisis** se obtiene el universo de candidatos. La opción de incluir lemas ya expuestos ([FEAT-INCEXP](../2026-06-18.01_incluir-lemas-ya-expuestos-en-suggested-lemmas/REQUIREMENT.md)) sigue operando, ahora sobre el universo del análisis fuente correcto.
+
+**Error**: "No aplica."
+
+</details>
+
 ## Context
 
 Los `Suggested Lemmas` ya existen como parte del `correctionContext` usado en revisión, especialmente en escenarios vinculados a `LEMMA_ABSENCE`. Ese diseño funciona cuando la lista estática alcanza para orientar al agente, pero no cubre bien quizzes que necesitan un tipo gramatical concreto o una cantidad mayor de candidatos.
@@ -139,6 +166,7 @@ La solución se mantiene como una ampliación mínima del contrato público exis
 - Devolver resultados siempre en orden de prioridad.
 - Devolver menos resultados que el `limit` sin error.
 - Devolver lista vacía con explicación funcional cuando no haya `Suggested Lemmas` aplicables.
+- Derivar los `Suggested Lemmas` del **mismo análisis fuente** del que se derivó el contexto de la `Task/Quiz` consultada (incluido un análisis proyectado seleccionado con `--audit <id>`), sin depender de cuál sea el análisis más reciente.
 
 ### OUT
 
@@ -264,11 +292,41 @@ flow:
     result: success
 ```
 
+### Journey[F-CSLATDC-J005] - La consulta dinámica refleja el análisis fuente de la task, no el más reciente
+
+```yaml
+flow:
+  - id: task_from_selected_analysis
+    action: "Existe una Task/Quiz identificada por taskId cuyo contexto de corrección se derivó de un análisis fuente seleccionado para la revisión, donde un lema candidato del Level y Part of Speech pedidos ya fue consumido por una propuesta previa; además existe en el sistema otro análisis más reciente donde ese mismo lema sigue disponible"
+    then: request_suggested_lemmas
+
+  - id: request_suggested_lemmas
+    action: "El agente consulta GetCommand.get(\"suggested-lemmas\", taskId, GetTasksFilter(limit = N, partOfSpeech = partOfSpeechSolicitado)) para esa task"
+    then: resolve_source_analysis
+
+  - id: resolve_source_analysis
+    action: "El sistema determina de qué análisis obtiene el universo de candidatos para la consulta"
+    gate: [F-CSLATDC-R015]
+    outcomes:
+      - when: "El análisis fuente de la task es el más reciente del sistema"
+        then: return_consistent_with_source
+      - when: "El análisis fuente de la task es distinto del más reciente (por ejemplo, un análisis proyectado seleccionado para la revisión)"
+        then: return_consistent_with_source
+
+  - id: return_consistent_with_source
+    action: "La respuesta contiene lemas derivados del análisis fuente de la task: el lema ya consumido por la propuesta previa NO reaparece como candidato sub-expuesto, en paridad con la lista estática del contexto de esa misma task, independientemente de cuál sea el análisis más reciente"
+    gate: [F-CSLATDC-R015, F-CSLATDC-R010, F-CSLATDC-R014]
+    result: success
+```
+
 ## Open Questions
 
 ### Doubt[DOUBT-PROJECTED-CONTEXT] - Integración con versiones proyectadas temporales
+**Status**: RESUELTA PARCIALMENTE (2026-06-23)
 
-Queda diferida la integración con versiones proyectadas temporales generadas por otros flujos, como planes efímeros, vistas consolidadas o contextos externos de revisión.
+El punto central de consistencia quedó resuelto por [F-CSLATDC-R015](#F-CSLATDC-R015): la consulta dinámica opera sobre el **mismo análisis fuente** del que se derivó el contexto de la task —incluido un análisis proyectado seleccionado para la revisión con `--audit <id>`—, y ya no contra el análisis más reciente resuelto por su cuenta. Eso elimina la inconsistencia entre la lista estática del `correctionContext` y la consulta dinámica cuando el operador apunta la revisión a un análisis proyectado.
+
+Lo que queda diferido es estrictamente más acotado: la integración con planes efímeros que **no** persisten un análisis direccionable (un plan efímero sin análisis fuente resoluble por `--audit`, [FEAT-PLANEF](../2026-05-07.01_plan-efimero-no-persistido/REQUIREMENT.md)) y cualquier forma de pasar un contexto proyectado inline a la consulta dinámica sin un análisis persistido detrás. R015 sólo exige consistencia con un análisis fuente **resoluble**; el caso "no hay análisis fuente resoluble" sigue fuera de alcance.
 
 ### Doubt[DOUBT-RESPONSE-METADATA] - Datos adicionales por resultado
 
@@ -296,6 +354,8 @@ No se acordaron textos exactos de error; solo se acordó que las validaciones de
 - FEAT-RCLAQS: agrega `quizSentence` al contexto de `LEMMA_ABSENCE`.
 - FEAT-LAPS / FEAT-LAGEN: consumen el contexto de corrección, incluidos `suggestedLemmas`, para asistir la generación de propuestas.
 - FEAT-SLEM: enriqueció los `suggestedLemmas` con señales de exposición y prioridad, sin introducir un comando público nuevo.
-- FEAT-PLANEF: permite obtener `correctionContext` en planes efímeros, pero no resuelve una consulta pública posterior por `get`.
-- FEAT-REVCTX: permite que `revise` reciba un `correctionContext` externo.
-- FEAT-CDIFF: define una vista consolidada que queda fuera de esta primera iteración para la consulta de `Suggested Lemmas`.
+- FEAT-PLANEF: permite obtener `correctionContext` proyectado en planes efímeros, y persistir un análisis proyectado direccionable por `--audit <id>`. Cuando ese análisis proyectado es el análisis fuente de la task, la consulta dinámica opera sobre él por [F-CSLATDC-R015](#F-CSLATDC-R015).
+- FEAT-REVCTX: permite que `revise` reciba un `correctionContext` externo (proyectado) para la fase de revisión; F-CSLATDC-R015 es la pieza simétrica que mantiene consistente la **consulta dinámica** de lemas con el análisis fuente de esa misma task.
+- FEAT-CDIFF: define la vista consolidada/proyectada de un análisis con sus propuestas aceptadas y pendientes; ese análisis proyectado es uno de los análisis fuente que [F-CSLATDC-R015](#F-CSLATDC-R015) debe respetar cuando la revisión apunta a él.
+- FEAT-INCEXP: agrega la opción de incluir lemas ya expuestos en la consulta dinámica; opera sobre el universo del análisis fuente fijado por [F-CSLATDC-R015](#F-CSLATDC-R015).
+- FEAT-CLIRV: define el selector `--audit <id>` ([F-CLIRV-R014](../2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md#F-CLIRV-R014)) con el que el operador apunta la revisión a un análisis fuente explícito. Citado por [F-CSLATDC-R015](#F-CSLATDC-R015).
