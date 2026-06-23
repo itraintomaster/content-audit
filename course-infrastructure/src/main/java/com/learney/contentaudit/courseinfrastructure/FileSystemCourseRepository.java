@@ -325,6 +325,15 @@ public class FileSystemCourseRepository implements CourseRepository {
             Map<String, Object> formMap = asMap(q.get("form"));
             FormEntity form = loadForm(formMap);
             List<String> sentences = extractStringList(formMap, "sentences");
+            if (sentences == null || sentences.isEmpty()) {
+                // F-DBSENT: canonical course quizzes persist their plain sentences under
+                // form.sentences. Quizzes serialized straight from the entity model — e.g. a
+                // revision proposal's elementAfter materialized into a projected course — carry
+                // them at the top level (QuizTemplateEntity.sentences) instead. Fall back to that
+                // so the sentence (and its tokens) survive re-analysis; otherwise the analyzer,
+                // which never re-derives at runtime, reads an empty sentence for that quiz.
+                sentences = extractStringList(q, "sentences");
+            }
 
             QuizTemplateEntity quiz = new QuizTemplateEntity(
                     id, oidId, kind, knowledgeId, title, instructions, translation,
