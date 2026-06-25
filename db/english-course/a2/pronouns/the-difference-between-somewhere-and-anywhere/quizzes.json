@@ -1,612 +1,521 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c36"
-    },
-    "id": "67fab6d59930102295342c36",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d27a"
-    },
-    "title": "The Difference Between 'Somewhere' and 'Anywhere'",
-    "instructions": "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
-    "translation": "A ella le gustaría viajar a algún lugar tropical.",
-    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.09.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She would like to travel",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "somewhere"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "tropical.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She would like to travel somewhere tropical."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c36"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c37"
-    },
-    "id": "67fab6d59930102295342c37",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d27a"
-    },
-    "title": "The Difference Between 'Somewhere' and 'Anywhere'",
-    "instructions": "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
-    "translation": "¿Conoces algún lugar donde podamos encontrar una buena pizza?",
-    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.09.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Do you know",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "anywhere"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "we can find good pizza?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Do you know anywhere we can find good pizza?"
-      ]
-    }
+  "id" : "67fab6d59930102295342c36",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27a"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c38"
-    },
-    "id": "67fab6d59930102295342c38",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d27a"
-    },
-    "title": "The Difference Between 'Somewhere' and 'Anywhere'",
-    "instructions": "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
-    "translation": "No planeo viajar a ningún lado este año.",
-    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.09.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I am not planning to travel",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "anywhere"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "this year.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I am not planning to travel anywhere this year."
-      ]
-    }
+  "title" : "The Difference Between 'Somewhere' and 'Anywhere'",
+  "instructions" : "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
+  "translation" : "A ella le gustaría viajar a algún lugar tropical.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c39"
-    },
-    "id": "67fab6d59930102295342c39",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d27a"
-    },
-    "title": "The Difference Between 'Somewhere' and 'Anywhere'",
-    "instructions": "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
-    "translation": "Debe haber algún lugar donde podamos aparcar el coche.",
-    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.09.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "There must be",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "somewhere"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "we can park the car.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "There must be somewhere we can park the car."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c3a"
-    },
-    "id": "67fab6d59930102295342c3a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d27a"
-    },
-    "title": "The Difference Between 'Somewhere' and 'Anywhere'",
-    "instructions": "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
-    "translation": "Él no planea ir a ningún lado durante las vacaciones.",
-    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.09.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He doesn't plan on going",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "anywhere"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "during the vacation.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He doesn't plan on going anywhere during the vacation."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c3b"
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.09.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
     },
-    "id": "67fab6d59930102295342c3b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d27a"
-    },
-    "title": "The Difference Between 'Somewhere' and 'Anywhere'",
-    "instructions": "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
-    "translation": "Debería haber algún lugar donde podamos encontrar un taxi.",
-    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.09.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "There should be",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "somewhere"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "where we can find a taxi.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "There should be somewhere where we can find a taxi."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c3c"
-    },
-    "id": "67fab6d59930102295342c3c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d27a"
-    },
-    "title": "The Difference Between 'Somewhere' and 'Anywhere'",
-    "instructions": "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
-    "translation": "¿Hay algún lugar donde podamos comprar helado cerca?",
-    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.09.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Is there",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "somewhere"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "we could get ice cream close by?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Is there somewhere we could get ice cream close by?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c3d"
-    },
-    "id": "67fab6d59930102295342c3d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d27a"
-    },
-    "title": "The Difference Between 'Somewhere' and 'Anywhere'",
-    "instructions": "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
-    "translation": "Ella se niega a ir a cualquier lugar que sea caro.",
-    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.09.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She refuses to go",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "anywhere"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "that is expensive.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She refuses to go anywhere that is expensive."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c3e"
-    },
-    "id": "67fab6d59930102295342c3e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d27a"
-    },
-    "title": "The Difference Between 'Somewhere' and 'Anywhere'",
-    "instructions": "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
-    "translation": "Siempre trato de visitar algún lugar emocionante en vacaciones.",
-    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.09.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I always try to visit",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "somewhere"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "exciting on holiday.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I always try to visit somewhere exciting on holiday."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c3f"
-    },
-    "id": "67fab6d59930102295342c3f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d27a"
-    },
-    "title": "The Difference Between 'Somewhere' and 'Anywhere'",
-    "instructions": "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
-    "translation": "Vamos a pasar el rato en un lugar privado.",
-    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.09.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Let's hang out",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "somewhere"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "private.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Let's hang out somewhere private."
-      ]
-    }
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She would like to travel",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somewhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "tropical.",
+      "options" : null
+    } ],
+    "sentences" : [ "She would like to travel somewhere tropical." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c37"
+  },
+  "id" : "67fab6d59930102295342c37",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27a"
+  },
+  "title" : "The Difference Between 'Somewhere' and 'Anywhere'",
+  "instructions" : "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
+  "translation" : "¿Conoces algún lugar donde podamos encontrar una buena pizza?",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.09.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you know",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "we can find good pizza?",
+      "options" : null
+    } ],
+    "sentences" : [ "Do you know anywhere we can find good pizza?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c38"
+  },
+  "id" : "67fab6d59930102295342c38",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27a"
+  },
+  "title" : "The Difference Between 'Somewhere' and 'Anywhere'",
+  "instructions" : "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
+  "translation" : "No planeo viajar a ningún lado este año.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.09.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I am not planning to travel",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "this year.",
+      "options" : null
+    } ],
+    "sentences" : [ "I am not planning to travel anywhere this year." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c39"
+  },
+  "id" : "67fab6d59930102295342c39",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27a"
+  },
+  "title" : "The Difference Between 'Somewhere' and 'Anywhere'",
+  "instructions" : "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
+  "translation" : "Debe haber algún lugar donde podamos aparcar el coche.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.09.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There must be",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somewhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "we can park the car.",
+      "options" : null
+    } ],
+    "sentences" : [ "There must be somewhere we can park the car." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c3a"
+  },
+  "id" : "67fab6d59930102295342c3a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27a"
+  },
+  "title" : "The Difference Between 'Somewhere' and 'Anywhere'",
+  "instructions" : "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
+  "translation" : "Él no planea ir a ningún lado durante las vacaciones.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.09.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He doesn't plan on going",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "during the vacation.",
+      "options" : null
+    } ],
+    "sentences" : [ "He doesn't plan on going anywhere during the vacation." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c3b"
+  },
+  "id" : "67fab6d59930102295342c3b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27a"
+  },
+  "title" : "The Difference Between 'Somewhere' and 'Anywhere'",
+  "instructions" : "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
+  "translation" : "Debería haber algún lugar donde podamos encontrar un taxi.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.09.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There should be",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somewhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "where we can find a taxi.",
+      "options" : null
+    } ],
+    "sentences" : [ "There should be somewhere where we can find a taxi." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c3c"
+  },
+  "id" : "67fab6d59930102295342c3c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27a"
+  },
+  "title" : "The Difference Between 'Somewhere' and 'Anywhere'",
+  "instructions" : "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
+  "translation" : "¿Hay algún lugar donde podamos comprar helado cerca?",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.09.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is there",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somewhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "we could get ice cream close by?",
+      "options" : null
+    } ],
+    "sentences" : [ "Is there somewhere we could get ice cream close by?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c3d"
+  },
+  "id" : "67fab6d59930102295342c3d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27a"
+  },
+  "title" : "The Difference Between 'Somewhere' and 'Anywhere'",
+  "instructions" : "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
+  "translation" : "Ella se niega a ir a cualquier lugar que sea caro.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.09.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She refuses to go",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "that is expensive.",
+      "options" : null
+    } ],
+    "sentences" : [ "She refuses to go anywhere that is expensive." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c3e"
+  },
+  "id" : "67fab6d59930102295342c3e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27a"
+  },
+  "title" : "The Difference Between 'Somewhere' and 'Anywhere'",
+  "instructions" : "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
+  "translation" : "Siempre trato de visitar algún lugar emocionante en vacaciones.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.09.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I always try to visit",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somewhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "exciting on holiday.",
+      "options" : null
+    } ],
+    "sentences" : [ "I always try to visit somewhere exciting on holiday." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c3f"
+  },
+  "id" : "67fab6d59930102295342c3f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27a"
+  },
+  "title" : "The Difference Between 'Somewhere' and 'Anywhere'",
+  "instructions" : "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
+  "translation" : "Vamos a pasar el rato en un lugar privado.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.09.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Let's hang out",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somewhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "private.",
+      "options" : null
+    } ],
+    "sentences" : [ "Let's hang out somewhere private." ]
+  }
+} ]

@@ -1,1232 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342fa6"
-    },
-    "id": "67fab6d59930102295342fa6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2b8"
-    },
-    "title": "Future Review: Present Simple vs. Present Continuous",
-    "instructions": "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-    "translation": "Él completa la tarea.",
-    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.02.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He'll assist us once he",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "completes"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(complete) the task.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He'll assist us once he completes the task."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342fa6"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342fa7"
-    },
-    "id": "67fab6d59930102295342fa7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2b8"
-    },
-    "title": "Future Review: Present Simple vs. Present Continuous",
-    "instructions": "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-    "translation": "Tengo sed.",
-    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.02.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I'll drink later when I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'m|am"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) thirsty.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'll drink later when I'm thirsty.",
-        "I'll drink later when I am thirsty."
-      ]
-    }
+  "id" : "67fab6d59930102295342fa6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2b8"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342fa8"
-    },
-    "id": "67fab6d59930102295342fa8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2b8"
-    },
-    "title": "Future Review: Present Simple vs. Present Continuous",
-    "instructions": "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-    "translation": "El banco abre a las 9 am.",
-    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.02.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The bank",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "opens"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(open) at 9 am.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The bank opens at 9 am."
-      ]
-    }
+  "title" : "Future Review: Present Simple vs. Present Continuous",
+  "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
+  "translation" : "Él completa la tarea.",
+  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342fa9"
-    },
-    "id": "67fab6d59930102295342fa9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2b8"
-    },
-    "title": "Future Review: Present Simple vs. Present Continuous",
-    "instructions": "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-    "translation": "El semestre comienza el martes.",
-    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.02.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The semester",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "begins"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(begin) on Tuesday.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The semester begins on Tuesday."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342faa"
-    },
-    "id": "67fab6d59930102295342faa",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2b8"
-    },
-    "title": "Future Review: Present Simple vs. Present Continuous",
-    "instructions": "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-    "translation": "¿En qué te convertirás cuando madures?",
-    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.02.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "What will you become when you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "mature"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(mature)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "What will you become when you mature?"
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342fab"
-    },
-    "id": "67fab6d59930102295342fab",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2b8"
-    },
-    "title": "Future Review: Present Simple vs. Present Continuous",
-    "instructions": "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-    "translation": "Voy a leer un libro esta noche.",
-    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.02.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'m reading|am reading"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(read) a book tonight.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'm reading a book tonight.",
-        "I am reading a book tonight."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342fac"
-    },
-    "id": "67fab6d59930102295342fac",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2b8"
-    },
-    "title": "Future Review: Present Simple vs. Present Continuous",
-    "instructions": "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-    "translation": "Ellos van a visitar a Mark hoy.",
-    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.02.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'re visiting|are visiting"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(visit) Mark today.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They're visiting Mark today.",
-        "They are visiting Mark today."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342fad"
-    },
-    "id": "67fab6d59930102295342fad",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2b8"
-    },
-    "title": "Future Review: Present Simple vs. Present Continuous",
-    "instructions": "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-    "translation": "La biblioteca abre a las 8 am.",
-    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.02.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The library",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "opens"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(open) at 8 am.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The library opens at 8 am."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342fae"
-    },
-    "id": "67fab6d59930102295342fae",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2b8"
-    },
-    "title": "Future Review: Present Simple vs. Present Continuous",
-    "instructions": "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-    "translation": "Vamos a llamar a mi madre más tarde.",
-    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.02.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'re phoning|are phoning"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(phone) my mum later.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We're phoning my mum later.",
-        "We are phoning my mum later."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342faf"
-    },
-    "id": "67fab6d59930102295342faf",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2b8"
-    },
-    "title": "Future Review: Present Simple vs. Present Continuous",
-    "instructions": "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-    "translation": "Me alojo en un hotel esta noche.",
-    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.02.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'m lodging|am lodging"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(lodge) in a hotel tonight.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'm lodging in a hotel tonight.",
-        "I am lodging in a hotel tonight."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342fb0"
-    },
-    "id": "67fab6d59930102295342fb0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2b8"
-    },
-    "title": "Future Review: Present Simple vs. Present Continuous",
-    "instructions": "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-    "translation": "Pediremos pizza tan pronto como estés aquí.",
-    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.02.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We'll order pizza as soon as you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'re|are"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) here.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We'll order pizza as soon as you're here.",
-        "We'll order pizza as soon as you are here."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342fb1"
-    },
-    "id": "67fab6d59930102295342fb1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2b8"
-    },
-    "title": "Future Review: Present Simple vs. Present Continuous",
-    "instructions": "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-    "translation": "Lavaré la ropa tan pronto como Laura se despierte.",
-    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.02.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I'll do the laundry as soon as Laura",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "wakes"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(wake) up.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'll do the laundry as soon as Laura wakes up."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342fb2"
-    },
-    "id": "67fab6d59930102295342fb2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2b8"
-    },
-    "title": "Future Review: Present Simple vs. Present Continuous",
-    "instructions": "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-    "translation": "Él nos enviará un mensaje de texto antes de partir.",
-    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.02.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He'll text us before he",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "departs"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(leave).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He'll text us before he departs."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342fb3"
-    },
-    "id": "67fab6d59930102295342fb3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2b8"
-    },
-    "title": "Future Review: Present Simple vs. Present Continuous",
-    "instructions": "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-    "translation": "Él tiene una cita con Mary hoy a las 7 pm.",
-    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.02.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'s dating|is dating"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(date) Mary today at 7 pm.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He's dating Mary today at 7 pm.",
-        "He is dating Mary today at 7 pm."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342fb4"
-    },
-    "id": "67fab6d59930102295342fb4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2b8"
-    },
-    "title": "Future Review: Present Simple vs. Present Continuous",
-    "instructions": "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-    "translation": "El autobús sale a las 7:45.",
-    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.02.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The bus",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "departs"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(leave) at 7:45.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The bus departs at 7:45."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342fb5"
-    },
-    "id": "67fab6d59930102295342fb5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2b8"
-    },
-    "title": "Future Review: Present Simple vs. Present Continuous",
-    "instructions": "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-    "translation": "Hoy vuelo a París de vacaciones.",
-    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.02.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'m flying|am flying"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(fly) to Paris for holidays today.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'm flying to Paris for holidays today.",
-        "I am flying to Paris for holidays today."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342fb6"
-    },
-    "id": "67fab6d59930102295342fb6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2b8"
-    },
-    "title": "Future Review: Present Simple vs. Present Continuous",
-    "instructions": "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-    "translation": "La reunión comienza a las 2 pm.",
-    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.02.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The meeting",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "begins"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(start) at 2 pm.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The meeting begins at 2 pm."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342fb7"
-    },
-    "id": "67fab6d59930102295342fb7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2b8"
-    },
-    "title": "Future Review: Present Simple vs. Present Continuous",
-    "instructions": "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-    "translation": "Ellos van a almorzar en un bar esta tarde.",
-    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.02.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'re having|are having"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(have) lunch in a bar this afternoon.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They're having lunch in a bar this afternoon.",
-        "They are having lunch in a bar this afternoon."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342fb8"
-    },
-    "id": "67fab6d59930102295342fb8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2b8"
-    },
-    "title": "Future Review: Present Simple vs. Present Continuous",
-    "instructions": "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-    "translation": "Ella trabajará cuando esté lista.",
-    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.02.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She'll work when she",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'s|is"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) ready.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She'll work when she's ready.",
-        "She'll work when she is ready."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342fb9"
-    },
-    "id": "67fab6d59930102295342fb9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2b8"
-    },
-    "title": "Future Review: Present Simple vs. Present Continuous",
-    "instructions": "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-    "translation": "El autobús llega a las 3:56.",
-    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.02.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The coach",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "arrives"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(arrive) at 3:56.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The coach arrives at 3:56."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.02.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He'll assist us once he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "completes" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(complete) the task.",
+      "options" : null
+    } ],
+    "sentences" : [ "He'll assist us once he completes the task." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342fa7"
+  },
+  "id" : "67fab6d59930102295342fa7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2b8"
+  },
+  "title" : "Future Review: Present Simple vs. Present Continuous",
+  "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
+  "translation" : "Tengo sed.",
+  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.02.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'll drink later when I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'m|am" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) thirsty.",
+      "options" : null
+    } ],
+    "sentences" : [ "I'll drink later when I'm thirsty.", "I'll drink later when I am thirsty." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342fa8"
+  },
+  "id" : "67fab6d59930102295342fa8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2b8"
+  },
+  "title" : "Future Review: Present Simple vs. Present Continuous",
+  "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
+  "translation" : "El banco abre a las 9 am.",
+  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.02.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The bank",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "opens" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(open) at 9 am.",
+      "options" : null
+    } ],
+    "sentences" : [ "The bank opens at 9 am." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342fa9"
+  },
+  "id" : "67fab6d59930102295342fa9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2b8"
+  },
+  "title" : "Future Review: Present Simple vs. Present Continuous",
+  "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
+  "translation" : "El semestre comienza el martes.",
+  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.02.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The semester",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "begins" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(begin) on Tuesday.",
+      "options" : null
+    } ],
+    "sentences" : [ "The semester begins on Tuesday." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342faa"
+  },
+  "id" : "67fab6d59930102295342faa",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2b8"
+  },
+  "title" : "Future Review: Present Simple vs. Present Continuous",
+  "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
+  "translation" : "¿En qué te convertirás cuando madures?",
+  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.02.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What will you become when you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "mature" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(mature)?",
+      "options" : null
+    } ],
+    "sentences" : [ "What will you become when you mature?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342fab"
+  },
+  "id" : "67fab6d59930102295342fab",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2b8"
+  },
+  "title" : "Future Review: Present Simple vs. Present Continuous",
+  "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
+  "translation" : "Voy a leer un libro esta noche.",
+  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.02.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'m reading|am reading" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(read) a book tonight.",
+      "options" : null
+    } ],
+    "sentences" : [ "I'm reading a book tonight.", "I am reading a book tonight." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342fac"
+  },
+  "id" : "67fab6d59930102295342fac",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2b8"
+  },
+  "title" : "Future Review: Present Simple vs. Present Continuous",
+  "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
+  "translation" : "Ellos van a visitar a Mark hoy.",
+  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.02.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'re visiting|are visiting" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(visit) Mark today.",
+      "options" : null
+    } ],
+    "sentences" : [ "They're visiting Mark today.", "They are visiting Mark today." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342fad"
+  },
+  "id" : "67fab6d59930102295342fad",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2b8"
+  },
+  "title" : "Future Review: Present Simple vs. Present Continuous",
+  "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
+  "translation" : "La biblioteca abre a las 8 am.",
+  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.02.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The library",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "opens" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(open) at 8 am.",
+      "options" : null
+    } ],
+    "sentences" : [ "The library opens at 8 am." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342fae"
+  },
+  "id" : "67fab6d59930102295342fae",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2b8"
+  },
+  "title" : "Future Review: Present Simple vs. Present Continuous",
+  "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
+  "translation" : "Vamos a llamar a mi madre más tarde.",
+  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.02.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'re phoning|are phoning" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(phone) my mum later.",
+      "options" : null
+    } ],
+    "sentences" : [ "We're phoning my mum later.", "We are phoning my mum later." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342faf"
+  },
+  "id" : "67fab6d59930102295342faf",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2b8"
+  },
+  "title" : "Future Review: Present Simple vs. Present Continuous",
+  "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
+  "translation" : "Me alojo en un hotel esta noche.",
+  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.02.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'m lodging|am lodging" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(lodge) in a hotel tonight.",
+      "options" : null
+    } ],
+    "sentences" : [ "I'm lodging in a hotel tonight.", "I am lodging in a hotel tonight." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342fb0"
+  },
+  "id" : "67fab6d59930102295342fb0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2b8"
+  },
+  "title" : "Future Review: Present Simple vs. Present Continuous",
+  "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
+  "translation" : "Pediremos pizza tan pronto como estés aquí.",
+  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.02.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We'll order pizza as soon as you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'re|are" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) here.",
+      "options" : null
+    } ],
+    "sentences" : [ "We'll order pizza as soon as you're here.", "We'll order pizza as soon as you are here." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342fb1"
+  },
+  "id" : "67fab6d59930102295342fb1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2b8"
+  },
+  "title" : "Future Review: Present Simple vs. Present Continuous",
+  "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
+  "translation" : "Lavaré la ropa tan pronto como Laura se despierte.",
+  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.02.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'll do the laundry as soon as Laura",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "wakes" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(wake) up.",
+      "options" : null
+    } ],
+    "sentences" : [ "I'll do the laundry as soon as Laura wakes up." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342fb2"
+  },
+  "id" : "67fab6d59930102295342fb2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2b8"
+  },
+  "title" : "Future Review: Present Simple vs. Present Continuous",
+  "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
+  "translation" : "Él nos enviará un mensaje de texto antes de partir.",
+  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.02.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He'll text us before he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "departs" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(leave).",
+      "options" : null
+    } ],
+    "sentences" : [ "He'll text us before he departs." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342fb3"
+  },
+  "id" : "67fab6d59930102295342fb3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2b8"
+  },
+  "title" : "Future Review: Present Simple vs. Present Continuous",
+  "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
+  "translation" : "Él tiene una cita con Mary hoy a las 7 pm.",
+  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.02.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s dating|is dating" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(date) Mary today at 7 pm.",
+      "options" : null
+    } ],
+    "sentences" : [ "He's dating Mary today at 7 pm.", "He is dating Mary today at 7 pm." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342fb4"
+  },
+  "id" : "67fab6d59930102295342fb4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2b8"
+  },
+  "title" : "Future Review: Present Simple vs. Present Continuous",
+  "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
+  "translation" : "El autobús sale a las 7:45.",
+  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.02.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The bus",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "departs" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(leave) at 7:45.",
+      "options" : null
+    } ],
+    "sentences" : [ "The bus departs at 7:45." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342fb5"
+  },
+  "id" : "67fab6d59930102295342fb5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2b8"
+  },
+  "title" : "Future Review: Present Simple vs. Present Continuous",
+  "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
+  "translation" : "Hoy vuelo a París de vacaciones.",
+  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.02.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'m flying|am flying" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(fly) to Paris for holidays today.",
+      "options" : null
+    } ],
+    "sentences" : [ "I'm flying to Paris for holidays today.", "I am flying to Paris for holidays today." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342fb6"
+  },
+  "id" : "67fab6d59930102295342fb6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2b8"
+  },
+  "title" : "Future Review: Present Simple vs. Present Continuous",
+  "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
+  "translation" : "La reunión comienza a las 2 pm.",
+  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.02.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The meeting",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "begins" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(start) at 2 pm.",
+      "options" : null
+    } ],
+    "sentences" : [ "The meeting begins at 2 pm." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342fb7"
+  },
+  "id" : "67fab6d59930102295342fb7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2b8"
+  },
+  "title" : "Future Review: Present Simple vs. Present Continuous",
+  "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
+  "translation" : "Ellos van a almorzar en un bar esta tarde.",
+  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.02.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'re having|are having" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(have) lunch in a bar this afternoon.",
+      "options" : null
+    } ],
+    "sentences" : [ "They're having lunch in a bar this afternoon.", "They are having lunch in a bar this afternoon." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342fb8"
+  },
+  "id" : "67fab6d59930102295342fb8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2b8"
+  },
+  "title" : "Future Review: Present Simple vs. Present Continuous",
+  "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
+  "translation" : "Ella trabajará cuando esté lista.",
+  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.02.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She'll work when she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s|is" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) ready.",
+      "options" : null
+    } ],
+    "sentences" : [ "She'll work when she's ready.", "She'll work when she is ready." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342fb9"
+  },
+  "id" : "67fab6d59930102295342fb9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2b8"
+  },
+  "title" : "Future Review: Present Simple vs. Present Continuous",
+  "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
+  "translation" : "El autobús llega a las 3:56.",
+  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.02.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The coach",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "arrives" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(arrive) at 3:56.",
+      "options" : null
+    } ],
+    "sentences" : [ "The coach arrives at 3:56." ]
+  }
+} ]

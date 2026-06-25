@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534454f"
-    },
-    "id": "67fab6d5993010229534454f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d45d"
-    },
-    "title": "Speculating Now: Practice with 'Will'",
-    "instructions": "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
-    "translation": "Los chicos estarán jugando al fútbol ahora.",
-    "theoryId": "b2.09.Should_for_Guesses_about_the_Present",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.09.09.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think that the boys are playing football now.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The boys will be playing football now."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The boys will be playing football now."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534454f"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344550"
-    },
-    "id": "67fab6d59930102295344550",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d45d"
-    },
-    "title": "Speculating Now: Practice with 'Will'",
-    "instructions": "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
-    "translation": "Los gatos estarán comiendo ahora.",
-    "theoryId": "b2.09.Should_for_Guesses_about_the_Present",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.09.09.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think that the cats are eating now.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The cats will be eating now."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The cats will be eating now."
-      ]
-    }
+  "id" : "67fab6d5993010229534454f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d45d"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344551"
-    },
-    "id": "67fab6d59930102295344551",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d45d"
-    },
-    "title": "Speculating Now: Practice with 'Will'",
-    "instructions": "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
-    "translation": "Ella estará cantando ahora.",
-    "theoryId": "b2.09.Should_for_Guesses_about_the_Present",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.09.09.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think that she is singing now.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She will be singing now."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She will be singing now."
-      ]
-    }
+  "title" : "Speculating Now: Practice with 'Will'",
+  "instructions" : "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
+  "translation" : "Los chicos estarán jugando al fútbol ahora.",
+  "theoryId" : "b2.09.Should_for_Guesses_about_the_Present",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344552"
-    },
-    "id": "67fab6d59930102295344552",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d45d"
-    },
-    "title": "Speculating Now: Practice with 'Will'",
-    "instructions": "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
-    "translation": "Robert estará jugando videojuegos.",
-    "theoryId": "b2.09.Should_for_Guesses_about_the_Present",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.09.09.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think that Robert is playing videogames.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Robert will be playing videogames."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Robert will be playing videogames."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344553"
-    },
-    "id": "67fab6d59930102295344553",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d45d"
-    },
-    "title": "Speculating Now: Practice with 'Will'",
-    "instructions": "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
-    "translation": "El autobús estará saliendo ahora.",
-    "theoryId": "b2.09.Should_for_Guesses_about_the_Present",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.09.09.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think that the bus is departing now.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The bus will be departing now."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The bus will be departing now."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344554"
-    },
-    "id": "67fab6d59930102295344554",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d45d"
-    },
-    "title": "Speculating Now: Practice with 'Will'",
-    "instructions": "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
-    "translation": "Las oficinas estarán abriendo ahora.",
-    "theoryId": "b2.09.Should_for_Guesses_about_the_Present",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.09.09.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think that the offices are opening now.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The offices will be opening now."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The offices will be opening now."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344555"
-    },
-    "id": "67fab6d59930102295344555",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d45d"
-    },
-    "title": "Speculating Now: Practice with 'Will'",
-    "instructions": "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
-    "translation": "Los profesores estarán felices ahora.",
-    "theoryId": "b2.09.Should_for_Guesses_about_the_Present",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.09.09.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think that the teachers are happy now.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The teachers will be happy now."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The teachers will be happy now."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344556"
-    },
-    "id": "67fab6d59930102295344556",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d45d"
-    },
-    "title": "Speculating Now: Practice with 'Will'",
-    "instructions": "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
-    "translation": "Marc estará en la oficina ahora.",
-    "theoryId": "b2.09.Should_for_Guesses_about_the_Present",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.09.09.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think that Marc is in the office now.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Marc will be in the office now."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Marc will be in the office now."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344557"
-    },
-    "id": "67fab6d59930102295344557",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d45d"
-    },
-    "title": "Speculating Now: Practice with 'Will'",
-    "instructions": "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
-    "translation": "Él estará en el baño ahora.",
-    "theoryId": "b2.09.Should_for_Guesses_about_the_Present",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.09.09.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think that he is in the bathroom now.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He will be in the bathroom now."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He will be in the bathroom now."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344558"
-    },
-    "id": "67fab6d59930102295344558",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d45d"
-    },
-    "title": "Speculating Now: Practice with 'Will'",
-    "instructions": "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
-    "translation": "Ella estará en el avión ahora.",
-    "theoryId": "b2.09.Should_for_Guesses_about_the_Present",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.09.09.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think that she is in the airplane now.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She will be in the airplane now."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She will be in the airplane now."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344559"
-    },
-    "id": "67fab6d59930102295344559",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d45d"
-    },
-    "title": "Speculating Now: Practice with 'Will'",
-    "instructions": "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
-    "translation": "Ellos estarán corriendo ahora.",
-    "theoryId": "b2.09.Should_for_Guesses_about_the_Present",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.09.09.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think that they are running now.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They will be running now."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They will be running now."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534455a"
-    },
-    "id": "67fab6d5993010229534455a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d45d"
-    },
-    "title": "Speculating Now: Practice with 'Will'",
-    "instructions": "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
-    "translation": "Él tendrá algunos libros ahora.",
-    "theoryId": "b2.09.Should_for_Guesses_about_the_Present",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.09.09.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think that he has some books now.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He will have some books now."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He will have some books now."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534455b"
-    },
-    "id": "67fab6d5993010229534455b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d45d"
-    },
-    "title": "Speculating Now: Practice with 'Will'",
-    "instructions": "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
-    "translation": "Ella estará relajándose ahora.",
-    "theoryId": "b2.09.Should_for_Guesses_about_the_Present",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.09.09.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think that she is relaxing now.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She will be relaxing now."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She will be relaxing now."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534455c"
-    },
-    "id": "67fab6d5993010229534455c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d45d"
-    },
-    "title": "Speculating Now: Practice with 'Will'",
-    "instructions": "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
-    "translation": "Él estará limpiando en este momento.",
-    "theoryId": "b2.09.Should_for_Guesses_about_the_Present",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.09.09.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think that he is cleaning now.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He will be cleaning at the moment."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He will be cleaning at the moment."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534455d"
-    },
-    "id": "67fab6d5993010229534455d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d45d"
-    },
-    "title": "Speculating Now: Practice with 'Will'",
-    "instructions": "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
-    "translation": "Laura estará en la escuela en este momento.",
-    "theoryId": "b2.09.Should_for_Guesses_about_the_Present",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.09.09.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think that Laura is at school now.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Laura will be at school at the moment."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Laura will be at school at the moment."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534455e"
-    },
-    "id": "67fab6d5993010229534455e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d45d"
-    },
-    "title": "Speculating Now: Practice with 'Will'",
-    "instructions": "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
-    "translation": "Las chicas estarán en el club ahora.",
-    "theoryId": "b2.09.Should_for_Guesses_about_the_Present",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.09.09.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think that the girls are in the club now.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The girls will be in the club now."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The girls will be in the club now."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534455f"
-    },
-    "id": "67fab6d5993010229534455f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d45d"
-    },
-    "title": "Speculating Now: Practice with 'Will'",
-    "instructions": "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
-    "translation": "Él tendrá calor en este momento.",
-    "theoryId": "b2.09.Should_for_Guesses_about_the_Present",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.09.09.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think that he is hot at the moment.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He will be hot at the moment."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He will be hot at the moment."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344560"
-    },
-    "id": "67fab6d59930102295344560",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d45d"
-    },
-    "title": "Speculating Now: Practice with 'Will'",
-    "instructions": "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
-    "translation": "Él necesitará algo de agua ahora.",
-    "theoryId": "b2.09.Should_for_Guesses_about_the_Present",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.09.09.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think that he needs some water now.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He will need some water now."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He will need some water now."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344561"
-    },
-    "id": "67fab6d59930102295344561",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d45d"
-    },
-    "title": "Speculating Now: Practice with 'Will'",
-    "instructions": "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
-    "translation": "Él estará bebiendo en este momento.",
-    "theoryId": "b2.09.Should_for_Guesses_about_the_Present",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.09.09.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think that he is drinking at the moment.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He will be drinking at the moment."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He will be drinking at the moment."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344562"
-    },
-    "id": "67fab6d59930102295344562",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d45d"
-    },
-    "title": "Speculating Now: Practice with 'Will'",
-    "instructions": "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
-    "translation": "Ella estará escuchando música en este momento.",
-    "theoryId": "b2.09.Should_for_Guesses_about_the_Present",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.09.09.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think that she is listening to music at the moment.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She will be listening to music at the moment."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She will be listening to music at the moment."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.09.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think that the boys are playing football now.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The boys will be playing football now." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The boys will be playing football now." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344550"
+  },
+  "id" : "67fab6d59930102295344550",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d45d"
+  },
+  "title" : "Speculating Now: Practice with 'Will'",
+  "instructions" : "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
+  "translation" : "Los gatos estarán comiendo ahora.",
+  "theoryId" : "b2.09.Should_for_Guesses_about_the_Present",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.09.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think that the cats are eating now.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The cats will be eating now." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The cats will be eating now." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344551"
+  },
+  "id" : "67fab6d59930102295344551",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d45d"
+  },
+  "title" : "Speculating Now: Practice with 'Will'",
+  "instructions" : "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
+  "translation" : "Ella estará cantando ahora.",
+  "theoryId" : "b2.09.Should_for_Guesses_about_the_Present",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.09.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think that she is singing now.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She will be singing now." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She will be singing now." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344552"
+  },
+  "id" : "67fab6d59930102295344552",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d45d"
+  },
+  "title" : "Speculating Now: Practice with 'Will'",
+  "instructions" : "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
+  "translation" : "Robert estará jugando videojuegos.",
+  "theoryId" : "b2.09.Should_for_Guesses_about_the_Present",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.09.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think that Robert is playing videogames.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Robert will be playing videogames." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert will be playing videogames." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344553"
+  },
+  "id" : "67fab6d59930102295344553",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d45d"
+  },
+  "title" : "Speculating Now: Practice with 'Will'",
+  "instructions" : "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
+  "translation" : "El autobús estará saliendo ahora.",
+  "theoryId" : "b2.09.Should_for_Guesses_about_the_Present",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.09.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think that the bus is departing now.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The bus will be departing now." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The bus will be departing now." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344554"
+  },
+  "id" : "67fab6d59930102295344554",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d45d"
+  },
+  "title" : "Speculating Now: Practice with 'Will'",
+  "instructions" : "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
+  "translation" : "Las oficinas estarán abriendo ahora.",
+  "theoryId" : "b2.09.Should_for_Guesses_about_the_Present",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.09.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think that the offices are opening now.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The offices will be opening now." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The offices will be opening now." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344555"
+  },
+  "id" : "67fab6d59930102295344555",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d45d"
+  },
+  "title" : "Speculating Now: Practice with 'Will'",
+  "instructions" : "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
+  "translation" : "Los profesores estarán felices ahora.",
+  "theoryId" : "b2.09.Should_for_Guesses_about_the_Present",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.09.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think that the teachers are happy now.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The teachers will be happy now." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The teachers will be happy now." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344556"
+  },
+  "id" : "67fab6d59930102295344556",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d45d"
+  },
+  "title" : "Speculating Now: Practice with 'Will'",
+  "instructions" : "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
+  "translation" : "Marc estará en la oficina ahora.",
+  "theoryId" : "b2.09.Should_for_Guesses_about_the_Present",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.09.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think that Marc is in the office now.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Marc will be in the office now." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Marc will be in the office now." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344557"
+  },
+  "id" : "67fab6d59930102295344557",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d45d"
+  },
+  "title" : "Speculating Now: Practice with 'Will'",
+  "instructions" : "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
+  "translation" : "Él estará en el baño ahora.",
+  "theoryId" : "b2.09.Should_for_Guesses_about_the_Present",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.09.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think that he is in the bathroom now.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He will be in the bathroom now." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He will be in the bathroom now." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344558"
+  },
+  "id" : "67fab6d59930102295344558",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d45d"
+  },
+  "title" : "Speculating Now: Practice with 'Will'",
+  "instructions" : "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
+  "translation" : "Ella estará en el avión ahora.",
+  "theoryId" : "b2.09.Should_for_Guesses_about_the_Present",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.09.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think that she is in the airplane now.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She will be in the airplane now." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She will be in the airplane now." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344559"
+  },
+  "id" : "67fab6d59930102295344559",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d45d"
+  },
+  "title" : "Speculating Now: Practice with 'Will'",
+  "instructions" : "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
+  "translation" : "Ellos estarán corriendo ahora.",
+  "theoryId" : "b2.09.Should_for_Guesses_about_the_Present",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.09.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think that they are running now.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They will be running now." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They will be running now." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534455a"
+  },
+  "id" : "67fab6d5993010229534455a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d45d"
+  },
+  "title" : "Speculating Now: Practice with 'Will'",
+  "instructions" : "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
+  "translation" : "Él tendrá algunos libros ahora.",
+  "theoryId" : "b2.09.Should_for_Guesses_about_the_Present",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.09.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think that he has some books now.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He will have some books now." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He will have some books now." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534455b"
+  },
+  "id" : "67fab6d5993010229534455b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d45d"
+  },
+  "title" : "Speculating Now: Practice with 'Will'",
+  "instructions" : "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
+  "translation" : "Ella estará relajándose ahora.",
+  "theoryId" : "b2.09.Should_for_Guesses_about_the_Present",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.09.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think that she is relaxing now.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She will be relaxing now." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She will be relaxing now." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534455c"
+  },
+  "id" : "67fab6d5993010229534455c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d45d"
+  },
+  "title" : "Speculating Now: Practice with 'Will'",
+  "instructions" : "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
+  "translation" : "Él estará limpiando en este momento.",
+  "theoryId" : "b2.09.Should_for_Guesses_about_the_Present",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.09.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think that he is cleaning now.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He will be cleaning at the moment." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He will be cleaning at the moment." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534455d"
+  },
+  "id" : "67fab6d5993010229534455d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d45d"
+  },
+  "title" : "Speculating Now: Practice with 'Will'",
+  "instructions" : "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
+  "translation" : "Laura estará en la escuela en este momento.",
+  "theoryId" : "b2.09.Should_for_Guesses_about_the_Present",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.09.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think that Laura is at school now.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Laura will be at school at the moment." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Laura will be at school at the moment." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534455e"
+  },
+  "id" : "67fab6d5993010229534455e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d45d"
+  },
+  "title" : "Speculating Now: Practice with 'Will'",
+  "instructions" : "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
+  "translation" : "Las chicas estarán en el club ahora.",
+  "theoryId" : "b2.09.Should_for_Guesses_about_the_Present",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.09.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think that the girls are in the club now.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The girls will be in the club now." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The girls will be in the club now." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534455f"
+  },
+  "id" : "67fab6d5993010229534455f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d45d"
+  },
+  "title" : "Speculating Now: Practice with 'Will'",
+  "instructions" : "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
+  "translation" : "Él tendrá calor en este momento.",
+  "theoryId" : "b2.09.Should_for_Guesses_about_the_Present",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.09.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think that he is hot at the moment.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He will be hot at the moment." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He will be hot at the moment." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344560"
+  },
+  "id" : "67fab6d59930102295344560",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d45d"
+  },
+  "title" : "Speculating Now: Practice with 'Will'",
+  "instructions" : "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
+  "translation" : "Él necesitará algo de agua ahora.",
+  "theoryId" : "b2.09.Should_for_Guesses_about_the_Present",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.09.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think that he needs some water now.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He will need some water now." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He will need some water now." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344561"
+  },
+  "id" : "67fab6d59930102295344561",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d45d"
+  },
+  "title" : "Speculating Now: Practice with 'Will'",
+  "instructions" : "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
+  "translation" : "Él estará bebiendo en este momento.",
+  "theoryId" : "b2.09.Should_for_Guesses_about_the_Present",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.09.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think that he is drinking at the moment.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He will be drinking at the moment." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He will be drinking at the moment." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344562"
+  },
+  "id" : "67fab6d59930102295344562",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d45d"
+  },
+  "title" : "Speculating Now: Practice with 'Will'",
+  "instructions" : "Reescribe las oraciones para que incluyan 'will + infinitive' o 'will + be + verb+ing'. Omite 'I think that'.",
+  "translation" : "Ella estará escuchando música en este momento.",
+  "theoryId" : "b2.09.Should_for_Guesses_about_the_Present",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.09.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think that she is listening to music at the moment.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She will be listening to music at the moment." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She will be listening to music at the moment." ]
+  }
+} ]

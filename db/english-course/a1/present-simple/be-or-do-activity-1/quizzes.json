@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f77"
-    },
-    "id": "67fab6d59930102295341f77",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d392"
-    },
-    "title": "'Be' or 'do'? Activity 1",
-    "instructions": "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-    "translation": "Llego temprano. Verbo en infinitivo = ser/estar",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.15.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I am early. Verb in infinitive =",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "be"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I am early. Verb in infinitive = be"
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f77"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f78"
-    },
-    "id": "67fab6d59930102295341f78",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d392"
-    },
-    "title": "'Be' or 'do'? Activity 1",
-    "instructions": "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-    "translation": "Ella disfruta del té. Verbo en infinitivo = disfrutar",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.15.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She enjoys tea. Verb in infinitive =",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "enjoy"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She enjoys tea. Verb in infinitive = enjoy"
-      ]
-    }
+  "id" : "67fab6d59930102295341f77",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d392"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f79"
-    },
-    "id": "67fab6d59930102295341f79",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d392"
-    },
-    "title": "'Be' or 'do'? Activity 1",
-    "instructions": "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-    "translation": "Ellos trabajan en París. Verbo en infinitivo = trabajar",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.15.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They work in Paris. Verb in infinitive =",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "work"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They work in Paris. Verb in infinitive = work"
-      ]
-    }
+  "title" : "'Be' or 'do'? Activity 1",
+  "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
+  "translation" : "Llego temprano. Verbo en infinitivo = ser/estar",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f7a"
-    },
-    "id": "67fab6d59930102295341f7a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d392"
-    },
-    "title": "'Be' or 'do'? Activity 1",
-    "instructions": "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-    "translation": "Él está en el trabajo. Verbo en infinitivo = ser/estar",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.15.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He is at work. Verb in infinitive =",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "be"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He is at work. Verb in infinitive = be"
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f7b"
-    },
-    "id": "67fab6d59930102295341f7b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d392"
-    },
-    "title": "'Be' or 'do'? Activity 1",
-    "instructions": "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-    "translation": "Ellos están en la cocina. Verbo en infinitivo = ser/estar",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.15.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They are in the kitchen. Verb in infinitive =",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "be"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They are in the kitchen. Verb in infinitive = be"
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f7c"
-    },
-    "id": "67fab6d59930102295341f7c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d392"
-    },
-    "title": "'Be' or 'do'? Activity 1",
-    "instructions": "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-    "translation": "Mary es de Canadá. Verbo en infinitivo = ser/estar",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.15.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Mary is from Canada. Verb in infinitive =",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "be"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Mary is from Canada. Verb in infinitive = be"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f7d"
-    },
-    "id": "67fab6d59930102295341f7d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d392"
-    },
-    "title": "'Be' or 'do'? Activity 1",
-    "instructions": "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-    "translation": "Ella ve mucha televisión. Verbo en infinitivo = ver",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.15.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She watches a lot of TV. Verb in infinitive =",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "watch"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She watches a lot of TV. Verb in infinitive = watch"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f7e"
-    },
-    "id": "67fab6d59930102295341f7e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d392"
-    },
-    "title": "'Be' or 'do'? Activity 1",
-    "instructions": "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-    "translation": "Los profesores están cansados. Verbo en infinitivo = ser/estar",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.15.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The teachers are tired. Verb in infinitive =",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "be"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The teachers are tired. Verb in infinitive = be"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f7f"
-    },
-    "id": "67fab6d59930102295341f7f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d392"
-    },
-    "title": "'Be' or 'do'? Activity 1",
-    "instructions": "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-    "translation": "Nosotros poseemos dos motocicletas. Verbo en infinitivo = tener",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.15.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We possess two motorcycles. Verb in infinitive =",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "have"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We possess two motorcycles. Verb in infinitive = have"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f80"
-    },
-    "id": "67fab6d59930102295341f80",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d392"
-    },
-    "title": "'Be' or 'do'? Activity 1",
-    "instructions": "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-    "translation": "Estamos en el autobús. Verbo en infinitivo = ser/estar",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.15.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We are on the bus. Verb in infinitive =",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "be"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We are on the bus. Verb in infinitive = be"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f81"
-    },
-    "id": "67fab6d59930102295341f81",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d392"
-    },
-    "title": "'Be' or 'do'? Activity 1",
-    "instructions": "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-    "translation": "Él hornea galletas cada mañana. Verbo en infinitivo = hornear",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.15.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He bakes cookies every morning. Verb in infinitive =",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "bake"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He bakes cookies every morning. Verb in infinitive = bake"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f82"
-    },
-    "id": "67fab6d59930102295341f82",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d392"
-    },
-    "title": "'Be' or 'do'? Activity 1",
-    "instructions": "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-    "translation": "Los adultos consumen mucho azúcar. Verbo en infinitivo = comer",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.15.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The adults consume a lot of sugar. Verb in infinitive =",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "eat"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The adults consume a lot of sugar. Verb in infinitive = eat"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f83"
-    },
-    "id": "67fab6d59930102295341f83",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d392"
-    },
-    "title": "'Be' or 'do'? Activity 1",
-    "instructions": "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-    "translation": "Él está en la biblioteca. Verbo en infinitivo = ser/estar",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.15.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He's at the library. Verb in infinitive =",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "be"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He's at the library. Verb in infinitive = be"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f84"
-    },
-    "id": "67fab6d59930102295341f84",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d392"
-    },
-    "title": "'Be' or 'do'? Activity 1",
-    "instructions": "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-    "translation": "Ella lee demasiados libros. Verbo en infinitivo = leer",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.15.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She reads too many books. Verb in infinitive =",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "read"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She reads too many books. Verb in infinitive = read"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f85"
-    },
-    "id": "67fab6d59930102295341f85",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d392"
-    },
-    "title": "'Be' or 'do'? Activity 1",
-    "instructions": "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-    "translation": "Los animales están en la jaula correcta. Verbo en infinitivo = ser/estar",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.15.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The animals are in the correct cage. Verb in infinitive =",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "be"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The animals are in the correct cage. Verb in infinitive = be"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f86"
-    },
-    "id": "67fab6d59930102295341f86",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d392"
-    },
-    "title": "'Be' or 'do'? Activity 1",
-    "instructions": "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-    "translation": "El perro está en la casa. Verbo en infinitivo = ser/estar",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.15.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The dog is in the house. Verb in infinitive =",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "be"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The dog is in the house. Verb in infinitive = be"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f87"
-    },
-    "id": "67fab6d59930102295341f87",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d392"
-    },
-    "title": "'Be' or 'do'? Activity 1",
-    "instructions": "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-    "translation": "Él necesita una computadora nueva. Verbo en infinitivo = querer/necesitar",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.15.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He needs a new computer. Verb in infinitive =",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "want"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He needs a new computer. Verb in infinitive = want"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f88"
-    },
-    "id": "67fab6d59930102295341f88",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d392"
-    },
-    "title": "'Be' or 'do'? Activity 1",
-    "instructions": "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-    "translation": "Ellos invierten mucho dinero en acciones. Verbo en infinitivo = gastar/invertir",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.15.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They invest a lot of money in stocks. Verb in infinitive =",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "spend"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They invest a lot of money in stocks. Verb in infinitive = spend"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f89"
-    },
-    "id": "67fab6d59930102295341f89",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d392"
-    },
-    "title": "'Be' or 'do'? Activity 1",
-    "instructions": "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-    "translation": "Nosotros visitamos regularmente las montañas en invierno. Verbo en infinitivo = ir",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.15.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We regularly visit the mountains in winter. Verb in infinitive =",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "go"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We regularly visit the mountains in winter. Verb in infinitive = go"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f8a"
-    },
-    "id": "67fab6d59930102295341f8a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d392"
-    },
-    "title": "'Be' or 'do'? Activity 1",
-    "instructions": "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-    "translation": "Soy estudiante. Verbo en infinitivo = ser/estar",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.15.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I am a student. Verb in infinitive =",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "be"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I am a student. Verb in infinitive = be"
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.15.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I am early. Verb in infinitive =",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "be" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I am early. Verb in infinitive = be" ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f78"
+  },
+  "id" : "67fab6d59930102295341f78",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d392"
+  },
+  "title" : "'Be' or 'do'? Activity 1",
+  "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
+  "translation" : "Ella disfruta del té. Verbo en infinitivo = disfrutar",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.15.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She enjoys tea. Verb in infinitive =",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "enjoy" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She enjoys tea. Verb in infinitive = enjoy" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f79"
+  },
+  "id" : "67fab6d59930102295341f79",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d392"
+  },
+  "title" : "'Be' or 'do'? Activity 1",
+  "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
+  "translation" : "Ellos trabajan en París. Verbo en infinitivo = trabajar",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.15.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They work in Paris. Verb in infinitive =",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "work" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They work in Paris. Verb in infinitive = work" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f7a"
+  },
+  "id" : "67fab6d59930102295341f7a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d392"
+  },
+  "title" : "'Be' or 'do'? Activity 1",
+  "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
+  "translation" : "Él está en el trabajo. Verbo en infinitivo = ser/estar",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.15.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is at work. Verb in infinitive =",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "be" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He is at work. Verb in infinitive = be" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f7b"
+  },
+  "id" : "67fab6d59930102295341f7b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d392"
+  },
+  "title" : "'Be' or 'do'? Activity 1",
+  "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
+  "translation" : "Ellos están en la cocina. Verbo en infinitivo = ser/estar",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.15.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They are in the kitchen. Verb in infinitive =",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "be" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They are in the kitchen. Verb in infinitive = be" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f7c"
+  },
+  "id" : "67fab6d59930102295341f7c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d392"
+  },
+  "title" : "'Be' or 'do'? Activity 1",
+  "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
+  "translation" : "Mary es de Canadá. Verbo en infinitivo = ser/estar",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.15.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Mary is from Canada. Verb in infinitive =",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "be" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Mary is from Canada. Verb in infinitive = be" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f7d"
+  },
+  "id" : "67fab6d59930102295341f7d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d392"
+  },
+  "title" : "'Be' or 'do'? Activity 1",
+  "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
+  "translation" : "Ella ve mucha televisión. Verbo en infinitivo = ver",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.15.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She watches a lot of TV. Verb in infinitive =",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "watch" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She watches a lot of TV. Verb in infinitive = watch" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f7e"
+  },
+  "id" : "67fab6d59930102295341f7e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d392"
+  },
+  "title" : "'Be' or 'do'? Activity 1",
+  "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
+  "translation" : "Los profesores están cansados. Verbo en infinitivo = ser/estar",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.15.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The teachers are tired. Verb in infinitive =",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "be" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The teachers are tired. Verb in infinitive = be" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f7f"
+  },
+  "id" : "67fab6d59930102295341f7f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d392"
+  },
+  "title" : "'Be' or 'do'? Activity 1",
+  "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
+  "translation" : "Nosotros poseemos dos motocicletas. Verbo en infinitivo = tener",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.15.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We possess two motorcycles. Verb in infinitive =",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "have" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We possess two motorcycles. Verb in infinitive = have" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f80"
+  },
+  "id" : "67fab6d59930102295341f80",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d392"
+  },
+  "title" : "'Be' or 'do'? Activity 1",
+  "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
+  "translation" : "Estamos en el autobús. Verbo en infinitivo = ser/estar",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.15.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We are on the bus. Verb in infinitive =",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "be" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We are on the bus. Verb in infinitive = be" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f81"
+  },
+  "id" : "67fab6d59930102295341f81",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d392"
+  },
+  "title" : "'Be' or 'do'? Activity 1",
+  "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
+  "translation" : "Él hornea galletas cada mañana. Verbo en infinitivo = hornear",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.15.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He bakes cookies every morning. Verb in infinitive =",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "bake" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He bakes cookies every morning. Verb in infinitive = bake" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f82"
+  },
+  "id" : "67fab6d59930102295341f82",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d392"
+  },
+  "title" : "'Be' or 'do'? Activity 1",
+  "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
+  "translation" : "Los adultos consumen mucho azúcar. Verbo en infinitivo = comer",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.15.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The adults consume a lot of sugar. Verb in infinitive =",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "eat" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The adults consume a lot of sugar. Verb in infinitive = eat" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f83"
+  },
+  "id" : "67fab6d59930102295341f83",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d392"
+  },
+  "title" : "'Be' or 'do'? Activity 1",
+  "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
+  "translation" : "Él está en la biblioteca. Verbo en infinitivo = ser/estar",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.15.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's at the library. Verb in infinitive =",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "be" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He's at the library. Verb in infinitive = be" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f84"
+  },
+  "id" : "67fab6d59930102295341f84",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d392"
+  },
+  "title" : "'Be' or 'do'? Activity 1",
+  "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
+  "translation" : "Ella lee demasiados libros. Verbo en infinitivo = leer",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.15.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She reads too many books. Verb in infinitive =",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "read" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She reads too many books. Verb in infinitive = read" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f85"
+  },
+  "id" : "67fab6d59930102295341f85",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d392"
+  },
+  "title" : "'Be' or 'do'? Activity 1",
+  "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
+  "translation" : "Los animales están en la jaula correcta. Verbo en infinitivo = ser/estar",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.15.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The animals are in the correct cage. Verb in infinitive =",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "be" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The animals are in the correct cage. Verb in infinitive = be" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f86"
+  },
+  "id" : "67fab6d59930102295341f86",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d392"
+  },
+  "title" : "'Be' or 'do'? Activity 1",
+  "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
+  "translation" : "El perro está en la casa. Verbo en infinitivo = ser/estar",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.15.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dog is in the house. Verb in infinitive =",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "be" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The dog is in the house. Verb in infinitive = be" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f87"
+  },
+  "id" : "67fab6d59930102295341f87",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d392"
+  },
+  "title" : "'Be' or 'do'? Activity 1",
+  "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
+  "translation" : "Él necesita una computadora nueva. Verbo en infinitivo = querer/necesitar",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.15.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He needs a new computer. Verb in infinitive =",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "want" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He needs a new computer. Verb in infinitive = want" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f88"
+  },
+  "id" : "67fab6d59930102295341f88",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d392"
+  },
+  "title" : "'Be' or 'do'? Activity 1",
+  "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
+  "translation" : "Ellos invierten mucho dinero en acciones. Verbo en infinitivo = gastar/invertir",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.15.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They invest a lot of money in stocks. Verb in infinitive =",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "spend" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They invest a lot of money in stocks. Verb in infinitive = spend" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f89"
+  },
+  "id" : "67fab6d59930102295341f89",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d392"
+  },
+  "title" : "'Be' or 'do'? Activity 1",
+  "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
+  "translation" : "Nosotros visitamos regularmente las montañas en invierno. Verbo en infinitivo = ir",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.15.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We regularly visit the mountains in winter. Verb in infinitive =",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "go" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We regularly visit the mountains in winter. Verb in infinitive = go" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f8a"
+  },
+  "id" : "67fab6d59930102295341f8a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d392"
+  },
+  "title" : "'Be' or 'do'? Activity 1",
+  "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
+  "translation" : "Soy estudiante. Verbo en infinitivo = ser/estar",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.15.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I am a student. Verb in infinitive =",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "be" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I am a student. Verb in infinitive = be" ]
+  }
+} ]

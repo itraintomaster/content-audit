@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953420e9"
-    },
-    "id": "67fab6d599301022953420e9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3a6"
-    },
-    "title": "Stative vs. dynamic verbs: simple or continuous",
-    "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
-    "translation": "Él odia Madrid ahora.",
-    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
-    "topicName": "Present Continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.02.16.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "hates"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(hate) Madrid now.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He hates Madrid now."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d599301022953420e9"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953420ea"
-    },
-    "id": "67fab6d599301022953420ea",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3a6"
-    },
-    "title": "Stative vs. dynamic verbs: simple or continuous",
-    "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
-    "translation": "Él está leyendo un libro ahora mismo.",
-    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
-    "topicName": "Present Continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.02.16.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "is reading"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(read) a book right now.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He is reading a book right now."
-      ]
-    }
+  "id" : "67fab6d599301022953420e9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3a6"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953420eb"
-    },
-    "id": "67fab6d599301022953420eb",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3a6"
-    },
-    "title": "Stative vs. dynamic verbs: simple or continuous",
-    "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
-    "translation": "Me encanta este vestido.",
-    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
-    "topicName": "Present Continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.02.16.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "love"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(love) this dress.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I love this dress."
-      ]
-    }
+  "title" : "Stative vs. dynamic verbs: simple or continuous",
+  "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
+  "translation" : "Él odia Madrid ahora.",
+  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
+  "topicName" : "Present Continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953420ec"
-    },
-    "id": "67fab6d599301022953420ec",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3a6"
-    },
-    "title": "Stative vs. dynamic verbs: simple or continuous",
-    "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
-    "translation": "Mi hermana está cocinando en este momento.",
-    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
-    "topicName": "Present Continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.02.16.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "My sister",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "is cooking"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(cook) at the moment.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "My sister is cooking at the moment."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953420ed"
-    },
-    "id": "67fab6d599301022953420ed",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3a6"
-    },
-    "title": "Stative vs. dynamic verbs: simple or continuous",
-    "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
-    "translation": "Ellos no están bebiendo cerveza ahora.",
-    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
-    "topicName": "Present Continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.02.16.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "are not drinking"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / drink) beer now.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They are not drinking beer now."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953420ee"
-    },
-    "id": "67fab6d599301022953420ee",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3a6"
-    },
-    "title": "Stative vs. dynamic verbs: simple or continuous",
-    "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
-    "translation": "¿Qué estás mirando?",
-    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
-    "topicName": "Present Continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.02.16.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "What",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "are you watching"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(you / watch)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "What are you watching?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953420ef"
-    },
-    "id": "67fab6d599301022953420ef",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3a6"
-    },
-    "title": "Stative vs. dynamic verbs: simple or continuous",
-    "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
-    "translation": "¿Te gustan tus profesores?",
-    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
-    "topicName": "Present Continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.02.16.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Do you like"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(you / like) your teachers?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Do you like your teachers?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953420f0"
-    },
-    "id": "67fab6d599301022953420f0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3a6"
-    },
-    "title": "Stative vs. dynamic verbs: simple or continuous",
-    "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
-    "translation": "¡Quiero comida ahora!",
-    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
-    "topicName": "Present Continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.02.16.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "want"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(want) food now!",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I want food now!"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953420f1"
-    },
-    "id": "67fab6d599301022953420f1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3a6"
-    },
-    "title": "Stative vs. dynamic verbs: simple or continuous",
-    "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
-    "translation": "Ellos están jugando al fútbol ahora.",
-    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
-    "topicName": "Present Continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.02.16.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "are playing"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(play) football now.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They are playing football now."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953420f2"
-    },
-    "id": "67fab6d599301022953420f2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3a6"
-    },
-    "title": "Stative vs. dynamic verbs: simple or continuous",
-    "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
-    "translation": "¿Qué dice este letrero?",
-    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
-    "topicName": "Present Continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.02.16.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "What",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "does this sign say"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(this sign / say)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "What does this sign say?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953420f3"
-    },
-    "id": "67fab6d599301022953420f3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3a6"
-    },
-    "title": "Stative vs. dynamic verbs: simple or continuous",
-    "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
-    "translation": "Ellos están corriendo a la casa ahora.",
-    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
-    "topicName": "Present Continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.02.16.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "are running"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(run) to the house now.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They are running to the house now."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953420f4"
-    },
-    "id": "67fab6d599301022953420f4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3a6"
-    },
-    "title": "Stative vs. dynamic verbs: simple or continuous",
-    "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
-    "translation": "Estamos nadando hoy.",
-    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
-    "topicName": "Present Continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.02.16.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "are swimming"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(swim) today.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We are swimming today."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953420f5"
-    },
-    "id": "67fab6d599301022953420f5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3a6"
-    },
-    "title": "Stative vs. dynamic verbs: simple or continuous",
-    "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
-    "translation": "No creo.",
-    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
-    "topicName": "Present Continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.02.16.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "do not believe"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / believe).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I do not believe."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953420f6"
-    },
-    "id": "67fab6d599301022953420f6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3a6"
-    },
-    "title": "Stative vs. dynamic verbs: simple or continuous",
-    "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
-    "translation": "No tengo dinero ahora.",
-    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
-    "topicName": "Present Continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.02.16.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "do not have"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / have) money now.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I do not have money now."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953420f7"
-    },
-    "id": "67fab6d599301022953420f7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3a6"
-    },
-    "title": "Stative vs. dynamic verbs: simple or continuous",
-    "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
-    "translation": "Ella está parada en la calle.",
-    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
-    "topicName": "Present Continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.02.16.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "is standing"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(stand) on the street.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She is standing on the street."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953420f8"
-    },
-    "id": "67fab6d599301022953420f8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3a6"
-    },
-    "title": "Stative vs. dynamic verbs: simple or continuous",
-    "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
-    "translation": "Él necesita una bicicleta nueva ahora mismo.",
-    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
-    "topicName": "Present Continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.02.16.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "needs"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(need) a new bicycle right now.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He needs a new bicycle right now."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953420f9"
-    },
-    "id": "67fab6d599301022953420f9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3a6"
-    },
-    "title": "Stative vs. dynamic verbs: simple or continuous",
-    "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
-    "translation": "¿Qué piensas hoy?",
-    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
-    "topicName": "Present Continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.02.16.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "What",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "do you think"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(you / think) today?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "What do you think today?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953420fa"
-    },
-    "id": "67fab6d599301022953420fa",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3a6"
-    },
-    "title": "Stative vs. dynamic verbs: simple or continuous",
-    "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
-    "translation": "Él está escribiendo una carta estos días.",
-    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
-    "topicName": "Present Continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.02.16.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "is writing"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(write) a letter these days.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He is writing a letter these days."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953420fb"
-    },
-    "id": "67fab6d599301022953420fb",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3a6"
-    },
-    "title": "Stative vs. dynamic verbs: simple or continuous",
-    "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
-    "translation": "Ese lápiz pertenece a Peter.",
-    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
-    "topicName": "Present Continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.02.16.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "That pencil",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "belongs"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(belong) to Peter.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "That pencil belongs to Peter."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953420fc"
-    },
-    "id": "67fab6d599301022953420fc",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3a6"
-    },
-    "title": "Stative vs. dynamic verbs: simple or continuous",
-    "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
-    "translation": "Lucy está trabajando aquí toda la semana.",
-    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
-    "topicName": "Present Continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.02.16.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Lucy",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "is working"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(work) here all week.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Lucy is working here all week."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.02.16.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "hates" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(hate) Madrid now.",
+      "options" : null
+    } ],
+    "sentences" : [ "He hates Madrid now." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953420ea"
+  },
+  "id" : "67fab6d599301022953420ea",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3a6"
+  },
+  "title" : "Stative vs. dynamic verbs: simple or continuous",
+  "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
+  "translation" : "Él está leyendo un libro ahora mismo.",
+  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
+  "topicName" : "Present Continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.02.16.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is reading" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(read) a book right now.",
+      "options" : null
+    } ],
+    "sentences" : [ "He is reading a book right now." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953420eb"
+  },
+  "id" : "67fab6d599301022953420eb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3a6"
+  },
+  "title" : "Stative vs. dynamic verbs: simple or continuous",
+  "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
+  "translation" : "Me encanta este vestido.",
+  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
+  "topicName" : "Present Continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.02.16.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "love" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(love) this dress.",
+      "options" : null
+    } ],
+    "sentences" : [ "I love this dress." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953420ec"
+  },
+  "id" : "67fab6d599301022953420ec",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3a6"
+  },
+  "title" : "Stative vs. dynamic verbs: simple or continuous",
+  "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
+  "translation" : "Mi hermana está cocinando en este momento.",
+  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
+  "topicName" : "Present Continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.02.16.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My sister",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is cooking" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(cook) at the moment.",
+      "options" : null
+    } ],
+    "sentences" : [ "My sister is cooking at the moment." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953420ed"
+  },
+  "id" : "67fab6d599301022953420ed",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3a6"
+  },
+  "title" : "Stative vs. dynamic verbs: simple or continuous",
+  "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
+  "translation" : "Ellos no están bebiendo cerveza ahora.",
+  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
+  "topicName" : "Present Continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.02.16.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are not drinking" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / drink) beer now.",
+      "options" : null
+    } ],
+    "sentences" : [ "They are not drinking beer now." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953420ee"
+  },
+  "id" : "67fab6d599301022953420ee",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3a6"
+  },
+  "title" : "Stative vs. dynamic verbs: simple or continuous",
+  "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
+  "translation" : "¿Qué estás mirando?",
+  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
+  "topicName" : "Present Continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.02.16.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are you watching" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / watch)?",
+      "options" : null
+    } ],
+    "sentences" : [ "What are you watching?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953420ef"
+  },
+  "id" : "67fab6d599301022953420ef",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3a6"
+  },
+  "title" : "Stative vs. dynamic verbs: simple or continuous",
+  "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
+  "translation" : "¿Te gustan tus profesores?",
+  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
+  "topicName" : "Present Continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.02.16.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Do you like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / like) your teachers?",
+      "options" : null
+    } ],
+    "sentences" : [ "Do you like your teachers?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953420f0"
+  },
+  "id" : "67fab6d599301022953420f0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3a6"
+  },
+  "title" : "Stative vs. dynamic verbs: simple or continuous",
+  "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
+  "translation" : "¡Quiero comida ahora!",
+  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
+  "topicName" : "Present Continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.02.16.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "want" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(want) food now!",
+      "options" : null
+    } ],
+    "sentences" : [ "I want food now!" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953420f1"
+  },
+  "id" : "67fab6d599301022953420f1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3a6"
+  },
+  "title" : "Stative vs. dynamic verbs: simple or continuous",
+  "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
+  "translation" : "Ellos están jugando al fútbol ahora.",
+  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
+  "topicName" : "Present Continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.02.16.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are playing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(play) football now.",
+      "options" : null
+    } ],
+    "sentences" : [ "They are playing football now." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953420f2"
+  },
+  "id" : "67fab6d599301022953420f2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3a6"
+  },
+  "title" : "Stative vs. dynamic verbs: simple or continuous",
+  "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
+  "translation" : "¿Qué dice este letrero?",
+  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
+  "topicName" : "Present Continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.02.16.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "does this sign say" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(this sign / say)?",
+      "options" : null
+    } ],
+    "sentences" : [ "What does this sign say?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953420f3"
+  },
+  "id" : "67fab6d599301022953420f3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3a6"
+  },
+  "title" : "Stative vs. dynamic verbs: simple or continuous",
+  "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
+  "translation" : "Ellos están corriendo a la casa ahora.",
+  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
+  "topicName" : "Present Continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.02.16.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are running" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(run) to the house now.",
+      "options" : null
+    } ],
+    "sentences" : [ "They are running to the house now." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953420f4"
+  },
+  "id" : "67fab6d599301022953420f4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3a6"
+  },
+  "title" : "Stative vs. dynamic verbs: simple or continuous",
+  "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
+  "translation" : "Estamos nadando hoy.",
+  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
+  "topicName" : "Present Continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.02.16.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are swimming" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(swim) today.",
+      "options" : null
+    } ],
+    "sentences" : [ "We are swimming today." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953420f5"
+  },
+  "id" : "67fab6d599301022953420f5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3a6"
+  },
+  "title" : "Stative vs. dynamic verbs: simple or continuous",
+  "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
+  "translation" : "No creo.",
+  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
+  "topicName" : "Present Continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.02.16.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "do not believe" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / believe).",
+      "options" : null
+    } ],
+    "sentences" : [ "I do not believe." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953420f6"
+  },
+  "id" : "67fab6d599301022953420f6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3a6"
+  },
+  "title" : "Stative vs. dynamic verbs: simple or continuous",
+  "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
+  "translation" : "No tengo dinero ahora.",
+  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
+  "topicName" : "Present Continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.02.16.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "do not have" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / have) money now.",
+      "options" : null
+    } ],
+    "sentences" : [ "I do not have money now." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953420f7"
+  },
+  "id" : "67fab6d599301022953420f7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3a6"
+  },
+  "title" : "Stative vs. dynamic verbs: simple or continuous",
+  "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
+  "translation" : "Ella está parada en la calle.",
+  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
+  "topicName" : "Present Continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.02.16.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is standing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(stand) on the street.",
+      "options" : null
+    } ],
+    "sentences" : [ "She is standing on the street." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953420f8"
+  },
+  "id" : "67fab6d599301022953420f8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3a6"
+  },
+  "title" : "Stative vs. dynamic verbs: simple or continuous",
+  "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
+  "translation" : "Él necesita una bicicleta nueva ahora mismo.",
+  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
+  "topicName" : "Present Continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.02.16.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "needs" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(need) a new bicycle right now.",
+      "options" : null
+    } ],
+    "sentences" : [ "He needs a new bicycle right now." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953420f9"
+  },
+  "id" : "67fab6d599301022953420f9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3a6"
+  },
+  "title" : "Stative vs. dynamic verbs: simple or continuous",
+  "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
+  "translation" : "¿Qué piensas hoy?",
+  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
+  "topicName" : "Present Continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.02.16.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "do you think" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / think) today?",
+      "options" : null
+    } ],
+    "sentences" : [ "What do you think today?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953420fa"
+  },
+  "id" : "67fab6d599301022953420fa",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3a6"
+  },
+  "title" : "Stative vs. dynamic verbs: simple or continuous",
+  "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
+  "translation" : "Él está escribiendo una carta estos días.",
+  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
+  "topicName" : "Present Continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.02.16.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is writing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(write) a letter these days.",
+      "options" : null
+    } ],
+    "sentences" : [ "He is writing a letter these days." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953420fb"
+  },
+  "id" : "67fab6d599301022953420fb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3a6"
+  },
+  "title" : "Stative vs. dynamic verbs: simple or continuous",
+  "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
+  "translation" : "Ese lápiz pertenece a Peter.",
+  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
+  "topicName" : "Present Continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.02.16.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That pencil",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "belongs" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(belong) to Peter.",
+      "options" : null
+    } ],
+    "sentences" : [ "That pencil belongs to Peter." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953420fc"
+  },
+  "id" : "67fab6d599301022953420fc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3a6"
+  },
+  "title" : "Stative vs. dynamic verbs: simple or continuous",
+  "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
+  "translation" : "Lucy está trabajando aquí toda la semana.",
+  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
+  "topicName" : "Present Continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.02.16.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Lucy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is working" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(work) here all week.",
+      "options" : null
+    } ],
+    "sentences" : [ "Lucy is working here all week." ]
+  }
+} ]

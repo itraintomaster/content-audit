@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343bc7"
-    },
-    "id": "67fab6d59930102295343bc7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d368"
-    },
-    "title": "Practicing with 'Even'",
-    "instructions": "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
-    "translation": "Él es incluso hábil en el tenis.",
-    "theoryId": "b1.16.Adverbs_of_Focus_Even",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.04.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He is skilled at tennis.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He is even skilled at tennis."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He is even skilled at tennis."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343bc7"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343bc8"
-    },
-    "id": "67fab6d59930102295343bc8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d368"
-    },
-    "title": "Practicing with 'Even'",
-    "instructions": "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
-    "translation": "La familia incluso lleva a sus mascotas de vacaciones.",
-    "theoryId": "b1.16.Adverbs_of_Focus_Even",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.04.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The family bring their pets on vacation.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The family even bring their pets on vacation."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The family even bring their pets on vacation."
-      ]
-    }
+  "id" : "67fab6d59930102295343bc7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d368"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343bc9"
-    },
-    "id": "67fab6d59930102295343bc9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d368"
-    },
-    "title": "Practicing with 'Even'",
-    "instructions": "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
-    "translation": "El Monte Everest es incluso más alto que el Mont Blanc.",
-    "theoryId": "b1.16.Adverbs_of_Focus_Even",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.04.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Mount Everest is higher than Mont Blanc.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Mount Everest is even higher than Mont Blanc."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Mount Everest is even higher than Mont Blanc."
-      ]
-    }
+  "title" : "Practicing with 'Even'",
+  "instructions" : "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
+  "translation" : "Él es incluso hábil en el tenis.",
+  "theoryId" : "b1.16.Adverbs_of_Focus_Even",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343bca"
-    },
-    "id": "67fab6d59930102295343bca",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d368"
-    },
-    "title": "Practicing with 'Even'",
-    "instructions": "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
-    "translation": "Los actores están incluso más nerviosos que el personal.",
-    "theoryId": "b1.16.Adverbs_of_Focus_Even",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.04.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The actors are more nervous than the staff.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The actors are even more nervous than the staff."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The actors are even more nervous than the staff."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343bcb"
-    },
-    "id": "67fab6d59930102295343bcb",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d368"
-    },
-    "title": "Practicing with 'Even'",
-    "instructions": "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
-    "translation": "Los turistas incluso podían quedarse adentro.",
-    "theoryId": "b1.16.Adverbs_of_Focus_Even",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.04.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The tourists could stay inside.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The tourists could even stay inside."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The tourists could even stay inside."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343bcc"
-    },
-    "id": "67fab6d59930102295343bcc",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d368"
-    },
-    "title": "Practicing with 'Even'",
-    "instructions": "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
-    "translation": "¡Incluso pinté la pared!",
-    "theoryId": "b1.16.Adverbs_of_Focus_Even",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.04.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I painted the wall!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I even painted the wall!"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I even painted the wall!"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343bcd"
-    },
-    "id": "67fab6d59930102295343bcd",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d368"
-    },
-    "title": "Practicing with 'Even'",
-    "instructions": "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
-    "translation": "Ella incluso se pone guantes en julio.",
-    "theoryId": "b1.16.Adverbs_of_Focus_Even",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.04.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She puts on gloves in July.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She even puts on gloves in July."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She even puts on gloves in July."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343bce"
-    },
-    "id": "67fab6d59930102295343bce",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d368"
-    },
-    "title": "Practicing with 'Even'",
-    "instructions": "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
-    "translation": "Incluso te daré consejos.",
-    "theoryId": "b1.16.Adverbs_of_Focus_Even",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.04.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I will give you advice.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I will even give you advice."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I will even give you advice."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343bcf"
-    },
-    "id": "67fab6d59930102295343bcf",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d368"
-    },
-    "title": "Practicing with 'Even'",
-    "instructions": "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
-    "translation": "Estamos incluso más hambrientos que los perros.",
-    "theoryId": "b1.16.Adverbs_of_Focus_Even",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.04.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We are hungrier than the dogs are.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "We are even hungrier than the dogs are."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We are even hungrier than the dogs are."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343bd0"
-    },
-    "id": "67fab6d59930102295343bd0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d368"
-    },
-    "title": "Practicing with 'Even'",
-    "instructions": "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
-    "translation": "Incluso podrían conducir nuestra camioneta.",
-    "theoryId": "b1.16.Adverbs_of_Focus_Even",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.04.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They could drive our van.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They could even drive our van."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They could even drive our van."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343bd1"
-    },
-    "id": "67fab6d59930102295343bd1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d368"
-    },
-    "title": "Practicing with 'Even'",
-    "instructions": "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
-    "translation": "Ella es incluso más joven que mi hermana.",
-    "theoryId": "b1.16.Adverbs_of_Focus_Even",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.04.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She is younger than my sister.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She is even younger than my sister."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She is even younger than my sister."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343bd2"
-    },
-    "id": "67fab6d59930102295343bd2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d368"
-    },
-    "title": "Practicing with 'Even'",
-    "instructions": "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
-    "translation": "David es incluso más creativo que Paul.",
-    "theoryId": "b1.16.Adverbs_of_Focus_Even",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.04.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "David is more creative than Paul.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "David is even more creative than Paul."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "David is even more creative than Paul."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343bd3"
-    },
-    "id": "67fab6d59930102295343bd3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d368"
-    },
-    "title": "Practicing with 'Even'",
-    "instructions": "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
-    "translation": "Esta sopa es incluso más sabrosa que la otra.",
-    "theoryId": "b1.16.Adverbs_of_Focus_Even",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.04.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "This soup is tastier than the other one.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "This soup is even tastier than the other one."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "This soup is even tastier than the other one."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343bd4"
-    },
-    "id": "67fab6d59930102295343bd4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d368"
-    },
-    "title": "Practicing with 'Even'",
-    "instructions": "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
-    "translation": "¡Él llega incluso antes que ellos!",
-    "theoryId": "b1.16.Adverbs_of_Focus_Even",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.04.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He is earlier than they are!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He is even earlier than they are!"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He is even earlier than they are!"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343bd5"
-    },
-    "id": "67fab6d59930102295343bd5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d368"
-    },
-    "title": "Practicing with 'Even'",
-    "instructions": "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
-    "translation": "Ella incluso viajó a la montaña con él.",
-    "theoryId": "b1.16.Adverbs_of_Focus_Even",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.04.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She travelled to the mountain with him.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She even travelled to the mountain with him."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She even travelled to the mountain with him."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343bd6"
-    },
-    "id": "67fab6d59930102295343bd6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d368"
-    },
-    "title": "Practicing with 'Even'",
-    "instructions": "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
-    "translation": "Su salsa es incluso más picante que la mía.",
-    "theoryId": "b1.16.Adverbs_of_Focus_Even",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.04.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Their salsa is hotter than mine.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Their salsa is even hotter than mine."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Their salsa is even hotter than mine."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343bd7"
-    },
-    "id": "67fab6d59930102295343bd7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d368"
-    },
-    "title": "Practicing with 'Even'",
-    "instructions": "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
-    "translation": "Esta escultura es incluso más impresionante que la anterior que vimos.",
-    "theoryId": "b1.16.Adverbs_of_Focus_Even",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.04.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "This sculpture is more impressive than the prior one we saw.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "This sculpture is even more impressive than the prior one we saw."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "This sculpture is even more impressive than the prior one we saw."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343bd8"
-    },
-    "id": "67fab6d59930102295343bd8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d368"
-    },
-    "title": "Practicing with 'Even'",
-    "instructions": "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
-    "translation": "Incluso puede que llame esta noche también.",
-    "theoryId": "b1.16.Adverbs_of_Focus_Even",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.04.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He may call tonight also.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He may even call tonight also."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He may even call tonight also."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343bd9"
-    },
-    "id": "67fab6d59930102295343bd9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d368"
-    },
-    "title": "Practicing with 'Even'",
-    "instructions": "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
-    "translation": "¡Son incluso más ricos que nosotros!",
-    "theoryId": "b1.16.Adverbs_of_Focus_Even",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.04.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They are wealthier than us!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They are even wealthier than us!"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They are even wealthier than us!"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343bda"
-    },
-    "id": "67fab6d59930102295343bda",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d368"
-    },
-    "title": "Practicing with 'Even'",
-    "instructions": "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
-    "translation": "Incluso compramos patatas fritas muy saladas.",
-    "theoryId": "b1.16.Adverbs_of_Focus_Even",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.04.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We buy very salty crisps.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "We even buy very salty crisps."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We even buy very salty crisps."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.04.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is skilled at tennis.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He is even skilled at tennis." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He is even skilled at tennis." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343bc8"
+  },
+  "id" : "67fab6d59930102295343bc8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d368"
+  },
+  "title" : "Practicing with 'Even'",
+  "instructions" : "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
+  "translation" : "La familia incluso lleva a sus mascotas de vacaciones.",
+  "theoryId" : "b1.16.Adverbs_of_Focus_Even",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.04.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The family bring their pets on vacation.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The family even bring their pets on vacation." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The family even bring their pets on vacation." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343bc9"
+  },
+  "id" : "67fab6d59930102295343bc9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d368"
+  },
+  "title" : "Practicing with 'Even'",
+  "instructions" : "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
+  "translation" : "El Monte Everest es incluso más alto que el Mont Blanc.",
+  "theoryId" : "b1.16.Adverbs_of_Focus_Even",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.04.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Mount Everest is higher than Mont Blanc.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Mount Everest is even higher than Mont Blanc." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Mount Everest is even higher than Mont Blanc." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343bca"
+  },
+  "id" : "67fab6d59930102295343bca",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d368"
+  },
+  "title" : "Practicing with 'Even'",
+  "instructions" : "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
+  "translation" : "Los actores están incluso más nerviosos que el personal.",
+  "theoryId" : "b1.16.Adverbs_of_Focus_Even",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.04.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The actors are more nervous than the staff.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The actors are even more nervous than the staff." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The actors are even more nervous than the staff." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343bcb"
+  },
+  "id" : "67fab6d59930102295343bcb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d368"
+  },
+  "title" : "Practicing with 'Even'",
+  "instructions" : "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
+  "translation" : "Los turistas incluso podían quedarse adentro.",
+  "theoryId" : "b1.16.Adverbs_of_Focus_Even",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.04.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The tourists could stay inside.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The tourists could even stay inside." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The tourists could even stay inside." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343bcc"
+  },
+  "id" : "67fab6d59930102295343bcc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d368"
+  },
+  "title" : "Practicing with 'Even'",
+  "instructions" : "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
+  "translation" : "¡Incluso pinté la pared!",
+  "theoryId" : "b1.16.Adverbs_of_Focus_Even",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.04.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I painted the wall!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I even painted the wall!" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I even painted the wall!" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343bcd"
+  },
+  "id" : "67fab6d59930102295343bcd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d368"
+  },
+  "title" : "Practicing with 'Even'",
+  "instructions" : "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
+  "translation" : "Ella incluso se pone guantes en julio.",
+  "theoryId" : "b1.16.Adverbs_of_Focus_Even",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.04.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She puts on gloves in July.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She even puts on gloves in July." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She even puts on gloves in July." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343bce"
+  },
+  "id" : "67fab6d59930102295343bce",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d368"
+  },
+  "title" : "Practicing with 'Even'",
+  "instructions" : "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
+  "translation" : "Incluso te daré consejos.",
+  "theoryId" : "b1.16.Adverbs_of_Focus_Even",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.04.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I will give you advice.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I will even give you advice." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I will even give you advice." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343bcf"
+  },
+  "id" : "67fab6d59930102295343bcf",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d368"
+  },
+  "title" : "Practicing with 'Even'",
+  "instructions" : "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
+  "translation" : "Estamos incluso más hambrientos que los perros.",
+  "theoryId" : "b1.16.Adverbs_of_Focus_Even",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.04.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We are hungrier than the dogs are.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We are even hungrier than the dogs are." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We are even hungrier than the dogs are." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343bd0"
+  },
+  "id" : "67fab6d59930102295343bd0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d368"
+  },
+  "title" : "Practicing with 'Even'",
+  "instructions" : "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
+  "translation" : "Incluso podrían conducir nuestra camioneta.",
+  "theoryId" : "b1.16.Adverbs_of_Focus_Even",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.04.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They could drive our van.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They could even drive our van." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They could even drive our van." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343bd1"
+  },
+  "id" : "67fab6d59930102295343bd1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d368"
+  },
+  "title" : "Practicing with 'Even'",
+  "instructions" : "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
+  "translation" : "Ella es incluso más joven que mi hermana.",
+  "theoryId" : "b1.16.Adverbs_of_Focus_Even",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.04.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is younger than my sister.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She is even younger than my sister." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She is even younger than my sister." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343bd2"
+  },
+  "id" : "67fab6d59930102295343bd2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d368"
+  },
+  "title" : "Practicing with 'Even'",
+  "instructions" : "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
+  "translation" : "David es incluso más creativo que Paul.",
+  "theoryId" : "b1.16.Adverbs_of_Focus_Even",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.04.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "David is more creative than Paul.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "David is even more creative than Paul." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "David is even more creative than Paul." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343bd3"
+  },
+  "id" : "67fab6d59930102295343bd3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d368"
+  },
+  "title" : "Practicing with 'Even'",
+  "instructions" : "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
+  "translation" : "Esta sopa es incluso más sabrosa que la otra.",
+  "theoryId" : "b1.16.Adverbs_of_Focus_Even",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.04.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This soup is tastier than the other one.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "This soup is even tastier than the other one." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "This soup is even tastier than the other one." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343bd4"
+  },
+  "id" : "67fab6d59930102295343bd4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d368"
+  },
+  "title" : "Practicing with 'Even'",
+  "instructions" : "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
+  "translation" : "¡Él llega incluso antes que ellos!",
+  "theoryId" : "b1.16.Adverbs_of_Focus_Even",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.04.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is earlier than they are!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He is even earlier than they are!" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He is even earlier than they are!" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343bd5"
+  },
+  "id" : "67fab6d59930102295343bd5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d368"
+  },
+  "title" : "Practicing with 'Even'",
+  "instructions" : "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
+  "translation" : "Ella incluso viajó a la montaña con él.",
+  "theoryId" : "b1.16.Adverbs_of_Focus_Even",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.04.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She travelled to the mountain with him.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She even travelled to the mountain with him." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She even travelled to the mountain with him." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343bd6"
+  },
+  "id" : "67fab6d59930102295343bd6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d368"
+  },
+  "title" : "Practicing with 'Even'",
+  "instructions" : "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
+  "translation" : "Su salsa es incluso más picante que la mía.",
+  "theoryId" : "b1.16.Adverbs_of_Focus_Even",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.04.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Their salsa is hotter than mine.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Their salsa is even hotter than mine." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Their salsa is even hotter than mine." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343bd7"
+  },
+  "id" : "67fab6d59930102295343bd7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d368"
+  },
+  "title" : "Practicing with 'Even'",
+  "instructions" : "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
+  "translation" : "Esta escultura es incluso más impresionante que la anterior que vimos.",
+  "theoryId" : "b1.16.Adverbs_of_Focus_Even",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.04.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This sculpture is more impressive than the prior one we saw.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "This sculpture is even more impressive than the prior one we saw." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "This sculpture is even more impressive than the prior one we saw." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343bd8"
+  },
+  "id" : "67fab6d59930102295343bd8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d368"
+  },
+  "title" : "Practicing with 'Even'",
+  "instructions" : "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
+  "translation" : "Incluso puede que llame esta noche también.",
+  "theoryId" : "b1.16.Adverbs_of_Focus_Even",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.04.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He may call tonight also.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He may even call tonight also." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He may even call tonight also." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343bd9"
+  },
+  "id" : "67fab6d59930102295343bd9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d368"
+  },
+  "title" : "Practicing with 'Even'",
+  "instructions" : "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
+  "translation" : "¡Son incluso más ricos que nosotros!",
+  "theoryId" : "b1.16.Adverbs_of_Focus_Even",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.04.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They are wealthier than us!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They are even wealthier than us!" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They are even wealthier than us!" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343bda"
+  },
+  "id" : "67fab6d59930102295343bda",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d368"
+  },
+  "title" : "Practicing with 'Even'",
+  "instructions" : "Modifica la oración para que incluya 'even'. Coloca 'even' antes del comparativo, si hay un comparativo. De lo contrario, coloca 'even' en la posición 'mid'.",
+  "translation" : "Incluso compramos patatas fritas muy saladas.",
+  "theoryId" : "b1.16.Adverbs_of_Focus_Even",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.04.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We buy very salty crisps.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We even buy very salty crisps." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We even buy very salty crisps." ]
+  }
+} ]

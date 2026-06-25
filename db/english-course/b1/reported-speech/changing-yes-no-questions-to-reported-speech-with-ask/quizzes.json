@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534375d"
-    },
-    "id": "67fab6d5993010229534375d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d326"
-    },
-    "title": "Changing Yes/No Questions to Reported Speech with 'Ask'",
-    "instructions": "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
-    "translation": "Me preguntó si yo trabajaba en Londres.",
-    "theoryId": "b1.10.Reported_Questions_with_Ask",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.10.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Do you work in London?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He asked me if I worked in London."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He asked me if I worked in London."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534375d"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534375e"
-    },
-    "id": "67fab6d5993010229534375e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d326"
-    },
-    "title": "Changing Yes/No Questions to Reported Speech with 'Ask'",
-    "instructions": "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
-    "translation": "Me preguntó si yo estaba escribiendo una carta.",
-    "theoryId": "b1.10.Reported_Questions_with_Ask",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.10.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Are you writing a letter?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He asked me if I was writing a letter."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He asked me if I was writing a letter."
-      ]
-    }
+  "id" : "67fab6d5993010229534375d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d326"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534375f"
-    },
-    "id": "67fab6d5993010229534375f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d326"
-    },
-    "title": "Changing Yes/No Questions to Reported Speech with 'Ask'",
-    "instructions": "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
-    "translation": "Me preguntó si él estaba comprando el coche.",
-    "theoryId": "b1.10.Reported_Questions_with_Ask",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.10.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Is he buying the car?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He asked me if he was buying the car."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He asked me if he was buying the car."
-      ]
-    }
+  "title" : "Changing Yes/No Questions to Reported Speech with 'Ask'",
+  "instructions" : "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
+  "translation" : "Me preguntó si yo trabajaba en Londres.",
+  "theoryId" : "b1.10.Reported_Questions_with_Ask",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343760"
-    },
-    "id": "67fab6d59930102295343760",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d326"
-    },
-    "title": "Changing Yes/No Questions to Reported Speech with 'Ask'",
-    "instructions": "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
-    "translation": "Me preguntó si ella tocaba el piano.",
-    "theoryId": "b1.10.Reported_Questions_with_Ask",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.10.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Does she play the piano?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He asked me if she played the piano."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He asked me if she played the piano."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343761"
-    },
-    "id": "67fab6d59930102295343761",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d326"
-    },
-    "title": "Changing Yes/No Questions to Reported Speech with 'Ask'",
-    "instructions": "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
-    "translation": "Me preguntó si mi hija era aficionada al arte.",
-    "theoryId": "b1.10.Reported_Questions_with_Ask",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.10.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Is your daughter keen on art?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He asked me if my daughter was keen on art."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He asked me if my daughter was keen on art."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343762"
-    },
-    "id": "67fab6d59930102295343762",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d326"
-    },
-    "title": "Changing Yes/No Questions to Reported Speech with 'Ask'",
-    "instructions": "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
-    "translation": "Me preguntó si yo necesitaba ayuda.",
-    "theoryId": "b1.10.Reported_Questions_with_Ask",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.10.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Do you need some help?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He asked me if I needed some help."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He asked me if I needed some help."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343763"
-    },
-    "id": "67fab6d59930102295343763",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d326"
-    },
-    "title": "Changing Yes/No Questions to Reported Speech with 'Ask'",
-    "instructions": "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
-    "translation": "Me preguntó si Mary aprendía italiano.",
-    "theoryId": "b1.10.Reported_Questions_with_Ask",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.10.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Does Mary learn Italian?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He asked me if Mary learned Italian."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He asked me if Mary learned Italian."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343764"
-    },
-    "id": "67fab6d59930102295343764",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d326"
-    },
-    "title": "Changing Yes/No Questions to Reported Speech with 'Ask'",
-    "instructions": "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
-    "translation": "Me preguntó si ellos eran médicos.",
-    "theoryId": "b1.10.Reported_Questions_with_Ask",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.10.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Are they doctors?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He asked me if they were doctors."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He asked me if they were doctors."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343765"
-    },
-    "id": "67fab6d59930102295343765",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d326"
-    },
-    "title": "Changing Yes/No Questions to Reported Speech with 'Ask'",
-    "instructions": "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
-    "translation": "Me preguntó si yo iba al concierto.",
-    "theoryId": "b1.10.Reported_Questions_with_Ask",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.10.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Are you going to the concert?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He asked me if I was going to the concert."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He asked me if I was going to the concert."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343766"
-    },
-    "id": "67fab6d59930102295343766",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d326"
-    },
-    "title": "Changing Yes/No Questions to Reported Speech with 'Ask'",
-    "instructions": "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
-    "translation": "Me preguntó si yo visitaba usualmente a Mark.",
-    "theoryId": "b1.10.Reported_Questions_with_Ask",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.10.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Do you usually visit Mark?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He asked me if I usually visited Mark."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He asked me if I usually visited Mark."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343767"
-    },
-    "id": "67fab6d59930102295343767",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d326"
-    },
-    "title": "Changing Yes/No Questions to Reported Speech with 'Ask'",
-    "instructions": "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
-    "translation": "Me preguntó si ellos bebían leche.",
-    "theoryId": "b1.10.Reported_Questions_with_Ask",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.10.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Do they drink milk?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He asked me if they drank milk."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He asked me if they drank milk."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343768"
-    },
-    "id": "67fab6d59930102295343768",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d326"
-    },
-    "title": "Changing Yes/No Questions to Reported Speech with 'Ask'",
-    "instructions": "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
-    "translation": "Me preguntó si los padres llegaban temprano al trabajo.",
-    "theoryId": "b1.10.Reported_Questions_with_Ask",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.10.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Are the parents early for work?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He asked me if the parents were early for work."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He asked me if the parents were early for work."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343769"
-    },
-    "id": "67fab6d59930102295343769",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d326"
-    },
-    "title": "Changing Yes/No Questions to Reported Speech with 'Ask'",
-    "instructions": "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
-    "translation": "Me preguntó si ella era enfermera.",
-    "theoryId": "b1.10.Reported_Questions_with_Ask",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.10.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Is she a nurse?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He asked me if she was a nurse."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He asked me if she was a nurse."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534376a"
-    },
-    "id": "67fab6d5993010229534376a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d326"
-    },
-    "title": "Changing Yes/No Questions to Reported Speech with 'Ask'",
-    "instructions": "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
-    "translation": "Me preguntó si yo prefería té.",
-    "theoryId": "b1.10.Reported_Questions_with_Ask",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.10.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Do you prefer tea?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He asked me if I preferred tea."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He asked me if I preferred tea."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534376b"
-    },
-    "id": "67fab6d5993010229534376b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d326"
-    },
-    "title": "Changing Yes/No Questions to Reported Speech with 'Ask'",
-    "instructions": "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
-    "translation": "Me preguntó si ellos estaban pintando la valla.",
-    "theoryId": "b1.10.Reported_Questions_with_Ask",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.10.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Are they painting the fence?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He asked me if they were painting the fence."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He asked me if they were painting the fence."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534376c"
-    },
-    "id": "67fab6d5993010229534376c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d326"
-    },
-    "title": "Changing Yes/No Questions to Reported Speech with 'Ask'",
-    "instructions": "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
-    "translation": "Me preguntó si estaba nevando.",
-    "theoryId": "b1.10.Reported_Questions_with_Ask",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.10.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Is it snowing?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He asked me if it was snowing."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He asked me if it was snowing."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534376d"
-    },
-    "id": "67fab6d5993010229534376d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d326"
-    },
-    "title": "Changing Yes/No Questions to Reported Speech with 'Ask'",
-    "instructions": "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
-    "translation": "Me preguntó si él estaba nadando.",
-    "theoryId": "b1.10.Reported_Questions_with_Ask",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.10.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Is he swimming?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He asked me if he was swimming."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He asked me if he was swimming."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534376e"
-    },
-    "id": "67fab6d5993010229534376e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d326"
-    },
-    "title": "Changing Yes/No Questions to Reported Speech with 'Ask'",
-    "instructions": "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
-    "translation": "Me preguntó si ellos comían muchos dulces.",
-    "theoryId": "b1.10.Reported_Questions_with_Ask",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.10.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Do they eat many sweets?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He asked me if they ate many sweets."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He asked me if they ate many sweets."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534376f"
-    },
-    "id": "67fab6d5993010229534376f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d326"
-    },
-    "title": "Changing Yes/No Questions to Reported Speech with 'Ask'",
-    "instructions": "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
-    "translation": "Me preguntó si yo estaba cansado.",
-    "theoryId": "b1.10.Reported_Questions_with_Ask",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.10.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Are you tired?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He asked me if I was tired."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He asked me if I was tired."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343770"
-    },
-    "id": "67fab6d59930102295343770",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d326"
-    },
-    "title": "Changing Yes/No Questions to Reported Speech with 'Ask'",
-    "instructions": "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
-    "translation": "Me preguntó si ella tenía sed.",
-    "theoryId": "b1.10.Reported_Questions_with_Ask",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.10.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Is she thirsty?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He asked me if she was thirsty."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He asked me if she was thirsty."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.10.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you work in London?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He asked me if I worked in London." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He asked me if I worked in London." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534375e"
+  },
+  "id" : "67fab6d5993010229534375e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d326"
+  },
+  "title" : "Changing Yes/No Questions to Reported Speech with 'Ask'",
+  "instructions" : "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
+  "translation" : "Me preguntó si yo estaba escribiendo una carta.",
+  "theoryId" : "b1.10.Reported_Questions_with_Ask",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.10.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are you writing a letter?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He asked me if I was writing a letter." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He asked me if I was writing a letter." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534375f"
+  },
+  "id" : "67fab6d5993010229534375f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d326"
+  },
+  "title" : "Changing Yes/No Questions to Reported Speech with 'Ask'",
+  "instructions" : "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
+  "translation" : "Me preguntó si él estaba comprando el coche.",
+  "theoryId" : "b1.10.Reported_Questions_with_Ask",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.10.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is he buying the car?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He asked me if he was buying the car." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He asked me if he was buying the car." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343760"
+  },
+  "id" : "67fab6d59930102295343760",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d326"
+  },
+  "title" : "Changing Yes/No Questions to Reported Speech with 'Ask'",
+  "instructions" : "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
+  "translation" : "Me preguntó si ella tocaba el piano.",
+  "theoryId" : "b1.10.Reported_Questions_with_Ask",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.10.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Does she play the piano?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He asked me if she played the piano." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He asked me if she played the piano." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343761"
+  },
+  "id" : "67fab6d59930102295343761",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d326"
+  },
+  "title" : "Changing Yes/No Questions to Reported Speech with 'Ask'",
+  "instructions" : "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
+  "translation" : "Me preguntó si mi hija era aficionada al arte.",
+  "theoryId" : "b1.10.Reported_Questions_with_Ask",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.10.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is your daughter keen on art?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He asked me if my daughter was keen on art." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He asked me if my daughter was keen on art." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343762"
+  },
+  "id" : "67fab6d59930102295343762",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d326"
+  },
+  "title" : "Changing Yes/No Questions to Reported Speech with 'Ask'",
+  "instructions" : "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
+  "translation" : "Me preguntó si yo necesitaba ayuda.",
+  "theoryId" : "b1.10.Reported_Questions_with_Ask",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.10.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you need some help?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He asked me if I needed some help." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He asked me if I needed some help." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343763"
+  },
+  "id" : "67fab6d59930102295343763",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d326"
+  },
+  "title" : "Changing Yes/No Questions to Reported Speech with 'Ask'",
+  "instructions" : "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
+  "translation" : "Me preguntó si Mary aprendía italiano.",
+  "theoryId" : "b1.10.Reported_Questions_with_Ask",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.10.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Does Mary learn Italian?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He asked me if Mary learned Italian." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He asked me if Mary learned Italian." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343764"
+  },
+  "id" : "67fab6d59930102295343764",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d326"
+  },
+  "title" : "Changing Yes/No Questions to Reported Speech with 'Ask'",
+  "instructions" : "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
+  "translation" : "Me preguntó si ellos eran médicos.",
+  "theoryId" : "b1.10.Reported_Questions_with_Ask",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.10.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are they doctors?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He asked me if they were doctors." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He asked me if they were doctors." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343765"
+  },
+  "id" : "67fab6d59930102295343765",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d326"
+  },
+  "title" : "Changing Yes/No Questions to Reported Speech with 'Ask'",
+  "instructions" : "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
+  "translation" : "Me preguntó si yo iba al concierto.",
+  "theoryId" : "b1.10.Reported_Questions_with_Ask",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.10.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are you going to the concert?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He asked me if I was going to the concert." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He asked me if I was going to the concert." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343766"
+  },
+  "id" : "67fab6d59930102295343766",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d326"
+  },
+  "title" : "Changing Yes/No Questions to Reported Speech with 'Ask'",
+  "instructions" : "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
+  "translation" : "Me preguntó si yo visitaba usualmente a Mark.",
+  "theoryId" : "b1.10.Reported_Questions_with_Ask",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.10.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you usually visit Mark?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He asked me if I usually visited Mark." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He asked me if I usually visited Mark." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343767"
+  },
+  "id" : "67fab6d59930102295343767",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d326"
+  },
+  "title" : "Changing Yes/No Questions to Reported Speech with 'Ask'",
+  "instructions" : "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
+  "translation" : "Me preguntó si ellos bebían leche.",
+  "theoryId" : "b1.10.Reported_Questions_with_Ask",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.10.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do they drink milk?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He asked me if they drank milk." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He asked me if they drank milk." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343768"
+  },
+  "id" : "67fab6d59930102295343768",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d326"
+  },
+  "title" : "Changing Yes/No Questions to Reported Speech with 'Ask'",
+  "instructions" : "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
+  "translation" : "Me preguntó si los padres llegaban temprano al trabajo.",
+  "theoryId" : "b1.10.Reported_Questions_with_Ask",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.10.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are the parents early for work?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He asked me if the parents were early for work." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He asked me if the parents were early for work." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343769"
+  },
+  "id" : "67fab6d59930102295343769",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d326"
+  },
+  "title" : "Changing Yes/No Questions to Reported Speech with 'Ask'",
+  "instructions" : "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
+  "translation" : "Me preguntó si ella era enfermera.",
+  "theoryId" : "b1.10.Reported_Questions_with_Ask",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.10.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is she a nurse?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He asked me if she was a nurse." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He asked me if she was a nurse." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534376a"
+  },
+  "id" : "67fab6d5993010229534376a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d326"
+  },
+  "title" : "Changing Yes/No Questions to Reported Speech with 'Ask'",
+  "instructions" : "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
+  "translation" : "Me preguntó si yo prefería té.",
+  "theoryId" : "b1.10.Reported_Questions_with_Ask",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.10.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you prefer tea?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He asked me if I preferred tea." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He asked me if I preferred tea." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534376b"
+  },
+  "id" : "67fab6d5993010229534376b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d326"
+  },
+  "title" : "Changing Yes/No Questions to Reported Speech with 'Ask'",
+  "instructions" : "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
+  "translation" : "Me preguntó si ellos estaban pintando la valla.",
+  "theoryId" : "b1.10.Reported_Questions_with_Ask",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.10.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are they painting the fence?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He asked me if they were painting the fence." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He asked me if they were painting the fence." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534376c"
+  },
+  "id" : "67fab6d5993010229534376c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d326"
+  },
+  "title" : "Changing Yes/No Questions to Reported Speech with 'Ask'",
+  "instructions" : "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
+  "translation" : "Me preguntó si estaba nevando.",
+  "theoryId" : "b1.10.Reported_Questions_with_Ask",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.10.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is it snowing?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He asked me if it was snowing." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He asked me if it was snowing." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534376d"
+  },
+  "id" : "67fab6d5993010229534376d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d326"
+  },
+  "title" : "Changing Yes/No Questions to Reported Speech with 'Ask'",
+  "instructions" : "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
+  "translation" : "Me preguntó si él estaba nadando.",
+  "theoryId" : "b1.10.Reported_Questions_with_Ask",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.10.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is he swimming?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He asked me if he was swimming." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He asked me if he was swimming." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534376e"
+  },
+  "id" : "67fab6d5993010229534376e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d326"
+  },
+  "title" : "Changing Yes/No Questions to Reported Speech with 'Ask'",
+  "instructions" : "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
+  "translation" : "Me preguntó si ellos comían muchos dulces.",
+  "theoryId" : "b1.10.Reported_Questions_with_Ask",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.10.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do they eat many sweets?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He asked me if they ate many sweets." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He asked me if they ate many sweets." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534376f"
+  },
+  "id" : "67fab6d5993010229534376f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d326"
+  },
+  "title" : "Changing Yes/No Questions to Reported Speech with 'Ask'",
+  "instructions" : "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
+  "translation" : "Me preguntó si yo estaba cansado.",
+  "theoryId" : "b1.10.Reported_Questions_with_Ask",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.10.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are you tired?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He asked me if I was tired." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He asked me if I was tired." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343770"
+  },
+  "id" : "67fab6d59930102295343770",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d326"
+  },
+  "title" : "Changing Yes/No Questions to Reported Speech with 'Ask'",
+  "instructions" : "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
+  "translation" : "Me preguntó si ella tenía sed.",
+  "theoryId" : "b1.10.Reported_Questions_with_Ask",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.10.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is she thirsty?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He asked me if she was thirsty." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He asked me if she was thirsty." ]
+  }
+} ]

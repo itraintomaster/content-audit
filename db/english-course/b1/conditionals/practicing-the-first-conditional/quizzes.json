@@ -1,1462 +1,1201 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953439f1"
-    },
-    "id": "67fab6d599301022953439f1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34d"
-    },
-    "title": "Practicing the First Conditional",
-    "instructions": "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-    "translation": "Si los gatos duermen todo el día, estarán despiertos toda la noche.",
-    "theoryId": "b1.14.First_Conditionals_Future_Real_Conditionals_",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.02.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If the cats",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "sleep"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(sleep) all day, they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will be"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) awake all night.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If the cats sleep all day, they will be awake all night."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d599301022953439f1"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953439f2"
-    },
-    "id": "67fab6d599301022953439f2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34d"
-    },
-    "title": "Practicing the First Conditional",
-    "instructions": "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-    "translation": "Ellos comerán pizza si ella la pide.",
-    "theoryId": "b1.14.First_Conditionals_Future_Real_Conditionals_",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.02.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will eat"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(eat) pizza if she",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "orders"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(order) it.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They will eat pizza if she orders it."
-      ]
-    }
+  "id" : "67fab6d599301022953439f1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34d"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953439f3"
-    },
-    "id": "67fab6d599301022953439f3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34d"
-    },
-    "title": "Practicing the First Conditional",
-    "instructions": "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-    "translation": "Si él no paga la multa puntualmente, tendrá más problemas.",
-    "theoryId": "b1.14.First_Conditionals_Future_Real_Conditionals_",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.02.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If he",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "does not pay"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / pay) the fine promptly, he",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will have"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(have) more problems.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If he does not pay the fine promptly, he will have more problems."
-      ]
-    }
+  "title" : "Practicing the First Conditional",
+  "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
+  "translation" : "Si los gatos duermen todo el día, estarán despiertos toda la noche.",
+  "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953439f4"
-    },
-    "id": "67fab6d599301022953439f4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34d"
-    },
-    "title": "Practicing the First Conditional",
-    "instructions": "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-    "translation": "Si él corre rápido, ganará la carrera.",
-    "theoryId": "b1.14.First_Conditionals_Future_Real_Conditionals_",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.02.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If he",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "runs"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(run) fast, he",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will win"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(win) the race.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If he runs fast, he will win the race."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953439f5"
-    },
-    "id": "67fab6d599301022953439f5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34d"
-    },
-    "title": "Practicing the First Conditional",
-    "instructions": "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-    "translation": "Aprenderé a hablar español si viajo a España.",
-    "theoryId": "b1.14.First_Conditionals_Future_Real_Conditionals_",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.02.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will learn"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(learn) to speak Spanish if I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "travel"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(travel) to Spain.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I will learn to speak Spanish if I travel to Spain."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953439f6"
-    },
-    "id": "67fab6d599301022953439f6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34d"
-    },
-    "title": "Practicing the First Conditional",
-    "instructions": "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-    "translation": "Si los conductores exceden el límite de velocidad, recibirán una multa.",
-    "theoryId": "b1.14.First_Conditionals_Future_Real_Conditionals_",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.02.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If the drivers",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "exceed"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(exceed) the speed limit, they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will receive"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(receive) a ticket.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If the drivers exceed the speed limit, they will receive a ticket."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953439f7"
-    },
-    "id": "67fab6d599301022953439f7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34d"
-    },
-    "title": "Practicing the First Conditional",
-    "instructions": "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-    "translation": "Él sabrá la respuesta si escucha al profesor.",
-    "theoryId": "b1.14.First_Conditionals_Future_Real_Conditionals_",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.02.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will know"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(know) the answer if he",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "listens"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(listen) to the teacher.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He will know the answer if he listens to the teacher."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953439f8"
-    },
-    "id": "67fab6d599301022953439f8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34d"
-    },
-    "title": "Practicing the First Conditional",
-    "instructions": "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-    "translation": "Si ellos solicitan el informe, se los enviaré.",
-    "theoryId": "b1.14.First_Conditionals_Future_Real_Conditionals_",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.02.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "request"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(request) the report, I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will send"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(send) it to them.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If they request the report, I will send it to them."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953439f9"
-    },
-    "id": "67fab6d599301022953439f9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34d"
-    },
-    "title": "Practicing the First Conditional",
-    "instructions": "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-    "translation": "Los pájaros cantarán si encuentran las semillas.",
-    "theoryId": "b1.14.First_Conditionals_Future_Real_Conditionals_",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.02.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The birds",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will sing"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(sing) if they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "find"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(find) the seeds.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The birds will sing if they find the seeds."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953439fa"
-    },
-    "id": "67fab6d599301022953439fa",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34d"
-    },
-    "title": "Practicing the First Conditional",
-    "instructions": "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-    "translation": "Si ellos conducen al supermercado, comprarán la leche.",
-    "theoryId": "b1.14.First_Conditionals_Future_Real_Conditionals_",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.02.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "drive"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(drive) to the supermarket, they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will buy"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(buy) the milk.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If they drive to the supermarket, they will buy the milk."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953439fb"
-    },
-    "id": "67fab6d599301022953439fb",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34d"
-    },
-    "title": "Practicing the First Conditional",
-    "instructions": "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-    "translation": "Si ellos usan una chaqueta, se sentirán más abrigados.",
-    "theoryId": "b1.14.First_Conditionals_Future_Real_Conditionals_",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.02.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "wear"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(wear) a jacket, they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will feel"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(feel) warmer.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If they wear a jacket, they will feel warmer."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953439fc"
-    },
-    "id": "67fab6d599301022953439fc",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34d"
-    },
-    "title": "Practicing the First Conditional",
-    "instructions": "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-    "translation": "Él no comprará un coche nuevo si no necesita uno.",
-    "theoryId": "b1.14.First_Conditionals_Future_Real_Conditionals_",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.02.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will not buy"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / buy) a new car if he",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "doesn't need"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / need) one.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He will not buy a new car if he doesn't need one."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953439fd"
-    },
-    "id": "67fab6d599301022953439fd",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34d"
-    },
-    "title": "Practicing the First Conditional",
-    "instructions": "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-    "translation": "Si él hornea más pan, lo venderá todo.",
-    "theoryId": "b1.14.First_Conditionals_Future_Real_Conditionals_",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.02.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If he",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "bakes"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(bake) more bread, he",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will sell"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(sell) it all.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If he bakes more bread, he will sell it all."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953439fe"
-    },
-    "id": "67fab6d599301022953439fe",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34d"
-    },
-    "title": "Practicing the First Conditional",
-    "instructions": "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-    "translation": "Si el tren llega tarde, ellos se perderán el concierto.",
-    "theoryId": "b1.14.First_Conditionals_Future_Real_Conditionals_",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.02.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If the train",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "arrives"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(arrive) late, they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will miss"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(miss) the concert.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If the train arrives late, they will miss the concert."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953439ff"
-    },
-    "id": "67fab6d599301022953439ff",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34d"
-    },
-    "title": "Practicing the First Conditional",
-    "instructions": "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-    "translation": "Te visitaré si quieres que lo haga.",
-    "theoryId": "b1.14.First_Conditionals_Future_Real_Conditionals_",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.02.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will visit"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(visit) you if you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "want"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(want) me to.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I will visit you if you want me to."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a00"
-    },
-    "id": "67fab6d59930102295343a00",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34d"
-    },
-    "title": "Practicing the First Conditional",
-    "instructions": "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-    "translation": "El chef servirá el postre si ellos lo piden.",
-    "theoryId": "b1.14.First_Conditionals_Future_Real_Conditionals_",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.02.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The chef",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will serve"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(serve) dessert if they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "ask"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(ask) for it.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The chef will serve dessert if they ask for it."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a01"
-    },
-    "id": "67fab6d59930102295343a01",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34d"
-    },
-    "title": "Practicing the First Conditional",
-    "instructions": "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-    "translation": "John se encargará de esto si confiamos en él completamente.",
-    "theoryId": "b1.14.First_Conditionals_Future_Real_Conditionals_",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.02.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "John",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will handle"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(handle) it if we",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "trust"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(trust) him completely.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "John will handle it if we trust him completely."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a02"
-    },
-    "id": "67fab6d59930102295343a02",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34d"
-    },
-    "title": "Practicing the First Conditional",
-    "instructions": "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-    "translation": "Si Mary se aburre, no se quedará más tiempo.",
-    "theoryId": "b1.14.First_Conditionals_Future_Real_Conditionals_",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.02.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If Mary",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "gets"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(get) bored, she",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will not stay"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / stay) any longer.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If Mary gets bored, she will not stay any longer."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a03"
-    },
-    "id": "67fab6d59930102295343a03",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34d"
-    },
-    "title": "Practicing the First Conditional",
-    "instructions": "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-    "translation": "Si no traigo mi cámara, usaré mi teléfono.",
-    "theoryId": "b1.14.First_Conditionals_Future_Real_Conditionals_",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.02.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "do not bring"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / bring) my camera, I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will use"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(use) my phone.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If I do not bring my camera, I will use my phone."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a04"
-    },
-    "id": "67fab6d59930102295343a04",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34d"
-    },
-    "title": "Practicing the First Conditional",
-    "instructions": "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-    "translation": "El público aplaudirá fuerte si les gusta el espectáculo.",
-    "theoryId": "b1.14.First_Conditionals_Future_Real_Conditionals_",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.02.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The audience",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will clap"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(clap) loudly if they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "like"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(like) the show.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The audience will clap loudly if they like the show."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.02.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If the cats",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "sleep" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(sleep) all day, they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will be" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) awake all night.",
+      "options" : null
+    } ],
+    "sentences" : [ "If the cats sleep all day, they will be awake all night." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953439f2"
+  },
+  "id" : "67fab6d599301022953439f2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34d"
+  },
+  "title" : "Practicing the First Conditional",
+  "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
+  "translation" : "Ellos comerán pizza si ella la pide.",
+  "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.02.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will eat" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(eat) pizza if she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "orders" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(order) it.",
+      "options" : null
+    } ],
+    "sentences" : [ "They will eat pizza if she orders it." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953439f3"
+  },
+  "id" : "67fab6d599301022953439f3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34d"
+  },
+  "title" : "Practicing the First Conditional",
+  "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
+  "translation" : "Si él no paga la multa puntualmente, tendrá más problemas.",
+  "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.02.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "does not pay" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / pay) the fine promptly, he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will have" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(have) more problems.",
+      "options" : null
+    } ],
+    "sentences" : [ "If he does not pay the fine promptly, he will have more problems." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953439f4"
+  },
+  "id" : "67fab6d599301022953439f4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34d"
+  },
+  "title" : "Practicing the First Conditional",
+  "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
+  "translation" : "Si él corre rápido, ganará la carrera.",
+  "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.02.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "runs" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(run) fast, he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will win" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(win) the race.",
+      "options" : null
+    } ],
+    "sentences" : [ "If he runs fast, he will win the race." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953439f5"
+  },
+  "id" : "67fab6d599301022953439f5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34d"
+  },
+  "title" : "Practicing the First Conditional",
+  "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
+  "translation" : "Aprenderé a hablar español si viajo a España.",
+  "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.02.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will learn" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(learn) to speak Spanish if I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "travel" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(travel) to Spain.",
+      "options" : null
+    } ],
+    "sentences" : [ "I will learn to speak Spanish if I travel to Spain." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953439f6"
+  },
+  "id" : "67fab6d599301022953439f6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34d"
+  },
+  "title" : "Practicing the First Conditional",
+  "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
+  "translation" : "Si los conductores exceden el límite de velocidad, recibirán una multa.",
+  "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.02.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If the drivers",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "exceed" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(exceed) the speed limit, they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will receive" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(receive) a ticket.",
+      "options" : null
+    } ],
+    "sentences" : [ "If the drivers exceed the speed limit, they will receive a ticket." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953439f7"
+  },
+  "id" : "67fab6d599301022953439f7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34d"
+  },
+  "title" : "Practicing the First Conditional",
+  "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
+  "translation" : "Él sabrá la respuesta si escucha al profesor.",
+  "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.02.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will know" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(know) the answer if he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "listens" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(listen) to the teacher.",
+      "options" : null
+    } ],
+    "sentences" : [ "He will know the answer if he listens to the teacher." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953439f8"
+  },
+  "id" : "67fab6d599301022953439f8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34d"
+  },
+  "title" : "Practicing the First Conditional",
+  "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
+  "translation" : "Si ellos solicitan el informe, se los enviaré.",
+  "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.02.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "request" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(request) the report, I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will send" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(send) it to them.",
+      "options" : null
+    } ],
+    "sentences" : [ "If they request the report, I will send it to them." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953439f9"
+  },
+  "id" : "67fab6d599301022953439f9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34d"
+  },
+  "title" : "Practicing the First Conditional",
+  "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
+  "translation" : "Los pájaros cantarán si encuentran las semillas.",
+  "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.02.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The birds",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will sing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(sing) if they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "find" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(find) the seeds.",
+      "options" : null
+    } ],
+    "sentences" : [ "The birds will sing if they find the seeds." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953439fa"
+  },
+  "id" : "67fab6d599301022953439fa",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34d"
+  },
+  "title" : "Practicing the First Conditional",
+  "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
+  "translation" : "Si ellos conducen al supermercado, comprarán la leche.",
+  "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.02.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "drive" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(drive) to the supermarket, they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will buy" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(buy) the milk.",
+      "options" : null
+    } ],
+    "sentences" : [ "If they drive to the supermarket, they will buy the milk." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953439fb"
+  },
+  "id" : "67fab6d599301022953439fb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34d"
+  },
+  "title" : "Practicing the First Conditional",
+  "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
+  "translation" : "Si ellos usan una chaqueta, se sentirán más abrigados.",
+  "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.02.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "wear" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(wear) a jacket, they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will feel" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(feel) warmer.",
+      "options" : null
+    } ],
+    "sentences" : [ "If they wear a jacket, they will feel warmer." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953439fc"
+  },
+  "id" : "67fab6d599301022953439fc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34d"
+  },
+  "title" : "Practicing the First Conditional",
+  "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
+  "translation" : "Él no comprará un coche nuevo si no necesita uno.",
+  "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.02.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will not buy" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / buy) a new car if he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "doesn't need" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / need) one.",
+      "options" : null
+    } ],
+    "sentences" : [ "He will not buy a new car if he doesn't need one." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953439fd"
+  },
+  "id" : "67fab6d599301022953439fd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34d"
+  },
+  "title" : "Practicing the First Conditional",
+  "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
+  "translation" : "Si él hornea más pan, lo venderá todo.",
+  "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.02.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "bakes" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(bake) more bread, he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will sell" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(sell) it all.",
+      "options" : null
+    } ],
+    "sentences" : [ "If he bakes more bread, he will sell it all." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953439fe"
+  },
+  "id" : "67fab6d599301022953439fe",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34d"
+  },
+  "title" : "Practicing the First Conditional",
+  "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
+  "translation" : "Si el tren llega tarde, ellos se perderán el concierto.",
+  "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.02.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If the train",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "arrives" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(arrive) late, they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will miss" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(miss) the concert.",
+      "options" : null
+    } ],
+    "sentences" : [ "If the train arrives late, they will miss the concert." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953439ff"
+  },
+  "id" : "67fab6d599301022953439ff",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34d"
+  },
+  "title" : "Practicing the First Conditional",
+  "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
+  "translation" : "Te visitaré si quieres que lo haga.",
+  "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.02.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will visit" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(visit) you if you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "want" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(want) me to.",
+      "options" : null
+    } ],
+    "sentences" : [ "I will visit you if you want me to." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a00"
+  },
+  "id" : "67fab6d59930102295343a00",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34d"
+  },
+  "title" : "Practicing the First Conditional",
+  "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
+  "translation" : "El chef servirá el postre si ellos lo piden.",
+  "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.02.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The chef",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will serve" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(serve) dessert if they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "ask" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(ask) for it.",
+      "options" : null
+    } ],
+    "sentences" : [ "The chef will serve dessert if they ask for it." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a01"
+  },
+  "id" : "67fab6d59930102295343a01",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34d"
+  },
+  "title" : "Practicing the First Conditional",
+  "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
+  "translation" : "John se encargará de esto si confiamos en él completamente.",
+  "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.02.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "John",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will handle" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(handle) it if we",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "trust" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(trust) him completely.",
+      "options" : null
+    } ],
+    "sentences" : [ "John will handle it if we trust him completely." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a02"
+  },
+  "id" : "67fab6d59930102295343a02",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34d"
+  },
+  "title" : "Practicing the First Conditional",
+  "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
+  "translation" : "Si Mary se aburre, no se quedará más tiempo.",
+  "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.02.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If Mary",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "gets" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(get) bored, she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will not stay" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / stay) any longer.",
+      "options" : null
+    } ],
+    "sentences" : [ "If Mary gets bored, she will not stay any longer." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a03"
+  },
+  "id" : "67fab6d59930102295343a03",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34d"
+  },
+  "title" : "Practicing the First Conditional",
+  "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
+  "translation" : "Si no traigo mi cámara, usaré mi teléfono.",
+  "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.02.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "do not bring" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / bring) my camera, I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will use" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(use) my phone.",
+      "options" : null
+    } ],
+    "sentences" : [ "If I do not bring my camera, I will use my phone." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a04"
+  },
+  "id" : "67fab6d59930102295343a04",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34d"
+  },
+  "title" : "Practicing the First Conditional",
+  "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
+  "translation" : "El público aplaudirá fuerte si les gusta el espectáculo.",
+  "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.02.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The audience",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will clap" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(clap) loudly if they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(like) the show.",
+      "options" : null
+    } ],
+    "sentences" : [ "The audience will clap loudly if they like the show." ]
+  }
+} ]

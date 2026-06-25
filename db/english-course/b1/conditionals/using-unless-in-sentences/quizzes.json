@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a05"
-    },
-    "id": "67fab6d59930102295343a05",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34e"
-    },
-    "title": "Using 'Unless' in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la palabra 'unless'.",
-    "translation": "Iremos a la playa a menos que llueva.",
-    "theoryId": "b1.14.Unless",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.03.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We'll go to the beach except if it rains.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "We'll go to the beach unless it rains."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We'll go to the beach unless it rains."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a05"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a06"
-    },
-    "id": "67fab6d59930102295343a06",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34e"
-    },
-    "title": "Using 'Unless' in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la palabra 'unless'.",
-    "translation": "Él tocará la guitarra a menos que esté demasiado ocupado.",
-    "theoryId": "b1.14.Unless",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.03.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He'll play the guitar except if he's too busy.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He'll play the guitar unless he's too busy."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He'll play the guitar unless he's too busy."
-      ]
-    }
+  "id" : "67fab6d59930102295343a05",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34e"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a07"
-    },
-    "id": "67fab6d59930102295343a07",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34e"
-    },
-    "title": "Using 'Unless' in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la palabra 'unless'.",
-    "translation": "Normalmente me siento feliz a menos que vea demasiada televisión.",
-    "theoryId": "b1.14.Unless",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.03.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I usually feel happy expect if I watch too much TV.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I usually feel happy unless I watch too much TV."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I usually feel happy unless I watch too much TV."
-      ]
-    }
+  "title" : "Using 'Unless' in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la palabra 'unless'.",
+  "translation" : "Iremos a la playa a menos que llueva.",
+  "theoryId" : "b1.14.Unless",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a08"
-    },
-    "id": "67fab6d59930102295343a08",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34e"
-    },
-    "title": "Using 'Unless' in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la palabra 'unless'.",
-    "translation": "Nadar es un gran ejercicio a menos que tengas problemas con los hombros.",
-    "theoryId": "b1.14.Unless",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.03.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Swimming is great exercise except if you have problems with your shoulders.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Swimming is great exercise unless you have problems with your shoulders."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Swimming is great exercise unless you have problems with your shoulders."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a09"
-    },
-    "id": "67fab6d59930102295343a09",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34e"
-    },
-    "title": "Using 'Unless' in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la palabra 'unless'.",
-    "translation": "No compro flores a menos que sea el Día de San Valentín.",
-    "theoryId": "b1.14.Unless",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.03.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I don't buy flowers except if it's Valentine's Day.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I don't buy flowers unless it's Valentine's Day."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I don't buy flowers unless it's Valentine's Day."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a0a"
-    },
-    "id": "67fab6d59930102295343a0a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34e"
-    },
-    "title": "Using 'Unless' in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la palabra 'unless'.",
-    "translation": "Ellos pintarán la casa a menos que estén de vacaciones.",
-    "theoryId": "b1.14.Unless",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.03.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They'll paint the house except if they're away on vacation.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They'll paint the house unless they're away on vacation."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They'll paint the house unless they're away on vacation."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a0b"
-    },
-    "id": "67fab6d59930102295343a0b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34e"
-    },
-    "title": "Using 'Unless' in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la palabra 'unless'.",
-    "translation": "Ella no beberá jugo a menos que esté recién exprimido.",
-    "theoryId": "b1.14.Unless",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.03.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She won't drink juice except if it's freshly squeezed.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She won't drink juice unless it's freshly squeezed."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She won't drink juice unless it's freshly squeezed."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a0c"
-    },
-    "id": "67fab6d59930102295343a0c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34e"
-    },
-    "title": "Using 'Unless' in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la palabra 'unless'.",
-    "translation": "No llegarás temprano a menos que te vayas ahora mismo.",
-    "theoryId": "b1.14.Unless",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.03.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "You won't arrive early except if you leave right now.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "You won't arrive early unless you leave right now."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "You won't arrive early unless you leave right now."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a0d"
-    },
-    "id": "67fab6d59930102295343a0d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34e"
-    },
-    "title": "Using 'Unless' in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la palabra 'unless'.",
-    "translation": "Él va en bicicleta al trabajo a menos que esté lloviendo.",
-    "theoryId": "b1.14.Unless",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.03.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He cycles to work except if it's raining.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He cycles to work unless it's raining."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He cycles to work unless it's raining."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a0e"
-    },
-    "id": "67fab6d59930102295343a0e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34e"
-    },
-    "title": "Using 'Unless' in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la palabra 'unless'.",
-    "translation": "Los estudiantes disfrutan leyendo libros a menos que haya muchas imágenes.",
-    "theoryId": "b1.14.Unless",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.03.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The students enjoy reading books except if there are many pictures.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The students enjoy reading books unless there are many pictures."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The students enjoy reading books unless there are many pictures."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a0f"
-    },
-    "id": "67fab6d59930102295343a0f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34e"
-    },
-    "title": "Using 'Unless' in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la palabra 'unless'.",
-    "translation": "Ellos no comen pizza a menos que sea una fiesta de pizza.",
-    "theoryId": "b1.14.Unless",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.03.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They don't eat pizza except if it's a pizza party.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They don't eat pizza unless it's a pizza party."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They don't eat pizza unless it's a pizza party."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a10"
-    },
-    "id": "67fab6d59930102295343a10",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34e"
-    },
-    "title": "Using 'Unless' in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la palabra 'unless'.",
-    "translation": "Ella no compra dulces a menos que sea Halloween.",
-    "theoryId": "b1.14.Unless",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.03.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She doesn't buy candies except if it's Halloween.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She doesn't buy candies unless it's Halloween."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She doesn't buy candies unless it's Halloween."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a11"
-    },
-    "id": "67fab6d59930102295343a11",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34e"
-    },
-    "title": "Using 'Unless' in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la palabra 'unless'.",
-    "translation": "No comemos carne a menos que sea orgánica.",
-    "theoryId": "b1.14.Unless",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.03.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We don't eat meat except if it's organic.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "We don't eat meat unless it's organic."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We don't eat meat unless it's organic."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a12"
-    },
-    "id": "67fab6d59930102295343a12",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34e"
-    },
-    "title": "Using 'Unless' in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la palabra 'unless'.",
-    "translation": "Ellos no irán allí a menos que ella esté disponible.",
-    "theoryId": "b1.14.Unless",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.03.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They won't go there except if she's available.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They won't go there unless she's available."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They won't go there unless she's available."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a13"
-    },
-    "id": "67fab6d59930102295343a13",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34e"
-    },
-    "title": "Using 'Unless' in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la palabra 'unless'.",
-    "translation": "Ella vendrá de visita a menos que se sienta enferma.",
-    "theoryId": "b1.14.Unless",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.03.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She'll come to visit except if she feels sick.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She'll come to visit unless she feels sick."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She'll come to visit unless she feels sick."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a14"
-    },
-    "id": "67fab6d59930102295343a14",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34e"
-    },
-    "title": "Using 'Unless' in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la palabra 'unless'.",
-    "translation": "Iremos al cine a menos que tengas que trabajar horas extras.",
-    "theoryId": "b1.14.Unless",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.03.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We'll go to the movies except if you have to work overtime.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "We'll go to the movies unless you have to work overtime."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We'll go to the movies unless you have to work overtime."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a15"
-    },
-    "id": "67fab6d59930102295343a15",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34e"
-    },
-    "title": "Using 'Unless' in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la palabra 'unless'.",
-    "translation": "Ella duerme bien a menos que tenga pesadillas.",
-    "theoryId": "b1.14.Unless",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.03.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She sleeps well except if she has nightmares.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She sleeps well unless she has nightmares."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She sleeps well unless she has nightmares."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a16"
-    },
-    "id": "67fab6d59930102295343a16",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34e"
-    },
-    "title": "Using 'Unless' in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la palabra 'unless'.",
-    "translation": "Él no usa sombrero a menos que haga mucho sol.",
-    "theoryId": "b1.14.Unless",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.03.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He doesn't wear a hat except if it's really sunny.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He doesn't wear a hat unless it's really sunny."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He doesn't wear a hat unless it's really sunny."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a17"
-    },
-    "id": "67fab6d59930102295343a17",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34e"
-    },
-    "title": "Using 'Unless' in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la palabra 'unless'.",
-    "translation": "Disfruto cocinar a menos que la receta sea muy difícil.",
-    "theoryId": "b1.14.Unless",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.03.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I enjoy cooking except if the recipe is really difficult.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I enjoy cooking unless the recipe is really difficult."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I enjoy cooking unless the recipe is really difficult."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343a18"
-    },
-    "id": "67fab6d59930102295343a18",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d34e"
-    },
-    "title": "Using 'Unless' in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la palabra 'unless'.",
-    "translation": "La playa está llena de gente a menos que sea temprano en la mañana.",
-    "theoryId": "b1.14.Unless",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.14.03.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The beach is crowded except if it's early in the morning.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The beach is crowded unless it's early in the morning."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The beach is crowded unless it's early in the morning."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We'll go to the beach except if it rains.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We'll go to the beach unless it rains." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We'll go to the beach unless it rains." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a06"
+  },
+  "id" : "67fab6d59930102295343a06",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34e"
+  },
+  "title" : "Using 'Unless' in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la palabra 'unless'.",
+  "translation" : "Él tocará la guitarra a menos que esté demasiado ocupado.",
+  "theoryId" : "b1.14.Unless",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He'll play the guitar except if he's too busy.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He'll play the guitar unless he's too busy." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He'll play the guitar unless he's too busy." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a07"
+  },
+  "id" : "67fab6d59930102295343a07",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34e"
+  },
+  "title" : "Using 'Unless' in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la palabra 'unless'.",
+  "translation" : "Normalmente me siento feliz a menos que vea demasiada televisión.",
+  "theoryId" : "b1.14.Unless",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I usually feel happy expect if I watch too much TV.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I usually feel happy unless I watch too much TV." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I usually feel happy unless I watch too much TV." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a08"
+  },
+  "id" : "67fab6d59930102295343a08",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34e"
+  },
+  "title" : "Using 'Unless' in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la palabra 'unless'.",
+  "translation" : "Nadar es un gran ejercicio a menos que tengas problemas con los hombros.",
+  "theoryId" : "b1.14.Unless",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Swimming is great exercise except if you have problems with your shoulders.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Swimming is great exercise unless you have problems with your shoulders." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Swimming is great exercise unless you have problems with your shoulders." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a09"
+  },
+  "id" : "67fab6d59930102295343a09",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34e"
+  },
+  "title" : "Using 'Unless' in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la palabra 'unless'.",
+  "translation" : "No compro flores a menos que sea el Día de San Valentín.",
+  "theoryId" : "b1.14.Unless",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't buy flowers except if it's Valentine's Day.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I don't buy flowers unless it's Valentine's Day." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I don't buy flowers unless it's Valentine's Day." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a0a"
+  },
+  "id" : "67fab6d59930102295343a0a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34e"
+  },
+  "title" : "Using 'Unless' in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la palabra 'unless'.",
+  "translation" : "Ellos pintarán la casa a menos que estén de vacaciones.",
+  "theoryId" : "b1.14.Unless",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They'll paint the house except if they're away on vacation.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They'll paint the house unless they're away on vacation." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They'll paint the house unless they're away on vacation." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a0b"
+  },
+  "id" : "67fab6d59930102295343a0b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34e"
+  },
+  "title" : "Using 'Unless' in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la palabra 'unless'.",
+  "translation" : "Ella no beberá jugo a menos que esté recién exprimido.",
+  "theoryId" : "b1.14.Unless",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She won't drink juice except if it's freshly squeezed.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She won't drink juice unless it's freshly squeezed." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She won't drink juice unless it's freshly squeezed." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a0c"
+  },
+  "id" : "67fab6d59930102295343a0c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34e"
+  },
+  "title" : "Using 'Unless' in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la palabra 'unless'.",
+  "translation" : "No llegarás temprano a menos que te vayas ahora mismo.",
+  "theoryId" : "b1.14.Unless",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You won't arrive early except if you leave right now.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "You won't arrive early unless you leave right now." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "You won't arrive early unless you leave right now." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a0d"
+  },
+  "id" : "67fab6d59930102295343a0d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34e"
+  },
+  "title" : "Using 'Unless' in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la palabra 'unless'.",
+  "translation" : "Él va en bicicleta al trabajo a menos que esté lloviendo.",
+  "theoryId" : "b1.14.Unless",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He cycles to work except if it's raining.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He cycles to work unless it's raining." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He cycles to work unless it's raining." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a0e"
+  },
+  "id" : "67fab6d59930102295343a0e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34e"
+  },
+  "title" : "Using 'Unless' in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la palabra 'unless'.",
+  "translation" : "Los estudiantes disfrutan leyendo libros a menos que haya muchas imágenes.",
+  "theoryId" : "b1.14.Unless",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The students enjoy reading books except if there are many pictures.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The students enjoy reading books unless there are many pictures." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The students enjoy reading books unless there are many pictures." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a0f"
+  },
+  "id" : "67fab6d59930102295343a0f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34e"
+  },
+  "title" : "Using 'Unless' in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la palabra 'unless'.",
+  "translation" : "Ellos no comen pizza a menos que sea una fiesta de pizza.",
+  "theoryId" : "b1.14.Unless",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They don't eat pizza except if it's a pizza party.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They don't eat pizza unless it's a pizza party." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They don't eat pizza unless it's a pizza party." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a10"
+  },
+  "id" : "67fab6d59930102295343a10",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34e"
+  },
+  "title" : "Using 'Unless' in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la palabra 'unless'.",
+  "translation" : "Ella no compra dulces a menos que sea Halloween.",
+  "theoryId" : "b1.14.Unless",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She doesn't buy candies except if it's Halloween.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She doesn't buy candies unless it's Halloween." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She doesn't buy candies unless it's Halloween." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a11"
+  },
+  "id" : "67fab6d59930102295343a11",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34e"
+  },
+  "title" : "Using 'Unless' in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la palabra 'unless'.",
+  "translation" : "No comemos carne a menos que sea orgánica.",
+  "theoryId" : "b1.14.Unless",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We don't eat meat except if it's organic.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We don't eat meat unless it's organic." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We don't eat meat unless it's organic." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a12"
+  },
+  "id" : "67fab6d59930102295343a12",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34e"
+  },
+  "title" : "Using 'Unless' in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la palabra 'unless'.",
+  "translation" : "Ellos no irán allí a menos que ella esté disponible.",
+  "theoryId" : "b1.14.Unless",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They won't go there except if she's available.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They won't go there unless she's available." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They won't go there unless she's available." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a13"
+  },
+  "id" : "67fab6d59930102295343a13",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34e"
+  },
+  "title" : "Using 'Unless' in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la palabra 'unless'.",
+  "translation" : "Ella vendrá de visita a menos que se sienta enferma.",
+  "theoryId" : "b1.14.Unless",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She'll come to visit except if she feels sick.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She'll come to visit unless she feels sick." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She'll come to visit unless she feels sick." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a14"
+  },
+  "id" : "67fab6d59930102295343a14",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34e"
+  },
+  "title" : "Using 'Unless' in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la palabra 'unless'.",
+  "translation" : "Iremos al cine a menos que tengas que trabajar horas extras.",
+  "theoryId" : "b1.14.Unless",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We'll go to the movies except if you have to work overtime.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We'll go to the movies unless you have to work overtime." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We'll go to the movies unless you have to work overtime." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a15"
+  },
+  "id" : "67fab6d59930102295343a15",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34e"
+  },
+  "title" : "Using 'Unless' in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la palabra 'unless'.",
+  "translation" : "Ella duerme bien a menos que tenga pesadillas.",
+  "theoryId" : "b1.14.Unless",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She sleeps well except if she has nightmares.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She sleeps well unless she has nightmares." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She sleeps well unless she has nightmares." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a16"
+  },
+  "id" : "67fab6d59930102295343a16",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34e"
+  },
+  "title" : "Using 'Unless' in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la palabra 'unless'.",
+  "translation" : "Él no usa sombrero a menos que haga mucho sol.",
+  "theoryId" : "b1.14.Unless",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He doesn't wear a hat except if it's really sunny.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He doesn't wear a hat unless it's really sunny." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He doesn't wear a hat unless it's really sunny." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a17"
+  },
+  "id" : "67fab6d59930102295343a17",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34e"
+  },
+  "title" : "Using 'Unless' in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la palabra 'unless'.",
+  "translation" : "Disfruto cocinar a menos que la receta sea muy difícil.",
+  "theoryId" : "b1.14.Unless",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I enjoy cooking except if the recipe is really difficult.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I enjoy cooking unless the recipe is really difficult." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I enjoy cooking unless the recipe is really difficult." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343a18"
+  },
+  "id" : "67fab6d59930102295343a18",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d34e"
+  },
+  "title" : "Using 'Unless' in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la palabra 'unless'.",
+  "translation" : "La playa está llena de gente a menos que sea temprano en la mañana.",
+  "theoryId" : "b1.14.Unless",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.14.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The beach is crowded except if it's early in the morning.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The beach is crowded unless it's early in the morning." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The beach is crowded unless it's early in the morning." ]
+  }
+} ]

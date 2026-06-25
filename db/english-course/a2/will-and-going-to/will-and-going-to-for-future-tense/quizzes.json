@@ -1,1240 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953426ef"
-    },
-    "id": "67fab6d599301022953426ef",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d22c"
-    },
-    "title": "'Will' and 'Going to' for Future Tense",
-    "instructions": "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-    "translation": "¿Estás ocupado? Si es así, lo haré por ti.",
-    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
-    "topicName": "'Will' and 'Going To'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.02.03.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Are you busy? If so, I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'ll|will"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "do it for you.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Are you busy? If so, I'll do it for you.",
-        "Are you busy? If so, I will do it for you."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d599301022953426ef"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953426f0"
-    },
-    "id": "67fab6d599301022953426f0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d22c"
-    },
-    "title": "'Will' and 'Going to' for Future Tense",
-    "instructions": "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-    "translation": "Susan va a hornear un pastel. Lo programó antes.",
-    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
-    "topicName": "'Will' and 'Going To'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.02.03.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Susan",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "is going to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "bake a cake. She scheduled it earlier.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Susan is going to bake a cake. She scheduled it earlier."
-      ]
-    }
+  "id" : "67fab6d599301022953426ef",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d22c"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953426f1"
-    },
-    "id": "67fab6d599301022953426f1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d22c"
-    },
-    "title": "'Will' and 'Going to' for Future Tense",
-    "instructions": "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-    "translation": "Los estudiantes van a tener un examen mañana. Está en el horario.",
-    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
-    "topicName": "'Will' and 'Going To'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.02.03.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The students",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "are going to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "have a test tomorrow. It's on the schedule.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The students are going to have a test tomorrow. It's on the schedule."
-      ]
-    }
+  "title" : "'Will' and 'Going to' for Future Tense",
+  "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
+  "translation" : "¿Estás ocupado? Si es así, lo haré por ti.",
+  "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+  "topicName" : "'Will' and 'Going To'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953426f2"
-    },
-    "id": "67fab6d599301022953426f2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d22c"
-    },
-    "title": "'Will' and 'Going to' for Future Tense",
-    "instructions": "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-    "translation": "¿Puedes llevar eso? Lo llevaré por ti.",
-    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
-    "topicName": "'Will' and 'Going To'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.02.03.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Can you carry that? I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'ll|will"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "carry it for you.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Can you carry that? I'll carry it for you.",
-        "Can you carry that? I will carry it for you."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953426f3"
-    },
-    "id": "67fab6d599301022953426f3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d22c"
-    },
-    "title": "'Will' and 'Going to' for Future Tense",
-    "instructions": "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-    "translation": "A: ¿Podrías llevarme? B: ¡Claro! Lo haré con gusto.",
-    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
-    "topicName": "'Will' and 'Going To'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.02.03.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: Could you drop me off? B: Sure! I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'ll|will"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "do it gladly.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: Could you drop me off? B: Sure! I'll do it gladly.",
-        "A: Could you drop me off? B: Sure! I will do it gladly."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953426f4"
-    },
-    "id": "67fab6d599301022953426f4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d22c"
-    },
-    "title": "'Will' and 'Going to' for Future Tense",
-    "instructions": "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-    "translation": "Van a visitar a Peter más tarde. Lo planearon la semana pasada.",
-    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
-    "topicName": "'Will' and 'Going To'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.02.03.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'re going to|are going to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "visit Peter later. They planned it last week.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They're going to visit Peter later. They planned it last week.",
-        "They are going to visit Peter later. They planned it last week."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953426f5"
-    },
-    "id": "67fab6d599301022953426f5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d22c"
-    },
-    "title": "'Will' and 'Going to' for Future Tense",
-    "instructions": "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-    "translation": "Ella va a enviar un mensaje de texto cuando se vaya. Lo confirmó antes.",
-    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
-    "topicName": "'Will' and 'Going To'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.02.03.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'s going to|is going to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "text when she leaves. She confirmed it earlier.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She's going to text when she leaves. She confirmed it earlier.",
-        "She is going to text when she leaves. She confirmed it earlier."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953426f6"
-    },
-    "id": "67fab6d599301022953426f6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d22c"
-    },
-    "title": "'Will' and 'Going to' for Future Tense",
-    "instructions": "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-    "translation": "Vamos a renovar la casa el año que viene. Obtuvimos los permisos.",
-    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
-    "topicName": "'Will' and 'Going To'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.02.03.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'re going to|are going to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "renovate the house next year. We got the permits.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We're going to renovate the house next year. We got the permits.",
-        "We are going to renovate the house next year. We got the permits."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953426f7"
-    },
-    "id": "67fab6d599301022953426f7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d22c"
-    },
-    "title": "'Will' and 'Going to' for Future Tense",
-    "instructions": "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-    "translation": "A: Me siento exhausto. B: Prepararé un poco de té.",
-    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
-    "topicName": "'Will' and 'Going To'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.02.03.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: I feel exhausted. B: I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'ll|will"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "make some tea.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: I feel exhausted. B: I'll make some tea.",
-        "A: I feel exhausted. B: I will make some tea."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953426f8"
-    },
-    "id": "67fab6d599301022953426f8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d22c"
-    },
-    "title": "'Will' and 'Going to' for Future Tense",
-    "instructions": "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-    "translation": "Él va a llegar a las 6. Me lo dijo esta mañana.",
-    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
-    "topicName": "'Will' and 'Going To'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.02.03.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'s going to|is going to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "arrive at 6. He told me this morning.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He's going to arrive at 6. He told me this morning.",
-        "He is going to arrive at 6. He told me this morning."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953426f9"
-    },
-    "id": "67fab6d599301022953426f9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d22c"
-    },
-    "title": "'Will' and 'Going to' for Future Tense",
-    "instructions": "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-    "translation": "A: Está muy oscuro aquí. B: Encenderé la luz.",
-    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
-    "topicName": "'Will' and 'Going To'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.02.03.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: It's really dark in here. B: I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'ll|will"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "switch on the light.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: It's really dark in here. B: I'll switch on the light.",
-        "A: It's really dark in here. B: I will switch on the light."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953426fa"
-    },
-    "id": "67fab6d599301022953426fa",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d22c"
-    },
-    "title": "'Will' and 'Going to' for Future Tense",
-    "instructions": "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-    "translation": "Se está oscureciendo. Encenderé la luz.",
-    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
-    "topicName": "'Will' and 'Going To'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.02.03.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "It gets dark. I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'ll|will"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "turn on the light.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "It gets dark. I'll turn on the light.",
-        "It gets dark. I will turn on the light."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953426fb"
-    },
-    "id": "67fab6d599301022953426fb",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d22c"
-    },
-    "title": "'Will' and 'Going to' for Future Tense",
-    "instructions": "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-    "translation": "Él se va a convertir en ingeniero después de terminar la universidad. Siempre le ha apasionado.",
-    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
-    "topicName": "'Will' and 'Going To'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.02.03.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'s going to|is going to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "become an engineer after he finishes college. He's always been passionate about it.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He's going to become an engineer after he finishes college. He's always been passionate about it.",
-        "He is going to become an engineer after he finishes college. He's always been passionate about it."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953426fc"
-    },
-    "id": "67fab6d599301022953426fc",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d22c"
-    },
-    "title": "'Will' and 'Going to' for Future Tense",
-    "instructions": "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-    "translation": "Van a comprar una casa nueva pronto. Firmaron los papeles.",
-    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
-    "topicName": "'Will' and 'Going To'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.02.03.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'re going to|are going to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "buy a new house soon. They signed the papers.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They're going to buy a new house soon. They signed the papers.",
-        "They are going to buy a new house soon. They signed the papers."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953426fd"
-    },
-    "id": "67fab6d599301022953426fd",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d22c"
-    },
-    "title": "'Will' and 'Going to' for Future Tense",
-    "instructions": "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-    "translation": "A: No tenemos nada para beber. B: Iré a comprar algo.",
-    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
-    "topicName": "'Will' and 'Going To'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.02.03.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: We don't have anything to drink. B: I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'ll|will"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "go and buy something.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: We don't have anything to drink. B: I'll go and buy something.",
-        "A: We don't have anything to drink. B: I will go and buy something."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953426fe"
-    },
-    "id": "67fab6d599301022953426fe",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d22c"
-    },
-    "title": "'Will' and 'Going to' for Future Tense",
-    "instructions": "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-    "translation": "Él va a ir al concierto. Compró las entradas el mes pasado.",
-    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
-    "topicName": "'Will' and 'Going To'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.02.03.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'s going to|is going to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "go to the concert. He purchased the tickets last month.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He's going to go to the concert. He purchased the tickets last month.",
-        "He is going to go to the concert. He purchased the tickets last month."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953426ff"
-    },
-    "id": "67fab6d599301022953426ff",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d22c"
-    },
-    "title": "'Will' and 'Going to' for Future Tense",
-    "instructions": "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-    "translation": "El teléfono suena. Lo contestaré.",
-    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
-    "topicName": "'Will' and 'Going To'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.02.03.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The phone rings. I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'ll|will"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "answer it.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The phone rings. I'll answer it.",
-        "The phone rings. I will answer it."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342700"
-    },
-    "id": "67fab6d59930102295342700",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d22c"
-    },
-    "title": "'Will' and 'Going to' for Future Tense",
-    "instructions": "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-    "translation": "El bebé está llorando. Lo revisaré.",
-    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
-    "topicName": "'Will' and 'Going To'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.02.03.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The baby is crying. I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'ll|will"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "check him.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The baby is crying. I'll check him.",
-        "The baby is crying. I will check him."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342701"
-    },
-    "id": "67fab6d59930102295342701",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d22c"
-    },
-    "title": "'Will' and 'Going to' for Future Tense",
-    "instructions": "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-    "translation": "Vamos a comer pasta para el almuerzo. La preparé ayer.",
-    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
-    "topicName": "'Will' and 'Going To'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.02.03.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'re going to|are going to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "have pasta for lunch. I prepared it yesterday.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We're going to have pasta for lunch. I prepared it yesterday.",
-        "We are going to have pasta for lunch. I prepared it yesterday."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342702"
-    },
-    "id": "67fab6d59930102295342702",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d22c"
-    },
-    "title": "'Will' and 'Going to' for Future Tense",
-    "instructions": "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-    "translation": "A: Me vendría bien un refresco. B: Te traeré uno.",
-    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
-    "topicName": "'Will' and 'Going To'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.02.03.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: I could do with a soda. B: I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'ll|will"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "grab you one.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: I could do with a soda. B: I'll grab you one.",
-        "A: I could do with a soda. B: I will grab you one."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.02.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are you busy? If so, I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'ll|will" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "do it for you.",
+      "options" : null
+    } ],
+    "sentences" : [ "Are you busy? If so, I'll do it for you.", "Are you busy? If so, I will do it for you." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953426f0"
+  },
+  "id" : "67fab6d599301022953426f0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d22c"
+  },
+  "title" : "'Will' and 'Going to' for Future Tense",
+  "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
+  "translation" : "Susan va a hornear un pastel. Lo programó antes.",
+  "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+  "topicName" : "'Will' and 'Going To'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.02.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Susan",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is going to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "bake a cake. She scheduled it earlier.",
+      "options" : null
+    } ],
+    "sentences" : [ "Susan is going to bake a cake. She scheduled it earlier." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953426f1"
+  },
+  "id" : "67fab6d599301022953426f1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d22c"
+  },
+  "title" : "'Will' and 'Going to' for Future Tense",
+  "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
+  "translation" : "Los estudiantes van a tener un examen mañana. Está en el horario.",
+  "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+  "topicName" : "'Will' and 'Going To'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.02.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The students",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are going to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "have a test tomorrow. It's on the schedule.",
+      "options" : null
+    } ],
+    "sentences" : [ "The students are going to have a test tomorrow. It's on the schedule." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953426f2"
+  },
+  "id" : "67fab6d599301022953426f2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d22c"
+  },
+  "title" : "'Will' and 'Going to' for Future Tense",
+  "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
+  "translation" : "¿Puedes llevar eso? Lo llevaré por ti.",
+  "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+  "topicName" : "'Will' and 'Going To'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.02.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can you carry that? I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'ll|will" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "carry it for you.",
+      "options" : null
+    } ],
+    "sentences" : [ "Can you carry that? I'll carry it for you.", "Can you carry that? I will carry it for you." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953426f3"
+  },
+  "id" : "67fab6d599301022953426f3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d22c"
+  },
+  "title" : "'Will' and 'Going to' for Future Tense",
+  "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
+  "translation" : "A: ¿Podrías llevarme? B: ¡Claro! Lo haré con gusto.",
+  "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+  "topicName" : "'Will' and 'Going To'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.02.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Could you drop me off? B: Sure! I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'ll|will" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "do it gladly.",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Could you drop me off? B: Sure! I'll do it gladly.", "A: Could you drop me off? B: Sure! I will do it gladly." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953426f4"
+  },
+  "id" : "67fab6d599301022953426f4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d22c"
+  },
+  "title" : "'Will' and 'Going to' for Future Tense",
+  "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
+  "translation" : "Van a visitar a Peter más tarde. Lo planearon la semana pasada.",
+  "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+  "topicName" : "'Will' and 'Going To'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.02.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'re going to|are going to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "visit Peter later. They planned it last week.",
+      "options" : null
+    } ],
+    "sentences" : [ "They're going to visit Peter later. They planned it last week.", "They are going to visit Peter later. They planned it last week." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953426f5"
+  },
+  "id" : "67fab6d599301022953426f5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d22c"
+  },
+  "title" : "'Will' and 'Going to' for Future Tense",
+  "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
+  "translation" : "Ella va a enviar un mensaje de texto cuando se vaya. Lo confirmó antes.",
+  "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+  "topicName" : "'Will' and 'Going To'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.02.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s going to|is going to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "text when she leaves. She confirmed it earlier.",
+      "options" : null
+    } ],
+    "sentences" : [ "She's going to text when she leaves. She confirmed it earlier.", "She is going to text when she leaves. She confirmed it earlier." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953426f6"
+  },
+  "id" : "67fab6d599301022953426f6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d22c"
+  },
+  "title" : "'Will' and 'Going to' for Future Tense",
+  "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
+  "translation" : "Vamos a renovar la casa el año que viene. Obtuvimos los permisos.",
+  "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+  "topicName" : "'Will' and 'Going To'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.02.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'re going to|are going to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "renovate the house next year. We got the permits.",
+      "options" : null
+    } ],
+    "sentences" : [ "We're going to renovate the house next year. We got the permits.", "We are going to renovate the house next year. We got the permits." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953426f7"
+  },
+  "id" : "67fab6d599301022953426f7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d22c"
+  },
+  "title" : "'Will' and 'Going to' for Future Tense",
+  "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
+  "translation" : "A: Me siento exhausto. B: Prepararé un poco de té.",
+  "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+  "topicName" : "'Will' and 'Going To'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.02.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: I feel exhausted. B: I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'ll|will" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "make some tea.",
+      "options" : null
+    } ],
+    "sentences" : [ "A: I feel exhausted. B: I'll make some tea.", "A: I feel exhausted. B: I will make some tea." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953426f8"
+  },
+  "id" : "67fab6d599301022953426f8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d22c"
+  },
+  "title" : "'Will' and 'Going to' for Future Tense",
+  "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
+  "translation" : "Él va a llegar a las 6. Me lo dijo esta mañana.",
+  "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+  "topicName" : "'Will' and 'Going To'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.02.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s going to|is going to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "arrive at 6. He told me this morning.",
+      "options" : null
+    } ],
+    "sentences" : [ "He's going to arrive at 6. He told me this morning.", "He is going to arrive at 6. He told me this morning." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953426f9"
+  },
+  "id" : "67fab6d599301022953426f9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d22c"
+  },
+  "title" : "'Will' and 'Going to' for Future Tense",
+  "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
+  "translation" : "A: Está muy oscuro aquí. B: Encenderé la luz.",
+  "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+  "topicName" : "'Will' and 'Going To'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.02.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: It's really dark in here. B: I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'ll|will" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "switch on the light.",
+      "options" : null
+    } ],
+    "sentences" : [ "A: It's really dark in here. B: I'll switch on the light.", "A: It's really dark in here. B: I will switch on the light." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953426fa"
+  },
+  "id" : "67fab6d599301022953426fa",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d22c"
+  },
+  "title" : "'Will' and 'Going to' for Future Tense",
+  "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
+  "translation" : "Se está oscureciendo. Encenderé la luz.",
+  "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+  "topicName" : "'Will' and 'Going To'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.02.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It gets dark. I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'ll|will" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "turn on the light.",
+      "options" : null
+    } ],
+    "sentences" : [ "It gets dark. I'll turn on the light.", "It gets dark. I will turn on the light." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953426fb"
+  },
+  "id" : "67fab6d599301022953426fb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d22c"
+  },
+  "title" : "'Will' and 'Going to' for Future Tense",
+  "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
+  "translation" : "Él se va a convertir en ingeniero después de terminar la universidad. Siempre le ha apasionado.",
+  "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+  "topicName" : "'Will' and 'Going To'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.02.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s going to|is going to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "become an engineer after he finishes college. He's always been passionate about it.",
+      "options" : null
+    } ],
+    "sentences" : [ "He's going to become an engineer after he finishes college. He's always been passionate about it.", "He is going to become an engineer after he finishes college. He's always been passionate about it." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953426fc"
+  },
+  "id" : "67fab6d599301022953426fc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d22c"
+  },
+  "title" : "'Will' and 'Going to' for Future Tense",
+  "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
+  "translation" : "Van a comprar una casa nueva pronto. Firmaron los papeles.",
+  "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+  "topicName" : "'Will' and 'Going To'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.02.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'re going to|are going to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "buy a new house soon. They signed the papers.",
+      "options" : null
+    } ],
+    "sentences" : [ "They're going to buy a new house soon. They signed the papers.", "They are going to buy a new house soon. They signed the papers." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953426fd"
+  },
+  "id" : "67fab6d599301022953426fd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d22c"
+  },
+  "title" : "'Will' and 'Going to' for Future Tense",
+  "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
+  "translation" : "A: No tenemos nada para beber. B: Iré a comprar algo.",
+  "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+  "topicName" : "'Will' and 'Going To'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.02.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: We don't have anything to drink. B: I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'ll|will" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "go and buy something.",
+      "options" : null
+    } ],
+    "sentences" : [ "A: We don't have anything to drink. B: I'll go and buy something.", "A: We don't have anything to drink. B: I will go and buy something." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953426fe"
+  },
+  "id" : "67fab6d599301022953426fe",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d22c"
+  },
+  "title" : "'Will' and 'Going to' for Future Tense",
+  "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
+  "translation" : "Él va a ir al concierto. Compró las entradas el mes pasado.",
+  "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+  "topicName" : "'Will' and 'Going To'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.02.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s going to|is going to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "go to the concert. He purchased the tickets last month.",
+      "options" : null
+    } ],
+    "sentences" : [ "He's going to go to the concert. He purchased the tickets last month.", "He is going to go to the concert. He purchased the tickets last month." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953426ff"
+  },
+  "id" : "67fab6d599301022953426ff",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d22c"
+  },
+  "title" : "'Will' and 'Going to' for Future Tense",
+  "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
+  "translation" : "El teléfono suena. Lo contestaré.",
+  "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+  "topicName" : "'Will' and 'Going To'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.02.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The phone rings. I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'ll|will" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "answer it.",
+      "options" : null
+    } ],
+    "sentences" : [ "The phone rings. I'll answer it.", "The phone rings. I will answer it." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342700"
+  },
+  "id" : "67fab6d59930102295342700",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d22c"
+  },
+  "title" : "'Will' and 'Going to' for Future Tense",
+  "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
+  "translation" : "El bebé está llorando. Lo revisaré.",
+  "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+  "topicName" : "'Will' and 'Going To'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.02.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The baby is crying. I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'ll|will" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "check him.",
+      "options" : null
+    } ],
+    "sentences" : [ "The baby is crying. I'll check him.", "The baby is crying. I will check him." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342701"
+  },
+  "id" : "67fab6d59930102295342701",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d22c"
+  },
+  "title" : "'Will' and 'Going to' for Future Tense",
+  "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
+  "translation" : "Vamos a comer pasta para el almuerzo. La preparé ayer.",
+  "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+  "topicName" : "'Will' and 'Going To'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.02.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'re going to|are going to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "have pasta for lunch. I prepared it yesterday.",
+      "options" : null
+    } ],
+    "sentences" : [ "We're going to have pasta for lunch. I prepared it yesterday.", "We are going to have pasta for lunch. I prepared it yesterday." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342702"
+  },
+  "id" : "67fab6d59930102295342702",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d22c"
+  },
+  "title" : "'Will' and 'Going to' for Future Tense",
+  "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
+  "translation" : "A: Me vendría bien un refresco. B: Te traeré uno.",
+  "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+  "topicName" : "'Will' and 'Going To'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.02.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: I could do with a soda. B: I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'ll|will" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "grab you one.",
+      "options" : null
+    } ],
+    "sentences" : [ "A: I could do with a soda. B: I'll grab you one.", "A: I could do with a soda. B: I will grab you one." ]
+  }
+} ]

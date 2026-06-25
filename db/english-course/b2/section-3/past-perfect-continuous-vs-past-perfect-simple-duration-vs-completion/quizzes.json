@@ -1,1242 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534408b"
-    },
-    "id": "67fab6d5993010229534408b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41a"
-    },
-    "title": "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
-    "instructions": "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
-    "translation": "Ella había estado practicando durante meses cuando asistió al concierto.",
-    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-    "topicName": "Section 3",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.03.14.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'d been practicing|had been practicing"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(practice) for months by the time she attended the concert.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She'd been practicing for months by the time she attended the concert.",
-        "She had been practicing for months by the time she attended the concert."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534408b"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534408c"
-    },
-    "id": "67fab6d5993010229534408c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41a"
-    },
-    "title": "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
-    "instructions": "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
-    "translation": "Habíamos estado conduciendo durante horas cuando empezó a llover.",
-    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-    "topicName": "Section 3",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.03.14.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'d been driving|had been driving"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(drive) for hours when it began to rain.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We'd been driving for hours when it began to rain.",
-        "We had been driving for hours when it began to rain."
-      ]
-    }
+  "id" : "67fab6d5993010229534408b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41a"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534408d"
-    },
-    "id": "67fab6d5993010229534408d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41a"
-    },
-    "title": "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
-    "instructions": "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
-    "translation": "Habían estado caminando durante horas cuando llegaron al pueblo.",
-    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-    "topicName": "Section 3",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.03.14.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'d been walking|had been walking"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(walk) for hours by the time they reached the village.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They'd been walking for hours by the time they reached the village.",
-        "They had been walking for hours by the time they reached the village."
-      ]
-    }
+  "title" : "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
+  "instructions" : "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
+  "translation" : "Ella había estado practicando durante meses cuando asistió al concierto.",
+  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+  "topicName" : "Section 3",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534408e"
-    },
-    "id": "67fab6d5993010229534408e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41a"
-    },
-    "title": "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
-    "instructions": "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
-    "translation": "Ella había asegurado el apartamento cuando la llamaste.",
-    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-    "topicName": "Section 3",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.03.14.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'d secured the apartment|had secured the apartment"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(secure) the apartment when you phoned her.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She'd secured the apartment the apartment when you phoned her.",
-        "She had secured the apartment the apartment when you phoned her."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534408f"
-    },
-    "id": "67fab6d5993010229534408f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41a"
-    },
-    "title": "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
-    "instructions": "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
-    "translation": "Habían completado el proyecto cuando lo presentaron.",
-    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-    "topicName": "Section 3",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.03.14.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'d completed|had completed"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(complete) the project when they presented it.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They'd completed the project when they presented it.",
-        "They had completed the project when they presented it."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344090"
-    },
-    "id": "67fab6d59930102295344090",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41a"
-    },
-    "title": "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
-    "instructions": "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
-    "translation": "Él había estado tocando durante horas cuando ella llegó.",
-    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-    "topicName": "Section 3",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.03.14.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'d been playing|had been playing"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(play) for hours by the time she got there.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He'd been playing for hours by the time she got there.",
-        "He had been playing for hours by the time she got there."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344091"
-    },
-    "id": "67fab6d59930102295344091",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41a"
-    },
-    "title": "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
-    "instructions": "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
-    "translation": "Ella ya había preparado la cena cuando llegamos.",
-    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-    "topicName": "Section 3",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.03.14.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'d already cooked|had already cooked"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(already / cook) dinner when we arrived.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She'd already cooked dinner when we arrived.",
-        "She had already cooked dinner when we arrived."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344092"
-    },
-    "id": "67fab6d59930102295344092",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41a"
-    },
-    "title": "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
-    "instructions": "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
-    "translation": "Él había estado compartiendo el piso con nosotros durante unas semanas cuando compró una casa.",
-    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-    "topicName": "Section 3",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.03.14.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'d been sharing|had been sharing"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(share) the flat with us for a few weeks when he bought a house.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He'd been sharing the flat with us for a few weeks when he bought a house.",
-        "He had been sharing the flat with us for a few weeks when he bought a house."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344093"
-    },
-    "id": "67fab6d59930102295344093",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41a"
-    },
-    "title": "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
-    "instructions": "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
-    "translation": "Habían estado caminando durante unos días cuando empezó a nevar.",
-    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-    "topicName": "Section 3",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.03.14.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'d been hiking|had been hiking"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(hike) for a few days when the snow started.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They'd been hiking for a few days when the snow started.",
-        "They had been hiking for a few days when the snow started."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344094"
-    },
-    "id": "67fab6d59930102295344094",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41a"
-    },
-    "title": "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
-    "instructions": "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
-    "translation": "Ella había completado la tarea cuando el gerente la pidió.",
-    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-    "topicName": "Section 3",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.03.14.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'d completed|had completed"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(complete) the task by the time the manager asked for it.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She'd completed the task by the time the manager asked for it.",
-        "She had completed the task by the time the manager asked for it."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344095"
-    },
-    "id": "67fab6d59930102295344095",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41a"
-    },
-    "title": "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
-    "instructions": "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
-    "translation": "Ella había cerrado la tienda cuando aparecimos.",
-    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-    "topicName": "Section 3",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.03.14.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'d closed|had closed"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(close) the shop by the time we showed up.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She'd closed the shop by the time we showed up.",
-        "She had closed the shop by the time we showed up."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344096"
-    },
-    "id": "67fab6d59930102295344096",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41a"
-    },
-    "title": "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
-    "instructions": "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
-    "translation": "Él había reparado la bicicleta cuando fueron al parque.",
-    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-    "topicName": "Section 3",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.03.14.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'d repaired|had repaired"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(repair) the bicycle by the time they went to the park.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He'd repaired the bicycle by the time they went to the park.",
-        "He had repaired the bicycle by the time they went to the park."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344097"
-    },
-    "id": "67fab6d59930102295344097",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41a"
-    },
-    "title": "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
-    "instructions": "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
-    "translation": "Habían estado mirando durante horas cuando finalmente decidieron irse a dormir.",
-    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-    "topicName": "Section 3",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.03.14.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'d been watching|had been watching"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(watch) for hours when they finally decided to go to sleep.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They'd been watching for hours when they finally decided to go to sleep.",
-        "They had been watching for hours when they finally decided to go to sleep."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344098"
-    },
-    "id": "67fab6d59930102295344098",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41a"
-    },
-    "title": "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
-    "instructions": "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
-    "translation": "Ella había estado enseñando allí durante años cuando se jubiló.",
-    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-    "topicName": "Section 3",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.03.14.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'d been teaching|had been teaching"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(teach) there for years when she retired.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She'd been teaching there for years when she retired.",
-        "She had been teaching there for years when she retired."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344099"
-    },
-    "id": "67fab6d59930102295344099",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41a"
-    },
-    "title": "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
-    "instructions": "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
-    "translation": "Él había ordenado la sala de estar cuando entró su padre.",
-    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-    "topicName": "Section 3",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.03.14.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'d tidied|had tidied"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(tidy) the living room by the time his father came in.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He'd tidied the living room by the time his father came in.",
-        "He had tidied the living room by the time his father came in."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534409a"
-    },
-    "id": "67fab6d5993010229534409a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41a"
-    },
-    "title": "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
-    "instructions": "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
-    "translation": "Ella había liquidado la cuenta antes de que te ofrecieras a pagar.",
-    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-    "topicName": "Section 3",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.03.14.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'d settled|had settled"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(settle) the account before you volunteered to pay.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She'd settled the account before you volunteered to pay.",
-        "She had settled the account before you volunteered to pay."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534409b"
-    },
-    "id": "67fab6d5993010229534409b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41a"
-    },
-    "title": "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
-    "instructions": "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
-    "translation": "Habían estado entrenando durante semanas antes de correr la carrera.",
-    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-    "topicName": "Section 3",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.03.14.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'d been training|had been training"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(train) for weeks before they ran the race.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They'd been training for weeks before they ran the race.",
-        "They had been training for weeks before they ran the race."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534409c"
-    },
-    "id": "67fab6d5993010229534409c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41a"
-    },
-    "title": "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
-    "instructions": "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
-    "translation": "Ella había estado viajando por Europa durante dos meses cuando regresó.",
-    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-    "topicName": "Section 3",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.03.14.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'d been traveling|had been traveling"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(travel) in Europe for two months when she came back.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She'd been traveling in Europe for two months when she came back.",
-        "She had been traveling in Europe for two months when she came back."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534409d"
-    },
-    "id": "67fab6d5993010229534409d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41a"
-    },
-    "title": "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
-    "instructions": "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
-    "translation": "Habían pedido postre cuando él apareció.",
-    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-    "topicName": "Section 3",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.03.14.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'d ordered|had ordered"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(order) dessert when he appeared.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They'd ordered dessert when he appeared.",
-        "They had ordered dessert when he appeared."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534409e"
-    },
-    "id": "67fab6d5993010229534409e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41a"
-    },
-    "title": "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
-    "instructions": "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
-    "translation": "Él había terminado la escuela secundaria cuando tenía 17 años.",
-    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-    "topicName": "Section 3",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.03.14.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'d finished|had finished"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(finish) high school by the time he was 17.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He'd finished high school by the time he was 17.",
-        "He had finished high school by the time he was 17."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.03.14.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'d been practicing|had been practicing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(practice) for months by the time she attended the concert.",
+      "options" : null
+    } ],
+    "sentences" : [ "She'd been practicing for months by the time she attended the concert.", "She had been practicing for months by the time she attended the concert." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534408c"
+  },
+  "id" : "67fab6d5993010229534408c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41a"
+  },
+  "title" : "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
+  "instructions" : "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
+  "translation" : "Habíamos estado conduciendo durante horas cuando empezó a llover.",
+  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+  "topicName" : "Section 3",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.03.14.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'d been driving|had been driving" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(drive) for hours when it began to rain.",
+      "options" : null
+    } ],
+    "sentences" : [ "We'd been driving for hours when it began to rain.", "We had been driving for hours when it began to rain." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534408d"
+  },
+  "id" : "67fab6d5993010229534408d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41a"
+  },
+  "title" : "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
+  "instructions" : "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
+  "translation" : "Habían estado caminando durante horas cuando llegaron al pueblo.",
+  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+  "topicName" : "Section 3",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.03.14.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'d been walking|had been walking" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(walk) for hours by the time they reached the village.",
+      "options" : null
+    } ],
+    "sentences" : [ "They'd been walking for hours by the time they reached the village.", "They had been walking for hours by the time they reached the village." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534408e"
+  },
+  "id" : "67fab6d5993010229534408e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41a"
+  },
+  "title" : "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
+  "instructions" : "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
+  "translation" : "Ella había asegurado el apartamento cuando la llamaste.",
+  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+  "topicName" : "Section 3",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.03.14.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'d secured the apartment|had secured the apartment" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(secure) the apartment when you phoned her.",
+      "options" : null
+    } ],
+    "sentences" : [ "She'd secured the apartment the apartment when you phoned her.", "She had secured the apartment the apartment when you phoned her." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534408f"
+  },
+  "id" : "67fab6d5993010229534408f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41a"
+  },
+  "title" : "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
+  "instructions" : "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
+  "translation" : "Habían completado el proyecto cuando lo presentaron.",
+  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+  "topicName" : "Section 3",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.03.14.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'d completed|had completed" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(complete) the project when they presented it.",
+      "options" : null
+    } ],
+    "sentences" : [ "They'd completed the project when they presented it.", "They had completed the project when they presented it." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344090"
+  },
+  "id" : "67fab6d59930102295344090",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41a"
+  },
+  "title" : "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
+  "instructions" : "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
+  "translation" : "Él había estado tocando durante horas cuando ella llegó.",
+  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+  "topicName" : "Section 3",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.03.14.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'d been playing|had been playing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(play) for hours by the time she got there.",
+      "options" : null
+    } ],
+    "sentences" : [ "He'd been playing for hours by the time she got there.", "He had been playing for hours by the time she got there." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344091"
+  },
+  "id" : "67fab6d59930102295344091",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41a"
+  },
+  "title" : "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
+  "instructions" : "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
+  "translation" : "Ella ya había preparado la cena cuando llegamos.",
+  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+  "topicName" : "Section 3",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.03.14.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'d already cooked|had already cooked" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(already / cook) dinner when we arrived.",
+      "options" : null
+    } ],
+    "sentences" : [ "She'd already cooked dinner when we arrived.", "She had already cooked dinner when we arrived." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344092"
+  },
+  "id" : "67fab6d59930102295344092",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41a"
+  },
+  "title" : "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
+  "instructions" : "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
+  "translation" : "Él había estado compartiendo el piso con nosotros durante unas semanas cuando compró una casa.",
+  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+  "topicName" : "Section 3",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.03.14.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'d been sharing|had been sharing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(share) the flat with us for a few weeks when he bought a house.",
+      "options" : null
+    } ],
+    "sentences" : [ "He'd been sharing the flat with us for a few weeks when he bought a house.", "He had been sharing the flat with us for a few weeks when he bought a house." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344093"
+  },
+  "id" : "67fab6d59930102295344093",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41a"
+  },
+  "title" : "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
+  "instructions" : "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
+  "translation" : "Habían estado caminando durante unos días cuando empezó a nevar.",
+  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+  "topicName" : "Section 3",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.03.14.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'d been hiking|had been hiking" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(hike) for a few days when the snow started.",
+      "options" : null
+    } ],
+    "sentences" : [ "They'd been hiking for a few days when the snow started.", "They had been hiking for a few days when the snow started." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344094"
+  },
+  "id" : "67fab6d59930102295344094",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41a"
+  },
+  "title" : "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
+  "instructions" : "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
+  "translation" : "Ella había completado la tarea cuando el gerente la pidió.",
+  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+  "topicName" : "Section 3",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.03.14.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'d completed|had completed" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(complete) the task by the time the manager asked for it.",
+      "options" : null
+    } ],
+    "sentences" : [ "She'd completed the task by the time the manager asked for it.", "She had completed the task by the time the manager asked for it." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344095"
+  },
+  "id" : "67fab6d59930102295344095",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41a"
+  },
+  "title" : "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
+  "instructions" : "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
+  "translation" : "Ella había cerrado la tienda cuando aparecimos.",
+  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+  "topicName" : "Section 3",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.03.14.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'d closed|had closed" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(close) the shop by the time we showed up.",
+      "options" : null
+    } ],
+    "sentences" : [ "She'd closed the shop by the time we showed up.", "She had closed the shop by the time we showed up." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344096"
+  },
+  "id" : "67fab6d59930102295344096",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41a"
+  },
+  "title" : "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
+  "instructions" : "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
+  "translation" : "Él había reparado la bicicleta cuando fueron al parque.",
+  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+  "topicName" : "Section 3",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.03.14.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'d repaired|had repaired" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(repair) the bicycle by the time they went to the park.",
+      "options" : null
+    } ],
+    "sentences" : [ "He'd repaired the bicycle by the time they went to the park.", "He had repaired the bicycle by the time they went to the park." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344097"
+  },
+  "id" : "67fab6d59930102295344097",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41a"
+  },
+  "title" : "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
+  "instructions" : "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
+  "translation" : "Habían estado mirando durante horas cuando finalmente decidieron irse a dormir.",
+  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+  "topicName" : "Section 3",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.03.14.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'d been watching|had been watching" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(watch) for hours when they finally decided to go to sleep.",
+      "options" : null
+    } ],
+    "sentences" : [ "They'd been watching for hours when they finally decided to go to sleep.", "They had been watching for hours when they finally decided to go to sleep." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344098"
+  },
+  "id" : "67fab6d59930102295344098",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41a"
+  },
+  "title" : "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
+  "instructions" : "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
+  "translation" : "Ella había estado enseñando allí durante años cuando se jubiló.",
+  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+  "topicName" : "Section 3",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.03.14.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'d been teaching|had been teaching" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(teach) there for years when she retired.",
+      "options" : null
+    } ],
+    "sentences" : [ "She'd been teaching there for years when she retired.", "She had been teaching there for years when she retired." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344099"
+  },
+  "id" : "67fab6d59930102295344099",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41a"
+  },
+  "title" : "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
+  "instructions" : "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
+  "translation" : "Él había ordenado la sala de estar cuando entró su padre.",
+  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+  "topicName" : "Section 3",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.03.14.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'d tidied|had tidied" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(tidy) the living room by the time his father came in.",
+      "options" : null
+    } ],
+    "sentences" : [ "He'd tidied the living room by the time his father came in.", "He had tidied the living room by the time his father came in." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534409a"
+  },
+  "id" : "67fab6d5993010229534409a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41a"
+  },
+  "title" : "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
+  "instructions" : "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
+  "translation" : "Ella había liquidado la cuenta antes de que te ofrecieras a pagar.",
+  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+  "topicName" : "Section 3",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.03.14.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'d settled|had settled" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(settle) the account before you volunteered to pay.",
+      "options" : null
+    } ],
+    "sentences" : [ "She'd settled the account before you volunteered to pay.", "She had settled the account before you volunteered to pay." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534409b"
+  },
+  "id" : "67fab6d5993010229534409b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41a"
+  },
+  "title" : "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
+  "instructions" : "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
+  "translation" : "Habían estado entrenando durante semanas antes de correr la carrera.",
+  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+  "topicName" : "Section 3",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.03.14.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'d been training|had been training" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(train) for weeks before they ran the race.",
+      "options" : null
+    } ],
+    "sentences" : [ "They'd been training for weeks before they ran the race.", "They had been training for weeks before they ran the race." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534409c"
+  },
+  "id" : "67fab6d5993010229534409c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41a"
+  },
+  "title" : "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
+  "instructions" : "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
+  "translation" : "Ella había estado viajando por Europa durante dos meses cuando regresó.",
+  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+  "topicName" : "Section 3",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.03.14.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'d been traveling|had been traveling" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(travel) in Europe for two months when she came back.",
+      "options" : null
+    } ],
+    "sentences" : [ "She'd been traveling in Europe for two months when she came back.", "She had been traveling in Europe for two months when she came back." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534409d"
+  },
+  "id" : "67fab6d5993010229534409d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41a"
+  },
+  "title" : "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
+  "instructions" : "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
+  "translation" : "Habían pedido postre cuando él apareció.",
+  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+  "topicName" : "Section 3",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.03.14.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'d ordered|had ordered" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(order) dessert when he appeared.",
+      "options" : null
+    } ],
+    "sentences" : [ "They'd ordered dessert when he appeared.", "They had ordered dessert when he appeared." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534409e"
+  },
+  "id" : "67fab6d5993010229534409e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41a"
+  },
+  "title" : "Past Perfect Continuous vs. Past Perfect Simple: Duration vs. Completion",
+  "instructions" : "Usa el 'past perfect continuous' para decir 'how long' antes del segundo punto en el tiempo, o el 'past perfect simple' si la acción está terminada antes del segundo punto en el tiempo.",
+  "translation" : "Él había terminado la escuela secundaria cuando tenía 17 años.",
+  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+  "topicName" : "Section 3",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.03.14.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'d finished|had finished" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(finish) high school by the time he was 17.",
+      "options" : null
+    } ],
+    "sentences" : [ "He'd finished high school by the time he was 17.", "He had finished high school by the time he was 17." ]
+  }
+} ]

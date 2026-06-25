@@ -1,1225 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344814"
-    },
-    "id": "67fab6d59930102295344814",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d484"
-    },
-    "title": "Practicing 'In case'",
-    "instructions": "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
-    "translation": "Deberías beber agua en caso de que tengas sed.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.11.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Maybe you will be thirsty - you should drink water.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "You should drink water in case you are thirsty."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "You should drink water in case you are thirsty."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344814"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344815"
-    },
-    "id": "67fab6d59930102295344815",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d484"
-    },
-    "title": "Practicing 'In case'",
-    "instructions": "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
-    "translation": "Ella traerá su almohada en caso de que quiera dormir.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.11.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Maybe she will want to sleep - she will bring her pillow.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She will bring her pillow in case she wants to sleep."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She will bring her pillow in case she wants to sleep."
-      ]
-    }
+  "id" : "67fab6d59930102295344814",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d484"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344816"
-    },
-    "id": "67fab6d59930102295344816",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d484"
-    },
-    "title": "Practicing 'In case'",
-    "instructions": "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
-    "translation": "Juguemos un juego en caso de que nos aburramos.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.11.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Maybe we will get bored - let's play a game.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Let's play a game in case we get bored."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Let's play a game in case we get bored."
-      ]
-    }
+  "title" : "Practicing 'In case'",
+  "instructions" : "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
+  "translation" : "Deberías beber agua en caso de que tengas sed.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344817"
-    },
-    "id": "67fab6d59930102295344817",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d484"
-    },
-    "title": "Practicing 'In case'",
-    "instructions": "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
-    "translation": "Deberías traer el autobús en caso de que los jugadores estén cansados.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.11.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Maybe the players will be tired - you should bring the bus.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "You should bring the bus in case the players are tired."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "You should bring the bus in case the players are tired."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344818"
-    },
-    "id": "67fab6d59930102295344818",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d484"
-    },
-    "title": "Practicing 'In case'",
-    "instructions": "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
-    "translation": "Compraremos cobertura adicional en caso de que granice.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.11.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Maybe it will hail - we will buy extra cover.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "We will buy extra cover in case it hails."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We will buy extra cover in case it hails."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344819"
-    },
-    "id": "67fab6d59930102295344819",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d484"
-    },
-    "title": "Practicing 'In case'",
-    "instructions": "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
-    "translation": "Traeré mis llaves en caso de que las pierda.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.11.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Maybe I will lose it - I will bring my keys.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I will bring my keys in case I lose it."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I will bring my keys in case I lose it."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534481a"
-    },
-    "id": "67fab6d5993010229534481a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d484"
-    },
-    "title": "Practicing 'In case'",
-    "instructions": "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
-    "translation": "Haremos muchos sándwiches en caso de que María se una a nosotros para el almuerzo.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.11.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Maybe Maria will join us for lunch - we will make lots of sandwiches.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "We will make lots of sandwiches in case Maria joins us for lunch."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We will make lots of sandwiches in case Maria joins us for lunch."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534481b"
-    },
-    "id": "67fab6d5993010229534481b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d484"
-    },
-    "title": "Practicing 'In case'",
-    "instructions": "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
-    "translation": "Compremos un bistec en caso de que Harry quiera cenar.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.11.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Maybe Harry will want dinner - let's buy some steak.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Let's buy some steak in case Harry wants dinner."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Let's buy some steak in case Harry wants dinner."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534481c"
-    },
-    "id": "67fab6d5993010229534481c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d484"
-    },
-    "title": "Practicing 'In case'",
-    "instructions": "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
-    "translation": "Ella tiene una fiesta en caso de que apruebe el examen.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.11.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Maybe she will pass the exam - she has a party.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She has a party in case she passes the exam."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She has a party in case she passes the exam."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534481d"
-    },
-    "id": "67fab6d5993010229534481d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d484"
-    },
-    "title": "Practicing 'In case'",
-    "instructions": "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
-    "translation": "Traeré mi chaqueta en caso de que tenga que irme.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.11.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Maybe I will have to leave - I will bring my jacket.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I will bring my jacket in case I have to leave."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I will bring my jacket in case I have to leave."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534481e"
-    },
-    "id": "67fab6d5993010229534481e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d484"
-    },
-    "title": "Practicing 'In case'",
-    "instructions": "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
-    "translation": "Voy a comprar un vestido en caso de que me cambie de atuendo.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.11.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Maybe I will change my outfit - I'm going to buy a dress.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I'm going to buy a dress in case I change my outfit.|I am going to buy a dress in case I change my outfit."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'm going to buy a dress in case I change my outfit.",
-        "I am going to buy a dress in case I change my outfit."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534481f"
-    },
-    "id": "67fab6d5993010229534481f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d484"
-    },
-    "title": "Practicing 'In case'",
-    "instructions": "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
-    "translation": "Llamarán a la directora en caso de que ella tenga alguna exigencia.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.11.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Maybe she's got demands - they'll call the director.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They'll call the director in case she has any demands.|They will call the director in case she has any demands."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They'll call the director in case she has any demands.",
-        "They will call the director in case she has any demands."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344820"
-    },
-    "id": "67fab6d59930102295344820",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d484"
-    },
-    "title": "Practicing 'In case'",
-    "instructions": "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
-    "translation": "Él debería usar botas en caso de que el camino esté embarrado.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.11.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Maybe the path will be muddy - he should wear boots.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He should wear boots in case the path is muddy."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He should wear boots in case the path is muddy."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344821"
-    },
-    "id": "67fab6d59930102295344821",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d484"
-    },
-    "title": "Practicing 'In case'",
-    "instructions": "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
-    "translation": "Pondré una alarma en caso de que me despierte tarde.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.11.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Maybe I'll wake up late - I'll set an alarm.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I'll set an alarm in case I wake up late."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'll set an alarm in case I wake up late."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344822"
-    },
-    "id": "67fab6d59930102295344822",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d484"
-    },
-    "title": "Practicing 'In case'",
-    "instructions": "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
-    "translation": "Toma un poco de cuerda en caso de que la uses.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.11.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Maybe you'll use it - take some rope.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Take some rope in case you use it."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Take some rope in case you use it."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344823"
-    },
-    "id": "67fab6d59930102295344823",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d484"
-    },
-    "title": "Practicing 'In case'",
-    "instructions": "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
-    "translation": "Ella estudiará esta noche en caso de que haya un examen el martes.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.11.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Maybe there'll be a quiz on Tuesday - she'll study tonight.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She'll study tonight in case there's a quiz on Tuesday.|She will study tonight in case there is a quiz on Tuesday."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She'll study tonight in case there's a quiz on Tuesday.",
-        "She will study tonight in case there is a quiz on Tuesday."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344824"
-    },
-    "id": "67fab6d59930102295344824",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d484"
-    },
-    "title": "Practicing 'In case'",
-    "instructions": "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
-    "translation": "¿Podrías cerrar el sótano en caso de que se inunde?",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.11.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Maybe it will flood - could you close the basement?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Could you close the basement in case it floods?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Could you close the basement in case it floods?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344825"
-    },
-    "id": "67fab6d59930102295344825",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d484"
-    },
-    "title": "Practicing 'In case'",
-    "instructions": "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
-    "translation": "Los niños deberían llevar sus juguetes en caso de que se pongan tristes.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.11.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Maybe they will be sad - the children should take their toys.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The children should take their toys in case they get sad."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The children should take their toys in case they get sad."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344826"
-    },
-    "id": "67fab6d59930102295344826",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d484"
-    },
-    "title": "Practicing 'In case'",
-    "instructions": "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
-    "translation": "Tomaré una foto en caso de que me esconda.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.11.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Maybe I'll hide - I'll take a picture.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I'll take a picture in case I hide."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'll take a picture in case I hide."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344827"
-    },
-    "id": "67fab6d59930102295344827",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d484"
-    },
-    "title": "Practicing 'In case'",
-    "instructions": "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
-    "translation": "Deberías aspirar la casa en caso de que tu hermano venga.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.11.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Maybe your brother will come over - you should hoover the house.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "You should hoover the house in case your brother comes over."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "You should hoover the house in case your brother comes over."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.11.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Maybe you will be thirsty - you should drink water.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "You should drink water in case you are thirsty." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "You should drink water in case you are thirsty." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344815"
+  },
+  "id" : "67fab6d59930102295344815",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d484"
+  },
+  "title" : "Practicing 'In case'",
+  "instructions" : "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
+  "translation" : "Ella traerá su almohada en caso de que quiera dormir.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.11.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Maybe she will want to sleep - she will bring her pillow.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She will bring her pillow in case she wants to sleep." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She will bring her pillow in case she wants to sleep." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344816"
+  },
+  "id" : "67fab6d59930102295344816",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d484"
+  },
+  "title" : "Practicing 'In case'",
+  "instructions" : "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
+  "translation" : "Juguemos un juego en caso de que nos aburramos.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.11.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Maybe we will get bored - let's play a game.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Let's play a game in case we get bored." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Let's play a game in case we get bored." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344817"
+  },
+  "id" : "67fab6d59930102295344817",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d484"
+  },
+  "title" : "Practicing 'In case'",
+  "instructions" : "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
+  "translation" : "Deberías traer el autobús en caso de que los jugadores estén cansados.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.11.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Maybe the players will be tired - you should bring the bus.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "You should bring the bus in case the players are tired." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "You should bring the bus in case the players are tired." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344818"
+  },
+  "id" : "67fab6d59930102295344818",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d484"
+  },
+  "title" : "Practicing 'In case'",
+  "instructions" : "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
+  "translation" : "Compraremos cobertura adicional en caso de que granice.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.11.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Maybe it will hail - we will buy extra cover.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We will buy extra cover in case it hails." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We will buy extra cover in case it hails." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344819"
+  },
+  "id" : "67fab6d59930102295344819",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d484"
+  },
+  "title" : "Practicing 'In case'",
+  "instructions" : "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
+  "translation" : "Traeré mis llaves en caso de que las pierda.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.11.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Maybe I will lose it - I will bring my keys.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I will bring my keys in case I lose it." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I will bring my keys in case I lose it." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534481a"
+  },
+  "id" : "67fab6d5993010229534481a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d484"
+  },
+  "title" : "Practicing 'In case'",
+  "instructions" : "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
+  "translation" : "Haremos muchos sándwiches en caso de que María se una a nosotros para el almuerzo.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.11.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Maybe Maria will join us for lunch - we will make lots of sandwiches.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We will make lots of sandwiches in case Maria joins us for lunch." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We will make lots of sandwiches in case Maria joins us for lunch." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534481b"
+  },
+  "id" : "67fab6d5993010229534481b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d484"
+  },
+  "title" : "Practicing 'In case'",
+  "instructions" : "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
+  "translation" : "Compremos un bistec en caso de que Harry quiera cenar.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.11.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Maybe Harry will want dinner - let's buy some steak.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Let's buy some steak in case Harry wants dinner." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Let's buy some steak in case Harry wants dinner." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534481c"
+  },
+  "id" : "67fab6d5993010229534481c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d484"
+  },
+  "title" : "Practicing 'In case'",
+  "instructions" : "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
+  "translation" : "Ella tiene una fiesta en caso de que apruebe el examen.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.11.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Maybe she will pass the exam - she has a party.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She has a party in case she passes the exam." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She has a party in case she passes the exam." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534481d"
+  },
+  "id" : "67fab6d5993010229534481d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d484"
+  },
+  "title" : "Practicing 'In case'",
+  "instructions" : "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
+  "translation" : "Traeré mi chaqueta en caso de que tenga que irme.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.11.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Maybe I will have to leave - I will bring my jacket.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I will bring my jacket in case I have to leave." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I will bring my jacket in case I have to leave." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534481e"
+  },
+  "id" : "67fab6d5993010229534481e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d484"
+  },
+  "title" : "Practicing 'In case'",
+  "instructions" : "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
+  "translation" : "Voy a comprar un vestido en caso de que me cambie de atuendo.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.11.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Maybe I will change my outfit - I'm going to buy a dress.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I'm going to buy a dress in case I change my outfit.|I am going to buy a dress in case I change my outfit." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I'm going to buy a dress in case I change my outfit.", "I am going to buy a dress in case I change my outfit." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534481f"
+  },
+  "id" : "67fab6d5993010229534481f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d484"
+  },
+  "title" : "Practicing 'In case'",
+  "instructions" : "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
+  "translation" : "Llamarán a la directora en caso de que ella tenga alguna exigencia.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.11.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Maybe she's got demands - they'll call the director.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They'll call the director in case she has any demands.|They will call the director in case she has any demands." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They'll call the director in case she has any demands.", "They will call the director in case she has any demands." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344820"
+  },
+  "id" : "67fab6d59930102295344820",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d484"
+  },
+  "title" : "Practicing 'In case'",
+  "instructions" : "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
+  "translation" : "Él debería usar botas en caso de que el camino esté embarrado.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.11.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Maybe the path will be muddy - he should wear boots.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He should wear boots in case the path is muddy." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He should wear boots in case the path is muddy." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344821"
+  },
+  "id" : "67fab6d59930102295344821",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d484"
+  },
+  "title" : "Practicing 'In case'",
+  "instructions" : "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
+  "translation" : "Pondré una alarma en caso de que me despierte tarde.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.11.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Maybe I'll wake up late - I'll set an alarm.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I'll set an alarm in case I wake up late." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I'll set an alarm in case I wake up late." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344822"
+  },
+  "id" : "67fab6d59930102295344822",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d484"
+  },
+  "title" : "Practicing 'In case'",
+  "instructions" : "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
+  "translation" : "Toma un poco de cuerda en caso de que la uses.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.11.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Maybe you'll use it - take some rope.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Take some rope in case you use it." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Take some rope in case you use it." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344823"
+  },
+  "id" : "67fab6d59930102295344823",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d484"
+  },
+  "title" : "Practicing 'In case'",
+  "instructions" : "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
+  "translation" : "Ella estudiará esta noche en caso de que haya un examen el martes.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.11.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Maybe there'll be a quiz on Tuesday - she'll study tonight.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She'll study tonight in case there's a quiz on Tuesday.|She will study tonight in case there is a quiz on Tuesday." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She'll study tonight in case there's a quiz on Tuesday.", "She will study tonight in case there is a quiz on Tuesday." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344824"
+  },
+  "id" : "67fab6d59930102295344824",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d484"
+  },
+  "title" : "Practicing 'In case'",
+  "instructions" : "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
+  "translation" : "¿Podrías cerrar el sótano en caso de que se inunde?",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.11.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Maybe it will flood - could you close the basement?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Could you close the basement in case it floods?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Could you close the basement in case it floods?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344825"
+  },
+  "id" : "67fab6d59930102295344825",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d484"
+  },
+  "title" : "Practicing 'In case'",
+  "instructions" : "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
+  "translation" : "Los niños deberían llevar sus juguetes en caso de que se pongan tristes.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.11.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Maybe they will be sad - the children should take their toys.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The children should take their toys in case they get sad." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The children should take their toys in case they get sad." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344826"
+  },
+  "id" : "67fab6d59930102295344826",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d484"
+  },
+  "title" : "Practicing 'In case'",
+  "instructions" : "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
+  "translation" : "Tomaré una foto en caso de que me esconda.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.11.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Maybe I'll hide - I'll take a picture.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I'll take a picture in case I hide." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I'll take a picture in case I hide." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344827"
+  },
+  "id" : "67fab6d59930102295344827",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d484"
+  },
+  "title" : "Practicing 'In case'",
+  "instructions" : "Escribe una oración usando 'in case'. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
+  "translation" : "Deberías aspirar la casa en caso de que tu hermano venga.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.11.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Maybe your brother will come over - you should hoover the house.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "You should hoover the house in case your brother comes over." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "You should hoover the house in case your brother comes over." ]
+  }
+} ]

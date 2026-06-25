@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953443bf"
-    },
-    "id": "67fab6d599301022953443bf",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d448"
-    },
-    "title": "Reported Speech Transformation Exercise 1",
-    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
-    "translation": "Julie dijo que no iba a bailar.",
-    "theoryId": "b2.08.Reporting_Verbs_with_that",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.08.01.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I am not going to dance.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Julie said that she wasn't going to dance."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Julie said that she wasn't going to dance."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d599301022953443bf"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953443c0"
-    },
-    "id": "67fab6d599301022953443c0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d448"
-    },
-    "title": "Reported Speech Transformation Exercise 1",
-    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
-    "translation": "Julie dijo que las chicas estaban viendo la televisión.",
-    "theoryId": "b2.08.Reporting_Verbs_with_that",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.08.01.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The girls are watching TV.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Julie said that the girls were watching TV."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Julie said that the girls were watching TV."
-      ]
-    }
+  "id" : "67fab6d599301022953443bf",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d448"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953443c1"
-    },
-    "id": "67fab6d599301022953443c1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d448"
-    },
-    "title": "Reported Speech Transformation Exercise 1",
-    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
-    "translation": "Julie dijo que estaba teniendo un mal día.",
-    "theoryId": "b2.08.Reporting_Verbs_with_that",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.08.01.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She is having a bad day.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Julie said that she was having a bad day."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Julie said that she was having a bad day."
-      ]
-    }
+  "title" : "Reported Speech Transformation Exercise 1",
+  "instructions" : "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
+  "translation" : "Julie dijo que no iba a bailar.",
+  "theoryId" : "b2.08.Reporting_Verbs_with_that",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953443c2"
-    },
-    "id": "67fab6d599301022953443c2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d448"
-    },
-    "title": "Reported Speech Transformation Exercise 1",
-    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
-    "translation": "Julie dijo que Peter compraría pan.",
-    "theoryId": "b2.08.Reporting_Verbs_with_that",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.08.01.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Peter will buy bread.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Julie said that Peter would buy bread."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Julie said that Peter would buy bread."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953443c3"
-    },
-    "id": "67fab6d599301022953443c3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d448"
-    },
-    "title": "Reported Speech Transformation Exercise 1",
-    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
-    "translation": "Julie dijo que el Presidente estaba hablando.",
-    "theoryId": "b2.08.Reporting_Verbs_with_that",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.08.01.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The President is talking.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Julie said that the President was talking."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Julie said that the President was talking."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953443c4"
-    },
-    "id": "67fab6d599301022953443c4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d448"
-    },
-    "title": "Reported Speech Transformation Exercise 1",
-    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
-    "translation": "Julie dijo que no tenía sueño.",
-    "theoryId": "b2.08.Reporting_Verbs_with_that",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.08.01.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I am not sleepy.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Julie said that she wasn't sleepy."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Julie said that she wasn't sleepy."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953443c5"
-    },
-    "id": "67fab6d599301022953443c5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d448"
-    },
-    "title": "Reported Speech Transformation Exercise 1",
-    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
-    "translation": "Julie dijo que las chicas se lo habían bebido todo.",
-    "theoryId": "b2.08.Reporting_Verbs_with_that",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.08.01.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The girls have drunk everything.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Julie said that the girls had drunk everything."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Julie said that the girls had drunk everything."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953443c6"
-    },
-    "id": "67fab6d599301022953443c6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d448"
-    },
-    "title": "Reported Speech Transformation Exercise 1",
-    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
-    "translation": "Julie dijo que no estarían en la fiesta.",
-    "theoryId": "b2.08.Reporting_Verbs_with_that",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.08.01.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We won't be at the party.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Julie said that they wouldn't be at the party."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Julie said that they wouldn't be at the party."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953443c7"
-    },
-    "id": "67fab6d599301022953443c7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d448"
-    },
-    "title": "Reported Speech Transformation Exercise 1",
-    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
-    "translation": "Julie dijo que Michael no había estado leyendo un libro.",
-    "theoryId": "b2.08.Reporting_Verbs_with_that",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.08.01.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Michael wasn't reading a book.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Julie said that Michael hadn't been reading a book."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Julie said that Michael hadn't been reading a book."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953443c8"
-    },
-    "id": "67fab6d599301022953443c8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d448"
-    },
-    "title": "Reported Speech Transformation Exercise 1",
-    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
-    "translation": "Julie dijo que no estaban corriendo lo suficientemente rápido.",
-    "theoryId": "b2.08.Reporting_Verbs_with_that",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.08.01.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We aren't running fast enough.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Julie said that they weren't running fast enough."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Julie said that they weren't running fast enough."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953443c9"
-    },
-    "id": "67fab6d599301022953443c9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d448"
-    },
-    "title": "Reported Speech Transformation Exercise 1",
-    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
-    "translation": "Julie dijo que Michael había hecho sus tareas.",
-    "theoryId": "b2.08.Reporting_Verbs_with_that",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.08.01.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Michael has finished his chores.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Julie said that Michael had done his chores."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Julie said that Michael had done his chores."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953443ca"
-    },
-    "id": "67fab6d599301022953443ca",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d448"
-    },
-    "title": "Reported Speech Transformation Exercise 1",
-    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
-    "translation": "Julie dijo que no estaba desayunando.",
-    "theoryId": "b2.08.Reporting_Verbs_with_that",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.08.01.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I am not eating breakfast.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Julie said that she wasn't eating breakfast."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Julie said that she wasn't eating breakfast."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953443cb"
-    },
-    "id": "67fab6d599301022953443cb",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d448"
-    },
-    "title": "Reported Speech Transformation Exercise 1",
-    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
-    "translation": "Julie dijo que Peter no trabajaba en Italia.",
-    "theoryId": "b2.08.Reporting_Verbs_with_that",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.08.01.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Peter doesn't work in Italy.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Julie said that Peter didn't work in Italy."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Julie said that Peter didn't work in Italy."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953443cc"
-    },
-    "id": "67fab6d599301022953443cc",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d448"
-    },
-    "title": "Reported Speech Transformation Exercise 1",
-    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
-    "translation": "Julie dijo que los trabajadores habían estado bebiendo té.",
-    "theoryId": "b2.08.Reporting_Verbs_with_that",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.08.01.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The workers were drinking tea.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Julie said that the workers had been drinking tea."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Julie said that the workers had been drinking tea."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953443cd"
-    },
-    "id": "67fab6d599301022953443cd",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d448"
-    },
-    "title": "Reported Speech Transformation Exercise 1",
-    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
-    "translation": "Julie dijo que habían estado cantando.",
-    "theoryId": "b2.08.Reporting_Verbs_with_that",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.08.01.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We were singing.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Julie said that they'd been singing."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Julie said that they'd been singing."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953443ce"
-    },
-    "id": "67fab6d599301022953443ce",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d448"
-    },
-    "title": "Reported Speech Transformation Exercise 1",
-    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
-    "translation": "Julie dijo que los estudiantes no lo leerían todo.",
-    "theoryId": "b2.08.Reporting_Verbs_with_that",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.08.01.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The students won't read everything.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Julie said that the students wouldn't read everything."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Julie said that the students wouldn't read everything."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953443cf"
-    },
-    "id": "67fab6d599301022953443cf",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d448"
-    },
-    "title": "Reported Speech Transformation Exercise 1",
-    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
-    "translation": "Julie dijo que Peter no se estaba bañando.",
-    "theoryId": "b2.08.Reporting_Verbs_with_that",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.08.01.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Peter isn't taking a bath.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Julie said that Peter wasn't taking a bath."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Julie said that Peter wasn't taking a bath."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953443d0"
-    },
-    "id": "67fab6d599301022953443d0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d448"
-    },
-    "title": "Reported Speech Transformation Exercise 1",
-    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
-    "translation": "Julie dijo que no bebían alcohol.",
-    "theoryId": "b2.08.Reporting_Verbs_with_that",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.08.01.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We don't drink alcohol.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Julie said that they didn't drink alcohol."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Julie said that they didn't drink alcohol."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953443d1"
-    },
-    "id": "67fab6d599301022953443d1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d448"
-    },
-    "title": "Reported Speech Transformation Exercise 1",
-    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
-    "translation": "Julie dijo que Susan no estaba limpiando la casa.",
-    "theoryId": "b2.08.Reporting_Verbs_with_that",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.08.01.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Susan isn't cleaning the house.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Julie said that Susan wasn't cleaning the house."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Julie said that Susan wasn't cleaning the house."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953443d2"
-    },
-    "id": "67fab6d599301022953443d2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d448"
-    },
-    "title": "Reported Speech Transformation Exercise 1",
-    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
-    "translation": "Julie dijo que no estaba jugando con sus muñecas.",
-    "theoryId": "b2.08.Reporting_Verbs_with_that",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.08.01.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She isn't playing with her dolls.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Julie said that she wasn't playing with her dolls."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Julie said that she wasn't playing with her dolls."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.08.01.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I am not going to dance.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Julie said that she wasn't going to dance." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Julie said that she wasn't going to dance." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953443c0"
+  },
+  "id" : "67fab6d599301022953443c0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d448"
+  },
+  "title" : "Reported Speech Transformation Exercise 1",
+  "instructions" : "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
+  "translation" : "Julie dijo que las chicas estaban viendo la televisión.",
+  "theoryId" : "b2.08.Reporting_Verbs_with_that",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.08.01.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The girls are watching TV.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Julie said that the girls were watching TV." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Julie said that the girls were watching TV." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953443c1"
+  },
+  "id" : "67fab6d599301022953443c1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d448"
+  },
+  "title" : "Reported Speech Transformation Exercise 1",
+  "instructions" : "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
+  "translation" : "Julie dijo que estaba teniendo un mal día.",
+  "theoryId" : "b2.08.Reporting_Verbs_with_that",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.08.01.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is having a bad day.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Julie said that she was having a bad day." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Julie said that she was having a bad day." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953443c2"
+  },
+  "id" : "67fab6d599301022953443c2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d448"
+  },
+  "title" : "Reported Speech Transformation Exercise 1",
+  "instructions" : "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
+  "translation" : "Julie dijo que Peter compraría pan.",
+  "theoryId" : "b2.08.Reporting_Verbs_with_that",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.08.01.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Peter will buy bread.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Julie said that Peter would buy bread." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Julie said that Peter would buy bread." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953443c3"
+  },
+  "id" : "67fab6d599301022953443c3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d448"
+  },
+  "title" : "Reported Speech Transformation Exercise 1",
+  "instructions" : "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
+  "translation" : "Julie dijo que el Presidente estaba hablando.",
+  "theoryId" : "b2.08.Reporting_Verbs_with_that",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.08.01.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The President is talking.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Julie said that the President was talking." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Julie said that the President was talking." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953443c4"
+  },
+  "id" : "67fab6d599301022953443c4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d448"
+  },
+  "title" : "Reported Speech Transformation Exercise 1",
+  "instructions" : "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
+  "translation" : "Julie dijo que no tenía sueño.",
+  "theoryId" : "b2.08.Reporting_Verbs_with_that",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.08.01.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I am not sleepy.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Julie said that she wasn't sleepy." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Julie said that she wasn't sleepy." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953443c5"
+  },
+  "id" : "67fab6d599301022953443c5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d448"
+  },
+  "title" : "Reported Speech Transformation Exercise 1",
+  "instructions" : "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
+  "translation" : "Julie dijo que las chicas se lo habían bebido todo.",
+  "theoryId" : "b2.08.Reporting_Verbs_with_that",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.08.01.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The girls have drunk everything.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Julie said that the girls had drunk everything." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Julie said that the girls had drunk everything." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953443c6"
+  },
+  "id" : "67fab6d599301022953443c6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d448"
+  },
+  "title" : "Reported Speech Transformation Exercise 1",
+  "instructions" : "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
+  "translation" : "Julie dijo que no estarían en la fiesta.",
+  "theoryId" : "b2.08.Reporting_Verbs_with_that",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.08.01.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We won't be at the party.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Julie said that they wouldn't be at the party." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Julie said that they wouldn't be at the party." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953443c7"
+  },
+  "id" : "67fab6d599301022953443c7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d448"
+  },
+  "title" : "Reported Speech Transformation Exercise 1",
+  "instructions" : "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
+  "translation" : "Julie dijo que Michael no había estado leyendo un libro.",
+  "theoryId" : "b2.08.Reporting_Verbs_with_that",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.08.01.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Michael wasn't reading a book.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Julie said that Michael hadn't been reading a book." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Julie said that Michael hadn't been reading a book." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953443c8"
+  },
+  "id" : "67fab6d599301022953443c8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d448"
+  },
+  "title" : "Reported Speech Transformation Exercise 1",
+  "instructions" : "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
+  "translation" : "Julie dijo que no estaban corriendo lo suficientemente rápido.",
+  "theoryId" : "b2.08.Reporting_Verbs_with_that",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.08.01.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We aren't running fast enough.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Julie said that they weren't running fast enough." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Julie said that they weren't running fast enough." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953443c9"
+  },
+  "id" : "67fab6d599301022953443c9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d448"
+  },
+  "title" : "Reported Speech Transformation Exercise 1",
+  "instructions" : "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
+  "translation" : "Julie dijo que Michael había hecho sus tareas.",
+  "theoryId" : "b2.08.Reporting_Verbs_with_that",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.08.01.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Michael has finished his chores.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Julie said that Michael had done his chores." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Julie said that Michael had done his chores." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953443ca"
+  },
+  "id" : "67fab6d599301022953443ca",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d448"
+  },
+  "title" : "Reported Speech Transformation Exercise 1",
+  "instructions" : "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
+  "translation" : "Julie dijo que no estaba desayunando.",
+  "theoryId" : "b2.08.Reporting_Verbs_with_that",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.08.01.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I am not eating breakfast.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Julie said that she wasn't eating breakfast." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Julie said that she wasn't eating breakfast." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953443cb"
+  },
+  "id" : "67fab6d599301022953443cb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d448"
+  },
+  "title" : "Reported Speech Transformation Exercise 1",
+  "instructions" : "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
+  "translation" : "Julie dijo que Peter no trabajaba en Italia.",
+  "theoryId" : "b2.08.Reporting_Verbs_with_that",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.08.01.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Peter doesn't work in Italy.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Julie said that Peter didn't work in Italy." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Julie said that Peter didn't work in Italy." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953443cc"
+  },
+  "id" : "67fab6d599301022953443cc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d448"
+  },
+  "title" : "Reported Speech Transformation Exercise 1",
+  "instructions" : "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
+  "translation" : "Julie dijo que los trabajadores habían estado bebiendo té.",
+  "theoryId" : "b2.08.Reporting_Verbs_with_that",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.08.01.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The workers were drinking tea.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Julie said that the workers had been drinking tea." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Julie said that the workers had been drinking tea." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953443cd"
+  },
+  "id" : "67fab6d599301022953443cd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d448"
+  },
+  "title" : "Reported Speech Transformation Exercise 1",
+  "instructions" : "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
+  "translation" : "Julie dijo que habían estado cantando.",
+  "theoryId" : "b2.08.Reporting_Verbs_with_that",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.08.01.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We were singing.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Julie said that they'd been singing." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Julie said that they'd been singing." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953443ce"
+  },
+  "id" : "67fab6d599301022953443ce",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d448"
+  },
+  "title" : "Reported Speech Transformation Exercise 1",
+  "instructions" : "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
+  "translation" : "Julie dijo que los estudiantes no lo leerían todo.",
+  "theoryId" : "b2.08.Reporting_Verbs_with_that",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.08.01.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The students won't read everything.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Julie said that the students wouldn't read everything." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Julie said that the students wouldn't read everything." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953443cf"
+  },
+  "id" : "67fab6d599301022953443cf",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d448"
+  },
+  "title" : "Reported Speech Transformation Exercise 1",
+  "instructions" : "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
+  "translation" : "Julie dijo que Peter no se estaba bañando.",
+  "theoryId" : "b2.08.Reporting_Verbs_with_that",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.08.01.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Peter isn't taking a bath.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Julie said that Peter wasn't taking a bath." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Julie said that Peter wasn't taking a bath." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953443d0"
+  },
+  "id" : "67fab6d599301022953443d0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d448"
+  },
+  "title" : "Reported Speech Transformation Exercise 1",
+  "instructions" : "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
+  "translation" : "Julie dijo que no bebían alcohol.",
+  "theoryId" : "b2.08.Reporting_Verbs_with_that",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.08.01.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We don't drink alcohol.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Julie said that they didn't drink alcohol." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Julie said that they didn't drink alcohol." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953443d1"
+  },
+  "id" : "67fab6d599301022953443d1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d448"
+  },
+  "title" : "Reported Speech Transformation Exercise 1",
+  "instructions" : "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
+  "translation" : "Julie dijo que Susan no estaba limpiando la casa.",
+  "theoryId" : "b2.08.Reporting_Verbs_with_that",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.08.01.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Susan isn't cleaning the house.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Julie said that Susan wasn't cleaning the house." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Julie said that Susan wasn't cleaning the house." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953443d2"
+  },
+  "id" : "67fab6d599301022953443d2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d448"
+  },
+  "title" : "Reported Speech Transformation Exercise 1",
+  "instructions" : "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'Julie said that' y realiza el 'backshift' correspondiente.",
+  "translation" : "Julie dijo que no estaba jugando con sus muñecas.",
+  "theoryId" : "b2.08.Reporting_Verbs_with_that",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.08.01.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She isn't playing with her dolls.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Julie said that she wasn't playing with her dolls." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Julie said that she wasn't playing with her dolls." ]
+  }
+} ]

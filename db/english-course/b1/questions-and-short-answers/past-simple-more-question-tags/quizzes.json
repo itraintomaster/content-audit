@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953432f4"
-    },
-    "id": "67fab6d599301022953432f4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e7"
-    },
-    "title": "Past Simple: More Question Tags",
-    "instructions": "Añade 'question tags' a las oraciones.",
-    "translation": "Él no leyó el periódico, ¿verdad?",
-    "theoryId": "b1.05.Question_Tags",
-    "topicName": "Questions and short answers",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.05.06.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": ".He didn't read the newspaper,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "did he"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        ".He didn't read the newspaper, did he?"
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d599301022953432f4"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953432f5"
-    },
-    "id": "67fab6d599301022953432f5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e7"
-    },
-    "title": "Past Simple: More Question Tags",
-    "instructions": "Añade 'question tags' a las oraciones.",
-    "translation": "Él no estaba en la escuela, ¿verdad?",
-    "theoryId": "b1.05.Question_Tags",
-    "topicName": "Questions and short answers",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.05.06.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He wasn't at school,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "was he"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He wasn't at school, was he?"
-      ]
-    }
+  "id" : "67fab6d599301022953432f4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e7"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953432f6"
-    },
-    "id": "67fab6d599301022953432f6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e7"
-    },
-    "title": "Past Simple: More Question Tags",
-    "instructions": "Añade 'question tags' a las oraciones.",
-    "translation": "Los niños no estaban en el jardín, ¿verdad?",
-    "theoryId": "b1.05.Question_Tags",
-    "topicName": "Questions and short answers",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.05.06.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The children weren't in the garden,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were they"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The children weren't in the garden, were they?"
-      ]
-    }
+  "title" : "Past Simple: More Question Tags",
+  "instructions" : "Añade 'question tags' a las oraciones.",
+  "translation" : "Él no leyó el periódico, ¿verdad?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953432f7"
-    },
-    "id": "67fab6d599301022953432f7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e7"
-    },
-    "title": "Past Simple: More Question Tags",
-    "instructions": "Añade 'question tags' a las oraciones.",
-    "translation": "Ellos no tenían sed, ¿verdad?",
-    "theoryId": "b1.05.Question_Tags",
-    "topicName": "Questions and short answers",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.05.06.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They weren't thirsty,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were they"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They weren't thirsty, were they?"
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953432f8"
-    },
-    "id": "67fab6d599301022953432f8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e7"
-    },
-    "title": "Past Simple: More Question Tags",
-    "instructions": "Añade 'question tags' a las oraciones.",
-    "translation": "Estaba soleado, ¿no?",
-    "theoryId": "b1.05.Question_Tags",
-    "topicName": "Questions and short answers",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.05.06.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "It was sunny,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "wasn't it"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "It was sunny, wasn't it?"
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953432f9"
-    },
-    "id": "67fab6d599301022953432f9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e7"
-    },
-    "title": "Past Simple: More Question Tags",
-    "instructions": "Añade 'question tags' a las oraciones.",
-    "translation": "Mary no se bebió todo el jugo, ¿verdad?",
-    "theoryId": "b1.05.Question_Tags",
-    "topicName": "Questions and short answers",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.05.06.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Mary didn't drink all the juice,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "did she"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Mary didn't drink all the juice, did she?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953432fa"
-    },
-    "id": "67fab6d599301022953432fa",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e7"
-    },
-    "title": "Past Simple: More Question Tags",
-    "instructions": "Añade 'question tags' a las oraciones.",
-    "translation": "Yo compré ese libro, ¿no?",
-    "theoryId": "b1.05.Question_Tags",
-    "topicName": "Questions and short answers",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.05.06.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I bought that book,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "didn't I"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I bought that book, didn't I?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953432fb"
-    },
-    "id": "67fab6d599301022953432fb",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e7"
-    },
-    "title": "Past Simple: More Question Tags",
-    "instructions": "Añade 'question tags' a las oraciones.",
-    "translation": "Ella no practicó lo suficiente, ¿verdad?",
-    "theoryId": "b1.05.Question_Tags",
-    "topicName": "Questions and short answers",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.05.06.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She didn't practice enough,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "did she"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She didn't practice enough, did she?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953432fc"
-    },
-    "id": "67fab6d599301022953432fc",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e7"
-    },
-    "title": "Past Simple: More Question Tags",
-    "instructions": "Añade 'question tags' a las oraciones.",
-    "translation": "Nosotros odiamos el ruido, ¿no?",
-    "theoryId": "b1.05.Question_Tags",
-    "topicName": "Questions and short answers",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.05.06.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We hated the noise,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "didn't we"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We hated the noise, didn't we?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953432fd"
-    },
-    "id": "67fab6d599301022953432fd",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e7"
-    },
-    "title": "Past Simple: More Question Tags",
-    "instructions": "Añade 'question tags' a las oraciones.",
-    "translation": "No nos quedamos en casa, ¿verdad?",
-    "theoryId": "b1.05.Question_Tags",
-    "topicName": "Questions and short answers",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.05.06.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We didn't stay in,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "did we"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We didn't stay in, did we?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953432fe"
-    },
-    "id": "67fab6d599301022953432fe",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e7"
-    },
-    "title": "Past Simple: More Question Tags",
-    "instructions": "Añade 'question tags' a las oraciones.",
-    "translation": "Los ingenieros estaban en la fábrica, ¿no?",
-    "theoryId": "b1.05.Question_Tags",
-    "topicName": "Questions and short answers",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.05.06.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The engineers were at the factory,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "weren't they"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The engineers were at the factory, weren't they?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953432ff"
-    },
-    "id": "67fab6d599301022953432ff",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e7"
-    },
-    "title": "Past Simple: More Question Tags",
-    "instructions": "Añade 'question tags' a las oraciones.",
-    "translation": "Ella bailó en el club, ¿no?",
-    "theoryId": "b1.05.Question_Tags",
-    "topicName": "Questions and short answers",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.05.06.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She danced at the club,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "didn't she"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She danced at the club, didn't she?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343300"
-    },
-    "id": "67fab6d59930102295343300",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e7"
-    },
-    "title": "Past Simple: More Question Tags",
-    "instructions": "Añade 'question tags' a las oraciones.",
-    "translation": "La doctora lo examinó, ¿no?",
-    "theoryId": "b1.05.Question_Tags",
-    "topicName": "Questions and short answers",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.05.06.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The doctor examined him,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "didn't she"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The doctor examined him, didn't she?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343301"
-    },
-    "id": "67fab6d59930102295343301",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e7"
-    },
-    "title": "Past Simple: More Question Tags",
-    "instructions": "Añade 'question tags' a las oraciones.",
-    "translation": "Él fue al estadio, ¿no?",
-    "theoryId": "b1.05.Question_Tags",
-    "topicName": "Questions and short answers",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.05.06.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He went to the stadium,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "didn't he"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He went to the stadium, didn't he?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343302"
-    },
-    "id": "67fab6d59930102295343302",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e7"
-    },
-    "title": "Past Simple: More Question Tags",
-    "instructions": "Añade 'question tags' a las oraciones.",
-    "translation": "Nosotros no llegamos tarde, ¿verdad?",
-    "theoryId": "b1.05.Question_Tags",
-    "topicName": "Questions and short answers",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.05.06.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We weren't late,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were we"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We weren't late, were we?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343303"
-    },
-    "id": "67fab6d59930102295343303",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e7"
-    },
-    "title": "Past Simple: More Question Tags",
-    "instructions": "Añade 'question tags' a las oraciones.",
-    "translation": "Estábamos en el jardín, ¿no?",
-    "theoryId": "b1.05.Question_Tags",
-    "topicName": "Questions and short answers",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.05.06.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We were in the garden,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "weren't we"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We were in the garden, weren't we?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343304"
-    },
-    "id": "67fab6d59930102295343304",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e7"
-    },
-    "title": "Past Simple: More Question Tags",
-    "instructions": "Añade 'question tags' a las oraciones.",
-    "translation": "Yo estaba en la oficina, ¿no?",
-    "theoryId": "b1.05.Question_Tags",
-    "topicName": "Questions and short answers",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.05.06.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I was at the office,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "wasn't I"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I was at the office, wasn't I?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343305"
-    },
-    "id": "67fab6d59930102295343305",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e7"
-    },
-    "title": "Past Simple: More Question Tags",
-    "instructions": "Añade 'question tags' a las oraciones.",
-    "translation": "David estaba en la fiesta, ¿no?",
-    "theoryId": "b1.05.Question_Tags",
-    "topicName": "Questions and short answers",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.05.06.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "David was at the party,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "wasn't he"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "David was at the party, wasn't he?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343306"
-    },
-    "id": "67fab6d59930102295343306",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e7"
-    },
-    "title": "Past Simple: More Question Tags",
-    "instructions": "Añade 'question tags' a las oraciones.",
-    "translation": "Tus padres no cocinaron la cena, ¿verdad?",
-    "theoryId": "b1.05.Question_Tags",
-    "topicName": "Questions and short answers",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.05.06.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Your parents didn't cook the dinner,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "did they"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Your parents didn't cook the dinner, did they?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343307"
-    },
-    "id": "67fab6d59930102295343307",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2e7"
-    },
-    "title": "Past Simple: More Question Tags",
-    "instructions": "Añade 'question tags' a las oraciones.",
-    "translation": "Yo no estaba con ella, ¿verdad?",
-    "theoryId": "b1.05.Question_Tags",
-    "topicName": "Questions and short answers",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.05.06.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I wasn't with her,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "was I"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I wasn't with her, was I?"
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.06.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : ".He didn't read the newspaper,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "did he" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ ".He didn't read the newspaper, did he?" ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953432f5"
+  },
+  "id" : "67fab6d599301022953432f5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e7"
+  },
+  "title" : "Past Simple: More Question Tags",
+  "instructions" : "Añade 'question tags' a las oraciones.",
+  "translation" : "Él no estaba en la escuela, ¿verdad?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.06.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He wasn't at school,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was he" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "He wasn't at school, was he?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953432f6"
+  },
+  "id" : "67fab6d599301022953432f6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e7"
+  },
+  "title" : "Past Simple: More Question Tags",
+  "instructions" : "Añade 'question tags' a las oraciones.",
+  "translation" : "Los niños no estaban en el jardín, ¿verdad?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.06.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The children weren't in the garden,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were they" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "The children weren't in the garden, were they?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953432f7"
+  },
+  "id" : "67fab6d599301022953432f7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e7"
+  },
+  "title" : "Past Simple: More Question Tags",
+  "instructions" : "Añade 'question tags' a las oraciones.",
+  "translation" : "Ellos no tenían sed, ¿verdad?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.06.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They weren't thirsty,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were they" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "They weren't thirsty, were they?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953432f8"
+  },
+  "id" : "67fab6d599301022953432f8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e7"
+  },
+  "title" : "Past Simple: More Question Tags",
+  "instructions" : "Añade 'question tags' a las oraciones.",
+  "translation" : "Estaba soleado, ¿no?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.06.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It was sunny,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "wasn't it" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "It was sunny, wasn't it?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953432f9"
+  },
+  "id" : "67fab6d599301022953432f9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e7"
+  },
+  "title" : "Past Simple: More Question Tags",
+  "instructions" : "Añade 'question tags' a las oraciones.",
+  "translation" : "Mary no se bebió todo el jugo, ¿verdad?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.06.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Mary didn't drink all the juice,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "did she" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "Mary didn't drink all the juice, did she?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953432fa"
+  },
+  "id" : "67fab6d599301022953432fa",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e7"
+  },
+  "title" : "Past Simple: More Question Tags",
+  "instructions" : "Añade 'question tags' a las oraciones.",
+  "translation" : "Yo compré ese libro, ¿no?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.06.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I bought that book,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "didn't I" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "I bought that book, didn't I?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953432fb"
+  },
+  "id" : "67fab6d599301022953432fb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e7"
+  },
+  "title" : "Past Simple: More Question Tags",
+  "instructions" : "Añade 'question tags' a las oraciones.",
+  "translation" : "Ella no practicó lo suficiente, ¿verdad?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.06.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She didn't practice enough,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "did she" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "She didn't practice enough, did she?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953432fc"
+  },
+  "id" : "67fab6d599301022953432fc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e7"
+  },
+  "title" : "Past Simple: More Question Tags",
+  "instructions" : "Añade 'question tags' a las oraciones.",
+  "translation" : "Nosotros odiamos el ruido, ¿no?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.06.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We hated the noise,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "didn't we" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "We hated the noise, didn't we?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953432fd"
+  },
+  "id" : "67fab6d599301022953432fd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e7"
+  },
+  "title" : "Past Simple: More Question Tags",
+  "instructions" : "Añade 'question tags' a las oraciones.",
+  "translation" : "No nos quedamos en casa, ¿verdad?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.06.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We didn't stay in,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "did we" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "We didn't stay in, did we?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953432fe"
+  },
+  "id" : "67fab6d599301022953432fe",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e7"
+  },
+  "title" : "Past Simple: More Question Tags",
+  "instructions" : "Añade 'question tags' a las oraciones.",
+  "translation" : "Los ingenieros estaban en la fábrica, ¿no?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.06.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The engineers were at the factory,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "weren't they" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "The engineers were at the factory, weren't they?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953432ff"
+  },
+  "id" : "67fab6d599301022953432ff",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e7"
+  },
+  "title" : "Past Simple: More Question Tags",
+  "instructions" : "Añade 'question tags' a las oraciones.",
+  "translation" : "Ella bailó en el club, ¿no?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.06.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She danced at the club,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "didn't she" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "She danced at the club, didn't she?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343300"
+  },
+  "id" : "67fab6d59930102295343300",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e7"
+  },
+  "title" : "Past Simple: More Question Tags",
+  "instructions" : "Añade 'question tags' a las oraciones.",
+  "translation" : "La doctora lo examinó, ¿no?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.06.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The doctor examined him,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "didn't she" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "The doctor examined him, didn't she?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343301"
+  },
+  "id" : "67fab6d59930102295343301",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e7"
+  },
+  "title" : "Past Simple: More Question Tags",
+  "instructions" : "Añade 'question tags' a las oraciones.",
+  "translation" : "Él fue al estadio, ¿no?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.06.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He went to the stadium,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "didn't he" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "He went to the stadium, didn't he?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343302"
+  },
+  "id" : "67fab6d59930102295343302",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e7"
+  },
+  "title" : "Past Simple: More Question Tags",
+  "instructions" : "Añade 'question tags' a las oraciones.",
+  "translation" : "Nosotros no llegamos tarde, ¿verdad?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.06.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We weren't late,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were we" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "We weren't late, were we?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343303"
+  },
+  "id" : "67fab6d59930102295343303",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e7"
+  },
+  "title" : "Past Simple: More Question Tags",
+  "instructions" : "Añade 'question tags' a las oraciones.",
+  "translation" : "Estábamos en el jardín, ¿no?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.06.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We were in the garden,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "weren't we" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "We were in the garden, weren't we?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343304"
+  },
+  "id" : "67fab6d59930102295343304",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e7"
+  },
+  "title" : "Past Simple: More Question Tags",
+  "instructions" : "Añade 'question tags' a las oraciones.",
+  "translation" : "Yo estaba en la oficina, ¿no?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.06.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I was at the office,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "wasn't I" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "I was at the office, wasn't I?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343305"
+  },
+  "id" : "67fab6d59930102295343305",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e7"
+  },
+  "title" : "Past Simple: More Question Tags",
+  "instructions" : "Añade 'question tags' a las oraciones.",
+  "translation" : "David estaba en la fiesta, ¿no?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.06.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "David was at the party,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "wasn't he" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "David was at the party, wasn't he?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343306"
+  },
+  "id" : "67fab6d59930102295343306",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e7"
+  },
+  "title" : "Past Simple: More Question Tags",
+  "instructions" : "Añade 'question tags' a las oraciones.",
+  "translation" : "Tus padres no cocinaron la cena, ¿verdad?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.06.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Your parents didn't cook the dinner,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "did they" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "Your parents didn't cook the dinner, did they?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343307"
+  },
+  "id" : "67fab6d59930102295343307",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2e7"
+  },
+  "title" : "Past Simple: More Question Tags",
+  "instructions" : "Añade 'question tags' a las oraciones.",
+  "translation" : "Yo no estaba con ella, ¿verdad?",
+  "theoryId" : "b1.05.Question_Tags",
+  "topicName" : "Questions and short answers",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.05.06.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I wasn't with her,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was I" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "I wasn't with her, was I?" ]
+  }
+} ]

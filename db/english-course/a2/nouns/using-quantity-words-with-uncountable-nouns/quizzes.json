@@ -1,612 +1,521 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429fc"
-    },
-    "id": "67fab6d599301022953429fc",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d258"
-    },
-    "title": "Using Quantity Words with Uncountable Nouns",
-    "instructions": "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
-    "translation": "Quiero un trozo de carne.",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.04.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I want",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a piece of meat"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(piece / meat).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I want a piece of meat."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429fc"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429fd"
-    },
-    "id": "67fab6d599301022953429fd",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d258"
-    },
-    "title": "Using Quantity Words with Uncountable Nouns",
-    "instructions": "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
-    "translation": "¿Puedes untar una capa de mantequilla?",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.04.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Can you spread",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a layer of butter"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(layer / butter)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Can you spread a layer of butter?"
-      ]
-    }
+  "id" : "67fab6d599301022953429fc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d258"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429fe"
-    },
-    "id": "67fab6d599301022953429fe",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d258"
-    },
-    "title": "Using Quantity Words with Uncountable Nouns",
-    "instructions": "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
-    "translation": "Tenía un trozo de queso cheddar.",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.04.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He had",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a chunk of cheddar"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(chunk / cheddar).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He had a chunk of cheddar."
-      ]
-    }
+  "title" : "Using Quantity Words with Uncountable Nouns",
+  "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
+  "translation" : "Quiero un trozo de carne.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429ff"
-    },
-    "id": "67fab6d599301022953429ff",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d258"
-    },
-    "title": "Using Quantity Words with Uncountable Nouns",
-    "instructions": "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
-    "translation": "Necesitan un saco de cemento.",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.04.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They require",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a sack of cement"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(sack / cement).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They require a sack of cement."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342a00"
-    },
-    "id": "67fab6d59930102295342a00",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d258"
-    },
-    "title": "Using Quantity Words with Uncountable Nouns",
-    "instructions": "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
-    "translation": "¿Comprarías una lata de refresco?",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.04.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Would you buy",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a can of soda"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(can / soda)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Would you buy a can of soda?"
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342a01"
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.04.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
     },
-    "id": "67fab6d59930102295342a01",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d258"
-    },
-    "title": "Using Quantity Words with Uncountable Nouns",
-    "instructions": "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
-    "translation": "¡Deseo una taza de té!",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.04.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I desire",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a mug of tea"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(mug / tea)!",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I desire a mug of tea!"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342a02"
-    },
-    "id": "67fab6d59930102295342a02",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d258"
-    },
-    "title": "Using Quantity Words with Uncountable Nouns",
-    "instructions": "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
-    "translation": "¡Ella consumió un rollo de masa!",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.04.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She consumed",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a roll of dough"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(roll / dough)!",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She consumed a roll of dough!"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342a03"
-    },
-    "id": "67fab6d59930102295342a03",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d258"
-    },
-    "title": "Using Quantity Words with Uncountable Nouns",
-    "instructions": "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
-    "translation": "Compartieron una jarra de cerveza.",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.04.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They shared",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a jug of beer"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(jug / beer).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They shared a jug of beer."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342a04"
-    },
-    "id": "67fab6d59930102295342a04",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d258"
-    },
-    "title": "Using Quantity Words with Uncountable Nouns",
-    "instructions": "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
-    "translation": "Eso es un gramo de oro.",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.04.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "That is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a gram of gold"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(gram / gold).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "That is a gram of gold."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342a05"
-    },
-    "id": "67fab6d59930102295342a05",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d258"
-    },
-    "title": "Using Quantity Words with Uncountable Nouns",
-    "instructions": "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
-    "translation": "Se tragó un galón de leche.",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.04.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He gulped",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a gallon of milk"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(gallon / milk).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He gulped a gallon of milk."
-      ]
-    }
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I want",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a piece of meat" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(piece / meat).",
+      "options" : null
+    } ],
+    "sentences" : [ "I want a piece of meat." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429fd"
+  },
+  "id" : "67fab6d599301022953429fd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d258"
+  },
+  "title" : "Using Quantity Words with Uncountable Nouns",
+  "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
+  "translation" : "¿Puedes untar una capa de mantequilla?",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.04.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can you spread",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a layer of butter" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(layer / butter)?",
+      "options" : null
+    } ],
+    "sentences" : [ "Can you spread a layer of butter?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429fe"
+  },
+  "id" : "67fab6d599301022953429fe",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d258"
+  },
+  "title" : "Using Quantity Words with Uncountable Nouns",
+  "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
+  "translation" : "Tenía un trozo de queso cheddar.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.04.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He had",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a chunk of cheddar" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(chunk / cheddar).",
+      "options" : null
+    } ],
+    "sentences" : [ "He had a chunk of cheddar." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429ff"
+  },
+  "id" : "67fab6d599301022953429ff",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d258"
+  },
+  "title" : "Using Quantity Words with Uncountable Nouns",
+  "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
+  "translation" : "Necesitan un saco de cemento.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.04.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They require",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a sack of cement" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(sack / cement).",
+      "options" : null
+    } ],
+    "sentences" : [ "They require a sack of cement." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a00"
+  },
+  "id" : "67fab6d59930102295342a00",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d258"
+  },
+  "title" : "Using Quantity Words with Uncountable Nouns",
+  "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
+  "translation" : "¿Comprarías una lata de refresco?",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.04.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Would you buy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a can of soda" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(can / soda)?",
+      "options" : null
+    } ],
+    "sentences" : [ "Would you buy a can of soda?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a01"
+  },
+  "id" : "67fab6d59930102295342a01",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d258"
+  },
+  "title" : "Using Quantity Words with Uncountable Nouns",
+  "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
+  "translation" : "¡Deseo una taza de té!",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.04.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I desire",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a mug of tea" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(mug / tea)!",
+      "options" : null
+    } ],
+    "sentences" : [ "I desire a mug of tea!" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a02"
+  },
+  "id" : "67fab6d59930102295342a02",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d258"
+  },
+  "title" : "Using Quantity Words with Uncountable Nouns",
+  "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
+  "translation" : "¡Ella consumió un rollo de masa!",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.04.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She consumed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a roll of dough" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(roll / dough)!",
+      "options" : null
+    } ],
+    "sentences" : [ "She consumed a roll of dough!" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a03"
+  },
+  "id" : "67fab6d59930102295342a03",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d258"
+  },
+  "title" : "Using Quantity Words with Uncountable Nouns",
+  "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
+  "translation" : "Compartieron una jarra de cerveza.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.04.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They shared",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a jug of beer" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(jug / beer).",
+      "options" : null
+    } ],
+    "sentences" : [ "They shared a jug of beer." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a04"
+  },
+  "id" : "67fab6d59930102295342a04",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d258"
+  },
+  "title" : "Using Quantity Words with Uncountable Nouns",
+  "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
+  "translation" : "Eso es un gramo de oro.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.04.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a gram of gold" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(gram / gold).",
+      "options" : null
+    } ],
+    "sentences" : [ "That is a gram of gold." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a05"
+  },
+  "id" : "67fab6d59930102295342a05",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d258"
+  },
+  "title" : "Using Quantity Words with Uncountable Nouns",
+  "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
+  "translation" : "Se tragó un galón de leche.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.04.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He gulped",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a gallon of milk" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(gallon / milk).",
+      "options" : null
+    } ],
+    "sentences" : [ "He gulped a gallon of milk." ]
+  }
+} ]

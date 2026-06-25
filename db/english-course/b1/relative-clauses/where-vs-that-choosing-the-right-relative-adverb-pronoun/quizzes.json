@@ -1,612 +1,521 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343933"
-    },
-    "id": "67fab6d59930102295343933",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d341"
-    },
-    "title": "'Where' vs. 'That': Choosing the Right Relative Adverb/Pronoun",
-    "instructions": "Crea una oración con 'where' o 'that'.",
-    "translation": "Visitaron el museo en el que vimos la pintura.",
-    "theoryId": "b1.12.Where_in_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.10.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They visited the museum. We saw a painting in the museum. (that)",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They visited the museum that we saw the painting in."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They visited the museum that we saw the painting in."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343933"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343934"
-    },
-    "id": "67fab6d59930102295343934",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d341"
-    },
-    "title": "'Where' vs. 'That': Choosing the Right Relative Adverb/Pronoun",
-    "instructions": "Crea una oración con 'where' o 'that'.",
-    "translation": "Visitaron el museo donde vimos la pintura.",
-    "theoryId": "b1.12.Where_in_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.10.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They visited the museum. We saw a painting in the museum. (where)",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They visited the museum where we saw the painting."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They visited the museum where we saw the painting."
-      ]
-    }
+  "id" : "67fab6d59930102295343933",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d341"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343935"
-    },
-    "id": "67fab6d59930102295343935",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d341"
-    },
-    "title": "'Where' vs. 'That': Choosing the Right Relative Adverb/Pronoun",
-    "instructions": "Crea una oración con 'where' o 'that'.",
-    "translation": "Entró en la tienda donde la gente compra recuerdos.",
-    "theoryId": "b1.12.Where_in_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.10.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He entered the shop. People buy souvenirs in that shop. (where)",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He entered the shop where people buy souvenirs."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He entered the shop where people buy souvenirs."
-      ]
-    }
+  "title" : "'Where' vs. 'That': Choosing the Right Relative Adverb/Pronoun",
+  "instructions" : "Crea una oración con 'where' o 'that'.",
+  "translation" : "Visitaron el museo en el que vimos la pintura.",
+  "theoryId" : "b1.12.Where_in_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343936"
-    },
-    "id": "67fab6d59930102295343936",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d341"
-    },
-    "title": "'Where' vs. 'That': Choosing the Right Relative Adverb/Pronoun",
-    "instructions": "Crea una oración con 'where' o 'that'.",
-    "translation": "Entró en la tienda en la que la gente compra recuerdos.",
-    "theoryId": "b1.12.Where_in_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.10.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He entered the shop. People buy souvenirs in that shop. (that)",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He entered the shop that people buy souvenirs in."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He entered the shop that people buy souvenirs in."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343937"
-    },
-    "id": "67fab6d59930102295343937",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d341"
-    },
-    "title": "'Where' vs. 'That': Choosing the Right Relative Adverb/Pronoun",
-    "instructions": "Crea una oración con 'where' o 'that'.",
-    "translation": "Visitemos el parque en el que comimos sándwiches geniales.",
-    "theoryId": "b1.12.Where_in_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.10.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Let's visit the park. We ate great sandwiches in the park. (that)",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Let's visit the park that we ate great sandwiches in."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Let's visit the park that we ate great sandwiches in."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343938"
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.10.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
     },
-    "id": "67fab6d59930102295343938",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d341"
-    },
-    "title": "'Where' vs. 'That': Choosing the Right Relative Adverb/Pronoun",
-    "instructions": "Crea una oración con 'where' o 'that'.",
-    "translation": "Visitemos el parque donde comimos sándwiches geniales.",
-    "theoryId": "b1.12.Where_in_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.10.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Let's visit the park. We ate great sandwiches in the park. (where)",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Let's visit the park where we ate great sandwiches."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Let's visit the park where we ate great sandwiches."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343939"
-    },
-    "id": "67fab6d59930102295343939",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d341"
-    },
-    "title": "'Where' vs. 'That': Choosing the Right Relative Adverb/Pronoun",
-    "instructions": "Crea una oración con 'where' o 'that'.",
-    "translation": "Me gustó el concierto en el que bailamos.",
-    "theoryId": "b1.12.Where_in_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.10.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I liked the concert. We danced at the concert. (where)",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I liked the concert where we danced."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I liked the concert where we danced."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534393a"
-    },
-    "id": "67fab6d5993010229534393a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d341"
-    },
-    "title": "'Where' vs. 'That': Choosing the Right Relative Adverb/Pronoun",
-    "instructions": "Crea una oración con 'where' o 'that'.",
-    "translation": "Me gustó el concierto en el que bailamos.",
-    "theoryId": "b1.12.Where_in_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.10.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I liked the concert. We danced at the concert. (that)",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I liked the concert that we danced at."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I liked the concert that we danced at."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534393b"
-    },
-    "id": "67fab6d5993010229534393b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d341"
-    },
-    "title": "'Where' vs. 'That': Choosing the Right Relative Adverb/Pronoun",
-    "instructions": "Crea una oración con 'where' o 'that'.",
-    "translation": "¿Recuerdas la playa en la que nadamos?",
-    "theoryId": "b1.12.Where_in_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.10.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Do you remember the beach? We swam on the beach. (that)",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Do you remember the beach that we swam on?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Do you remember the beach that we swam on?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534393c"
-    },
-    "id": "67fab6d5993010229534393c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d341"
-    },
-    "title": "'Where' vs. 'That': Choosing the Right Relative Adverb/Pronoun",
-    "instructions": "Crea una oración con 'where' o 'that'.",
-    "translation": "¿Recuerdas la playa donde nadamos?",
-    "theoryId": "b1.12.Where_in_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.10.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Do you remember the beach? We swam on the beach. (where)",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Do you remember the beach where we swam?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Do you remember the beach where we swam?"
-      ]
-    }
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They visited the museum. We saw a painting in the museum. (that)",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They visited the museum that we saw the painting in." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They visited the museum that we saw the painting in." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343934"
+  },
+  "id" : "67fab6d59930102295343934",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d341"
+  },
+  "title" : "'Where' vs. 'That': Choosing the Right Relative Adverb/Pronoun",
+  "instructions" : "Crea una oración con 'where' o 'that'.",
+  "translation" : "Visitaron el museo donde vimos la pintura.",
+  "theoryId" : "b1.12.Where_in_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.10.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They visited the museum. We saw a painting in the museum. (where)",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They visited the museum where we saw the painting." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They visited the museum where we saw the painting." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343935"
+  },
+  "id" : "67fab6d59930102295343935",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d341"
+  },
+  "title" : "'Where' vs. 'That': Choosing the Right Relative Adverb/Pronoun",
+  "instructions" : "Crea una oración con 'where' o 'that'.",
+  "translation" : "Entró en la tienda donde la gente compra recuerdos.",
+  "theoryId" : "b1.12.Where_in_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.10.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He entered the shop. People buy souvenirs in that shop. (where)",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He entered the shop where people buy souvenirs." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He entered the shop where people buy souvenirs." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343936"
+  },
+  "id" : "67fab6d59930102295343936",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d341"
+  },
+  "title" : "'Where' vs. 'That': Choosing the Right Relative Adverb/Pronoun",
+  "instructions" : "Crea una oración con 'where' o 'that'.",
+  "translation" : "Entró en la tienda en la que la gente compra recuerdos.",
+  "theoryId" : "b1.12.Where_in_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.10.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He entered the shop. People buy souvenirs in that shop. (that)",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He entered the shop that people buy souvenirs in." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He entered the shop that people buy souvenirs in." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343937"
+  },
+  "id" : "67fab6d59930102295343937",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d341"
+  },
+  "title" : "'Where' vs. 'That': Choosing the Right Relative Adverb/Pronoun",
+  "instructions" : "Crea una oración con 'where' o 'that'.",
+  "translation" : "Visitemos el parque en el que comimos sándwiches geniales.",
+  "theoryId" : "b1.12.Where_in_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.10.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Let's visit the park. We ate great sandwiches in the park. (that)",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Let's visit the park that we ate great sandwiches in." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Let's visit the park that we ate great sandwiches in." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343938"
+  },
+  "id" : "67fab6d59930102295343938",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d341"
+  },
+  "title" : "'Where' vs. 'That': Choosing the Right Relative Adverb/Pronoun",
+  "instructions" : "Crea una oración con 'where' o 'that'.",
+  "translation" : "Visitemos el parque donde comimos sándwiches geniales.",
+  "theoryId" : "b1.12.Where_in_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.10.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Let's visit the park. We ate great sandwiches in the park. (where)",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Let's visit the park where we ate great sandwiches." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Let's visit the park where we ate great sandwiches." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343939"
+  },
+  "id" : "67fab6d59930102295343939",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d341"
+  },
+  "title" : "'Where' vs. 'That': Choosing the Right Relative Adverb/Pronoun",
+  "instructions" : "Crea una oración con 'where' o 'that'.",
+  "translation" : "Me gustó el concierto en el que bailamos.",
+  "theoryId" : "b1.12.Where_in_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.10.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I liked the concert. We danced at the concert. (where)",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I liked the concert where we danced." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I liked the concert where we danced." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534393a"
+  },
+  "id" : "67fab6d5993010229534393a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d341"
+  },
+  "title" : "'Where' vs. 'That': Choosing the Right Relative Adverb/Pronoun",
+  "instructions" : "Crea una oración con 'where' o 'that'.",
+  "translation" : "Me gustó el concierto en el que bailamos.",
+  "theoryId" : "b1.12.Where_in_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.10.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I liked the concert. We danced at the concert. (that)",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I liked the concert that we danced at." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I liked the concert that we danced at." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534393b"
+  },
+  "id" : "67fab6d5993010229534393b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d341"
+  },
+  "title" : "'Where' vs. 'That': Choosing the Right Relative Adverb/Pronoun",
+  "instructions" : "Crea una oración con 'where' o 'that'.",
+  "translation" : "¿Recuerdas la playa en la que nadamos?",
+  "theoryId" : "b1.12.Where_in_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.10.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you remember the beach? We swam on the beach. (that)",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Do you remember the beach that we swam on?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Do you remember the beach that we swam on?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534393c"
+  },
+  "id" : "67fab6d5993010229534393c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d341"
+  },
+  "title" : "'Where' vs. 'That': Choosing the Right Relative Adverb/Pronoun",
+  "instructions" : "Crea una oración con 'where' o 'that'.",
+  "translation" : "¿Recuerdas la playa donde nadamos?",
+  "theoryId" : "b1.12.Where_in_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.10.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you remember the beach? We swam on the beach. (where)",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Do you remember the beach where we swam?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Do you remember the beach where we swam?" ]
+  }
+} ]

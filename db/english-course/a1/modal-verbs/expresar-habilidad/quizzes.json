@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424e3"
-    },
-    "id": "67fab6d599301022953424e3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e3"
-    },
-    "title": "Expressing Ability: 'Can / Could / Will be able to'",
-    "instructions": "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
-    "translation": "En unos pocos años, ella podrá bailar ballet.",
-    "theoryId": "a1.10.Modal_Verbs_Introduction",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.01.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "In a few years, she",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will be able to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "dance ballet.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "In a few years, she will be able to dance ballet."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424e3"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424e4"
-    },
-    "id": "67fab6d599301022953424e4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e3"
-    },
-    "title": "Expressing Ability: 'Can / Could / Will be able to'",
-    "instructions": "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
-    "translation": "Mi hermano podía montar a caballo cuando tenía seis años.",
-    "theoryId": "a1.10.Modal_Verbs_Introduction",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.01.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "My brother",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "could"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "ride a horse when he was six.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "My brother could ride a horse when he was six."
-      ]
-    }
+  "id" : "67fab6d599301022953424e3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e3"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424e5"
-    },
-    "id": "67fab6d599301022953424e5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e3"
-    },
-    "title": "Expressing Ability: 'Can / Could / Will be able to'",
-    "instructions": "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
-    "translation": "Ella puede hablar chino.",
-    "theoryId": "a1.10.Modal_Verbs_Introduction",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.01.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "can"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "speak Chinese. (now)",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She can speak Chinese."
-      ]
-    }
+  "title" : "Expressing Ability: 'Can / Could / Will be able to'",
+  "instructions" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
+  "translation" : "En unos pocos años, ella podrá bailar ballet.",
+  "theoryId" : "a1.10.Modal_Verbs_Introduction",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424e6"
-    },
-    "id": "67fab6d599301022953424e6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e3"
-    },
-    "title": "Expressing Ability: 'Can / Could / Will be able to'",
-    "instructions": "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
-    "translation": "Ella puede jugar al fútbol muy bien.",
-    "theoryId": "a1.10.Modal_Verbs_Introduction",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.01.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "can"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "play football really well. (now)",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She can play football really well."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424e7"
-    },
-    "id": "67fab6d599301022953424e7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e3"
-    },
-    "title": "Expressing Ability: 'Can / Could / Will be able to'",
-    "instructions": "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
-    "translation": "Antes del verano, podrás entender las noticias en italiano.",
-    "theoryId": "a1.10.Modal_Verbs_Introduction",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.01.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Before the summer, you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will be able to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "understand the news in Italian.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Before the summer, you will be able to understand the news in Italian."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424e8"
-    },
-    "id": "67fab6d599301022953424e8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e3"
-    },
-    "title": "Expressing Ability: 'Can / Could / Will be able to'",
-    "instructions": "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
-    "translation": "Ella puede hornear pasteles muy deliciosos.",
-    "theoryId": "a1.10.Modal_Verbs_Introduction",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.01.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "can"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "bake very delicious cakes. (now)",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She can bake very delicious cakes."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424e9"
-    },
-    "id": "67fab6d599301022953424e9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e3"
-    },
-    "title": "Expressing Ability: 'Can / Could / Will be able to'",
-    "instructions": "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
-    "translation": "No puedo tocar la guitarra.",
-    "theoryId": "a1.10.Modal_Verbs_Introduction",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.01.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "can't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not) play the guitar. (now)",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I can't play the guitar."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424ea"
-    },
-    "id": "67fab6d599301022953424ea",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e3"
-    },
-    "title": "Expressing Ability: 'Can / Could / Will be able to'",
-    "instructions": "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
-    "translation": "No puedo conducir una moto.",
-    "theoryId": "a1.10.Modal_Verbs_Introduction",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.01.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "can't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not) ride a motorbike. (now)",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I can't ride a motorbike."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424eb"
-    },
-    "id": "67fab6d599301022953424eb",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e3"
-    },
-    "title": "Expressing Ability: 'Can / Could / Will be able to'",
-    "instructions": "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
-    "translation": "Él no pudo usar una computadora hasta que fue adulto.",
-    "theoryId": "a1.10.Modal_Verbs_Introduction",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.01.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "couldn't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not) use a computer until he was an adult.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He couldn't use a computer until he was an adult."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424ec"
-    },
-    "id": "67fab6d599301022953424ec",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e3"
-    },
-    "title": "Expressing Ability: 'Can / Could / Will be able to'",
-    "instructions": "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
-    "translation": "Ellos no podrán terminar el examen mañana.",
-    "theoryId": "a1.10.Modal_Verbs_Introduction",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.01.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "won't be able to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not) finish the test tomorrow.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They won't be able to finish the test tomorrow."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424ed"
-    },
-    "id": "67fab6d599301022953424ed",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e3"
-    },
-    "title": "Expressing Ability: 'Can / Could / Will be able to'",
-    "instructions": "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
-    "translation": "Mi hermana no podía bailar cuando era niña.",
-    "theoryId": "a1.10.Modal_Verbs_Introduction",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.01.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "My sister",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "couldn't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not) dance when she was a child.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "My sister couldn't dance when she was a child."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424ee"
-    },
-    "id": "67fab6d599301022953424ee",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e3"
-    },
-    "title": "Expressing Ability: 'Can / Could / Will be able to'",
-    "instructions": "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
-    "translation": "Él podía usar palillos chinos cuando era pequeño.",
-    "theoryId": "a1.10.Modal_Verbs_Introduction",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.01.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "could"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "use chopsticks when he was small.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He could use chopsticks when he was small."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424ef"
-    },
-    "id": "67fab6d599301022953424ef",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e3"
-    },
-    "title": "Expressing Ability: 'Can / Could / Will be able to'",
-    "instructions": "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
-    "translation": "Al final del mes, podré construir un pequeño robot.",
-    "theoryId": "a1.10.Modal_Verbs_Introduction",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.01.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "At the end of the month, I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will be able to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "build a small robot.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "At the end of the month, I will be able to build a small robot."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424f0"
-    },
-    "id": "67fab6d599301022953424f0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e3"
-    },
-    "title": "Expressing Ability: 'Can / Could / Will be able to'",
-    "instructions": "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
-    "translation": "Ella no puede arreglar coches.",
-    "theoryId": "a1.10.Modal_Verbs_Introduction",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.01.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "can't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not) fix cars. (now)",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She can't fix cars."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424f1"
-    },
-    "id": "67fab6d599301022953424f1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e3"
-    },
-    "title": "Expressing Ability: 'Can / Could / Will be able to'",
-    "instructions": "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
-    "translation": "Ellos no pueden conducir.",
-    "theoryId": "a1.10.Modal_Verbs_Introduction",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.01.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "can't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not) drive. (now)",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They can't drive."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424f2"
-    },
-    "id": "67fab6d599301022953424f2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e3"
-    },
-    "title": "Expressing Ability: 'Can / Could / Will be able to'",
-    "instructions": "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
-    "translation": "¿Podías tocar el piano cuando eras niño?",
-    "theoryId": "a1.10.Modal_Verbs_Introduction",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.01.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Could"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "you play the piano when you were a child?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Could you play the piano when you were a child?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424f3"
-    },
-    "id": "67fab6d599301022953424f3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e3"
-    },
-    "title": "Expressing Ability: 'Can / Could / Will be able to'",
-    "instructions": "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
-    "translation": "¡Ella no podía caminar cuando era bebé!",
-    "theoryId": "a1.10.Modal_Verbs_Introduction",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.01.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "couldn't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not) walk when she was a baby!",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She couldn't walk when she was a baby!"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424f4"
-    },
-    "id": "67fab6d599301022953424f4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e3"
-    },
-    "title": "Expressing Ability: 'Can / Could / Will be able to'",
-    "instructions": "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
-    "translation": "No pude hablar francés hasta el mes pasado.",
-    "theoryId": "a1.10.Modal_Verbs_Introduction",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.01.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "couldn't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not) speak French until last month.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I couldn't speak French until last month."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424f5"
-    },
-    "id": "67fab6d599301022953424f5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e3"
-    },
-    "title": "Expressing Ability: 'Can / Could / Will be able to'",
-    "instructions": "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
-    "translation": "Él podía escribir cuando tenía cinco años.",
-    "theoryId": "a1.10.Modal_Verbs_Introduction",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.01.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "could"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "write when he was five.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He could write when he was five."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424f6"
-    },
-    "id": "67fab6d599301022953424f6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e3"
-    },
-    "title": "Expressing Ability: 'Can / Could / Will be able to'",
-    "instructions": "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
-    "translation": "Los estudiantes pueden hacer sus deberes.",
-    "theoryId": "a1.10.Modal_Verbs_Introduction",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.01.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The students",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "can"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "do their homework. (now)",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The students can do their homework."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.01.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "In a few years, she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will be able to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "dance ballet.",
+      "options" : null
+    } ],
+    "sentences" : [ "In a few years, she will be able to dance ballet." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424e4"
+  },
+  "id" : "67fab6d599301022953424e4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e3"
+  },
+  "title" : "Expressing Ability: 'Can / Could / Will be able to'",
+  "instructions" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
+  "translation" : "Mi hermano podía montar a caballo cuando tenía seis años.",
+  "theoryId" : "a1.10.Modal_Verbs_Introduction",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.01.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My brother",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "could" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "ride a horse when he was six.",
+      "options" : null
+    } ],
+    "sentences" : [ "My brother could ride a horse when he was six." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424e5"
+  },
+  "id" : "67fab6d599301022953424e5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e3"
+  },
+  "title" : "Expressing Ability: 'Can / Could / Will be able to'",
+  "instructions" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
+  "translation" : "Ella puede hablar chino.",
+  "theoryId" : "a1.10.Modal_Verbs_Introduction",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.01.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "can" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "speak Chinese. (now)",
+      "options" : null
+    } ],
+    "sentences" : [ "She can speak Chinese." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424e6"
+  },
+  "id" : "67fab6d599301022953424e6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e3"
+  },
+  "title" : "Expressing Ability: 'Can / Could / Will be able to'",
+  "instructions" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
+  "translation" : "Ella puede jugar al fútbol muy bien.",
+  "theoryId" : "a1.10.Modal_Verbs_Introduction",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.01.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "can" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "play football really well. (now)",
+      "options" : null
+    } ],
+    "sentences" : [ "She can play football really well." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424e7"
+  },
+  "id" : "67fab6d599301022953424e7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e3"
+  },
+  "title" : "Expressing Ability: 'Can / Could / Will be able to'",
+  "instructions" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
+  "translation" : "Antes del verano, podrás entender las noticias en italiano.",
+  "theoryId" : "a1.10.Modal_Verbs_Introduction",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.01.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Before the summer, you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will be able to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "understand the news in Italian.",
+      "options" : null
+    } ],
+    "sentences" : [ "Before the summer, you will be able to understand the news in Italian." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424e8"
+  },
+  "id" : "67fab6d599301022953424e8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e3"
+  },
+  "title" : "Expressing Ability: 'Can / Could / Will be able to'",
+  "instructions" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
+  "translation" : "Ella puede hornear pasteles muy deliciosos.",
+  "theoryId" : "a1.10.Modal_Verbs_Introduction",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.01.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "can" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "bake very delicious cakes. (now)",
+      "options" : null
+    } ],
+    "sentences" : [ "She can bake very delicious cakes." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424e9"
+  },
+  "id" : "67fab6d599301022953424e9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e3"
+  },
+  "title" : "Expressing Ability: 'Can / Could / Will be able to'",
+  "instructions" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
+  "translation" : "No puedo tocar la guitarra.",
+  "theoryId" : "a1.10.Modal_Verbs_Introduction",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.01.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "can't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not) play the guitar. (now)",
+      "options" : null
+    } ],
+    "sentences" : [ "I can't play the guitar." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424ea"
+  },
+  "id" : "67fab6d599301022953424ea",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e3"
+  },
+  "title" : "Expressing Ability: 'Can / Could / Will be able to'",
+  "instructions" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
+  "translation" : "No puedo conducir una moto.",
+  "theoryId" : "a1.10.Modal_Verbs_Introduction",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.01.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "can't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not) ride a motorbike. (now)",
+      "options" : null
+    } ],
+    "sentences" : [ "I can't ride a motorbike." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424eb"
+  },
+  "id" : "67fab6d599301022953424eb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e3"
+  },
+  "title" : "Expressing Ability: 'Can / Could / Will be able to'",
+  "instructions" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
+  "translation" : "Él no pudo usar una computadora hasta que fue adulto.",
+  "theoryId" : "a1.10.Modal_Verbs_Introduction",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.01.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "couldn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not) use a computer until he was an adult.",
+      "options" : null
+    } ],
+    "sentences" : [ "He couldn't use a computer until he was an adult." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424ec"
+  },
+  "id" : "67fab6d599301022953424ec",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e3"
+  },
+  "title" : "Expressing Ability: 'Can / Could / Will be able to'",
+  "instructions" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
+  "translation" : "Ellos no podrán terminar el examen mañana.",
+  "theoryId" : "a1.10.Modal_Verbs_Introduction",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.01.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "won't be able to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not) finish the test tomorrow.",
+      "options" : null
+    } ],
+    "sentences" : [ "They won't be able to finish the test tomorrow." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424ed"
+  },
+  "id" : "67fab6d599301022953424ed",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e3"
+  },
+  "title" : "Expressing Ability: 'Can / Could / Will be able to'",
+  "instructions" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
+  "translation" : "Mi hermana no podía bailar cuando era niña.",
+  "theoryId" : "a1.10.Modal_Verbs_Introduction",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.01.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My sister",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "couldn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not) dance when she was a child.",
+      "options" : null
+    } ],
+    "sentences" : [ "My sister couldn't dance when she was a child." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424ee"
+  },
+  "id" : "67fab6d599301022953424ee",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e3"
+  },
+  "title" : "Expressing Ability: 'Can / Could / Will be able to'",
+  "instructions" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
+  "translation" : "Él podía usar palillos chinos cuando era pequeño.",
+  "theoryId" : "a1.10.Modal_Verbs_Introduction",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.01.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "could" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "use chopsticks when he was small.",
+      "options" : null
+    } ],
+    "sentences" : [ "He could use chopsticks when he was small." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424ef"
+  },
+  "id" : "67fab6d599301022953424ef",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e3"
+  },
+  "title" : "Expressing Ability: 'Can / Could / Will be able to'",
+  "instructions" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
+  "translation" : "Al final del mes, podré construir un pequeño robot.",
+  "theoryId" : "a1.10.Modal_Verbs_Introduction",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.01.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "At the end of the month, I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will be able to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "build a small robot.",
+      "options" : null
+    } ],
+    "sentences" : [ "At the end of the month, I will be able to build a small robot." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424f0"
+  },
+  "id" : "67fab6d599301022953424f0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e3"
+  },
+  "title" : "Expressing Ability: 'Can / Could / Will be able to'",
+  "instructions" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
+  "translation" : "Ella no puede arreglar coches.",
+  "theoryId" : "a1.10.Modal_Verbs_Introduction",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.01.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "can't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not) fix cars. (now)",
+      "options" : null
+    } ],
+    "sentences" : [ "She can't fix cars." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424f1"
+  },
+  "id" : "67fab6d599301022953424f1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e3"
+  },
+  "title" : "Expressing Ability: 'Can / Could / Will be able to'",
+  "instructions" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
+  "translation" : "Ellos no pueden conducir.",
+  "theoryId" : "a1.10.Modal_Verbs_Introduction",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.01.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "can't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not) drive. (now)",
+      "options" : null
+    } ],
+    "sentences" : [ "They can't drive." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424f2"
+  },
+  "id" : "67fab6d599301022953424f2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e3"
+  },
+  "title" : "Expressing Ability: 'Can / Could / Will be able to'",
+  "instructions" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
+  "translation" : "¿Podías tocar el piano cuando eras niño?",
+  "theoryId" : "a1.10.Modal_Verbs_Introduction",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.01.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Could" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "you play the piano when you were a child?",
+      "options" : null
+    } ],
+    "sentences" : [ "Could you play the piano when you were a child?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424f3"
+  },
+  "id" : "67fab6d599301022953424f3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e3"
+  },
+  "title" : "Expressing Ability: 'Can / Could / Will be able to'",
+  "instructions" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
+  "translation" : "¡Ella no podía caminar cuando era bebé!",
+  "theoryId" : "a1.10.Modal_Verbs_Introduction",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.01.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "couldn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not) walk when she was a baby!",
+      "options" : null
+    } ],
+    "sentences" : [ "She couldn't walk when she was a baby!" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424f4"
+  },
+  "id" : "67fab6d599301022953424f4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e3"
+  },
+  "title" : "Expressing Ability: 'Can / Could / Will be able to'",
+  "instructions" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
+  "translation" : "No pude hablar francés hasta el mes pasado.",
+  "theoryId" : "a1.10.Modal_Verbs_Introduction",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.01.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "couldn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not) speak French until last month.",
+      "options" : null
+    } ],
+    "sentences" : [ "I couldn't speak French until last month." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424f5"
+  },
+  "id" : "67fab6d599301022953424f5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e3"
+  },
+  "title" : "Expressing Ability: 'Can / Could / Will be able to'",
+  "instructions" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
+  "translation" : "Él podía escribir cuando tenía cinco años.",
+  "theoryId" : "a1.10.Modal_Verbs_Introduction",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.01.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "could" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "write when he was five.",
+      "options" : null
+    } ],
+    "sentences" : [ "He could write when he was five." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424f6"
+  },
+  "id" : "67fab6d599301022953424f6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e3"
+  },
+  "title" : "Expressing Ability: 'Can / Could / Will be able to'",
+  "instructions" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'.",
+  "translation" : "Los estudiantes pueden hacer sus deberes.",
+  "theoryId" : "a1.10.Modal_Verbs_Introduction",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.01.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The students",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "can" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "do their homework. (now)",
+      "options" : null
+    } ],
+    "sentences" : [ "The students can do their homework." ]
+  }
+} ]

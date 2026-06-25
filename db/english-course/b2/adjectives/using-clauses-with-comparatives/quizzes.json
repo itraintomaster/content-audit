@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344864"
-    },
-    "id": "67fab6d59930102295344864",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d489"
-    },
-    "title": "Using Clauses with Comparatives",
-    "instructions": "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
-    "translation": "Él corre más rápido que yo.",
-    "theoryId": "",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.13.03.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He is faster at running than me.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He is faster at running than I am."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He is faster at running than I am."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344864"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344865"
-    },
-    "id": "67fab6d59930102295344865",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d489"
-    },
-    "title": "Using Clauses with Comparatives",
-    "instructions": "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
-    "translation": "Ella parece más callada que él.",
-    "theoryId": "",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.13.03.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She seems quieter than him.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She seems quieter than he does."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She seems quieter than he does."
-      ]
-    }
+  "id" : "67fab6d59930102295344864",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d489"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344866"
-    },
-    "id": "67fab6d59930102295344866",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d489"
-    },
-    "title": "Using Clauses with Comparatives",
-    "instructions": "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
-    "translation": "El perro es más grande que Rex.",
-    "theoryId": "",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.13.03.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The dog is bigger than Rex.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The dog is bigger than Rex is."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The dog is bigger than Rex is."
-      ]
-    }
+  "title" : "Using Clauses with Comparatives",
+  "instructions" : "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
+  "translation" : "Él corre más rápido que yo.",
+  "theoryId" : "",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344867"
-    },
-    "id": "67fab6d59930102295344867",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d489"
-    },
-    "title": "Using Clauses with Comparatives",
-    "instructions": "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
-    "translation": "Él canta mejor que Sarah.",
-    "theoryId": "",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.13.03.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He is better at singing than Sarah.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He is better at singing than Sarah is."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He is better at singing than Sarah is."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344868"
-    },
-    "id": "67fab6d59930102295344868",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d489"
-    },
-    "title": "Using Clauses with Comparatives",
-    "instructions": "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
-    "translation": "Los adultos están más cansados que ellos.",
-    "theoryId": "",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.13.03.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The adults are more tired than them.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The adults are more tired than they are."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The adults are more tired than they are."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344869"
-    },
-    "id": "67fab6d59930102295344869",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d489"
-    },
-    "title": "Using Clauses with Comparatives",
-    "instructions": "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
-    "translation": "El vuelo es más temprano que yo.",
-    "theoryId": "",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.13.03.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The flight is earlier than me.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The flight is earlier than I am."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The flight is earlier than I am."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534486a"
-    },
-    "id": "67fab6d5993010229534486a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d489"
-    },
-    "title": "Using Clauses with Comparatives",
-    "instructions": "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
-    "translation": "Mi hermano es más rico que nadie.",
-    "theoryId": "",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.13.03.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "My brother is richer than anybody.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "My brother is richer than anybody is."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "My brother is richer than anybody is."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534486b"
-    },
-    "id": "67fab6d5993010229534486b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d489"
-    },
-    "title": "Using Clauses with Comparatives",
-    "instructions": "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
-    "translation": "Nueva York es más agitada que Roma.",
-    "theoryId": "",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.13.03.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "New York is busier than Rome.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "New York is busier than Rome is."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "New York is busier than Rome is."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534486c"
-    },
-    "id": "67fab6d5993010229534486c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d489"
-    },
-    "title": "Using Clauses with Comparatives",
-    "instructions": "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
-    "translation": "Soy más cuidadoso/a que ella.",
-    "theoryId": "",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.13.03.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I am more careful than her.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I am more careful than she is."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I am more careful than she is."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534486d"
-    },
-    "id": "67fab6d5993010229534486d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d489"
-    },
-    "title": "Using Clauses with Comparatives",
-    "instructions": "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
-    "translation": "Ellos parecen más tristes que nosotros.",
-    "theoryId": "",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.13.03.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They appear sadder than us.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They appear sadder than we do."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They appear sadder than we do."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534486e"
-    },
-    "id": "67fab6d5993010229534486e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d489"
-    },
-    "title": "Using Clauses with Comparatives",
-    "instructions": "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
-    "translation": "Él es más alto que ella.",
-    "theoryId": "",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.13.03.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He's taller than her.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He's taller than she is."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He's taller than she is."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534486f"
-    },
-    "id": "67fab6d5993010229534486f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d489"
-    },
-    "title": "Using Clauses with Comparatives",
-    "instructions": "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
-    "translation": "Soy más gracioso/a que Emily.",
-    "theoryId": "",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.13.03.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I am funnier than Emily.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I am funnier than Emily is."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I am funnier than Emily is."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344870"
-    },
-    "id": "67fab6d59930102295344870",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d489"
-    },
-    "title": "Using Clauses with Comparatives",
-    "instructions": "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
-    "translation": "Ella parece más enojada que él.",
-    "theoryId": "",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.13.03.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She appears angrier than him.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She appears angrier than he does."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She appears angrier than he does."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344871"
-    },
-    "id": "67fab6d59930102295344871",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d489"
-    },
-    "title": "Using Clauses with Comparatives",
-    "instructions": "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
-    "translation": "La bicicleta es más nueva que el patinete.",
-    "theoryId": "",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.13.03.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The bike is newer than the scooter.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The bike is newer than the scooter is."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The bike is newer than the scooter is."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344872"
-    },
-    "id": "67fab6d59930102295344872",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d489"
-    },
-    "title": "Using Clauses with Comparatives",
-    "instructions": "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
-    "translation": "Este zumo huele mejor que ese.",
-    "theoryId": "",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.13.03.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "This juice smells better than that one.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "This juice smells better than that one does."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "This juice smells better than that one does."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344873"
-    },
-    "id": "67fab6d59930102295344873",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d489"
-    },
-    "title": "Using Clauses with Comparatives",
-    "instructions": "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
-    "translation": "La caja es más pesada que él.",
-    "theoryId": "",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.13.03.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The box is heavier than him.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The box is heavier than he is."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The box is heavier than he is."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344874"
-    },
-    "id": "67fab6d59930102295344874",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d489"
-    },
-    "title": "Using Clauses with Comparatives",
-    "instructions": "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
-    "translation": "Él suena más joven que ellos.",
-    "theoryId": "",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.13.03.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He sounds younger than them.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He sounds younger than they do."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He sounds younger than they do."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344875"
-    },
-    "id": "67fab6d59930102295344875",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d489"
-    },
-    "title": "Using Clauses with Comparatives",
-    "instructions": "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
-    "translation": "El fútbol parece más fácil que el baloncesto.",
-    "theoryId": "",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.13.03.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Soccer seems easier than basketball.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Soccer seems easier than basketball does."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Soccer seems easier than basketball does."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344876"
-    },
-    "id": "67fab6d59930102295344876",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d489"
-    },
-    "title": "Using Clauses with Comparatives",
-    "instructions": "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
-    "translation": "Mary se ve más triste que Jane.",
-    "theoryId": "",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.13.03.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Mary looks sadder than Jane.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Mary looks sadder than Jane does."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Mary looks sadder than Jane does."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344877"
-    },
-    "id": "67fab6d59930102295344877",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d489"
-    },
-    "title": "Using Clauses with Comparatives",
-    "instructions": "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
-    "translation": "La oficina es más luminosa que la sala de reuniones.",
-    "theoryId": "",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.13.03.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The office is brighter than the meeting room.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The office is brighter than the meeting room is."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The office is brighter than the meeting room is."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.13.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is faster at running than me.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He is faster at running than I am." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He is faster at running than I am." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344865"
+  },
+  "id" : "67fab6d59930102295344865",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d489"
+  },
+  "title" : "Using Clauses with Comparatives",
+  "instructions" : "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
+  "translation" : "Ella parece más callada que él.",
+  "theoryId" : "",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.13.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She seems quieter than him.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She seems quieter than he does." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She seems quieter than he does." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344866"
+  },
+  "id" : "67fab6d59930102295344866",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d489"
+  },
+  "title" : "Using Clauses with Comparatives",
+  "instructions" : "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
+  "translation" : "El perro es más grande que Rex.",
+  "theoryId" : "",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.13.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dog is bigger than Rex.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The dog is bigger than Rex is." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The dog is bigger than Rex is." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344867"
+  },
+  "id" : "67fab6d59930102295344867",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d489"
+  },
+  "title" : "Using Clauses with Comparatives",
+  "instructions" : "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
+  "translation" : "Él canta mejor que Sarah.",
+  "theoryId" : "",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.13.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is better at singing than Sarah.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He is better at singing than Sarah is." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He is better at singing than Sarah is." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344868"
+  },
+  "id" : "67fab6d59930102295344868",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d489"
+  },
+  "title" : "Using Clauses with Comparatives",
+  "instructions" : "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
+  "translation" : "Los adultos están más cansados que ellos.",
+  "theoryId" : "",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.13.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The adults are more tired than them.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The adults are more tired than they are." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The adults are more tired than they are." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344869"
+  },
+  "id" : "67fab6d59930102295344869",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d489"
+  },
+  "title" : "Using Clauses with Comparatives",
+  "instructions" : "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
+  "translation" : "El vuelo es más temprano que yo.",
+  "theoryId" : "",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.13.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The flight is earlier than me.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The flight is earlier than I am." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The flight is earlier than I am." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534486a"
+  },
+  "id" : "67fab6d5993010229534486a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d489"
+  },
+  "title" : "Using Clauses with Comparatives",
+  "instructions" : "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
+  "translation" : "Mi hermano es más rico que nadie.",
+  "theoryId" : "",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.13.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My brother is richer than anybody.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "My brother is richer than anybody is." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "My brother is richer than anybody is." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534486b"
+  },
+  "id" : "67fab6d5993010229534486b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d489"
+  },
+  "title" : "Using Clauses with Comparatives",
+  "instructions" : "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
+  "translation" : "Nueva York es más agitada que Roma.",
+  "theoryId" : "",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.13.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "New York is busier than Rome.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "New York is busier than Rome is." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "New York is busier than Rome is." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534486c"
+  },
+  "id" : "67fab6d5993010229534486c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d489"
+  },
+  "title" : "Using Clauses with Comparatives",
+  "instructions" : "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
+  "translation" : "Soy más cuidadoso/a que ella.",
+  "theoryId" : "",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.13.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I am more careful than her.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I am more careful than she is." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I am more careful than she is." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534486d"
+  },
+  "id" : "67fab6d5993010229534486d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d489"
+  },
+  "title" : "Using Clauses with Comparatives",
+  "instructions" : "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
+  "translation" : "Ellos parecen más tristes que nosotros.",
+  "theoryId" : "",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.13.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They appear sadder than us.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They appear sadder than we do." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They appear sadder than we do." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534486e"
+  },
+  "id" : "67fab6d5993010229534486e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d489"
+  },
+  "title" : "Using Clauses with Comparatives",
+  "instructions" : "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
+  "translation" : "Él es más alto que ella.",
+  "theoryId" : "",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.13.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's taller than her.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He's taller than she is." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He's taller than she is." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534486f"
+  },
+  "id" : "67fab6d5993010229534486f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d489"
+  },
+  "title" : "Using Clauses with Comparatives",
+  "instructions" : "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
+  "translation" : "Soy más gracioso/a que Emily.",
+  "theoryId" : "",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.13.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I am funnier than Emily.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I am funnier than Emily is." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I am funnier than Emily is." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344870"
+  },
+  "id" : "67fab6d59930102295344870",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d489"
+  },
+  "title" : "Using Clauses with Comparatives",
+  "instructions" : "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
+  "translation" : "Ella parece más enojada que él.",
+  "theoryId" : "",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.13.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She appears angrier than him.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She appears angrier than he does." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She appears angrier than he does." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344871"
+  },
+  "id" : "67fab6d59930102295344871",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d489"
+  },
+  "title" : "Using Clauses with Comparatives",
+  "instructions" : "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
+  "translation" : "La bicicleta es más nueva que el patinete.",
+  "theoryId" : "",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.13.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The bike is newer than the scooter.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The bike is newer than the scooter is." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The bike is newer than the scooter is." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344872"
+  },
+  "id" : "67fab6d59930102295344872",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d489"
+  },
+  "title" : "Using Clauses with Comparatives",
+  "instructions" : "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
+  "translation" : "Este zumo huele mejor que ese.",
+  "theoryId" : "",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.13.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This juice smells better than that one.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "This juice smells better than that one does." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "This juice smells better than that one does." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344873"
+  },
+  "id" : "67fab6d59930102295344873",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d489"
+  },
+  "title" : "Using Clauses with Comparatives",
+  "instructions" : "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
+  "translation" : "La caja es más pesada que él.",
+  "theoryId" : "",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.13.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The box is heavier than him.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The box is heavier than he is." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The box is heavier than he is." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344874"
+  },
+  "id" : "67fab6d59930102295344874",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d489"
+  },
+  "title" : "Using Clauses with Comparatives",
+  "instructions" : "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
+  "translation" : "Él suena más joven que ellos.",
+  "theoryId" : "",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.13.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He sounds younger than them.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He sounds younger than they do." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He sounds younger than they do." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344875"
+  },
+  "id" : "67fab6d59930102295344875",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d489"
+  },
+  "title" : "Using Clauses with Comparatives",
+  "instructions" : "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
+  "translation" : "El fútbol parece más fácil que el baloncesto.",
+  "theoryId" : "",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.13.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Soccer seems easier than basketball.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Soccer seems easier than basketball does." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Soccer seems easier than basketball does." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344876"
+  },
+  "id" : "67fab6d59930102295344876",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d489"
+  },
+  "title" : "Using Clauses with Comparatives",
+  "instructions" : "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
+  "translation" : "Mary se ve más triste que Jane.",
+  "theoryId" : "",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.13.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Mary looks sadder than Jane.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Mary looks sadder than Jane does." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Mary looks sadder than Jane does." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344877"
+  },
+  "id" : "67fab6d59930102295344877",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d489"
+  },
+  "title" : "Using Clauses with Comparatives",
+  "instructions" : "Reescribe las oraciones utilizando una cláusula corta después de 'than' en lugar de un simple sustantivo o pronombre.",
+  "translation" : "La oficina es más luminosa que la sala de reuniones.",
+  "theoryId" : "",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.13.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The office is brighter than the meeting room.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The office is brighter than the meeting room is." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The office is brighter than the meeting room is." ]
+  }
+} ]

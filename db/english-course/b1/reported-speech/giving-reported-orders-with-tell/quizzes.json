@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343785"
-    },
-    "id": "67fab6d59930102295343785",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d328"
-    },
-    "title": "Giving Reported Orders with 'Tell'",
-    "instructions": "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
-    "translation": "Me dijo que me callara.",
-    "theoryId": "b1.10.Reported_Orders_with_Tell",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.12.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Be quiet!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He told me to be quiet."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He told me to be quiet."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343785"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343786"
-    },
-    "id": "67fab6d59930102295343786",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d328"
-    },
-    "title": "Giving Reported Orders with 'Tell'",
-    "instructions": "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
-    "translation": "Me dijo que no gritara.",
-    "theoryId": "b1.10.Reported_Orders_with_Tell",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.12.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Don't shout!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He told me not to shout."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He told me not to shout."
-      ]
-    }
+  "id" : "67fab6d59930102295343785",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d328"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343787"
-    },
-    "id": "67fab6d59930102295343787",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d328"
-    },
-    "title": "Giving Reported Orders with 'Tell'",
-    "instructions": "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
-    "translation": "Me dijo que escuchara atentamente.",
-    "theoryId": "b1.10.Reported_Orders_with_Tell",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.12.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Listen carefully!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He told me to listen carefully."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He told me to listen carefully."
-      ]
-    }
+  "title" : "Giving Reported Orders with 'Tell'",
+  "instructions" : "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
+  "translation" : "Me dijo que me callara.",
+  "theoryId" : "b1.10.Reported_Orders_with_Tell",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343788"
-    },
-    "id": "67fab6d59930102295343788",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d328"
-    },
-    "title": "Giving Reported Orders with 'Tell'",
-    "instructions": "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
-    "translation": "Me dijo que no comiera dulces.",
-    "theoryId": "b1.10.Reported_Orders_with_Tell",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.12.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Don't eat sweets!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He told me not to eat sweets."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He told me not to eat sweets."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343789"
-    },
-    "id": "67fab6d59930102295343789",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d328"
-    },
-    "title": "Giving Reported Orders with 'Tell'",
-    "instructions": "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
-    "translation": "Me dijo que hiciera diez flexiones.",
-    "theoryId": "b1.10.Reported_Orders_with_Tell",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.12.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Do ten push-ups!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He told me to do ten push-ups."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He told me to do ten push-ups."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534378a"
-    },
-    "id": "67fab6d5993010229534378a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d328"
-    },
-    "title": "Giving Reported Orders with 'Tell'",
-    "instructions": "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
-    "translation": "Me dijo que viniera rápido.",
-    "theoryId": "b1.10.Reported_Orders_with_Tell",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.12.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Come quickly!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He told me to come quickly."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He told me to come quickly."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534378b"
-    },
-    "id": "67fab6d5993010229534378b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d328"
-    },
-    "title": "Giving Reported Orders with 'Tell'",
-    "instructions": "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
-    "translation": "Me dijo que no llorara.",
-    "theoryId": "b1.10.Reported_Orders_with_Tell",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.12.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Don't cry!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He told me not to cry."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He told me not to cry."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534378c"
-    },
-    "id": "67fab6d5993010229534378c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d328"
-    },
-    "title": "Giving Reported Orders with 'Tell'",
-    "instructions": "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
-    "translation": "Me dijo que comprara leche.",
-    "theoryId": "b1.10.Reported_Orders_with_Tell",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.12.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Buy some milk!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He told me to buy some milk."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He told me to buy some milk."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534378d"
-    },
-    "id": "67fab6d5993010229534378d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d328"
-    },
-    "title": "Giving Reported Orders with 'Tell'",
-    "instructions": "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
-    "translation": "Me dijo que no nadara allí.",
-    "theoryId": "b1.10.Reported_Orders_with_Tell",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.12.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Don't swim there!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He told me not to swim there."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He told me not to swim there."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534378e"
-    },
-    "id": "67fab6d5993010229534378e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d328"
-    },
-    "title": "Giving Reported Orders with 'Tell'",
-    "instructions": "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
-    "translation": "Me dijo que no estuviera triste.",
-    "theoryId": "b1.10.Reported_Orders_with_Tell",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.12.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Don't be sad!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He told me not to be sad."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He told me not to be sad."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534378f"
-    },
-    "id": "67fab6d5993010229534378f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d328"
-    },
-    "title": "Giving Reported Orders with 'Tell'",
-    "instructions": "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
-    "translation": "Me dijo que pidiera una pizza.",
-    "theoryId": "b1.10.Reported_Orders_with_Tell",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.12.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Order a pizza!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He told me to order a pizza."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He told me to order a pizza."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343790"
-    },
-    "id": "67fab6d59930102295343790",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d328"
-    },
-    "title": "Giving Reported Orders with 'Tell'",
-    "instructions": "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
-    "translation": "Me dijo que fuera paciente.",
-    "theoryId": "b1.10.Reported_Orders_with_Tell",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.12.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Be patient!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He told me to be patient."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He told me to be patient."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343791"
-    },
-    "id": "67fab6d59930102295343791",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d328"
-    },
-    "title": "Giving Reported Orders with 'Tell'",
-    "instructions": "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
-    "translation": "Me dijo que no esperara allí.",
-    "theoryId": "b1.10.Reported_Orders_with_Tell",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.12.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Don't wait there!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He told me not to wait there."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He told me not to wait there."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343792"
-    },
-    "id": "67fab6d59930102295343792",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d328"
-    },
-    "title": "Giving Reported Orders with 'Tell'",
-    "instructions": "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
-    "translation": "Me dijo que no tocara el jarrón.",
-    "theoryId": "b1.10.Reported_Orders_with_Tell",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.12.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Don't touch the vase!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He told me not to touch the vase."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He told me not to touch the vase."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343793"
-    },
-    "id": "67fab6d59930102295343793",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d328"
-    },
-    "title": "Giving Reported Orders with 'Tell'",
-    "instructions": "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
-    "translation": "Me dijo que caminara despacio.",
-    "theoryId": "b1.10.Reported_Orders_with_Tell",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.12.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Walk slowly!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He told me to walk slowly."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He told me to walk slowly."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343794"
-    },
-    "id": "67fab6d59930102295343794",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d328"
-    },
-    "title": "Giving Reported Orders with 'Tell'",
-    "instructions": "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
-    "translation": "Me dijo que fuera valiente.",
-    "theoryId": "b1.10.Reported_Orders_with_Tell",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.12.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Be brave!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He told me to be brave."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He told me to be brave."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343795"
-    },
-    "id": "67fab6d59930102295343795",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d328"
-    },
-    "title": "Giving Reported Orders with 'Tell'",
-    "instructions": "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
-    "translation": "Me dijo que lavara los platos.",
-    "theoryId": "b1.10.Reported_Orders_with_Tell",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.12.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Wash the dishes!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He told me to wash the dishes."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He told me to wash the dishes."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343796"
-    },
-    "id": "67fab6d59930102295343796",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d328"
-    },
-    "title": "Giving Reported Orders with 'Tell'",
-    "instructions": "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
-    "translation": "Me dijo que no cantara.",
-    "theoryId": "b1.10.Reported_Orders_with_Tell",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.12.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Don't sing!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He told me not to sing."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He told me not to sing."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343797"
-    },
-    "id": "67fab6d59930102295343797",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d328"
-    },
-    "title": "Giving Reported Orders with 'Tell'",
-    "instructions": "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
-    "translation": "Me dijo que me apartara.",
-    "theoryId": "b1.10.Reported_Orders_with_Tell",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.12.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Step aside!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He told me to step aside."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He told me to step aside."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343798"
-    },
-    "id": "67fab6d59930102295343798",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d328"
-    },
-    "title": "Giving Reported Orders with 'Tell'",
-    "instructions": "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
-    "translation": "Me dijo que cerrara la ventana.",
-    "theoryId": "b1.10.Reported_Orders_with_Tell",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.12.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Close the window!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He told me to close the window."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He told me to close the window."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.12.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Be quiet!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He told me to be quiet." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He told me to be quiet." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343786"
+  },
+  "id" : "67fab6d59930102295343786",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d328"
+  },
+  "title" : "Giving Reported Orders with 'Tell'",
+  "instructions" : "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
+  "translation" : "Me dijo que no gritara.",
+  "theoryId" : "b1.10.Reported_Orders_with_Tell",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.12.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Don't shout!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He told me not to shout." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He told me not to shout." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343787"
+  },
+  "id" : "67fab6d59930102295343787",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d328"
+  },
+  "title" : "Giving Reported Orders with 'Tell'",
+  "instructions" : "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
+  "translation" : "Me dijo que escuchara atentamente.",
+  "theoryId" : "b1.10.Reported_Orders_with_Tell",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.12.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Listen carefully!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He told me to listen carefully." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He told me to listen carefully." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343788"
+  },
+  "id" : "67fab6d59930102295343788",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d328"
+  },
+  "title" : "Giving Reported Orders with 'Tell'",
+  "instructions" : "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
+  "translation" : "Me dijo que no comiera dulces.",
+  "theoryId" : "b1.10.Reported_Orders_with_Tell",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.12.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Don't eat sweets!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He told me not to eat sweets." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He told me not to eat sweets." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343789"
+  },
+  "id" : "67fab6d59930102295343789",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d328"
+  },
+  "title" : "Giving Reported Orders with 'Tell'",
+  "instructions" : "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
+  "translation" : "Me dijo que hiciera diez flexiones.",
+  "theoryId" : "b1.10.Reported_Orders_with_Tell",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.12.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do ten push-ups!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He told me to do ten push-ups." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He told me to do ten push-ups." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534378a"
+  },
+  "id" : "67fab6d5993010229534378a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d328"
+  },
+  "title" : "Giving Reported Orders with 'Tell'",
+  "instructions" : "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
+  "translation" : "Me dijo que viniera rápido.",
+  "theoryId" : "b1.10.Reported_Orders_with_Tell",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.12.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Come quickly!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He told me to come quickly." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He told me to come quickly." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534378b"
+  },
+  "id" : "67fab6d5993010229534378b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d328"
+  },
+  "title" : "Giving Reported Orders with 'Tell'",
+  "instructions" : "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
+  "translation" : "Me dijo que no llorara.",
+  "theoryId" : "b1.10.Reported_Orders_with_Tell",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.12.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Don't cry!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He told me not to cry." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He told me not to cry." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534378c"
+  },
+  "id" : "67fab6d5993010229534378c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d328"
+  },
+  "title" : "Giving Reported Orders with 'Tell'",
+  "instructions" : "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
+  "translation" : "Me dijo que comprara leche.",
+  "theoryId" : "b1.10.Reported_Orders_with_Tell",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.12.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Buy some milk!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He told me to buy some milk." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He told me to buy some milk." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534378d"
+  },
+  "id" : "67fab6d5993010229534378d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d328"
+  },
+  "title" : "Giving Reported Orders with 'Tell'",
+  "instructions" : "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
+  "translation" : "Me dijo que no nadara allí.",
+  "theoryId" : "b1.10.Reported_Orders_with_Tell",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.12.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Don't swim there!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He told me not to swim there." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He told me not to swim there." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534378e"
+  },
+  "id" : "67fab6d5993010229534378e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d328"
+  },
+  "title" : "Giving Reported Orders with 'Tell'",
+  "instructions" : "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
+  "translation" : "Me dijo que no estuviera triste.",
+  "theoryId" : "b1.10.Reported_Orders_with_Tell",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.12.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Don't be sad!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He told me not to be sad." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He told me not to be sad." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534378f"
+  },
+  "id" : "67fab6d5993010229534378f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d328"
+  },
+  "title" : "Giving Reported Orders with 'Tell'",
+  "instructions" : "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
+  "translation" : "Me dijo que pidiera una pizza.",
+  "theoryId" : "b1.10.Reported_Orders_with_Tell",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.12.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Order a pizza!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He told me to order a pizza." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He told me to order a pizza." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343790"
+  },
+  "id" : "67fab6d59930102295343790",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d328"
+  },
+  "title" : "Giving Reported Orders with 'Tell'",
+  "instructions" : "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
+  "translation" : "Me dijo que fuera paciente.",
+  "theoryId" : "b1.10.Reported_Orders_with_Tell",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.12.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Be patient!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He told me to be patient." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He told me to be patient." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343791"
+  },
+  "id" : "67fab6d59930102295343791",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d328"
+  },
+  "title" : "Giving Reported Orders with 'Tell'",
+  "instructions" : "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
+  "translation" : "Me dijo que no esperara allí.",
+  "theoryId" : "b1.10.Reported_Orders_with_Tell",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.12.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Don't wait there!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He told me not to wait there." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He told me not to wait there." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343792"
+  },
+  "id" : "67fab6d59930102295343792",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d328"
+  },
+  "title" : "Giving Reported Orders with 'Tell'",
+  "instructions" : "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
+  "translation" : "Me dijo que no tocara el jarrón.",
+  "theoryId" : "b1.10.Reported_Orders_with_Tell",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.12.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Don't touch the vase!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He told me not to touch the vase." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He told me not to touch the vase." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343793"
+  },
+  "id" : "67fab6d59930102295343793",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d328"
+  },
+  "title" : "Giving Reported Orders with 'Tell'",
+  "instructions" : "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
+  "translation" : "Me dijo que caminara despacio.",
+  "theoryId" : "b1.10.Reported_Orders_with_Tell",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.12.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Walk slowly!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He told me to walk slowly." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He told me to walk slowly." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343794"
+  },
+  "id" : "67fab6d59930102295343794",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d328"
+  },
+  "title" : "Giving Reported Orders with 'Tell'",
+  "instructions" : "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
+  "translation" : "Me dijo que fuera valiente.",
+  "theoryId" : "b1.10.Reported_Orders_with_Tell",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.12.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Be brave!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He told me to be brave." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He told me to be brave." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343795"
+  },
+  "id" : "67fab6d59930102295343795",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d328"
+  },
+  "title" : "Giving Reported Orders with 'Tell'",
+  "instructions" : "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
+  "translation" : "Me dijo que lavara los platos.",
+  "theoryId" : "b1.10.Reported_Orders_with_Tell",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.12.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Wash the dishes!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He told me to wash the dishes." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He told me to wash the dishes." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343796"
+  },
+  "id" : "67fab6d59930102295343796",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d328"
+  },
+  "title" : "Giving Reported Orders with 'Tell'",
+  "instructions" : "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
+  "translation" : "Me dijo que no cantara.",
+  "theoryId" : "b1.10.Reported_Orders_with_Tell",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.12.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Don't sing!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He told me not to sing." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He told me not to sing." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343797"
+  },
+  "id" : "67fab6d59930102295343797",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d328"
+  },
+  "title" : "Giving Reported Orders with 'Tell'",
+  "instructions" : "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
+  "translation" : "Me dijo que me apartara.",
+  "theoryId" : "b1.10.Reported_Orders_with_Tell",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.12.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Step aside!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He told me to step aside." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He told me to step aside." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343798"
+  },
+  "id" : "67fab6d59930102295343798",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d328"
+  },
+  "title" : "Giving Reported Orders with 'Tell'",
+  "instructions" : "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
+  "translation" : "Me dijo que cerrara la ventana.",
+  "theoryId" : "b1.10.Reported_Orders_with_Tell",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.12.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Close the window!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He told me to close the window." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He told me to close the window." ]
+  }
+} ]

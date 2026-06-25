@@ -1,1224 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c67"
-    },
-    "id": "67fab6d59930102295343c67",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d373"
-    },
-    "title": "Preposition Usage After Adjectives Part 1",
-    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-    "translation": "Estoy tan enojado con mi vecino.",
-    "theoryId": "b1.17.Prepositions_After_Adjectives",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.17.03.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I'm so angry",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "with"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "my neighbor.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'm so angry with my neighbor."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c67"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c68"
-    },
-    "id": "67fab6d59930102295343c68",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d373"
-    },
-    "title": "Preposition Usage After Adjectives Part 1",
-    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-    "translation": "Los niños son fantásticos para jugar.",
-    "theoryId": "b1.17.Prepositions_After_Adjectives",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.17.03.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The kids are fantastic",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "playing games.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The kids are fantastic at playing games."
-      ]
-    }
+  "id" : "67fab6d59930102295343c67",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d373"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c69"
-    },
-    "id": "67fab6d59930102295343c69",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d373"
-    },
-    "title": "Preposition Usage After Adjectives Part 1",
-    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-    "translation": "¡Mi hermana es muy similar a mí!",
-    "theoryId": "b1.17.Prepositions_After_Adjectives",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.17.03.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "My sister is very similar",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "me!",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "My sister is very similar to me!"
-      ]
-    }
+  "title" : "Preposition Usage After Adjectives Part 1",
+  "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+  "translation" : "Estoy tan enojado con mi vecino.",
+  "theoryId" : "b1.17.Prepositions_After_Adjectives",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c6a"
-    },
-    "id": "67fab6d59930102295343c6a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d373"
-    },
-    "title": "Preposition Usage After Adjectives Part 1",
-    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-    "translation": "Estábamos listos para el espectáculo.",
-    "theoryId": "b1.17.Prepositions_After_Adjectives",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.17.03.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We were ready",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "for"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the show.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We were ready for the show."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c6b"
-    },
-    "id": "67fab6d59930102295343c6b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d373"
-    },
-    "title": "Preposition Usage After Adjectives Part 1",
-    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-    "translation": "¿Estás emocionado por el viaje?",
-    "theoryId": "b1.17.Prepositions_After_Adjectives",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.17.03.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Are you excited",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "about"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the trip?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Are you excited about the trip?"
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c6c"
-    },
-    "id": "67fab6d59930102295343c6c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d373"
-    },
-    "title": "Preposition Usage After Adjectives Part 1",
-    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-    "translation": "Estoy realmente encantado con mi coche.",
-    "theoryId": "b1.17.Prepositions_After_Adjectives",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.17.03.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I am really delighted",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "with"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "my car.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I am really delighted with my car."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c6d"
-    },
-    "id": "67fab6d59930102295343c6d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d373"
-    },
-    "title": "Preposition Usage After Adjectives Part 1",
-    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-    "translation": "El libro es muy importante para los investigadores.",
-    "theoryId": "b1.17.Prepositions_After_Adjectives",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.17.03.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The book is very important",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "for"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "researchers.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The book is very important for researchers."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c6e"
-    },
-    "id": "67fab6d59930102295343c6e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d373"
-    },
-    "title": "Preposition Usage After Adjectives Part 1",
-    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-    "translation": "Estábamos preparados para el examen.",
-    "theoryId": "b1.17.Prepositions_After_Adjectives",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.17.03.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We were prepared",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "for"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the test.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We were prepared for the test."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c6f"
-    },
-    "id": "67fab6d59930102295343c6f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d373"
-    },
-    "title": "Preposition Usage After Adjectives Part 1",
-    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-    "translation": "¿Estás seguro de tu resultado?",
-    "theoryId": "b1.17.Prepositions_After_Adjectives",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.17.03.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Are you positive",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "about|of"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "your result?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Are you positive about your result?",
-        "Are you positive of your result?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c70"
-    },
-    "id": "67fab6d59930102295343c70",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d373"
-    },
-    "title": "Preposition Usage After Adjectives Part 1",
-    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-    "translation": "Ella siempre es buena con sus pacientes.",
-    "theoryId": "b1.17.Prepositions_After_Adjectives",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.17.03.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She is always good",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "her patients.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She is always good to her patients."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c71"
-    },
-    "id": "67fab6d59930102295343c71",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d373"
-    },
-    "title": "Preposition Usage After Adjectives Part 1",
-    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-    "translation": "Por favor, sé más respetuoso conmigo.",
-    "theoryId": "b1.17.Prepositions_After_Adjectives",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.17.03.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Please be more respectful",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "me.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Please be more respectful to me."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c72"
-    },
-    "id": "67fab6d59930102295343c72",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d373"
-    },
-    "title": "Preposition Usage After Adjectives Part 1",
-    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-    "translation": "Estoy pensando que no es posible para ellos.",
-    "theoryId": "b1.17.Prepositions_After_Adjectives",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.17.03.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I'm after it's not possible",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "for"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "them.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'm after it's not possible for them."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c73"
-    },
-    "id": "67fab6d59930102295343c73",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d373"
-    },
-    "title": "Preposition Usage After Adjectives Part 1",
-    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-    "translation": "¿Tienes miedo a las alturas?",
-    "theoryId": "b1.17.Prepositions_After_Adjectives",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.17.03.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Are you scared",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "of"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "heights?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Are you scared of heights?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c74"
-    },
-    "id": "67fab6d59930102295343c74",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d373"
-    },
-    "title": "Preposition Usage After Adjectives Part 1",
-    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-    "translation": "Ella tiene talento para el arte.",
-    "theoryId": "b1.17.Prepositions_After_Adjectives",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.17.03.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She is talented",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "art.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She is talented at art."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c75"
-    },
-    "id": "67fab6d59930102295343c75",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d373"
-    },
-    "title": "Preposition Usage After Adjectives Part 1",
-    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-    "translation": "Él fue muy justo con los jugadores.",
-    "theoryId": "b1.17.Prepositions_After_Adjectives",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.17.03.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He was very fair",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the players.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He was very fair to the players."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c76"
-    },
-    "id": "67fab6d59930102295343c76",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d373"
-    },
-    "title": "Preposition Usage After Adjectives Part 1",
-    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-    "translation": "Esa acción es característica de los adultos.",
-    "theoryId": "b1.17.Prepositions_After_Adjectives",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.17.03.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "That action is characteristic",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "of"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "adults.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "That action is characteristic of adults."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c77"
-    },
-    "id": "67fab6d59930102295343c77",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d373"
-    },
-    "title": "Preposition Usage After Adjectives Part 1",
-    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-    "translation": "Él es increíble en los deportes.",
-    "theoryId": "b1.17.Prepositions_After_Adjectives",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.17.03.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He's amazing",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "sports.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He's amazing at sports."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c78"
-    },
-    "id": "67fab6d59930102295343c78",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d373"
-    },
-    "title": "Preposition Usage After Adjectives Part 1",
-    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-    "translation": "No estoy contento con el clima frío.",
-    "theoryId": "b1.17.Prepositions_After_Adjectives",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.17.03.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I'm not pleased",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "about"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the cold weather.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'm not pleased about the cold weather."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c79"
-    },
-    "id": "67fab6d59930102295343c79",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d373"
-    },
-    "title": "Preposition Usage After Adjectives Part 1",
-    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-    "translation": "Fue desagradable con sus clientes.",
-    "theoryId": "b1.17.Prepositions_After_Adjectives",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.17.03.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He was nasty",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "his clients.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He was nasty to his clients."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c7a"
-    },
-    "id": "67fab6d59930102295343c7a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d373"
-    },
-    "title": "Preposition Usage After Adjectives Part 1",
-    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-    "translation": "Ella lamenta mucho el error.",
-    "theoryId": "b1.17.Prepositions_After_Adjectives",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.17.03.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She is very sorry",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "for|about"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the error.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She is very sorry for the error.",
-        "She is very sorry about the error."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm so angry",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "with" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "my neighbor.",
+      "options" : null
+    } ],
+    "sentences" : [ "I'm so angry with my neighbor." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c68"
+  },
+  "id" : "67fab6d59930102295343c68",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d373"
+  },
+  "title" : "Preposition Usage After Adjectives Part 1",
+  "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+  "translation" : "Los niños son fantásticos para jugar.",
+  "theoryId" : "b1.17.Prepositions_After_Adjectives",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The kids are fantastic",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "playing games.",
+      "options" : null
+    } ],
+    "sentences" : [ "The kids are fantastic at playing games." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c69"
+  },
+  "id" : "67fab6d59930102295343c69",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d373"
+  },
+  "title" : "Preposition Usage After Adjectives Part 1",
+  "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+  "translation" : "¡Mi hermana es muy similar a mí!",
+  "theoryId" : "b1.17.Prepositions_After_Adjectives",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My sister is very similar",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "me!",
+      "options" : null
+    } ],
+    "sentences" : [ "My sister is very similar to me!" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c6a"
+  },
+  "id" : "67fab6d59930102295343c6a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d373"
+  },
+  "title" : "Preposition Usage After Adjectives Part 1",
+  "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+  "translation" : "Estábamos listos para el espectáculo.",
+  "theoryId" : "b1.17.Prepositions_After_Adjectives",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We were ready",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "for" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the show.",
+      "options" : null
+    } ],
+    "sentences" : [ "We were ready for the show." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c6b"
+  },
+  "id" : "67fab6d59930102295343c6b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d373"
+  },
+  "title" : "Preposition Usage After Adjectives Part 1",
+  "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+  "translation" : "¿Estás emocionado por el viaje?",
+  "theoryId" : "b1.17.Prepositions_After_Adjectives",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are you excited",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "about" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the trip?",
+      "options" : null
+    } ],
+    "sentences" : [ "Are you excited about the trip?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c6c"
+  },
+  "id" : "67fab6d59930102295343c6c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d373"
+  },
+  "title" : "Preposition Usage After Adjectives Part 1",
+  "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+  "translation" : "Estoy realmente encantado con mi coche.",
+  "theoryId" : "b1.17.Prepositions_After_Adjectives",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I am really delighted",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "with" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "my car.",
+      "options" : null
+    } ],
+    "sentences" : [ "I am really delighted with my car." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c6d"
+  },
+  "id" : "67fab6d59930102295343c6d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d373"
+  },
+  "title" : "Preposition Usage After Adjectives Part 1",
+  "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+  "translation" : "El libro es muy importante para los investigadores.",
+  "theoryId" : "b1.17.Prepositions_After_Adjectives",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The book is very important",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "for" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "researchers.",
+      "options" : null
+    } ],
+    "sentences" : [ "The book is very important for researchers." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c6e"
+  },
+  "id" : "67fab6d59930102295343c6e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d373"
+  },
+  "title" : "Preposition Usage After Adjectives Part 1",
+  "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+  "translation" : "Estábamos preparados para el examen.",
+  "theoryId" : "b1.17.Prepositions_After_Adjectives",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We were prepared",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "for" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the test.",
+      "options" : null
+    } ],
+    "sentences" : [ "We were prepared for the test." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c6f"
+  },
+  "id" : "67fab6d59930102295343c6f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d373"
+  },
+  "title" : "Preposition Usage After Adjectives Part 1",
+  "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+  "translation" : "¿Estás seguro de tu resultado?",
+  "theoryId" : "b1.17.Prepositions_After_Adjectives",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are you positive",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "about|of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "your result?",
+      "options" : null
+    } ],
+    "sentences" : [ "Are you positive about your result?", "Are you positive of your result?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c70"
+  },
+  "id" : "67fab6d59930102295343c70",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d373"
+  },
+  "title" : "Preposition Usage After Adjectives Part 1",
+  "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+  "translation" : "Ella siempre es buena con sus pacientes.",
+  "theoryId" : "b1.17.Prepositions_After_Adjectives",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is always good",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "her patients.",
+      "options" : null
+    } ],
+    "sentences" : [ "She is always good to her patients." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c71"
+  },
+  "id" : "67fab6d59930102295343c71",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d373"
+  },
+  "title" : "Preposition Usage After Adjectives Part 1",
+  "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+  "translation" : "Por favor, sé más respetuoso conmigo.",
+  "theoryId" : "b1.17.Prepositions_After_Adjectives",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Please be more respectful",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "me.",
+      "options" : null
+    } ],
+    "sentences" : [ "Please be more respectful to me." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c72"
+  },
+  "id" : "67fab6d59930102295343c72",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d373"
+  },
+  "title" : "Preposition Usage After Adjectives Part 1",
+  "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+  "translation" : "Estoy pensando que no es posible para ellos.",
+  "theoryId" : "b1.17.Prepositions_After_Adjectives",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm after it's not possible",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "for" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "them.",
+      "options" : null
+    } ],
+    "sentences" : [ "I'm after it's not possible for them." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c73"
+  },
+  "id" : "67fab6d59930102295343c73",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d373"
+  },
+  "title" : "Preposition Usage After Adjectives Part 1",
+  "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+  "translation" : "¿Tienes miedo a las alturas?",
+  "theoryId" : "b1.17.Prepositions_After_Adjectives",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are you scared",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "heights?",
+      "options" : null
+    } ],
+    "sentences" : [ "Are you scared of heights?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c74"
+  },
+  "id" : "67fab6d59930102295343c74",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d373"
+  },
+  "title" : "Preposition Usage After Adjectives Part 1",
+  "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+  "translation" : "Ella tiene talento para el arte.",
+  "theoryId" : "b1.17.Prepositions_After_Adjectives",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is talented",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "art.",
+      "options" : null
+    } ],
+    "sentences" : [ "She is talented at art." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c75"
+  },
+  "id" : "67fab6d59930102295343c75",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d373"
+  },
+  "title" : "Preposition Usage After Adjectives Part 1",
+  "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+  "translation" : "Él fue muy justo con los jugadores.",
+  "theoryId" : "b1.17.Prepositions_After_Adjectives",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He was very fair",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the players.",
+      "options" : null
+    } ],
+    "sentences" : [ "He was very fair to the players." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c76"
+  },
+  "id" : "67fab6d59930102295343c76",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d373"
+  },
+  "title" : "Preposition Usage After Adjectives Part 1",
+  "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+  "translation" : "Esa acción es característica de los adultos.",
+  "theoryId" : "b1.17.Prepositions_After_Adjectives",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That action is characteristic",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "adults.",
+      "options" : null
+    } ],
+    "sentences" : [ "That action is characteristic of adults." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c77"
+  },
+  "id" : "67fab6d59930102295343c77",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d373"
+  },
+  "title" : "Preposition Usage After Adjectives Part 1",
+  "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+  "translation" : "Él es increíble en los deportes.",
+  "theoryId" : "b1.17.Prepositions_After_Adjectives",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's amazing",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "sports.",
+      "options" : null
+    } ],
+    "sentences" : [ "He's amazing at sports." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c78"
+  },
+  "id" : "67fab6d59930102295343c78",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d373"
+  },
+  "title" : "Preposition Usage After Adjectives Part 1",
+  "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+  "translation" : "No estoy contento con el clima frío.",
+  "theoryId" : "b1.17.Prepositions_After_Adjectives",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm not pleased",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "about" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the cold weather.",
+      "options" : null
+    } ],
+    "sentences" : [ "I'm not pleased about the cold weather." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c79"
+  },
+  "id" : "67fab6d59930102295343c79",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d373"
+  },
+  "title" : "Preposition Usage After Adjectives Part 1",
+  "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+  "translation" : "Fue desagradable con sus clientes.",
+  "theoryId" : "b1.17.Prepositions_After_Adjectives",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He was nasty",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "his clients.",
+      "options" : null
+    } ],
+    "sentences" : [ "He was nasty to his clients." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c7a"
+  },
+  "id" : "67fab6d59930102295343c7a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d373"
+  },
+  "title" : "Preposition Usage After Adjectives Part 1",
+  "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+  "translation" : "Ella lamenta mucho el error.",
+  "theoryId" : "b1.17.Prepositions_After_Adjectives",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is very sorry",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "for|about" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the error.",
+      "options" : null
+    } ],
+    "sentences" : [ "She is very sorry for the error.", "She is very sorry about the error." ]
+  }
+} ]

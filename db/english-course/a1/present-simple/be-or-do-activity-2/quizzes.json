@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f8b"
-    },
-    "id": "67fab6d59930102295341f8b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d393"
-    },
-    "title": "'Be' or 'do'? Activity 2",
-    "instructions": "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
-    "translation": "¿Llegué temprano?",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.16.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I'm early.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Am I early?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Am I early?"
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f8b"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f8c"
-    },
-    "id": "67fab6d59930102295341f8c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d393"
-    },
-    "title": "'Be' or 'do'? Activity 2",
-    "instructions": "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
-    "translation": "¿Él odia el té?",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.16.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He hates tea.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Does he hate tea?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Does he hate tea?"
-      ]
-    }
+  "id" : "67fab6d59930102295341f8b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d393"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f8d"
-    },
-    "id": "67fab6d59930102295341f8d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d393"
-    },
-    "title": "'Be' or 'do'? Activity 2",
-    "instructions": "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
-    "translation": "¿Ellos trabajan en París?",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.16.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They work in Paris.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Do they work in Paris?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Do they work in Paris?"
-      ]
-    }
+  "title" : "'Be' or 'do'? Activity 2",
+  "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
+  "translation" : "¿Llegué temprano?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f8e"
-    },
-    "id": "67fab6d59930102295341f8e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d393"
-    },
-    "title": "'Be' or 'do'? Activity 2",
-    "instructions": "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
-    "translation": "¿Ella está en el trabajo?",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.16.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She's at work.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Is she at work?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Is she at work?"
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f8f"
-    },
-    "id": "67fab6d59930102295341f8f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d393"
-    },
-    "title": "'Be' or 'do'? Activity 2",
-    "instructions": "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
-    "translation": "¿Ellos están en la cocina?",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.16.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They're in the kitchen.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Are they in the kitchen?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Are they in the kitchen?"
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f90"
-    },
-    "id": "67fab6d59930102295341f90",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d393"
-    },
-    "title": "'Be' or 'do'? Activity 2",
-    "instructions": "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
-    "translation": "¿Mary es de Australia?",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.16.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Mary is from Australia.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Is Mary from Australia?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Is Mary from Australia?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f91"
-    },
-    "id": "67fab6d59930102295341f91",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d393"
-    },
-    "title": "'Be' or 'do'? Activity 2",
-    "instructions": "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
-    "translation": "¿Él mira mucha televisión?",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.16.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He watches a lot of TV.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Does he watch a lot of TV?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Does he watch a lot of TV?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f92"
-    },
-    "id": "67fab6d59930102295341f92",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d393"
-    },
-    "title": "'Be' or 'do'? Activity 2",
-    "instructions": "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
-    "translation": "¿Los profesores están cansados?",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.16.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The teachers are tired.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Are the teachers tired?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Are the teachers tired?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f93"
-    },
-    "id": "67fab6d59930102295341f93",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d393"
-    },
-    "title": "'Be' or 'do'? Activity 2",
-    "instructions": "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
-    "translation": "¿Tenemos dos gatos?",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.16.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We own two cats.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Do we own two cats?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Do we own two cats?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f94"
-    },
-    "id": "67fab6d59930102295341f94",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d393"
-    },
-    "title": "'Be' or 'do'? Activity 2",
-    "instructions": "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
-    "translation": "¿Estamos en el autobús?",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.16.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We're on the bus.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Are we on the bus?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Are we on the bus?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f95"
-    },
-    "id": "67fab6d59930102295341f95",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d393"
-    },
-    "title": "'Be' or 'do'? Activity 2",
-    "instructions": "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
-    "translation": "¿Ella hornea pan cada mes?",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.16.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She bakes bread every month.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Does she bake bread every month?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Does she bake bread every month?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f96"
-    },
-    "id": "67fab6d59930102295341f96",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d393"
-    },
-    "title": "'Be' or 'do'? Activity 2",
-    "instructions": "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
-    "translation": "¿Los bebés toman mucha leche?",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.16.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The babies drink a lot of milk.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Do the babies drink a lot of milk?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Do the babies drink a lot of milk?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f97"
-    },
-    "id": "67fab6d59930102295341f97",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d393"
-    },
-    "title": "'Be' or 'do'? Activity 2",
-    "instructions": "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
-    "translation": "¿Ella está en el estadio?",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.16.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She's at the stadium.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Is she at the stadium?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Is she at the stadium?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f98"
-    },
-    "id": "67fab6d59930102295341f98",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d393"
-    },
-    "title": "'Be' or 'do'? Activity 2",
-    "instructions": "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
-    "translation": "¿Él come demasiada carne?",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.16.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He eats too much meat.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Does he eat too much meat?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Does he eat too much meat?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f99"
-    },
-    "id": "67fab6d59930102295341f99",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d393"
-    },
-    "title": "'Be' or 'do'? Activity 2",
-    "instructions": "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
-    "translation": "¿Los animales están en la jaula equivocada?",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.16.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The animals are in the wrong cage.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Are the animals in the wrong cage?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Are the animals in the wrong cage?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f9a"
-    },
-    "id": "67fab6d59930102295341f9a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d393"
-    },
-    "title": "'Be' or 'do'? Activity 2",
-    "instructions": "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
-    "translation": "¿La bicicleta está en el garaje?",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.16.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The bike is in the garage.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Is the bike in the garage?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Is the bike in the garage?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f9b"
-    },
-    "id": "67fab6d59930102295341f9b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d393"
-    },
-    "title": "'Be' or 'do'? Activity 2",
-    "instructions": "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
-    "translation": "¿Ella necesita un abrigo nuevo?",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.16.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She needs a new coat.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Does she need a new coat?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Does she need a new coat?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f9c"
-    },
-    "id": "67fab6d59930102295341f9c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d393"
-    },
-    "title": "'Be' or 'do'? Activity 2",
-    "instructions": "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
-    "translation": "¿Ellos pasan mucho tiempo en las montañas?",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.16.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They pass a lot of time in the mountains.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Do they pass a lot of time in the mountains?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Do they pass a lot of time in the mountains?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f9d"
-    },
-    "id": "67fab6d59930102295341f9d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d393"
-    },
-    "title": "'Be' or 'do'? Activity 2",
-    "instructions": "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
-    "translation": "¿A veces vamos al cine por la noche?",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.16.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We sometimes go to the cinema at night.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Do we sometimes go to the cinema at night?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Do we sometimes go to the cinema at night?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295341f9e"
-    },
-    "id": "67fab6d59930102295341f9e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d393"
-    },
-    "title": "'Be' or 'do'? Activity 2",
-    "instructions": "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
-    "translation": "¿Soy doctor?",
-    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-    "topicName": "Present Simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.01.16.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I'm a doctor.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Am I a doctor?"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Am I a doctor?"
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.16.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm early.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Am I early?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Am I early?" ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f8c"
+  },
+  "id" : "67fab6d59930102295341f8c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d393"
+  },
+  "title" : "'Be' or 'do'? Activity 2",
+  "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
+  "translation" : "¿Él odia el té?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.16.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He hates tea.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Does he hate tea?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Does he hate tea?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f8d"
+  },
+  "id" : "67fab6d59930102295341f8d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d393"
+  },
+  "title" : "'Be' or 'do'? Activity 2",
+  "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
+  "translation" : "¿Ellos trabajan en París?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.16.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They work in Paris.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Do they work in Paris?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Do they work in Paris?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f8e"
+  },
+  "id" : "67fab6d59930102295341f8e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d393"
+  },
+  "title" : "'Be' or 'do'? Activity 2",
+  "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
+  "translation" : "¿Ella está en el trabajo?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.16.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's at work.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Is she at work?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Is she at work?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f8f"
+  },
+  "id" : "67fab6d59930102295341f8f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d393"
+  },
+  "title" : "'Be' or 'do'? Activity 2",
+  "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
+  "translation" : "¿Ellos están en la cocina?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.16.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They're in the kitchen.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Are they in the kitchen?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Are they in the kitchen?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f90"
+  },
+  "id" : "67fab6d59930102295341f90",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d393"
+  },
+  "title" : "'Be' or 'do'? Activity 2",
+  "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
+  "translation" : "¿Mary es de Australia?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.16.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Mary is from Australia.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Is Mary from Australia?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Is Mary from Australia?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f91"
+  },
+  "id" : "67fab6d59930102295341f91",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d393"
+  },
+  "title" : "'Be' or 'do'? Activity 2",
+  "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
+  "translation" : "¿Él mira mucha televisión?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.16.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He watches a lot of TV.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Does he watch a lot of TV?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Does he watch a lot of TV?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f92"
+  },
+  "id" : "67fab6d59930102295341f92",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d393"
+  },
+  "title" : "'Be' or 'do'? Activity 2",
+  "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
+  "translation" : "¿Los profesores están cansados?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.16.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The teachers are tired.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Are the teachers tired?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Are the teachers tired?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f93"
+  },
+  "id" : "67fab6d59930102295341f93",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d393"
+  },
+  "title" : "'Be' or 'do'? Activity 2",
+  "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
+  "translation" : "¿Tenemos dos gatos?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.16.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We own two cats.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Do we own two cats?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Do we own two cats?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f94"
+  },
+  "id" : "67fab6d59930102295341f94",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d393"
+  },
+  "title" : "'Be' or 'do'? Activity 2",
+  "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
+  "translation" : "¿Estamos en el autobús?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.16.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We're on the bus.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Are we on the bus?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Are we on the bus?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f95"
+  },
+  "id" : "67fab6d59930102295341f95",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d393"
+  },
+  "title" : "'Be' or 'do'? Activity 2",
+  "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
+  "translation" : "¿Ella hornea pan cada mes?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.16.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She bakes bread every month.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Does she bake bread every month?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Does she bake bread every month?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f96"
+  },
+  "id" : "67fab6d59930102295341f96",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d393"
+  },
+  "title" : "'Be' or 'do'? Activity 2",
+  "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
+  "translation" : "¿Los bebés toman mucha leche?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.16.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The babies drink a lot of milk.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Do the babies drink a lot of milk?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Do the babies drink a lot of milk?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f97"
+  },
+  "id" : "67fab6d59930102295341f97",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d393"
+  },
+  "title" : "'Be' or 'do'? Activity 2",
+  "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
+  "translation" : "¿Ella está en el estadio?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.16.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's at the stadium.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Is she at the stadium?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Is she at the stadium?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f98"
+  },
+  "id" : "67fab6d59930102295341f98",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d393"
+  },
+  "title" : "'Be' or 'do'? Activity 2",
+  "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
+  "translation" : "¿Él come demasiada carne?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.16.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He eats too much meat.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Does he eat too much meat?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Does he eat too much meat?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f99"
+  },
+  "id" : "67fab6d59930102295341f99",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d393"
+  },
+  "title" : "'Be' or 'do'? Activity 2",
+  "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
+  "translation" : "¿Los animales están en la jaula equivocada?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.16.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The animals are in the wrong cage.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Are the animals in the wrong cage?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Are the animals in the wrong cage?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f9a"
+  },
+  "id" : "67fab6d59930102295341f9a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d393"
+  },
+  "title" : "'Be' or 'do'? Activity 2",
+  "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
+  "translation" : "¿La bicicleta está en el garaje?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.16.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The bike is in the garage.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Is the bike in the garage?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Is the bike in the garage?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f9b"
+  },
+  "id" : "67fab6d59930102295341f9b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d393"
+  },
+  "title" : "'Be' or 'do'? Activity 2",
+  "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
+  "translation" : "¿Ella necesita un abrigo nuevo?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.16.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She needs a new coat.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Does she need a new coat?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Does she need a new coat?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f9c"
+  },
+  "id" : "67fab6d59930102295341f9c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d393"
+  },
+  "title" : "'Be' or 'do'? Activity 2",
+  "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
+  "translation" : "¿Ellos pasan mucho tiempo en las montañas?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.16.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They pass a lot of time in the mountains.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Do they pass a lot of time in the mountains?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Do they pass a lot of time in the mountains?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f9d"
+  },
+  "id" : "67fab6d59930102295341f9d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d393"
+  },
+  "title" : "'Be' or 'do'? Activity 2",
+  "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
+  "translation" : "¿A veces vamos al cine por la noche?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.16.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We sometimes go to the cinema at night.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Do we sometimes go to the cinema at night?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Do we sometimes go to the cinema at night?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341f9e"
+  },
+  "id" : "67fab6d59930102295341f9e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d393"
+  },
+  "title" : "'Be' or 'do'? Activity 2",
+  "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.",
+  "translation" : "¿Soy doctor?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.16.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm a doctor.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Am I a doctor?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Am I a doctor?" ]
+  }
+} ]

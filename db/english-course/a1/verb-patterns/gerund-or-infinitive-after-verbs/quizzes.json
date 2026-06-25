@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953422db"
-    },
-    "id": "67fab6d599301022953422db",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c2"
-    },
-    "title": "Gerund or Infinitive after verbs",
-    "instructions": "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
-    "translation": "Acordamos comer al mediodía.",
-    "theoryId": "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
-    "topicName": "Verb Patterns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.05.03.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We arranged",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to eat"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(eat) at midday.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We arranged to eat at midday."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d599301022953422db"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953422dc"
-    },
-    "id": "67fab6d599301022953422dc",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c2"
-    },
-    "title": "Gerund or Infinitive after verbs",
-    "instructions": "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
-    "translation": "¿Han dejado de usar la computadora?",
-    "theoryId": "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
-    "topicName": "Verb Patterns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.05.03.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Have they stopped",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "using"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(use) the computer?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Have they stopped using the computer?"
-      ]
-    }
+  "id" : "67fab6d599301022953422db",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c2"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953422dd"
-    },
-    "id": "67fab6d599301022953422dd",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c2"
-    },
-    "title": "Gerund or Infinitive after verbs",
-    "instructions": "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
-    "translation": "¡No me gusta conducir!",
-    "theoryId": "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
-    "topicName": "Verb Patterns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.05.03.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I dislike",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "driving"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(drive)!",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I dislike driving!"
-      ]
-    }
+  "title" : "Gerund or Infinitive after verbs",
+  "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
+  "translation" : "Acordamos comer al mediodía.",
+  "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
+  "topicName" : "Verb Patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953422de"
-    },
-    "id": "67fab6d599301022953422de",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c2"
-    },
-    "title": "Gerund or Infinitive after verbs",
-    "instructions": "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
-    "translation": "Él quiere llamar a su madre.",
-    "theoryId": "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
-    "topicName": "Verb Patterns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.05.03.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He wants",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to call"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(call) his mother.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He wants to call his mother."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953422df"
-    },
-    "id": "67fab6d599301022953422df",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c2"
-    },
-    "title": "Gerund or Infinitive after verbs",
-    "instructions": "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
-    "translation": "Mi papá tiene la intención de llamar más tarde.",
-    "theoryId": "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
-    "topicName": "Verb Patterns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.05.03.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "My dad intends",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to call"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(call) later.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "My dad intends to call later."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953422e0"
-    },
-    "id": "67fab6d599301022953422e0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c2"
-    },
-    "title": "Gerund or Infinitive after verbs",
-    "instructions": "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
-    "translation": "Ellos desean terminar a tiempo.",
-    "theoryId": "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
-    "topicName": "Verb Patterns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.05.03.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They wish",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to finish"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(finish) on time.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They wish to finish on time."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953422e1"
-    },
-    "id": "67fab6d599301022953422e1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c2"
-    },
-    "title": "Gerund or Infinitive after verbs",
-    "instructions": "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
-    "translation": "Disfruto viendo películas.",
-    "theoryId": "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
-    "topicName": "Verb Patterns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.05.03.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I enjoy",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "watching"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(watch) movies.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I enjoy watching movies."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953422e2"
-    },
-    "id": "67fab6d599301022953422e2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c2"
-    },
-    "title": "Gerund or Infinitive after verbs",
-    "instructions": "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
-    "translation": "Él espera encontrar una nueva casa.",
-    "theoryId": "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
-    "topicName": "Verb Patterns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.05.03.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He expects",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to find"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(find) a new house.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He expects to find a new house."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953422e3"
-    },
-    "id": "67fab6d599301022953422e3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c2"
-    },
-    "title": "Gerund or Infinitive after verbs",
-    "instructions": "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
-    "translation": "Ella disfruta leyendo.",
-    "theoryId": "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
-    "topicName": "Verb Patterns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.05.03.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She enjoys",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "reading"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(read).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She enjoys reading."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953422e4"
-    },
-    "id": "67fab6d599301022953422e4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c2"
-    },
-    "title": "Gerund or Infinitive after verbs",
-    "instructions": "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
-    "translation": "Él empezó a aprender alemán.",
-    "theoryId": "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
-    "topicName": "Verb Patterns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.05.03.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He started",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to learn"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(learn) German.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He started to learn German."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953422e5"
-    },
-    "id": "67fab6d599301022953422e5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c2"
-    },
-    "title": "Gerund or Infinitive after verbs",
-    "instructions": "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
-    "translation": "Aprecié hablar contigo.",
-    "theoryId": "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
-    "topicName": "Verb Patterns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.05.03.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I appreciated",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "talking"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(talk) with you.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I appreciated talking with you."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953422e6"
-    },
-    "id": "67fab6d599301022953422e6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c2"
-    },
-    "title": "Gerund or Infinitive after verbs",
-    "instructions": "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
-    "translation": "A ellos les gusta leer novelas.",
-    "theoryId": "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
-    "topicName": "Verb Patterns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.05.03.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They like",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "reading"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(read) novels.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They like reading novels."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953422e7"
-    },
-    "id": "67fab6d599301022953422e7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c2"
-    },
-    "title": "Gerund or Infinitive after verbs",
-    "instructions": "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
-    "translation": "Los estudiantes están empezando a entender matemáticas.",
-    "theoryId": "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
-    "topicName": "Verb Patterns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.05.03.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The students are starting",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to understand"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(understand) maths.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The students are starting to understand maths."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953422e8"
-    },
-    "id": "67fab6d599301022953422e8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c2"
-    },
-    "title": "Gerund or Infinitive after verbs",
-    "instructions": "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
-    "translation": "Espero ser feliz.",
-    "theoryId": "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
-    "topicName": "Verb Patterns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.05.03.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I expect",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to be"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) happy.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I expect to be happy."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953422e9"
-    },
-    "id": "67fab6d599301022953422e9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c2"
-    },
-    "title": "Gerund or Infinitive after verbs",
-    "instructions": "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
-    "translation": "A ella le apetece beber té.",
-    "theoryId": "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
-    "topicName": "Verb Patterns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.05.03.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She fancies",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "drinking"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(drink) tea.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She fancies drinking tea."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953422ea"
-    },
-    "id": "67fab6d599301022953422ea",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c2"
-    },
-    "title": "Gerund or Infinitive after verbs",
-    "instructions": "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
-    "translation": "¡Tememos levantarnos temprano!",
-    "theoryId": "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
-    "topicName": "Verb Patterns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.05.03.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We dread",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "getting"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(get) up early!",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We dread getting up early!"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953422eb"
-    },
-    "id": "67fab6d599301022953422eb",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c2"
-    },
-    "title": "Gerund or Infinitive after verbs",
-    "instructions": "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
-    "translation": "He terminado de hornear.",
-    "theoryId": "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
-    "topicName": "Verb Patterns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.05.03.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I have completed",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "baking"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(bake).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I have completed baking."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953422ec"
-    },
-    "id": "67fab6d599301022953422ec",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c2"
-    },
-    "title": "Gerund or Infinitive after verbs",
-    "instructions": "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
-    "translation": "A los niños les encanta andar en bicicleta.",
-    "theoryId": "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
-    "topicName": "Verb Patterns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.05.03.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The kids love",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "riding"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(ride) bikes.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The kids love riding bikes."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953422ed"
-    },
-    "id": "67fab6d599301022953422ed",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c2"
-    },
-    "title": "Gerund or Infinitive after verbs",
-    "instructions": "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
-    "translation": "¿Deseas beber un jugo?",
-    "theoryId": "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
-    "topicName": "Verb Patterns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.05.03.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Do you wish",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to drink"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(drink) a juice?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Do you wish to drink a juice?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953422ee"
-    },
-    "id": "67fab6d599301022953422ee",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c2"
-    },
-    "title": "Gerund or Infinitive after verbs",
-    "instructions": "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
-    "translation": "¿Tienes que trabajar hoy?",
-    "theoryId": "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
-    "topicName": "Verb Patterns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.05.03.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Do you have",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to work"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(work) today?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Do you have to work today?"
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.05.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We arranged",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to eat" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(eat) at midday.",
+      "options" : null
+    } ],
+    "sentences" : [ "We arranged to eat at midday." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953422dc"
+  },
+  "id" : "67fab6d599301022953422dc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c2"
+  },
+  "title" : "Gerund or Infinitive after verbs",
+  "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
+  "translation" : "¿Han dejado de usar la computadora?",
+  "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
+  "topicName" : "Verb Patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.05.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have they stopped",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "using" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(use) the computer?",
+      "options" : null
+    } ],
+    "sentences" : [ "Have they stopped using the computer?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953422dd"
+  },
+  "id" : "67fab6d599301022953422dd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c2"
+  },
+  "title" : "Gerund or Infinitive after verbs",
+  "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
+  "translation" : "¡No me gusta conducir!",
+  "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
+  "topicName" : "Verb Patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.05.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I dislike",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "driving" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(drive)!",
+      "options" : null
+    } ],
+    "sentences" : [ "I dislike driving!" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953422de"
+  },
+  "id" : "67fab6d599301022953422de",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c2"
+  },
+  "title" : "Gerund or Infinitive after verbs",
+  "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
+  "translation" : "Él quiere llamar a su madre.",
+  "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
+  "topicName" : "Verb Patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.05.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He wants",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to call" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(call) his mother.",
+      "options" : null
+    } ],
+    "sentences" : [ "He wants to call his mother." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953422df"
+  },
+  "id" : "67fab6d599301022953422df",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c2"
+  },
+  "title" : "Gerund or Infinitive after verbs",
+  "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
+  "translation" : "Mi papá tiene la intención de llamar más tarde.",
+  "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
+  "topicName" : "Verb Patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.05.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My dad intends",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to call" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(call) later.",
+      "options" : null
+    } ],
+    "sentences" : [ "My dad intends to call later." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953422e0"
+  },
+  "id" : "67fab6d599301022953422e0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c2"
+  },
+  "title" : "Gerund or Infinitive after verbs",
+  "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
+  "translation" : "Ellos desean terminar a tiempo.",
+  "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
+  "topicName" : "Verb Patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.05.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They wish",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to finish" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(finish) on time.",
+      "options" : null
+    } ],
+    "sentences" : [ "They wish to finish on time." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953422e1"
+  },
+  "id" : "67fab6d599301022953422e1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c2"
+  },
+  "title" : "Gerund or Infinitive after verbs",
+  "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
+  "translation" : "Disfruto viendo películas.",
+  "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
+  "topicName" : "Verb Patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.05.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I enjoy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "watching" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(watch) movies.",
+      "options" : null
+    } ],
+    "sentences" : [ "I enjoy watching movies." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953422e2"
+  },
+  "id" : "67fab6d599301022953422e2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c2"
+  },
+  "title" : "Gerund or Infinitive after verbs",
+  "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
+  "translation" : "Él espera encontrar una nueva casa.",
+  "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
+  "topicName" : "Verb Patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.05.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He expects",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to find" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(find) a new house.",
+      "options" : null
+    } ],
+    "sentences" : [ "He expects to find a new house." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953422e3"
+  },
+  "id" : "67fab6d599301022953422e3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c2"
+  },
+  "title" : "Gerund or Infinitive after verbs",
+  "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
+  "translation" : "Ella disfruta leyendo.",
+  "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
+  "topicName" : "Verb Patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.05.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She enjoys",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "reading" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(read).",
+      "options" : null
+    } ],
+    "sentences" : [ "She enjoys reading." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953422e4"
+  },
+  "id" : "67fab6d599301022953422e4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c2"
+  },
+  "title" : "Gerund or Infinitive after verbs",
+  "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
+  "translation" : "Él empezó a aprender alemán.",
+  "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
+  "topicName" : "Verb Patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.05.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He started",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to learn" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(learn) German.",
+      "options" : null
+    } ],
+    "sentences" : [ "He started to learn German." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953422e5"
+  },
+  "id" : "67fab6d599301022953422e5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c2"
+  },
+  "title" : "Gerund or Infinitive after verbs",
+  "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
+  "translation" : "Aprecié hablar contigo.",
+  "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
+  "topicName" : "Verb Patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.05.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I appreciated",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "talking" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(talk) with you.",
+      "options" : null
+    } ],
+    "sentences" : [ "I appreciated talking with you." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953422e6"
+  },
+  "id" : "67fab6d599301022953422e6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c2"
+  },
+  "title" : "Gerund or Infinitive after verbs",
+  "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
+  "translation" : "A ellos les gusta leer novelas.",
+  "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
+  "topicName" : "Verb Patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.05.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They like",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "reading" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(read) novels.",
+      "options" : null
+    } ],
+    "sentences" : [ "They like reading novels." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953422e7"
+  },
+  "id" : "67fab6d599301022953422e7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c2"
+  },
+  "title" : "Gerund or Infinitive after verbs",
+  "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
+  "translation" : "Los estudiantes están empezando a entender matemáticas.",
+  "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
+  "topicName" : "Verb Patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.05.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The students are starting",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to understand" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(understand) maths.",
+      "options" : null
+    } ],
+    "sentences" : [ "The students are starting to understand maths." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953422e8"
+  },
+  "id" : "67fab6d599301022953422e8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c2"
+  },
+  "title" : "Gerund or Infinitive after verbs",
+  "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
+  "translation" : "Espero ser feliz.",
+  "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
+  "topicName" : "Verb Patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.05.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I expect",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to be" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) happy.",
+      "options" : null
+    } ],
+    "sentences" : [ "I expect to be happy." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953422e9"
+  },
+  "id" : "67fab6d599301022953422e9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c2"
+  },
+  "title" : "Gerund or Infinitive after verbs",
+  "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
+  "translation" : "A ella le apetece beber té.",
+  "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
+  "topicName" : "Verb Patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.05.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She fancies",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "drinking" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(drink) tea.",
+      "options" : null
+    } ],
+    "sentences" : [ "She fancies drinking tea." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953422ea"
+  },
+  "id" : "67fab6d599301022953422ea",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c2"
+  },
+  "title" : "Gerund or Infinitive after verbs",
+  "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
+  "translation" : "¡Tememos levantarnos temprano!",
+  "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
+  "topicName" : "Verb Patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.05.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We dread",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "getting" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(get) up early!",
+      "options" : null
+    } ],
+    "sentences" : [ "We dread getting up early!" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953422eb"
+  },
+  "id" : "67fab6d599301022953422eb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c2"
+  },
+  "title" : "Gerund or Infinitive after verbs",
+  "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
+  "translation" : "He terminado de hornear.",
+  "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
+  "topicName" : "Verb Patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.05.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I have completed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "baking" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(bake).",
+      "options" : null
+    } ],
+    "sentences" : [ "I have completed baking." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953422ec"
+  },
+  "id" : "67fab6d599301022953422ec",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c2"
+  },
+  "title" : "Gerund or Infinitive after verbs",
+  "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
+  "translation" : "A los niños les encanta andar en bicicleta.",
+  "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
+  "topicName" : "Verb Patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.05.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The kids love",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "riding" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(ride) bikes.",
+      "options" : null
+    } ],
+    "sentences" : [ "The kids love riding bikes." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953422ed"
+  },
+  "id" : "67fab6d599301022953422ed",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c2"
+  },
+  "title" : "Gerund or Infinitive after verbs",
+  "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
+  "translation" : "¿Deseas beber un jugo?",
+  "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
+  "topicName" : "Verb Patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.05.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you wish",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to drink" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(drink) a juice?",
+      "options" : null
+    } ],
+    "sentences" : [ "Do you wish to drink a juice?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953422ee"
+  },
+  "id" : "67fab6d599301022953422ee",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c2"
+  },
+  "title" : "Gerund or Infinitive after verbs",
+  "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
+  "translation" : "¿Tienes que trabajar hoy?",
+  "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
+  "topicName" : "Verb Patterns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.05.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to work" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(work) today?",
+      "options" : null
+    } ],
+    "sentences" : [ "Do you have to work today?" ]
+  }
+} ]

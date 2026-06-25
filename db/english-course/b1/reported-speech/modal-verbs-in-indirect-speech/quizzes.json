@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343735"
-    },
-    "id": "67fab6d59930102295343735",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d324"
-    },
-    "title": "Modal Verbs in Indirect Speech",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
-    "translation": "John dijo que él conduciría el coche.",
-    "theoryId": "b1.10.Reported_Speech_with_Modal_Verbs",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.08.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I'll drive the car.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "John said that he would drive the car."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "John said that he would drive the car."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343735"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343736"
-    },
-    "id": "67fab6d59930102295343736",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d324"
-    },
-    "title": "Modal Verbs in Indirect Speech",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
-    "translation": "John dijo que ella no bailaría.",
-    "theoryId": "b1.10.Reported_Speech_with_Modal_Verbs",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.08.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She wouldn't dance.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "John said that she wouldn't dance."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "John said that she wouldn't dance."
-      ]
-    }
+  "id" : "67fab6d59930102295343735",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d324"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343737"
-    },
-    "id": "67fab6d59930102295343737",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d324"
-    },
-    "title": "Modal Verbs in Indirect Speech",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
-    "translation": "John dijo que él no debería comer tantos dulces.",
-    "theoryId": "b1.10.Reported_Speech_with_Modal_Verbs",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.08.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I shouldn't eat so many sweets.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "John said that he shouldn't eat so many sweets."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "John said that he shouldn't eat so many sweets."
-      ]
-    }
+  "title" : "Modal Verbs in Indirect Speech",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
+  "translation" : "John dijo que él conduciría el coche.",
+  "theoryId" : "b1.10.Reported_Speech_with_Modal_Verbs",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343738"
-    },
-    "id": "67fab6d59930102295343738",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d324"
-    },
-    "title": "Modal Verbs in Indirect Speech",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
-    "translation": "John dijo que él podría visitar a su familia.",
-    "theoryId": "b1.10.Reported_Speech_with_Modal_Verbs",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.08.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I might visit my family.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "John said that he might visit his family."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "John said that he might visit his family."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343739"
-    },
-    "id": "67fab6d59930102295343739",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d324"
-    },
-    "title": "Modal Verbs in Indirect Speech",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
-    "translation": "John dijo que ellos podrían estar en el cine.",
-    "theoryId": "b1.10.Reported_Speech_with_Modal_Verbs",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.08.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They might be at the cinema.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "John said that they might be at the cinema."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "John said that they might be at the cinema."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534373a"
-    },
-    "id": "67fab6d5993010229534373a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d324"
-    },
-    "title": "Modal Verbs in Indirect Speech",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
-    "translation": "John dijo que Peter no podía conducir.",
-    "theoryId": "b1.10.Reported_Speech_with_Modal_Verbs",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.08.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Peter can't drive.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "John said that Peter couldn't drive."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "John said that Peter couldn't drive."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534373b"
-    },
-    "id": "67fab6d5993010229534373b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d324"
-    },
-    "title": "Modal Verbs in Indirect Speech",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
-    "translation": "John dijo que Mary debía llamar a su madre.",
-    "theoryId": "b1.10.Reported_Speech_with_Modal_Verbs",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.08.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Mary must call her mother.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "John said that Mary must call her mother."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "John said that Mary must call her mother."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534373c"
-    },
-    "id": "67fab6d5993010229534373c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d324"
-    },
-    "title": "Modal Verbs in Indirect Speech",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
-    "translation": "John dijo que Elizabeth te llevaría.",
-    "theoryId": "b1.10.Reported_Speech_with_Modal_Verbs",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.08.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Elizabeth will give you a lift.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "John said that Elizabeth would give you a lift."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "John said that Elizabeth would give you a lift."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534373d"
-    },
-    "id": "67fab6d5993010229534373d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d324"
-    },
-    "title": "Modal Verbs in Indirect Speech",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
-    "translation": "John dijo que mi hermana entendería.",
-    "theoryId": "b1.10.Reported_Speech_with_Modal_Verbs",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.08.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "My sister will understand.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "John said that my sister would understand."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "John said that my sister would understand."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534373e"
-    },
-    "id": "67fab6d5993010229534373e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d324"
-    },
-    "title": "Modal Verbs in Indirect Speech",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
-    "translation": "John dijo que ellos podrían empezar pronto.",
-    "theoryId": "b1.10.Reported_Speech_with_Modal_Verbs",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.08.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We can start soon.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "John said that they could start soon."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "John said that they could start soon."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534373f"
-    },
-    "id": "67fab6d5993010229534373f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d324"
-    },
-    "title": "Modal Verbs in Indirect Speech",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
-    "translation": "John dijo que la gente no debe fumar aquí.",
-    "theoryId": "b1.10.Reported_Speech_with_Modal_Verbs",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.08.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "People mustn't smoke here.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "John said that people mustn't smoke here."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "John said that people mustn't smoke here."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343740"
-    },
-    "id": "67fab6d59930102295343740",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d324"
-    },
-    "title": "Modal Verbs in Indirect Speech",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
-    "translation": "John dijo que él no podía abrir la puerta.",
-    "theoryId": "b1.10.Reported_Speech_with_Modal_Verbs",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.08.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I couldn't open the door.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "John said that he couldn't open the door."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "John said that he couldn't open the door."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343741"
-    },
-    "id": "67fab6d59930102295343741",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d324"
-    },
-    "title": "Modal Verbs in Indirect Speech",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
-    "translation": "John dijo que la policía podría atrapar al ladrón.",
-    "theoryId": "b1.10.Reported_Speech_with_Modal_Verbs",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.08.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The police could catch the thief.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "John said that the police could catch the thief."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "John said that the police could catch the thief."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343742"
-    },
-    "id": "67fab6d59930102295343742",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d324"
-    },
-    "title": "Modal Verbs in Indirect Speech",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
-    "translation": "John dijo que ellos deberían comprar leche.",
-    "theoryId": "b1.10.Reported_Speech_with_Modal_Verbs",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.08.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We should buy some milk.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "John said that they should buy some milk."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "John said that they should buy some milk."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343743"
-    },
-    "id": "67fab6d59930102295343743",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d324"
-    },
-    "title": "Modal Verbs in Indirect Speech",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
-    "translation": "John dijo que Alice podía jugar al tenis.",
-    "theoryId": "b1.10.Reported_Speech_with_Modal_Verbs",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.08.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Alice can play tennis.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "John said that Alice could play tennis."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "John said that Alice could play tennis."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343744"
-    },
-    "id": "67fab6d59930102295343744",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d324"
-    },
-    "title": "Modal Verbs in Indirect Speech",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
-    "translation": "John dijo que él no podía nadar.",
-    "theoryId": "b1.10.Reported_Speech_with_Modal_Verbs",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.08.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I can't swim.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "John said that he couldn't swim."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "John said that he couldn't swim."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343745"
-    },
-    "id": "67fab6d59930102295343745",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d324"
-    },
-    "title": "Modal Verbs in Indirect Speech",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
-    "translation": "John dijo que ella podía hablar italiano.",
-    "theoryId": "b1.10.Reported_Speech_with_Modal_Verbs",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.08.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She can speak Italian.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "John said that she could speak Italian."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "John said that she could speak Italian."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343746"
-    },
-    "id": "67fab6d59930102295343746",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d324"
-    },
-    "title": "Modal Verbs in Indirect Speech",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
-    "translation": "John dijo que los bebés no beberían leche.",
-    "theoryId": "b1.10.Reported_Speech_with_Modal_Verbs",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.08.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The babies won't drink milk.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "John said that the babies wouldn't drink milk."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "John said that the babies wouldn't drink milk."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343747"
-    },
-    "id": "67fab6d59930102295343747",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d324"
-    },
-    "title": "Modal Verbs in Indirect Speech",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
-    "translation": "John dijo que ellos no estarían enfadados.",
-    "theoryId": "b1.10.Reported_Speech_with_Modal_Verbs",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.08.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They won't be angry.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "John said that they wouldn't be angry."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "John said that they wouldn't be angry."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343748"
-    },
-    "id": "67fab6d59930102295343748",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d324"
-    },
-    "title": "Modal Verbs in Indirect Speech",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
-    "translation": "John dijo que le gustaría un café.",
-    "theoryId": "b1.10.Reported_Speech_with_Modal_Verbs",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.08.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I would like a coffee.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "John said that he would like a coffee."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "John said that he would like a coffee."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.08.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'll drive the car.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "John said that he would drive the car." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "John said that he would drive the car." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343736"
+  },
+  "id" : "67fab6d59930102295343736",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d324"
+  },
+  "title" : "Modal Verbs in Indirect Speech",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
+  "translation" : "John dijo que ella no bailaría.",
+  "theoryId" : "b1.10.Reported_Speech_with_Modal_Verbs",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.08.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She wouldn't dance.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "John said that she wouldn't dance." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "John said that she wouldn't dance." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343737"
+  },
+  "id" : "67fab6d59930102295343737",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d324"
+  },
+  "title" : "Modal Verbs in Indirect Speech",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
+  "translation" : "John dijo que él no debería comer tantos dulces.",
+  "theoryId" : "b1.10.Reported_Speech_with_Modal_Verbs",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.08.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I shouldn't eat so many sweets.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "John said that he shouldn't eat so many sweets." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "John said that he shouldn't eat so many sweets." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343738"
+  },
+  "id" : "67fab6d59930102295343738",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d324"
+  },
+  "title" : "Modal Verbs in Indirect Speech",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
+  "translation" : "John dijo que él podría visitar a su familia.",
+  "theoryId" : "b1.10.Reported_Speech_with_Modal_Verbs",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.08.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I might visit my family.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "John said that he might visit his family." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "John said that he might visit his family." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343739"
+  },
+  "id" : "67fab6d59930102295343739",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d324"
+  },
+  "title" : "Modal Verbs in Indirect Speech",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
+  "translation" : "John dijo que ellos podrían estar en el cine.",
+  "theoryId" : "b1.10.Reported_Speech_with_Modal_Verbs",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.08.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They might be at the cinema.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "John said that they might be at the cinema." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "John said that they might be at the cinema." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534373a"
+  },
+  "id" : "67fab6d5993010229534373a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d324"
+  },
+  "title" : "Modal Verbs in Indirect Speech",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
+  "translation" : "John dijo que Peter no podía conducir.",
+  "theoryId" : "b1.10.Reported_Speech_with_Modal_Verbs",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.08.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Peter can't drive.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "John said that Peter couldn't drive." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "John said that Peter couldn't drive." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534373b"
+  },
+  "id" : "67fab6d5993010229534373b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d324"
+  },
+  "title" : "Modal Verbs in Indirect Speech",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
+  "translation" : "John dijo que Mary debía llamar a su madre.",
+  "theoryId" : "b1.10.Reported_Speech_with_Modal_Verbs",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.08.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Mary must call her mother.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "John said that Mary must call her mother." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "John said that Mary must call her mother." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534373c"
+  },
+  "id" : "67fab6d5993010229534373c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d324"
+  },
+  "title" : "Modal Verbs in Indirect Speech",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
+  "translation" : "John dijo que Elizabeth te llevaría.",
+  "theoryId" : "b1.10.Reported_Speech_with_Modal_Verbs",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.08.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Elizabeth will give you a lift.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "John said that Elizabeth would give you a lift." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "John said that Elizabeth would give you a lift." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534373d"
+  },
+  "id" : "67fab6d5993010229534373d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d324"
+  },
+  "title" : "Modal Verbs in Indirect Speech",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
+  "translation" : "John dijo que mi hermana entendería.",
+  "theoryId" : "b1.10.Reported_Speech_with_Modal_Verbs",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.08.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My sister will understand.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "John said that my sister would understand." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "John said that my sister would understand." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534373e"
+  },
+  "id" : "67fab6d5993010229534373e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d324"
+  },
+  "title" : "Modal Verbs in Indirect Speech",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
+  "translation" : "John dijo que ellos podrían empezar pronto.",
+  "theoryId" : "b1.10.Reported_Speech_with_Modal_Verbs",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.08.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We can start soon.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "John said that they could start soon." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "John said that they could start soon." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534373f"
+  },
+  "id" : "67fab6d5993010229534373f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d324"
+  },
+  "title" : "Modal Verbs in Indirect Speech",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
+  "translation" : "John dijo que la gente no debe fumar aquí.",
+  "theoryId" : "b1.10.Reported_Speech_with_Modal_Verbs",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.08.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "People mustn't smoke here.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "John said that people mustn't smoke here." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "John said that people mustn't smoke here." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343740"
+  },
+  "id" : "67fab6d59930102295343740",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d324"
+  },
+  "title" : "Modal Verbs in Indirect Speech",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
+  "translation" : "John dijo que él no podía abrir la puerta.",
+  "theoryId" : "b1.10.Reported_Speech_with_Modal_Verbs",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.08.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I couldn't open the door.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "John said that he couldn't open the door." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "John said that he couldn't open the door." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343741"
+  },
+  "id" : "67fab6d59930102295343741",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d324"
+  },
+  "title" : "Modal Verbs in Indirect Speech",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
+  "translation" : "John dijo que la policía podría atrapar al ladrón.",
+  "theoryId" : "b1.10.Reported_Speech_with_Modal_Verbs",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.08.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The police could catch the thief.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "John said that the police could catch the thief." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "John said that the police could catch the thief." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343742"
+  },
+  "id" : "67fab6d59930102295343742",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d324"
+  },
+  "title" : "Modal Verbs in Indirect Speech",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
+  "translation" : "John dijo que ellos deberían comprar leche.",
+  "theoryId" : "b1.10.Reported_Speech_with_Modal_Verbs",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.08.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We should buy some milk.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "John said that they should buy some milk." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "John said that they should buy some milk." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343743"
+  },
+  "id" : "67fab6d59930102295343743",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d324"
+  },
+  "title" : "Modal Verbs in Indirect Speech",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
+  "translation" : "John dijo que Alice podía jugar al tenis.",
+  "theoryId" : "b1.10.Reported_Speech_with_Modal_Verbs",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.08.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Alice can play tennis.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "John said that Alice could play tennis." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "John said that Alice could play tennis." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343744"
+  },
+  "id" : "67fab6d59930102295343744",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d324"
+  },
+  "title" : "Modal Verbs in Indirect Speech",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
+  "translation" : "John dijo que él no podía nadar.",
+  "theoryId" : "b1.10.Reported_Speech_with_Modal_Verbs",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.08.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I can't swim.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "John said that he couldn't swim." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "John said that he couldn't swim." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343745"
+  },
+  "id" : "67fab6d59930102295343745",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d324"
+  },
+  "title" : "Modal Verbs in Indirect Speech",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
+  "translation" : "John dijo que ella podía hablar italiano.",
+  "theoryId" : "b1.10.Reported_Speech_with_Modal_Verbs",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.08.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She can speak Italian.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "John said that she could speak Italian." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "John said that she could speak Italian." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343746"
+  },
+  "id" : "67fab6d59930102295343746",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d324"
+  },
+  "title" : "Modal Verbs in Indirect Speech",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
+  "translation" : "John dijo que los bebés no beberían leche.",
+  "theoryId" : "b1.10.Reported_Speech_with_Modal_Verbs",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.08.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The babies won't drink milk.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "John said that the babies wouldn't drink milk." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "John said that the babies wouldn't drink milk." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343747"
+  },
+  "id" : "67fab6d59930102295343747",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d324"
+  },
+  "title" : "Modal Verbs in Indirect Speech",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
+  "translation" : "John dijo que ellos no estarían enfadados.",
+  "theoryId" : "b1.10.Reported_Speech_with_Modal_Verbs",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.08.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They won't be angry.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "John said that they wouldn't be angry." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "John said that they wouldn't be angry." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343748"
+  },
+  "id" : "67fab6d59930102295343748",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d324"
+  },
+  "title" : "Modal Verbs in Indirect Speech",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
+  "translation" : "John dijo que le gustaría un café.",
+  "theoryId" : "b1.10.Reported_Speech_with_Modal_Verbs",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.08.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I would like a coffee.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "John said that he would like a coffee." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "John said that he would like a coffee." ]
+  }
+} ]

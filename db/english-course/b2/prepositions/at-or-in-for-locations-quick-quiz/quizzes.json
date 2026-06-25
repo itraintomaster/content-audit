@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a30"
-    },
-    "id": "67fab6d59930102295344a30",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a5"
-    },
-    "title": "'At' or 'in' for locations: Quick quiz",
-    "instructions": "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
-    "translation": "Vi a Peter en la panadería.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.04.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I saw Peter",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the bakery.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I saw Peter at the bakery."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a30"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a31"
-    },
-    "id": "67fab6d59930102295344a31",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a5"
-    },
-    "title": "'At' or 'in' for locations: Quick quiz",
-    "instructions": "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
-    "translation": "Hablé brevemente con Mary en el museo.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.04.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I spoke briefly to Mary",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the museum.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I spoke briefly to Mary at the museum."
-      ]
-    }
+  "id" : "67fab6d59930102295344a30",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a5"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a32"
-    },
-    "id": "67fab6d59930102295344a32",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a5"
-    },
-    "title": "'At' or 'in' for locations: Quick quiz",
-    "instructions": "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
-    "translation": "Ella presentó a la clase en la escuela.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.04.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She presented to the class",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the school.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She presented to the class at the school."
-      ]
-    }
+  "title" : "'At' or 'in' for locations: Quick quiz",
+  "instructions" : "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
+  "translation" : "Vi a Peter en la panadería.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a33"
-    },
-    "id": "67fab6d59930102295344a33",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a5"
-    },
-    "title": "'At' or 'in' for locations: Quick quiz",
-    "instructions": "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
-    "translation": "Te encontraré en el estadio.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.04.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I'll find you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the stadium.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'll find you at the stadium."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a34"
-    },
-    "id": "67fab6d59930102295344a34",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a5"
-    },
-    "title": "'At' or 'in' for locations: Quick quiz",
-    "instructions": "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
-    "translation": "¡Está nevando! Te veré en la panadería. No te congeles afuera.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.04.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "It's snowing! I'll meet you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "in"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the bakery. Don't freeze outside.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "It's snowing! I'll meet you in the bakery. Don't freeze outside."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a35"
-    },
-    "id": "67fab6d59930102295344a35",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a5"
-    },
-    "title": "'At' or 'in' for locations: Quick quiz",
-    "instructions": "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
-    "translation": "Los conocimos en el estadio, en las gradas.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.04.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We knew them",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "in"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the stadium, in the stands.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We knew them in the stadium, in the stands."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a36"
-    },
-    "id": "67fab6d59930102295344a36",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a5"
-    },
-    "title": "'At' or 'in' for locations: Quick quiz",
-    "instructions": "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
-    "translation": "Comimos en el restaurante, junto a la barra de ensaladas.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.04.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We ate",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "in"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the restaurant, by the salad bar.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We ate in the restaurant, by the salad bar."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a37"
-    },
-    "id": "67fab6d59930102295344a37",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a5"
-    },
-    "title": "'At' or 'in' for locations: Quick quiz",
-    "instructions": "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
-    "translation": "Llegaron al aeropuerto cuando aterrizaron.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.04.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They arrived",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the airport when they landed.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They arrived at the airport when they landed."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a38"
-    },
-    "id": "67fab6d59930102295344a38",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a5"
-    },
-    "title": "'At' or 'in' for locations: Quick quiz",
-    "instructions": "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
-    "translation": "Reunámonos en el museo.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.04.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Let's convene",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the museum.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Let's convene at the museum."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a39"
-    },
-    "id": "67fab6d59930102295344a39",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a5"
-    },
-    "title": "'At' or 'in' for locations: Quick quiz",
-    "instructions": "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
-    "translation": "Saludé a John en la barbería.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.04.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I greeted John",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the barbershop.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I greeted John at the barbershop."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a3a"
-    },
-    "id": "67fab6d59930102295344a3a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a5"
-    },
-    "title": "'At' or 'in' for locations: Quick quiz",
-    "instructions": "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
-    "translation": "Te esperaré en la panadería.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.04.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I'll await you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the bakery.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'll await you at the bakery."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a3b"
-    },
-    "id": "67fab6d59930102295344a3b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a5"
-    },
-    "title": "'At' or 'in' for locations: Quick quiz",
-    "instructions": "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
-    "translation": "Ella dejó su paraguas en algún lugar de la escuela, junto a los casilleros.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.04.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She left her umbrella somewhere",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "in"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the school, by the lockers.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She left her umbrella somewhere in the school, by the lockers."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a3c"
-    },
-    "id": "67fab6d59930102295344a3c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a5"
-    },
-    "title": "'At' or 'in' for locations: Quick quiz",
-    "instructions": "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
-    "translation": "Estaba estudiando junto a la ventana en el estadio.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.04.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I was studying by the window",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "in"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the stadium.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I was studying by the window in the stadium."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a3d"
-    },
-    "id": "67fab6d59930102295344a3d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a5"
-    },
-    "title": "'At' or 'in' for locations: Quick quiz",
-    "instructions": "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
-    "translation": "Estaba de pie en la barbería, junto a los espejos, cuando él llegó.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.04.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I stood",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "in"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the barbershop, by the mirrors, when he arrived.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I stood in the barbershop, by the mirrors, when he arrived."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a3e"
-    },
-    "id": "67fab6d59930102295344a3e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a5"
-    },
-    "title": "'At' or 'in' for locations: Quick quiz",
-    "instructions": "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
-    "translation": "Esperé en la panadería, en el pasillo de los pasteles.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.04.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I waited",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "in"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the bakery, in the pastry aisle.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I waited in the bakery, in the pastry aisle."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a3f"
-    },
-    "id": "67fab6d59930102295344a3f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a5"
-    },
-    "title": "'At' or 'in' for locations: Quick quiz",
-    "instructions": "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
-    "translation": "Ella actuó en el escenario de la escuela.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.04.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She performed on the stage",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "in"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the school.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She performed on the stage in the school."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a40"
-    },
-    "id": "67fab6d59930102295344a40",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a5"
-    },
-    "title": "'At' or 'in' for locations: Quick quiz",
-    "instructions": "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
-    "translation": "Emily está en la barbería.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.04.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Emily is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the barbershop.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Emily is at the barbershop."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a41"
-    },
-    "id": "67fab6d59930102295344a41",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a5"
-    },
-    "title": "'At' or 'in' for locations: Quick quiz",
-    "instructions": "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
-    "translation": "Estaba comiendo solo en el restaurante, en la esquina.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.04.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I was eating alone",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "in"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the restaurant, in the corner.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I was eating alone in the restaurant, in the corner."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a42"
-    },
-    "id": "67fab6d59930102295344a42",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a5"
-    },
-    "title": "'At' or 'in' for locations: Quick quiz",
-    "instructions": "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
-    "translation": "¿Deberíamos ir al viejo museo?",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.04.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Should we go",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the old museum?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Should we go at the old museum?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a43"
-    },
-    "id": "67fab6d59930102295344a43",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a5"
-    },
-    "title": "'At' or 'in' for locations: Quick quiz",
-    "instructions": "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
-    "translation": "Él estaba de pie junto a la entrada de la escuela.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.04.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He stood by the entrance",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "in"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the school.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He stood by the entrance in the school."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.04.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I saw Peter",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the bakery.",
+      "options" : null
+    } ],
+    "sentences" : [ "I saw Peter at the bakery." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a31"
+  },
+  "id" : "67fab6d59930102295344a31",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a5"
+  },
+  "title" : "'At' or 'in' for locations: Quick quiz",
+  "instructions" : "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
+  "translation" : "Hablé brevemente con Mary en el museo.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.04.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I spoke briefly to Mary",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the museum.",
+      "options" : null
+    } ],
+    "sentences" : [ "I spoke briefly to Mary at the museum." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a32"
+  },
+  "id" : "67fab6d59930102295344a32",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a5"
+  },
+  "title" : "'At' or 'in' for locations: Quick quiz",
+  "instructions" : "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
+  "translation" : "Ella presentó a la clase en la escuela.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.04.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She presented to the class",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the school.",
+      "options" : null
+    } ],
+    "sentences" : [ "She presented to the class at the school." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a33"
+  },
+  "id" : "67fab6d59930102295344a33",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a5"
+  },
+  "title" : "'At' or 'in' for locations: Quick quiz",
+  "instructions" : "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
+  "translation" : "Te encontraré en el estadio.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.04.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'll find you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the stadium.",
+      "options" : null
+    } ],
+    "sentences" : [ "I'll find you at the stadium." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a34"
+  },
+  "id" : "67fab6d59930102295344a34",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a5"
+  },
+  "title" : "'At' or 'in' for locations: Quick quiz",
+  "instructions" : "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
+  "translation" : "¡Está nevando! Te veré en la panadería. No te congeles afuera.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.04.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It's snowing! I'll meet you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the bakery. Don't freeze outside.",
+      "options" : null
+    } ],
+    "sentences" : [ "It's snowing! I'll meet you in the bakery. Don't freeze outside." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a35"
+  },
+  "id" : "67fab6d59930102295344a35",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a5"
+  },
+  "title" : "'At' or 'in' for locations: Quick quiz",
+  "instructions" : "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
+  "translation" : "Los conocimos en el estadio, en las gradas.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.04.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We knew them",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the stadium, in the stands.",
+      "options" : null
+    } ],
+    "sentences" : [ "We knew them in the stadium, in the stands." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a36"
+  },
+  "id" : "67fab6d59930102295344a36",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a5"
+  },
+  "title" : "'At' or 'in' for locations: Quick quiz",
+  "instructions" : "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
+  "translation" : "Comimos en el restaurante, junto a la barra de ensaladas.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.04.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We ate",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the restaurant, by the salad bar.",
+      "options" : null
+    } ],
+    "sentences" : [ "We ate in the restaurant, by the salad bar." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a37"
+  },
+  "id" : "67fab6d59930102295344a37",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a5"
+  },
+  "title" : "'At' or 'in' for locations: Quick quiz",
+  "instructions" : "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
+  "translation" : "Llegaron al aeropuerto cuando aterrizaron.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.04.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They arrived",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the airport when they landed.",
+      "options" : null
+    } ],
+    "sentences" : [ "They arrived at the airport when they landed." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a38"
+  },
+  "id" : "67fab6d59930102295344a38",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a5"
+  },
+  "title" : "'At' or 'in' for locations: Quick quiz",
+  "instructions" : "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
+  "translation" : "Reunámonos en el museo.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.04.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Let's convene",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the museum.",
+      "options" : null
+    } ],
+    "sentences" : [ "Let's convene at the museum." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a39"
+  },
+  "id" : "67fab6d59930102295344a39",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a5"
+  },
+  "title" : "'At' or 'in' for locations: Quick quiz",
+  "instructions" : "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
+  "translation" : "Saludé a John en la barbería.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.04.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I greeted John",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the barbershop.",
+      "options" : null
+    } ],
+    "sentences" : [ "I greeted John at the barbershop." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a3a"
+  },
+  "id" : "67fab6d59930102295344a3a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a5"
+  },
+  "title" : "'At' or 'in' for locations: Quick quiz",
+  "instructions" : "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
+  "translation" : "Te esperaré en la panadería.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.04.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'll await you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the bakery.",
+      "options" : null
+    } ],
+    "sentences" : [ "I'll await you at the bakery." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a3b"
+  },
+  "id" : "67fab6d59930102295344a3b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a5"
+  },
+  "title" : "'At' or 'in' for locations: Quick quiz",
+  "instructions" : "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
+  "translation" : "Ella dejó su paraguas en algún lugar de la escuela, junto a los casilleros.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.04.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She left her umbrella somewhere",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the school, by the lockers.",
+      "options" : null
+    } ],
+    "sentences" : [ "She left her umbrella somewhere in the school, by the lockers." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a3c"
+  },
+  "id" : "67fab6d59930102295344a3c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a5"
+  },
+  "title" : "'At' or 'in' for locations: Quick quiz",
+  "instructions" : "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
+  "translation" : "Estaba estudiando junto a la ventana en el estadio.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.04.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I was studying by the window",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the stadium.",
+      "options" : null
+    } ],
+    "sentences" : [ "I was studying by the window in the stadium." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a3d"
+  },
+  "id" : "67fab6d59930102295344a3d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a5"
+  },
+  "title" : "'At' or 'in' for locations: Quick quiz",
+  "instructions" : "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
+  "translation" : "Estaba de pie en la barbería, junto a los espejos, cuando él llegó.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.04.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I stood",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the barbershop, by the mirrors, when he arrived.",
+      "options" : null
+    } ],
+    "sentences" : [ "I stood in the barbershop, by the mirrors, when he arrived." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a3e"
+  },
+  "id" : "67fab6d59930102295344a3e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a5"
+  },
+  "title" : "'At' or 'in' for locations: Quick quiz",
+  "instructions" : "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
+  "translation" : "Esperé en la panadería, en el pasillo de los pasteles.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.04.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I waited",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the bakery, in the pastry aisle.",
+      "options" : null
+    } ],
+    "sentences" : [ "I waited in the bakery, in the pastry aisle." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a3f"
+  },
+  "id" : "67fab6d59930102295344a3f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a5"
+  },
+  "title" : "'At' or 'in' for locations: Quick quiz",
+  "instructions" : "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
+  "translation" : "Ella actuó en el escenario de la escuela.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.04.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She performed on the stage",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the school.",
+      "options" : null
+    } ],
+    "sentences" : [ "She performed on the stage in the school." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a40"
+  },
+  "id" : "67fab6d59930102295344a40",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a5"
+  },
+  "title" : "'At' or 'in' for locations: Quick quiz",
+  "instructions" : "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
+  "translation" : "Emily está en la barbería.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.04.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Emily is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the barbershop.",
+      "options" : null
+    } ],
+    "sentences" : [ "Emily is at the barbershop." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a41"
+  },
+  "id" : "67fab6d59930102295344a41",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a5"
+  },
+  "title" : "'At' or 'in' for locations: Quick quiz",
+  "instructions" : "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
+  "translation" : "Estaba comiendo solo en el restaurante, en la esquina.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.04.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I was eating alone",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the restaurant, in the corner.",
+      "options" : null
+    } ],
+    "sentences" : [ "I was eating alone in the restaurant, in the corner." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a42"
+  },
+  "id" : "67fab6d59930102295344a42",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a5"
+  },
+  "title" : "'At' or 'in' for locations: Quick quiz",
+  "instructions" : "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
+  "translation" : "¿Deberíamos ir al viejo museo?",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.04.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Should we go",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the old museum?",
+      "options" : null
+    } ],
+    "sentences" : [ "Should we go at the old museum?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a43"
+  },
+  "id" : "67fab6d59930102295344a43",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a5"
+  },
+  "title" : "'At' or 'in' for locations: Quick quiz",
+  "instructions" : "Elige 'in' si realmente quieres enfatizar que algo está dentro. De lo contrario, elige 'at'.",
+  "translation" : "Él estaba de pie junto a la entrada de la escuela.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.04.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He stood by the entrance",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the school.",
+      "options" : null
+    } ],
+    "sentences" : [ "He stood by the entrance in the school." ]
+  }
+} ]

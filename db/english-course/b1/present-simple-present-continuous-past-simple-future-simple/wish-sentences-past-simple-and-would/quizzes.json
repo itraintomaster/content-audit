@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343023"
-    },
-    "id": "67fab6d59930102295343023",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2be"
-    },
-    "title": "'Wish' Sentences: Past Simple and 'Would'",
-    "instructions": "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
-    "translation": "Ojalá los gatos se comieran su comida.",
-    "theoryId": "b1.01.The_Past_Simple_and_Would_with_Wish_",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.08.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The cats don't eat their food. (would)",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I wish that the cats would eat their food."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I wish that the cats would eat their food."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343023"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343024"
-    },
-    "id": "67fab6d59930102295343024",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2be"
-    },
-    "title": "'Wish' Sentences: Past Simple and 'Would'",
-    "instructions": "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
-    "translation": "Ojalá Susan corriera rápido.",
-    "theoryId": "b1.01.The_Past_Simple_and_Would_with_Wish_",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.08.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Susan doesn't run fast.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I wish that Susan ran fast."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I wish that Susan ran fast."
-      ]
-    }
+  "id" : "67fab6d59930102295343023",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2be"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343025"
-    },
-    "id": "67fab6d59930102295343025",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2be"
-    },
-    "title": "'Wish' Sentences: Past Simple and 'Would'",
-    "instructions": "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
-    "translation": "Ojalá estuvieran en el concierto.",
-    "theoryId": "b1.01.The_Past_Simple_and_Would_with_Wish_",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.08.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They aren't at the concert.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I wish that they were at the concert."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I wish that they were at the concert."
-      ]
-    }
+  "title" : "'Wish' Sentences: Past Simple and 'Would'",
+  "instructions" : "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
+  "translation" : "Ojalá los gatos se comieran su comida.",
+  "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343026"
-    },
-    "id": "67fab6d59930102295343026",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2be"
-    },
-    "title": "'Wish' Sentences: Past Simple and 'Would'",
-    "instructions": "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
-    "translation": "Ojalá fuera alto.",
-    "theoryId": "b1.01.The_Past_Simple_and_Would_with_Wish_",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.08.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I'm not tall.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I wish that I was tall."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I wish that I was tall."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343027"
-    },
-    "id": "67fab6d59930102295343027",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2be"
-    },
-    "title": "'Wish' Sentences: Past Simple and 'Would'",
-    "instructions": "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
-    "translation": "Ojalá él no tuviera fiebre.",
-    "theoryId": "b1.01.The_Past_Simple_and_Would_with_Wish_",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.08.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He has a fever.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I wish that he didn't have a fever."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I wish that he didn't have a fever."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343028"
-    },
-    "id": "67fab6d59930102295343028",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2be"
-    },
-    "title": "'Wish' Sentences: Past Simple and 'Would'",
-    "instructions": "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
-    "translation": "Ojalá no fuera temprano.",
-    "theoryId": "b1.01.The_Past_Simple_and_Would_with_Wish_",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.08.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "It is early.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I wish that it wasn't early."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I wish that it wasn't early."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343029"
-    },
-    "id": "67fab6d59930102295343029",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2be"
-    },
-    "title": "'Wish' Sentences: Past Simple and 'Would'",
-    "instructions": "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
-    "translation": "Ojalá Sarah viviera lejos de mí.",
-    "theoryId": "b1.01.The_Past_Simple_and_Would_with_Wish_",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.08.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Sarah doesn't live far from me.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I wish that Sarah lived far from me."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I wish that Sarah lived far from me."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534302a"
-    },
-    "id": "67fab6d5993010229534302a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2be"
-    },
-    "title": "'Wish' Sentences: Past Simple and 'Would'",
-    "instructions": "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
-    "translation": "Ojalá mi bicicleta fuera nueva.",
-    "theoryId": "b1.01.The_Past_Simple_and_Would_with_Wish_",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.08.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "My bicycle is not new.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I wish that my bicycle was new."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I wish that my bicycle was new."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534302b"
-    },
-    "id": "67fab6d5993010229534302b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2be"
-    },
-    "title": "'Wish' Sentences: Past Simple and 'Would'",
-    "instructions": "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
-    "translation": "Ojalá los jugadores no estuvieran cansados.",
-    "theoryId": "b1.01.The_Past_Simple_and_Would_with_Wish_",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.08.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The players are tired.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I wish that the players weren't tired."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I wish that the players weren't tired."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534302c"
-    },
-    "id": "67fab6d5993010229534302c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2be"
-    },
-    "title": "'Wish' Sentences: Past Simple and 'Would'",
-    "instructions": "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
-    "translation": "Ojalá mis compañeros de piso no fueran tan desordenados.",
-    "theoryId": "b1.01.The_Past_Simple_and_Would_with_Wish_",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.08.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "My flatmates are so untidy. (would)",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I wish that my flatmates wouldn't be so untidy."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I wish that my flatmates wouldn't be so untidy."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534302d"
-    },
-    "id": "67fab6d5993010229534302d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2be"
-    },
-    "title": "'Wish' Sentences: Past Simple and 'Would'",
-    "instructions": "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
-    "translation": "Ojalá Tom no viera tanta televisión.",
-    "theoryId": "b1.01.The_Past_Simple_and_Would_with_Wish_",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.08.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Tom watches so much TV. (would)",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I wish that Tom wouldn't watch so much TV."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I wish that Tom wouldn't watch so much TV."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534302e"
-    },
-    "id": "67fab6d5993010229534302e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2be"
-    },
-    "title": "'Wish' Sentences: Past Simple and 'Would'",
-    "instructions": "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
-    "translation": "Ojalá ella no durmiera todo el tiempo.",
-    "theoryId": "b1.01.The_Past_Simple_and_Would_with_Wish_",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.08.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She sleeps all the time.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I wish that she didn't sleep all the time."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I wish that she didn't sleep all the time."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534302f"
-    },
-    "id": "67fab6d5993010229534302f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2be"
-    },
-    "title": "'Wish' Sentences: Past Simple and 'Would'",
-    "instructions": "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
-    "translation": "Ojalá él vaciara la basura.",
-    "theoryId": "b1.01.The_Past_Simple_and_Would_with_Wish_",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.08.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He doesn't empty the bin. (would)",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I wish that he would empty the bin."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I wish that he would empty the bin."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343030"
-    },
-    "id": "67fab6d59930102295343030",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2be"
-    },
-    "title": "'Wish' Sentences: Past Simple and 'Would'",
-    "instructions": "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
-    "translation": "Ojalá no lloviera todos los días.",
-    "theoryId": "b1.01.The_Past_Simple_and_Would_with_Wish_",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.08.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "It rains every day. (would)",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I wish that it wouldn't rain every day."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I wish that it wouldn't rain every day."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343031"
-    },
-    "id": "67fab6d59930102295343031",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2be"
-    },
-    "title": "'Wish' Sentences: Past Simple and 'Would'",
-    "instructions": "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
-    "translation": "Ojalá mi hija no usara las redes sociales.",
-    "theoryId": "b1.01.The_Past_Simple_and_Would_with_Wish_",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.08.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "My daughter uses social media. (would)",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I wish that my daughter wouldn't use social media."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I wish that my daughter wouldn't use social media."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343032"
-    },
-    "id": "67fab6d59930102295343032",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2be"
-    },
-    "title": "'Wish' Sentences: Past Simple and 'Would'",
-    "instructions": "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
-    "translation": "Ojalá mi moto no fuera tan difícil de arreglar.",
-    "theoryId": "b1.01.The_Past_Simple_and_Would_with_Wish_",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.08.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "My motorbike is so hard to fix.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I wish that my motorbike wasn't so hard to fix."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I wish that my motorbike wasn't so hard to fix."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343033"
-    },
-    "id": "67fab6d59930102295343033",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2be"
-    },
-    "title": "'Wish' Sentences: Past Simple and 'Would'",
-    "instructions": "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
-    "translation": "Ojalá ella lavara la ropa.",
-    "theoryId": "b1.01.The_Past_Simple_and_Would_with_Wish_",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.08.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She doesn't do the laundry. (would)",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I wish that she would do the laundry."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I wish that she would do the laundry."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343034"
-    },
-    "id": "67fab6d59930102295343034",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2be"
-    },
-    "title": "'Wish' Sentences: Past Simple and 'Would'",
-    "instructions": "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
-    "translation": "Ojalá los actores no llegaran tan tarde.",
-    "theoryId": "b1.01.The_Past_Simple_and_Would_with_Wish_",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.08.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The actors arrive so late. (would)",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I wish that the actors wouldn't arrive so late."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I wish that the actors wouldn't arrive so late."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343035"
-    },
-    "id": "67fab6d59930102295343035",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2be"
-    },
-    "title": "'Wish' Sentences: Past Simple and 'Would'",
-    "instructions": "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
-    "translation": "Ojalá ella no estuviera nerviosa todo el tiempo.",
-    "theoryId": "b1.01.The_Past_Simple_and_Would_with_Wish_",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.08.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She is nervous all the time. (would)",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I wish that she wouldn't be nervous all the time."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I wish that she wouldn't be nervous all the time."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343036"
-    },
-    "id": "67fab6d59930102295343036",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2be"
-    },
-    "title": "'Wish' Sentences: Past Simple and 'Would'",
-    "instructions": "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
-    "translation": "Ojalá estuviera en un barco en Italia.",
-    "theoryId": "b1.01.The_Past_Simple_and_Would_with_Wish_",
-    "topicName": "Present simple / present continuous / past simple / future simple",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.01.08.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I'm not on a boat in Italy.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I wish that I was on a boat in Italy."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I wish that I was on a boat in Italy."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.08.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The cats don't eat their food. (would)",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I wish that the cats would eat their food." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I wish that the cats would eat their food." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343024"
+  },
+  "id" : "67fab6d59930102295343024",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2be"
+  },
+  "title" : "'Wish' Sentences: Past Simple and 'Would'",
+  "instructions" : "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
+  "translation" : "Ojalá Susan corriera rápido.",
+  "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.08.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Susan doesn't run fast.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I wish that Susan ran fast." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I wish that Susan ran fast." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343025"
+  },
+  "id" : "67fab6d59930102295343025",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2be"
+  },
+  "title" : "'Wish' Sentences: Past Simple and 'Would'",
+  "instructions" : "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
+  "translation" : "Ojalá estuvieran en el concierto.",
+  "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.08.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They aren't at the concert.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I wish that they were at the concert." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I wish that they were at the concert." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343026"
+  },
+  "id" : "67fab6d59930102295343026",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2be"
+  },
+  "title" : "'Wish' Sentences: Past Simple and 'Would'",
+  "instructions" : "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
+  "translation" : "Ojalá fuera alto.",
+  "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.08.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm not tall.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I wish that I was tall." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I wish that I was tall." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343027"
+  },
+  "id" : "67fab6d59930102295343027",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2be"
+  },
+  "title" : "'Wish' Sentences: Past Simple and 'Would'",
+  "instructions" : "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
+  "translation" : "Ojalá él no tuviera fiebre.",
+  "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.08.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He has a fever.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I wish that he didn't have a fever." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I wish that he didn't have a fever." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343028"
+  },
+  "id" : "67fab6d59930102295343028",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2be"
+  },
+  "title" : "'Wish' Sentences: Past Simple and 'Would'",
+  "instructions" : "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
+  "translation" : "Ojalá no fuera temprano.",
+  "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.08.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It is early.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I wish that it wasn't early." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I wish that it wasn't early." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343029"
+  },
+  "id" : "67fab6d59930102295343029",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2be"
+  },
+  "title" : "'Wish' Sentences: Past Simple and 'Would'",
+  "instructions" : "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
+  "translation" : "Ojalá Sarah viviera lejos de mí.",
+  "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.08.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Sarah doesn't live far from me.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I wish that Sarah lived far from me." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I wish that Sarah lived far from me." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534302a"
+  },
+  "id" : "67fab6d5993010229534302a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2be"
+  },
+  "title" : "'Wish' Sentences: Past Simple and 'Would'",
+  "instructions" : "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
+  "translation" : "Ojalá mi bicicleta fuera nueva.",
+  "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.08.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My bicycle is not new.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I wish that my bicycle was new." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I wish that my bicycle was new." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534302b"
+  },
+  "id" : "67fab6d5993010229534302b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2be"
+  },
+  "title" : "'Wish' Sentences: Past Simple and 'Would'",
+  "instructions" : "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
+  "translation" : "Ojalá los jugadores no estuvieran cansados.",
+  "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.08.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The players are tired.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I wish that the players weren't tired." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I wish that the players weren't tired." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534302c"
+  },
+  "id" : "67fab6d5993010229534302c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2be"
+  },
+  "title" : "'Wish' Sentences: Past Simple and 'Would'",
+  "instructions" : "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
+  "translation" : "Ojalá mis compañeros de piso no fueran tan desordenados.",
+  "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.08.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My flatmates are so untidy. (would)",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I wish that my flatmates wouldn't be so untidy." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I wish that my flatmates wouldn't be so untidy." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534302d"
+  },
+  "id" : "67fab6d5993010229534302d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2be"
+  },
+  "title" : "'Wish' Sentences: Past Simple and 'Would'",
+  "instructions" : "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
+  "translation" : "Ojalá Tom no viera tanta televisión.",
+  "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.08.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Tom watches so much TV. (would)",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I wish that Tom wouldn't watch so much TV." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I wish that Tom wouldn't watch so much TV." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534302e"
+  },
+  "id" : "67fab6d5993010229534302e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2be"
+  },
+  "title" : "'Wish' Sentences: Past Simple and 'Would'",
+  "instructions" : "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
+  "translation" : "Ojalá ella no durmiera todo el tiempo.",
+  "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.08.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She sleeps all the time.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I wish that she didn't sleep all the time." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I wish that she didn't sleep all the time." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534302f"
+  },
+  "id" : "67fab6d5993010229534302f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2be"
+  },
+  "title" : "'Wish' Sentences: Past Simple and 'Would'",
+  "instructions" : "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
+  "translation" : "Ojalá él vaciara la basura.",
+  "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.08.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He doesn't empty the bin. (would)",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I wish that he would empty the bin." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I wish that he would empty the bin." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343030"
+  },
+  "id" : "67fab6d59930102295343030",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2be"
+  },
+  "title" : "'Wish' Sentences: Past Simple and 'Would'",
+  "instructions" : "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
+  "translation" : "Ojalá no lloviera todos los días.",
+  "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.08.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It rains every day. (would)",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I wish that it wouldn't rain every day." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I wish that it wouldn't rain every day." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343031"
+  },
+  "id" : "67fab6d59930102295343031",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2be"
+  },
+  "title" : "'Wish' Sentences: Past Simple and 'Would'",
+  "instructions" : "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
+  "translation" : "Ojalá mi hija no usara las redes sociales.",
+  "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.08.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My daughter uses social media. (would)",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I wish that my daughter wouldn't use social media." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I wish that my daughter wouldn't use social media." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343032"
+  },
+  "id" : "67fab6d59930102295343032",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2be"
+  },
+  "title" : "'Wish' Sentences: Past Simple and 'Would'",
+  "instructions" : "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
+  "translation" : "Ojalá mi moto no fuera tan difícil de arreglar.",
+  "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.08.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My motorbike is so hard to fix.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I wish that my motorbike wasn't so hard to fix." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I wish that my motorbike wasn't so hard to fix." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343033"
+  },
+  "id" : "67fab6d59930102295343033",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2be"
+  },
+  "title" : "'Wish' Sentences: Past Simple and 'Would'",
+  "instructions" : "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
+  "translation" : "Ojalá ella lavara la ropa.",
+  "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.08.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She doesn't do the laundry. (would)",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I wish that she would do the laundry." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I wish that she would do the laundry." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343034"
+  },
+  "id" : "67fab6d59930102295343034",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2be"
+  },
+  "title" : "'Wish' Sentences: Past Simple and 'Would'",
+  "instructions" : "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
+  "translation" : "Ojalá los actores no llegaran tan tarde.",
+  "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.08.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The actors arrive so late. (would)",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I wish that the actors wouldn't arrive so late." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I wish that the actors wouldn't arrive so late." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343035"
+  },
+  "id" : "67fab6d59930102295343035",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2be"
+  },
+  "title" : "'Wish' Sentences: Past Simple and 'Would'",
+  "instructions" : "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
+  "translation" : "Ojalá ella no estuviera nerviosa todo el tiempo.",
+  "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.08.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is nervous all the time. (would)",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I wish that she wouldn't be nervous all the time." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I wish that she wouldn't be nervous all the time." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343036"
+  },
+  "id" : "67fab6d59930102295343036",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2be"
+  },
+  "title" : "'Wish' Sentences: Past Simple and 'Would'",
+  "instructions" : "Escribe oraciones que comiencen con '_I wish that_'. Utiliza '_would_' o '_wouldn't_' si ves '(would)'.",
+  "translation" : "Ojalá estuviera en un barco en Italia.",
+  "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
+  "topicName" : "Present simple / present continuous / past simple / future simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.01.08.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm not on a boat in Italy.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I wish that I was on a boat in Italy." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I wish that I was on a boat in Italy." ]
+  }
+} ]

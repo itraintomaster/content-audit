@@ -1,1229 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342838"
-    },
-    "id": "67fab6d59930102295342838",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d23e"
-    },
-    "title": "Spelling Variations in Past Participles",
-    "instructions": "Forma oraciones en Present Perfect.",
-    "translation": "No siempre han odiado las verduras.",
-    "theoryId": "a2.04.Past_Participle_Spelling_Changes",
-    "topicName": "Present Perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.04.03.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "have not always hated|haven't always hated"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / always / hate) vegetables.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They have not always hated vegetables.",
-        "They haven't always hated vegetables."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342838"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342839"
-    },
-    "id": "67fab6d59930102295342839",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d23e"
-    },
-    "title": "Spelling Variations in Past Participles",
-    "instructions": "Forma oraciones en Present Perfect.",
-    "translation": "Hemos jugado al fútbol.",
-    "theoryId": "a2.04.Past_Participle_Spelling_Changes",
-    "topicName": "Present Perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.04.03.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "have played"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(play) football.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We have played football."
-      ]
-    }
+  "id" : "67fab6d59930102295342838",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d23e"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534283a"
-    },
-    "id": "67fab6d5993010229534283a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d23e"
-    },
-    "title": "Spelling Variations in Past Participles",
-    "instructions": "Forma oraciones en Present Perfect.",
-    "translation": "Han viajado al extranjero.",
-    "theoryId": "a2.04.Past_Participle_Spelling_Changes",
-    "topicName": "Present Perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.04.03.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "have travelled"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(travel) abroad.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They have travelled abroad."
-      ]
-    }
+  "title" : "Spelling Variations in Past Participles",
+  "instructions" : "Forma oraciones en Present Perfect.",
+  "translation" : "No siempre han odiado las verduras.",
+  "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534283b"
-    },
-    "id": "67fab6d5993010229534283b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d23e"
-    },
-    "title": "Spelling Variations in Past Participles",
-    "instructions": "Forma oraciones en Present Perfect.",
-    "translation": "¿Hemos estado en desacuerdo con Peter?",
-    "theoryId": "a2.04.Past_Participle_Spelling_Changes",
-    "topicName": "Present Perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.04.03.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Have we disagreed"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(we / disagree) with Peter?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Have we disagreed with Peter?"
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534283c"
-    },
-    "id": "67fab6d5993010229534283c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d23e"
-    },
-    "title": "Spelling Variations in Past Participles",
-    "instructions": "Forma oraciones en Present Perfect.",
-    "translation": "¿Te has casado con un extranjero?",
-    "theoryId": "a2.04.Past_Participle_Spelling_Changes",
-    "topicName": "Present Perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.04.03.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Have you married"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(you / marry) a foreigner?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Have you married a foreigner?"
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534283d"
-    },
-    "id": "67fab6d5993010229534283d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d23e"
-    },
-    "title": "Spelling Variations in Past Participles",
-    "instructions": "Forma oraciones en Present Perfect.",
-    "translation": "No siempre he confiado en ti.",
-    "theoryId": "a2.04.Past_Participle_Spelling_Changes",
-    "topicName": "Present Perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.04.03.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "have not always trusted|haven't always trusted"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / always / trust) you.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I have not always trusted you.",
-        "I haven't always trusted you."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534283e"
-    },
-    "id": "67fab6d5993010229534283e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d23e"
-    },
-    "title": "Spelling Variations in Past Participles",
-    "instructions": "Forma oraciones en Present Perfect.",
-    "translation": "Se ha olvidado de pagar.",
-    "theoryId": "a2.04.Past_Participle_Spelling_Changes",
-    "topicName": "Present Perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.04.03.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "has forgotten"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(forget) to pay.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He has forgotten to pay."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534283f"
-    },
-    "id": "67fab6d5993010229534283f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d23e"
-    },
-    "title": "Spelling Variations in Past Participles",
-    "instructions": "Forma oraciones en Present Perfect.",
-    "translation": "¿Ha abierto ella la puerta?",
-    "theoryId": "a2.04.Past_Participle_Spelling_Changes",
-    "topicName": "Present Perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.04.03.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Has she opened"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(she / open) the door?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Has she opened the door?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342840"
-    },
-    "id": "67fab6d59930102295342840",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d23e"
-    },
-    "title": "Spelling Variations in Past Participles",
-    "instructions": "Forma oraciones en Present Perfect.",
-    "translation": "¿Siempre te ha gustado más el vino que la cerveza?",
-    "theoryId": "a2.04.Past_Participle_Spelling_Changes",
-    "topicName": "Present Perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.04.03.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Have you always fancied"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(you / always / fancy) wine instead of beer?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Have you always fancied wine instead of beer?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342841"
-    },
-    "id": "67fab6d59930102295342841",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d23e"
-    },
-    "title": "Spelling Variations in Past Participles",
-    "instructions": "Forma oraciones en Present Perfect.",
-    "translation": "Ella ha lavado el coche.",
-    "theoryId": "a2.04.Past_Participle_Spelling_Changes",
-    "topicName": "Present Perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.04.03.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "has washed"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(wash) the car.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She has washed the car."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342842"
-    },
-    "id": "67fab6d59930102295342842",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d23e"
-    },
-    "title": "Spelling Variations in Past Participles",
-    "instructions": "Forma oraciones en Present Perfect.",
-    "translation": "El bebé ha pateado su pelota.",
-    "theoryId": "a2.04.Past_Participle_Spelling_Changes",
-    "topicName": "Present Perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.04.03.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The baby",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "has kicked"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(kick) his ball.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The baby has kicked his ball."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342843"
-    },
-    "id": "67fab6d59930102295342843",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d23e"
-    },
-    "title": "Spelling Variations in Past Participles",
-    "instructions": "Forma oraciones en Present Perfect.",
-    "translation": "Ella no ha disfrutado de las bebidas dulces.",
-    "theoryId": "a2.04.Past_Participle_Spelling_Changes",
-    "topicName": "Present Perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.04.03.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "has not enjoyed|hasn't enjoyed"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / enjoy) sweet drinks.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She has not enjoyed sweet drinks.",
-        "She hasn't enjoyed sweet drinks."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342844"
-    },
-    "id": "67fab6d59930102295342844",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d23e"
-    },
-    "title": "Spelling Variations in Past Participles",
-    "instructions": "Forma oraciones en Present Perfect.",
-    "translation": "Ella no ha disfrutado de la fiesta.",
-    "theoryId": "a2.04.Past_Participle_Spelling_Changes",
-    "topicName": "Present Perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.04.03.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "has not enjoyed|hasn't enjoyed"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / enjoy) the party.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She has not enjoyed the party.",
-        "She hasn't enjoyed the party."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342845"
-    },
-    "id": "67fab6d59930102295342845",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d23e"
-    },
-    "title": "Spelling Variations in Past Participles",
-    "instructions": "Forma oraciones en Present Perfect.",
-    "translation": "He disfrutado de las vacaciones.",
-    "theoryId": "a2.04.Past_Participle_Spelling_Changes",
-    "topicName": "Present Perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.04.03.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "have enjoyed"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(enjoy) the holidays.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I have enjoyed the holidays."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342846"
-    },
-    "id": "67fab6d59930102295342846",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d23e"
-    },
-    "title": "Spelling Variations in Past Participles",
-    "instructions": "Forma oraciones en Present Perfect.",
-    "translation": "¿Ha estudiado ella mucho?",
-    "theoryId": "a2.04.Past_Participle_Spelling_Changes",
-    "topicName": "Present Perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.04.03.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Has she studied"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(she / study) a lot?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Has she studied a lot?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342847"
-    },
-    "id": "67fab6d59930102295342847",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d23e"
-    },
-    "title": "Spelling Variations in Past Participles",
-    "instructions": "Forma oraciones en Present Perfect.",
-    "translation": "Él no ha limpiado el baño.",
-    "theoryId": "a2.04.Past_Participle_Spelling_Changes",
-    "topicName": "Present Perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.04.03.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "has not cleaned|hasn't cleaned"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / clean) the bathroom.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He has not cleaned the bathroom.",
-        "He hasn't cleaned the bathroom."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342848"
-    },
-    "id": "67fab6d59930102295342848",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d23e"
-    },
-    "title": "Spelling Variations in Past Participles",
-    "instructions": "Forma oraciones en Present Perfect.",
-    "translation": "No han obedecido las reglas.",
-    "theoryId": "a2.04.Past_Participle_Spelling_Changes",
-    "topicName": "Present Perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.04.03.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "have not obeyed|haven't obeyed"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / obey) the rules.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They have not obeyed the rules.",
-        "They haven't obeyed the rules."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342849"
-    },
-    "id": "67fab6d59930102295342849",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d23e"
-    },
-    "title": "Spelling Variations in Past Participles",
-    "instructions": "Forma oraciones en Present Perfect.",
-    "translation": "Luke ha viajado al extranjero.",
-    "theoryId": "a2.04.Past_Participle_Spelling_Changes",
-    "topicName": "Present Perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.04.03.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Luke",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "has travelled"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(travel) abroad.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Luke has travelled abroad."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534284a"
-    },
-    "id": "67fab6d5993010229534284a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d23e"
-    },
-    "title": "Spelling Variations in Past Participles",
-    "instructions": "Forma oraciones en Present Perfect.",
-    "translation": "No hemos preferido el estilo antiguo.",
-    "theoryId": "a2.04.Past_Participle_Spelling_Changes",
-    "topicName": "Present Perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.04.03.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "have not preferred|haven't preferred"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / prefer) the old style.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We have not preferred the old style.",
-        "We haven't preferred the old style."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534284b"
-    },
-    "id": "67fab6d5993010229534284b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d23e"
-    },
-    "title": "Spelling Variations in Past Participles",
-    "instructions": "Forma oraciones en Present Perfect.",
-    "translation": "¿Ha deseado ella ser más joven?",
-    "theoryId": "a2.04.Past_Participle_Spelling_Changes",
-    "topicName": "Present Perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.04.03.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Has she wished"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(she / wish) she was younger?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Has she wished she was younger?"
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.04.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "have not always hated|haven't always hated" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / always / hate) vegetables.",
+      "options" : null
+    } ],
+    "sentences" : [ "They have not always hated vegetables.", "They haven't always hated vegetables." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342839"
+  },
+  "id" : "67fab6d59930102295342839",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d23e"
+  },
+  "title" : "Spelling Variations in Past Participles",
+  "instructions" : "Forma oraciones en Present Perfect.",
+  "translation" : "Hemos jugado al fútbol.",
+  "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.04.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "have played" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(play) football.",
+      "options" : null
+    } ],
+    "sentences" : [ "We have played football." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534283a"
+  },
+  "id" : "67fab6d5993010229534283a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d23e"
+  },
+  "title" : "Spelling Variations in Past Participles",
+  "instructions" : "Forma oraciones en Present Perfect.",
+  "translation" : "Han viajado al extranjero.",
+  "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.04.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "have travelled" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(travel) abroad.",
+      "options" : null
+    } ],
+    "sentences" : [ "They have travelled abroad." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534283b"
+  },
+  "id" : "67fab6d5993010229534283b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d23e"
+  },
+  "title" : "Spelling Variations in Past Participles",
+  "instructions" : "Forma oraciones en Present Perfect.",
+  "translation" : "¿Hemos estado en desacuerdo con Peter?",
+  "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.04.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Have we disagreed" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(we / disagree) with Peter?",
+      "options" : null
+    } ],
+    "sentences" : [ "Have we disagreed with Peter?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534283c"
+  },
+  "id" : "67fab6d5993010229534283c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d23e"
+  },
+  "title" : "Spelling Variations in Past Participles",
+  "instructions" : "Forma oraciones en Present Perfect.",
+  "translation" : "¿Te has casado con un extranjero?",
+  "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.04.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Have you married" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / marry) a foreigner?",
+      "options" : null
+    } ],
+    "sentences" : [ "Have you married a foreigner?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534283d"
+  },
+  "id" : "67fab6d5993010229534283d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d23e"
+  },
+  "title" : "Spelling Variations in Past Participles",
+  "instructions" : "Forma oraciones en Present Perfect.",
+  "translation" : "No siempre he confiado en ti.",
+  "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.04.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "have not always trusted|haven't always trusted" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / always / trust) you.",
+      "options" : null
+    } ],
+    "sentences" : [ "I have not always trusted you.", "I haven't always trusted you." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534283e"
+  },
+  "id" : "67fab6d5993010229534283e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d23e"
+  },
+  "title" : "Spelling Variations in Past Participles",
+  "instructions" : "Forma oraciones en Present Perfect.",
+  "translation" : "Se ha olvidado de pagar.",
+  "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.04.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "has forgotten" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(forget) to pay.",
+      "options" : null
+    } ],
+    "sentences" : [ "He has forgotten to pay." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534283f"
+  },
+  "id" : "67fab6d5993010229534283f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d23e"
+  },
+  "title" : "Spelling Variations in Past Participles",
+  "instructions" : "Forma oraciones en Present Perfect.",
+  "translation" : "¿Ha abierto ella la puerta?",
+  "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.04.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Has she opened" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / open) the door?",
+      "options" : null
+    } ],
+    "sentences" : [ "Has she opened the door?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342840"
+  },
+  "id" : "67fab6d59930102295342840",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d23e"
+  },
+  "title" : "Spelling Variations in Past Participles",
+  "instructions" : "Forma oraciones en Present Perfect.",
+  "translation" : "¿Siempre te ha gustado más el vino que la cerveza?",
+  "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.04.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Have you always fancied" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / always / fancy) wine instead of beer?",
+      "options" : null
+    } ],
+    "sentences" : [ "Have you always fancied wine instead of beer?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342841"
+  },
+  "id" : "67fab6d59930102295342841",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d23e"
+  },
+  "title" : "Spelling Variations in Past Participles",
+  "instructions" : "Forma oraciones en Present Perfect.",
+  "translation" : "Ella ha lavado el coche.",
+  "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.04.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "has washed" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(wash) the car.",
+      "options" : null
+    } ],
+    "sentences" : [ "She has washed the car." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342842"
+  },
+  "id" : "67fab6d59930102295342842",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d23e"
+  },
+  "title" : "Spelling Variations in Past Participles",
+  "instructions" : "Forma oraciones en Present Perfect.",
+  "translation" : "El bebé ha pateado su pelota.",
+  "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.04.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The baby",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "has kicked" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(kick) his ball.",
+      "options" : null
+    } ],
+    "sentences" : [ "The baby has kicked his ball." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342843"
+  },
+  "id" : "67fab6d59930102295342843",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d23e"
+  },
+  "title" : "Spelling Variations in Past Participles",
+  "instructions" : "Forma oraciones en Present Perfect.",
+  "translation" : "Ella no ha disfrutado de las bebidas dulces.",
+  "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.04.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "has not enjoyed|hasn't enjoyed" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / enjoy) sweet drinks.",
+      "options" : null
+    } ],
+    "sentences" : [ "She has not enjoyed sweet drinks.", "She hasn't enjoyed sweet drinks." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342844"
+  },
+  "id" : "67fab6d59930102295342844",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d23e"
+  },
+  "title" : "Spelling Variations in Past Participles",
+  "instructions" : "Forma oraciones en Present Perfect.",
+  "translation" : "Ella no ha disfrutado de la fiesta.",
+  "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.04.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "has not enjoyed|hasn't enjoyed" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / enjoy) the party.",
+      "options" : null
+    } ],
+    "sentences" : [ "She has not enjoyed the party.", "She hasn't enjoyed the party." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342845"
+  },
+  "id" : "67fab6d59930102295342845",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d23e"
+  },
+  "title" : "Spelling Variations in Past Participles",
+  "instructions" : "Forma oraciones en Present Perfect.",
+  "translation" : "He disfrutado de las vacaciones.",
+  "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.04.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "have enjoyed" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(enjoy) the holidays.",
+      "options" : null
+    } ],
+    "sentences" : [ "I have enjoyed the holidays." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342846"
+  },
+  "id" : "67fab6d59930102295342846",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d23e"
+  },
+  "title" : "Spelling Variations in Past Participles",
+  "instructions" : "Forma oraciones en Present Perfect.",
+  "translation" : "¿Ha estudiado ella mucho?",
+  "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.04.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Has she studied" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / study) a lot?",
+      "options" : null
+    } ],
+    "sentences" : [ "Has she studied a lot?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342847"
+  },
+  "id" : "67fab6d59930102295342847",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d23e"
+  },
+  "title" : "Spelling Variations in Past Participles",
+  "instructions" : "Forma oraciones en Present Perfect.",
+  "translation" : "Él no ha limpiado el baño.",
+  "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.04.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "has not cleaned|hasn't cleaned" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / clean) the bathroom.",
+      "options" : null
+    } ],
+    "sentences" : [ "He has not cleaned the bathroom.", "He hasn't cleaned the bathroom." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342848"
+  },
+  "id" : "67fab6d59930102295342848",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d23e"
+  },
+  "title" : "Spelling Variations in Past Participles",
+  "instructions" : "Forma oraciones en Present Perfect.",
+  "translation" : "No han obedecido las reglas.",
+  "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.04.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "have not obeyed|haven't obeyed" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / obey) the rules.",
+      "options" : null
+    } ],
+    "sentences" : [ "They have not obeyed the rules.", "They haven't obeyed the rules." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342849"
+  },
+  "id" : "67fab6d59930102295342849",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d23e"
+  },
+  "title" : "Spelling Variations in Past Participles",
+  "instructions" : "Forma oraciones en Present Perfect.",
+  "translation" : "Luke ha viajado al extranjero.",
+  "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.04.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Luke",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "has travelled" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(travel) abroad.",
+      "options" : null
+    } ],
+    "sentences" : [ "Luke has travelled abroad." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534284a"
+  },
+  "id" : "67fab6d5993010229534284a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d23e"
+  },
+  "title" : "Spelling Variations in Past Participles",
+  "instructions" : "Forma oraciones en Present Perfect.",
+  "translation" : "No hemos preferido el estilo antiguo.",
+  "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.04.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "have not preferred|haven't preferred" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / prefer) the old style.",
+      "options" : null
+    } ],
+    "sentences" : [ "We have not preferred the old style.", "We haven't preferred the old style." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534284b"
+  },
+  "id" : "67fab6d5993010229534284b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d23e"
+  },
+  "title" : "Spelling Variations in Past Participles",
+  "instructions" : "Forma oraciones en Present Perfect.",
+  "translation" : "¿Ha deseado ella ser más joven?",
+  "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.04.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Has she wished" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / wish) she was younger?",
+      "options" : null
+    } ],
+    "sentences" : [ "Has she wished she was younger?" ]
+  }
+} ]

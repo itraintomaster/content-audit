@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343592"
-    },
-    "id": "67fab6d59930102295343592",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30c"
-    },
-    "title": "'No', 'None', and 'Not Any' - Review",
-    "instructions": "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
-    "translation": "Él no tiene agua.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.02.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He doesn't have any water.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He has no water."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He has no water."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343592"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343593"
-    },
-    "id": "67fab6d59930102295343593",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30c"
-    },
-    "title": "'No', 'None', and 'Not Any' - Review",
-    "instructions": "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
-    "translation": "Ella no quiere ninguno de esos.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.02.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She doesn't want any of those.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She wants none of those."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She wants none of those."
-      ]
-    }
+  "id" : "67fab6d59930102295343592",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30c"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343594"
-    },
-    "id": "67fab6d59930102295343594",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30c"
-    },
-    "title": "'No', 'None', and 'Not Any' - Review",
-    "instructions": "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
-    "translation": "¡Los estudiantes no leyeron ninguno de los libros!",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.02.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The students didn't read any of the books!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The students read none of the books!"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The students read none of the books!"
-      ]
-    }
+  "title" : "'No', 'None', and 'Not Any' - Review",
+  "instructions" : "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
+  "translation" : "Él no tiene agua.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343595"
-    },
-    "id": "67fab6d59930102295343595",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30c"
-    },
-    "title": "'No', 'None', and 'Not Any' - Review",
-    "instructions": "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
-    "translation": "No entiendo a ninguno de ellos.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.02.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I don't understand any of them.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I understand none of them."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I understand none of them."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343596"
-    },
-    "id": "67fab6d59930102295343596",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30c"
-    },
-    "title": "'No', 'None', and 'Not Any' - Review",
-    "instructions": "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
-    "translation": "Ella no tiene mascotas.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.02.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She doesn't have any pets.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She has no pets."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She has no pets."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343597"
-    },
-    "id": "67fab6d59930102295343597",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30c"
-    },
-    "title": "'No', 'None', and 'Not Any' - Review",
-    "instructions": "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
-    "translation": "Él no enfrenta ninguno de mis miedos.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.02.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He doesn't face any of my fears.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He faces none of my fears."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He faces none of my fears."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343598"
-    },
-    "id": "67fab6d59930102295343598",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30c"
-    },
-    "title": "'No', 'None', and 'Not Any' - Review",
-    "instructions": "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
-    "translation": "Ellos no necesitan ayuda.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.02.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They don't need any help.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They need no help."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They need no help."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343599"
-    },
-    "id": "67fab6d59930102295343599",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30c"
-    },
-    "title": "'No', 'None', and 'Not Any' - Review",
-    "instructions": "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
-    "translation": "¡No causaré ningún problema!",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.02.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I won't cause any trouble!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I will cause no trouble!"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I will cause no trouble!"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534359a"
-    },
-    "id": "67fab6d5993010229534359a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30c"
-    },
-    "title": "'No', 'None', and 'Not Any' - Review",
-    "instructions": "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
-    "translation": "Él no perdió ninguno de sus juegos.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.02.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He didn't lose any of his games.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He lost none of his games."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He lost none of his games."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534359b"
-    },
-    "id": "67fab6d5993010229534359b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30c"
-    },
-    "title": "'No', 'None', and 'Not Any' - Review",
-    "instructions": "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
-    "translation": "Los médicos no necesitan descanso.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.02.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The doctors don't need any rest.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The doctors need no rest."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The doctors need no rest."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534359c"
-    },
-    "id": "67fab6d5993010229534359c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30c"
-    },
-    "title": "'No', 'None', and 'Not Any' - Review",
-    "instructions": "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
-    "translation": "Él no perdió ningún tren.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.02.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He didn't miss any trains.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He missed no trains."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He missed no trains."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534359d"
-    },
-    "id": "67fab6d5993010229534359d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30c"
-    },
-    "title": "'No', 'None', and 'Not Any' - Review",
-    "instructions": "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
-    "translation": "Ellos no sintieron dolor.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.02.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They didn't feel any pain.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They felt no pain."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They felt no pain."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534359e"
-    },
-    "id": "67fab6d5993010229534359e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30c"
-    },
-    "title": "'No', 'None', and 'Not Any' - Review",
-    "instructions": "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
-    "translation": "Ella no necesita consejo.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.02.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She doesn't need any advice.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She needs no advice."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She needs no advice."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534359f"
-    },
-    "id": "67fab6d5993010229534359f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30c"
-    },
-    "title": "'No', 'None', and 'Not Any' - Review",
-    "instructions": "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
-    "translation": "Ellos no respondieron ninguna de las preguntas.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.02.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They didn't answer any of the questions.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They answered none of the questions."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They answered none of the questions."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435a0"
-    },
-    "id": "67fab6d599301022953435a0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30c"
-    },
-    "title": "'No', 'None', and 'Not Any' - Review",
-    "instructions": "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
-    "translation": "No recibimos cartas.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.02.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We didn't receive any letters.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "We got no letters."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We got no letters."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435a1"
-    },
-    "id": "67fab6d599301022953435a1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30c"
-    },
-    "title": "'No', 'None', and 'Not Any' - Review",
-    "instructions": "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
-    "translation": "No vendieron ninguno de los coches.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.02.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They didn't sell any of the cars.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They sold none of the cars."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They sold none of the cars."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435a2"
-    },
-    "id": "67fab6d599301022953435a2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30c"
-    },
-    "title": "'No', 'None', and 'Not Any' - Review",
-    "instructions": "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
-    "translation": "Ella no bebe cerveza.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.02.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She doesn't drink any beer.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She drinks no beer."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She drinks no beer."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435a3"
-    },
-    "id": "67fab6d599301022953435a3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30c"
-    },
-    "title": "'No', 'None', and 'Not Any' - Review",
-    "instructions": "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
-    "translation": "Él no compró ninguna de las camisas.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.02.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He didn't buy any of the shirts.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He bought none of the shirts."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He bought none of the shirts."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435a4"
-    },
-    "id": "67fab6d599301022953435a4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30c"
-    },
-    "title": "'No', 'None', and 'Not Any' - Review",
-    "instructions": "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
-    "translation": "No oyeron nada de eso.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.02.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They didn't hear any of it.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They heard none of it."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They heard none of it."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435a5"
-    },
-    "id": "67fab6d599301022953435a5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30c"
-    },
-    "title": "'No', 'None', and 'Not Any' - Review",
-    "instructions": "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
-    "translation": "No leyó ninguno de los poemas.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.02.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He didn't read any of the poems.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He read none of the poems."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He read none of the poems."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.02.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He doesn't have any water.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He has no water." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He has no water." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343593"
+  },
+  "id" : "67fab6d59930102295343593",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30c"
+  },
+  "title" : "'No', 'None', and 'Not Any' - Review",
+  "instructions" : "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
+  "translation" : "Ella no quiere ninguno de esos.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.02.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She doesn't want any of those.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She wants none of those." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She wants none of those." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343594"
+  },
+  "id" : "67fab6d59930102295343594",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30c"
+  },
+  "title" : "'No', 'None', and 'Not Any' - Review",
+  "instructions" : "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
+  "translation" : "¡Los estudiantes no leyeron ninguno de los libros!",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.02.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The students didn't read any of the books!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The students read none of the books!" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The students read none of the books!" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343595"
+  },
+  "id" : "67fab6d59930102295343595",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30c"
+  },
+  "title" : "'No', 'None', and 'Not Any' - Review",
+  "instructions" : "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
+  "translation" : "No entiendo a ninguno de ellos.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.02.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't understand any of them.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I understand none of them." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I understand none of them." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343596"
+  },
+  "id" : "67fab6d59930102295343596",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30c"
+  },
+  "title" : "'No', 'None', and 'Not Any' - Review",
+  "instructions" : "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
+  "translation" : "Ella no tiene mascotas.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.02.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She doesn't have any pets.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She has no pets." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She has no pets." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343597"
+  },
+  "id" : "67fab6d59930102295343597",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30c"
+  },
+  "title" : "'No', 'None', and 'Not Any' - Review",
+  "instructions" : "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
+  "translation" : "Él no enfrenta ninguno de mis miedos.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.02.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He doesn't face any of my fears.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He faces none of my fears." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He faces none of my fears." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343598"
+  },
+  "id" : "67fab6d59930102295343598",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30c"
+  },
+  "title" : "'No', 'None', and 'Not Any' - Review",
+  "instructions" : "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
+  "translation" : "Ellos no necesitan ayuda.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.02.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They don't need any help.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They need no help." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They need no help." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343599"
+  },
+  "id" : "67fab6d59930102295343599",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30c"
+  },
+  "title" : "'No', 'None', and 'Not Any' - Review",
+  "instructions" : "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
+  "translation" : "¡No causaré ningún problema!",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.02.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I won't cause any trouble!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I will cause no trouble!" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I will cause no trouble!" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534359a"
+  },
+  "id" : "67fab6d5993010229534359a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30c"
+  },
+  "title" : "'No', 'None', and 'Not Any' - Review",
+  "instructions" : "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
+  "translation" : "Él no perdió ninguno de sus juegos.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.02.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He didn't lose any of his games.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He lost none of his games." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He lost none of his games." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534359b"
+  },
+  "id" : "67fab6d5993010229534359b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30c"
+  },
+  "title" : "'No', 'None', and 'Not Any' - Review",
+  "instructions" : "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
+  "translation" : "Los médicos no necesitan descanso.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.02.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The doctors don't need any rest.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The doctors need no rest." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The doctors need no rest." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534359c"
+  },
+  "id" : "67fab6d5993010229534359c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30c"
+  },
+  "title" : "'No', 'None', and 'Not Any' - Review",
+  "instructions" : "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
+  "translation" : "Él no perdió ningún tren.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.02.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He didn't miss any trains.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He missed no trains." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He missed no trains." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534359d"
+  },
+  "id" : "67fab6d5993010229534359d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30c"
+  },
+  "title" : "'No', 'None', and 'Not Any' - Review",
+  "instructions" : "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
+  "translation" : "Ellos no sintieron dolor.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.02.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They didn't feel any pain.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They felt no pain." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They felt no pain." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534359e"
+  },
+  "id" : "67fab6d5993010229534359e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30c"
+  },
+  "title" : "'No', 'None', and 'Not Any' - Review",
+  "instructions" : "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
+  "translation" : "Ella no necesita consejo.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.02.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She doesn't need any advice.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She needs no advice." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She needs no advice." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534359f"
+  },
+  "id" : "67fab6d5993010229534359f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30c"
+  },
+  "title" : "'No', 'None', and 'Not Any' - Review",
+  "instructions" : "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
+  "translation" : "Ellos no respondieron ninguna de las preguntas.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.02.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They didn't answer any of the questions.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They answered none of the questions." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They answered none of the questions." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435a0"
+  },
+  "id" : "67fab6d599301022953435a0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30c"
+  },
+  "title" : "'No', 'None', and 'Not Any' - Review",
+  "instructions" : "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
+  "translation" : "No recibimos cartas.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.02.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We didn't receive any letters.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We got no letters." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We got no letters." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435a1"
+  },
+  "id" : "67fab6d599301022953435a1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30c"
+  },
+  "title" : "'No', 'None', and 'Not Any' - Review",
+  "instructions" : "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
+  "translation" : "No vendieron ninguno de los coches.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.02.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They didn't sell any of the cars.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They sold none of the cars." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They sold none of the cars." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435a2"
+  },
+  "id" : "67fab6d599301022953435a2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30c"
+  },
+  "title" : "'No', 'None', and 'Not Any' - Review",
+  "instructions" : "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
+  "translation" : "Ella no bebe cerveza.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.02.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She doesn't drink any beer.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She drinks no beer." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She drinks no beer." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435a3"
+  },
+  "id" : "67fab6d599301022953435a3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30c"
+  },
+  "title" : "'No', 'None', and 'Not Any' - Review",
+  "instructions" : "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
+  "translation" : "Él no compró ninguna de las camisas.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.02.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He didn't buy any of the shirts.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He bought none of the shirts." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He bought none of the shirts." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435a4"
+  },
+  "id" : "67fab6d599301022953435a4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30c"
+  },
+  "title" : "'No', 'None', and 'Not Any' - Review",
+  "instructions" : "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
+  "translation" : "No oyeron nada de eso.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.02.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They didn't hear any of it.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They heard none of it." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They heard none of it." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435a5"
+  },
+  "id" : "67fab6d599301022953435a5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30c"
+  },
+  "title" : "'No', 'None', and 'Not Any' - Review",
+  "instructions" : "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
+  "translation" : "No leyó ninguno de los poemas.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.02.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He didn't read any of the poems.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He read none of the poems." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He read none of the poems." ]
+  }
+} ]

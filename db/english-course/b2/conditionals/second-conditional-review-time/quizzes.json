@@ -1,1462 +1,1201 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534479c"
-    },
-    "id": "67fab6d5993010229534479c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47e"
-    },
-    "title": "Second Conditional Review Time",
-    "instructions": "Escribe oraciones usando el 'second conditional'.",
-    "translation": "Si encontraras algo de dinero, comprarías un bocadillo.",
-    "theoryId": "b2.12.Mixed_Conditionals",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.05.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "found"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(find) some money, you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "would buy"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(buy) a snack.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If you found some money, you would buy a snack."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534479c"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534479d"
-    },
-    "id": "67fab6d5993010229534479d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47e"
-    },
-    "title": "Second Conditional Review Time",
-    "instructions": "Escribe oraciones usando el 'second conditional'.",
-    "translation": "Si no jugaras videojuegos, estudiarías más.",
-    "theoryId": "b2.12.Mixed_Conditionals",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.05.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "didn't play"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / play) video games, you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "would study"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(study) harder.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If you didn't play video games, you would study harder."
-      ]
-    }
+  "id" : "67fab6d5993010229534479c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47e"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534479e"
-    },
-    "id": "67fab6d5993010229534479e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47e"
-    },
-    "title": "Second Conditional Review Time",
-    "instructions": "Escribe oraciones usando el 'second conditional'.",
-    "translation": "Si ella estudiara inglés, viajaría al extranjero.",
-    "theoryId": "b2.12.Mixed_Conditionals",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.05.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If she",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "studied"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(study) English, she",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "would travel"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(travel) abroad.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If she studied English, she would travel abroad."
-      ]
-    }
+  "title" : "Second Conditional Review Time",
+  "instructions" : "Escribe oraciones usando el 'second conditional'.",
+  "translation" : "Si encontraras algo de dinero, comprarías un bocadillo.",
+  "theoryId" : "b2.12.Mixed_Conditionals",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534479f"
-    },
-    "id": "67fab6d5993010229534479f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47e"
-    },
-    "title": "Second Conditional Review Time",
-    "instructions": "Escribe oraciones usando el 'second conditional'.",
-    "translation": "Si David conociera a Mary, la llamaría.",
-    "theoryId": "b2.12.Mixed_Conditionals",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.05.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If David",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "knew"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(know) Mary, he",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "would call"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(call) her.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If David knew Mary, he would call her."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447a0"
-    },
-    "id": "67fab6d599301022953447a0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47e"
-    },
-    "title": "Second Conditional Review Time",
-    "instructions": "Escribe oraciones usando el 'second conditional'.",
-    "translation": "Sería maravilloso si estuvieras aquí.",
-    "theoryId": "b2.12.Mixed_Conditionals",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.05.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "It",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "would be"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) wonderful if you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) here.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "It would be wonderful if you were here."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447a1"
-    },
-    "id": "67fab6d599301022953447a1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47e"
-    },
-    "title": "Second Conditional Review Time",
-    "instructions": "Escribe oraciones usando el 'second conditional'.",
-    "translation": "Si a él le gustara la pizza, se la comería.",
-    "theoryId": "b2.12.Mixed_Conditionals",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.05.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If he",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "liked"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(like) pizza, he",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "would eat"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(eat) it.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If he liked pizza, he would eat it."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447a2"
-    },
-    "id": "67fab6d599301022953447a2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47e"
-    },
-    "title": "Second Conditional Review Time",
-    "instructions": "Escribe oraciones usando el 'second conditional'.",
-    "translation": "Ellos estarían felices si les lleváramos flores.",
-    "theoryId": "b2.12.Mixed_Conditionals",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.05.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "would be"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) happy if we",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "took"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(take) them flowers.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They would be happy if we took them flowers."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447a3"
-    },
-    "id": "67fab6d599301022953447a3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47e"
-    },
-    "title": "Second Conditional Review Time",
-    "instructions": "Escribe oraciones usando el 'second conditional'.",
-    "translation": "Si los gatos no se comieran toda la comida, yo comería un poco.",
-    "theoryId": "b2.12.Mixed_Conditionals",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.05.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If the cats",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "didn't eat"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / eat) all the food, I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "would eat"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(eat) some of it.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If the cats didn't eat all the food, I would eat some of it."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447a4"
-    },
-    "id": "67fab6d599301022953447a4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47e"
-    },
-    "title": "Second Conditional Review Time",
-    "instructions": "Escribe oraciones usando el 'second conditional'.",
-    "translation": "Si ella tuviera paciencia, aprendería español.",
-    "theoryId": "b2.12.Mixed_Conditionals",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.05.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If she",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "had"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(have) patience, she",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "would learn"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(learn) Spanish.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If she had patience, she would learn Spanish."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447a5"
-    },
-    "id": "67fab6d599301022953447a5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47e"
-    },
-    "title": "Second Conditional Review Time",
-    "instructions": "Escribe oraciones usando el 'second conditional'.",
-    "translation": "Si vinieras a la playa, te divertirías.",
-    "theoryId": "b2.12.Mixed_Conditionals",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.05.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "came"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(come) to the beach, you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "would have"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(have) fun.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If you came to the beach, you would have fun."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447a6"
-    },
-    "id": "67fab6d599301022953447a6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47e"
-    },
-    "title": "Second Conditional Review Time",
-    "instructions": "Escribe oraciones usando el 'second conditional'.",
-    "translation": "Estarías más saludable si tuvieras una mejor dieta.",
-    "theoryId": "b2.12.Mixed_Conditionals",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.05.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "You",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "would be"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) healthier if you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "had"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(have) a better diet.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "You would be healthier if you had a better diet."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447a7"
-    },
-    "id": "67fab6d599301022953447a7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47e"
-    },
-    "title": "Second Conditional Review Time",
-    "instructions": "Escribe oraciones usando el 'second conditional'.",
-    "translation": "Ella iría al cine si los cines estuvieran abiertos.",
-    "theoryId": "b2.12.Mixed_Conditionals",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.05.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "would go"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(go) to the cinema if the theaters",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) open.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She would go to the cinema if the theaters were open."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447a8"
-    },
-    "id": "67fab6d599301022953447a8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47e"
-    },
-    "title": "Second Conditional Review Time",
-    "instructions": "Escribe oraciones usando el 'second conditional'.",
-    "translation": "Sería increíble si él viniera a mi cumpleaños.",
-    "theoryId": "b2.12.Mixed_Conditionals",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.05.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "It",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "would be"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) amazing if he",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "came"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(come) to my birthday.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "It would be amazing if he came to my birthday."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447a9"
-    },
-    "id": "67fab6d599301022953447a9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47e"
-    },
-    "title": "Second Conditional Review Time",
-    "instructions": "Escribe oraciones usando el 'second conditional'.",
-    "translation": "Él estaría agradecido si le compraras un pastel.",
-    "theoryId": "b2.12.Mixed_Conditionals",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.05.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "would be"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) grateful if you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "bought"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(buy) him a cake.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He would be grateful if you bought him a cake."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447aa"
-    },
-    "id": "67fab6d599301022953447aa",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47e"
-    },
-    "title": "Second Conditional Review Time",
-    "instructions": "Escribe oraciones usando el 'second conditional'.",
-    "translation": "Los pájaros verían al perro si fueran al jardín.",
-    "theoryId": "b2.12.Mixed_Conditionals",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.05.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The birds",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "would see"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(see) the dog if they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "went"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(go) to the garden.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The birds would see the dog if they went to the garden."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447ab"
-    },
-    "id": "67fab6d599301022953447ab",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47e"
-    },
-    "title": "Second Conditional Review Time",
-    "instructions": "Escribe oraciones usando el 'second conditional'.",
-    "translation": "Si ella trabajara aquí, le encantaría.",
-    "theoryId": "b2.12.Mixed_Conditionals",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.05.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If she",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "worked"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(work) here, she",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "would love"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(love) it.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If she worked here, she would love it."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447ac"
-    },
-    "id": "67fab6d599301022953447ac",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47e"
-    },
-    "title": "Second Conditional Review Time",
-    "instructions": "Escribe oraciones usando el 'second conditional'.",
-    "translation": "Si él quisiera comprar zapatos, no compraría esos.",
-    "theoryId": "b2.12.Mixed_Conditionals",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.05.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If he",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "wanted"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(want) to buy shoes, he",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "wouldn't buy"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / buy) those.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If he wanted to buy shoes, he wouldn't buy those."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447ad"
-    },
-    "id": "67fab6d599301022953447ad",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47e"
-    },
-    "title": "Second Conditional Review Time",
-    "instructions": "Escribe oraciones usando el 'second conditional'.",
-    "translation": "Los actores no serían famosos si no actuaran bien.",
-    "theoryId": "b2.12.Mixed_Conditionals",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.05.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The actors",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "wouldn't be"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / be) famous if they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "didn't act"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / act) well.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The actors wouldn't be famous if they didn't act well."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447ae"
-    },
-    "id": "67fab6d599301022953447ae",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47e"
-    },
-    "title": "Second Conditional Review Time",
-    "instructions": "Escribe oraciones usando el 'second conditional'.",
-    "translation": "Alice compraría un vestido nuevo si tuviera una fiesta.",
-    "theoryId": "b2.12.Mixed_Conditionals",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.05.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Alice",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "would buy"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(buy) a new dress if she",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "had"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(have) a party.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Alice would buy a new dress if she had a party."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447af"
-    },
-    "id": "67fab6d599301022953447af",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47e"
-    },
-    "title": "Second Conditional Review Time",
-    "instructions": "Escribe oraciones usando el 'second conditional'.",
-    "translation": "Los monos disfrutarían ese plátano si estuvieran aquí.",
-    "theoryId": "b2.12.Mixed_Conditionals",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.05.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The monkeys",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "would enjoy"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(enjoy) that banana if they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) here.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The monkeys would enjoy that banana if they were here."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.05.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "found" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(find) some money, you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would buy" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(buy) a snack.",
+      "options" : null
+    } ],
+    "sentences" : [ "If you found some money, you would buy a snack." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534479d"
+  },
+  "id" : "67fab6d5993010229534479d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47e"
+  },
+  "title" : "Second Conditional Review Time",
+  "instructions" : "Escribe oraciones usando el 'second conditional'.",
+  "translation" : "Si no jugaras videojuegos, estudiarías más.",
+  "theoryId" : "b2.12.Mixed_Conditionals",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.05.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "didn't play" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / play) video games, you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would study" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(study) harder.",
+      "options" : null
+    } ],
+    "sentences" : [ "If you didn't play video games, you would study harder." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534479e"
+  },
+  "id" : "67fab6d5993010229534479e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47e"
+  },
+  "title" : "Second Conditional Review Time",
+  "instructions" : "Escribe oraciones usando el 'second conditional'.",
+  "translation" : "Si ella estudiara inglés, viajaría al extranjero.",
+  "theoryId" : "b2.12.Mixed_Conditionals",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.05.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "studied" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(study) English, she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would travel" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(travel) abroad.",
+      "options" : null
+    } ],
+    "sentences" : [ "If she studied English, she would travel abroad." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534479f"
+  },
+  "id" : "67fab6d5993010229534479f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47e"
+  },
+  "title" : "Second Conditional Review Time",
+  "instructions" : "Escribe oraciones usando el 'second conditional'.",
+  "translation" : "Si David conociera a Mary, la llamaría.",
+  "theoryId" : "b2.12.Mixed_Conditionals",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.05.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If David",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "knew" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(know) Mary, he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would call" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(call) her.",
+      "options" : null
+    } ],
+    "sentences" : [ "If David knew Mary, he would call her." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447a0"
+  },
+  "id" : "67fab6d599301022953447a0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47e"
+  },
+  "title" : "Second Conditional Review Time",
+  "instructions" : "Escribe oraciones usando el 'second conditional'.",
+  "translation" : "Sería maravilloso si estuvieras aquí.",
+  "theoryId" : "b2.12.Mixed_Conditionals",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.05.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would be" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) wonderful if you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) here.",
+      "options" : null
+    } ],
+    "sentences" : [ "It would be wonderful if you were here." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447a1"
+  },
+  "id" : "67fab6d599301022953447a1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47e"
+  },
+  "title" : "Second Conditional Review Time",
+  "instructions" : "Escribe oraciones usando el 'second conditional'.",
+  "translation" : "Si a él le gustara la pizza, se la comería.",
+  "theoryId" : "b2.12.Mixed_Conditionals",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.05.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "liked" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(like) pizza, he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would eat" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(eat) it.",
+      "options" : null
+    } ],
+    "sentences" : [ "If he liked pizza, he would eat it." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447a2"
+  },
+  "id" : "67fab6d599301022953447a2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47e"
+  },
+  "title" : "Second Conditional Review Time",
+  "instructions" : "Escribe oraciones usando el 'second conditional'.",
+  "translation" : "Ellos estarían felices si les lleváramos flores.",
+  "theoryId" : "b2.12.Mixed_Conditionals",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.05.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would be" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) happy if we",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "took" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(take) them flowers.",
+      "options" : null
+    } ],
+    "sentences" : [ "They would be happy if we took them flowers." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447a3"
+  },
+  "id" : "67fab6d599301022953447a3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47e"
+  },
+  "title" : "Second Conditional Review Time",
+  "instructions" : "Escribe oraciones usando el 'second conditional'.",
+  "translation" : "Si los gatos no se comieran toda la comida, yo comería un poco.",
+  "theoryId" : "b2.12.Mixed_Conditionals",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.05.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If the cats",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "didn't eat" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / eat) all the food, I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would eat" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(eat) some of it.",
+      "options" : null
+    } ],
+    "sentences" : [ "If the cats didn't eat all the food, I would eat some of it." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447a4"
+  },
+  "id" : "67fab6d599301022953447a4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47e"
+  },
+  "title" : "Second Conditional Review Time",
+  "instructions" : "Escribe oraciones usando el 'second conditional'.",
+  "translation" : "Si ella tuviera paciencia, aprendería español.",
+  "theoryId" : "b2.12.Mixed_Conditionals",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.05.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "had" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(have) patience, she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would learn" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(learn) Spanish.",
+      "options" : null
+    } ],
+    "sentences" : [ "If she had patience, she would learn Spanish." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447a5"
+  },
+  "id" : "67fab6d599301022953447a5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47e"
+  },
+  "title" : "Second Conditional Review Time",
+  "instructions" : "Escribe oraciones usando el 'second conditional'.",
+  "translation" : "Si vinieras a la playa, te divertirías.",
+  "theoryId" : "b2.12.Mixed_Conditionals",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.05.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "came" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(come) to the beach, you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would have" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(have) fun.",
+      "options" : null
+    } ],
+    "sentences" : [ "If you came to the beach, you would have fun." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447a6"
+  },
+  "id" : "67fab6d599301022953447a6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47e"
+  },
+  "title" : "Second Conditional Review Time",
+  "instructions" : "Escribe oraciones usando el 'second conditional'.",
+  "translation" : "Estarías más saludable si tuvieras una mejor dieta.",
+  "theoryId" : "b2.12.Mixed_Conditionals",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.05.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would be" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) healthier if you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "had" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(have) a better diet.",
+      "options" : null
+    } ],
+    "sentences" : [ "You would be healthier if you had a better diet." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447a7"
+  },
+  "id" : "67fab6d599301022953447a7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47e"
+  },
+  "title" : "Second Conditional Review Time",
+  "instructions" : "Escribe oraciones usando el 'second conditional'.",
+  "translation" : "Ella iría al cine si los cines estuvieran abiertos.",
+  "theoryId" : "b2.12.Mixed_Conditionals",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.05.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would go" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(go) to the cinema if the theaters",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) open.",
+      "options" : null
+    } ],
+    "sentences" : [ "She would go to the cinema if the theaters were open." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447a8"
+  },
+  "id" : "67fab6d599301022953447a8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47e"
+  },
+  "title" : "Second Conditional Review Time",
+  "instructions" : "Escribe oraciones usando el 'second conditional'.",
+  "translation" : "Sería increíble si él viniera a mi cumpleaños.",
+  "theoryId" : "b2.12.Mixed_Conditionals",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.05.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would be" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) amazing if he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "came" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(come) to my birthday.",
+      "options" : null
+    } ],
+    "sentences" : [ "It would be amazing if he came to my birthday." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447a9"
+  },
+  "id" : "67fab6d599301022953447a9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47e"
+  },
+  "title" : "Second Conditional Review Time",
+  "instructions" : "Escribe oraciones usando el 'second conditional'.",
+  "translation" : "Él estaría agradecido si le compraras un pastel.",
+  "theoryId" : "b2.12.Mixed_Conditionals",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.05.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would be" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) grateful if you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "bought" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(buy) him a cake.",
+      "options" : null
+    } ],
+    "sentences" : [ "He would be grateful if you bought him a cake." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447aa"
+  },
+  "id" : "67fab6d599301022953447aa",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47e"
+  },
+  "title" : "Second Conditional Review Time",
+  "instructions" : "Escribe oraciones usando el 'second conditional'.",
+  "translation" : "Los pájaros verían al perro si fueran al jardín.",
+  "theoryId" : "b2.12.Mixed_Conditionals",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.05.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The birds",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would see" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(see) the dog if they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "went" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(go) to the garden.",
+      "options" : null
+    } ],
+    "sentences" : [ "The birds would see the dog if they went to the garden." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447ab"
+  },
+  "id" : "67fab6d599301022953447ab",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47e"
+  },
+  "title" : "Second Conditional Review Time",
+  "instructions" : "Escribe oraciones usando el 'second conditional'.",
+  "translation" : "Si ella trabajara aquí, le encantaría.",
+  "theoryId" : "b2.12.Mixed_Conditionals",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.05.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "worked" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(work) here, she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would love" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(love) it.",
+      "options" : null
+    } ],
+    "sentences" : [ "If she worked here, she would love it." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447ac"
+  },
+  "id" : "67fab6d599301022953447ac",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47e"
+  },
+  "title" : "Second Conditional Review Time",
+  "instructions" : "Escribe oraciones usando el 'second conditional'.",
+  "translation" : "Si él quisiera comprar zapatos, no compraría esos.",
+  "theoryId" : "b2.12.Mixed_Conditionals",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.05.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "wanted" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(want) to buy shoes, he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "wouldn't buy" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / buy) those.",
+      "options" : null
+    } ],
+    "sentences" : [ "If he wanted to buy shoes, he wouldn't buy those." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447ad"
+  },
+  "id" : "67fab6d599301022953447ad",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47e"
+  },
+  "title" : "Second Conditional Review Time",
+  "instructions" : "Escribe oraciones usando el 'second conditional'.",
+  "translation" : "Los actores no serían famosos si no actuaran bien.",
+  "theoryId" : "b2.12.Mixed_Conditionals",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.05.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The actors",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "wouldn't be" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) famous if they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "didn't act" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / act) well.",
+      "options" : null
+    } ],
+    "sentences" : [ "The actors wouldn't be famous if they didn't act well." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447ae"
+  },
+  "id" : "67fab6d599301022953447ae",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47e"
+  },
+  "title" : "Second Conditional Review Time",
+  "instructions" : "Escribe oraciones usando el 'second conditional'.",
+  "translation" : "Alice compraría un vestido nuevo si tuviera una fiesta.",
+  "theoryId" : "b2.12.Mixed_Conditionals",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.05.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Alice",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would buy" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(buy) a new dress if she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "had" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(have) a party.",
+      "options" : null
+    } ],
+    "sentences" : [ "Alice would buy a new dress if she had a party." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447af"
+  },
+  "id" : "67fab6d599301022953447af",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47e"
+  },
+  "title" : "Second Conditional Review Time",
+  "instructions" : "Escribe oraciones usando el 'second conditional'.",
+  "translation" : "Los monos disfrutarían ese plátano si estuvieran aquí.",
+  "theoryId" : "b2.12.Mixed_Conditionals",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.05.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The monkeys",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would enjoy" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(enjoy) that banana if they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) here.",
+      "options" : null
+    } ],
+    "sentences" : [ "The monkeys would enjoy that banana if they were here." ]
+  }
+} ]

@@ -1,1234 +1,1049 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953434d4"
-    },
-    "id": "67fab6d599301022953434d4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d301"
-    },
-    "title": "Article Practice: 'a', 'the', and Zero Article",
-    "instructions": "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
-    "translation": "La cuchara debería ser de plata.",
-    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.02.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "You'll need a spoon and some sugar.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "spoon should be silver.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "You'll need a spoon and some sugar. The spoon should be silver."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434d4"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953434d5"
-    },
-    "id": "67fab6d599301022953434d5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d301"
-    },
-    "title": "Article Practice: 'a', 'the', and Zero Article",
-    "instructions": "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
-    "translation": "Compré zapatos y una chaqueta. Los zapatos eran demasiado pequeños.",
-    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.02.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I bought",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "shoes and a jacket. The shoes were too small.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I bought - shoes and a jacket. The shoes were too small."
-      ]
-    }
+  "id" : "67fab6d599301022953434d4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d301"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953434d6"
-    },
-    "id": "67fab6d599301022953434d6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d301"
-    },
-    "title": "Article Practice: 'a', 'the', and Zero Article",
-    "instructions": "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
-    "translation": "Vieron una obra de teatro y visitaron un museo. La obra fue interesante.",
-    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.02.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They watched",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "play and visited a museum. The play was interesting.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They watched a play and visited a museum. The play was interesting."
-      ]
-    }
+  "title" : "Article Practice: 'a', 'the', and Zero Article",
+  "instructions" : "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "La cuchara debería ser de plata.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953434d7"
-    },
-    "id": "67fab6d599301022953434d7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d301"
-    },
-    "title": "Article Practice: 'a', 'the', and Zero Article",
-    "instructions": "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
-    "translation": "Peter preparó la ensalada.",
-    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.02.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We had chicken and salad. Peter prepared",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "the"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "salad.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We had chicken and salad. Peter prepared the salad."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953434d8"
-    },
-    "id": "67fab6d599301022953434d8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d301"
-    },
-    "title": "Article Practice: 'a', 'the', and Zero Article",
-    "instructions": "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
-    "translation": "El bistec era muy caro.",
-    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.02.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He ordered steak and we ordered fish.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "steak was very expensive.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He ordered steak and we ordered fish. The steak was very expensive."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953434d9"
-    },
-    "id": "67fab6d599301022953434d9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d301"
-    },
-    "title": "Article Practice: 'a', 'the', and Zero Article",
-    "instructions": "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
-    "translation": "Los jugadores jugaron un partido de fútbol y un partido de baloncesto. El partido de baloncesto fue emocionante.",
-    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.02.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The players played a soccer game and",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "basketball game. The basketball game was exciting.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The players played a soccer game and a basketball game. The basketball game was exciting."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953434da"
-    },
-    "id": "67fab6d599301022953434da",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d301"
-    },
-    "title": "Article Practice: 'a', 'the', and Zero Article",
-    "instructions": "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
-    "translation": "Disfrutamos de jugo y té. El té fue muy refrescante.",
-    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.02.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We enjoyed",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "juice and tea. The tea was very refreshing.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We enjoyed - juice and tea. The tea was very refreshing."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953434db"
-    },
-    "id": "67fab6d599301022953434db",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d301"
-    },
-    "title": "Article Practice: 'a', 'the', and Zero Article",
-    "instructions": "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
-    "translation": "A su gerente le disgustó el mensaje.",
-    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.02.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He sent a message and two reports, but his manager disliked",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "the"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "message.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He sent a message and two reports, but his manager disliked the message."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953434dc"
-    },
-    "id": "67fab6d599301022953434dc",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d301"
-    },
-    "title": "Article Practice: 'a', 'the', and Zero Article",
-    "instructions": "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
-    "translation": "Compraron un bate de béisbol y pelotas de béisbol. Las pelotas eran rojas y blancas.",
-    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.02.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They purchased a baseball bat and",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "baseballs. The balls were red and white.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They purchased a baseball bat and - baseballs. The balls were red and white."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953434dd"
-    },
-    "id": "67fab6d599301022953434dd",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d301"
-    },
-    "title": "Article Practice: 'a', 'the', and Zero Article",
-    "instructions": "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
-    "translation": "Coloqué carteles y dibujos en mi puerta. Mi hermana creó los dibujos.",
-    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.02.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I placed posters and",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "drawings on my door. My sister created the drawings.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I placed posters and - drawings on my door. My sister created the drawings."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953434de"
-    },
-    "id": "67fab6d599301022953434de",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d301"
-    },
-    "title": "Article Practice: 'a', 'the', and Zero Article",
-    "instructions": "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
-    "translation": "La radio era muy moderna.",
-    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.02.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Someone took a radio and a tablet.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "radio was very modern.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Someone took a radio and a tablet. The radio was very modern."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953434df"
-    },
-    "id": "67fab6d599301022953434df",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d301"
-    },
-    "title": "Article Practice: 'a', 'the', and Zero Article",
-    "instructions": "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
-    "translation": "Disfrutaron de los dulces.",
-    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.02.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The students received candy for Halloween from their teacher. They enjoyed",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "the"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "candy.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The students received candy for Halloween from their teacher. They enjoyed the candy."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953434e0"
-    },
-    "id": "67fab6d599301022953434e0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d301"
-    },
-    "title": "Article Practice: 'a', 'the', and Zero Article",
-    "instructions": "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
-    "translation": "Todas las flores eran muy hermosas.",
-    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.02.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He picked flowers for everyone.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "flowers were all very beautiful.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He picked flowers for everyone. The flowers were all very beautiful."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953434e1"
-    },
-    "id": "67fab6d599301022953434e1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d301"
-    },
-    "title": "Article Practice: 'a', 'the', and Zero Article",
-    "instructions": "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
-    "translation": "Escuchamos melodías y vimos películas. Reconocí las melodías de mi adolescencia.",
-    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.02.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We listened to",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "tunes and watched movies. I recognized the tunes from my teenage years.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We listened to - tunes and watched movies. I recognized the tunes from my teenage years."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953434e2"
-    },
-    "id": "67fab6d599301022953434e2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d301"
-    },
-    "title": "Article Practice: 'a', 'the', and Zero Article",
-    "instructions": "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
-    "translation": "El jardín estaba lleno de estatuas y plantas. Todas las plantas pertenecen a Mike.",
-    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.02.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The garden was full of statues and",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "plants. The plants all belong to Mike.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The garden was full of statues and - plants. The plants all belong to Mike."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953434e3"
-    },
-    "id": "67fab6d599301022953434e3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d301"
-    },
-    "title": "Article Practice: 'a', 'the', and Zero Article",
-    "instructions": "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
-    "translation": "El supermercado es moderno.",
-    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.02.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "There's a bakery and",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "grocery store near the park.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "grocery store is modern.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "There's a bakery and a grocery store near the park. The grocery store is modern."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953434e4"
-    },
-    "id": "67fab6d599301022953434e4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d301"
-    },
-    "title": "Article Practice: 'a', 'the', and Zero Article",
-    "instructions": "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
-    "translation": "Las tazas se agrietaron.",
-    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.02.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I shattered a vase and cups.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "cups cracked.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I shattered a vase and cups. The cups cracked."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953434e5"
-    },
-    "id": "67fab6d599301022953434e5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d301"
-    },
-    "title": "Article Practice: 'a', 'the', and Zero Article",
-    "instructions": "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
-    "translation": "Ella tiene una moto y un camión, pero rara vez conduce el camión.",
-    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.02.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She owns a scooter and",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "truck, but she rarely drives the truck.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She owns a scooter and a truck, but she rarely drives the truck."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953434e6"
-    },
-    "id": "67fab6d599301022953434e6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d301"
-    },
-    "title": "Article Practice: 'a', 'the', and Zero Article",
-    "instructions": "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
-    "translation": "Las lámparas siguen brillando.",
-    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.02.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We selected lamps for our bedroom when we renovated.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "lamps are still shining.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We selected lamps for our bedroom when we renovated. The lamps are still shining."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953434e7"
-    },
-    "id": "67fab6d599301022953434e7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d301"
-    },
-    "title": "Article Practice: 'a', 'the', and Zero Article",
-    "instructions": "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
-    "translation": "Ella puso un tazón y uvas en el mostrador. Había lavado las uvas.",
-    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.02.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She set out a bowl and",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "grapes on the counter. She'd washed the grapes.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She set out a bowl and - grapes on the counter. She'd washed the grapes."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.02.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You'll need a spoon and some sugar.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "spoon should be silver.",
+      "options" : null
+    } ],
+    "sentences" : [ "You'll need a spoon and some sugar. The spoon should be silver." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434d5"
+  },
+  "id" : "67fab6d599301022953434d5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d301"
+  },
+  "title" : "Article Practice: 'a', 'the', and Zero Article",
+  "instructions" : "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Compré zapatos y una chaqueta. Los zapatos eran demasiado pequeños.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.02.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I bought",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "shoes and a jacket. The shoes were too small.",
+      "options" : null
+    } ],
+    "sentences" : [ "I bought - shoes and a jacket. The shoes were too small." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434d6"
+  },
+  "id" : "67fab6d599301022953434d6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d301"
+  },
+  "title" : "Article Practice: 'a', 'the', and Zero Article",
+  "instructions" : "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Vieron una obra de teatro y visitaron un museo. La obra fue interesante.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.02.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They watched",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "play and visited a museum. The play was interesting.",
+      "options" : null
+    } ],
+    "sentences" : [ "They watched a play and visited a museum. The play was interesting." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434d7"
+  },
+  "id" : "67fab6d599301022953434d7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d301"
+  },
+  "title" : "Article Practice: 'a', 'the', and Zero Article",
+  "instructions" : "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Peter preparó la ensalada.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.02.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We had chicken and salad. Peter prepared",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "salad.",
+      "options" : null
+    } ],
+    "sentences" : [ "We had chicken and salad. Peter prepared the salad." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434d8"
+  },
+  "id" : "67fab6d599301022953434d8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d301"
+  },
+  "title" : "Article Practice: 'a', 'the', and Zero Article",
+  "instructions" : "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "El bistec era muy caro.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.02.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He ordered steak and we ordered fish.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "steak was very expensive.",
+      "options" : null
+    } ],
+    "sentences" : [ "He ordered steak and we ordered fish. The steak was very expensive." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434d9"
+  },
+  "id" : "67fab6d599301022953434d9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d301"
+  },
+  "title" : "Article Practice: 'a', 'the', and Zero Article",
+  "instructions" : "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Los jugadores jugaron un partido de fútbol y un partido de baloncesto. El partido de baloncesto fue emocionante.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.02.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The players played a soccer game and",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "basketball game. The basketball game was exciting.",
+      "options" : null
+    } ],
+    "sentences" : [ "The players played a soccer game and a basketball game. The basketball game was exciting." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434da"
+  },
+  "id" : "67fab6d599301022953434da",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d301"
+  },
+  "title" : "Article Practice: 'a', 'the', and Zero Article",
+  "instructions" : "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Disfrutamos de jugo y té. El té fue muy refrescante.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.02.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We enjoyed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "juice and tea. The tea was very refreshing.",
+      "options" : null
+    } ],
+    "sentences" : [ "We enjoyed - juice and tea. The tea was very refreshing." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434db"
+  },
+  "id" : "67fab6d599301022953434db",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d301"
+  },
+  "title" : "Article Practice: 'a', 'the', and Zero Article",
+  "instructions" : "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "A su gerente le disgustó el mensaje.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.02.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He sent a message and two reports, but his manager disliked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "message.",
+      "options" : null
+    } ],
+    "sentences" : [ "He sent a message and two reports, but his manager disliked the message." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434dc"
+  },
+  "id" : "67fab6d599301022953434dc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d301"
+  },
+  "title" : "Article Practice: 'a', 'the', and Zero Article",
+  "instructions" : "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Compraron un bate de béisbol y pelotas de béisbol. Las pelotas eran rojas y blancas.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.02.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They purchased a baseball bat and",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "baseballs. The balls were red and white.",
+      "options" : null
+    } ],
+    "sentences" : [ "They purchased a baseball bat and - baseballs. The balls were red and white." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434dd"
+  },
+  "id" : "67fab6d599301022953434dd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d301"
+  },
+  "title" : "Article Practice: 'a', 'the', and Zero Article",
+  "instructions" : "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Coloqué carteles y dibujos en mi puerta. Mi hermana creó los dibujos.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.02.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I placed posters and",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "drawings on my door. My sister created the drawings.",
+      "options" : null
+    } ],
+    "sentences" : [ "I placed posters and - drawings on my door. My sister created the drawings." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434de"
+  },
+  "id" : "67fab6d599301022953434de",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d301"
+  },
+  "title" : "Article Practice: 'a', 'the', and Zero Article",
+  "instructions" : "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "La radio era muy moderna.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.02.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Someone took a radio and a tablet.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "radio was very modern.",
+      "options" : null
+    } ],
+    "sentences" : [ "Someone took a radio and a tablet. The radio was very modern." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434df"
+  },
+  "id" : "67fab6d599301022953434df",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d301"
+  },
+  "title" : "Article Practice: 'a', 'the', and Zero Article",
+  "instructions" : "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Disfrutaron de los dulces.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.02.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The students received candy for Halloween from their teacher. They enjoyed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "candy.",
+      "options" : null
+    } ],
+    "sentences" : [ "The students received candy for Halloween from their teacher. They enjoyed the candy." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434e0"
+  },
+  "id" : "67fab6d599301022953434e0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d301"
+  },
+  "title" : "Article Practice: 'a', 'the', and Zero Article",
+  "instructions" : "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Todas las flores eran muy hermosas.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.02.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He picked flowers for everyone.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "flowers were all very beautiful.",
+      "options" : null
+    } ],
+    "sentences" : [ "He picked flowers for everyone. The flowers were all very beautiful." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434e1"
+  },
+  "id" : "67fab6d599301022953434e1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d301"
+  },
+  "title" : "Article Practice: 'a', 'the', and Zero Article",
+  "instructions" : "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Escuchamos melodías y vimos películas. Reconocí las melodías de mi adolescencia.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.02.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We listened to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "tunes and watched movies. I recognized the tunes from my teenage years.",
+      "options" : null
+    } ],
+    "sentences" : [ "We listened to - tunes and watched movies. I recognized the tunes from my teenage years." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434e2"
+  },
+  "id" : "67fab6d599301022953434e2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d301"
+  },
+  "title" : "Article Practice: 'a', 'the', and Zero Article",
+  "instructions" : "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "El jardín estaba lleno de estatuas y plantas. Todas las plantas pertenecen a Mike.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.02.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The garden was full of statues and",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "plants. The plants all belong to Mike.",
+      "options" : null
+    } ],
+    "sentences" : [ "The garden was full of statues and - plants. The plants all belong to Mike." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434e3"
+  },
+  "id" : "67fab6d599301022953434e3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d301"
+  },
+  "title" : "Article Practice: 'a', 'the', and Zero Article",
+  "instructions" : "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "El supermercado es moderno.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.02.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There's a bakery and",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "grocery store near the park.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "grocery store is modern.",
+      "options" : null
+    } ],
+    "sentences" : [ "There's a bakery and a grocery store near the park. The grocery store is modern." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434e4"
+  },
+  "id" : "67fab6d599301022953434e4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d301"
+  },
+  "title" : "Article Practice: 'a', 'the', and Zero Article",
+  "instructions" : "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Las tazas se agrietaron.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.02.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I shattered a vase and cups.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "cups cracked.",
+      "options" : null
+    } ],
+    "sentences" : [ "I shattered a vase and cups. The cups cracked." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434e5"
+  },
+  "id" : "67fab6d599301022953434e5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d301"
+  },
+  "title" : "Article Practice: 'a', 'the', and Zero Article",
+  "instructions" : "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Ella tiene una moto y un camión, pero rara vez conduce el camión.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.02.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She owns a scooter and",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "truck, but she rarely drives the truck.",
+      "options" : null
+    } ],
+    "sentences" : [ "She owns a scooter and a truck, but she rarely drives the truck." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434e6"
+  },
+  "id" : "67fab6d599301022953434e6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d301"
+  },
+  "title" : "Article Practice: 'a', 'the', and Zero Article",
+  "instructions" : "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Las lámparas siguen brillando.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.02.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We selected lamps for our bedroom when we renovated.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "lamps are still shining.",
+      "options" : null
+    } ],
+    "sentences" : [ "We selected lamps for our bedroom when we renovated. The lamps are still shining." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434e7"
+  },
+  "id" : "67fab6d599301022953434e7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d301"
+  },
+  "title" : "Article Practice: 'a', 'the', and Zero Article",
+  "instructions" : "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Ella puso un tazón y uvas en el mostrador. Había lavado las uvas.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.02.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She set out a bowl and",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "grapes on the counter. She'd washed the grapes.",
+      "options" : null
+    } ],
+    "sentences" : [ "She set out a bowl and - grapes on the counter. She'd washed the grapes." ]
+  }
+} ]

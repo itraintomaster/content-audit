@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534250b"
-    },
-    "id": "67fab6d5993010229534250b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e5"
-    },
-    "title": "'Can' and 'Could' Requests: Short Answer Responses",
-    "instructions": "Escribe la 'short answer' (respuesta corta).",
-    "translation": "No, no puedo",
-    "theoryId": "a1.10.Could_For_Polite_Requests",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.03.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: Can you do me a favor? B: No,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I can't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: Can you do me a favor? B: No, I can't."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534250b"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534250c"
-    },
-    "id": "67fab6d5993010229534250c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e5"
-    },
-    "title": "'Can' and 'Could' Requests: Short Answer Responses",
-    "instructions": "Escribe la 'short answer' (respuesta corta).",
-    "translation": "Sí, puedo",
-    "theoryId": "a1.10.Could_For_Polite_Requests",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.03.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: Can you join us tonight? B: Yes,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I can"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: Can you join us tonight? B: Yes, I can."
-      ]
-    }
+  "id" : "67fab6d5993010229534250b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e5"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534250d"
-    },
-    "id": "67fab6d5993010229534250d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e5"
-    },
-    "title": "'Can' and 'Could' Requests: Short Answer Responses",
-    "instructions": "Escribe la 'short answer' (respuesta corta).",
-    "translation": "Sí, puedo",
-    "theoryId": "a1.10.Could_For_Polite_Requests",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.03.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: Could you do me a favor? B: Yes,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I can"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: Could you do me a favor? B: Yes, I can."
-      ]
-    }
+  "title" : "'Can' and 'Could' Requests: Short Answer Responses",
+  "instructions" : "Escribe la 'short answer' (respuesta corta).",
+  "translation" : "No, no puedo",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534250e"
-    },
-    "id": "67fab6d5993010229534250e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e5"
-    },
-    "title": "'Can' and 'Could' Requests: Short Answer Responses",
-    "instructions": "Escribe la 'short answer' (respuesta corta).",
-    "translation": "No, no puedo",
-    "theoryId": "a1.10.Could_For_Polite_Requests",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.03.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: Could you join us tonight? B: No,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I can't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: Could you join us tonight? B: No, I can't."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534250f"
-    },
-    "id": "67fab6d5993010229534250f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e5"
-    },
-    "title": "'Can' and 'Could' Requests: Short Answer Responses",
-    "instructions": "Escribe la 'short answer' (respuesta corta).",
-    "translation": "Sí, puedes",
-    "theoryId": "a1.10.Could_For_Polite_Requests",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.03.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: Can I sit there? B: Yes,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "you can"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: Can I sit there? B: Yes, you can."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342510"
-    },
-    "id": "67fab6d59930102295342510",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e5"
-    },
-    "title": "'Can' and 'Could' Requests: Short Answer Responses",
-    "instructions": "Escribe la 'short answer' (respuesta corta).",
-    "translation": "Sí, puedo",
-    "theoryId": "a1.10.Could_For_Polite_Requests",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.03.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: Could you take out the trash? B: Yes,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I can"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: Could you take out the trash? B: Yes, I can."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342511"
-    },
-    "id": "67fab6d59930102295342511",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e5"
-    },
-    "title": "'Can' and 'Could' Requests: Short Answer Responses",
-    "instructions": "Escribe la 'short answer' (respuesta corta).",
-    "translation": "No, no puedes",
-    "theoryId": "a1.10.Could_For_Polite_Requests",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.03.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: Could I have a cookie? B: No,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "you can't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: Could I have a cookie? B: No, you can't."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342512"
-    },
-    "id": "67fab6d59930102295342512",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e5"
-    },
-    "title": "'Can' and 'Could' Requests: Short Answer Responses",
-    "instructions": "Escribe la 'short answer' (respuesta corta).",
-    "translation": "Sí, puedes",
-    "theoryId": "a1.10.Could_For_Polite_Requests",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.03.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: Could I sit there? B: Yes,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "you can"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: Could I sit there? B: Yes, you can."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342513"
-    },
-    "id": "67fab6d59930102295342513",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e5"
-    },
-    "title": "'Can' and 'Could' Requests: Short Answer Responses",
-    "instructions": "Escribe la 'short answer' (respuesta corta).",
-    "translation": "No, no puedes",
-    "theoryId": "a1.10.Could_For_Polite_Requests",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.03.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: Can I have your apple? B: No,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "you can't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: Can I have your apple? B: No, you can't."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342514"
-    },
-    "id": "67fab6d59930102295342514",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e5"
-    },
-    "title": "'Can' and 'Could' Requests: Short Answer Responses",
-    "instructions": "Escribe la 'short answer' (respuesta corta).",
-    "translation": "Sí, puedes",
-    "theoryId": "a1.10.Could_For_Polite_Requests",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.03.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: Could I have some tea? B: Yes,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "you can"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: Could I have some tea? B: Yes, you can."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342515"
-    },
-    "id": "67fab6d59930102295342515",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e5"
-    },
-    "title": "'Can' and 'Could' Requests: Short Answer Responses",
-    "instructions": "Escribe la 'short answer' (respuesta corta).",
-    "translation": "Sí, puedes",
-    "theoryId": "a1.10.Could_For_Polite_Requests",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.03.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: Can I have your apple? B: Yes,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "you can"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: Can I have your apple? B: Yes, you can."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342516"
-    },
-    "id": "67fab6d59930102295342516",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e5"
-    },
-    "title": "'Can' and 'Could' Requests: Short Answer Responses",
-    "instructions": "Escribe la 'short answer' (respuesta corta).",
-    "translation": "No, no puedo",
-    "theoryId": "a1.10.Could_For_Polite_Requests",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.03.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: Can you grab me a bottle of water? B: No,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I can't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: Can you grab me a bottle of water? B: No, I can't."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342517"
-    },
-    "id": "67fab6d59930102295342517",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e5"
-    },
-    "title": "'Can' and 'Could' Requests: Short Answer Responses",
-    "instructions": "Escribe la 'short answer' (respuesta corta).",
-    "translation": "No, no puedo",
-    "theoryId": "a1.10.Could_For_Polite_Requests",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.03.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: Could you order some pizza? B: No,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I can't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: Could you order some pizza? B: No, I can't."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342518"
-    },
-    "id": "67fab6d59930102295342518",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e5"
-    },
-    "title": "'Can' and 'Could' Requests: Short Answer Responses",
-    "instructions": "Escribe la 'short answer' (respuesta corta).",
-    "translation": "Sí, puedo",
-    "theoryId": "a1.10.Could_For_Polite_Requests",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.03.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: Can you order some pizza? B: Yes,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I can"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: Can you order some pizza? B: Yes, I can."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342519"
-    },
-    "id": "67fab6d59930102295342519",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e5"
-    },
-    "title": "'Can' and 'Could' Requests: Short Answer Responses",
-    "instructions": "Escribe la 'short answer' (respuesta corta).",
-    "translation": "No, no puedo",
-    "theoryId": "a1.10.Could_For_Polite_Requests",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.03.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: Can you take out the trash? B: No,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I can't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: Can you take out the trash? B: No, I can't."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534251a"
-    },
-    "id": "67fab6d5993010229534251a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e5"
-    },
-    "title": "'Can' and 'Could' Requests: Short Answer Responses",
-    "instructions": "Escribe la 'short answer' (respuesta corta).",
-    "translation": "Sí, puedo",
-    "theoryId": "a1.10.Could_For_Polite_Requests",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.03.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: Could you grab me a bottle of water? B: Yes,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I can"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: Could you grab me a bottle of water? B: Yes, I can."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534251b"
-    },
-    "id": "67fab6d5993010229534251b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e5"
-    },
-    "title": "'Can' and 'Could' Requests: Short Answer Responses",
-    "instructions": "Escribe la 'short answer' (respuesta corta).",
-    "translation": "Sí, puedes",
-    "theoryId": "a1.10.Could_For_Polite_Requests",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.03.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: Can I have some tea? B: Yes,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "you can"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: Can I have some tea? B: Yes, you can."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534251c"
-    },
-    "id": "67fab6d5993010229534251c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e5"
-    },
-    "title": "'Can' and 'Could' Requests: Short Answer Responses",
-    "instructions": "Escribe la 'short answer' (respuesta corta).",
-    "translation": "No, no puedes",
-    "theoryId": "a1.10.Could_For_Polite_Requests",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.03.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: Can I drive your car? B: No,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "you can't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: Can I drive your car? B: No, you can't."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534251d"
-    },
-    "id": "67fab6d5993010229534251d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e5"
-    },
-    "title": "'Can' and 'Could' Requests: Short Answer Responses",
-    "instructions": "Escribe la 'short answer' (respuesta corta).",
-    "translation": "No, no puedes",
-    "theoryId": "a1.10.Could_For_Polite_Requests",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.03.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: Could I have your car? B: No,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "you can't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: Could I have your car? B: No, you can't."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534251e"
-    },
-    "id": "67fab6d5993010229534251e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3e5"
-    },
-    "title": "'Can' and 'Could' Requests: Short Answer Responses",
-    "instructions": "Escribe la 'short answer' (respuesta corta).",
-    "translation": "No, no puedes",
-    "theoryId": "a1.10.Could_For_Polite_Requests",
-    "topicName": "Modal Verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.10.03.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: Could I drive your car? B: No,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "you can't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: Could I drive your car? B: No, you can't."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Can you do me a favor? B: No,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I can't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Can you do me a favor? B: No, I can't." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534250c"
+  },
+  "id" : "67fab6d5993010229534250c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e5"
+  },
+  "title" : "'Can' and 'Could' Requests: Short Answer Responses",
+  "instructions" : "Escribe la 'short answer' (respuesta corta).",
+  "translation" : "Sí, puedo",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Can you join us tonight? B: Yes,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I can" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Can you join us tonight? B: Yes, I can." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534250d"
+  },
+  "id" : "67fab6d5993010229534250d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e5"
+  },
+  "title" : "'Can' and 'Could' Requests: Short Answer Responses",
+  "instructions" : "Escribe la 'short answer' (respuesta corta).",
+  "translation" : "Sí, puedo",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Could you do me a favor? B: Yes,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I can" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Could you do me a favor? B: Yes, I can." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534250e"
+  },
+  "id" : "67fab6d5993010229534250e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e5"
+  },
+  "title" : "'Can' and 'Could' Requests: Short Answer Responses",
+  "instructions" : "Escribe la 'short answer' (respuesta corta).",
+  "translation" : "No, no puedo",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Could you join us tonight? B: No,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I can't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Could you join us tonight? B: No, I can't." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534250f"
+  },
+  "id" : "67fab6d5993010229534250f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e5"
+  },
+  "title" : "'Can' and 'Could' Requests: Short Answer Responses",
+  "instructions" : "Escribe la 'short answer' (respuesta corta).",
+  "translation" : "Sí, puedes",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Can I sit there? B: Yes,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "you can" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Can I sit there? B: Yes, you can." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342510"
+  },
+  "id" : "67fab6d59930102295342510",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e5"
+  },
+  "title" : "'Can' and 'Could' Requests: Short Answer Responses",
+  "instructions" : "Escribe la 'short answer' (respuesta corta).",
+  "translation" : "Sí, puedo",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Could you take out the trash? B: Yes,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I can" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Could you take out the trash? B: Yes, I can." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342511"
+  },
+  "id" : "67fab6d59930102295342511",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e5"
+  },
+  "title" : "'Can' and 'Could' Requests: Short Answer Responses",
+  "instructions" : "Escribe la 'short answer' (respuesta corta).",
+  "translation" : "No, no puedes",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Could I have a cookie? B: No,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "you can't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Could I have a cookie? B: No, you can't." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342512"
+  },
+  "id" : "67fab6d59930102295342512",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e5"
+  },
+  "title" : "'Can' and 'Could' Requests: Short Answer Responses",
+  "instructions" : "Escribe la 'short answer' (respuesta corta).",
+  "translation" : "Sí, puedes",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Could I sit there? B: Yes,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "you can" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Could I sit there? B: Yes, you can." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342513"
+  },
+  "id" : "67fab6d59930102295342513",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e5"
+  },
+  "title" : "'Can' and 'Could' Requests: Short Answer Responses",
+  "instructions" : "Escribe la 'short answer' (respuesta corta).",
+  "translation" : "No, no puedes",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Can I have your apple? B: No,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "you can't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Can I have your apple? B: No, you can't." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342514"
+  },
+  "id" : "67fab6d59930102295342514",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e5"
+  },
+  "title" : "'Can' and 'Could' Requests: Short Answer Responses",
+  "instructions" : "Escribe la 'short answer' (respuesta corta).",
+  "translation" : "Sí, puedes",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Could I have some tea? B: Yes,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "you can" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Could I have some tea? B: Yes, you can." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342515"
+  },
+  "id" : "67fab6d59930102295342515",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e5"
+  },
+  "title" : "'Can' and 'Could' Requests: Short Answer Responses",
+  "instructions" : "Escribe la 'short answer' (respuesta corta).",
+  "translation" : "Sí, puedes",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Can I have your apple? B: Yes,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "you can" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Can I have your apple? B: Yes, you can." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342516"
+  },
+  "id" : "67fab6d59930102295342516",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e5"
+  },
+  "title" : "'Can' and 'Could' Requests: Short Answer Responses",
+  "instructions" : "Escribe la 'short answer' (respuesta corta).",
+  "translation" : "No, no puedo",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Can you grab me a bottle of water? B: No,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I can't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Can you grab me a bottle of water? B: No, I can't." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342517"
+  },
+  "id" : "67fab6d59930102295342517",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e5"
+  },
+  "title" : "'Can' and 'Could' Requests: Short Answer Responses",
+  "instructions" : "Escribe la 'short answer' (respuesta corta).",
+  "translation" : "No, no puedo",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Could you order some pizza? B: No,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I can't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Could you order some pizza? B: No, I can't." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342518"
+  },
+  "id" : "67fab6d59930102295342518",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e5"
+  },
+  "title" : "'Can' and 'Could' Requests: Short Answer Responses",
+  "instructions" : "Escribe la 'short answer' (respuesta corta).",
+  "translation" : "Sí, puedo",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Can you order some pizza? B: Yes,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I can" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Can you order some pizza? B: Yes, I can." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342519"
+  },
+  "id" : "67fab6d59930102295342519",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e5"
+  },
+  "title" : "'Can' and 'Could' Requests: Short Answer Responses",
+  "instructions" : "Escribe la 'short answer' (respuesta corta).",
+  "translation" : "No, no puedo",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Can you take out the trash? B: No,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I can't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Can you take out the trash? B: No, I can't." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534251a"
+  },
+  "id" : "67fab6d5993010229534251a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e5"
+  },
+  "title" : "'Can' and 'Could' Requests: Short Answer Responses",
+  "instructions" : "Escribe la 'short answer' (respuesta corta).",
+  "translation" : "Sí, puedo",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Could you grab me a bottle of water? B: Yes,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I can" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Could you grab me a bottle of water? B: Yes, I can." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534251b"
+  },
+  "id" : "67fab6d5993010229534251b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e5"
+  },
+  "title" : "'Can' and 'Could' Requests: Short Answer Responses",
+  "instructions" : "Escribe la 'short answer' (respuesta corta).",
+  "translation" : "Sí, puedes",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Can I have some tea? B: Yes,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "you can" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Can I have some tea? B: Yes, you can." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534251c"
+  },
+  "id" : "67fab6d5993010229534251c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e5"
+  },
+  "title" : "'Can' and 'Could' Requests: Short Answer Responses",
+  "instructions" : "Escribe la 'short answer' (respuesta corta).",
+  "translation" : "No, no puedes",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Can I drive your car? B: No,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "you can't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Can I drive your car? B: No, you can't." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534251d"
+  },
+  "id" : "67fab6d5993010229534251d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e5"
+  },
+  "title" : "'Can' and 'Could' Requests: Short Answer Responses",
+  "instructions" : "Escribe la 'short answer' (respuesta corta).",
+  "translation" : "No, no puedes",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Could I have your car? B: No,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "you can't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Could I have your car? B: No, you can't." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534251e"
+  },
+  "id" : "67fab6d5993010229534251e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e5"
+  },
+  "title" : "'Can' and 'Could' Requests: Short Answer Responses",
+  "instructions" : "Escribe la 'short answer' (respuesta corta).",
+  "translation" : "No, no puedes",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.10.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Could I drive your car? B: No,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "you can't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Could I drive your car? B: No, you can't." ]
+  }
+} ]

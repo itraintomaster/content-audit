@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953440c7"
-    },
-    "id": "67fab6d599301022953440c7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41e"
-    },
-    "title": "Question Tags Practice 2",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "translation": "Estabas comiendo, ¿no es así?",
-    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
-    "topicName": "Negatives and questions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.04.03.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "You were eating,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "weren't you"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "You were eating, weren't you?"
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d599301022953440c7"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953440c8"
-    },
-    "id": "67fab6d599301022953440c8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41e"
-    },
-    "title": "Question Tags Practice 2",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "translation": "No llegarás temprano, ¿verdad?",
-    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
-    "topicName": "Negatives and questions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.04.03.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "You won't be early,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will you"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "You won't be early, will you?"
-      ]
-    }
+  "id" : "67fab6d599301022953440c7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41e"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953440c9"
-    },
-    "id": "67fab6d599301022953440c9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41e"
-    },
-    "title": "Question Tags Practice 2",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "translation": "Tienen calor, ¿no?",
-    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
-    "topicName": "Negatives and questions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.04.03.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They are hot,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "aren't they"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They are hot, aren't they?"
-      ]
-    }
+  "title" : "Question Tags Practice 2",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Estabas comiendo, ¿no es así?",
+  "theoryId" : "b2.04.Inversion_After_Negative_Adverbs",
+  "topicName" : "Negatives and questions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953440ca"
-    },
-    "id": "67fab6d599301022953440ca",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41e"
-    },
-    "title": "Question Tags Practice 2",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "translation": "Él no estará jugando tenis, ¿verdad?",
-    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
-    "topicName": "Negatives and questions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.04.03.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He won't be playing tennis,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will he"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He won't be playing tennis, will he?"
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953440cb"
-    },
-    "id": "67fab6d599301022953440cb",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41e"
-    },
-    "title": "Question Tags Practice 2",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "translation": "Nosotros habremos comido todo para el almuerzo, ¿no?",
-    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
-    "topicName": "Negatives and questions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.04.03.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We'll have eaten everything by lunch,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "won't we"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We'll have eaten everything by lunch, won't we?"
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953440cc"
-    },
-    "id": "67fab6d599301022953440cc",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41e"
-    },
-    "title": "Question Tags Practice 2",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "translation": "Él va a reprobar el examen, ¿no es así?",
-    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
-    "topicName": "Negatives and questions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.04.03.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He's going to fail the exam,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "isn't he"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He's going to fail the exam, isn't he?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953440cd"
-    },
-    "id": "67fab6d599301022953440cd",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41e"
-    },
-    "title": "Question Tags Practice 2",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "translation": "No habrás conocido a Mary para entonces, ¿verdad?",
-    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
-    "topicName": "Negatives and questions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.04.03.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "You won't have met Mary by then,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will you"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "You won't have met Mary by then, will you?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953440ce"
-    },
-    "id": "67fab6d599301022953440ce",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41e"
-    },
-    "title": "Question Tags Practice 2",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "translation": "No está nevando, ¿verdad?",
-    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
-    "topicName": "Negatives and questions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.04.03.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "It isn't snowing,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "is it"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "It isn't snowing, is it?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953440cf"
-    },
-    "id": "67fab6d599301022953440cf",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41e"
-    },
-    "title": "Question Tags Practice 2",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "translation": "Ella llegará tarde, ¿no?",
-    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
-    "topicName": "Negatives and questions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.04.03.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She'll be late,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "won't she"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She'll be late, won't she?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953440d0"
-    },
-    "id": "67fab6d599301022953440d0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41e"
-    },
-    "title": "Question Tags Practice 2",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "translation": "Has estado riendo, ¿no?",
-    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
-    "topicName": "Negatives and questions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.04.03.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "You've been laughing,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "haven't you"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "You've been laughing, haven't you?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953440d1"
-    },
-    "id": "67fab6d599301022953440d1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41e"
-    },
-    "title": "Question Tags Practice 2",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "translation": "Vendrán a la fiesta la semana que viene, ¿no?",
-    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
-    "topicName": "Negatives and questions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.04.03.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They'll come to the party next week,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "won't they"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They'll come to the party next week, won't they?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953440d2"
-    },
-    "id": "67fab6d599301022953440d2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41e"
-    },
-    "title": "Question Tags Practice 2",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "translation": "Ella ha estado nadando, ¿no?",
-    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
-    "topicName": "Negatives and questions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.04.03.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She's been swimming,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "hasn't she"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She's been swimming, hasn't she?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953440d3"
-    },
-    "id": "67fab6d599301022953440d3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41e"
-    },
-    "title": "Question Tags Practice 2",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "translation": "Ella quiere té, ¿no?",
-    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
-    "topicName": "Negatives and questions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.04.03.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She wants tea,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "doesn't she"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She wants tea, doesn't she?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953440d4"
-    },
-    "id": "67fab6d599301022953440d4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41e"
-    },
-    "title": "Question Tags Practice 2",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "translation": "Ella no habrá leído su libro antes de acostarse, ¿verdad?",
-    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
-    "topicName": "Negatives and questions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.04.03.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She won't have read her book before bed,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will she"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She won't have read her book before bed, will she?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953440d5"
-    },
-    "id": "67fab6d599301022953440d5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41e"
-    },
-    "title": "Question Tags Practice 2",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "translation": "Él odia las cebollas, ¿no?",
-    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
-    "topicName": "Negatives and questions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.04.03.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He hates onions,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "doesn't he"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He hates onions, doesn't he?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953440d6"
-    },
-    "id": "67fab6d599301022953440d6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41e"
-    },
-    "title": "Question Tags Practice 2",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "translation": "Ella no bebe vino, ¿verdad?",
-    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
-    "topicName": "Negatives and questions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.04.03.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She doesn't drink wine,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "does she"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She doesn't drink wine, does she?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953440d7"
-    },
-    "id": "67fab6d599301022953440d7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41e"
-    },
-    "title": "Question Tags Practice 2",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "translation": "Él habrá estado caminando, ¿no?",
-    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
-    "topicName": "Negatives and questions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.04.03.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He'll have been walking,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "won't he"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He'll have been walking, won't he?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953440d8"
-    },
-    "id": "67fab6d599301022953440d8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41e"
-    },
-    "title": "Question Tags Practice 2",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "translation": "Ella se quedará en una tienda de campaña, ¿no?",
-    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
-    "topicName": "Negatives and questions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.04.03.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She'll be staying in a tent,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "won't she"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She'll be staying in a tent, won't she?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953440d9"
-    },
-    "id": "67fab6d599301022953440d9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41e"
-    },
-    "title": "Question Tags Practice 2",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "translation": "Ellos estarán comiendo entonces, ¿no?",
-    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
-    "topicName": "Negatives and questions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.04.03.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They will be eating then,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "won't they"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They will be eating then, won't they?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953440da"
-    },
-    "id": "67fab6d599301022953440da",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d41e"
-    },
-    "title": "Question Tags Practice 2",
-    "instructions": "Añade un 'question tag' a la oración.",
-    "translation": "Ellos no habrán estado estudiando matemáticas, ¿verdad?",
-    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
-    "topicName": "Negatives and questions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.04.03.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They won't have been studying maths,",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will they"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They won't have been studying maths, will they?"
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.04.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You were eating,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "weren't you" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "You were eating, weren't you?" ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953440c8"
+  },
+  "id" : "67fab6d599301022953440c8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41e"
+  },
+  "title" : "Question Tags Practice 2",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "No llegarás temprano, ¿verdad?",
+  "theoryId" : "b2.04.Inversion_After_Negative_Adverbs",
+  "topicName" : "Negatives and questions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.04.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You won't be early,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will you" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "You won't be early, will you?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953440c9"
+  },
+  "id" : "67fab6d599301022953440c9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41e"
+  },
+  "title" : "Question Tags Practice 2",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Tienen calor, ¿no?",
+  "theoryId" : "b2.04.Inversion_After_Negative_Adverbs",
+  "topicName" : "Negatives and questions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.04.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They are hot,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "aren't they" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "They are hot, aren't they?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953440ca"
+  },
+  "id" : "67fab6d599301022953440ca",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41e"
+  },
+  "title" : "Question Tags Practice 2",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Él no estará jugando tenis, ¿verdad?",
+  "theoryId" : "b2.04.Inversion_After_Negative_Adverbs",
+  "topicName" : "Negatives and questions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.04.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He won't be playing tennis,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will he" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "He won't be playing tennis, will he?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953440cb"
+  },
+  "id" : "67fab6d599301022953440cb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41e"
+  },
+  "title" : "Question Tags Practice 2",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Nosotros habremos comido todo para el almuerzo, ¿no?",
+  "theoryId" : "b2.04.Inversion_After_Negative_Adverbs",
+  "topicName" : "Negatives and questions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.04.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We'll have eaten everything by lunch,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "won't we" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "We'll have eaten everything by lunch, won't we?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953440cc"
+  },
+  "id" : "67fab6d599301022953440cc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41e"
+  },
+  "title" : "Question Tags Practice 2",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Él va a reprobar el examen, ¿no es así?",
+  "theoryId" : "b2.04.Inversion_After_Negative_Adverbs",
+  "topicName" : "Negatives and questions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.04.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's going to fail the exam,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "isn't he" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "He's going to fail the exam, isn't he?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953440cd"
+  },
+  "id" : "67fab6d599301022953440cd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41e"
+  },
+  "title" : "Question Tags Practice 2",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "No habrás conocido a Mary para entonces, ¿verdad?",
+  "theoryId" : "b2.04.Inversion_After_Negative_Adverbs",
+  "topicName" : "Negatives and questions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.04.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You won't have met Mary by then,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will you" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "You won't have met Mary by then, will you?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953440ce"
+  },
+  "id" : "67fab6d599301022953440ce",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41e"
+  },
+  "title" : "Question Tags Practice 2",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "No está nevando, ¿verdad?",
+  "theoryId" : "b2.04.Inversion_After_Negative_Adverbs",
+  "topicName" : "Negatives and questions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.04.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It isn't snowing,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is it" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "It isn't snowing, is it?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953440cf"
+  },
+  "id" : "67fab6d599301022953440cf",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41e"
+  },
+  "title" : "Question Tags Practice 2",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Ella llegará tarde, ¿no?",
+  "theoryId" : "b2.04.Inversion_After_Negative_Adverbs",
+  "topicName" : "Negatives and questions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.04.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She'll be late,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "won't she" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "She'll be late, won't she?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953440d0"
+  },
+  "id" : "67fab6d599301022953440d0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41e"
+  },
+  "title" : "Question Tags Practice 2",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Has estado riendo, ¿no?",
+  "theoryId" : "b2.04.Inversion_After_Negative_Adverbs",
+  "topicName" : "Negatives and questions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.04.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You've been laughing,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "haven't you" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "You've been laughing, haven't you?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953440d1"
+  },
+  "id" : "67fab6d599301022953440d1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41e"
+  },
+  "title" : "Question Tags Practice 2",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Vendrán a la fiesta la semana que viene, ¿no?",
+  "theoryId" : "b2.04.Inversion_After_Negative_Adverbs",
+  "topicName" : "Negatives and questions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.04.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They'll come to the party next week,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "won't they" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "They'll come to the party next week, won't they?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953440d2"
+  },
+  "id" : "67fab6d599301022953440d2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41e"
+  },
+  "title" : "Question Tags Practice 2",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Ella ha estado nadando, ¿no?",
+  "theoryId" : "b2.04.Inversion_After_Negative_Adverbs",
+  "topicName" : "Negatives and questions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.04.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's been swimming,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "hasn't she" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "She's been swimming, hasn't she?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953440d3"
+  },
+  "id" : "67fab6d599301022953440d3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41e"
+  },
+  "title" : "Question Tags Practice 2",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Ella quiere té, ¿no?",
+  "theoryId" : "b2.04.Inversion_After_Negative_Adverbs",
+  "topicName" : "Negatives and questions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.04.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She wants tea,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "doesn't she" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "She wants tea, doesn't she?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953440d4"
+  },
+  "id" : "67fab6d599301022953440d4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41e"
+  },
+  "title" : "Question Tags Practice 2",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Ella no habrá leído su libro antes de acostarse, ¿verdad?",
+  "theoryId" : "b2.04.Inversion_After_Negative_Adverbs",
+  "topicName" : "Negatives and questions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.04.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She won't have read her book before bed,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will she" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "She won't have read her book before bed, will she?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953440d5"
+  },
+  "id" : "67fab6d599301022953440d5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41e"
+  },
+  "title" : "Question Tags Practice 2",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Él odia las cebollas, ¿no?",
+  "theoryId" : "b2.04.Inversion_After_Negative_Adverbs",
+  "topicName" : "Negatives and questions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.04.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He hates onions,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "doesn't he" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "He hates onions, doesn't he?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953440d6"
+  },
+  "id" : "67fab6d599301022953440d6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41e"
+  },
+  "title" : "Question Tags Practice 2",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Ella no bebe vino, ¿verdad?",
+  "theoryId" : "b2.04.Inversion_After_Negative_Adverbs",
+  "topicName" : "Negatives and questions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.04.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She doesn't drink wine,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "does she" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "She doesn't drink wine, does she?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953440d7"
+  },
+  "id" : "67fab6d599301022953440d7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41e"
+  },
+  "title" : "Question Tags Practice 2",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Él habrá estado caminando, ¿no?",
+  "theoryId" : "b2.04.Inversion_After_Negative_Adverbs",
+  "topicName" : "Negatives and questions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.04.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He'll have been walking,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "won't he" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "He'll have been walking, won't he?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953440d8"
+  },
+  "id" : "67fab6d599301022953440d8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41e"
+  },
+  "title" : "Question Tags Practice 2",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Ella se quedará en una tienda de campaña, ¿no?",
+  "theoryId" : "b2.04.Inversion_After_Negative_Adverbs",
+  "topicName" : "Negatives and questions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.04.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She'll be staying in a tent,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "won't she" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "She'll be staying in a tent, won't she?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953440d9"
+  },
+  "id" : "67fab6d599301022953440d9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41e"
+  },
+  "title" : "Question Tags Practice 2",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Ellos estarán comiendo entonces, ¿no?",
+  "theoryId" : "b2.04.Inversion_After_Negative_Adverbs",
+  "topicName" : "Negatives and questions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.04.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They will be eating then,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "won't they" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "They will be eating then, won't they?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953440da"
+  },
+  "id" : "67fab6d599301022953440da",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d41e"
+  },
+  "title" : "Question Tags Practice 2",
+  "instructions" : "Añade un 'question tag' a la oración.",
+  "translation" : "Ellos no habrán estado estudiando matemáticas, ¿verdad?",
+  "theoryId" : "b2.04.Inversion_After_Negative_Adverbs",
+  "topicName" : "Negatives and questions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.04.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They won't have been studying maths,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will they" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "They won't have been studying maths, will they?" ]
+  }
+} ]

@@ -10,5 +10,6 @@
   "parentId" : {
     "$oid" : "6814dafa7d73e7209a13d31c"
   },
-  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'."
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Cambia el 'modal verb' si es necesario. Comienza con 'John said that'.",
+  "sentenceMode" : "REWRITE"
 }

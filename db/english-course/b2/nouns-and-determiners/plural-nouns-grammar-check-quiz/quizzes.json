@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953441f3"
-    },
-    "id": "67fab6d599301022953441f3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d42f"
-    },
-    "title": "Plural Nouns Grammar Check Quiz",
-    "instructions": "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
-    "translation": "¿Estos son tus auriculares? Correcto.",
-    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
-    "topicName": "Nouns and determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.06.01.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Are these your headphones?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "correct"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Are these your headphones? correct"
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441f3"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953441f4"
-    },
-    "id": "67fab6d599301022953441f4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d42f"
-    },
-    "title": "Plural Nouns Grammar Check Quiz",
-    "instructions": "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
-    "translation": "Él empacó tres equipajes en la maleta. Incorrecto.",
-    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
-    "topicName": "Nouns and determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.06.01.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He packed three baggage in the suitcase.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "not correct"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He packed three baggage in the suitcase. not correct"
-      ]
-    }
+  "id" : "67fab6d599301022953441f3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d42f"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953441f5"
-    },
-    "id": "67fab6d599301022953441f5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d42f"
-    },
-    "title": "Plural Nouns Grammar Check Quiz",
-    "instructions": "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
-    "translation": "¡Admiro esos pantalones! Correcto.",
-    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
-    "topicName": "Nouns and determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.06.01.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I admire those pants!",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "correct"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I admire those pants! correct"
-      ]
-    }
+  "title" : "Plural Nouns Grammar Check Quiz",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
+  "translation" : "¿Estos son tus auriculares? Correcto.",
+  "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+  "topicName" : "Nouns and determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953441f6"
-    },
-    "id": "67fab6d599301022953441f6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d42f"
-    },
-    "title": "Plural Nouns Grammar Check Quiz",
-    "instructions": "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
-    "translation": "Ella posee varias gafas. Incorrecto.",
-    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
-    "topicName": "Nouns and determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.06.01.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She owns several spectacles.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "not correct"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She owns several spectacles. not correct"
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953441f7"
-    },
-    "id": "67fab6d599301022953441f7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d42f"
-    },
-    "title": "Plural Nouns Grammar Check Quiz",
-    "instructions": "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
-    "translation": "Sus pantalones son azules. Incorrecto.",
-    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
-    "topicName": "Nouns and determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.06.01.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "His pants is blue.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "not correct"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "His pants is blue. not correct"
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953441f8"
-    },
-    "id": "67fab6d599301022953441f8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d42f"
-    },
-    "title": "Plural Nouns Grammar Check Quiz",
-    "instructions": "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
-    "translation": "¿Te gustaría este pijama? Incorrecto.",
-    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
-    "topicName": "Nouns and determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.06.01.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Would you like this pajamas?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "not correct"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Would you like this pajamas? not correct"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953441f9"
-    },
-    "id": "67fab6d599301022953441f9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d42f"
-    },
-    "title": "Plural Nouns Grammar Check Quiz",
-    "instructions": "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
-    "translation": "¿De quién son estos binoculares? Correcto.",
-    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
-    "topicName": "Nouns and determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.06.01.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Whose are these binoculars?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "correct"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Whose are these binoculars? correct"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953441fa"
-    },
-    "id": "67fab6d599301022953441fa",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d42f"
-    },
-    "title": "Plural Nouns Grammar Check Quiz",
-    "instructions": "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
-    "translation": "Ella necesita un nuevo par de mallas. Correcto.",
-    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
-    "topicName": "Nouns and determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.06.01.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She needs a new pair of tights.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "correct"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She needs a new pair of tights. correct"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953441fb"
-    },
-    "id": "67fab6d599301022953441fb",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d42f"
-    },
-    "title": "Plural Nouns Grammar Check Quiz",
-    "instructions": "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
-    "translation": "El niño pequeño usaba un overol. Incorrecto.",
-    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
-    "topicName": "Nouns and determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.06.01.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The toddler wore a dungarees.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "not correct"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The toddler wore a dungarees. not correct"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953441fc"
-    },
-    "id": "67fab6d599301022953441fc",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d42f"
-    },
-    "title": "Plural Nouns Grammar Check Quiz",
-    "instructions": "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
-    "translation": "Estas pertenencias deben ser empacadas. Correcto.",
-    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
-    "topicName": "Nouns and determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.06.01.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "These belongings need to be packed.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "correct"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "These belongings need to be packed. correct"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953441fd"
-    },
-    "id": "67fab6d599301022953441fd",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d42f"
-    },
-    "title": "Plural Nouns Grammar Check Quiz",
-    "instructions": "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
-    "translation": "El hombre tenía puestos unos pantalones y una chaqueta. Incorrecto.",
-    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
-    "topicName": "Nouns and determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.06.01.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The man had a breeches and a jacket on.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "not correct"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The man had a breeches and a jacket on. not correct"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953441fe"
-    },
-    "id": "67fab6d599301022953441fe",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d42f"
-    },
-    "title": "Plural Nouns Grammar Check Quiz",
-    "instructions": "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
-    "translation": "Las pinzas están en el botiquín. Correcto.",
-    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
-    "topicName": "Nouns and determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.06.01.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The tweezers are in the first-aid kit.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "correct"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The tweezers are in the first-aid kit. correct"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953441ff"
-    },
-    "id": "67fab6d599301022953441ff",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d42f"
-    },
-    "title": "Plural Nouns Grammar Check Quiz",
-    "instructions": "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
-    "translation": "Tus bragas son elegantes. Correcto.",
-    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
-    "topicName": "Nouns and determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.06.01.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Your knickers are stylish.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "correct"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Your knickers are stylish. correct"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344200"
-    },
-    "id": "67fab6d59930102295344200",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d42f"
-    },
-    "title": "Plural Nouns Grammar Check Quiz",
-    "instructions": "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
-    "translation": "Las gafas estaban limpias. Incorrecto.",
-    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
-    "topicName": "Nouns and determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.06.01.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The glasses was clean.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "not correct"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The glasses was clean. not correct"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344201"
-    },
-    "id": "67fab6d59930102295344201",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d42f"
-    },
-    "title": "Plural Nouns Grammar Check Quiz",
-    "instructions": "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
-    "translation": "Necesito un nuevo par de overoles. Correcto.",
-    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
-    "topicName": "Nouns and determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.06.01.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I need a new pair of dungarees.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "correct"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I need a new pair of dungarees. correct"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344202"
-    },
-    "id": "67fab6d59930102295344202",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d42f"
-    },
-    "title": "Plural Nouns Grammar Check Quiz",
-    "instructions": "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
-    "translation": "Trae dos calzoncillos contigo. Incorrecto.",
-    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
-    "topicName": "Nouns and determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.06.01.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Bring two briefs with you.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "not correct"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Bring two briefs with you. not correct"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344203"
-    },
-    "id": "67fab6d59930102295344203",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d42f"
-    },
-    "title": "Plural Nouns Grammar Check Quiz",
-    "instructions": "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
-    "translation": "¿Tienes un quevedo para leer? Incorrecto.",
-    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
-    "topicName": "Nouns and determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.06.01.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Do you have a pince-nez for reading?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "not correct"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Do you have a pince-nez for reading? not correct"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344204"
-    },
-    "id": "67fab6d59930102295344204",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d42f"
-    },
-    "title": "Plural Nouns Grammar Check Quiz",
-    "instructions": "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
-    "translation": "Necesito dos juegos de calzoncillos largos. Correcto.",
-    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
-    "topicName": "Nouns and determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.06.01.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I require two sets of long johns.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "correct"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I require two sets of long johns. correct"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344205"
-    },
-    "id": "67fab6d59930102295344205",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d42f"
-    },
-    "title": "Plural Nouns Grammar Check Quiz",
-    "instructions": "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
-    "translation": "Dame esas tenazas, por favor. Incorrecto.",
-    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
-    "topicName": "Nouns and determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.06.01.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Give me that tongs, please.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "not correct"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Give me that tongs, please. not correct"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344206"
-    },
-    "id": "67fab6d59930102295344206",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d42f"
-    },
-    "title": "Plural Nouns Grammar Check Quiz",
-    "instructions": "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
-    "translation": "Esos son unos pantalones maravillosos. Correcto.",
-    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
-    "topicName": "Nouns and determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.06.01.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Those are wonderful breeches.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "correct"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Those are wonderful breeches. correct"
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are these your headphones?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Are these your headphones? correct" ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441f4"
+  },
+  "id" : "67fab6d599301022953441f4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d42f"
+  },
+  "title" : "Plural Nouns Grammar Check Quiz",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
+  "translation" : "Él empacó tres equipajes en la maleta. Incorrecto.",
+  "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+  "topicName" : "Nouns and determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He packed three baggage in the suitcase.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "not correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He packed three baggage in the suitcase. not correct" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441f5"
+  },
+  "id" : "67fab6d599301022953441f5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d42f"
+  },
+  "title" : "Plural Nouns Grammar Check Quiz",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
+  "translation" : "¡Admiro esos pantalones! Correcto.",
+  "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+  "topicName" : "Nouns and determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I admire those pants!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I admire those pants! correct" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441f6"
+  },
+  "id" : "67fab6d599301022953441f6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d42f"
+  },
+  "title" : "Plural Nouns Grammar Check Quiz",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
+  "translation" : "Ella posee varias gafas. Incorrecto.",
+  "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+  "topicName" : "Nouns and determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She owns several spectacles.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "not correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She owns several spectacles. not correct" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441f7"
+  },
+  "id" : "67fab6d599301022953441f7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d42f"
+  },
+  "title" : "Plural Nouns Grammar Check Quiz",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
+  "translation" : "Sus pantalones son azules. Incorrecto.",
+  "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+  "topicName" : "Nouns and determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "His pants is blue.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "not correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "His pants is blue. not correct" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441f8"
+  },
+  "id" : "67fab6d599301022953441f8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d42f"
+  },
+  "title" : "Plural Nouns Grammar Check Quiz",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
+  "translation" : "¿Te gustaría este pijama? Incorrecto.",
+  "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+  "topicName" : "Nouns and determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Would you like this pajamas?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "not correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Would you like this pajamas? not correct" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441f9"
+  },
+  "id" : "67fab6d599301022953441f9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d42f"
+  },
+  "title" : "Plural Nouns Grammar Check Quiz",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
+  "translation" : "¿De quién son estos binoculares? Correcto.",
+  "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+  "topicName" : "Nouns and determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Whose are these binoculars?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Whose are these binoculars? correct" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441fa"
+  },
+  "id" : "67fab6d599301022953441fa",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d42f"
+  },
+  "title" : "Plural Nouns Grammar Check Quiz",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
+  "translation" : "Ella necesita un nuevo par de mallas. Correcto.",
+  "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+  "topicName" : "Nouns and determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She needs a new pair of tights.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She needs a new pair of tights. correct" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441fb"
+  },
+  "id" : "67fab6d599301022953441fb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d42f"
+  },
+  "title" : "Plural Nouns Grammar Check Quiz",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
+  "translation" : "El niño pequeño usaba un overol. Incorrecto.",
+  "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+  "topicName" : "Nouns and determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The toddler wore a dungarees.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "not correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The toddler wore a dungarees. not correct" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441fc"
+  },
+  "id" : "67fab6d599301022953441fc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d42f"
+  },
+  "title" : "Plural Nouns Grammar Check Quiz",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
+  "translation" : "Estas pertenencias deben ser empacadas. Correcto.",
+  "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+  "topicName" : "Nouns and determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "These belongings need to be packed.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "These belongings need to be packed. correct" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441fd"
+  },
+  "id" : "67fab6d599301022953441fd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d42f"
+  },
+  "title" : "Plural Nouns Grammar Check Quiz",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
+  "translation" : "El hombre tenía puestos unos pantalones y una chaqueta. Incorrecto.",
+  "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+  "topicName" : "Nouns and determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The man had a breeches and a jacket on.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "not correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The man had a breeches and a jacket on. not correct" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441fe"
+  },
+  "id" : "67fab6d599301022953441fe",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d42f"
+  },
+  "title" : "Plural Nouns Grammar Check Quiz",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
+  "translation" : "Las pinzas están en el botiquín. Correcto.",
+  "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+  "topicName" : "Nouns and determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The tweezers are in the first-aid kit.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The tweezers are in the first-aid kit. correct" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441ff"
+  },
+  "id" : "67fab6d599301022953441ff",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d42f"
+  },
+  "title" : "Plural Nouns Grammar Check Quiz",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
+  "translation" : "Tus bragas son elegantes. Correcto.",
+  "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+  "topicName" : "Nouns and determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Your knickers are stylish.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Your knickers are stylish. correct" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344200"
+  },
+  "id" : "67fab6d59930102295344200",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d42f"
+  },
+  "title" : "Plural Nouns Grammar Check Quiz",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
+  "translation" : "Las gafas estaban limpias. Incorrecto.",
+  "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+  "topicName" : "Nouns and determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The glasses was clean.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "not correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The glasses was clean. not correct" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344201"
+  },
+  "id" : "67fab6d59930102295344201",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d42f"
+  },
+  "title" : "Plural Nouns Grammar Check Quiz",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
+  "translation" : "Necesito un nuevo par de overoles. Correcto.",
+  "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+  "topicName" : "Nouns and determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I need a new pair of dungarees.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I need a new pair of dungarees. correct" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344202"
+  },
+  "id" : "67fab6d59930102295344202",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d42f"
+  },
+  "title" : "Plural Nouns Grammar Check Quiz",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
+  "translation" : "Trae dos calzoncillos contigo. Incorrecto.",
+  "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+  "topicName" : "Nouns and determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Bring two briefs with you.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "not correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Bring two briefs with you. not correct" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344203"
+  },
+  "id" : "67fab6d59930102295344203",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d42f"
+  },
+  "title" : "Plural Nouns Grammar Check Quiz",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
+  "translation" : "¿Tienes un quevedo para leer? Incorrecto.",
+  "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+  "topicName" : "Nouns and determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you have a pince-nez for reading?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "not correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Do you have a pince-nez for reading? not correct" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344204"
+  },
+  "id" : "67fab6d59930102295344204",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d42f"
+  },
+  "title" : "Plural Nouns Grammar Check Quiz",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
+  "translation" : "Necesito dos juegos de calzoncillos largos. Correcto.",
+  "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+  "topicName" : "Nouns and determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I require two sets of long johns.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I require two sets of long johns. correct" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344205"
+  },
+  "id" : "67fab6d59930102295344205",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d42f"
+  },
+  "title" : "Plural Nouns Grammar Check Quiz",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
+  "translation" : "Dame esas tenazas, por favor. Incorrecto.",
+  "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+  "topicName" : "Nouns and determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Give me that tongs, please.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "not correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Give me that tongs, please. not correct" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344206"
+  },
+  "id" : "67fab6d59930102295344206",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d42f"
+  },
+  "title" : "Plural Nouns Grammar Check Quiz",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'.",
+  "translation" : "Esos son unos pantalones maravillosos. Correcto.",
+  "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+  "topicName" : "Nouns and determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Those are wonderful breeches.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Those are wonderful breeches. correct" ]
+  }
+} ]

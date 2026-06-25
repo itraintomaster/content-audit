@@ -1,612 +1,521 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534246b"
-    },
-    "id": "67fab6d5993010229534246b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3db"
-    },
-    "title": "Using Before and After in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
-    "translation": "Ella almorzó antes de ir de compras.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.05.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She ate lunch before she went shopping.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She ate lunch before going shopping."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She ate lunch before going shopping."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534246b"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534246c"
-    },
-    "id": "67fab6d5993010229534246c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3db"
-    },
-    "title": "Using Before and After in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
-    "translation": "El perro ladró mucho después de ver al gato.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.05.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The dog barked a lot after it saw the cat.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The dog barked a lot after seeing the cat."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The dog barked a lot after seeing the cat."
-      ]
-    }
+  "id" : "67fab6d5993010229534246b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3db"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534246d"
-    },
-    "id": "67fab6d5993010229534246d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3db"
-    },
-    "title": "Using Before and After in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
-    "translation": "Él fue al bar después de salir del trabajo.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.05.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He went to the bar after he left work.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He went to the bar after leaving work."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He went to the bar after leaving work."
-      ]
-    }
+  "title" : "Using Before and After in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
+  "translation" : "Ella almorzó antes de ir de compras.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534246e"
-    },
-    "id": "67fab6d5993010229534246e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3db"
-    },
-    "title": "Using Before and After in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
-    "translation": "Ella cerró la puerta antes de salir de la casa.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.05.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She closed the door before she left the house.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She closed the door before leaving the house."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She closed the door before leaving the house."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534246f"
-    },
-    "id": "67fab6d5993010229534246f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3db"
-    },
-    "title": "Using Before and After in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
-    "translation": "Él se duchó antes de preparar el desayuno.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.05.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He had a shower before he made breakfast.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He had a shower before making breakfast."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He had a shower before making breakfast."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342470"
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.05.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
     },
-    "id": "67fab6d59930102295342470",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3db"
-    },
-    "title": "Using Before and After in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
-    "translation": "Ellos vieron la televisión antes de irse a dormir.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.05.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They watched TV before they went to sleep.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They watched TV before going to sleep."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They watched TV before going to sleep."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342471"
-    },
-    "id": "67fab6d59930102295342471",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3db"
-    },
-    "title": "Using Before and After in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
-    "translation": "Nosotros cantamos una canción antes de irnos a casa.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.05.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We sang a song before we went home.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "We sang a song before going home."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We sang a song before going home."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342472"
-    },
-    "id": "67fab6d59930102295342472",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3db"
-    },
-    "title": "Using Before and After in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
-    "translation": "Me sentí mucho mejor después de tomar la medicina.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.05.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I felt much better after I took the medicine.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I felt much better after taking the medicine."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I felt much better after taking the medicine."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342473"
-    },
-    "id": "67fab6d59930102295342473",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3db"
-    },
-    "title": "Using Before and After in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
-    "translation": "Sarah hizo su tarea después de comer un bocadillo.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.05.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Sarah did her homework after she ate a snack.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Sarah did her homework after eating a snack."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Sarah did her homework after eating a snack."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342474"
-    },
-    "id": "67fab6d59930102295342474",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3db"
-    },
-    "title": "Using Before and After in Sentences",
-    "instructions": "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
-    "translation": "Ellos fueron al parque después de terminar sus tareas.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.05.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They went to the park after they finished their chores.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They went to the park after finishing their chores."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They went to the park after finishing their chores."
-      ]
-    }
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She ate lunch before she went shopping.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She ate lunch before going shopping." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She ate lunch before going shopping." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534246c"
+  },
+  "id" : "67fab6d5993010229534246c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3db"
+  },
+  "title" : "Using Before and After in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
+  "translation" : "El perro ladró mucho después de ver al gato.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.05.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dog barked a lot after it saw the cat.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The dog barked a lot after seeing the cat." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The dog barked a lot after seeing the cat." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534246d"
+  },
+  "id" : "67fab6d5993010229534246d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3db"
+  },
+  "title" : "Using Before and After in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
+  "translation" : "Él fue al bar después de salir del trabajo.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.05.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He went to the bar after he left work.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He went to the bar after leaving work." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He went to the bar after leaving work." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534246e"
+  },
+  "id" : "67fab6d5993010229534246e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3db"
+  },
+  "title" : "Using Before and After in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
+  "translation" : "Ella cerró la puerta antes de salir de la casa.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.05.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She closed the door before she left the house.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She closed the door before leaving the house." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She closed the door before leaving the house." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534246f"
+  },
+  "id" : "67fab6d5993010229534246f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3db"
+  },
+  "title" : "Using Before and After in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
+  "translation" : "Él se duchó antes de preparar el desayuno.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.05.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He had a shower before he made breakfast.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He had a shower before making breakfast." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He had a shower before making breakfast." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342470"
+  },
+  "id" : "67fab6d59930102295342470",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3db"
+  },
+  "title" : "Using Before and After in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
+  "translation" : "Ellos vieron la televisión antes de irse a dormir.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.05.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They watched TV before they went to sleep.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They watched TV before going to sleep." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They watched TV before going to sleep." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342471"
+  },
+  "id" : "67fab6d59930102295342471",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3db"
+  },
+  "title" : "Using Before and After in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
+  "translation" : "Nosotros cantamos una canción antes de irnos a casa.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.05.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We sang a song before we went home.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We sang a song before going home." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We sang a song before going home." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342472"
+  },
+  "id" : "67fab6d59930102295342472",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3db"
+  },
+  "title" : "Using Before and After in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
+  "translation" : "Me sentí mucho mejor después de tomar la medicina.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.05.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I felt much better after I took the medicine.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I felt much better after taking the medicine." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I felt much better after taking the medicine." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342473"
+  },
+  "id" : "67fab6d59930102295342473",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3db"
+  },
+  "title" : "Using Before and After in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
+  "translation" : "Sarah hizo su tarea después de comer un bocadillo.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.05.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Sarah did her homework after she ate a snack.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Sarah did her homework after eating a snack." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Sarah did her homework after eating a snack." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342474"
+  },
+  "id" : "67fab6d59930102295342474",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3db"
+  },
+  "title" : "Using Before and After in Sentences",
+  "instructions" : "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
+  "translation" : "Ellos fueron al parque después de terminar sus tareas.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.05.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They went to the park after they finished their chores.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They went to the park after finishing their chores." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They went to the park after finishing their chores." ]
+  }
+} ]

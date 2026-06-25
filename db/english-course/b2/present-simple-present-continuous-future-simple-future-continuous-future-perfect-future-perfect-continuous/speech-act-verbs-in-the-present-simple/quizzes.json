@@ -1,612 +1,521 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e01"
-    },
-    "id": "67fab6d59930102295343e01",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f7"
-    },
-    "title": "Speech Act Verbs in the Present Simple",
-    "instructions": "Crea una oración que realice la acción del verbo. Usa los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Usa 'promise' con 'to' y 'swear' con 'that'.",
-    "translation": "Prometo llamarte.",
-    "theoryId": "b2.01.Present_Simple_with_Speech_Act_Verbs",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.07.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "promise"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "to call you.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I promise to call you."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e01"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e02"
-    },
-    "id": "67fab6d59930102295343e02",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f7"
-    },
-    "title": "Speech Act Verbs in the Present Simple",
-    "instructions": "Crea una oración que realice la acción del verbo. Usa los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Usa 'promise' con 'to' y 'swear' con 'that'.",
-    "translation": "Me disculpo por reírme.",
-    "theoryId": "b2.01.Present_Simple_with_Speech_Act_Verbs",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.07.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "apologise"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "for laughing.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I apologise for laughing."
-      ]
-    }
+  "id" : "67fab6d59930102295343e01",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f7"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e03"
-    },
-    "id": "67fab6d59930102295343e03",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f7"
-    },
-    "title": "Speech Act Verbs in the Present Simple",
-    "instructions": "Crea una oración que realice la acción del verbo. Usa los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Usa 'promise' con 'to' y 'swear' con 'that'.",
-    "translation": "Exijo ver a Peter.",
-    "theoryId": "b2.01.Present_Simple_with_Speech_Act_Verbs",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.07.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "demand"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "to see Peter.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I demand to see Peter."
-      ]
-    }
+  "title" : "Speech Act Verbs in the Present Simple",
+  "instructions" : "Crea una oración que realice la acción del verbo. Usa los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Usa 'promise' con 'to' y 'swear' con 'that'.",
+  "translation" : "Prometo llamarte.",
+  "theoryId" : "b2.01.Present_Simple_with_Speech_Act_Verbs",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e04"
-    },
-    "id": "67fab6d59930102295343e04",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f7"
-    },
-    "title": "Speech Act Verbs in the Present Simple",
-    "instructions": "Crea una oración que realice la acción del verbo. Usa los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Usa 'promise' con 'to' y 'swear' con 'that'.",
-    "translation": "Juro que pagaré.",
-    "theoryId": "b2.01.Present_Simple_with_Speech_Act_Verbs",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.07.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "swear"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "that I will pay.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I swear that I will pay."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e05"
-    },
-    "id": "67fab6d59930102295343e05",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f7"
-    },
-    "title": "Speech Act Verbs in the Present Simple",
-    "instructions": "Crea una oración que realice la acción del verbo. Usa los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Usa 'promise' con 'to' y 'swear' con 'that'.",
-    "translation": "Te prohíbo comprar nada más.",
-    "theoryId": "b2.01.Present_Simple_with_Speech_Act_Verbs",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.07.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "forbid"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "you from buying anything else.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I forbid you from buying anything else."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e06"
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.07.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
     },
-    "id": "67fab6d59930102295343e06",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f7"
-    },
-    "title": "Speech Act Verbs in the Present Simple",
-    "instructions": "Crea una oración que realice la acción del verbo. Usa los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Usa 'promise' con 'to' y 'swear' con 'that'.",
-    "translation": "Exijo que regreses inmediatamente.",
-    "theoryId": "b2.01.Present_Simple_with_Speech_Act_Verbs",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.07.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "demand"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "that you return immediately.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I demand that you return immediately."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e07"
-    },
-    "id": "67fab6d59930102295343e07",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f7"
-    },
-    "title": "Speech Act Verbs in the Present Simple",
-    "instructions": "Crea una oración que realice la acción del verbo. Usa los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Usa 'promise' con 'to' y 'swear' con 'that'.",
-    "translation": "Me disculpo por el problema.",
-    "theoryId": "b2.01.Present_Simple_with_Speech_Act_Verbs",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.07.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "apologise"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "for the problem.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I apologise for the problem."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e08"
-    },
-    "id": "67fab6d59930102295343e08",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f7"
-    },
-    "title": "Speech Act Verbs in the Present Simple",
-    "instructions": "Crea una oración que realice la acción del verbo. Usa los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Usa 'promise' con 'to' y 'swear' con 'that'.",
-    "translation": "Te prohíbo entrar aquí.",
-    "theoryId": "b2.01.Present_Simple_with_Speech_Act_Verbs",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.07.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "forbid"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "you from entering here.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I forbid you from entering here."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e09"
-    },
-    "id": "67fab6d59930102295343e09",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f7"
-    },
-    "title": "Speech Act Verbs in the Present Simple",
-    "instructions": "Crea una oración que realice la acción del verbo. Usa los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Usa 'promise' con 'to' y 'swear' con 'that'.",
-    "translation": "Prometo llegar a tiempo.",
-    "theoryId": "b2.01.Present_Simple_with_Speech_Act_Verbs",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.07.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "promise"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "to be on time.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I promise to be on time."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e0a"
-    },
-    "id": "67fab6d59930102295343e0a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f7"
-    },
-    "title": "Speech Act Verbs in the Present Simple",
-    "instructions": "Crea una oración que realice la acción del verbo. Usa los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Usa 'promise' con 'to' y 'swear' con 'that'.",
-    "translation": "Juro que haré lo que desees.",
-    "theoryId": "b2.01.Present_Simple_with_Speech_Act_Verbs",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.07.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "swear"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "that I'll do as you wish.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I swear that I'll do as you wish."
-      ]
-    }
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "promise" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "to call you.",
+      "options" : null
+    } ],
+    "sentences" : [ "I promise to call you." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e02"
+  },
+  "id" : "67fab6d59930102295343e02",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f7"
+  },
+  "title" : "Speech Act Verbs in the Present Simple",
+  "instructions" : "Crea una oración que realice la acción del verbo. Usa los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Usa 'promise' con 'to' y 'swear' con 'that'.",
+  "translation" : "Me disculpo por reírme.",
+  "theoryId" : "b2.01.Present_Simple_with_Speech_Act_Verbs",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.07.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "apologise" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "for laughing.",
+      "options" : null
+    } ],
+    "sentences" : [ "I apologise for laughing." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e03"
+  },
+  "id" : "67fab6d59930102295343e03",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f7"
+  },
+  "title" : "Speech Act Verbs in the Present Simple",
+  "instructions" : "Crea una oración que realice la acción del verbo. Usa los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Usa 'promise' con 'to' y 'swear' con 'that'.",
+  "translation" : "Exijo ver a Peter.",
+  "theoryId" : "b2.01.Present_Simple_with_Speech_Act_Verbs",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.07.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "demand" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "to see Peter.",
+      "options" : null
+    } ],
+    "sentences" : [ "I demand to see Peter." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e04"
+  },
+  "id" : "67fab6d59930102295343e04",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f7"
+  },
+  "title" : "Speech Act Verbs in the Present Simple",
+  "instructions" : "Crea una oración que realice la acción del verbo. Usa los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Usa 'promise' con 'to' y 'swear' con 'that'.",
+  "translation" : "Juro que pagaré.",
+  "theoryId" : "b2.01.Present_Simple_with_Speech_Act_Verbs",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.07.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "swear" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "that I will pay.",
+      "options" : null
+    } ],
+    "sentences" : [ "I swear that I will pay." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e05"
+  },
+  "id" : "67fab6d59930102295343e05",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f7"
+  },
+  "title" : "Speech Act Verbs in the Present Simple",
+  "instructions" : "Crea una oración que realice la acción del verbo. Usa los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Usa 'promise' con 'to' y 'swear' con 'that'.",
+  "translation" : "Te prohíbo comprar nada más.",
+  "theoryId" : "b2.01.Present_Simple_with_Speech_Act_Verbs",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.07.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "forbid" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "you from buying anything else.",
+      "options" : null
+    } ],
+    "sentences" : [ "I forbid you from buying anything else." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e06"
+  },
+  "id" : "67fab6d59930102295343e06",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f7"
+  },
+  "title" : "Speech Act Verbs in the Present Simple",
+  "instructions" : "Crea una oración que realice la acción del verbo. Usa los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Usa 'promise' con 'to' y 'swear' con 'that'.",
+  "translation" : "Exijo que regreses inmediatamente.",
+  "theoryId" : "b2.01.Present_Simple_with_Speech_Act_Verbs",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.07.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "demand" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "that you return immediately.",
+      "options" : null
+    } ],
+    "sentences" : [ "I demand that you return immediately." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e07"
+  },
+  "id" : "67fab6d59930102295343e07",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f7"
+  },
+  "title" : "Speech Act Verbs in the Present Simple",
+  "instructions" : "Crea una oración que realice la acción del verbo. Usa los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Usa 'promise' con 'to' y 'swear' con 'that'.",
+  "translation" : "Me disculpo por el problema.",
+  "theoryId" : "b2.01.Present_Simple_with_Speech_Act_Verbs",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.07.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "apologise" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "for the problem.",
+      "options" : null
+    } ],
+    "sentences" : [ "I apologise for the problem." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e08"
+  },
+  "id" : "67fab6d59930102295343e08",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f7"
+  },
+  "title" : "Speech Act Verbs in the Present Simple",
+  "instructions" : "Crea una oración que realice la acción del verbo. Usa los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Usa 'promise' con 'to' y 'swear' con 'that'.",
+  "translation" : "Te prohíbo entrar aquí.",
+  "theoryId" : "b2.01.Present_Simple_with_Speech_Act_Verbs",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.07.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "forbid" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "you from entering here.",
+      "options" : null
+    } ],
+    "sentences" : [ "I forbid you from entering here." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e09"
+  },
+  "id" : "67fab6d59930102295343e09",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f7"
+  },
+  "title" : "Speech Act Verbs in the Present Simple",
+  "instructions" : "Crea una oración que realice la acción del verbo. Usa los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Usa 'promise' con 'to' y 'swear' con 'that'.",
+  "translation" : "Prometo llegar a tiempo.",
+  "theoryId" : "b2.01.Present_Simple_with_Speech_Act_Verbs",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.07.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "promise" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "to be on time.",
+      "options" : null
+    } ],
+    "sentences" : [ "I promise to be on time." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e0a"
+  },
+  "id" : "67fab6d59930102295343e0a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f7"
+  },
+  "title" : "Speech Act Verbs in the Present Simple",
+  "instructions" : "Crea una oración que realice la acción del verbo. Usa los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Usa 'promise' con 'to' y 'swear' con 'that'.",
+  "translation" : "Juro que haré lo que desees.",
+  "theoryId" : "b2.01.Present_Simple_with_Speech_Act_Verbs",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.07.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "swear" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "that I'll do as you wish.",
+      "options" : null
+    } ],
+    "sentences" : [ "I swear that I'll do as you wish." ]
+  }
+} ]

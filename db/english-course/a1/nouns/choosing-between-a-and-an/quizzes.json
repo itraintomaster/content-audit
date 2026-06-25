@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534233f"
-    },
-    "id": "67fab6d5993010229534233f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c8"
-    },
-    "title": "Choosing Between A and An",
-    "instructions": "Elige 'a' o 'an'.",
-    "translation": "Un hombre honesto",
-    "theoryId": "a1.06.A_or_An_",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.05.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "An"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "honest man",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "An honest man"
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534233f"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342340"
-    },
-    "id": "67fab6d59930102295342340",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c8"
-    },
-    "title": "Choosing Between A and An",
-    "instructions": "Elige 'a' o 'an'.",
-    "translation": "Una bolsa roja",
-    "theoryId": "a1.06.A_or_An_",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.05.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "A"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "red bag",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A red bag"
-      ]
-    }
+  "id" : "67fab6d5993010229534233f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342341"
-    },
-    "id": "67fab6d59930102295342341",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c8"
-    },
-    "title": "Choosing Between A and An",
-    "instructions": "Elige 'a' o 'an'.",
-    "translation": "Una guía útil",
-    "theoryId": "a1.06.A_or_An_",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.05.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "A"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "helpful guide",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A helpful guide"
-      ]
-    }
+  "title" : "Choosing Between A and An",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Un hombre honesto",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342342"
-    },
-    "id": "67fab6d59930102295342342",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c8"
-    },
-    "title": "Choosing Between A and An",
-    "instructions": "Elige 'a' o 'an'.",
-    "translation": "Una reunión importante",
-    "theoryId": "a1.06.A_or_An_",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.05.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "An"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "important meeting",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "An important meeting"
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342343"
-    },
-    "id": "67fab6d59930102295342343",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c8"
-    },
-    "title": "Choosing Between A and An",
-    "instructions": "Elige 'a' o 'an'.",
-    "translation": "Un jardín",
-    "theoryId": "a1.06.A_or_An_",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.05.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "A"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "garden",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A garden"
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342344"
-    },
-    "id": "67fab6d59930102295342344",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c8"
-    },
-    "title": "Choosing Between A and An",
-    "instructions": "Elige 'a' o 'an'.",
-    "translation": "Un juego emocionante",
-    "theoryId": "a1.06.A_or_An_",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.05.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "An"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "exciting game",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "An exciting game"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342345"
-    },
-    "id": "67fab6d59930102295342345",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c8"
-    },
-    "title": "Choosing Between A and An",
-    "instructions": "Elige 'a' o 'an'.",
-    "translation": "Un chico inteligente",
-    "theoryId": "a1.06.A_or_An_",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.05.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "A"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "smart boy",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A smart boy"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342346"
-    },
-    "id": "67fab6d59930102295342346",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c8"
-    },
-    "title": "Choosing Between A and An",
-    "instructions": "Elige 'a' o 'an'.",
-    "translation": "Un número impar",
-    "theoryId": "a1.06.A_or_An_",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.05.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "An"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "odd number",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "An odd number"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342347"
-    },
-    "id": "67fab6d59930102295342347",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c8"
-    },
-    "title": "Choosing Between A and An",
-    "instructions": "Elige 'a' o 'an'.",
-    "translation": "Una bicicleta",
-    "theoryId": "a1.06.A_or_An_",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.05.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "A"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "bike",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A bike"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342348"
-    },
-    "id": "67fab6d59930102295342348",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c8"
-    },
-    "title": "Choosing Between A and An",
-    "instructions": "Elige 'a' o 'an'.",
-    "translation": "Una mesa",
-    "theoryId": "a1.06.A_or_An_",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.05.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "A"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "table",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A table"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342349"
-    },
-    "id": "67fab6d59930102295342349",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c8"
-    },
-    "title": "Choosing Between A and An",
-    "instructions": "Elige 'a' o 'an'.",
-    "translation": "Una cosa habitual",
-    "theoryId": "a1.06.A_or_An_",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.05.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "A"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "usual thing",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A usual thing"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534234a"
-    },
-    "id": "67fab6d5993010229534234a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c8"
-    },
-    "title": "Choosing Between A and An",
-    "instructions": "Elige 'a' o 'an'.",
-    "translation": "Una canción encantadora",
-    "theoryId": "a1.06.A_or_An_",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.05.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "A"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "lovely song",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A lovely song"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534234b"
-    },
-    "id": "67fab6d5993010229534234b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c8"
-    },
-    "title": "Choosing Between A and An",
-    "instructions": "Elige 'a' o 'an'.",
-    "translation": "Una película horrible",
-    "theoryId": "a1.06.A_or_An_",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.05.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "An"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "awful movie",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "An awful movie"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534234c"
-    },
-    "id": "67fab6d5993010229534234c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c8"
-    },
-    "title": "Choosing Between A and An",
-    "instructions": "Elige 'a' o 'an'.",
-    "translation": "Una aventura australiana",
-    "theoryId": "a1.06.A_or_An_",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.05.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "A"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "Australian adventure",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A Australian adventure"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534234d"
-    },
-    "id": "67fab6d5993010229534234d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c8"
-    },
-    "title": "Choosing Between A and An",
-    "instructions": "Elige 'a' o 'an'.",
-    "translation": "Un bebé",
-    "theoryId": "a1.06.A_or_An_",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.05.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "A"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "baby",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A baby"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534234e"
-    },
-    "id": "67fab6d5993010229534234e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c8"
-    },
-    "title": "Choosing Between A and An",
-    "instructions": "Elige 'a' o 'an'.",
-    "translation": "Una aplicación",
-    "theoryId": "a1.06.A_or_An_",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.05.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "An"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "application",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "An application"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534234f"
-    },
-    "id": "67fab6d5993010229534234f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c8"
-    },
-    "title": "Choosing Between A and An",
-    "instructions": "Elige 'a' o 'an'.",
-    "translation": "Una manzana",
-    "theoryId": "a1.06.A_or_An_",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.05.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "An"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "apple",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "An apple"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342350"
-    },
-    "id": "67fab6d59930102295342350",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c8"
-    },
-    "title": "Choosing Between A and An",
-    "instructions": "Elige 'a' o 'an'.",
-    "translation": "Una persona amable",
-    "theoryId": "a1.06.A_or_An_",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.05.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "A"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "kind person",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A kind person"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342351"
-    },
-    "id": "67fab6d59930102295342351",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c8"
-    },
-    "title": "Choosing Between A and An",
-    "instructions": "Elige 'a' o 'an'.",
-    "translation": "Una oportunidad única",
-    "theoryId": "a1.06.A_or_An_",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.05.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "A"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "unique opportunity",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A unique opportunity"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342352"
-    },
-    "id": "67fab6d59930102295342352",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c8"
-    },
-    "title": "Choosing Between A and An",
-    "instructions": "Elige 'a' o 'an'.",
-    "translation": "Una tarea fácil",
-    "theoryId": "a1.06.A_or_An_",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.05.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "An"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "easy task",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "An easy task"
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.05.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "An" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "honest man",
+      "options" : null
+    } ],
+    "sentences" : [ "An honest man" ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342340"
+  },
+  "id" : "67fab6d59930102295342340",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "Choosing Between A and An",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Una bolsa roja",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.05.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "A" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "red bag",
+      "options" : null
+    } ],
+    "sentences" : [ "A red bag" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342341"
+  },
+  "id" : "67fab6d59930102295342341",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "Choosing Between A and An",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Una guía útil",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.05.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "A" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "helpful guide",
+      "options" : null
+    } ],
+    "sentences" : [ "A helpful guide" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342342"
+  },
+  "id" : "67fab6d59930102295342342",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "Choosing Between A and An",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Una reunión importante",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.05.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "An" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "important meeting",
+      "options" : null
+    } ],
+    "sentences" : [ "An important meeting" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342343"
+  },
+  "id" : "67fab6d59930102295342343",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "Choosing Between A and An",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Un jardín",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.05.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "A" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "garden",
+      "options" : null
+    } ],
+    "sentences" : [ "A garden" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342344"
+  },
+  "id" : "67fab6d59930102295342344",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "Choosing Between A and An",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Un juego emocionante",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.05.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "An" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "exciting game",
+      "options" : null
+    } ],
+    "sentences" : [ "An exciting game" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342345"
+  },
+  "id" : "67fab6d59930102295342345",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "Choosing Between A and An",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Un chico inteligente",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.05.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "A" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "smart boy",
+      "options" : null
+    } ],
+    "sentences" : [ "A smart boy" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342346"
+  },
+  "id" : "67fab6d59930102295342346",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "Choosing Between A and An",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Un número impar",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.05.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "An" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "odd number",
+      "options" : null
+    } ],
+    "sentences" : [ "An odd number" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342347"
+  },
+  "id" : "67fab6d59930102295342347",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "Choosing Between A and An",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Una bicicleta",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.05.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "A" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "bike",
+      "options" : null
+    } ],
+    "sentences" : [ "A bike" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342348"
+  },
+  "id" : "67fab6d59930102295342348",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "Choosing Between A and An",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Una mesa",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.05.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "A" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "table",
+      "options" : null
+    } ],
+    "sentences" : [ "A table" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342349"
+  },
+  "id" : "67fab6d59930102295342349",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "Choosing Between A and An",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Una cosa habitual",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.05.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "A" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "usual thing",
+      "options" : null
+    } ],
+    "sentences" : [ "A usual thing" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534234a"
+  },
+  "id" : "67fab6d5993010229534234a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "Choosing Between A and An",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Una canción encantadora",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.05.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "A" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "lovely song",
+      "options" : null
+    } ],
+    "sentences" : [ "A lovely song" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534234b"
+  },
+  "id" : "67fab6d5993010229534234b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "Choosing Between A and An",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Una película horrible",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.05.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "An" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "awful movie",
+      "options" : null
+    } ],
+    "sentences" : [ "An awful movie" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534234c"
+  },
+  "id" : "67fab6d5993010229534234c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "Choosing Between A and An",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Una aventura australiana",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.05.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "A" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Australian adventure",
+      "options" : null
+    } ],
+    "sentences" : [ "A Australian adventure" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534234d"
+  },
+  "id" : "67fab6d5993010229534234d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "Choosing Between A and An",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Un bebé",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.05.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "A" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "baby",
+      "options" : null
+    } ],
+    "sentences" : [ "A baby" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534234e"
+  },
+  "id" : "67fab6d5993010229534234e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "Choosing Between A and An",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Una aplicación",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.05.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "An" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "application",
+      "options" : null
+    } ],
+    "sentences" : [ "An application" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534234f"
+  },
+  "id" : "67fab6d5993010229534234f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "Choosing Between A and An",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Una manzana",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.05.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "An" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "apple",
+      "options" : null
+    } ],
+    "sentences" : [ "An apple" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342350"
+  },
+  "id" : "67fab6d59930102295342350",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "Choosing Between A and An",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Una persona amable",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.05.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "A" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "kind person",
+      "options" : null
+    } ],
+    "sentences" : [ "A kind person" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342351"
+  },
+  "id" : "67fab6d59930102295342351",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "Choosing Between A and An",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Una oportunidad única",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.05.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "A" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "unique opportunity",
+      "options" : null
+    } ],
+    "sentences" : [ "A unique opportunity" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342352"
+  },
+  "id" : "67fab6d59930102295342352",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "Choosing Between A and An",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Una tarea fácil",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.05.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "An" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "easy task",
+      "options" : null
+    } ],
+    "sentences" : [ "An easy task" ]
+  }
+} ]

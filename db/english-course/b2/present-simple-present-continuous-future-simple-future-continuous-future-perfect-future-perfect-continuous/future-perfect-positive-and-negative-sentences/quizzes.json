@@ -1,1240 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e1f"
-    },
-    "id": "67fab6d59930102295343e1f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f9"
-    },
-    "title": "Future Perfect: Positive and Negative Sentences",
-    "instructions": "Crea oraciones en 'future perfect'.",
-    "translation": "Ellos no habrán regresado de vacaciones.",
-    "theoryId": "b2.01.Future_Perfect_Simple",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.09.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They / not / return from vacation.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They won't have returned from vacation.|They will not have returned from vacation."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They won't have returned from vacation.",
-        "They will not have returned from vacation."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e1f"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e20"
-    },
-    "id": "67fab6d59930102295343e20",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f9"
-    },
-    "title": "Future Perfect: Positive and Negative Sentences",
-    "instructions": "Crea oraciones en 'future perfect'.",
-    "translation": "Ella habrá completado el informe para el miércoles.",
-    "theoryId": "b2.01.Future_Perfect_Simple",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.09.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She / complete the report by Wednesday.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She'll have completed the report by Wednesday.|She will have completed the report by Wednesday."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She'll have completed the report by Wednesday.",
-        "She will have completed the report by Wednesday."
-      ]
-    }
+  "id" : "67fab6d59930102295343e1f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f9"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e21"
-    },
-    "id": "67fab6d59930102295343e21",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f9"
-    },
-    "title": "Future Perfect: Positive and Negative Sentences",
-    "instructions": "Crea oraciones en 'future perfect'.",
-    "translation": "Nosotros no habremos visitado el museo antes del mediodía.",
-    "theoryId": "b2.01.Future_Perfect_Simple",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.09.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We / not / visit the museum before noon.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "We won't have visited the museum before noon.|We will not have visited the museum before noon."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We won't have visited the museum before noon.",
-        "We will not have visited the museum before noon."
-      ]
-    }
+  "title" : "Future Perfect: Positive and Negative Sentences",
+  "instructions" : "Crea oraciones en 'future perfect'.",
+  "translation" : "Ellos no habrán regresado de vacaciones.",
+  "theoryId" : "b2.01.Future_Perfect_Simple",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e22"
-    },
-    "id": "67fab6d59930102295343e22",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f9"
-    },
-    "title": "Future Perfect: Positive and Negative Sentences",
-    "instructions": "Crea oraciones en 'future perfect'.",
-    "translation": "Él se habrá marchado para las cinco.",
-    "theoryId": "b2.01.Future_Perfect_Simple",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.09.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He / depart by five.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He'll have departed by five.|He will have departed by five."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He'll have departed by five.",
-        "He will have departed by five."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e23"
-    },
-    "id": "67fab6d59930102295343e23",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f9"
-    },
-    "title": "Future Perfect: Positive and Negative Sentences",
-    "instructions": "Crea oraciones en 'future perfect'.",
-    "translation": "Yo no habré memorizado las frases antes del examen.",
-    "theoryId": "b2.01.Future_Perfect_Simple",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.09.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I / not / memorize the phrases before the exam.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I won't have memorized the phrases before the exam.|I will not have memorized the phrases before the exam."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I won't have memorized the phrases before the exam.",
-        "I will not have memorized the phrases before the exam."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e24"
-    },
-    "id": "67fab6d59930102295343e24",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f9"
-    },
-    "title": "Future Perfect: Positive and Negative Sentences",
-    "instructions": "Crea oraciones en 'future perfect'.",
-    "translation": "Nosotros habremos terminado para el sábado.",
-    "theoryId": "b2.01.Future_Perfect_Simple",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.09.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We / complete by Saturday.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "We'll have completed by Saturday.|We will have completed by Saturday."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We'll have completed by Saturday.",
-        "We will have completed by Saturday."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e25"
-    },
-    "id": "67fab6d59930102295343e25",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f9"
-    },
-    "title": "Future Perfect: Positive and Negative Sentences",
-    "instructions": "Crea oraciones en 'future perfect'.",
-    "translation": "Los estudiantes habrán entregado el proyecto para la hora del almuerzo.",
-    "theoryId": "b2.01.Future_Perfect_Simple",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.09.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The students / submit the project by lunchtime.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The students will have submitted the project by lunchtime."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The students will have submitted the project by lunchtime."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e26"
-    },
-    "id": "67fab6d59930102295343e26",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f9"
-    },
-    "title": "Future Perfect: Positive and Negative Sentences",
-    "instructions": "Crea oraciones en 'future perfect'.",
-    "translation": "Lo habré hecho para la mañana.",
-    "theoryId": "b2.01.Future_Perfect_Simple",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.09.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I / do it by the morning.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I'll have done it by the morning.|I will have done it by the morning."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'll have done it by the morning.",
-        "I will have done it by the morning."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e27"
-    },
-    "id": "67fab6d59930102295343e27",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f9"
-    },
-    "title": "Future Perfect: Positive and Negative Sentences",
-    "instructions": "Crea oraciones en 'future perfect'.",
-    "translation": "No habré publicado la historia para entonces.",
-    "theoryId": "b2.01.Future_Perfect_Simple",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.09.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I / not / publish the story by then.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I won't have published the story by then.|I will not have published the story by then."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I won't have published the story by then.",
-        "I will not have published the story by then."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e28"
-    },
-    "id": "67fab6d59930102295343e28",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f9"
-    },
-    "title": "Future Perfect: Positive and Negative Sentences",
-    "instructions": "Crea oraciones en 'future perfect'.",
-    "translation": "No habré salido para la 1 pm.",
-    "theoryId": "b2.01.Future_Perfect_Simple",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.09.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I / not / go out by 1 pm.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I won't have gone out by 1 pm.|I will not have gone out by 1 pm."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I won't have gone out by 1 pm.",
-        "I will not have gone out by 1 pm."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e29"
-    },
-    "id": "67fab6d59930102295343e29",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f9"
-    },
-    "title": "Future Perfect: Positive and Negative Sentences",
-    "instructions": "Crea oraciones en 'future perfect'.",
-    "translation": "Habremos cenado para las 9 en punto.",
-    "theoryId": "b2.01.Future_Perfect_Simple",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.09.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We / dine by 9 o'clock.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "We'll have dined by 9 o'clock.|We will have dined by 9 o'clock."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We'll have dined by 9 o'clock.",
-        "We will have dined by 9 o'clock."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e2a"
-    },
-    "id": "67fab6d59930102295343e2a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f9"
-    },
-    "title": "Future Perfect: Positive and Negative Sentences",
-    "instructions": "Crea oraciones en 'future perfect'.",
-    "translation": "Ella no habrá respondido todas las cartas antes de la medianoche.",
-    "theoryId": "b2.01.Future_Perfect_Simple",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.09.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She / not / answer all the letters before midnight.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She won't have answered all the letters before midnight.|She will not have answered all the letters before midnight."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She won't have answered all the letters before midnight.",
-        "She will not have answered all the letters before midnight."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e2b"
-    },
-    "id": "67fab6d59930102295343e2b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f9"
-    },
-    "title": "Future Perfect: Positive and Negative Sentences",
-    "instructions": "Crea oraciones en 'future perfect'.",
-    "translation": "Los perros no habrán dado su paseo para las 7.",
-    "theoryId": "b2.01.Future_Perfect_Simple",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.09.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The dogs / not / have their walk by 7.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The dogs won't have had their walk by 7.|The dogs will not have had their walk by 7."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The dogs won't have had their walk by 7.",
-        "The dogs will not have had their walk by 7."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e2c"
-    },
-    "id": "67fab6d59930102295343e2c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f9"
-    },
-    "title": "Future Perfect: Positive and Negative Sentences",
-    "instructions": "Crea oraciones en 'future perfect'.",
-    "translation": "No habremos conocido a John para entonces.",
-    "theoryId": "b2.01.Future_Perfect_Simple",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.09.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We / not / meet John by then.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "We won't have met John by then.|We will not have met John by then."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We won't have met John by then.",
-        "We will not have met John by then."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e2d"
-    },
-    "id": "67fab6d59930102295343e2d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f9"
-    },
-    "title": "Future Perfect: Positive and Negative Sentences",
-    "instructions": "Crea oraciones en 'future perfect'.",
-    "translation": "Habré ordenado antes de que llegues a casa.",
-    "theoryId": "b2.01.Future_Perfect_Simple",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.09.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I / tidy up before you arrive home.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I'll have tidied up before you arrive home.|I will have tidied up before you arrive home."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'll have tidied up before you arrive home.",
-        "I will have tidied up before you arrive home."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e2e"
-    },
-    "id": "67fab6d59930102295343e2e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f9"
-    },
-    "title": "Future Perfect: Positive and Negative Sentences",
-    "instructions": "Crea oraciones en 'future perfect'.",
-    "translation": "Él no habrá desayunado para entonces.",
-    "theoryId": "b2.01.Future_Perfect_Simple",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.09.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He / not / have breakfast by then.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He won't have had breakfast by then.|He will not have had breakfast by then."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He won't have had breakfast by then.",
-        "He will not have had breakfast by then."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e2f"
-    },
-    "id": "67fab6d59930102295343e2f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f9"
-    },
-    "title": "Future Perfect: Positive and Negative Sentences",
-    "instructions": "Crea oraciones en 'future perfect'.",
-    "translation": "Habré reservado una mesa antes del atardecer.",
-    "theoryId": "b2.01.Future_Perfect_Simple",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.09.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I / reserve a table before sunset.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I'll have reserved a table before sunset.|I will have reserved a table before sunset."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'll have reserved a table before sunset.",
-        "I will have reserved a table before sunset."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e30"
-    },
-    "id": "67fab6d59930102295343e30",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f9"
-    },
-    "title": "Future Perfect: Positive and Negative Sentences",
-    "instructions": "Crea oraciones en 'future perfect'.",
-    "translation": "Mark habrá reparado todo para entonces.",
-    "theoryId": "b2.01.Future_Perfect_Simple",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.09.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Mark / repair everything by then.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Mark will have repaired everything by then."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Mark will have repaired everything by then."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e31"
-    },
-    "id": "67fab6d59930102295343e31",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f9"
-    },
-    "title": "Future Perfect: Positive and Negative Sentences",
-    "instructions": "Crea oraciones en 'future perfect'.",
-    "translation": "Ellos habrán organizado todo para la noche.",
-    "theoryId": "b2.01.Future_Perfect_Simple",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.09.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They / organize everything by the evening.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They'll have organized everything by the evening.|They will have organized everything by the evening."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They'll have organized everything by the evening.",
-        "They will have organized everything by the evening."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343e32"
-    },
-    "id": "67fab6d59930102295343e32",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3f9"
-    },
-    "title": "Future Perfect: Positive and Negative Sentences",
-    "instructions": "Crea oraciones en 'future perfect'.",
-    "translation": "Él no habrá analizado los resultados antes de la presentación.",
-    "theoryId": "b2.01.Future_Perfect_Simple",
-    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.01.09.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He / not / analyze the results before the presentation.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He won't have analyzed the results before the presentation.|He will not have analyzed the results before the presentation."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He won't have analyzed the results before the presentation.",
-        "He will not have analyzed the results before the presentation."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.09.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They / not / return from vacation.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They won't have returned from vacation.|They will not have returned from vacation." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They won't have returned from vacation.", "They will not have returned from vacation." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e20"
+  },
+  "id" : "67fab6d59930102295343e20",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f9"
+  },
+  "title" : "Future Perfect: Positive and Negative Sentences",
+  "instructions" : "Crea oraciones en 'future perfect'.",
+  "translation" : "Ella habrá completado el informe para el miércoles.",
+  "theoryId" : "b2.01.Future_Perfect_Simple",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.09.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She / complete the report by Wednesday.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She'll have completed the report by Wednesday.|She will have completed the report by Wednesday." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She'll have completed the report by Wednesday.", "She will have completed the report by Wednesday." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e21"
+  },
+  "id" : "67fab6d59930102295343e21",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f9"
+  },
+  "title" : "Future Perfect: Positive and Negative Sentences",
+  "instructions" : "Crea oraciones en 'future perfect'.",
+  "translation" : "Nosotros no habremos visitado el museo antes del mediodía.",
+  "theoryId" : "b2.01.Future_Perfect_Simple",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.09.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We / not / visit the museum before noon.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We won't have visited the museum before noon.|We will not have visited the museum before noon." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We won't have visited the museum before noon.", "We will not have visited the museum before noon." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e22"
+  },
+  "id" : "67fab6d59930102295343e22",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f9"
+  },
+  "title" : "Future Perfect: Positive and Negative Sentences",
+  "instructions" : "Crea oraciones en 'future perfect'.",
+  "translation" : "Él se habrá marchado para las cinco.",
+  "theoryId" : "b2.01.Future_Perfect_Simple",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.09.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He / depart by five.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He'll have departed by five.|He will have departed by five." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He'll have departed by five.", "He will have departed by five." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e23"
+  },
+  "id" : "67fab6d59930102295343e23",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f9"
+  },
+  "title" : "Future Perfect: Positive and Negative Sentences",
+  "instructions" : "Crea oraciones en 'future perfect'.",
+  "translation" : "Yo no habré memorizado las frases antes del examen.",
+  "theoryId" : "b2.01.Future_Perfect_Simple",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.09.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I / not / memorize the phrases before the exam.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I won't have memorized the phrases before the exam.|I will not have memorized the phrases before the exam." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I won't have memorized the phrases before the exam.", "I will not have memorized the phrases before the exam." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e24"
+  },
+  "id" : "67fab6d59930102295343e24",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f9"
+  },
+  "title" : "Future Perfect: Positive and Negative Sentences",
+  "instructions" : "Crea oraciones en 'future perfect'.",
+  "translation" : "Nosotros habremos terminado para el sábado.",
+  "theoryId" : "b2.01.Future_Perfect_Simple",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.09.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We / complete by Saturday.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We'll have completed by Saturday.|We will have completed by Saturday." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We'll have completed by Saturday.", "We will have completed by Saturday." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e25"
+  },
+  "id" : "67fab6d59930102295343e25",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f9"
+  },
+  "title" : "Future Perfect: Positive and Negative Sentences",
+  "instructions" : "Crea oraciones en 'future perfect'.",
+  "translation" : "Los estudiantes habrán entregado el proyecto para la hora del almuerzo.",
+  "theoryId" : "b2.01.Future_Perfect_Simple",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.09.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The students / submit the project by lunchtime.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The students will have submitted the project by lunchtime." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The students will have submitted the project by lunchtime." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e26"
+  },
+  "id" : "67fab6d59930102295343e26",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f9"
+  },
+  "title" : "Future Perfect: Positive and Negative Sentences",
+  "instructions" : "Crea oraciones en 'future perfect'.",
+  "translation" : "Lo habré hecho para la mañana.",
+  "theoryId" : "b2.01.Future_Perfect_Simple",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.09.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I / do it by the morning.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I'll have done it by the morning.|I will have done it by the morning." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I'll have done it by the morning.", "I will have done it by the morning." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e27"
+  },
+  "id" : "67fab6d59930102295343e27",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f9"
+  },
+  "title" : "Future Perfect: Positive and Negative Sentences",
+  "instructions" : "Crea oraciones en 'future perfect'.",
+  "translation" : "No habré publicado la historia para entonces.",
+  "theoryId" : "b2.01.Future_Perfect_Simple",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.09.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I / not / publish the story by then.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I won't have published the story by then.|I will not have published the story by then." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I won't have published the story by then.", "I will not have published the story by then." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e28"
+  },
+  "id" : "67fab6d59930102295343e28",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f9"
+  },
+  "title" : "Future Perfect: Positive and Negative Sentences",
+  "instructions" : "Crea oraciones en 'future perfect'.",
+  "translation" : "No habré salido para la 1 pm.",
+  "theoryId" : "b2.01.Future_Perfect_Simple",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.09.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I / not / go out by 1 pm.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I won't have gone out by 1 pm.|I will not have gone out by 1 pm." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I won't have gone out by 1 pm.", "I will not have gone out by 1 pm." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e29"
+  },
+  "id" : "67fab6d59930102295343e29",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f9"
+  },
+  "title" : "Future Perfect: Positive and Negative Sentences",
+  "instructions" : "Crea oraciones en 'future perfect'.",
+  "translation" : "Habremos cenado para las 9 en punto.",
+  "theoryId" : "b2.01.Future_Perfect_Simple",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.09.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We / dine by 9 o'clock.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We'll have dined by 9 o'clock.|We will have dined by 9 o'clock." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We'll have dined by 9 o'clock.", "We will have dined by 9 o'clock." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e2a"
+  },
+  "id" : "67fab6d59930102295343e2a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f9"
+  },
+  "title" : "Future Perfect: Positive and Negative Sentences",
+  "instructions" : "Crea oraciones en 'future perfect'.",
+  "translation" : "Ella no habrá respondido todas las cartas antes de la medianoche.",
+  "theoryId" : "b2.01.Future_Perfect_Simple",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.09.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She / not / answer all the letters before midnight.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She won't have answered all the letters before midnight.|She will not have answered all the letters before midnight." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She won't have answered all the letters before midnight.", "She will not have answered all the letters before midnight." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e2b"
+  },
+  "id" : "67fab6d59930102295343e2b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f9"
+  },
+  "title" : "Future Perfect: Positive and Negative Sentences",
+  "instructions" : "Crea oraciones en 'future perfect'.",
+  "translation" : "Los perros no habrán dado su paseo para las 7.",
+  "theoryId" : "b2.01.Future_Perfect_Simple",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.09.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dogs / not / have their walk by 7.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The dogs won't have had their walk by 7.|The dogs will not have had their walk by 7." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The dogs won't have had their walk by 7.", "The dogs will not have had their walk by 7." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e2c"
+  },
+  "id" : "67fab6d59930102295343e2c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f9"
+  },
+  "title" : "Future Perfect: Positive and Negative Sentences",
+  "instructions" : "Crea oraciones en 'future perfect'.",
+  "translation" : "No habremos conocido a John para entonces.",
+  "theoryId" : "b2.01.Future_Perfect_Simple",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.09.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We / not / meet John by then.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We won't have met John by then.|We will not have met John by then." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We won't have met John by then.", "We will not have met John by then." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e2d"
+  },
+  "id" : "67fab6d59930102295343e2d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f9"
+  },
+  "title" : "Future Perfect: Positive and Negative Sentences",
+  "instructions" : "Crea oraciones en 'future perfect'.",
+  "translation" : "Habré ordenado antes de que llegues a casa.",
+  "theoryId" : "b2.01.Future_Perfect_Simple",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.09.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I / tidy up before you arrive home.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I'll have tidied up before you arrive home.|I will have tidied up before you arrive home." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I'll have tidied up before you arrive home.", "I will have tidied up before you arrive home." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e2e"
+  },
+  "id" : "67fab6d59930102295343e2e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f9"
+  },
+  "title" : "Future Perfect: Positive and Negative Sentences",
+  "instructions" : "Crea oraciones en 'future perfect'.",
+  "translation" : "Él no habrá desayunado para entonces.",
+  "theoryId" : "b2.01.Future_Perfect_Simple",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.09.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He / not / have breakfast by then.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He won't have had breakfast by then.|He will not have had breakfast by then." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He won't have had breakfast by then.", "He will not have had breakfast by then." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e2f"
+  },
+  "id" : "67fab6d59930102295343e2f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f9"
+  },
+  "title" : "Future Perfect: Positive and Negative Sentences",
+  "instructions" : "Crea oraciones en 'future perfect'.",
+  "translation" : "Habré reservado una mesa antes del atardecer.",
+  "theoryId" : "b2.01.Future_Perfect_Simple",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.09.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I / reserve a table before sunset.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I'll have reserved a table before sunset.|I will have reserved a table before sunset." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I'll have reserved a table before sunset.", "I will have reserved a table before sunset." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e30"
+  },
+  "id" : "67fab6d59930102295343e30",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f9"
+  },
+  "title" : "Future Perfect: Positive and Negative Sentences",
+  "instructions" : "Crea oraciones en 'future perfect'.",
+  "translation" : "Mark habrá reparado todo para entonces.",
+  "theoryId" : "b2.01.Future_Perfect_Simple",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.09.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Mark / repair everything by then.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Mark will have repaired everything by then." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Mark will have repaired everything by then." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e31"
+  },
+  "id" : "67fab6d59930102295343e31",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f9"
+  },
+  "title" : "Future Perfect: Positive and Negative Sentences",
+  "instructions" : "Crea oraciones en 'future perfect'.",
+  "translation" : "Ellos habrán organizado todo para la noche.",
+  "theoryId" : "b2.01.Future_Perfect_Simple",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.09.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They / organize everything by the evening.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They'll have organized everything by the evening.|They will have organized everything by the evening." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They'll have organized everything by the evening.", "They will have organized everything by the evening." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343e32"
+  },
+  "id" : "67fab6d59930102295343e32",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3f9"
+  },
+  "title" : "Future Perfect: Positive and Negative Sentences",
+  "instructions" : "Crea oraciones en 'future perfect'.",
+  "translation" : "Él no habrá analizado los resultados antes de la presentación.",
+  "theoryId" : "b2.01.Future_Perfect_Simple",
+  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.09.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He / not / analyze the results before the presentation.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He won't have analyzed the results before the presentation.|He will not have analyzed the results before the presentation." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He won't have analyzed the results before the presentation.", "He will not have analyzed the results before the presentation." ]
+  }
+} ]

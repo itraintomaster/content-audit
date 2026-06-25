@@ -1,622 +1,521 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342175"
-    },
-    "id": "67fab6d59930102295342175",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3ae"
-    },
-    "title": "'Going to' for Intentions and Plans",
-    "instructions": "Escribe oraciones con 'going to' (estos son ejemplos del uso de 'going to' para planes e intenciones).",
-    "translation": "Ellos van a tomar té.",
-    "theoryId": "a1.03.Going_to_Use_Plans_and_Intentions",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.07.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'re going to drink|are going to drink"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(drink) some tea.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They're going to drink some tea.",
-        "They are going to drink some tea."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342175"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342176"
-    },
-    "id": "67fab6d59930102295342176",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3ae"
-    },
-    "title": "'Going to' for Intentions and Plans",
-    "instructions": "Escribe oraciones con 'going to' (estos son ejemplos del uso de 'going to' para planes e intenciones).",
-    "translation": "Ella va a ver a Mary.",
-    "theoryId": "a1.03.Going_to_Use_Plans_and_Intentions",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.07.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'s going to see|is going to see"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(see) Mary.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She's going to see Mary.",
-        "She is going to see Mary."
-      ]
-    }
+  "id" : "67fab6d59930102295342175",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ae"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342177"
-    },
-    "id": "67fab6d59930102295342177",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3ae"
-    },
-    "title": "'Going to' for Intentions and Plans",
-    "instructions": "Escribe oraciones con 'going to' (estos son ejemplos del uso de 'going to' para planes e intenciones).",
-    "translation": "Él va a salir de su casa.",
-    "theoryId": "a1.03.Going_to_Use_Plans_and_Intentions",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.07.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'s going to leave|is going to leave"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(leave) his house.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He's going to leave his house.",
-        "He is going to leave his house."
-      ]
-    }
+  "title" : "'Going to' for Intentions and Plans",
+  "instructions" : "Escribe oraciones con 'going to' (estos son ejemplos del uso de 'going to' para planes e intenciones).",
+  "translation" : "Ellos van a tomar té.",
+  "theoryId" : "a1.03.Going_to_Use_Plans_and_Intentions",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342178"
-    },
-    "id": "67fab6d59930102295342178",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3ae"
-    },
-    "title": "'Going to' for Intentions and Plans",
-    "instructions": "Escribe oraciones con 'going to' (estos son ejemplos del uso de 'going to' para planes e intenciones).",
-    "translation": "Nosotros vamos a organizar una fiesta.",
-    "theoryId": "a1.03.Going_to_Use_Plans_and_Intentions",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.07.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'re going to organize|are going to organize"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(organize) a party.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We're going to organize a party.",
-        "We are going to organize a party."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342179"
-    },
-    "id": "67fab6d59930102295342179",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3ae"
-    },
-    "title": "'Going to' for Intentions and Plans",
-    "instructions": "Escribe oraciones con 'going to' (estos son ejemplos del uso de 'going to' para planes e intenciones).",
-    "translation": "Yo voy a ver televisión.",
-    "theoryId": "a1.03.Going_to_Use_Plans_and_Intentions",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.07.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'m going to watch|am going to watch"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(watch) TV.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'm going to watch TV.",
-        "I am going to watch TV."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534217a"
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.07.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
     },
-    "id": "67fab6d5993010229534217a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3ae"
-    },
-    "title": "'Going to' for Intentions and Plans",
-    "instructions": "Escribe oraciones con 'going to' (estos son ejemplos del uso de 'going to' para planes e intenciones).",
-    "translation": "Él va a vender su auto.",
-    "theoryId": "a1.03.Going_to_Use_Plans_and_Intentions",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.07.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'s going to sell|is going to sell"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(sell) his car.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He's going to sell his car.",
-        "He is going to sell his car."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534217b"
-    },
-    "id": "67fab6d5993010229534217b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3ae"
-    },
-    "title": "'Going to' for Intentions and Plans",
-    "instructions": "Escribe oraciones con 'going to' (estos son ejemplos del uso de 'going to' para planes e intenciones).",
-    "translation": "Ella va a viajar a Italia.",
-    "theoryId": "a1.03.Going_to_Use_Plans_and_Intentions",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.07.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'s going to travel|is going to travel"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(travel) to Italy.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She's going to travel to Italy.",
-        "She is going to travel to Italy."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534217c"
-    },
-    "id": "67fab6d5993010229534217c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3ae"
-    },
-    "title": "'Going to' for Intentions and Plans",
-    "instructions": "Escribe oraciones con 'going to' (estos son ejemplos del uso de 'going to' para planes e intenciones).",
-    "translation": "Voy a comer pizza esta noche.",
-    "theoryId": "a1.03.Going_to_Use_Plans_and_Intentions",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.07.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'m going to eat|am going to eat"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(eat) pizza tonight.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'm going to eat pizza tonight.",
-        "I am going to eat pizza tonight."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534217d"
-    },
-    "id": "67fab6d5993010229534217d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3ae"
-    },
-    "title": "'Going to' for Intentions and Plans",
-    "instructions": "Escribe oraciones con 'going to' (estos son ejemplos del uso de 'going to' para planes e intenciones).",
-    "translation": "Ellos van a correr en la maratón.",
-    "theoryId": "a1.03.Going_to_Use_Plans_and_Intentions",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.07.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'re going to run|are going to run"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(run) in the marathon.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They're going to run in the marathon.",
-        "They are going to run in the marathon."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534217e"
-    },
-    "id": "67fab6d5993010229534217e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3ae"
-    },
-    "title": "'Going to' for Intentions and Plans",
-    "instructions": "Escribe oraciones con 'going to' (estos son ejemplos del uso de 'going to' para planes e intenciones).",
-    "translation": "Ella va a estudiar medicina.",
-    "theoryId": "a1.03.Going_to_Use_Plans_and_Intentions",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.07.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'s going to study|is going to study"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(study) medicine.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She's going to study medicine.",
-        "She is going to study medicine."
-      ]
-    }
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'re going to drink|are going to drink" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(drink) some tea.",
+      "options" : null
+    } ],
+    "sentences" : [ "They're going to drink some tea.", "They are going to drink some tea." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342176"
+  },
+  "id" : "67fab6d59930102295342176",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ae"
+  },
+  "title" : "'Going to' for Intentions and Plans",
+  "instructions" : "Escribe oraciones con 'going to' (estos son ejemplos del uso de 'going to' para planes e intenciones).",
+  "translation" : "Ella va a ver a Mary.",
+  "theoryId" : "a1.03.Going_to_Use_Plans_and_Intentions",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.07.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s going to see|is going to see" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(see) Mary.",
+      "options" : null
+    } ],
+    "sentences" : [ "She's going to see Mary.", "She is going to see Mary." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342177"
+  },
+  "id" : "67fab6d59930102295342177",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ae"
+  },
+  "title" : "'Going to' for Intentions and Plans",
+  "instructions" : "Escribe oraciones con 'going to' (estos son ejemplos del uso de 'going to' para planes e intenciones).",
+  "translation" : "Él va a salir de su casa.",
+  "theoryId" : "a1.03.Going_to_Use_Plans_and_Intentions",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.07.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s going to leave|is going to leave" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(leave) his house.",
+      "options" : null
+    } ],
+    "sentences" : [ "He's going to leave his house.", "He is going to leave his house." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342178"
+  },
+  "id" : "67fab6d59930102295342178",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ae"
+  },
+  "title" : "'Going to' for Intentions and Plans",
+  "instructions" : "Escribe oraciones con 'going to' (estos son ejemplos del uso de 'going to' para planes e intenciones).",
+  "translation" : "Nosotros vamos a organizar una fiesta.",
+  "theoryId" : "a1.03.Going_to_Use_Plans_and_Intentions",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.07.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'re going to organize|are going to organize" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(organize) a party.",
+      "options" : null
+    } ],
+    "sentences" : [ "We're going to organize a party.", "We are going to organize a party." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342179"
+  },
+  "id" : "67fab6d59930102295342179",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ae"
+  },
+  "title" : "'Going to' for Intentions and Plans",
+  "instructions" : "Escribe oraciones con 'going to' (estos son ejemplos del uso de 'going to' para planes e intenciones).",
+  "translation" : "Yo voy a ver televisión.",
+  "theoryId" : "a1.03.Going_to_Use_Plans_and_Intentions",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.07.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'m going to watch|am going to watch" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(watch) TV.",
+      "options" : null
+    } ],
+    "sentences" : [ "I'm going to watch TV.", "I am going to watch TV." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534217a"
+  },
+  "id" : "67fab6d5993010229534217a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ae"
+  },
+  "title" : "'Going to' for Intentions and Plans",
+  "instructions" : "Escribe oraciones con 'going to' (estos son ejemplos del uso de 'going to' para planes e intenciones).",
+  "translation" : "Él va a vender su auto.",
+  "theoryId" : "a1.03.Going_to_Use_Plans_and_Intentions",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.07.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s going to sell|is going to sell" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(sell) his car.",
+      "options" : null
+    } ],
+    "sentences" : [ "He's going to sell his car.", "He is going to sell his car." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534217b"
+  },
+  "id" : "67fab6d5993010229534217b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ae"
+  },
+  "title" : "'Going to' for Intentions and Plans",
+  "instructions" : "Escribe oraciones con 'going to' (estos son ejemplos del uso de 'going to' para planes e intenciones).",
+  "translation" : "Ella va a viajar a Italia.",
+  "theoryId" : "a1.03.Going_to_Use_Plans_and_Intentions",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.07.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s going to travel|is going to travel" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(travel) to Italy.",
+      "options" : null
+    } ],
+    "sentences" : [ "She's going to travel to Italy.", "She is going to travel to Italy." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534217c"
+  },
+  "id" : "67fab6d5993010229534217c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ae"
+  },
+  "title" : "'Going to' for Intentions and Plans",
+  "instructions" : "Escribe oraciones con 'going to' (estos son ejemplos del uso de 'going to' para planes e intenciones).",
+  "translation" : "Voy a comer pizza esta noche.",
+  "theoryId" : "a1.03.Going_to_Use_Plans_and_Intentions",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.07.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'m going to eat|am going to eat" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(eat) pizza tonight.",
+      "options" : null
+    } ],
+    "sentences" : [ "I'm going to eat pizza tonight.", "I am going to eat pizza tonight." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534217d"
+  },
+  "id" : "67fab6d5993010229534217d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ae"
+  },
+  "title" : "'Going to' for Intentions and Plans",
+  "instructions" : "Escribe oraciones con 'going to' (estos son ejemplos del uso de 'going to' para planes e intenciones).",
+  "translation" : "Ellos van a correr en la maratón.",
+  "theoryId" : "a1.03.Going_to_Use_Plans_and_Intentions",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.07.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'re going to run|are going to run" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(run) in the marathon.",
+      "options" : null
+    } ],
+    "sentences" : [ "They're going to run in the marathon.", "They are going to run in the marathon." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534217e"
+  },
+  "id" : "67fab6d5993010229534217e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ae"
+  },
+  "title" : "'Going to' for Intentions and Plans",
+  "instructions" : "Escribe oraciones con 'going to' (estos son ejemplos del uso de 'going to' para planes e intenciones).",
+  "translation" : "Ella va a estudiar medicina.",
+  "theoryId" : "a1.03.Going_to_Use_Plans_and_Intentions",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.07.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s going to study|is going to study" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(study) medicine.",
+      "options" : null
+    } ],
+    "sentences" : [ "She's going to study medicine.", "She is going to study medicine." ]
+  }
+} ]

@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953438a7"
-    },
-    "id": "67fab6d599301022953438a7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d339"
-    },
-    "title": "Differentiating Relative Clauses: Defining vs. Non-Defining",
-    "instructions": "¿La relative clause es defining o non-defining?",
-    "translation": "Ella comió pizza, que es su comida favorita.",
-    "theoryId": "b1.12.Defining_and_Non_-defining_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.02.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She ate pizza, which is her favourite food.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Non-defining"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She ate pizza, which is her favourite food. Non-defining"
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d599301022953438a7"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953438a8"
-    },
-    "id": "67fab6d599301022953438a8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d339"
-    },
-    "title": "Differentiating Relative Clauses: Defining vs. Non-Defining",
-    "instructions": "¿La relative clause es defining o non-defining?",
-    "translation": "La película que vi fue aburrida.",
-    "theoryId": "b1.12.Defining_and_Non_-defining_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.02.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The movie that I watched was boring.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Defining"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The movie that I watched was boring. Defining"
-      ]
-    }
+  "id" : "67fab6d599301022953438a7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953438a9"
-    },
-    "id": "67fab6d599301022953438a9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d339"
-    },
-    "title": "Differentiating Relative Clauses: Defining vs. Non-Defining",
-    "instructions": "¿La relative clause es defining o non-defining?",
-    "translation": "Los zapatos que él compró se rompieron.",
-    "theoryId": "b1.12.Defining_and_Non_-defining_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.02.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The shoes that he purchased ripped.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Defining"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The shoes that he purchased ripped. Defining"
-      ]
-    }
+  "title" : "Differentiating Relative Clauses: Defining vs. Non-Defining",
+  "instructions" : "¿La relative clause es defining o non-defining?",
+  "translation" : "Ella comió pizza, que es su comida favorita.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953438aa"
-    },
-    "id": "67fab6d599301022953438aa",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d339"
-    },
-    "title": "Differentiating Relative Clauses: Defining vs. Non-Defining",
-    "instructions": "¿La relative clause es defining o non-defining?",
-    "translation": "Su casa, que es muy grande, tiene una piscina.",
-    "theoryId": "b1.12.Defining_and_Non_-defining_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.02.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "His house, which is very big, has a pool.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Non-defining"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "His house, which is very big, has a pool. Non-defining"
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953438ab"
-    },
-    "id": "67fab6d599301022953438ab",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d339"
-    },
-    "title": "Differentiating Relative Clauses: Defining vs. Non-Defining",
-    "instructions": "¿La relative clause es defining o non-defining?",
-    "translation": "Contratamos a la mujer que aplicó primero.",
-    "theoryId": "b1.12.Defining_and_Non_-defining_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.02.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We employed the woman who applied first.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Defining"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We employed the woman who applied first. Defining"
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953438ac"
-    },
-    "id": "67fab6d599301022953438ac",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d339"
-    },
-    "title": "Differentiating Relative Clauses: Defining vs. Non-Defining",
-    "instructions": "¿La relative clause es defining o non-defining?",
-    "translation": "Su jefe, con quien trabajamos bien, no estaba en el trabajo.",
-    "theoryId": "b1.12.Defining_and_Non_-defining_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.02.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Her boss, who we work well with, wasn't at work.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Non-defining"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Her boss, who we work well with, wasn't at work. Non-defining"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953438ad"
-    },
-    "id": "67fab6d599301022953438ad",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d339"
-    },
-    "title": "Differentiating Relative Clauses: Defining vs. Non-Defining",
-    "instructions": "¿La relative clause es defining o non-defining?",
-    "translation": "Él escuchó la canción que estaba en la radio.",
-    "theoryId": "b1.12.Defining_and_Non_-defining_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.02.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He listened to the song that was on the radio.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Defining"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He listened to the song that was on the radio. Defining"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953438ae"
-    },
-    "id": "67fab6d599301022953438ae",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d339"
-    },
-    "title": "Differentiating Relative Clauses: Defining vs. Non-Defining",
-    "instructions": "¿La relative clause es defining o non-defining?",
-    "translation": "Los estudiantes que estudian mucho a menudo aprobaron el examen.",
-    "theoryId": "b1.12.Defining_and_Non_-defining_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.02.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The students who often study hard passed the test.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Defining"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The students who often study hard passed the test. Defining"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953438af"
-    },
-    "id": "67fab6d599301022953438af",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d339"
-    },
-    "title": "Differentiating Relative Clauses: Defining vs. Non-Defining",
-    "instructions": "¿La relative clause es defining o non-defining?",
-    "translation": "Viajó a París, que es uno de sus lugares favoritos.",
-    "theoryId": "b1.12.Defining_and_Non_-defining_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.02.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He traveled to Paris, which is one of his favourite places.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Non-defining"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He traveled to Paris, which is one of his favourite places. Non-defining"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953438b0"
-    },
-    "id": "67fab6d599301022953438b0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d339"
-    },
-    "title": "Differentiating Relative Clauses: Defining vs. Non-Defining",
-    "instructions": "¿La relative clause es defining o non-defining?",
-    "translation": "Mi padre, que vive en Irlanda, es profesor.",
-    "theoryId": "b1.12.Defining_and_Non_-defining_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.02.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "My father, who lives in Ireland, is a teacher.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Non-defining"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "My father, who lives in Ireland, is a teacher. Non-defining"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953438b1"
-    },
-    "id": "67fab6d599301022953438b1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d339"
-    },
-    "title": "Differentiating Relative Clauses: Defining vs. Non-Defining",
-    "instructions": "¿La relative clause es defining o non-defining?",
-    "translation": "Paseó a su perro al parque, que está cerca de su apartamento.",
-    "theoryId": "b1.12.Defining_and_Non_-defining_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.02.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He walked his dog to the park, which is near their apartment.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Non-defining"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He walked his dog to the park, which is near their apartment. Non-defining"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953438b2"
-    },
-    "id": "67fab6d599301022953438b2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d339"
-    },
-    "title": "Differentiating Relative Clauses: Defining vs. Non-Defining",
-    "instructions": "¿La relative clause es defining o non-defining?",
-    "translation": "La chica que va a nuestra iglesia estaba en el show.",
-    "theoryId": "b1.12.Defining_and_Non_-defining_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.02.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The girl who goes to our church was at the show.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Defining"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The girl who goes to our church was at the show. Defining"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953438b3"
-    },
-    "id": "67fab6d599301022953438b3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d339"
-    },
-    "title": "Differentiating Relative Clauses: Defining vs. Non-Defining",
-    "instructions": "¿La relative clause es defining o non-defining?",
-    "translation": "Estoy a punto de leer el libro que Mary escribió.",
-    "theoryId": "b1.12.Defining_and_Non_-defining_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.02.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I'm about to read the book that Mary wrote.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Defining"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'm about to read the book that Mary wrote. Defining"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953438b4"
-    },
-    "id": "67fab6d599301022953438b4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d339"
-    },
-    "title": "Differentiating Relative Clauses: Defining vs. Non-Defining",
-    "instructions": "¿La relative clause es defining o non-defining?",
-    "translation": "Pedí un poco de sushi, que le voy a dar a Susan.",
-    "theoryId": "b1.12.Defining_and_Non_-defining_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.02.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I ordered some sushi, which I'm going to give to Susan.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Non-defining"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I ordered some sushi, which I'm going to give to Susan. Non-defining"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953438b5"
-    },
-    "id": "67fab6d599301022953438b5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d339"
-    },
-    "title": "Differentiating Relative Clauses: Defining vs. Non-Defining",
-    "instructions": "¿La relative clause es defining o non-defining?",
-    "translation": "Su hermana, que trabaja en una tienda, está llegando.",
-    "theoryId": "b1.12.Defining_and_Non_-defining_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.02.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "His sister, who works in a shop, is arriving.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Non-defining"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "His sister, who works in a shop, is arriving. Non-defining"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953438b6"
-    },
-    "id": "67fab6d599301022953438b6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d339"
-    },
-    "title": "Differentiating Relative Clauses: Defining vs. Non-Defining",
-    "instructions": "¿La relative clause es defining o non-defining?",
-    "translation": "Saludé al hombre que trabaja en la panadería.",
-    "theoryId": "b1.12.Defining_and_Non_-defining_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.02.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I greeted the man who works in the bakery.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Defining"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I greeted the man who works in the bakery. Defining"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953438b7"
-    },
-    "id": "67fab6d599301022953438b7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d339"
-    },
-    "title": "Differentiating Relative Clauses: Defining vs. Non-Defining",
-    "instructions": "¿La relative clause es defining o non-defining?",
-    "translation": "Ella bebió todas las cervezas que pediste.",
-    "theoryId": "b1.12.Defining_and_Non_-defining_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.02.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She drank all the beers that you ordered.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Defining"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She drank all the beers that you ordered. Defining"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953438b8"
-    },
-    "id": "67fab6d599301022953438b8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d339"
-    },
-    "title": "Differentiating Relative Clauses: Defining vs. Non-Defining",
-    "instructions": "¿La relative clause es defining o non-defining?",
-    "translation": "Le envié un mensaje de texto a mi hija, que todavía estaba en la escuela.",
-    "theoryId": "b1.12.Defining_and_Non_-defining_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.02.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I texted my daughter, who was still at school.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Non-defining"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I texted my daughter, who was still at school. Non-defining"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953438b9"
-    },
-    "id": "67fab6d599301022953438b9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d339"
-    },
-    "title": "Differentiating Relative Clauses: Defining vs. Non-Defining",
-    "instructions": "¿La relative clause es defining o non-defining?",
-    "translation": "El postre que amamos no estaba disponible.",
-    "theoryId": "b1.12.Defining_and_Non_-defining_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.02.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The dessert that we love was unavailable.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Defining"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The dessert that we love was unavailable. Defining"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953438ba"
-    },
-    "id": "67fab6d599301022953438ba",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d339"
-    },
-    "title": "Differentiating Relative Clauses: Defining vs. Non-Defining",
-    "instructions": "¿La relative clause es defining o non-defining?",
-    "translation": "Madrid, que suele ser una ciudad concurrida, estaba muy vacía.",
-    "theoryId": "b1.12.Defining_and_Non_-defining_Relative_Clauses",
-    "topicName": "Relative clauses",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.12.02.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Madrid, which is usually a crowded city, was very empty.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Non-defining"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Madrid, which is usually a crowded city, was very empty. Non-defining"
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.02.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She ate pizza, which is her favourite food.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Non-defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She ate pizza, which is her favourite food. Non-defining" ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953438a8"
+  },
+  "id" : "67fab6d599301022953438a8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "Differentiating Relative Clauses: Defining vs. Non-Defining",
+  "instructions" : "¿La relative clause es defining o non-defining?",
+  "translation" : "La película que vi fue aburrida.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.02.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The movie that I watched was boring.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The movie that I watched was boring. Defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953438a9"
+  },
+  "id" : "67fab6d599301022953438a9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "Differentiating Relative Clauses: Defining vs. Non-Defining",
+  "instructions" : "¿La relative clause es defining o non-defining?",
+  "translation" : "Los zapatos que él compró se rompieron.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.02.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The shoes that he purchased ripped.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The shoes that he purchased ripped. Defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953438aa"
+  },
+  "id" : "67fab6d599301022953438aa",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "Differentiating Relative Clauses: Defining vs. Non-Defining",
+  "instructions" : "¿La relative clause es defining o non-defining?",
+  "translation" : "Su casa, que es muy grande, tiene una piscina.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.02.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "His house, which is very big, has a pool.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Non-defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "His house, which is very big, has a pool. Non-defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953438ab"
+  },
+  "id" : "67fab6d599301022953438ab",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "Differentiating Relative Clauses: Defining vs. Non-Defining",
+  "instructions" : "¿La relative clause es defining o non-defining?",
+  "translation" : "Contratamos a la mujer que aplicó primero.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.02.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We employed the woman who applied first.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We employed the woman who applied first. Defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953438ac"
+  },
+  "id" : "67fab6d599301022953438ac",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "Differentiating Relative Clauses: Defining vs. Non-Defining",
+  "instructions" : "¿La relative clause es defining o non-defining?",
+  "translation" : "Su jefe, con quien trabajamos bien, no estaba en el trabajo.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.02.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Her boss, who we work well with, wasn't at work.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Non-defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Her boss, who we work well with, wasn't at work. Non-defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953438ad"
+  },
+  "id" : "67fab6d599301022953438ad",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "Differentiating Relative Clauses: Defining vs. Non-Defining",
+  "instructions" : "¿La relative clause es defining o non-defining?",
+  "translation" : "Él escuchó la canción que estaba en la radio.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.02.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He listened to the song that was on the radio.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He listened to the song that was on the radio. Defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953438ae"
+  },
+  "id" : "67fab6d599301022953438ae",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "Differentiating Relative Clauses: Defining vs. Non-Defining",
+  "instructions" : "¿La relative clause es defining o non-defining?",
+  "translation" : "Los estudiantes que estudian mucho a menudo aprobaron el examen.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.02.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The students who often study hard passed the test.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The students who often study hard passed the test. Defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953438af"
+  },
+  "id" : "67fab6d599301022953438af",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "Differentiating Relative Clauses: Defining vs. Non-Defining",
+  "instructions" : "¿La relative clause es defining o non-defining?",
+  "translation" : "Viajó a París, que es uno de sus lugares favoritos.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.02.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He traveled to Paris, which is one of his favourite places.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Non-defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He traveled to Paris, which is one of his favourite places. Non-defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953438b0"
+  },
+  "id" : "67fab6d599301022953438b0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "Differentiating Relative Clauses: Defining vs. Non-Defining",
+  "instructions" : "¿La relative clause es defining o non-defining?",
+  "translation" : "Mi padre, que vive en Irlanda, es profesor.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.02.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My father, who lives in Ireland, is a teacher.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Non-defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "My father, who lives in Ireland, is a teacher. Non-defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953438b1"
+  },
+  "id" : "67fab6d599301022953438b1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "Differentiating Relative Clauses: Defining vs. Non-Defining",
+  "instructions" : "¿La relative clause es defining o non-defining?",
+  "translation" : "Paseó a su perro al parque, que está cerca de su apartamento.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.02.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He walked his dog to the park, which is near their apartment.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Non-defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He walked his dog to the park, which is near their apartment. Non-defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953438b2"
+  },
+  "id" : "67fab6d599301022953438b2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "Differentiating Relative Clauses: Defining vs. Non-Defining",
+  "instructions" : "¿La relative clause es defining o non-defining?",
+  "translation" : "La chica que va a nuestra iglesia estaba en el show.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.02.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The girl who goes to our church was at the show.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The girl who goes to our church was at the show. Defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953438b3"
+  },
+  "id" : "67fab6d599301022953438b3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "Differentiating Relative Clauses: Defining vs. Non-Defining",
+  "instructions" : "¿La relative clause es defining o non-defining?",
+  "translation" : "Estoy a punto de leer el libro que Mary escribió.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.02.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm about to read the book that Mary wrote.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I'm about to read the book that Mary wrote. Defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953438b4"
+  },
+  "id" : "67fab6d599301022953438b4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "Differentiating Relative Clauses: Defining vs. Non-Defining",
+  "instructions" : "¿La relative clause es defining o non-defining?",
+  "translation" : "Pedí un poco de sushi, que le voy a dar a Susan.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.02.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I ordered some sushi, which I'm going to give to Susan.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Non-defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I ordered some sushi, which I'm going to give to Susan. Non-defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953438b5"
+  },
+  "id" : "67fab6d599301022953438b5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "Differentiating Relative Clauses: Defining vs. Non-Defining",
+  "instructions" : "¿La relative clause es defining o non-defining?",
+  "translation" : "Su hermana, que trabaja en una tienda, está llegando.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.02.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "His sister, who works in a shop, is arriving.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Non-defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "His sister, who works in a shop, is arriving. Non-defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953438b6"
+  },
+  "id" : "67fab6d599301022953438b6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "Differentiating Relative Clauses: Defining vs. Non-Defining",
+  "instructions" : "¿La relative clause es defining o non-defining?",
+  "translation" : "Saludé al hombre que trabaja en la panadería.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.02.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I greeted the man who works in the bakery.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I greeted the man who works in the bakery. Defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953438b7"
+  },
+  "id" : "67fab6d599301022953438b7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "Differentiating Relative Clauses: Defining vs. Non-Defining",
+  "instructions" : "¿La relative clause es defining o non-defining?",
+  "translation" : "Ella bebió todas las cervezas que pediste.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.02.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She drank all the beers that you ordered.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She drank all the beers that you ordered. Defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953438b8"
+  },
+  "id" : "67fab6d599301022953438b8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "Differentiating Relative Clauses: Defining vs. Non-Defining",
+  "instructions" : "¿La relative clause es defining o non-defining?",
+  "translation" : "Le envié un mensaje de texto a mi hija, que todavía estaba en la escuela.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.02.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I texted my daughter, who was still at school.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Non-defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I texted my daughter, who was still at school. Non-defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953438b9"
+  },
+  "id" : "67fab6d599301022953438b9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "Differentiating Relative Clauses: Defining vs. Non-Defining",
+  "instructions" : "¿La relative clause es defining o non-defining?",
+  "translation" : "El postre que amamos no estaba disponible.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.02.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dessert that we love was unavailable.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The dessert that we love was unavailable. Defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953438ba"
+  },
+  "id" : "67fab6d599301022953438ba",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "Differentiating Relative Clauses: Defining vs. Non-Defining",
+  "instructions" : "¿La relative clause es defining o non-defining?",
+  "translation" : "Madrid, que suele ser una ciudad concurrida, estaba muy vacía.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.12.02.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Madrid, which is usually a crowded city, was very empty.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Non-defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Madrid, which is usually a crowded city, was very empty. Non-defining" ]
+  }
+} ]

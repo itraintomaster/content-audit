@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343951"
-    },
-    "id": "67fab6d59930102295343951",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d344"
-    },
-    "title": "'One' vs. 'Ones' Usage Quiz",
-    "instructions": "Inserta 'one' o 'ones' según corresponda.",
-    "translation": "Esa rosquilla se veía sabrosa. ¿Podría tomar otra?",
-    "theoryId": "b1.13.Each_Other",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.13.02.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "That doughnut looked tasty. Could I get another",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "one"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "That doughnut looked tasty. Could I get another one?"
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343951"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343952"
-    },
-    "id": "67fab6d59930102295343952",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d344"
-    },
-    "title": "'One' vs. 'Ones' Usage Quiz",
-    "instructions": "Inserta 'one' o 'ones' según corresponda.",
-    "translation": "¡Ya se ha bebido cuatro copas de vino! Ahora se está tomando una quinta.",
-    "theoryId": "b1.13.Each_Other",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.13.02.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He's already drunk four glasses of wine! Now he's having a fifth",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "one"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He's already drunk four glasses of wine! Now he's having a fifth one."
-      ]
-    }
+  "id" : "67fab6d59930102295343951",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d344"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343953"
-    },
-    "id": "67fab6d59930102295343953",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d344"
-    },
-    "title": "'One' vs. 'Ones' Usage Quiz",
-    "instructions": "Inserta 'one' o 'ones' según corresponda.",
-    "translation": "Me gustaría una manzana. ¿Quieres una?",
-    "theoryId": "b1.13.Each_Other",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.13.02.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I'd like an apple. Do you want",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "one"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'd like an apple. Do you want one?"
-      ]
-    }
+  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "instructions" : "Inserta 'one' o 'ones' según corresponda.",
+  "translation" : "Esa rosquilla se veía sabrosa. ¿Podría tomar otra?",
+  "theoryId" : "b1.13.Each_Other",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343954"
-    },
-    "id": "67fab6d59930102295343954",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d344"
-    },
-    "title": "'One' vs. 'Ones' Usage Quiz",
-    "instructions": "Inserta 'one' o 'ones' según corresponda.",
-    "translation": "No aprecian esos rotos.",
-    "theoryId": "b1.13.Each_Other",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.13.02.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They don't appreciate those broken",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "ones"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They don't appreciate those broken ones."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343955"
-    },
-    "id": "67fab6d59930102295343955",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d344"
-    },
-    "title": "'One' vs. 'Ones' Usage Quiz",
-    "instructions": "Inserta 'one' o 'ones' según corresponda.",
-    "translation": "Ella me presentó uno azul.",
-    "theoryId": "b1.13.Each_Other",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.13.02.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She presented me with a blue",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "one"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She presented me with a blue one."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343956"
-    },
-    "id": "67fab6d59930102295343956",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d344"
-    },
-    "title": "'One' vs. 'Ones' Usage Quiz",
-    "instructions": "Inserta 'one' o 'ones' según corresponda.",
-    "translation": "Ella me mostró una foto y yo le envié una de vuelta.",
-    "theoryId": "b1.13.Each_Other",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.13.02.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She showed me a photo and I sent her",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "one"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "back.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She showed me a photo and I sent her one back."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343957"
-    },
-    "id": "67fab6d59930102295343957",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d344"
-    },
-    "title": "'One' vs. 'Ones' Usage Quiz",
-    "instructions": "Inserta 'one' o 'ones' según corresponda.",
-    "translation": "Estos tenedores no están limpios. ¿Hay algunos brillantes?",
-    "theoryId": "b1.13.Each_Other",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.13.02.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "These forks are not clean. Are there any shiny",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "ones"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "These forks are not clean. Are there any shiny ones?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343958"
-    },
-    "id": "67fab6d59930102295343958",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d344"
-    },
-    "title": "'One' vs. 'Ones' Usage Quiz",
-    "instructions": "Inserta 'one' o 'ones' según corresponda.",
-    "translation": "Ella cultivó girasoles y le presentó estos hermosos.",
-    "theoryId": "b1.13.Each_Other",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.13.02.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She cultivated sunflowers and presented her with these lovely",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "ones"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She cultivated sunflowers and presented her with these lovely ones."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343959"
-    },
-    "id": "67fab6d59930102295343959",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d344"
-    },
-    "title": "'One' vs. 'Ones' Usage Quiz",
-    "instructions": "Inserta 'one' o 'ones' según corresponda.",
-    "translation": "Hay un bolígrafo negro y un bolígrafo plateado. ¿Cuál prefieres?",
-    "theoryId": "b1.13.Each_Other",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.13.02.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "There's a black pen and a silver pen. Which",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "one"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "do you prefer?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "There's a black pen and a silver pen. Which one do you prefer?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534395a"
-    },
-    "id": "67fab6d5993010229534395a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d344"
-    },
-    "title": "'One' vs. 'Ones' Usage Quiz",
-    "instructions": "Inserta 'one' o 'ones' según corresponda.",
-    "translation": "Prefiero esos.",
-    "theoryId": "b1.13.Each_Other",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.13.02.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I prefer those",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "ones"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I prefer those ones."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534395b"
-    },
-    "id": "67fab6d5993010229534395b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d344"
-    },
-    "title": "'One' vs. 'Ones' Usage Quiz",
-    "instructions": "Inserta 'one' o 'ones' según corresponda.",
-    "translation": "Necesitaban algunos sombreros y eligieron esos.",
-    "theoryId": "b1.13.Each_Other",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.13.02.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They required some hats and they picked those",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "ones"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They required some hats and they picked those ones."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534395c"
-    },
-    "id": "67fab6d5993010229534395c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d344"
-    },
-    "title": "'One' vs. 'Ones' Usage Quiz",
-    "instructions": "Inserta 'one' o 'ones' según corresponda.",
-    "translation": "Ella quería un plato de patatas fritas y yo pedí uno también.",
-    "theoryId": "b1.13.Each_Other",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.13.02.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She wanted a plate of fries and I ordered",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "one"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "also.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She wanted a plate of fries and I ordered one also."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534395d"
-    },
-    "id": "67fab6d5993010229534395d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d344"
-    },
-    "title": "'One' vs. 'Ones' Usage Quiz",
-    "instructions": "Inserta 'one' o 'ones' según corresponda.",
-    "translation": "Mi tableta está dañada. Necesito una reciente.",
-    "theoryId": "b1.13.Each_Other",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.13.02.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "My tablet's damaged. I require a recent",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "one"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "My tablet's damaged. I require a recent one."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534395e"
-    },
-    "id": "67fab6d5993010229534395e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d344"
-    },
-    "title": "'One' vs. 'Ones' Usage Quiz",
-    "instructions": "Inserta 'one' o 'ones' según corresponda.",
-    "translation": "Peter devoró una hamburguesa y yo también devoré una.",
-    "theoryId": "b1.13.Each_Other",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.13.02.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Peter devoured a hamburger and I devoured",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "one"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "as well.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Peter devoured a hamburger and I devoured one as well."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534395f"
-    },
-    "id": "67fab6d5993010229534395f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d344"
-    },
-    "title": "'One' vs. 'Ones' Usage Quiz",
-    "instructions": "Inserta 'one' o 'ones' según corresponda.",
-    "translation": "No tiene suficientes cucharas. Necesita algunas brillantes.",
-    "theoryId": "b1.13.Each_Other",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.13.02.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He doesn't have enough spoons. He needs some shiny",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "ones"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He doesn't have enough spoons. He needs some shiny ones."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343960"
-    },
-    "id": "67fab6d59930102295343960",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d344"
-    },
-    "title": "'One' vs. 'Ones' Usage Quiz",
-    "instructions": "Inserta 'one' o 'ones' según corresponda.",
-    "translation": "¿Son esos melocotones? Apreciaría algunos dulces.",
-    "theoryId": "b1.13.Each_Other",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.13.02.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Are those peaches? I'd appreciate some sweet",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "ones"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Are those peaches? I'd appreciate some sweet ones."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343961"
-    },
-    "id": "67fab6d59930102295343961",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d344"
-    },
-    "title": "'One' vs. 'Ones' Usage Quiz",
-    "instructions": "Inserta 'one' o 'ones' según corresponda.",
-    "translation": "Le pedí algunos dulces y ella nos ofreció los más deliciosos.",
-    "theoryId": "b1.13.Each_Other",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.13.02.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I asked her for some sweets and she offered us the most delicious",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "ones"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I asked her for some sweets and she offered us the most delicious ones."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343962"
-    },
-    "id": "67fab6d59930102295343962",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d344"
-    },
-    "title": "'One' vs. 'Ones' Usage Quiz",
-    "instructions": "Inserta 'one' o 'ones' según corresponda.",
-    "translation": "R: ¿Quieres una taza de té? B: Sí, me apetece una.",
-    "theoryId": "b1.13.Each_Other",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.13.02.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "A: Do you want a cup of tea? B: Yes, I'd fancy",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "one"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "A: Do you want a cup of tea? B: Yes, I'd fancy one."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343963"
-    },
-    "id": "67fab6d59930102295343963",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d344"
-    },
-    "title": "'One' vs. 'Ones' Usage Quiz",
-    "instructions": "Inserta 'one' o 'ones' según corresponda.",
-    "translation": "Los sofás son viejos. Necesitamos comprar unos más nuevos.",
-    "theoryId": "b1.13.Each_Other",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.13.02.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The sofas are old. We need to purchase some newer",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "ones"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The sofas are old. We need to purchase some newer ones."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343964"
-    },
-    "id": "67fab6d59930102295343964",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d344"
-    },
-    "title": "'One' vs. 'Ones' Usage Quiz",
-    "instructions": "Inserta 'one' o 'ones' según corresponda.",
-    "translation": "Ella se puso zapatos verdes y yo me puse unos marrones.",
-    "theoryId": "b1.13.Each_Other",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.13.02.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She put on green shoes and I put on brown",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "ones"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ".",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She put on green shoes and I put on brown ones."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.02.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That doughnut looked tasty. Could I get another",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "one" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "That doughnut looked tasty. Could I get another one?" ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343952"
+  },
+  "id" : "67fab6d59930102295343952",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d344"
+  },
+  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "instructions" : "Inserta 'one' o 'ones' según corresponda.",
+  "translation" : "¡Ya se ha bebido cuatro copas de vino! Ahora se está tomando una quinta.",
+  "theoryId" : "b1.13.Each_Other",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.02.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's already drunk four glasses of wine! Now he's having a fifth",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "one" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "He's already drunk four glasses of wine! Now he's having a fifth one." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343953"
+  },
+  "id" : "67fab6d59930102295343953",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d344"
+  },
+  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "instructions" : "Inserta 'one' o 'ones' según corresponda.",
+  "translation" : "Me gustaría una manzana. ¿Quieres una?",
+  "theoryId" : "b1.13.Each_Other",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.02.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'd like an apple. Do you want",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "one" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "I'd like an apple. Do you want one?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343954"
+  },
+  "id" : "67fab6d59930102295343954",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d344"
+  },
+  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "instructions" : "Inserta 'one' o 'ones' según corresponda.",
+  "translation" : "No aprecian esos rotos.",
+  "theoryId" : "b1.13.Each_Other",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.02.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They don't appreciate those broken",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "ones" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "They don't appreciate those broken ones." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343955"
+  },
+  "id" : "67fab6d59930102295343955",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d344"
+  },
+  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "instructions" : "Inserta 'one' o 'ones' según corresponda.",
+  "translation" : "Ella me presentó uno azul.",
+  "theoryId" : "b1.13.Each_Other",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.02.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She presented me with a blue",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "one" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "She presented me with a blue one." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343956"
+  },
+  "id" : "67fab6d59930102295343956",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d344"
+  },
+  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "instructions" : "Inserta 'one' o 'ones' según corresponda.",
+  "translation" : "Ella me mostró una foto y yo le envié una de vuelta.",
+  "theoryId" : "b1.13.Each_Other",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.02.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She showed me a photo and I sent her",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "one" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "back.",
+      "options" : null
+    } ],
+    "sentences" : [ "She showed me a photo and I sent her one back." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343957"
+  },
+  "id" : "67fab6d59930102295343957",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d344"
+  },
+  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "instructions" : "Inserta 'one' o 'ones' según corresponda.",
+  "translation" : "Estos tenedores no están limpios. ¿Hay algunos brillantes?",
+  "theoryId" : "b1.13.Each_Other",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.02.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "These forks are not clean. Are there any shiny",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "ones" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "sentences" : [ "These forks are not clean. Are there any shiny ones?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343958"
+  },
+  "id" : "67fab6d59930102295343958",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d344"
+  },
+  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "instructions" : "Inserta 'one' o 'ones' según corresponda.",
+  "translation" : "Ella cultivó girasoles y le presentó estos hermosos.",
+  "theoryId" : "b1.13.Each_Other",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.02.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She cultivated sunflowers and presented her with these lovely",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "ones" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "She cultivated sunflowers and presented her with these lovely ones." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343959"
+  },
+  "id" : "67fab6d59930102295343959",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d344"
+  },
+  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "instructions" : "Inserta 'one' o 'ones' según corresponda.",
+  "translation" : "Hay un bolígrafo negro y un bolígrafo plateado. ¿Cuál prefieres?",
+  "theoryId" : "b1.13.Each_Other",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.02.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There's a black pen and a silver pen. Which",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "one" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "do you prefer?",
+      "options" : null
+    } ],
+    "sentences" : [ "There's a black pen and a silver pen. Which one do you prefer?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534395a"
+  },
+  "id" : "67fab6d5993010229534395a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d344"
+  },
+  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "instructions" : "Inserta 'one' o 'ones' según corresponda.",
+  "translation" : "Prefiero esos.",
+  "theoryId" : "b1.13.Each_Other",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.02.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I prefer those",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "ones" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "I prefer those ones." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534395b"
+  },
+  "id" : "67fab6d5993010229534395b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d344"
+  },
+  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "instructions" : "Inserta 'one' o 'ones' según corresponda.",
+  "translation" : "Necesitaban algunos sombreros y eligieron esos.",
+  "theoryId" : "b1.13.Each_Other",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.02.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They required some hats and they picked those",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "ones" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "They required some hats and they picked those ones." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534395c"
+  },
+  "id" : "67fab6d5993010229534395c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d344"
+  },
+  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "instructions" : "Inserta 'one' o 'ones' según corresponda.",
+  "translation" : "Ella quería un plato de patatas fritas y yo pedí uno también.",
+  "theoryId" : "b1.13.Each_Other",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.02.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She wanted a plate of fries and I ordered",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "one" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "also.",
+      "options" : null
+    } ],
+    "sentences" : [ "She wanted a plate of fries and I ordered one also." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534395d"
+  },
+  "id" : "67fab6d5993010229534395d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d344"
+  },
+  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "instructions" : "Inserta 'one' o 'ones' según corresponda.",
+  "translation" : "Mi tableta está dañada. Necesito una reciente.",
+  "theoryId" : "b1.13.Each_Other",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.02.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My tablet's damaged. I require a recent",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "one" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "My tablet's damaged. I require a recent one." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534395e"
+  },
+  "id" : "67fab6d5993010229534395e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d344"
+  },
+  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "instructions" : "Inserta 'one' o 'ones' según corresponda.",
+  "translation" : "Peter devoró una hamburguesa y yo también devoré una.",
+  "theoryId" : "b1.13.Each_Other",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.02.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Peter devoured a hamburger and I devoured",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "one" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "as well.",
+      "options" : null
+    } ],
+    "sentences" : [ "Peter devoured a hamburger and I devoured one as well." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534395f"
+  },
+  "id" : "67fab6d5993010229534395f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d344"
+  },
+  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "instructions" : "Inserta 'one' o 'ones' según corresponda.",
+  "translation" : "No tiene suficientes cucharas. Necesita algunas brillantes.",
+  "theoryId" : "b1.13.Each_Other",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.02.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He doesn't have enough spoons. He needs some shiny",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "ones" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "He doesn't have enough spoons. He needs some shiny ones." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343960"
+  },
+  "id" : "67fab6d59930102295343960",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d344"
+  },
+  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "instructions" : "Inserta 'one' o 'ones' según corresponda.",
+  "translation" : "¿Son esos melocotones? Apreciaría algunos dulces.",
+  "theoryId" : "b1.13.Each_Other",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.02.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are those peaches? I'd appreciate some sweet",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "ones" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "Are those peaches? I'd appreciate some sweet ones." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343961"
+  },
+  "id" : "67fab6d59930102295343961",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d344"
+  },
+  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "instructions" : "Inserta 'one' o 'ones' según corresponda.",
+  "translation" : "Le pedí algunos dulces y ella nos ofreció los más deliciosos.",
+  "theoryId" : "b1.13.Each_Other",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.02.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I asked her for some sweets and she offered us the most delicious",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "ones" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "I asked her for some sweets and she offered us the most delicious ones." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343962"
+  },
+  "id" : "67fab6d59930102295343962",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d344"
+  },
+  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "instructions" : "Inserta 'one' o 'ones' según corresponda.",
+  "translation" : "R: ¿Quieres una taza de té? B: Sí, me apetece una.",
+  "theoryId" : "b1.13.Each_Other",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.02.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Do you want a cup of tea? B: Yes, I'd fancy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "one" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Do you want a cup of tea? B: Yes, I'd fancy one." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343963"
+  },
+  "id" : "67fab6d59930102295343963",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d344"
+  },
+  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "instructions" : "Inserta 'one' o 'ones' según corresponda.",
+  "translation" : "Los sofás son viejos. Necesitamos comprar unos más nuevos.",
+  "theoryId" : "b1.13.Each_Other",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.02.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The sofas are old. We need to purchase some newer",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "ones" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "The sofas are old. We need to purchase some newer ones." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343964"
+  },
+  "id" : "67fab6d59930102295343964",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d344"
+  },
+  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "instructions" : "Inserta 'one' o 'ones' según corresponda.",
+  "translation" : "Ella se puso zapatos verdes y yo me puse unos marrones.",
+  "theoryId" : "b1.13.Each_Other",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.02.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She put on green shoes and I put on brown",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "ones" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "She put on green shoes and I put on brown ones." ]
+  }
+} ]

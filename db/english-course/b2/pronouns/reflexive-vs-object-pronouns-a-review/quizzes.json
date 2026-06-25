@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953446c0"
-    },
-    "id": "67fab6d599301022953446c0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d472"
-    },
-    "title": "Reflexive vs. Object Pronouns: A Review",
-    "instructions": "Elige el pronombre correcto.",
-    "translation": "Él lo pellizcó.",
-    "theoryId": "b2.11.Pronoun_or_Determiner_",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.11.02.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He pinched",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "him"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(him / himself). (Tom pinched Alan.)",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He pinched him."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446c0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953446c1"
-    },
-    "id": "67fab6d599301022953446c1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d472"
-    },
-    "title": "Reflexive vs. Object Pronouns: A Review",
-    "instructions": "Elige el pronombre correcto.",
-    "translation": "Te quemaste por ser descuidado.",
-    "theoryId": "b2.11.Pronoun_or_Determiner_",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.11.02.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "You burned",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "yourself"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(you / yourself) because you were careless.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "You burned yourself because you were careless."
-      ]
-    }
+  "id" : "67fab6d599301022953446c0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d472"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953446c2"
-    },
-    "id": "67fab6d599301022953446c2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d472"
-    },
-    "title": "Reflexive vs. Object Pronouns: A Review",
-    "instructions": "Elige el pronombre correcto.",
-    "translation": "Los perros los lamieron.",
-    "theoryId": "b2.11.Pronoun_or_Determiner_",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.11.02.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The dogs licked",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "them"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(them / themselves). (The dogs licked the cats.)",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The dogs licked them."
-      ]
-    }
+  "title" : "Reflexive vs. Object Pronouns: A Review",
+  "instructions" : "Elige el pronombre correcto.",
+  "translation" : "Él lo pellizcó.",
+  "theoryId" : "b2.11.Pronoun_or_Determiner_",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953446c3"
-    },
-    "id": "67fab6d599301022953446c3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d472"
-    },
-    "title": "Reflexive vs. Object Pronouns: A Review",
-    "instructions": "Elige el pronombre correcto.",
-    "translation": "Ella le dio unas flores.",
-    "theoryId": "b2.11.Pronoun_or_Determiner_",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.11.02.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She gave",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "her"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(her / herself) some flowers.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She gave her some flowers."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953446c4"
-    },
-    "id": "67fab6d599301022953446c4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d472"
-    },
-    "title": "Reflexive vs. Object Pronouns: A Review",
-    "instructions": "Elige el pronombre correcto.",
-    "translation": "Robert lo miró.",
-    "theoryId": "b2.11.Pronoun_or_Determiner_",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.11.02.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Robert glanced at",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "him"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(him / himself). (Robert glanced at John.)",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Robert glanced at him."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953446c5"
-    },
-    "id": "67fab6d599301022953446c5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d472"
-    },
-    "title": "Reflexive vs. Object Pronouns: A Review",
-    "instructions": "Elige el pronombre correcto.",
-    "translation": "Nos enviamos una nota por fax para revisar la máquina.",
-    "theoryId": "b2.11.Pronoun_or_Determiner_",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.11.02.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They faxed",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "ourselves"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(us / ourselves) a note to check the machine.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They faxed ourselves a note to check the machine."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953446c6"
-    },
-    "id": "67fab6d599301022953446c6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d472"
-    },
-    "title": "Reflexive vs. Object Pronouns: A Review",
-    "instructions": "Elige el pronombre correcto.",
-    "translation": "Sarah le diseñó un vestido.",
-    "theoryId": "b2.11.Pronoun_or_Determiner_",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.11.02.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Sarah designed",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "him"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(her / herself) a dress. (Sarah designed a dress for Ben.)",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Sarah designed him a dress."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953446c7"
-    },
-    "id": "67fab6d599301022953446c7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d472"
-    },
-    "title": "Reflexive vs. Object Pronouns: A Review",
-    "instructions": "Elige el pronombre correcto.",
-    "translation": "Ella se cortó con la esquina del papel.",
-    "theoryId": "b2.11.Pronoun_or_Determiner_",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.11.02.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She cut",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "herself"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(her / herself) on the corner of the paper. (She was alone.)",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She cut herself on the corner of the paper."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953446c8"
-    },
-    "id": "67fab6d599301022953446c8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d472"
-    },
-    "title": "Reflexive vs. Object Pronouns: A Review",
-    "instructions": "Elige el pronombre correcto.",
-    "translation": "Mike lo llamó.",
-    "theoryId": "b2.11.Pronoun_or_Determiner_",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.11.02.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Mike phoned",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "him"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(him / himself). (Mike phoned Alan.)",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Mike phoned him."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953446c9"
-    },
-    "id": "67fab6d599301022953446c9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d472"
-    },
-    "title": "Reflexive vs. Object Pronouns: A Review",
-    "instructions": "Elige el pronombre correcto.",
-    "translation": "Lisa le escribió una carta.",
-    "theoryId": "b2.11.Pronoun_or_Determiner_",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.11.02.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Lisa wrote",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "her"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(him / herself) a letter. (Lisa wrote a letter to Rachel.)",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Lisa wrote her a letter."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953446ca"
-    },
-    "id": "67fab6d599301022953446ca",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d472"
-    },
-    "title": "Reflexive vs. Object Pronouns: A Review",
-    "instructions": "Elige el pronombre correcto.",
-    "translation": "Susan se observó a sí misma.",
-    "theoryId": "b2.11.Pronoun_or_Determiner_",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.11.02.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Susan observed",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "herself"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(him / herself). (Susan observed Susan.)",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Susan observed herself."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953446cb"
-    },
-    "id": "67fab6d599301022953446cb",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d472"
-    },
-    "title": "Reflexive vs. Object Pronouns: A Review",
-    "instructions": "Elige el pronombre correcto.",
-    "translation": "Alice la escuchó.",
-    "theoryId": "b2.11.Pronoun_or_Determiner_",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.11.02.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Alice listened to",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "her"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(him / herself). (Alice listened to Rose.)",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Alice listened to her."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953446cc"
-    },
-    "id": "67fab6d599301022953446cc",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d472"
-    },
-    "title": "Reflexive vs. Object Pronouns: A Review",
-    "instructions": "Elige el pronombre correcto.",
-    "translation": "Los bebés se señalaron a sí mismos en la cuna.",
-    "theoryId": "b2.11.Pronoun_or_Determiner_",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.11.02.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The babies pointed at",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "themselves"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(them / themselves) in the crib.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The babies pointed at themselves in the crib."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953446cd"
-    },
-    "id": "67fab6d599301022953446cd",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d472"
-    },
-    "title": "Reflexive vs. Object Pronouns: A Review",
-    "instructions": "Elige el pronombre correcto.",
-    "translation": "Los vimos.",
-    "theoryId": "b2.11.Pronoun_or_Determiner_",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.11.02.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We saw",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "them"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(them / themselves).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We saw them."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953446ce"
-    },
-    "id": "67fab6d599301022953446ce",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d472"
-    },
-    "title": "Reflexive vs. Object Pronouns: A Review",
-    "instructions": "Elige el pronombre correcto.",
-    "translation": "Los abogados discutieron con ellos.",
-    "theoryId": "b2.11.Pronoun_or_Determiner_",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.11.02.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The lawyers argued with",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "them"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(them / themselves). (The lawyers argued with the clients.)",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The lawyers argued with them."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953446cf"
-    },
-    "id": "67fab6d599301022953446cf",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d472"
-    },
-    "title": "Reflexive vs. Object Pronouns: A Review",
-    "instructions": "Elige el pronombre correcto.",
-    "translation": "Ella se esforzó cuando estaba moviendo los muebles.",
-    "theoryId": "b2.11.Pronoun_or_Determiner_",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.11.02.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She strained",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "herself"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(me / myself) when she was moving the furniture.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She strained herself when she was moving the furniture."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953446d0"
-    },
-    "id": "67fab6d599301022953446d0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d472"
-    },
-    "title": "Reflexive vs. Object Pronouns: A Review",
-    "instructions": "Elige el pronombre correcto.",
-    "translation": "Me derramé jugo y tuve que limpiar mi camiseta.",
-    "theoryId": "b2.11.Pronoun_or_Determiner_",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.11.02.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I dripped juice on",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "myself"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(me / myself) and I had to wipe my t-shirt.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I dripped juice on myself and I had to wipe my t-shirt."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953446d1"
-    },
-    "id": "67fab6d599301022953446d1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d472"
-    },
-    "title": "Reflexive vs. Object Pronouns: A Review",
-    "instructions": "Elige el pronombre correcto.",
-    "translation": "Mi hermano se mostró karate a sí mismo.",
-    "theoryId": "b2.11.Pronoun_or_Determiner_",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.11.02.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "My brother showed",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "himself"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(him / himself) karate. (My brother showed my brother karate.)",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "My brother showed himself karate."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953446d2"
-    },
-    "id": "67fab6d599301022953446d2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d472"
-    },
-    "title": "Reflexive vs. Object Pronouns: A Review",
-    "instructions": "Elige el pronombre correcto.",
-    "translation": "Las actrices hicieron un video de sí mismas.",
-    "theoryId": "b2.11.Pronoun_or_Determiner_",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.11.02.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The actresses made a video of",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "themselves"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(them / themselves). (The actresses made a video of the actresses.)",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The actresses made a video of themselves."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953446d3"
-    },
-    "id": "67fab6d599301022953446d3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d472"
-    },
-    "title": "Reflexive vs. Object Pronouns: A Review",
-    "instructions": "Elige el pronombre correcto.",
-    "translation": "Mi abuela se tejió una bufanda.",
-    "theoryId": "b2.11.Pronoun_or_Determiner_",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.11.02.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "My grandma knitted",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "herself"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(her / herself) a scarf. (My grandma knitted a scarf for my grandma.)",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "My grandma knitted herself a scarf."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.02.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He pinched",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "him" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(him / himself). (Tom pinched Alan.)",
+      "options" : null
+    } ],
+    "sentences" : [ "He pinched him." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446c1"
+  },
+  "id" : "67fab6d599301022953446c1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d472"
+  },
+  "title" : "Reflexive vs. Object Pronouns: A Review",
+  "instructions" : "Elige el pronombre correcto.",
+  "translation" : "Te quemaste por ser descuidado.",
+  "theoryId" : "b2.11.Pronoun_or_Determiner_",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.02.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You burned",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "yourself" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / yourself) because you were careless.",
+      "options" : null
+    } ],
+    "sentences" : [ "You burned yourself because you were careless." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446c2"
+  },
+  "id" : "67fab6d599301022953446c2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d472"
+  },
+  "title" : "Reflexive vs. Object Pronouns: A Review",
+  "instructions" : "Elige el pronombre correcto.",
+  "translation" : "Los perros los lamieron.",
+  "theoryId" : "b2.11.Pronoun_or_Determiner_",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.02.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dogs licked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "them" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(them / themselves). (The dogs licked the cats.)",
+      "options" : null
+    } ],
+    "sentences" : [ "The dogs licked them." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446c3"
+  },
+  "id" : "67fab6d599301022953446c3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d472"
+  },
+  "title" : "Reflexive vs. Object Pronouns: A Review",
+  "instructions" : "Elige el pronombre correcto.",
+  "translation" : "Ella le dio unas flores.",
+  "theoryId" : "b2.11.Pronoun_or_Determiner_",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.02.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She gave",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "her" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(her / herself) some flowers.",
+      "options" : null
+    } ],
+    "sentences" : [ "She gave her some flowers." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446c4"
+  },
+  "id" : "67fab6d599301022953446c4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d472"
+  },
+  "title" : "Reflexive vs. Object Pronouns: A Review",
+  "instructions" : "Elige el pronombre correcto.",
+  "translation" : "Robert lo miró.",
+  "theoryId" : "b2.11.Pronoun_or_Determiner_",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.02.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Robert glanced at",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "him" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(him / himself). (Robert glanced at John.)",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert glanced at him." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446c5"
+  },
+  "id" : "67fab6d599301022953446c5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d472"
+  },
+  "title" : "Reflexive vs. Object Pronouns: A Review",
+  "instructions" : "Elige el pronombre correcto.",
+  "translation" : "Nos enviamos una nota por fax para revisar la máquina.",
+  "theoryId" : "b2.11.Pronoun_or_Determiner_",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.02.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They faxed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "ourselves" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(us / ourselves) a note to check the machine.",
+      "options" : null
+    } ],
+    "sentences" : [ "They faxed ourselves a note to check the machine." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446c6"
+  },
+  "id" : "67fab6d599301022953446c6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d472"
+  },
+  "title" : "Reflexive vs. Object Pronouns: A Review",
+  "instructions" : "Elige el pronombre correcto.",
+  "translation" : "Sarah le diseñó un vestido.",
+  "theoryId" : "b2.11.Pronoun_or_Determiner_",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.02.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Sarah designed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "him" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(her / herself) a dress. (Sarah designed a dress for Ben.)",
+      "options" : null
+    } ],
+    "sentences" : [ "Sarah designed him a dress." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446c7"
+  },
+  "id" : "67fab6d599301022953446c7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d472"
+  },
+  "title" : "Reflexive vs. Object Pronouns: A Review",
+  "instructions" : "Elige el pronombre correcto.",
+  "translation" : "Ella se cortó con la esquina del papel.",
+  "theoryId" : "b2.11.Pronoun_or_Determiner_",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.02.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She cut",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "herself" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(her / herself) on the corner of the paper. (She was alone.)",
+      "options" : null
+    } ],
+    "sentences" : [ "She cut herself on the corner of the paper." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446c8"
+  },
+  "id" : "67fab6d599301022953446c8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d472"
+  },
+  "title" : "Reflexive vs. Object Pronouns: A Review",
+  "instructions" : "Elige el pronombre correcto.",
+  "translation" : "Mike lo llamó.",
+  "theoryId" : "b2.11.Pronoun_or_Determiner_",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.02.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Mike phoned",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "him" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(him / himself). (Mike phoned Alan.)",
+      "options" : null
+    } ],
+    "sentences" : [ "Mike phoned him." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446c9"
+  },
+  "id" : "67fab6d599301022953446c9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d472"
+  },
+  "title" : "Reflexive vs. Object Pronouns: A Review",
+  "instructions" : "Elige el pronombre correcto.",
+  "translation" : "Lisa le escribió una carta.",
+  "theoryId" : "b2.11.Pronoun_or_Determiner_",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.02.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Lisa wrote",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "her" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(him / herself) a letter. (Lisa wrote a letter to Rachel.)",
+      "options" : null
+    } ],
+    "sentences" : [ "Lisa wrote her a letter." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446ca"
+  },
+  "id" : "67fab6d599301022953446ca",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d472"
+  },
+  "title" : "Reflexive vs. Object Pronouns: A Review",
+  "instructions" : "Elige el pronombre correcto.",
+  "translation" : "Susan se observó a sí misma.",
+  "theoryId" : "b2.11.Pronoun_or_Determiner_",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.02.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Susan observed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "herself" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(him / herself). (Susan observed Susan.)",
+      "options" : null
+    } ],
+    "sentences" : [ "Susan observed herself." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446cb"
+  },
+  "id" : "67fab6d599301022953446cb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d472"
+  },
+  "title" : "Reflexive vs. Object Pronouns: A Review",
+  "instructions" : "Elige el pronombre correcto.",
+  "translation" : "Alice la escuchó.",
+  "theoryId" : "b2.11.Pronoun_or_Determiner_",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.02.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Alice listened to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "her" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(him / herself). (Alice listened to Rose.)",
+      "options" : null
+    } ],
+    "sentences" : [ "Alice listened to her." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446cc"
+  },
+  "id" : "67fab6d599301022953446cc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d472"
+  },
+  "title" : "Reflexive vs. Object Pronouns: A Review",
+  "instructions" : "Elige el pronombre correcto.",
+  "translation" : "Los bebés se señalaron a sí mismos en la cuna.",
+  "theoryId" : "b2.11.Pronoun_or_Determiner_",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.02.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The babies pointed at",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "themselves" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(them / themselves) in the crib.",
+      "options" : null
+    } ],
+    "sentences" : [ "The babies pointed at themselves in the crib." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446cd"
+  },
+  "id" : "67fab6d599301022953446cd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d472"
+  },
+  "title" : "Reflexive vs. Object Pronouns: A Review",
+  "instructions" : "Elige el pronombre correcto.",
+  "translation" : "Los vimos.",
+  "theoryId" : "b2.11.Pronoun_or_Determiner_",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.02.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We saw",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "them" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(them / themselves).",
+      "options" : null
+    } ],
+    "sentences" : [ "We saw them." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446ce"
+  },
+  "id" : "67fab6d599301022953446ce",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d472"
+  },
+  "title" : "Reflexive vs. Object Pronouns: A Review",
+  "instructions" : "Elige el pronombre correcto.",
+  "translation" : "Los abogados discutieron con ellos.",
+  "theoryId" : "b2.11.Pronoun_or_Determiner_",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.02.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The lawyers argued with",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "them" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(them / themselves). (The lawyers argued with the clients.)",
+      "options" : null
+    } ],
+    "sentences" : [ "The lawyers argued with them." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446cf"
+  },
+  "id" : "67fab6d599301022953446cf",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d472"
+  },
+  "title" : "Reflexive vs. Object Pronouns: A Review",
+  "instructions" : "Elige el pronombre correcto.",
+  "translation" : "Ella se esforzó cuando estaba moviendo los muebles.",
+  "theoryId" : "b2.11.Pronoun_or_Determiner_",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.02.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She strained",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "herself" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(me / myself) when she was moving the furniture.",
+      "options" : null
+    } ],
+    "sentences" : [ "She strained herself when she was moving the furniture." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446d0"
+  },
+  "id" : "67fab6d599301022953446d0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d472"
+  },
+  "title" : "Reflexive vs. Object Pronouns: A Review",
+  "instructions" : "Elige el pronombre correcto.",
+  "translation" : "Me derramé jugo y tuve que limpiar mi camiseta.",
+  "theoryId" : "b2.11.Pronoun_or_Determiner_",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.02.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I dripped juice on",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "myself" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(me / myself) and I had to wipe my t-shirt.",
+      "options" : null
+    } ],
+    "sentences" : [ "I dripped juice on myself and I had to wipe my t-shirt." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446d1"
+  },
+  "id" : "67fab6d599301022953446d1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d472"
+  },
+  "title" : "Reflexive vs. Object Pronouns: A Review",
+  "instructions" : "Elige el pronombre correcto.",
+  "translation" : "Mi hermano se mostró karate a sí mismo.",
+  "theoryId" : "b2.11.Pronoun_or_Determiner_",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.02.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My brother showed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "himself" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(him / himself) karate. (My brother showed my brother karate.)",
+      "options" : null
+    } ],
+    "sentences" : [ "My brother showed himself karate." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446d2"
+  },
+  "id" : "67fab6d599301022953446d2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d472"
+  },
+  "title" : "Reflexive vs. Object Pronouns: A Review",
+  "instructions" : "Elige el pronombre correcto.",
+  "translation" : "Las actrices hicieron un video de sí mismas.",
+  "theoryId" : "b2.11.Pronoun_or_Determiner_",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.02.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The actresses made a video of",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "themselves" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(them / themselves). (The actresses made a video of the actresses.)",
+      "options" : null
+    } ],
+    "sentences" : [ "The actresses made a video of themselves." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446d3"
+  },
+  "id" : "67fab6d599301022953446d3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d472"
+  },
+  "title" : "Reflexive vs. Object Pronouns: A Review",
+  "instructions" : "Elige el pronombre correcto.",
+  "translation" : "Mi abuela se tejió una bufanda.",
+  "theoryId" : "b2.11.Pronoun_or_Determiner_",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.02.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My grandma knitted",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "herself" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(her / herself) a scarf. (My grandma knitted a scarf for my grandma.)",
+      "options" : null
+    } ],
+    "sentences" : [ "My grandma knitted herself a scarf." ]
+  }
+} ]

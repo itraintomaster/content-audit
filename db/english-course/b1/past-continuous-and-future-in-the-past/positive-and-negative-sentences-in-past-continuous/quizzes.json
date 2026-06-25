@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534313d"
-    },
-    "id": "67fab6d5993010229534313d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ce"
-    },
-    "title": "Positive and negative sentences in past continuous",
-    "instructions": "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
-    "translation": "Ella estaba mirando.",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.01.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "was watching"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(watch).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She was watching."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534313d"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534313e"
-    },
-    "id": "67fab6d5993010229534313e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ce"
-    },
-    "title": "Positive and negative sentences in past continuous",
-    "instructions": "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
-    "translation": "Él no estaba escuchando.",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.01.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "was not listening/wasn't listening"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / listen).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He was not listening/wasn't listening."
-      ]
-    }
+  "id" : "67fab6d5993010229534313d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ce"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534313f"
-    },
-    "id": "67fab6d5993010229534313f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ce"
-    },
-    "title": "Positive and negative sentences in past continuous",
-    "instructions": "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
-    "translation": "Ellos estaban descansando.",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.01.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were resting"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(rest).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They were resting."
-      ]
-    }
+  "title" : "Positive and negative sentences in past continuous",
+  "instructions" : "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
+  "translation" : "Ella estaba mirando.",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343140"
-    },
-    "id": "67fab6d59930102295343140",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ce"
-    },
-    "title": "Positive and negative sentences in past continuous",
-    "instructions": "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
-    "translation": "Ella no estaba comiendo pan.",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.01.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "was not eating/wasn't eating"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / eat) bread.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She was not eating/wasn't eating bread."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343141"
-    },
-    "id": "67fab6d59930102295343141",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ce"
-    },
-    "title": "Positive and negative sentences in past continuous",
-    "instructions": "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
-    "translation": "Ella estaba corriendo.",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.01.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "was running"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(run).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She was running."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343142"
-    },
-    "id": "67fab6d59930102295343142",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ce"
-    },
-    "title": "Positive and negative sentences in past continuous",
-    "instructions": "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
-    "translation": "No estaba granizando.",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.01.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "It",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "was not hailing/wasn't hailing"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / hail).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "It was not hailing/wasn't hailing."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343143"
-    },
-    "id": "67fab6d59930102295343143",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ce"
-    },
-    "title": "Positive and negative sentences in past continuous",
-    "instructions": "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
-    "translation": "Nosotros estábamos riendo.",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.01.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were laughing"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(laugh).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We were laughing."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343144"
-    },
-    "id": "67fab6d59930102295343144",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ce"
-    },
-    "title": "Positive and negative sentences in past continuous",
-    "instructions": "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
-    "translation": "Nosotros no estábamos gritando.",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.01.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were not shouting/weren't shouting"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / shout).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We were not shouting/weren't shouting."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343145"
-    },
-    "id": "67fab6d59930102295343145",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ce"
-    },
-    "title": "Positive and negative sentences in past continuous",
-    "instructions": "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
-    "translation": "Él no estaba dibujando.",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.01.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "was not drawing/wasn't drawing"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / draw).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He was not drawing/wasn't drawing."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343146"
-    },
-    "id": "67fab6d59930102295343146",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ce"
-    },
-    "title": "Positive and negative sentences in past continuous",
-    "instructions": "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
-    "translation": "Nosotros estábamos bailando.",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.01.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were dancing"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(dance).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We were dancing."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343147"
-    },
-    "id": "67fab6d59930102295343147",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ce"
-    },
-    "title": "Positive and negative sentences in past continuous",
-    "instructions": "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
-    "translation": "Estaba granizando.",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.01.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "It",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "was hailing"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(hail).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "It was hailing."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343148"
-    },
-    "id": "67fab6d59930102295343148",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ce"
-    },
-    "title": "Positive and negative sentences in past continuous",
-    "instructions": "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
-    "translation": "Él estaba aprendiendo.",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.01.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "was learning"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(learn).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He was learning."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343149"
-    },
-    "id": "67fab6d59930102295343149",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ce"
-    },
-    "title": "Positive and negative sentences in past continuous",
-    "instructions": "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
-    "translation": "Tú no la estabas viendo.",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.01.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "You",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were not seeing/weren't seeing"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / see) her.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "You were not seeing/weren't seeing her."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534314a"
-    },
-    "id": "67fab6d5993010229534314a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ce"
-    },
-    "title": "Positive and negative sentences in past continuous",
-    "instructions": "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
-    "translation": "Ellos estaban bebiendo.",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.01.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were drinking"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(drink).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They were drinking."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534314b"
-    },
-    "id": "67fab6d5993010229534314b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ce"
-    },
-    "title": "Positive and negative sentences in past continuous",
-    "instructions": "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
-    "translation": "Nosotros estábamos soñando.",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.01.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were dreaming"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(dream).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We were dreaming."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534314c"
-    },
-    "id": "67fab6d5993010229534314c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ce"
-    },
-    "title": "Positive and negative sentences in past continuous",
-    "instructions": "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
-    "translation": "Ellos no se estaban sintiendo bien.",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.01.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were not feeling/weren't feeling"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / feel) well.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They were not feeling/weren't feeling well."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534314d"
-    },
-    "id": "67fab6d5993010229534314d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ce"
-    },
-    "title": "Positive and negative sentences in past continuous",
-    "instructions": "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
-    "translation": "Nosotros no estábamos haciendo la tarea.",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.01.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were not doing/weren't doing"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / do) homework.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We were not doing/weren't doing homework."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534314e"
-    },
-    "id": "67fab6d5993010229534314e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ce"
-    },
-    "title": "Positive and negative sentences in past continuous",
-    "instructions": "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
-    "translation": "Nosotros no estábamos vendiendo coches.",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.01.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were not selling/weren't selling"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / sell) cars.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We were not selling/weren't selling cars."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534314f"
-    },
-    "id": "67fab6d5993010229534314f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ce"
-    },
-    "title": "Positive and negative sentences in past continuous",
-    "instructions": "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
-    "translation": "Tú estabas pensando.",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.01.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "You",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were thinking"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(think).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "You were thinking."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343150"
-    },
-    "id": "67fab6d59930102295343150",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2ce"
-    },
-    "title": "Positive and negative sentences in past continuous",
-    "instructions": "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
-    "translation": "Ellos no estaban usando la computadora.",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.01.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were not using/weren't using"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / use) the computer.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They were not using/weren't using the computer."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.01.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was watching" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(watch).",
+      "options" : null
+    } ],
+    "sentences" : [ "She was watching." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534313e"
+  },
+  "id" : "67fab6d5993010229534313e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ce"
+  },
+  "title" : "Positive and negative sentences in past continuous",
+  "instructions" : "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
+  "translation" : "Él no estaba escuchando.",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.01.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was not listening/wasn't listening" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / listen).",
+      "options" : null
+    } ],
+    "sentences" : [ "He was not listening/wasn't listening." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534313f"
+  },
+  "id" : "67fab6d5993010229534313f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ce"
+  },
+  "title" : "Positive and negative sentences in past continuous",
+  "instructions" : "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
+  "translation" : "Ellos estaban descansando.",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.01.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were resting" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(rest).",
+      "options" : null
+    } ],
+    "sentences" : [ "They were resting." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343140"
+  },
+  "id" : "67fab6d59930102295343140",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ce"
+  },
+  "title" : "Positive and negative sentences in past continuous",
+  "instructions" : "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
+  "translation" : "Ella no estaba comiendo pan.",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.01.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was not eating/wasn't eating" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / eat) bread.",
+      "options" : null
+    } ],
+    "sentences" : [ "She was not eating/wasn't eating bread." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343141"
+  },
+  "id" : "67fab6d59930102295343141",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ce"
+  },
+  "title" : "Positive and negative sentences in past continuous",
+  "instructions" : "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
+  "translation" : "Ella estaba corriendo.",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.01.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was running" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(run).",
+      "options" : null
+    } ],
+    "sentences" : [ "She was running." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343142"
+  },
+  "id" : "67fab6d59930102295343142",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ce"
+  },
+  "title" : "Positive and negative sentences in past continuous",
+  "instructions" : "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
+  "translation" : "No estaba granizando.",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.01.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was not hailing/wasn't hailing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / hail).",
+      "options" : null
+    } ],
+    "sentences" : [ "It was not hailing/wasn't hailing." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343143"
+  },
+  "id" : "67fab6d59930102295343143",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ce"
+  },
+  "title" : "Positive and negative sentences in past continuous",
+  "instructions" : "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
+  "translation" : "Nosotros estábamos riendo.",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.01.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were laughing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(laugh).",
+      "options" : null
+    } ],
+    "sentences" : [ "We were laughing." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343144"
+  },
+  "id" : "67fab6d59930102295343144",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ce"
+  },
+  "title" : "Positive and negative sentences in past continuous",
+  "instructions" : "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
+  "translation" : "Nosotros no estábamos gritando.",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.01.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were not shouting/weren't shouting" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / shout).",
+      "options" : null
+    } ],
+    "sentences" : [ "We were not shouting/weren't shouting." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343145"
+  },
+  "id" : "67fab6d59930102295343145",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ce"
+  },
+  "title" : "Positive and negative sentences in past continuous",
+  "instructions" : "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
+  "translation" : "Él no estaba dibujando.",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.01.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was not drawing/wasn't drawing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / draw).",
+      "options" : null
+    } ],
+    "sentences" : [ "He was not drawing/wasn't drawing." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343146"
+  },
+  "id" : "67fab6d59930102295343146",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ce"
+  },
+  "title" : "Positive and negative sentences in past continuous",
+  "instructions" : "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
+  "translation" : "Nosotros estábamos bailando.",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.01.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were dancing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(dance).",
+      "options" : null
+    } ],
+    "sentences" : [ "We were dancing." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343147"
+  },
+  "id" : "67fab6d59930102295343147",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ce"
+  },
+  "title" : "Positive and negative sentences in past continuous",
+  "instructions" : "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
+  "translation" : "Estaba granizando.",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.01.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was hailing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(hail).",
+      "options" : null
+    } ],
+    "sentences" : [ "It was hailing." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343148"
+  },
+  "id" : "67fab6d59930102295343148",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ce"
+  },
+  "title" : "Positive and negative sentences in past continuous",
+  "instructions" : "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
+  "translation" : "Él estaba aprendiendo.",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.01.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was learning" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(learn).",
+      "options" : null
+    } ],
+    "sentences" : [ "He was learning." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343149"
+  },
+  "id" : "67fab6d59930102295343149",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ce"
+  },
+  "title" : "Positive and negative sentences in past continuous",
+  "instructions" : "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
+  "translation" : "Tú no la estabas viendo.",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.01.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were not seeing/weren't seeing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / see) her.",
+      "options" : null
+    } ],
+    "sentences" : [ "You were not seeing/weren't seeing her." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534314a"
+  },
+  "id" : "67fab6d5993010229534314a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ce"
+  },
+  "title" : "Positive and negative sentences in past continuous",
+  "instructions" : "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
+  "translation" : "Ellos estaban bebiendo.",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.01.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were drinking" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(drink).",
+      "options" : null
+    } ],
+    "sentences" : [ "They were drinking." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534314b"
+  },
+  "id" : "67fab6d5993010229534314b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ce"
+  },
+  "title" : "Positive and negative sentences in past continuous",
+  "instructions" : "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
+  "translation" : "Nosotros estábamos soñando.",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.01.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were dreaming" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(dream).",
+      "options" : null
+    } ],
+    "sentences" : [ "We were dreaming." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534314c"
+  },
+  "id" : "67fab6d5993010229534314c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ce"
+  },
+  "title" : "Positive and negative sentences in past continuous",
+  "instructions" : "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
+  "translation" : "Ellos no se estaban sintiendo bien.",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.01.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were not feeling/weren't feeling" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / feel) well.",
+      "options" : null
+    } ],
+    "sentences" : [ "They were not feeling/weren't feeling well." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534314d"
+  },
+  "id" : "67fab6d5993010229534314d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ce"
+  },
+  "title" : "Positive and negative sentences in past continuous",
+  "instructions" : "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
+  "translation" : "Nosotros no estábamos haciendo la tarea.",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.01.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were not doing/weren't doing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / do) homework.",
+      "options" : null
+    } ],
+    "sentences" : [ "We were not doing/weren't doing homework." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534314e"
+  },
+  "id" : "67fab6d5993010229534314e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ce"
+  },
+  "title" : "Positive and negative sentences in past continuous",
+  "instructions" : "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
+  "translation" : "Nosotros no estábamos vendiendo coches.",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.01.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were not selling/weren't selling" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / sell) cars.",
+      "options" : null
+    } ],
+    "sentences" : [ "We were not selling/weren't selling cars." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534314f"
+  },
+  "id" : "67fab6d5993010229534314f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ce"
+  },
+  "title" : "Positive and negative sentences in past continuous",
+  "instructions" : "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
+  "translation" : "Tú estabas pensando.",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.01.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were thinking" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(think).",
+      "options" : null
+    } ],
+    "sentences" : [ "You were thinking." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343150"
+  },
+  "id" : "67fab6d59930102295343150",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ce"
+  },
+  "title" : "Positive and negative sentences in past continuous",
+  "instructions" : "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
+  "translation" : "Ellos no estaban usando la computadora.",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.01.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were not using/weren't using" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / use) the computer.",
+      "options" : null
+    } ],
+    "sentences" : [ "They were not using/weren't using the computer." ]
+  }
+} ]

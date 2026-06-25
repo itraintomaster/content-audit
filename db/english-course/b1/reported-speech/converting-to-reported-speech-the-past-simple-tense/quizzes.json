@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953436d1"
-    },
-    "id": "67fab6d599301022953436d1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d31f"
-    },
-    "title": "Converting to Reported Speech: The Past Simple Tense",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
-    "translation": "Robert dijo que los perros habían ladrado fuerte.",
-    "theoryId": "b1.10.How_to_Make_Reported_Speech",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.03.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The dogs barked loudly.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Robert said that the dogs had barked loudly."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Robert said that the dogs had barked loudly."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d599301022953436d1"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953436d2"
-    },
-    "id": "67fab6d599301022953436d2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d31f"
-    },
-    "title": "Converting to Reported Speech: The Past Simple Tense",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
-    "translation": "Robert dijo que había disfrutado la película.",
-    "theoryId": "b1.10.How_to_Make_Reported_Speech",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.03.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He enjoyed the movie.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Robert said that he had enjoyed the movie."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Robert said that he had enjoyed the movie."
-      ]
-    }
+  "id" : "67fab6d599301022953436d1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d31f"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953436d3"
-    },
-    "id": "67fab6d599301022953436d3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d31f"
-    },
-    "title": "Converting to Reported Speech: The Past Simple Tense",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
-    "translation": "Robert dijo que las chicas habían cantado la canción.",
-    "theoryId": "b1.10.How_to_Make_Reported_Speech",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.03.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The girls sang the song.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Robert said that the girls had sung the song."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Robert said that the girls had sung the song."
-      ]
-    }
+  "title" : "Converting to Reported Speech: The Past Simple Tense",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
+  "translation" : "Robert dijo que los perros habían ladrado fuerte.",
+  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953436d4"
-    },
-    "id": "67fab6d599301022953436d4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d31f"
-    },
-    "title": "Converting to Reported Speech: The Past Simple Tense",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
-    "translation": "Robert dijo que ella había dormido todo el día.",
-    "theoryId": "b1.10.How_to_Make_Reported_Speech",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.03.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She slept all day.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Robert said that she had slept all day."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Robert said that she had slept all day."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953436d5"
-    },
-    "id": "67fab6d599301022953436d5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d31f"
-    },
-    "title": "Converting to Reported Speech: The Past Simple Tense",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
-    "translation": "Robert dijo que él había estado nervioso.",
-    "theoryId": "b1.10.How_to_Make_Reported_Speech",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.03.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I was nervous.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Robert said that he had been nervous."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Robert said that he had been nervous."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953436d6"
-    },
-    "id": "67fab6d599301022953436d6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d31f"
-    },
-    "title": "Converting to Reported Speech: The Past Simple Tense",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
-    "translation": "Robert dijo que ella había saludado a todos.",
-    "theoryId": "b1.10.How_to_Make_Reported_Speech",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.03.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She greeted everyone.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Robert said that she had greeted everyone."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Robert said that she had greeted everyone."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953436d7"
-    },
-    "id": "67fab6d599301022953436d7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d31f"
-    },
-    "title": "Converting to Reported Speech: The Past Simple Tense",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
-    "translation": "Robert dijo que Richard había escuchado la radio.",
-    "theoryId": "b1.10.How_to_Make_Reported_Speech",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.03.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Richard listened to the radio.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Robert said that Richard had listened to the radio."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Robert said that Richard had listened to the radio."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953436d8"
-    },
-    "id": "67fab6d599301022953436d8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d31f"
-    },
-    "title": "Converting to Reported Speech: The Past Simple Tense",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
-    "translation": "Robert dijo que Olivia había escrito una historia.",
-    "theoryId": "b1.10.How_to_Make_Reported_Speech",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.03.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Olivia wrote a story.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Robert said that Olivia had written a story."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Robert said that Olivia had written a story."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953436d9"
-    },
-    "id": "67fab6d599301022953436d9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d31f"
-    },
-    "title": "Converting to Reported Speech: The Past Simple Tense",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
-    "translation": "Robert dijo que la fiesta había sido fantástica.",
-    "theoryId": "b1.10.How_to_Make_Reported_Speech",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.03.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The party was fantastic.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Robert said that the party had been fantastic."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Robert said that the party had been fantastic."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953436da"
-    },
-    "id": "67fab6d599301022953436da",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d31f"
-    },
-    "title": "Converting to Reported Speech: The Past Simple Tense",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
-    "translation": "Robert dijo que los profesores habían bebido té.",
-    "theoryId": "b1.10.How_to_Make_Reported_Speech",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.03.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The teachers drank tea.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Robert said that the teachers had drunk tea."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Robert said that the teachers had drunk tea."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953436db"
-    },
-    "id": "67fab6d599301022953436db",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d31f"
-    },
-    "title": "Converting to Reported Speech: The Past Simple Tense",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
-    "translation": "Robert dijo que le había enviado un mensaje de texto a su madre.",
-    "theoryId": "b1.10.How_to_Make_Reported_Speech",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.03.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I texted my mother.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Robert said that he had texted his mother."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Robert said that he had texted his mother."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953436dc"
-    },
-    "id": "67fab6d599301022953436dc",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d31f"
-    },
-    "title": "Converting to Reported Speech: The Past Simple Tense",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
-    "translation": "Robert dijo que a Sophie le había encantado el regalo.",
-    "theoryId": "b1.10.How_to_Make_Reported_Speech",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.03.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Sophie loved the present.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Robert said that Sophie had loved the present."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Robert said that Sophie had loved the present."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953436dd"
-    },
-    "id": "67fab6d599301022953436dd",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d31f"
-    },
-    "title": "Converting to Reported Speech: The Past Simple Tense",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
-    "translation": "Robert dijo que Harry había visto la televisión.",
-    "theoryId": "b1.10.How_to_Make_Reported_Speech",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.03.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Harry watched television.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Robert said that Harry had watched television."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Robert said that Harry had watched television."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953436de"
-    },
-    "id": "67fab6d599301022953436de",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d31f"
-    },
-    "title": "Converting to Reported Speech: The Past Simple Tense",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
-    "translation": "Robert dijo que Sarah y Tom habían ido a la escuela.",
-    "theoryId": "b1.10.How_to_Make_Reported_Speech",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.03.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Sarah and Tom went to school.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Robert said that Sarah and Tom had stayed gone to school."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Robert said that Sarah and Tom had stayed gone to school."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953436df"
-    },
-    "id": "67fab6d599301022953436df",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d31f"
-    },
-    "title": "Converting to Reported Speech: The Past Simple Tense",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
-    "translation": "Robert dijo que había encontrado una billetera.",
-    "theoryId": "b1.10.How_to_Make_Reported_Speech",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.03.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I found a wallet.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Robert said that he had found a wallet."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Robert said that he had found a wallet."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953436e0"
-    },
-    "id": "67fab6d599301022953436e0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d31f"
-    },
-    "title": "Converting to Reported Speech: The Past Simple Tense",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
-    "translation": "Robert dijo que los chicos habían jugado al fútbol.",
-    "theoryId": "b1.10.How_to_Make_Reported_Speech",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.03.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The boys played football.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Robert said that the boys had played football."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Robert said that the boys had played football."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953436e1"
-    },
-    "id": "67fab6d599301022953436e1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d31f"
-    },
-    "title": "Converting to Reported Speech: The Past Simple Tense",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
-    "translation": "Robert dijo que ella había lavado el coche.",
-    "theoryId": "b1.10.How_to_Make_Reported_Speech",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.03.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She washed the car.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Robert said that she had washed the car."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Robert said that she had washed the car."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953436e2"
-    },
-    "id": "67fab6d599301022953436e2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d31f"
-    },
-    "title": "Converting to Reported Speech: The Past Simple Tense",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
-    "translation": "Robert dijo que había aprendido español.",
-    "theoryId": "b1.10.How_to_Make_Reported_Speech",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.03.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I learned Spanish.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Robert said that he had learned Spanish."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Robert said that he had learned Spanish."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953436e3"
-    },
-    "id": "67fab6d599301022953436e3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d31f"
-    },
-    "title": "Converting to Reported Speech: The Past Simple Tense",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
-    "translation": "Robert dijo que nadie había comido pasta.",
-    "theoryId": "b1.10.How_to_Make_Reported_Speech",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.03.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Nobody ate pasta.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Robert said that nobody had eaten pasta."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Robert said that nobody had eaten pasta."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953436e4"
-    },
-    "id": "67fab6d599301022953436e4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d31f"
-    },
-    "title": "Converting to Reported Speech: The Past Simple Tense",
-    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
-    "translation": "Robert dijo que el jardín había sido hermoso.",
-    "theoryId": "b1.10.How_to_Make_Reported_Speech",
-    "topicName": "Reported speech",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.10.03.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The garden was beautiful.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Robert said that the garden had been beautiful."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Robert said that the garden had been beautiful."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dogs barked loudly.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Robert said that the dogs had barked loudly." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert said that the dogs had barked loudly." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953436d2"
+  },
+  "id" : "67fab6d599301022953436d2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d31f"
+  },
+  "title" : "Converting to Reported Speech: The Past Simple Tense",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
+  "translation" : "Robert dijo que había disfrutado la película.",
+  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He enjoyed the movie.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Robert said that he had enjoyed the movie." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert said that he had enjoyed the movie." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953436d3"
+  },
+  "id" : "67fab6d599301022953436d3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d31f"
+  },
+  "title" : "Converting to Reported Speech: The Past Simple Tense",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
+  "translation" : "Robert dijo que las chicas habían cantado la canción.",
+  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The girls sang the song.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Robert said that the girls had sung the song." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert said that the girls had sung the song." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953436d4"
+  },
+  "id" : "67fab6d599301022953436d4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d31f"
+  },
+  "title" : "Converting to Reported Speech: The Past Simple Tense",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
+  "translation" : "Robert dijo que ella había dormido todo el día.",
+  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She slept all day.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Robert said that she had slept all day." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert said that she had slept all day." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953436d5"
+  },
+  "id" : "67fab6d599301022953436d5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d31f"
+  },
+  "title" : "Converting to Reported Speech: The Past Simple Tense",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
+  "translation" : "Robert dijo que él había estado nervioso.",
+  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I was nervous.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Robert said that he had been nervous." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert said that he had been nervous." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953436d6"
+  },
+  "id" : "67fab6d599301022953436d6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d31f"
+  },
+  "title" : "Converting to Reported Speech: The Past Simple Tense",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
+  "translation" : "Robert dijo que ella había saludado a todos.",
+  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She greeted everyone.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Robert said that she had greeted everyone." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert said that she had greeted everyone." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953436d7"
+  },
+  "id" : "67fab6d599301022953436d7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d31f"
+  },
+  "title" : "Converting to Reported Speech: The Past Simple Tense",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
+  "translation" : "Robert dijo que Richard había escuchado la radio.",
+  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Richard listened to the radio.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Robert said that Richard had listened to the radio." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert said that Richard had listened to the radio." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953436d8"
+  },
+  "id" : "67fab6d599301022953436d8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d31f"
+  },
+  "title" : "Converting to Reported Speech: The Past Simple Tense",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
+  "translation" : "Robert dijo que Olivia había escrito una historia.",
+  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Olivia wrote a story.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Robert said that Olivia had written a story." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert said that Olivia had written a story." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953436d9"
+  },
+  "id" : "67fab6d599301022953436d9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d31f"
+  },
+  "title" : "Converting to Reported Speech: The Past Simple Tense",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
+  "translation" : "Robert dijo que la fiesta había sido fantástica.",
+  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The party was fantastic.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Robert said that the party had been fantastic." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert said that the party had been fantastic." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953436da"
+  },
+  "id" : "67fab6d599301022953436da",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d31f"
+  },
+  "title" : "Converting to Reported Speech: The Past Simple Tense",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
+  "translation" : "Robert dijo que los profesores habían bebido té.",
+  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The teachers drank tea.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Robert said that the teachers had drunk tea." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert said that the teachers had drunk tea." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953436db"
+  },
+  "id" : "67fab6d599301022953436db",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d31f"
+  },
+  "title" : "Converting to Reported Speech: The Past Simple Tense",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
+  "translation" : "Robert dijo que le había enviado un mensaje de texto a su madre.",
+  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I texted my mother.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Robert said that he had texted his mother." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert said that he had texted his mother." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953436dc"
+  },
+  "id" : "67fab6d599301022953436dc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d31f"
+  },
+  "title" : "Converting to Reported Speech: The Past Simple Tense",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
+  "translation" : "Robert dijo que a Sophie le había encantado el regalo.",
+  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Sophie loved the present.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Robert said that Sophie had loved the present." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert said that Sophie had loved the present." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953436dd"
+  },
+  "id" : "67fab6d599301022953436dd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d31f"
+  },
+  "title" : "Converting to Reported Speech: The Past Simple Tense",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
+  "translation" : "Robert dijo que Harry había visto la televisión.",
+  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Harry watched television.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Robert said that Harry had watched television." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert said that Harry had watched television." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953436de"
+  },
+  "id" : "67fab6d599301022953436de",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d31f"
+  },
+  "title" : "Converting to Reported Speech: The Past Simple Tense",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
+  "translation" : "Robert dijo que Sarah y Tom habían ido a la escuela.",
+  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Sarah and Tom went to school.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Robert said that Sarah and Tom had stayed gone to school." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert said that Sarah and Tom had stayed gone to school." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953436df"
+  },
+  "id" : "67fab6d599301022953436df",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d31f"
+  },
+  "title" : "Converting to Reported Speech: The Past Simple Tense",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
+  "translation" : "Robert dijo que había encontrado una billetera.",
+  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I found a wallet.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Robert said that he had found a wallet." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert said that he had found a wallet." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953436e0"
+  },
+  "id" : "67fab6d599301022953436e0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d31f"
+  },
+  "title" : "Converting to Reported Speech: The Past Simple Tense",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
+  "translation" : "Robert dijo que los chicos habían jugado al fútbol.",
+  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The boys played football.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Robert said that the boys had played football." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert said that the boys had played football." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953436e1"
+  },
+  "id" : "67fab6d599301022953436e1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d31f"
+  },
+  "title" : "Converting to Reported Speech: The Past Simple Tense",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
+  "translation" : "Robert dijo que ella había lavado el coche.",
+  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She washed the car.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Robert said that she had washed the car." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert said that she had washed the car." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953436e2"
+  },
+  "id" : "67fab6d599301022953436e2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d31f"
+  },
+  "title" : "Converting to Reported Speech: The Past Simple Tense",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
+  "translation" : "Robert dijo que había aprendido español.",
+  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I learned Spanish.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Robert said that he had learned Spanish." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert said that he had learned Spanish." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953436e3"
+  },
+  "id" : "67fab6d599301022953436e3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d31f"
+  },
+  "title" : "Converting to Reported Speech: The Past Simple Tense",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
+  "translation" : "Robert dijo que nadie había comido pasta.",
+  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Nobody ate pasta.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Robert said that nobody had eaten pasta." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert said that nobody had eaten pasta." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953436e4"
+  },
+  "id" : "67fab6d599301022953436e4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d31f"
+  },
+  "title" : "Converting to Reported Speech: The Past Simple Tense",
+  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
+  "translation" : "Robert dijo que el jardín había sido hermoso.",
+  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
+  "topicName" : "Reported speech",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.10.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The garden was beautiful.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Robert said that the garden had been beautiful." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert said that the garden had been beautiful." ]
+  }
+} ]

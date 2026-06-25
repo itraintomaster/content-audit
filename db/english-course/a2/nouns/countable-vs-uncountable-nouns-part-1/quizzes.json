@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429d4"
-    },
-    "id": "67fab6d599301022953429d4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d256"
-    },
-    "title": "Countable vs. Uncountable Nouns: Part 1",
-    "instructions": "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
-    "translation": "La tristeza es difícil de superar.",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.02.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "sadness is difficult to overcome.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "- sadness is difficult to overcome."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429d4"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429d5"
-    },
-    "id": "67fab6d599301022953429d5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d256"
-    },
-    "title": "Countable vs. Uncountable Nouns: Part 1",
-    "instructions": "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
-    "translation": "¿Te gustaría arroz?",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.02.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Would you like",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "rice?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Would you like - rice?"
-      ]
-    }
+  "id" : "67fab6d599301022953429d4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d256"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429d6"
-    },
-    "id": "67fab6d599301022953429d6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d256"
-    },
-    "title": "Countable vs. Uncountable Nouns: Part 1",
-    "instructions": "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
-    "translation": "Él necesita un sándwich.",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.02.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He needs",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "sandwich.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He needs a sandwich."
-      ]
-    }
+  "title" : "Countable vs. Uncountable Nouns: Part 1",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
+  "translation" : "La tristeza es difícil de superar.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429d7"
-    },
-    "id": "67fab6d599301022953429d7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d256"
-    },
-    "title": "Countable vs. Uncountable Nouns: Part 1",
-    "instructions": "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
-    "translation": "Ella es doctora.",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.02.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She's",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "doctor.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She's a doctor."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429d8"
-    },
-    "id": "67fab6d599301022953429d8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d256"
-    },
-    "title": "Countable vs. Uncountable Nouns: Part 1",
-    "instructions": "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
-    "translation": "Encontré una llave.",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.02.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I found",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "key.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I found a key."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429d9"
-    },
-    "id": "67fab6d599301022953429d9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d256"
-    },
-    "title": "Countable vs. Uncountable Nouns: Part 1",
-    "instructions": "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
-    "translation": "¿Podríamos pedir una pizza?",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.02.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Could we order",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "pizza?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Could we order a pizza?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429da"
-    },
-    "id": "67fab6d599301022953429da",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d256"
-    },
-    "title": "Countable vs. Uncountable Nouns: Part 1",
-    "instructions": "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
-    "translation": "Dormir es necesario.",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.02.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "sleep is necessary.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "- sleep is necessary."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429db"
-    },
-    "id": "67fab6d599301022953429db",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d256"
-    },
-    "title": "Countable vs. Uncountable Nouns: Part 1",
-    "instructions": "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
-    "translation": "El jugo es refrescante.",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.02.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "juice is refreshing.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "- juice is refreshing."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429dc"
-    },
-    "id": "67fab6d599301022953429dc",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d256"
-    },
-    "title": "Countable vs. Uncountable Nouns: Part 1",
-    "instructions": "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
-    "translation": "¿Tienes un gato?",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.02.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Do you own",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "cat?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Do you own a cat?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429dd"
-    },
-    "id": "67fab6d599301022953429dd",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d256"
-    },
-    "title": "Countable vs. Uncountable Nouns: Part 1",
-    "instructions": "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
-    "translation": "Necesito una tableta.",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.02.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I require",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "tablet.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I require a tablet."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429de"
-    },
-    "id": "67fab6d599301022953429de",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d256"
-    },
-    "title": "Countable vs. Uncountable Nouns: Part 1",
-    "instructions": "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
-    "translation": "Él compró un coche.",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.02.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He purchased",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "car.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He purchased a car."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429df"
-    },
-    "id": "67fab6d599301022953429df",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d256"
-    },
-    "title": "Countable vs. Uncountable Nouns: Part 1",
-    "instructions": "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
-    "translation": "Ellos tienen una hija.",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.02.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They have",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "daughter.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They have a daughter."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429e0"
-    },
-    "id": "67fab6d599301022953429e0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d256"
-    },
-    "title": "Countable vs. Uncountable Nouns: Part 1",
-    "instructions": "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
-    "translation": "Los estudiantes están practicando un deporte.",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.02.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The students are playing",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "sport.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The students are playing a sport."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429e1"
-    },
-    "id": "67fab6d599301022953429e1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d256"
-    },
-    "title": "Countable vs. Uncountable Nouns: Part 1",
-    "instructions": "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
-    "translation": "Disfruto del té.",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.02.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I enjoy",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "tea.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I enjoy - tea."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429e2"
-    },
-    "id": "67fab6d599301022953429e2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d256"
-    },
-    "title": "Countable vs. Uncountable Nouns: Part 1",
-    "instructions": "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
-    "translation": "Ella escribió una carta.",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.02.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She wrote",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "letter.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She wrote a letter."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429e3"
-    },
-    "id": "67fab6d599301022953429e3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d256"
-    },
-    "title": "Countable vs. Uncountable Nouns: Part 1",
-    "instructions": "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
-    "translation": "La paz es más importante que el conflicto.",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.02.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "peace is more important than conflict.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "- peace is more important than conflict."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429e4"
-    },
-    "id": "67fab6d599301022953429e4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d256"
-    },
-    "title": "Countable vs. Uncountable Nouns: Part 1",
-    "instructions": "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
-    "translation": "¿Hay progreso?",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.02.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Is there",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "progress?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Is there - progress?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429e5"
-    },
-    "id": "67fab6d599301022953429e5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d256"
-    },
-    "title": "Countable vs. Uncountable Nouns: Part 1",
-    "instructions": "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
-    "translation": "Necesito consejo.",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.02.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I require",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "advice.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I require - advice."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429e6"
-    },
-    "id": "67fab6d599301022953429e6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d256"
-    },
-    "title": "Countable vs. Uncountable Nouns: Part 1",
-    "instructions": "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
-    "translation": "Nos gustaría un postre.",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.02.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We would like",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "dessert.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We would like a dessert."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953429e7"
-    },
-    "id": "67fab6d599301022953429e7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d256"
-    },
-    "title": "Countable vs. Uncountable Nouns: Part 1",
-    "instructions": "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
-    "translation": "Me gustaría sopa para el almuerzo.",
-    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.02.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I'd like",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "soup for lunch.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'd like - soup for lunch."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.02.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "sadness is difficult to overcome.",
+      "options" : null
+    } ],
+    "sentences" : [ "- sadness is difficult to overcome." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429d5"
+  },
+  "id" : "67fab6d599301022953429d5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d256"
+  },
+  "title" : "Countable vs. Uncountable Nouns: Part 1",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
+  "translation" : "¿Te gustaría arroz?",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.02.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Would you like",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "rice?",
+      "options" : null
+    } ],
+    "sentences" : [ "Would you like - rice?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429d6"
+  },
+  "id" : "67fab6d599301022953429d6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d256"
+  },
+  "title" : "Countable vs. Uncountable Nouns: Part 1",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
+  "translation" : "Él necesita un sándwich.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.02.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He needs",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "sandwich.",
+      "options" : null
+    } ],
+    "sentences" : [ "He needs a sandwich." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429d7"
+  },
+  "id" : "67fab6d599301022953429d7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d256"
+  },
+  "title" : "Countable vs. Uncountable Nouns: Part 1",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
+  "translation" : "Ella es doctora.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.02.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "doctor.",
+      "options" : null
+    } ],
+    "sentences" : [ "She's a doctor." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429d8"
+  },
+  "id" : "67fab6d599301022953429d8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d256"
+  },
+  "title" : "Countable vs. Uncountable Nouns: Part 1",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
+  "translation" : "Encontré una llave.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.02.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I found",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "key.",
+      "options" : null
+    } ],
+    "sentences" : [ "I found a key." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429d9"
+  },
+  "id" : "67fab6d599301022953429d9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d256"
+  },
+  "title" : "Countable vs. Uncountable Nouns: Part 1",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
+  "translation" : "¿Podríamos pedir una pizza?",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.02.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could we order",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "pizza?",
+      "options" : null
+    } ],
+    "sentences" : [ "Could we order a pizza?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429da"
+  },
+  "id" : "67fab6d599301022953429da",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d256"
+  },
+  "title" : "Countable vs. Uncountable Nouns: Part 1",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
+  "translation" : "Dormir es necesario.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.02.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "sleep is necessary.",
+      "options" : null
+    } ],
+    "sentences" : [ "- sleep is necessary." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429db"
+  },
+  "id" : "67fab6d599301022953429db",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d256"
+  },
+  "title" : "Countable vs. Uncountable Nouns: Part 1",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
+  "translation" : "El jugo es refrescante.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.02.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "juice is refreshing.",
+      "options" : null
+    } ],
+    "sentences" : [ "- juice is refreshing." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429dc"
+  },
+  "id" : "67fab6d599301022953429dc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d256"
+  },
+  "title" : "Countable vs. Uncountable Nouns: Part 1",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
+  "translation" : "¿Tienes un gato?",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.02.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you own",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "cat?",
+      "options" : null
+    } ],
+    "sentences" : [ "Do you own a cat?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429dd"
+  },
+  "id" : "67fab6d599301022953429dd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d256"
+  },
+  "title" : "Countable vs. Uncountable Nouns: Part 1",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
+  "translation" : "Necesito una tableta.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.02.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I require",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "tablet.",
+      "options" : null
+    } ],
+    "sentences" : [ "I require a tablet." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429de"
+  },
+  "id" : "67fab6d599301022953429de",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d256"
+  },
+  "title" : "Countable vs. Uncountable Nouns: Part 1",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
+  "translation" : "Él compró un coche.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.02.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He purchased",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "car.",
+      "options" : null
+    } ],
+    "sentences" : [ "He purchased a car." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429df"
+  },
+  "id" : "67fab6d599301022953429df",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d256"
+  },
+  "title" : "Countable vs. Uncountable Nouns: Part 1",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
+  "translation" : "Ellos tienen una hija.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.02.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "daughter.",
+      "options" : null
+    } ],
+    "sentences" : [ "They have a daughter." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429e0"
+  },
+  "id" : "67fab6d599301022953429e0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d256"
+  },
+  "title" : "Countable vs. Uncountable Nouns: Part 1",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
+  "translation" : "Los estudiantes están practicando un deporte.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.02.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The students are playing",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "sport.",
+      "options" : null
+    } ],
+    "sentences" : [ "The students are playing a sport." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429e1"
+  },
+  "id" : "67fab6d599301022953429e1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d256"
+  },
+  "title" : "Countable vs. Uncountable Nouns: Part 1",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
+  "translation" : "Disfruto del té.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.02.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I enjoy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "tea.",
+      "options" : null
+    } ],
+    "sentences" : [ "I enjoy - tea." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429e2"
+  },
+  "id" : "67fab6d599301022953429e2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d256"
+  },
+  "title" : "Countable vs. Uncountable Nouns: Part 1",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
+  "translation" : "Ella escribió una carta.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.02.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She wrote",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "letter.",
+      "options" : null
+    } ],
+    "sentences" : [ "She wrote a letter." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429e3"
+  },
+  "id" : "67fab6d599301022953429e3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d256"
+  },
+  "title" : "Countable vs. Uncountable Nouns: Part 1",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
+  "translation" : "La paz es más importante que el conflicto.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.02.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "peace is more important than conflict.",
+      "options" : null
+    } ],
+    "sentences" : [ "- peace is more important than conflict." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429e4"
+  },
+  "id" : "67fab6d599301022953429e4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d256"
+  },
+  "title" : "Countable vs. Uncountable Nouns: Part 1",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
+  "translation" : "¿Hay progreso?",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.02.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is there",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "progress?",
+      "options" : null
+    } ],
+    "sentences" : [ "Is there - progress?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429e5"
+  },
+  "id" : "67fab6d599301022953429e5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d256"
+  },
+  "title" : "Countable vs. Uncountable Nouns: Part 1",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
+  "translation" : "Necesito consejo.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.02.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I require",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "advice.",
+      "options" : null
+    } ],
+    "sentences" : [ "I require - advice." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429e6"
+  },
+  "id" : "67fab6d599301022953429e6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d256"
+  },
+  "title" : "Countable vs. Uncountable Nouns: Part 1",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
+  "translation" : "Nos gustaría un postre.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.02.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We would like",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "dessert.",
+      "options" : null
+    } ],
+    "sentences" : [ "We would like a dessert." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953429e7"
+  },
+  "id" : "67fab6d599301022953429e7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d256"
+  },
+  "title" : "Countable vs. Uncountable Nouns: Part 1",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables).",
+  "translation" : "Me gustaría sopa para el almuerzo.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.02.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'd like",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "soup for lunch.",
+      "options" : null
+    } ],
+    "sentences" : [ "I'd like - soup for lunch." ]
+  }
+} ]

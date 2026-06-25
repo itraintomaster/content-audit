@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342cfe"
-    },
-    "id": "67fab6d59930102295342cfe",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d289"
-    },
-    "title": "Verbs Followed by Prepositions",
-    "instructions": "Coloca la preposición correcta (to / on / at / for / about).",
-    "translation": "¿Puedo hablar contigo ahora?",
-    "theoryId": "a2.09.Prepositions_After_Verbs",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.08.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Can I speak",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "you now?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Can I speak to you now?"
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cfe"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342cff"
-    },
-    "id": "67fab6d59930102295342cff",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d289"
-    },
-    "title": "Verbs Followed by Prepositions",
-    "instructions": "Coloca la preposición correcta (to / on / at / for / about).",
-    "translation": "La casa pertenece a mi hermana.",
-    "theoryId": "a2.09.Prepositions_After_Verbs",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.08.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The house belongs",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "my sister.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The house belongs to my sister."
-      ]
-    }
+  "id" : "67fab6d59930102295342cfe",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d289"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342d00"
-    },
-    "id": "67fab6d59930102295342d00",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d289"
-    },
-    "title": "Verbs Followed by Prepositions",
-    "instructions": "Coloca la preposición correcta (to / on / at / for / about).",
-    "translation": "Ellos disfrutan escuchando la radio.",
-    "theoryId": "a2.09.Prepositions_After_Verbs",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.08.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They enjoy listening",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the radio.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They enjoy listening to the radio."
-      ]
-    }
+  "title" : "Verbs Followed by Prepositions",
+  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "translation" : "¿Puedo hablar contigo ahora?",
+  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342d01"
-    },
-    "id": "67fab6d59930102295342d01",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d289"
-    },
-    "title": "Verbs Followed by Prepositions",
-    "instructions": "Coloca la preposición correcta (to / on / at / for / about).",
-    "translation": "Se tumbó en la hierba y miró las estrellas.",
-    "theoryId": "a2.09.Prepositions_After_Verbs",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.08.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He lay on the grass and stared",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the stars.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He lay on the grass and stared at the stars."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342d02"
-    },
-    "id": "67fab6d59930102295342d02",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d289"
-    },
-    "title": "Verbs Followed by Prepositions",
-    "instructions": "Coloca la preposición correcta (to / on / at / for / about).",
-    "translation": "Ella siempre está pensando en sus padres.",
-    "theoryId": "a2.09.Prepositions_After_Verbs",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.08.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She is always thinking",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "about"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "her parents.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She is always thinking about her parents."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342d03"
-    },
-    "id": "67fab6d59930102295342d03",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d289"
-    },
-    "title": "Verbs Followed by Prepositions",
-    "instructions": "Coloca la preposición correcta (to / on / at / for / about).",
-    "translation": "Ellos van a enviar un regalo a su madre.",
-    "theoryId": "a2.09.Prepositions_After_Verbs",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.08.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They are going to send a gift",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "their mother.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They are going to send a gift to their mother."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342d04"
-    },
-    "id": "67fab6d59930102295342d04",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d289"
-    },
-    "title": "Verbs Followed by Prepositions",
-    "instructions": "Coloca la preposición correcta (to / on / at / for / about).",
-    "translation": "Depende del pronóstico del tiempo.",
-    "theoryId": "a2.09.Prepositions_After_Verbs",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.08.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "It relies",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "on"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the weather forecast.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "It relies on the weather forecast."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342d05"
-    },
-    "id": "67fab6d59930102295342d05",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d289"
-    },
-    "title": "Verbs Followed by Prepositions",
-    "instructions": "Coloca la preposición correcta (to / on / at / for / about).",
-    "translation": "Él aclaró la lección a su estudiante.",
-    "theoryId": "a2.09.Prepositions_After_Verbs",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.08.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He clarified the lesson",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "his student.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He clarified the lesson to his student."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342d06"
-    },
-    "id": "67fab6d59930102295342d06",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d289"
-    },
-    "title": "Verbs Followed by Prepositions",
-    "instructions": "Coloca la preposición correcta (to / on / at / for / about).",
-    "translation": "Ella pagó la bebida.",
-    "theoryId": "a2.09.Prepositions_After_Verbs",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.08.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She paid",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "for"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the drink.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She paid for the drink."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342d07"
-    },
-    "id": "67fab6d59930102295342d07",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d289"
-    },
-    "title": "Verbs Followed by Prepositions",
-    "instructions": "Coloca la preposición correcta (to / on / at / for / about).",
-    "translation": "Ella echó un vistazo a la habitación ordenada.",
-    "theoryId": "a2.09.Prepositions_After_Verbs",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.08.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She glanced",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the tidy room.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She glanced at the tidy room."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342d08"
-    },
-    "id": "67fab6d59930102295342d08",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d289"
-    },
-    "title": "Verbs Followed by Prepositions",
-    "instructions": "Coloca la preposición correcta (to / on / at / for / about).",
-    "translation": "Él se estresó por el trabajo.",
-    "theoryId": "a2.09.Prepositions_After_Verbs",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.08.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He stressed",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "about"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "work.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He stressed about work."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342d09"
-    },
-    "id": "67fab6d59930102295342d09",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d289"
-    },
-    "title": "Verbs Followed by Prepositions",
-    "instructions": "Coloca la preposición correcta (to / on / at / for / about).",
-    "translation": "Esperemos de pie al tren.",
-    "theoryId": "a2.09.Prepositions_After_Verbs",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.08.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Let's stand",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "for"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the train.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Let's stand for the train."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342d0a"
-    },
-    "id": "67fab6d59930102295342d0a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d289"
-    },
-    "title": "Verbs Followed by Prepositions",
-    "instructions": "Coloca la preposición correcta (to / on / at / for / about).",
-    "translation": "Le ofrecimos un regalo a Sarah.",
-    "theoryId": "a2.09.Prepositions_After_Verbs",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.08.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We offered a gift",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "Sarah.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We offered a gift to Sarah."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342d0b"
-    },
-    "id": "67fab6d59930102295342d0b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d289"
-    },
-    "title": "Verbs Followed by Prepositions",
-    "instructions": "Coloca la preposición correcta (to / on / at / for / about).",
-    "translation": "Quiero hablar con mi madre.",
-    "theoryId": "a2.09.Prepositions_After_Verbs",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.08.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I want to speak",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "my mother.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I want to speak to my mother."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342d0c"
-    },
-    "id": "67fab6d59930102295342d0c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d289"
-    },
-    "title": "Verbs Followed by Prepositions",
-    "instructions": "Coloca la preposición correcta (to / on / at / for / about).",
-    "translation": "¿Podrías aclararme la gramática?",
-    "theoryId": "a2.09.Prepositions_After_Verbs",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.08.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Could you clarify grammar",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "me?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Could you clarify grammar to me?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342d0d"
-    },
-    "id": "67fab6d59930102295342d0d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d289"
-    },
-    "title": "Verbs Followed by Prepositions",
-    "instructions": "Coloca la preposición correcta (to / on / at / for / about).",
-    "translation": "Ella apoyó a su novio.",
-    "theoryId": "a2.09.Prepositions_After_Verbs",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.08.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She stood",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "for"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "her boyfriend.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She stood for her boyfriend."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342d0e"
-    },
-    "id": "67fab6d59930102295342d0e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d289"
-    },
-    "title": "Verbs Followed by Prepositions",
-    "instructions": "Coloca la preposición correcta (to / on / at / for / about).",
-    "translation": "Este bolígrafo me pertenece.",
-    "theoryId": "a2.09.Prepositions_After_Verbs",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.08.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "This pen belongs",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "me.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "This pen belongs to me."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342d0f"
-    },
-    "id": "67fab6d59930102295342d0f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d289"
-    },
-    "title": "Verbs Followed by Prepositions",
-    "instructions": "Coloca la preposición correcta (to / on / at / for / about).",
-    "translation": "Escuchamos un audiolibro mientras corríamos.",
-    "theoryId": "a2.09.Prepositions_After_Verbs",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.08.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We listened",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "an audiobook while we were running.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We listened to an audiobook while we were running."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342d10"
-    },
-    "id": "67fab6d59930102295342d10",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d289"
-    },
-    "title": "Verbs Followed by Prepositions",
-    "instructions": "Coloca la preposición correcta (to / on / at / for / about).",
-    "translation": "Depende del clima.",
-    "theoryId": "a2.09.Prepositions_After_Verbs",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.08.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "It depends",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "on"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the weather.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "It depends on the weather."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342d11"
-    },
-    "id": "67fab6d59930102295342d11",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d289"
-    },
-    "title": "Verbs Followed by Prepositions",
-    "instructions": "Coloca la preposición correcta (to / on / at / for / about).",
-    "translation": "Yo pagaré el almuerzo.",
-    "theoryId": "a2.09.Prepositions_After_Verbs",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.08.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I will pay",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "for"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "lunch.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I will pay for lunch."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.08.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can I speak",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "you now?",
+      "options" : null
+    } ],
+    "sentences" : [ "Can I speak to you now?" ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cff"
+  },
+  "id" : "67fab6d59930102295342cff",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d289"
+  },
+  "title" : "Verbs Followed by Prepositions",
+  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "translation" : "La casa pertenece a mi hermana.",
+  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.08.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The house belongs",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "my sister.",
+      "options" : null
+    } ],
+    "sentences" : [ "The house belongs to my sister." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342d00"
+  },
+  "id" : "67fab6d59930102295342d00",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d289"
+  },
+  "title" : "Verbs Followed by Prepositions",
+  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "translation" : "Ellos disfrutan escuchando la radio.",
+  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.08.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They enjoy listening",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the radio.",
+      "options" : null
+    } ],
+    "sentences" : [ "They enjoy listening to the radio." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342d01"
+  },
+  "id" : "67fab6d59930102295342d01",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d289"
+  },
+  "title" : "Verbs Followed by Prepositions",
+  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "translation" : "Se tumbó en la hierba y miró las estrellas.",
+  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.08.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He lay on the grass and stared",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the stars.",
+      "options" : null
+    } ],
+    "sentences" : [ "He lay on the grass and stared at the stars." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342d02"
+  },
+  "id" : "67fab6d59930102295342d02",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d289"
+  },
+  "title" : "Verbs Followed by Prepositions",
+  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "translation" : "Ella siempre está pensando en sus padres.",
+  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.08.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is always thinking",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "about" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "her parents.",
+      "options" : null
+    } ],
+    "sentences" : [ "She is always thinking about her parents." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342d03"
+  },
+  "id" : "67fab6d59930102295342d03",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d289"
+  },
+  "title" : "Verbs Followed by Prepositions",
+  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "translation" : "Ellos van a enviar un regalo a su madre.",
+  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.08.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They are going to send a gift",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "their mother.",
+      "options" : null
+    } ],
+    "sentences" : [ "They are going to send a gift to their mother." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342d04"
+  },
+  "id" : "67fab6d59930102295342d04",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d289"
+  },
+  "title" : "Verbs Followed by Prepositions",
+  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "translation" : "Depende del pronóstico del tiempo.",
+  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.08.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It relies",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the weather forecast.",
+      "options" : null
+    } ],
+    "sentences" : [ "It relies on the weather forecast." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342d05"
+  },
+  "id" : "67fab6d59930102295342d05",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d289"
+  },
+  "title" : "Verbs Followed by Prepositions",
+  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "translation" : "Él aclaró la lección a su estudiante.",
+  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.08.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He clarified the lesson",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "his student.",
+      "options" : null
+    } ],
+    "sentences" : [ "He clarified the lesson to his student." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342d06"
+  },
+  "id" : "67fab6d59930102295342d06",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d289"
+  },
+  "title" : "Verbs Followed by Prepositions",
+  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "translation" : "Ella pagó la bebida.",
+  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.08.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She paid",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "for" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the drink.",
+      "options" : null
+    } ],
+    "sentences" : [ "She paid for the drink." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342d07"
+  },
+  "id" : "67fab6d59930102295342d07",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d289"
+  },
+  "title" : "Verbs Followed by Prepositions",
+  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "translation" : "Ella echó un vistazo a la habitación ordenada.",
+  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.08.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She glanced",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the tidy room.",
+      "options" : null
+    } ],
+    "sentences" : [ "She glanced at the tidy room." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342d08"
+  },
+  "id" : "67fab6d59930102295342d08",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d289"
+  },
+  "title" : "Verbs Followed by Prepositions",
+  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "translation" : "Él se estresó por el trabajo.",
+  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.08.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He stressed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "about" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "work.",
+      "options" : null
+    } ],
+    "sentences" : [ "He stressed about work." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342d09"
+  },
+  "id" : "67fab6d59930102295342d09",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d289"
+  },
+  "title" : "Verbs Followed by Prepositions",
+  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "translation" : "Esperemos de pie al tren.",
+  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.08.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Let's stand",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "for" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the train.",
+      "options" : null
+    } ],
+    "sentences" : [ "Let's stand for the train." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342d0a"
+  },
+  "id" : "67fab6d59930102295342d0a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d289"
+  },
+  "title" : "Verbs Followed by Prepositions",
+  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "translation" : "Le ofrecimos un regalo a Sarah.",
+  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.08.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We offered a gift",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Sarah.",
+      "options" : null
+    } ],
+    "sentences" : [ "We offered a gift to Sarah." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342d0b"
+  },
+  "id" : "67fab6d59930102295342d0b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d289"
+  },
+  "title" : "Verbs Followed by Prepositions",
+  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "translation" : "Quiero hablar con mi madre.",
+  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.08.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I want to speak",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "my mother.",
+      "options" : null
+    } ],
+    "sentences" : [ "I want to speak to my mother." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342d0c"
+  },
+  "id" : "67fab6d59930102295342d0c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d289"
+  },
+  "title" : "Verbs Followed by Prepositions",
+  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "translation" : "¿Podrías aclararme la gramática?",
+  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.08.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could you clarify grammar",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "me?",
+      "options" : null
+    } ],
+    "sentences" : [ "Could you clarify grammar to me?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342d0d"
+  },
+  "id" : "67fab6d59930102295342d0d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d289"
+  },
+  "title" : "Verbs Followed by Prepositions",
+  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "translation" : "Ella apoyó a su novio.",
+  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.08.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She stood",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "for" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "her boyfriend.",
+      "options" : null
+    } ],
+    "sentences" : [ "She stood for her boyfriend." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342d0e"
+  },
+  "id" : "67fab6d59930102295342d0e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d289"
+  },
+  "title" : "Verbs Followed by Prepositions",
+  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "translation" : "Este bolígrafo me pertenece.",
+  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.08.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This pen belongs",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "me.",
+      "options" : null
+    } ],
+    "sentences" : [ "This pen belongs to me." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342d0f"
+  },
+  "id" : "67fab6d59930102295342d0f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d289"
+  },
+  "title" : "Verbs Followed by Prepositions",
+  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "translation" : "Escuchamos un audiolibro mientras corríamos.",
+  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.08.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We listened",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "an audiobook while we were running.",
+      "options" : null
+    } ],
+    "sentences" : [ "We listened to an audiobook while we were running." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342d10"
+  },
+  "id" : "67fab6d59930102295342d10",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d289"
+  },
+  "title" : "Verbs Followed by Prepositions",
+  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "translation" : "Depende del clima.",
+  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.08.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It depends",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the weather.",
+      "options" : null
+    } ],
+    "sentences" : [ "It depends on the weather." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342d11"
+  },
+  "id" : "67fab6d59930102295342d11",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d289"
+  },
+  "title" : "Verbs Followed by Prepositions",
+  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "translation" : "Yo pagaré el almuerzo.",
+  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.08.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I will pay",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "for" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "lunch.",
+      "options" : null
+    } ],
+    "sentences" : [ "I will pay for lunch." ]
+  }
+} ]

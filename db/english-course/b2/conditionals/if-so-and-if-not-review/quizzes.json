@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447c4"
-    },
-    "id": "67fab6d599301022953447c4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d480"
-    },
-    "title": "'If so' and 'If not' Review",
-    "instructions": "Elige 'If so' o 'If not'.",
-    "translation": "Si es así",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.07.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Can you help me with this homework?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "If so"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ", I'll be very grateful.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Can you help me with this homework? If so, I'll be very grateful."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447c4"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447c5"
-    },
-    "id": "67fab6d599301022953447c5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d480"
-    },
-    "title": "'If so' and 'If not' Review",
-    "instructions": "Elige 'If so' o 'If not'.",
-    "translation": "Si no",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.07.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Did he fail the test?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "If not"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ", will he study harder next time?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Did he fail the test? If not, will he study harder next time?"
-      ]
-    }
+  "id" : "67fab6d599301022953447c4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d480"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447c6"
-    },
-    "id": "67fab6d599301022953447c6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d480"
-    },
-    "title": "'If so' and 'If not' Review",
-    "instructions": "Elige 'If so' o 'If not'.",
-    "translation": "Si es así",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.07.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Is David at the gym?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "If so"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ", let's meet him there.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Is David at the gym? If so, let's meet him there."
-      ]
-    }
+  "title" : "'If so' and 'If not' Review",
+  "instructions" : "Elige 'If so' o 'If not'.",
+  "translation" : "Si es así",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447c7"
-    },
-    "id": "67fab6d599301022953447c7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d480"
-    },
-    "title": "'If so' and 'If not' Review",
-    "instructions": "Elige 'If so' o 'If not'.",
-    "translation": "Si es así",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.07.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Is it raining?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "If so"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ", remember to take your umbrella.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Is it raining? If so, remember to take your umbrella."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447c8"
-    },
-    "id": "67fab6d599301022953447c8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d480"
-    },
-    "title": "'If so' and 'If not' Review",
-    "instructions": "Elige 'If so' o 'If not'.",
-    "translation": "Si es así",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.07.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Would you like tea?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "If so"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ", let's brew a cup.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Would you like tea? If so, let's brew a cup."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447c9"
-    },
-    "id": "67fab6d599301022953447c9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d480"
-    },
-    "title": "'If so' and 'If not' Review",
-    "instructions": "Elige 'If so' o 'If not'.",
-    "translation": "Si es así",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.07.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Are the girls sleepy?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "If so"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ", I'll prepare their beds.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Are the girls sleepy? If so, I'll prepare their beds."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447ca"
-    },
-    "id": "67fab6d599301022953447ca",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d480"
-    },
-    "title": "'If so' and 'If not' Review",
-    "instructions": "Elige 'If so' o 'If not'.",
-    "translation": "Si es así",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.07.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Do you work in Paris?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "If so"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ", would you like to have lunch there?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Do you work in Paris? If so, would you like to have lunch there?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447cb"
-    },
-    "id": "67fab6d599301022953447cb",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d480"
-    },
-    "title": "'If so' and 'If not' Review",
-    "instructions": "Elige 'If so' o 'If not'.",
-    "translation": "Si no",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.07.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Do you speak Spanish?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "If not"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ", would you like to learn it?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Do you speak Spanish? If not, would you like to learn it?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447cc"
-    },
-    "id": "67fab6d599301022953447cc",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d480"
-    },
-    "title": "'If so' and 'If not' Review",
-    "instructions": "Elige 'If so' o 'If not'.",
-    "translation": "Si no",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.07.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Are you thirsty?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "If not"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ", let's drink water soon.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Are you thirsty? If not, let's drink water soon."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447cd"
-    },
-    "id": "67fab6d599301022953447cd",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d480"
-    },
-    "title": "'If so' and 'If not' Review",
-    "instructions": "Elige 'If so' o 'If not'.",
-    "translation": "Si es así",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.07.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Is this my car?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "If so"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ", I'm going to drive it now.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Is this my car? If so, I'm going to drive it now."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447ce"
-    },
-    "id": "67fab6d599301022953447ce",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d480"
-    },
-    "title": "'If so' and 'If not' Review",
-    "instructions": "Elige 'If so' o 'If not'.",
-    "translation": "Si no",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.07.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Has she gone to bed?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "If not"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ", he'll read her a story.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Has she gone to bed? If not, he'll read her a story."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447cf"
-    },
-    "id": "67fab6d599301022953447cf",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d480"
-    },
-    "title": "'If so' and 'If not' Review",
-    "instructions": "Elige 'If so' o 'If not'.",
-    "translation": "Si no",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.07.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Is the bathroom tidy?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "If not"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ", I'm going to tidy it.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Is the bathroom tidy? If not, I'm going to tidy it."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447d0"
-    },
-    "id": "67fab6d599301022953447d0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d480"
-    },
-    "title": "'If so' and 'If not' Review",
-    "instructions": "Elige 'If so' o 'If not'.",
-    "translation": "Si no",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.07.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Can you repair this bicycle?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "If not"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ", could you take it to a professional?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Can you repair this bicycle? If not, could you take it to a professional?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447d1"
-    },
-    "id": "67fab6d599301022953447d1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d480"
-    },
-    "title": "'If so' and 'If not' Review",
-    "instructions": "Elige 'If so' o 'If not'.",
-    "translation": "Si no",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.07.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Is the window shut?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "If not"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ", could you close it?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Is the window shut? If not, could you close it?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447d2"
-    },
-    "id": "67fab6d599301022953447d2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d480"
-    },
-    "title": "'If so' and 'If not' Review",
-    "instructions": "Elige 'If so' o 'If not'.",
-    "translation": "Si no",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.07.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Have you got any hobbies?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "If not"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ", would you like to try something new?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Have you got any hobbies? If not, would you like to try something new?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447d3"
-    },
-    "id": "67fab6d599301022953447d3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d480"
-    },
-    "title": "'If so' and 'If not' Review",
-    "instructions": "Elige 'If so' o 'If not'.",
-    "translation": "Si no",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.07.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Do you like this ice cream?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "If not"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ", can I have yours?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Do you like this ice cream? If not, can I have yours?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447d4"
-    },
-    "id": "67fab6d599301022953447d4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d480"
-    },
-    "title": "'If so' and 'If not' Review",
-    "instructions": "Elige 'If so' o 'If not'.",
-    "translation": "Si es así",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.07.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Is it hot inside?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "If so"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ", turn on the fan.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Is it hot inside? If so, turn on the fan."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447d5"
-    },
-    "id": "67fab6d599301022953447d5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d480"
-    },
-    "title": "'If so' and 'If not' Review",
-    "instructions": "Elige 'If so' o 'If not'.",
-    "translation": "Si no",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.07.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Can you walk the dog?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "If not"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ", I can do it.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Can you walk the dog? If not, I can do it."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447d6"
-    },
-    "id": "67fab6d599301022953447d6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d480"
-    },
-    "title": "'If so' and 'If not' Review",
-    "instructions": "Elige 'If so' o 'If not'.",
-    "translation": "Si es así",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.07.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Is the cat eating?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "If so"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ", I'll stay out of its way.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Is the cat eating? If so, I'll stay out of its way."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953447d7"
-    },
-    "id": "67fab6d599301022953447d7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d480"
-    },
-    "title": "'If so' and 'If not' Review",
-    "instructions": "Elige 'If so' o 'If not'.",
-    "translation": "Si es así",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.07.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Can you join us?",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "If so"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": ", I'll reserve a place for you.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Can you join us? If so, I'll reserve a place for you."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.07.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can you help me with this homework?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "If so" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", I'll be very grateful.",
+      "options" : null
+    } ],
+    "sentences" : [ "Can you help me with this homework? If so, I'll be very grateful." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447c5"
+  },
+  "id" : "67fab6d599301022953447c5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d480"
+  },
+  "title" : "'If so' and 'If not' Review",
+  "instructions" : "Elige 'If so' o 'If not'.",
+  "translation" : "Si no",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.07.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did he fail the test?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "If not" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", will he study harder next time?",
+      "options" : null
+    } ],
+    "sentences" : [ "Did he fail the test? If not, will he study harder next time?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447c6"
+  },
+  "id" : "67fab6d599301022953447c6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d480"
+  },
+  "title" : "'If so' and 'If not' Review",
+  "instructions" : "Elige 'If so' o 'If not'.",
+  "translation" : "Si es así",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.07.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is David at the gym?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "If so" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", let's meet him there.",
+      "options" : null
+    } ],
+    "sentences" : [ "Is David at the gym? If so, let's meet him there." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447c7"
+  },
+  "id" : "67fab6d599301022953447c7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d480"
+  },
+  "title" : "'If so' and 'If not' Review",
+  "instructions" : "Elige 'If so' o 'If not'.",
+  "translation" : "Si es así",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.07.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is it raining?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "If so" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", remember to take your umbrella.",
+      "options" : null
+    } ],
+    "sentences" : [ "Is it raining? If so, remember to take your umbrella." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447c8"
+  },
+  "id" : "67fab6d599301022953447c8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d480"
+  },
+  "title" : "'If so' and 'If not' Review",
+  "instructions" : "Elige 'If so' o 'If not'.",
+  "translation" : "Si es así",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.07.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Would you like tea?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "If so" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", let's brew a cup.",
+      "options" : null
+    } ],
+    "sentences" : [ "Would you like tea? If so, let's brew a cup." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447c9"
+  },
+  "id" : "67fab6d599301022953447c9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d480"
+  },
+  "title" : "'If so' and 'If not' Review",
+  "instructions" : "Elige 'If so' o 'If not'.",
+  "translation" : "Si es así",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.07.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are the girls sleepy?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "If so" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", I'll prepare their beds.",
+      "options" : null
+    } ],
+    "sentences" : [ "Are the girls sleepy? If so, I'll prepare their beds." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447ca"
+  },
+  "id" : "67fab6d599301022953447ca",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d480"
+  },
+  "title" : "'If so' and 'If not' Review",
+  "instructions" : "Elige 'If so' o 'If not'.",
+  "translation" : "Si es así",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.07.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you work in Paris?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "If so" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", would you like to have lunch there?",
+      "options" : null
+    } ],
+    "sentences" : [ "Do you work in Paris? If so, would you like to have lunch there?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447cb"
+  },
+  "id" : "67fab6d599301022953447cb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d480"
+  },
+  "title" : "'If so' and 'If not' Review",
+  "instructions" : "Elige 'If so' o 'If not'.",
+  "translation" : "Si no",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.07.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you speak Spanish?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "If not" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", would you like to learn it?",
+      "options" : null
+    } ],
+    "sentences" : [ "Do you speak Spanish? If not, would you like to learn it?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447cc"
+  },
+  "id" : "67fab6d599301022953447cc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d480"
+  },
+  "title" : "'If so' and 'If not' Review",
+  "instructions" : "Elige 'If so' o 'If not'.",
+  "translation" : "Si no",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.07.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are you thirsty?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "If not" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", let's drink water soon.",
+      "options" : null
+    } ],
+    "sentences" : [ "Are you thirsty? If not, let's drink water soon." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447cd"
+  },
+  "id" : "67fab6d599301022953447cd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d480"
+  },
+  "title" : "'If so' and 'If not' Review",
+  "instructions" : "Elige 'If so' o 'If not'.",
+  "translation" : "Si es así",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.07.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is this my car?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "If so" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", I'm going to drive it now.",
+      "options" : null
+    } ],
+    "sentences" : [ "Is this my car? If so, I'm going to drive it now." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447ce"
+  },
+  "id" : "67fab6d599301022953447ce",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d480"
+  },
+  "title" : "'If so' and 'If not' Review",
+  "instructions" : "Elige 'If so' o 'If not'.",
+  "translation" : "Si no",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.07.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Has she gone to bed?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "If not" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", he'll read her a story.",
+      "options" : null
+    } ],
+    "sentences" : [ "Has she gone to bed? If not, he'll read her a story." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447cf"
+  },
+  "id" : "67fab6d599301022953447cf",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d480"
+  },
+  "title" : "'If so' and 'If not' Review",
+  "instructions" : "Elige 'If so' o 'If not'.",
+  "translation" : "Si no",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.07.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is the bathroom tidy?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "If not" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", I'm going to tidy it.",
+      "options" : null
+    } ],
+    "sentences" : [ "Is the bathroom tidy? If not, I'm going to tidy it." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447d0"
+  },
+  "id" : "67fab6d599301022953447d0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d480"
+  },
+  "title" : "'If so' and 'If not' Review",
+  "instructions" : "Elige 'If so' o 'If not'.",
+  "translation" : "Si no",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.07.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can you repair this bicycle?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "If not" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", could you take it to a professional?",
+      "options" : null
+    } ],
+    "sentences" : [ "Can you repair this bicycle? If not, could you take it to a professional?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447d1"
+  },
+  "id" : "67fab6d599301022953447d1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d480"
+  },
+  "title" : "'If so' and 'If not' Review",
+  "instructions" : "Elige 'If so' o 'If not'.",
+  "translation" : "Si no",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.07.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is the window shut?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "If not" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", could you close it?",
+      "options" : null
+    } ],
+    "sentences" : [ "Is the window shut? If not, could you close it?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447d2"
+  },
+  "id" : "67fab6d599301022953447d2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d480"
+  },
+  "title" : "'If so' and 'If not' Review",
+  "instructions" : "Elige 'If so' o 'If not'.",
+  "translation" : "Si no",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.07.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you got any hobbies?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "If not" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", would you like to try something new?",
+      "options" : null
+    } ],
+    "sentences" : [ "Have you got any hobbies? If not, would you like to try something new?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447d3"
+  },
+  "id" : "67fab6d599301022953447d3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d480"
+  },
+  "title" : "'If so' and 'If not' Review",
+  "instructions" : "Elige 'If so' o 'If not'.",
+  "translation" : "Si no",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.07.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you like this ice cream?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "If not" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", can I have yours?",
+      "options" : null
+    } ],
+    "sentences" : [ "Do you like this ice cream? If not, can I have yours?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447d4"
+  },
+  "id" : "67fab6d599301022953447d4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d480"
+  },
+  "title" : "'If so' and 'If not' Review",
+  "instructions" : "Elige 'If so' o 'If not'.",
+  "translation" : "Si es así",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.07.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is it hot inside?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "If so" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", turn on the fan.",
+      "options" : null
+    } ],
+    "sentences" : [ "Is it hot inside? If so, turn on the fan." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447d5"
+  },
+  "id" : "67fab6d599301022953447d5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d480"
+  },
+  "title" : "'If so' and 'If not' Review",
+  "instructions" : "Elige 'If so' o 'If not'.",
+  "translation" : "Si no",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.07.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can you walk the dog?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "If not" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", I can do it.",
+      "options" : null
+    } ],
+    "sentences" : [ "Can you walk the dog? If not, I can do it." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447d6"
+  },
+  "id" : "67fab6d599301022953447d6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d480"
+  },
+  "title" : "'If so' and 'If not' Review",
+  "instructions" : "Elige 'If so' o 'If not'.",
+  "translation" : "Si es así",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.07.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is the cat eating?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "If so" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", I'll stay out of its way.",
+      "options" : null
+    } ],
+    "sentences" : [ "Is the cat eating? If so, I'll stay out of its way." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447d7"
+  },
+  "id" : "67fab6d599301022953447d7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d480"
+  },
+  "title" : "'If so' and 'If not' Review",
+  "instructions" : "Elige 'If so' o 'If not'.",
+  "translation" : "Si es así",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.07.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can you join us?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "If so" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", I'll reserve a place for you.",
+      "options" : null
+    } ],
+    "sentences" : [ "Can you join us? If so, I'll reserve a place for you." ]
+  }
+} ]

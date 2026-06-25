@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534361d"
-    },
-    "id": "67fab6d5993010229534361d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d315"
-    },
-    "title": "Passive Voice Review: Simple Tenses Practice",
-    "instructions": "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
-    "translation": "Las cartas son entregadas por el cartero.",
-    "theoryId": "b1.09.How_to_Make_the_Passive",
-    "topicName": "The passive",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.09.04.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The postman delivers the letters.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The letters are delivered by the postman."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The letters are delivered by the postman."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534361d"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534361e"
-    },
-    "id": "67fab6d5993010229534361e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d315"
-    },
-    "title": "Passive Voice Review: Simple Tenses Practice",
-    "instructions": "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
-    "translation": "El cuadro fue pintado por Tom.",
-    "theoryId": "b1.09.How_to_Make_the_Passive",
-    "topicName": "The passive",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.09.04.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Tom painted the picture.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The picture was painted by Tom."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The picture was painted by Tom."
-      ]
-    }
+  "id" : "67fab6d5993010229534361d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d315"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534361f"
-    },
-    "id": "67fab6d5993010229534361f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d315"
-    },
-    "title": "Passive Voice Review: Simple Tenses Practice",
-    "instructions": "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
-    "translation": "La cena está siendo preparada por el chef.",
-    "theoryId": "b1.09.How_to_Make_the_Passive",
-    "topicName": "The passive",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.09.04.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The chef is preparing the dinner.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The dinner is being prepared by the chef."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The dinner is being prepared by the chef."
-      ]
-    }
+  "title" : "Passive Voice Review: Simple Tenses Practice",
+  "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
+  "translation" : "Las cartas son entregadas por el cartero.",
+  "theoryId" : "b1.09.How_to_Make_the_Passive",
+  "topicName" : "The passive",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343620"
-    },
-    "id": "67fab6d59930102295343620",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d315"
-    },
-    "title": "Passive Voice Review: Simple Tenses Practice",
-    "instructions": "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
-    "translation": "Emily y Clara son enseñadas por Robert.",
-    "theoryId": "b1.09.How_to_Make_the_Passive",
-    "topicName": "The passive",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.09.04.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Robert teaches Emily and Clara.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Emily and Clara are taught by Robert."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Emily and Clara are taught by Robert."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343621"
-    },
-    "id": "67fab6d59930102295343621",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d315"
-    },
-    "title": "Passive Voice Review: Simple Tenses Practice",
-    "instructions": "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
-    "translation": "La canción fue cantada por Emily.",
-    "theoryId": "b1.09.How_to_Make_the_Passive",
-    "topicName": "The passive",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.09.04.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Emily sang the song.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The song was sung by Emily."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The song was sung by Emily."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343622"
-    },
-    "id": "67fab6d59930102295343622",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d315"
-    },
-    "title": "Passive Voice Review: Simple Tenses Practice",
-    "instructions": "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
-    "translation": "La calle fue inundada por la lluvia.",
-    "theoryId": "b1.09.How_to_Make_the_Passive",
-    "topicName": "The passive",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.09.04.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The rain flooded the street.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The street was flooded by the rain."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The street was flooded by the rain."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343623"
-    },
-    "id": "67fab6d59930102295343623",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d315"
-    },
-    "title": "Passive Voice Review: Simple Tenses Practice",
-    "instructions": "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
-    "translation": "El baño está siendo limpiado por la empleada doméstica.",
-    "theoryId": "b1.09.How_to_Make_the_Passive",
-    "topicName": "The passive",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.09.04.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The maid is cleaning the bathroom.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The bathroom is being cleaned by the maid."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The bathroom is being cleaned by the maid."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343624"
-    },
-    "id": "67fab6d59930102295343624",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d315"
-    },
-    "title": "Passive Voice Review: Simple Tenses Practice",
-    "instructions": "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
-    "translation": "Ella fue invitada por su amigo.",
-    "theoryId": "b1.09.How_to_Make_the_Passive",
-    "topicName": "The passive",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.09.04.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Her friend invited her.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She was invited by her friend."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She was invited by her friend."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343625"
-    },
-    "id": "67fab6d59930102295343625",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d315"
-    },
-    "title": "Passive Voice Review: Simple Tenses Practice",
-    "instructions": "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
-    "translation": "Peter está siendo entrenado por el entrenador.",
-    "theoryId": "b1.09.How_to_Make_the_Passive",
-    "topicName": "The passive",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.09.04.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The trainer is coaching Peter.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Peter is being coached by the trainer."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Peter is being coached by the trainer."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343626"
-    },
-    "id": "67fab6d59930102295343626",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d315"
-    },
-    "title": "Passive Voice Review: Simple Tenses Practice",
-    "instructions": "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
-    "translation": "El césped es cortado por mi hermano.",
-    "theoryId": "b1.09.How_to_Make_the_Passive",
-    "topicName": "The passive",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.09.04.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "My brother cuts the grass.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The grass is cut by my brother."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The grass is cut by my brother."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343627"
-    },
-    "id": "67fab6d59930102295343627",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d315"
-    },
-    "title": "Passive Voice Review: Simple Tenses Practice",
-    "instructions": "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
-    "translation": "Los documentos son impresos por Helen.",
-    "theoryId": "b1.09.How_to_Make_the_Passive",
-    "topicName": "The passive",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.09.04.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Helen prints the documents.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The documents are printed by Helen."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The documents are printed by Helen."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343628"
-    },
-    "id": "67fab6d59930102295343628",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d315"
-    },
-    "title": "Passive Voice Review: Simple Tenses Practice",
-    "instructions": "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
-    "translation": "La carretera fue construida por la empresa.",
-    "theoryId": "b1.09.How_to_Make_the_Passive",
-    "topicName": "The passive",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.09.04.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The company built the bridge.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The road was built by the company."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The road was built by the company."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343629"
-    },
-    "id": "67fab6d59930102295343629",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d315"
-    },
-    "title": "Passive Voice Review: Simple Tenses Practice",
-    "instructions": "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
-    "translation": "Las ardillas están siendo perseguidas por los perros.",
-    "theoryId": "b1.09.How_to_Make_the_Passive",
-    "topicName": "The passive",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.09.04.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The dogs are chasing the squirrels.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The squirrels are being chased by the dogs."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The squirrels are being chased by the dogs."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534362a"
-    },
-    "id": "67fab6d5993010229534362a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d315"
-    },
-    "title": "Passive Voice Review: Simple Tenses Practice",
-    "instructions": "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
-    "translation": "La pasta fue cocinada por ellos.",
-    "theoryId": "b1.09.How_to_Make_the_Passive",
-    "topicName": "The passive",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.09.04.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They cooked the pasta.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The pasta was cooked by them."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The pasta was cooked by them."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534362b"
-    },
-    "id": "67fab6d5993010229534362b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d315"
-    },
-    "title": "Passive Voice Review: Simple Tenses Practice",
-    "instructions": "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
-    "translation": "Los boletos están siendo comprados por los clientes.",
-    "theoryId": "b1.09.How_to_Make_the_Passive",
-    "topicName": "The passive",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.09.04.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The customers are buying the tickets.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The tickets are being bought by the customers."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The tickets are being bought by the customers."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534362c"
-    },
-    "id": "67fab6d5993010229534362c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d315"
-    },
-    "title": "Passive Voice Review: Simple Tenses Practice",
-    "instructions": "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
-    "translation": "Las ventanas son cerradas por Mary.",
-    "theoryId": "b1.09.How_to_Make_the_Passive",
-    "topicName": "The passive",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.09.04.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Mary closes the windows.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The windows are closed by Mary."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The windows are closed by Mary."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534362d"
-    },
-    "id": "67fab6d5993010229534362d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d315"
-    },
-    "title": "Passive Voice Review: Simple Tenses Practice",
-    "instructions": "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
-    "translation": "Los pacientes están siendo examinados por el médico.",
-    "theoryId": "b1.09.How_to_Make_the_Passive",
-    "topicName": "The passive",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.09.04.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The doctor is examining the patients.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The patients are being examined by the doctor."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The patients are being examined by the doctor."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534362e"
-    },
-    "id": "67fab6d5993010229534362e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d315"
-    },
-    "title": "Passive Voice Review: Simple Tenses Practice",
-    "instructions": "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
-    "translation": "Las bebidas son servidas por el camarero.",
-    "theoryId": "b1.09.How_to_Make_the_Passive",
-    "topicName": "The passive",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.09.04.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The waiter serves the drinks.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The drinks are served by the waiter."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The drinks are served by the waiter."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534362f"
-    },
-    "id": "67fab6d5993010229534362f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d315"
-    },
-    "title": "Passive Voice Review: Simple Tenses Practice",
-    "instructions": "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
-    "translation": "Leo está siendo regañado por su madre.",
-    "theoryId": "b1.09.How_to_Make_the_Passive",
-    "topicName": "The passive",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.09.04.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "His mother is scolding Leo.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Leo is being scolded by his mother."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Leo is being scolded by his mother."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343630"
-    },
-    "id": "67fab6d59930102295343630",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d315"
-    },
-    "title": "Passive Voice Review: Simple Tenses Practice",
-    "instructions": "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
-    "translation": "La bicicleta fue reparada por Susan.",
-    "theoryId": "b1.09.How_to_Make_the_Passive",
-    "topicName": "The passive",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.09.04.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Susan repaired the bicycle.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The bicycle was repaired by Susan."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The bicycle was repaired by Susan."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.09.04.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The postman delivers the letters.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The letters are delivered by the postman." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The letters are delivered by the postman." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534361e"
+  },
+  "id" : "67fab6d5993010229534361e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d315"
+  },
+  "title" : "Passive Voice Review: Simple Tenses Practice",
+  "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
+  "translation" : "El cuadro fue pintado por Tom.",
+  "theoryId" : "b1.09.How_to_Make_the_Passive",
+  "topicName" : "The passive",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.09.04.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Tom painted the picture.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The picture was painted by Tom." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The picture was painted by Tom." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534361f"
+  },
+  "id" : "67fab6d5993010229534361f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d315"
+  },
+  "title" : "Passive Voice Review: Simple Tenses Practice",
+  "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
+  "translation" : "La cena está siendo preparada por el chef.",
+  "theoryId" : "b1.09.How_to_Make_the_Passive",
+  "topicName" : "The passive",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.09.04.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The chef is preparing the dinner.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The dinner is being prepared by the chef." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The dinner is being prepared by the chef." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343620"
+  },
+  "id" : "67fab6d59930102295343620",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d315"
+  },
+  "title" : "Passive Voice Review: Simple Tenses Practice",
+  "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
+  "translation" : "Emily y Clara son enseñadas por Robert.",
+  "theoryId" : "b1.09.How_to_Make_the_Passive",
+  "topicName" : "The passive",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.09.04.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Robert teaches Emily and Clara.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Emily and Clara are taught by Robert." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Emily and Clara are taught by Robert." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343621"
+  },
+  "id" : "67fab6d59930102295343621",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d315"
+  },
+  "title" : "Passive Voice Review: Simple Tenses Practice",
+  "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
+  "translation" : "La canción fue cantada por Emily.",
+  "theoryId" : "b1.09.How_to_Make_the_Passive",
+  "topicName" : "The passive",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.09.04.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Emily sang the song.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The song was sung by Emily." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The song was sung by Emily." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343622"
+  },
+  "id" : "67fab6d59930102295343622",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d315"
+  },
+  "title" : "Passive Voice Review: Simple Tenses Practice",
+  "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
+  "translation" : "La calle fue inundada por la lluvia.",
+  "theoryId" : "b1.09.How_to_Make_the_Passive",
+  "topicName" : "The passive",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.09.04.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The rain flooded the street.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The street was flooded by the rain." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The street was flooded by the rain." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343623"
+  },
+  "id" : "67fab6d59930102295343623",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d315"
+  },
+  "title" : "Passive Voice Review: Simple Tenses Practice",
+  "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
+  "translation" : "El baño está siendo limpiado por la empleada doméstica.",
+  "theoryId" : "b1.09.How_to_Make_the_Passive",
+  "topicName" : "The passive",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.09.04.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The maid is cleaning the bathroom.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The bathroom is being cleaned by the maid." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The bathroom is being cleaned by the maid." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343624"
+  },
+  "id" : "67fab6d59930102295343624",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d315"
+  },
+  "title" : "Passive Voice Review: Simple Tenses Practice",
+  "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
+  "translation" : "Ella fue invitada por su amigo.",
+  "theoryId" : "b1.09.How_to_Make_the_Passive",
+  "topicName" : "The passive",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.09.04.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Her friend invited her.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She was invited by her friend." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She was invited by her friend." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343625"
+  },
+  "id" : "67fab6d59930102295343625",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d315"
+  },
+  "title" : "Passive Voice Review: Simple Tenses Practice",
+  "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
+  "translation" : "Peter está siendo entrenado por el entrenador.",
+  "theoryId" : "b1.09.How_to_Make_the_Passive",
+  "topicName" : "The passive",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.09.04.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The trainer is coaching Peter.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Peter is being coached by the trainer." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Peter is being coached by the trainer." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343626"
+  },
+  "id" : "67fab6d59930102295343626",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d315"
+  },
+  "title" : "Passive Voice Review: Simple Tenses Practice",
+  "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
+  "translation" : "El césped es cortado por mi hermano.",
+  "theoryId" : "b1.09.How_to_Make_the_Passive",
+  "topicName" : "The passive",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.09.04.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My brother cuts the grass.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The grass is cut by my brother." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The grass is cut by my brother." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343627"
+  },
+  "id" : "67fab6d59930102295343627",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d315"
+  },
+  "title" : "Passive Voice Review: Simple Tenses Practice",
+  "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
+  "translation" : "Los documentos son impresos por Helen.",
+  "theoryId" : "b1.09.How_to_Make_the_Passive",
+  "topicName" : "The passive",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.09.04.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Helen prints the documents.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The documents are printed by Helen." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The documents are printed by Helen." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343628"
+  },
+  "id" : "67fab6d59930102295343628",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d315"
+  },
+  "title" : "Passive Voice Review: Simple Tenses Practice",
+  "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
+  "translation" : "La carretera fue construida por la empresa.",
+  "theoryId" : "b1.09.How_to_Make_the_Passive",
+  "topicName" : "The passive",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.09.04.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The company built the bridge.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The road was built by the company." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The road was built by the company." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343629"
+  },
+  "id" : "67fab6d59930102295343629",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d315"
+  },
+  "title" : "Passive Voice Review: Simple Tenses Practice",
+  "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
+  "translation" : "Las ardillas están siendo perseguidas por los perros.",
+  "theoryId" : "b1.09.How_to_Make_the_Passive",
+  "topicName" : "The passive",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.09.04.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dogs are chasing the squirrels.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The squirrels are being chased by the dogs." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The squirrels are being chased by the dogs." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534362a"
+  },
+  "id" : "67fab6d5993010229534362a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d315"
+  },
+  "title" : "Passive Voice Review: Simple Tenses Practice",
+  "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
+  "translation" : "La pasta fue cocinada por ellos.",
+  "theoryId" : "b1.09.How_to_Make_the_Passive",
+  "topicName" : "The passive",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.09.04.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They cooked the pasta.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The pasta was cooked by them." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The pasta was cooked by them." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534362b"
+  },
+  "id" : "67fab6d5993010229534362b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d315"
+  },
+  "title" : "Passive Voice Review: Simple Tenses Practice",
+  "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
+  "translation" : "Los boletos están siendo comprados por los clientes.",
+  "theoryId" : "b1.09.How_to_Make_the_Passive",
+  "topicName" : "The passive",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.09.04.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The customers are buying the tickets.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The tickets are being bought by the customers." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The tickets are being bought by the customers." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534362c"
+  },
+  "id" : "67fab6d5993010229534362c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d315"
+  },
+  "title" : "Passive Voice Review: Simple Tenses Practice",
+  "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
+  "translation" : "Las ventanas son cerradas por Mary.",
+  "theoryId" : "b1.09.How_to_Make_the_Passive",
+  "topicName" : "The passive",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.09.04.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Mary closes the windows.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The windows are closed by Mary." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The windows are closed by Mary." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534362d"
+  },
+  "id" : "67fab6d5993010229534362d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d315"
+  },
+  "title" : "Passive Voice Review: Simple Tenses Practice",
+  "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
+  "translation" : "Los pacientes están siendo examinados por el médico.",
+  "theoryId" : "b1.09.How_to_Make_the_Passive",
+  "topicName" : "The passive",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.09.04.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The doctor is examining the patients.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The patients are being examined by the doctor." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The patients are being examined by the doctor." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534362e"
+  },
+  "id" : "67fab6d5993010229534362e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d315"
+  },
+  "title" : "Passive Voice Review: Simple Tenses Practice",
+  "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
+  "translation" : "Las bebidas son servidas por el camarero.",
+  "theoryId" : "b1.09.How_to_Make_the_Passive",
+  "topicName" : "The passive",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.09.04.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The waiter serves the drinks.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The drinks are served by the waiter." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The drinks are served by the waiter." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534362f"
+  },
+  "id" : "67fab6d5993010229534362f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d315"
+  },
+  "title" : "Passive Voice Review: Simple Tenses Practice",
+  "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
+  "translation" : "Leo está siendo regañado por su madre.",
+  "theoryId" : "b1.09.How_to_Make_the_Passive",
+  "topicName" : "The passive",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.09.04.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "His mother is scolding Leo.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Leo is being scolded by his mother." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Leo is being scolded by his mother." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343630"
+  },
+  "id" : "67fab6d59930102295343630",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d315"
+  },
+  "title" : "Passive Voice Review: Simple Tenses Practice",
+  "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
+  "translation" : "La bicicleta fue reparada por Susan.",
+  "theoryId" : "b1.09.How_to_Make_the_Passive",
+  "topicName" : "The passive",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.09.04.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Susan repaired the bicycle.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The bicycle was repaired by Susan." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The bicycle was repaired by Susan." ]
+  }
+} ]

@@ -1,1462 +1,1201 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344788"
-    },
-    "id": "67fab6d59930102295344788",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47d"
-    },
-    "title": "First Conditionals & Modal Verbs",
-    "instructions": "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
-    "translation": "Podría cenar tarde si tiene mucha hambre.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.04.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "might eat"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(eat) dinner late if he",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "is"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) very hungry.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He might eat dinner late if he is very hungry."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344788"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344789"
-    },
-    "id": "67fab6d59930102295344789",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47d"
-    },
-    "title": "First Conditionals & Modal Verbs",
-    "instructions": "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
-    "translation": "Si el chef hace un pastel, podríamos celebrar su cumpleaños.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.04.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If the chef",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "makes"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(make) a cake, we",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "might celebrate"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(celebrate) his birthday.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If the chef makes a cake, we might celebrate his birthday."
-      ]
-    }
+  "id" : "67fab6d59930102295344788",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47d"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534478a"
-    },
-    "id": "67fab6d5993010229534478a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47d"
-    },
-    "title": "First Conditionals & Modal Verbs",
-    "instructions": "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
-    "translation": "Si estudio mucho, podría lograr una buena calificación.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.04.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "study"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(study) a lot, I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "might achieve"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(achieve) a good grade.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If I study a lot, I might achieve a good grade."
-      ]
-    }
+  "title" : "First Conditionals & Modal Verbs",
+  "instructions" : "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
+  "translation" : "Podría cenar tarde si tiene mucha hambre.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534478b"
-    },
-    "id": "67fab6d5993010229534478b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47d"
-    },
-    "title": "First Conditionals & Modal Verbs",
-    "instructions": "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
-    "translation": "Podrías reprobar el examen si no estudias mucho.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.04.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "You",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "might fail"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(fail) the test if you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "don't study"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / study) hard.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "You might fail the test if you don't study hard."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534478c"
-    },
-    "id": "67fab6d5993010229534478c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47d"
-    },
-    "title": "First Conditionals & Modal Verbs",
-    "instructions": "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
-    "translation": "John podría sentirse solo si no lo visitas.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.04.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "John",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "might feel"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(feel) lonely if you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "don't visit"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / visit) him.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "John might feel lonely if you don't visit him."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534478d"
-    },
-    "id": "67fab6d5993010229534478d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47d"
-    },
-    "title": "First Conditionals & Modal Verbs",
-    "instructions": "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
-    "translation": "Si los gatos están cansados, podríamos dormir mucho.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.04.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If the cats",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "are"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) tired, we",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "might sleep"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(sleep) a lot.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If the cats are tired, we might sleep a lot."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534478e"
-    },
-    "id": "67fab6d5993010229534478e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47d"
-    },
-    "title": "First Conditionals & Modal Verbs",
-    "instructions": "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
-    "translation": "Los perros podrían ladrar si no reciben una golosina.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.04.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The dogs",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "might bark"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(bark) if they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "don't get"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / get) a treat.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The dogs might bark if they don't get a treat."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534478f"
-    },
-    "id": "67fab6d5993010229534478f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47d"
-    },
-    "title": "First Conditionals & Modal Verbs",
-    "instructions": "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
-    "translation": "Si los estudiantes escuchan al maestro, los niños podrían aprender mucho.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.04.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If the students",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "listen"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(listen) the teacher, the children",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "might learn"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(learn) a lot.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If the students listen the teacher, the children might learn a lot."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344790"
-    },
-    "id": "67fab6d59930102295344790",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47d"
-    },
-    "title": "First Conditionals & Modal Verbs",
-    "instructions": "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
-    "translation": "Si te gusta leer libros, podría prestarte algunos.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.04.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "like"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(like) to read books, I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "might borrow"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(borrow) some books.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If you like to read books, I might borrow some books."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344791"
-    },
-    "id": "67fab6d59930102295344791",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47d"
-    },
-    "title": "First Conditionals & Modal Verbs",
-    "instructions": "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
-    "translation": "Podrían visitarnos si encuentran algo de tiempo.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.04.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "might visit"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(visit) us if they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "find"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(find) some time.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They might visit us if they find some time."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344792"
-    },
-    "id": "67fab6d59930102295344792",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47d"
-    },
-    "title": "First Conditionals & Modal Verbs",
-    "instructions": "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
-    "translation": "El escritor podría escribir un nuevo libro si no conocemos sus libros.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.04.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The writer",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "might write"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(write) a new book if we",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "don't know"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / know) his books.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The writer might write a new book if we don't know his books."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344793"
-    },
-    "id": "67fab6d59930102295344793",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47d"
-    },
-    "title": "First Conditionals & Modal Verbs",
-    "instructions": "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
-    "translation": "Si piden una pizza, podrían comérsela rápidamente.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.04.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "order"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(order) a pizza, they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "might eat"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(eat) it quickly.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If they order a pizza, they might eat it quickly."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344794"
-    },
-    "id": "67fab6d59930102295344794",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47d"
-    },
-    "title": "First Conditionals & Modal Verbs",
-    "instructions": "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
-    "translation": "Podrían sentirse mal si comen demasiado.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.04.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "might feel"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(feel) sick if they",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "eat"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(eat) too much.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They might feel sick if they eat too much."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344795"
-    },
-    "id": "67fab6d59930102295344795",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47d"
-    },
-    "title": "First Conditionals & Modal Verbs",
-    "instructions": "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
-    "translation": "Si ella se siente aburrida, podría escuchar música.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.04.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If she",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "feels"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(feel) bored, she",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "might listen"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(listen) music.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If she feels bored, she might listen music."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344796"
-    },
-    "id": "67fab6d59930102295344796",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47d"
-    },
-    "title": "First Conditionals & Modal Verbs",
-    "instructions": "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
-    "translation": "Si hace frío, él podría usar una chaqueta.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.04.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If it",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "turns"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) cold, he",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "might wear"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(wear) a jacket.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If it turns cold, he might wear a jacket."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344797"
-    },
-    "id": "67fab6d59930102295344797",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47d"
-    },
-    "title": "First Conditionals & Modal Verbs",
-    "instructions": "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
-    "translation": "Podríamos volver a jugar a las cartas si estamos aburridos.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.04.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "might play"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(play) cards again, if we",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "are"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(are) bored.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We might play cards again, if we are bored."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344798"
-    },
-    "id": "67fab6d59930102295344798",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47d"
-    },
-    "title": "First Conditionals & Modal Verbs",
-    "instructions": "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
-    "translation": "Podría comprar algo de fruta si se ve fresca.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.04.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "might buy"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(buy) some fruit if it",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "looks"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) fresh.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I might buy some fruit if it looks fresh."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344799"
-    },
-    "id": "67fab6d59930102295344799",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47d"
-    },
-    "title": "First Conditionals & Modal Verbs",
-    "instructions": "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
-    "translation": "Si nieva, podríamos jugar en el jardín.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.04.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If it",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "snows"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(snow), we",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "might play"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(play) in the garden.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If it snows, we might play in the garden."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534479a"
-    },
-    "id": "67fab6d5993010229534479a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47d"
-    },
-    "title": "First Conditionals & Modal Verbs",
-    "instructions": "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
-    "translation": "Podría cocinar algo si no hay nada más para comer.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.04.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "might cook"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(cook) something if there",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "isn't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(not / be) anything else to eat.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I might cook something if there isn't anything else to eat."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534479b"
-    },
-    "id": "67fab6d5993010229534479b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d47d"
-    },
-    "title": "First Conditionals & Modal Verbs",
-    "instructions": "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
-    "translation": "Si el espectáculo es interesante, el público podría aplaudir mucho.",
-    "theoryId": "b2.12.Words_Instead_of_If",
-    "topicName": "Conditionals",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.12.04.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "If the show",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "is"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(be) interesting, the audience",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "might applaud"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(applaud) a lot.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "If the show is interesting, the audience might applaud a lot."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.04.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "might eat" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(eat) dinner late if he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) very hungry.",
+      "options" : null
+    } ],
+    "sentences" : [ "He might eat dinner late if he is very hungry." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344789"
+  },
+  "id" : "67fab6d59930102295344789",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47d"
+  },
+  "title" : "First Conditionals & Modal Verbs",
+  "instructions" : "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
+  "translation" : "Si el chef hace un pastel, podríamos celebrar su cumpleaños.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.04.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If the chef",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "makes" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(make) a cake, we",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "might celebrate" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(celebrate) his birthday.",
+      "options" : null
+    } ],
+    "sentences" : [ "If the chef makes a cake, we might celebrate his birthday." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534478a"
+  },
+  "id" : "67fab6d5993010229534478a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47d"
+  },
+  "title" : "First Conditionals & Modal Verbs",
+  "instructions" : "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
+  "translation" : "Si estudio mucho, podría lograr una buena calificación.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.04.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "study" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(study) a lot, I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "might achieve" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(achieve) a good grade.",
+      "options" : null
+    } ],
+    "sentences" : [ "If I study a lot, I might achieve a good grade." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534478b"
+  },
+  "id" : "67fab6d5993010229534478b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47d"
+  },
+  "title" : "First Conditionals & Modal Verbs",
+  "instructions" : "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
+  "translation" : "Podrías reprobar el examen si no estudias mucho.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.04.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "might fail" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(fail) the test if you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't study" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / study) hard.",
+      "options" : null
+    } ],
+    "sentences" : [ "You might fail the test if you don't study hard." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534478c"
+  },
+  "id" : "67fab6d5993010229534478c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47d"
+  },
+  "title" : "First Conditionals & Modal Verbs",
+  "instructions" : "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
+  "translation" : "John podría sentirse solo si no lo visitas.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.04.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "John",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "might feel" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(feel) lonely if you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't visit" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / visit) him.",
+      "options" : null
+    } ],
+    "sentences" : [ "John might feel lonely if you don't visit him." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534478d"
+  },
+  "id" : "67fab6d5993010229534478d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47d"
+  },
+  "title" : "First Conditionals & Modal Verbs",
+  "instructions" : "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
+  "translation" : "Si los gatos están cansados, podríamos dormir mucho.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.04.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If the cats",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) tired, we",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "might sleep" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(sleep) a lot.",
+      "options" : null
+    } ],
+    "sentences" : [ "If the cats are tired, we might sleep a lot." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534478e"
+  },
+  "id" : "67fab6d5993010229534478e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47d"
+  },
+  "title" : "First Conditionals & Modal Verbs",
+  "instructions" : "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
+  "translation" : "Los perros podrían ladrar si no reciben una golosina.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.04.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dogs",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "might bark" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(bark) if they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't get" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / get) a treat.",
+      "options" : null
+    } ],
+    "sentences" : [ "The dogs might bark if they don't get a treat." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534478f"
+  },
+  "id" : "67fab6d5993010229534478f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47d"
+  },
+  "title" : "First Conditionals & Modal Verbs",
+  "instructions" : "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
+  "translation" : "Si los estudiantes escuchan al maestro, los niños podrían aprender mucho.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.04.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If the students",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "listen" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(listen) the teacher, the children",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "might learn" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(learn) a lot.",
+      "options" : null
+    } ],
+    "sentences" : [ "If the students listen the teacher, the children might learn a lot." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344790"
+  },
+  "id" : "67fab6d59930102295344790",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47d"
+  },
+  "title" : "First Conditionals & Modal Verbs",
+  "instructions" : "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
+  "translation" : "Si te gusta leer libros, podría prestarte algunos.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.04.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(like) to read books, I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "might borrow" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(borrow) some books.",
+      "options" : null
+    } ],
+    "sentences" : [ "If you like to read books, I might borrow some books." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344791"
+  },
+  "id" : "67fab6d59930102295344791",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47d"
+  },
+  "title" : "First Conditionals & Modal Verbs",
+  "instructions" : "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
+  "translation" : "Podrían visitarnos si encuentran algo de tiempo.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.04.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "might visit" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(visit) us if they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "find" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(find) some time.",
+      "options" : null
+    } ],
+    "sentences" : [ "They might visit us if they find some time." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344792"
+  },
+  "id" : "67fab6d59930102295344792",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47d"
+  },
+  "title" : "First Conditionals & Modal Verbs",
+  "instructions" : "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
+  "translation" : "El escritor podría escribir un nuevo libro si no conocemos sus libros.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.04.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The writer",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "might write" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(write) a new book if we",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't know" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / know) his books.",
+      "options" : null
+    } ],
+    "sentences" : [ "The writer might write a new book if we don't know his books." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344793"
+  },
+  "id" : "67fab6d59930102295344793",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47d"
+  },
+  "title" : "First Conditionals & Modal Verbs",
+  "instructions" : "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
+  "translation" : "Si piden una pizza, podrían comérsela rápidamente.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.04.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "order" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(order) a pizza, they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "might eat" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(eat) it quickly.",
+      "options" : null
+    } ],
+    "sentences" : [ "If they order a pizza, they might eat it quickly." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344794"
+  },
+  "id" : "67fab6d59930102295344794",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47d"
+  },
+  "title" : "First Conditionals & Modal Verbs",
+  "instructions" : "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
+  "translation" : "Podrían sentirse mal si comen demasiado.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.04.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "might feel" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(feel) sick if they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "eat" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(eat) too much.",
+      "options" : null
+    } ],
+    "sentences" : [ "They might feel sick if they eat too much." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344795"
+  },
+  "id" : "67fab6d59930102295344795",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47d"
+  },
+  "title" : "First Conditionals & Modal Verbs",
+  "instructions" : "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
+  "translation" : "Si ella se siente aburrida, podría escuchar música.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.04.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "feels" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(feel) bored, she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "might listen" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(listen) music.",
+      "options" : null
+    } ],
+    "sentences" : [ "If she feels bored, she might listen music." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344796"
+  },
+  "id" : "67fab6d59930102295344796",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47d"
+  },
+  "title" : "First Conditionals & Modal Verbs",
+  "instructions" : "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
+  "translation" : "Si hace frío, él podría usar una chaqueta.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.04.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "turns" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) cold, he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "might wear" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(wear) a jacket.",
+      "options" : null
+    } ],
+    "sentences" : [ "If it turns cold, he might wear a jacket." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344797"
+  },
+  "id" : "67fab6d59930102295344797",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47d"
+  },
+  "title" : "First Conditionals & Modal Verbs",
+  "instructions" : "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
+  "translation" : "Podríamos volver a jugar a las cartas si estamos aburridos.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.04.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "might play" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(play) cards again, if we",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(are) bored.",
+      "options" : null
+    } ],
+    "sentences" : [ "We might play cards again, if we are bored." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344798"
+  },
+  "id" : "67fab6d59930102295344798",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47d"
+  },
+  "title" : "First Conditionals & Modal Verbs",
+  "instructions" : "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
+  "translation" : "Podría comprar algo de fruta si se ve fresca.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.04.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "might buy" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(buy) some fruit if it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "looks" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) fresh.",
+      "options" : null
+    } ],
+    "sentences" : [ "I might buy some fruit if it looks fresh." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344799"
+  },
+  "id" : "67fab6d59930102295344799",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47d"
+  },
+  "title" : "First Conditionals & Modal Verbs",
+  "instructions" : "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
+  "translation" : "Si nieva, podríamos jugar en el jardín.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.04.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "snows" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(snow), we",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "might play" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(play) in the garden.",
+      "options" : null
+    } ],
+    "sentences" : [ "If it snows, we might play in the garden." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534479a"
+  },
+  "id" : "67fab6d5993010229534479a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47d"
+  },
+  "title" : "First Conditionals & Modal Verbs",
+  "instructions" : "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
+  "translation" : "Podría cocinar algo si no hay nada más para comer.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.04.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "might cook" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(cook) something if there",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "isn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) anything else to eat.",
+      "options" : null
+    } ],
+    "sentences" : [ "I might cook something if there isn't anything else to eat." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534479b"
+  },
+  "id" : "67fab6d5993010229534479b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d47d"
+  },
+  "title" : "First Conditionals & Modal Verbs",
+  "instructions" : "Escribe oraciones condicionales reales en futuro, usando 'might' en la cláusula principal.",
+  "translation" : "Si el espectáculo es interesante, el público podría aplaudir mucho.",
+  "theoryId" : "b2.12.Words_Instead_of_If",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.04.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If the show",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) interesting, the audience",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "might applaud" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(applaud) a lot.",
+      "options" : null
+    } ],
+    "sentences" : [ "If the show is interesting, the audience might applaud a lot." ]
+  }
+} ]

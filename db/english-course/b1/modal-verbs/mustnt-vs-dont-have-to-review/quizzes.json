@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953437d5"
-    },
-    "id": "67fab6d599301022953437d5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d32d"
-    },
-    "title": "'Mustn't' vs. 'Don't Have To' Review",
-    "instructions": "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-    "translation": "Los perros no deben correr por el parque. Hay muchos niños pequeños.",
-    "theoryId": "b1.11.Modals_for_Politeness",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.11.03.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The dogs",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "mustn't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "run around the park. There are many little children.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The dogs mustn't run around the park. There are many little children."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437d5"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953437d6"
-    },
-    "id": "67fab6d599301022953437d6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d32d"
-    },
-    "title": "'Mustn't' vs. 'Don't Have To' Review",
-    "instructions": "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-    "translation": "No debes montar esa bicicleta rota. No es seguro.",
-    "theoryId": "b1.11.Modals_for_Politeness",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.11.03.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "You",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "mustn't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "ride that broken bicycle. It's not safe.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "You mustn't ride that broken bicycle. It's not safe."
-      ]
-    }
+  "id" : "67fab6d599301022953437d5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d32d"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953437d7"
-    },
-    "id": "67fab6d599301022953437d7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d32d"
-    },
-    "title": "'Mustn't' vs. 'Don't Have To' Review",
-    "instructions": "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-    "translation": "Los empleados no tienen que trabajar este sábado. Pueden descansar hasta el lunes.",
-    "theoryId": "b1.11.Modals_for_Politeness",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.11.03.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The employees",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "don't have to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "work this Saturday. They can rest until Monday.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The employees don't have to work this Saturday. They can rest until Monday."
-      ]
-    }
+  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "Los perros no deben correr por el parque. Hay muchos niños pequeños.",
+  "theoryId" : "b1.11.Modals_for_Politeness",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953437d8"
-    },
-    "id": "67fab6d599301022953437d8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d32d"
-    },
-    "title": "'Mustn't' vs. 'Don't Have To' Review",
-    "instructions": "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-    "translation": "No tienes que lavar los platos. Yo puedo hacerlo.",
-    "theoryId": "b1.11.Modals_for_Politeness",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.11.03.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "You",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "don't have to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "wash the dishes. I can do it.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "You don't have to wash the dishes. I can do it."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953437d9"
-    },
-    "id": "67fab6d599301022953437d9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d32d"
-    },
-    "title": "'Mustn't' vs. 'Don't Have To' Review",
-    "instructions": "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-    "translation": "No tenemos que leer todos los libros este mes. También hay tiempo el mes que viene.",
-    "theoryId": "b1.11.Modals_for_Politeness",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.11.03.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "don't have to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "read all the books this month. There's time next month too.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We don't have to read all the books this month. There's time next month too."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953437da"
-    },
-    "id": "67fab6d599301022953437da",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d32d"
-    },
-    "title": "'Mustn't' vs. 'Don't Have To' Review",
-    "instructions": "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-    "translation": "¡No debemos olvidar las llaves! No hay una llave de repuesto en casa.",
-    "theoryId": "b1.11.Modals_for_Politeness",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.11.03.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "mustn't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "forget the keys! There isn't a spare key at home.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We mustn't forget the keys! There isn't a spare key at home."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953437db"
-    },
-    "id": "67fab6d599301022953437db",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d32d"
-    },
-    "title": "'Mustn't' vs. 'Don't Have To' Review",
-    "instructions": "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-    "translation": "¡No debo beber tantos refrescos! Realmente quiero estar más saludable.",
-    "theoryId": "b1.11.Modals_for_Politeness",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.11.03.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "mustn't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "drink so many fizzy drinks! I really want to be healthier.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I mustn't drink so many fizzy drinks! I really want to be healthier."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953437dc"
-    },
-    "id": "67fab6d599301022953437dc",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d32d"
-    },
-    "title": "'Mustn't' vs. 'Don't Have To' Review",
-    "instructions": "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-    "translation": "No tenemos que vestirnos formalmente. No importa lo que llevemos puesto.",
-    "theoryId": "b1.11.Modals_for_Politeness",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.11.03.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "don't have to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "dress formally. It doesn't matter what we wear.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We don't have to dress formally. It doesn't matter what we wear."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953437dd"
-    },
-    "id": "67fab6d599301022953437dd",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d32d"
-    },
-    "title": "'Mustn't' vs. 'Don't Have To' Review",
-    "instructions": "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-    "translation": "Él no debe gritar fuerte en la biblioteca. Va en contra de las reglas.",
-    "theoryId": "b1.11.Modals_for_Politeness",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.11.03.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "mustn't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "shout loudly in the library. It's against the rules.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He mustn't shout loudly in the library. It's against the rules."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953437de"
-    },
-    "id": "67fab6d599301022953437de",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d32d"
-    },
-    "title": "'Mustn't' vs. 'Don't Have To' Review",
-    "instructions": "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-    "translation": "No tengo que ir a la escuela. Es fin de semana.",
-    "theoryId": "b1.11.Modals_for_Politeness",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.11.03.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "don't have to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "go to school. It's the weekend.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I don't have to go to school. It's the weekend."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953437df"
-    },
-    "id": "67fab6d599301022953437df",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d32d"
-    },
-    "title": "'Mustn't' vs. 'Don't Have To' Review",
-    "instructions": "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-    "translation": "No deben hacer ruido. El bebé está durmiendo.",
-    "theoryId": "b1.11.Modals_for_Politeness",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.11.03.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "mustn't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "be noisy. The baby is sleeping.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They mustn't be noisy. The baby is sleeping."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953437e0"
-    },
-    "id": "67fab6d599301022953437e0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d32d"
-    },
-    "title": "'Mustn't' vs. 'Don't Have To' Review",
-    "instructions": "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-    "translation": "Los invitados no deben grabar el concierto. Está prohibido.",
-    "theoryId": "b1.11.Modals_for_Politeness",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.11.03.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The guests",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "mustn't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "record the concert. It's prohibited.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The guests mustn't record the concert. It's prohibited."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953437e1"
-    },
-    "id": "67fab6d599301022953437e1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d32d"
-    },
-    "title": "'Mustn't' vs. 'Don't Have To' Review",
-    "instructions": "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-    "translation": "No tienes que despertarte a las 6 de la mañana. ¡Las 8 de la mañana es lo suficientemente temprano!",
-    "theoryId": "b1.11.Modals_for_Politeness",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.11.03.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "You",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "don't have to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "wake up at 6 am. 8 am is early enough!",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "You don't have to wake up at 6 am. 8 am is early enough!"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953437e2"
-    },
-    "id": "67fab6d599301022953437e2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d32d"
-    },
-    "title": "'Mustn't' vs. 'Don't Have To' Review",
-    "instructions": "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-    "translation": "No debes aparcar aquí. Es privado.",
-    "theoryId": "b1.11.Modals_for_Politeness",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.11.03.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "You",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "mustn't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "park here. It's private.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "You mustn't park here. It's private."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953437e3"
-    },
-    "id": "67fab6d599301022953437e3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d32d"
-    },
-    "title": "'Mustn't' vs. 'Don't Have To' Review",
-    "instructions": "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-    "translation": "No debo dormir hasta tarde. ¡Perderé la clase!",
-    "theoryId": "b1.11.Modals_for_Politeness",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.11.03.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "mustn't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "sleep late. I'll miss the class!",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I mustn't sleep late. I'll miss the class!"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953437e4"
-    },
-    "id": "67fab6d599301022953437e4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d32d"
-    },
-    "title": "'Mustn't' vs. 'Don't Have To' Review",
-    "instructions": "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-    "translation": "No tengo que alimentar al gato. Emily ya lo hizo.",
-    "theoryId": "b1.11.Modals_for_Politeness",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.11.03.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "don't have to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "feed the cat. Emily already did.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I don't have to feed the cat. Emily already did."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953437e5"
-    },
-    "id": "67fab6d599301022953437e5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d32d"
-    },
-    "title": "'Mustn't' vs. 'Don't Have To' Review",
-    "instructions": "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-    "translation": "Ella no debe comer nueces. Es alérgica a ellas.",
-    "theoryId": "b1.11.Modals_for_Politeness",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.11.03.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "mustn't"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "eat nuts. She's allergic to them.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She mustn't eat nuts. She's allergic to them."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953437e6"
-    },
-    "id": "67fab6d599301022953437e6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d32d"
-    },
-    "title": "'Mustn't' vs. 'Don't Have To' Review",
-    "instructions": "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-    "translation": "No tienes que participar en el juego. Es tu elección.",
-    "theoryId": "b1.11.Modals_for_Politeness",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.11.03.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "You",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "don't have to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "participate in the game. It's your choice.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "You don't have to participate in the game. It's your choice."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953437e7"
-    },
-    "id": "67fab6d599301022953437e7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d32d"
-    },
-    "title": "'Mustn't' vs. 'Don't Have To' Review",
-    "instructions": "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-    "translation": "Ella no tiene que practicar mucho. Ya es muy buena.",
-    "theoryId": "b1.11.Modals_for_Politeness",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.11.03.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "doesn't have to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "practice much. She is already very good.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She doesn't have to practice much. She is already very good."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953437e8"
-    },
-    "id": "67fab6d599301022953437e8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d32d"
-    },
-    "title": "'Mustn't' vs. 'Don't Have To' Review",
-    "instructions": "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-    "translation": "No tienes que llamar a un taxi. Puedo llevarte, si quieres.",
-    "theoryId": "b1.11.Modals_for_Politeness",
-    "topicName": "Modal verbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.11.03.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "You",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "don't have to"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "call a taxi. I can drive you, if you want.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "You don't have to call a taxi. I can drive you, if you want."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dogs",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "mustn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "run around the park. There are many little children.",
+      "options" : null
+    } ],
+    "sentences" : [ "The dogs mustn't run around the park. There are many little children." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437d6"
+  },
+  "id" : "67fab6d599301022953437d6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d32d"
+  },
+  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No debes montar esa bicicleta rota. No es seguro.",
+  "theoryId" : "b1.11.Modals_for_Politeness",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "mustn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "ride that broken bicycle. It's not safe.",
+      "options" : null
+    } ],
+    "sentences" : [ "You mustn't ride that broken bicycle. It's not safe." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437d7"
+  },
+  "id" : "67fab6d599301022953437d7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d32d"
+  },
+  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "Los empleados no tienen que trabajar este sábado. Pueden descansar hasta el lunes.",
+  "theoryId" : "b1.11.Modals_for_Politeness",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The employees",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't have to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "work this Saturday. They can rest until Monday.",
+      "options" : null
+    } ],
+    "sentences" : [ "The employees don't have to work this Saturday. They can rest until Monday." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437d8"
+  },
+  "id" : "67fab6d599301022953437d8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d32d"
+  },
+  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No tienes que lavar los platos. Yo puedo hacerlo.",
+  "theoryId" : "b1.11.Modals_for_Politeness",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't have to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "wash the dishes. I can do it.",
+      "options" : null
+    } ],
+    "sentences" : [ "You don't have to wash the dishes. I can do it." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437d9"
+  },
+  "id" : "67fab6d599301022953437d9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d32d"
+  },
+  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No tenemos que leer todos los libros este mes. También hay tiempo el mes que viene.",
+  "theoryId" : "b1.11.Modals_for_Politeness",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't have to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "read all the books this month. There's time next month too.",
+      "options" : null
+    } ],
+    "sentences" : [ "We don't have to read all the books this month. There's time next month too." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437da"
+  },
+  "id" : "67fab6d599301022953437da",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d32d"
+  },
+  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "¡No debemos olvidar las llaves! No hay una llave de repuesto en casa.",
+  "theoryId" : "b1.11.Modals_for_Politeness",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "mustn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "forget the keys! There isn't a spare key at home.",
+      "options" : null
+    } ],
+    "sentences" : [ "We mustn't forget the keys! There isn't a spare key at home." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437db"
+  },
+  "id" : "67fab6d599301022953437db",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d32d"
+  },
+  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "¡No debo beber tantos refrescos! Realmente quiero estar más saludable.",
+  "theoryId" : "b1.11.Modals_for_Politeness",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "mustn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "drink so many fizzy drinks! I really want to be healthier.",
+      "options" : null
+    } ],
+    "sentences" : [ "I mustn't drink so many fizzy drinks! I really want to be healthier." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437dc"
+  },
+  "id" : "67fab6d599301022953437dc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d32d"
+  },
+  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No tenemos que vestirnos formalmente. No importa lo que llevemos puesto.",
+  "theoryId" : "b1.11.Modals_for_Politeness",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't have to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "dress formally. It doesn't matter what we wear.",
+      "options" : null
+    } ],
+    "sentences" : [ "We don't have to dress formally. It doesn't matter what we wear." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437dd"
+  },
+  "id" : "67fab6d599301022953437dd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d32d"
+  },
+  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "Él no debe gritar fuerte en la biblioteca. Va en contra de las reglas.",
+  "theoryId" : "b1.11.Modals_for_Politeness",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "mustn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "shout loudly in the library. It's against the rules.",
+      "options" : null
+    } ],
+    "sentences" : [ "He mustn't shout loudly in the library. It's against the rules." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437de"
+  },
+  "id" : "67fab6d599301022953437de",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d32d"
+  },
+  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No tengo que ir a la escuela. Es fin de semana.",
+  "theoryId" : "b1.11.Modals_for_Politeness",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't have to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "go to school. It's the weekend.",
+      "options" : null
+    } ],
+    "sentences" : [ "I don't have to go to school. It's the weekend." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437df"
+  },
+  "id" : "67fab6d599301022953437df",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d32d"
+  },
+  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No deben hacer ruido. El bebé está durmiendo.",
+  "theoryId" : "b1.11.Modals_for_Politeness",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "mustn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "be noisy. The baby is sleeping.",
+      "options" : null
+    } ],
+    "sentences" : [ "They mustn't be noisy. The baby is sleeping." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437e0"
+  },
+  "id" : "67fab6d599301022953437e0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d32d"
+  },
+  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "Los invitados no deben grabar el concierto. Está prohibido.",
+  "theoryId" : "b1.11.Modals_for_Politeness",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The guests",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "mustn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "record the concert. It's prohibited.",
+      "options" : null
+    } ],
+    "sentences" : [ "The guests mustn't record the concert. It's prohibited." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437e1"
+  },
+  "id" : "67fab6d599301022953437e1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d32d"
+  },
+  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No tienes que despertarte a las 6 de la mañana. ¡Las 8 de la mañana es lo suficientemente temprano!",
+  "theoryId" : "b1.11.Modals_for_Politeness",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't have to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "wake up at 6 am. 8 am is early enough!",
+      "options" : null
+    } ],
+    "sentences" : [ "You don't have to wake up at 6 am. 8 am is early enough!" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437e2"
+  },
+  "id" : "67fab6d599301022953437e2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d32d"
+  },
+  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No debes aparcar aquí. Es privado.",
+  "theoryId" : "b1.11.Modals_for_Politeness",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "mustn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "park here. It's private.",
+      "options" : null
+    } ],
+    "sentences" : [ "You mustn't park here. It's private." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437e3"
+  },
+  "id" : "67fab6d599301022953437e3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d32d"
+  },
+  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No debo dormir hasta tarde. ¡Perderé la clase!",
+  "theoryId" : "b1.11.Modals_for_Politeness",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "mustn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "sleep late. I'll miss the class!",
+      "options" : null
+    } ],
+    "sentences" : [ "I mustn't sleep late. I'll miss the class!" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437e4"
+  },
+  "id" : "67fab6d599301022953437e4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d32d"
+  },
+  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No tengo que alimentar al gato. Emily ya lo hizo.",
+  "theoryId" : "b1.11.Modals_for_Politeness",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't have to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "feed the cat. Emily already did.",
+      "options" : null
+    } ],
+    "sentences" : [ "I don't have to feed the cat. Emily already did." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437e5"
+  },
+  "id" : "67fab6d599301022953437e5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d32d"
+  },
+  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "Ella no debe comer nueces. Es alérgica a ellas.",
+  "theoryId" : "b1.11.Modals_for_Politeness",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "mustn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "eat nuts. She's allergic to them.",
+      "options" : null
+    } ],
+    "sentences" : [ "She mustn't eat nuts. She's allergic to them." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437e6"
+  },
+  "id" : "67fab6d599301022953437e6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d32d"
+  },
+  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No tienes que participar en el juego. Es tu elección.",
+  "theoryId" : "b1.11.Modals_for_Politeness",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't have to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "participate in the game. It's your choice.",
+      "options" : null
+    } ],
+    "sentences" : [ "You don't have to participate in the game. It's your choice." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437e7"
+  },
+  "id" : "67fab6d599301022953437e7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d32d"
+  },
+  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "Ella no tiene que practicar mucho. Ya es muy buena.",
+  "theoryId" : "b1.11.Modals_for_Politeness",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "doesn't have to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "practice much. She is already very good.",
+      "options" : null
+    } ],
+    "sentences" : [ "She doesn't have to practice much. She is already very good." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437e8"
+  },
+  "id" : "67fab6d599301022953437e8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d32d"
+  },
+  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No tienes que llamar a un taxi. Puedo llevarte, si quieres.",
+  "theoryId" : "b1.11.Modals_for_Politeness",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't have to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "call a taxi. I can drive you, if you want.",
+      "options" : null
+    } ],
+    "sentences" : [ "You don't have to call a taxi. I can drive you, if you want." ]
+  }
+} ]

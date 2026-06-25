@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344986"
-    },
-    "id": "67fab6d59930102295344986",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d49a"
-    },
-    "title": "Linking Words Practice",
-    "instructions": "Elige la palabra de enlace correcta.",
-    "translation": "Ella fue a Italia debido a sus vacaciones.",
-    "theoryId": "",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.14.07.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She went to Italy",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "because of"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(because / because of) her vacation.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She went to Italy because of her vacation."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344986"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344987"
-    },
-    "id": "67fab6d59930102295344987",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d49a"
-    },
-    "title": "Linking Words Practice",
-    "instructions": "Elige la palabra de enlace correcta.",
-    "translation": "Él estaba triste porque no recibió un regalo.",
-    "theoryId": "",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.14.07.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He was sad",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "because"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(because / because of) he didn't get a gift.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He was sad because he didn't get a gift."
-      ]
-    }
+  "id" : "67fab6d59930102295344986",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d49a"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344988"
-    },
-    "id": "67fab6d59930102295344988",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d49a"
-    },
-    "title": "Linking Words Practice",
-    "instructions": "Elige la palabra de enlace correcta.",
-    "translation": "Ella trabaja de forma remota a causa de su gerente.",
-    "theoryId": "",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.14.07.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She works remotely",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "on account of"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(since / on account of) her manager.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She works remotely on account of her manager."
-      ]
-    }
+  "title" : "Linking Words Practice",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Ella fue a Italia debido a sus vacaciones.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344989"
-    },
-    "id": "67fab6d59930102295344989",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d49a"
-    },
-    "title": "Linking Words Practice",
-    "instructions": "Elige la palabra de enlace correcta.",
-    "translation": "Él vendió su viejo televisor porque era demasiado viejo.",
-    "theoryId": "",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.14.07.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He sold his old television",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "since"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(since / on account of) it was too old.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He sold his old television since it was too old."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534498a"
-    },
-    "id": "67fab6d5993010229534498a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d49a"
-    },
-    "title": "Linking Words Practice",
-    "instructions": "Elige la palabra de enlace correcta.",
-    "translation": "Ellos llegaron más temprano debido al tráfico.",
-    "theoryId": "",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.14.07.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They arrived earlier",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "because of"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(because / because of) the traffic.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They arrived earlier because of the traffic."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534498b"
-    },
-    "id": "67fab6d5993010229534498b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d49a"
-    },
-    "title": "Linking Words Practice",
-    "instructions": "Elige la palabra de enlace correcta.",
-    "translation": "Los jugadores estaban cansados como resultado del juego.",
-    "theoryId": "",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.14.07.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The players were tired",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "as a result of"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(as / as a result of) the game.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The players were tired as a result of the game."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534498c"
-    },
-    "id": "67fab6d5993010229534498c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d49a"
-    },
-    "title": "Linking Words Practice",
-    "instructions": "Elige la palabra de enlace correcta.",
-    "translation": "Les traje a los adultos una bebida ya que tenían sed.",
-    "theoryId": "",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.14.07.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I brought the adults a drink",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "since"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(since / on account of) they were thirsty.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I brought the adults a drink since they were thirsty."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534498d"
-    },
-    "id": "67fab6d5993010229534498d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d49a"
-    },
-    "title": "Linking Words Practice",
-    "instructions": "Elige la palabra de enlace correcta.",
-    "translation": "Cerramos la ventana porque hacía frío.",
-    "theoryId": "",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.14.07.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We closed the window",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "as"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(as / as a result of) it was cold.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We closed the window as it was cold."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534498e"
-    },
-    "id": "67fab6d5993010229534498e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d49a"
-    },
-    "title": "Linking Words Practice",
-    "instructions": "Elige la palabra de enlace correcta.",
-    "translation": "Ella traerá una chaqueta ya que hace frío.",
-    "theoryId": "",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.14.07.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She'll get a jacket",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "since"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(since / on account of) it's cold.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She'll get a jacket since it's cold."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534498f"
-    },
-    "id": "67fab6d5993010229534498f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d49a"
-    },
-    "title": "Linking Words Practice",
-    "instructions": "Elige la palabra de enlace correcta.",
-    "translation": "Ellos compraron un coche nuevo porque necesitaban viajar.",
-    "theoryId": "",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.14.07.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They bought a new car",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "because"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(because / because of) they needed to travel.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They bought a new car because they needed to travel."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344990"
-    },
-    "id": "67fab6d59930102295344990",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d49a"
-    },
-    "title": "Linking Words Practice",
-    "instructions": "Elige la palabra de enlace correcta.",
-    "translation": "Vimos una película debido a la oscuridad.",
-    "theoryId": "",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.14.07.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We watched a movie",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "because of"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(because / because of) the darkness.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We watched a movie because of the darkness."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344991"
-    },
-    "id": "67fab6d59930102295344991",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d49a"
-    },
-    "title": "Linking Words Practice",
-    "instructions": "Elige la palabra de enlace correcta.",
-    "translation": "El jardín floreció como resultado de su dedicación.",
-    "theoryId": "",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.14.07.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The garden flourished",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "as a result of"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(as / as a result of) her dedication.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The garden flourished as a result of her dedication."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344992"
-    },
-    "id": "67fab6d59930102295344992",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d49a"
-    },
-    "title": "Linking Words Practice",
-    "instructions": "Elige la palabra de enlace correcta.",
-    "translation": "Estábamos enfermos a causa del batido.",
-    "theoryId": "",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.14.07.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We were sick",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "on account of"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(since / on account of) the milkshake.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We were sick on account of the milkshake."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344993"
-    },
-    "id": "67fab6d59930102295344993",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d49a"
-    },
-    "title": "Linking Words Practice",
-    "instructions": "Elige la palabra de enlace correcta.",
-    "translation": "Los atletas descansaron porque el entrenamiento había terminado.",
-    "theoryId": "",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.14.07.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The athletes had a rest",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "because"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(because / because of) the training was finished.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The athletes had a rest because the training was finished."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344994"
-    },
-    "id": "67fab6d59930102295344994",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d49a"
-    },
-    "title": "Linking Words Practice",
-    "instructions": "Elige la palabra de enlace correcta.",
-    "translation": "Ella tomó un autobús porque perdió el tren.",
-    "theoryId": "",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.14.07.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She took a bus",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "as"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(as / as a result of) she missed the train.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She took a bus as she missed the train."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344995"
-    },
-    "id": "67fab6d59930102295344995",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d49a"
-    },
-    "title": "Linking Words Practice",
-    "instructions": "Elige la palabra de enlace correcta.",
-    "translation": "Estaba emocionado porque comí pizza.",
-    "theoryId": "",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.14.07.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I was excited",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "because"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(because / because of) I ate pizza.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I was excited because I ate pizza."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344996"
-    },
-    "id": "67fab6d59930102295344996",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d49a"
-    },
-    "title": "Linking Words Practice",
-    "instructions": "Elige la palabra de enlace correcta.",
-    "translation": "Él estaba preocupado por el vuelo.",
-    "theoryId": "",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.14.07.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He was worried",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "because of"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(because / because of) the flight.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He was worried because of the flight."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344997"
-    },
-    "id": "67fab6d59930102295344997",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d49a"
-    },
-    "title": "Linking Words Practice",
-    "instructions": "Elige la palabra de enlace correcta.",
-    "translation": "Susan se despertó porque la molestaron.",
-    "theoryId": "",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.14.07.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Susan woke up",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "as"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(as / as a result of) she was disturbed.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Susan woke up as she was disturbed."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344998"
-    },
-    "id": "67fab6d59930102295344998",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d49a"
-    },
-    "title": "Linking Words Practice",
-    "instructions": "Elige la palabra de enlace correcta.",
-    "translation": "Él está furioso a causa del correo electrónico.",
-    "theoryId": "",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.14.07.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He's furious",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "on account of"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(since / on account of) the email.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He's furious on account of the email."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344999"
-    },
-    "id": "67fab6d59930102295344999",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d49a"
-    },
-    "title": "Linking Words Practice",
-    "instructions": "Elige la palabra de enlace correcta.",
-    "translation": "Las cosechas fracasaron como resultado de la sequía.",
-    "theoryId": "",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.14.07.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The crops failed",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "as a result of"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(as / as a result of) the drought.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The crops failed as a result of the drought."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She went to Italy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "because of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) her vacation.",
+      "options" : null
+    } ],
+    "sentences" : [ "She went to Italy because of her vacation." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344987"
+  },
+  "id" : "67fab6d59930102295344987",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d49a"
+  },
+  "title" : "Linking Words Practice",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Él estaba triste porque no recibió un regalo.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He was sad",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "because" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) he didn't get a gift.",
+      "options" : null
+    } ],
+    "sentences" : [ "He was sad because he didn't get a gift." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344988"
+  },
+  "id" : "67fab6d59930102295344988",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d49a"
+  },
+  "title" : "Linking Words Practice",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Ella trabaja de forma remota a causa de su gerente.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She works remotely",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on account of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(since / on account of) her manager.",
+      "options" : null
+    } ],
+    "sentences" : [ "She works remotely on account of her manager." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344989"
+  },
+  "id" : "67fab6d59930102295344989",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d49a"
+  },
+  "title" : "Linking Words Practice",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Él vendió su viejo televisor porque era demasiado viejo.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He sold his old television",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "since" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(since / on account of) it was too old.",
+      "options" : null
+    } ],
+    "sentences" : [ "He sold his old television since it was too old." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534498a"
+  },
+  "id" : "67fab6d5993010229534498a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d49a"
+  },
+  "title" : "Linking Words Practice",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Ellos llegaron más temprano debido al tráfico.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They arrived earlier",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "because of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) the traffic.",
+      "options" : null
+    } ],
+    "sentences" : [ "They arrived earlier because of the traffic." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534498b"
+  },
+  "id" : "67fab6d5993010229534498b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d49a"
+  },
+  "title" : "Linking Words Practice",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Los jugadores estaban cansados como resultado del juego.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The players were tired",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as a result of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(as / as a result of) the game.",
+      "options" : null
+    } ],
+    "sentences" : [ "The players were tired as a result of the game." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534498c"
+  },
+  "id" : "67fab6d5993010229534498c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d49a"
+  },
+  "title" : "Linking Words Practice",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Les traje a los adultos una bebida ya que tenían sed.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I brought the adults a drink",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "since" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(since / on account of) they were thirsty.",
+      "options" : null
+    } ],
+    "sentences" : [ "I brought the adults a drink since they were thirsty." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534498d"
+  },
+  "id" : "67fab6d5993010229534498d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d49a"
+  },
+  "title" : "Linking Words Practice",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Cerramos la ventana porque hacía frío.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We closed the window",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(as / as a result of) it was cold.",
+      "options" : null
+    } ],
+    "sentences" : [ "We closed the window as it was cold." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534498e"
+  },
+  "id" : "67fab6d5993010229534498e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d49a"
+  },
+  "title" : "Linking Words Practice",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Ella traerá una chaqueta ya que hace frío.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She'll get a jacket",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "since" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(since / on account of) it's cold.",
+      "options" : null
+    } ],
+    "sentences" : [ "She'll get a jacket since it's cold." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534498f"
+  },
+  "id" : "67fab6d5993010229534498f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d49a"
+  },
+  "title" : "Linking Words Practice",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Ellos compraron un coche nuevo porque necesitaban viajar.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They bought a new car",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "because" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) they needed to travel.",
+      "options" : null
+    } ],
+    "sentences" : [ "They bought a new car because they needed to travel." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344990"
+  },
+  "id" : "67fab6d59930102295344990",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d49a"
+  },
+  "title" : "Linking Words Practice",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Vimos una película debido a la oscuridad.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We watched a movie",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "because of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) the darkness.",
+      "options" : null
+    } ],
+    "sentences" : [ "We watched a movie because of the darkness." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344991"
+  },
+  "id" : "67fab6d59930102295344991",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d49a"
+  },
+  "title" : "Linking Words Practice",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "El jardín floreció como resultado de su dedicación.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The garden flourished",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as a result of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(as / as a result of) her dedication.",
+      "options" : null
+    } ],
+    "sentences" : [ "The garden flourished as a result of her dedication." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344992"
+  },
+  "id" : "67fab6d59930102295344992",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d49a"
+  },
+  "title" : "Linking Words Practice",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Estábamos enfermos a causa del batido.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We were sick",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on account of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(since / on account of) the milkshake.",
+      "options" : null
+    } ],
+    "sentences" : [ "We were sick on account of the milkshake." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344993"
+  },
+  "id" : "67fab6d59930102295344993",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d49a"
+  },
+  "title" : "Linking Words Practice",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Los atletas descansaron porque el entrenamiento había terminado.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The athletes had a rest",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "because" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) the training was finished.",
+      "options" : null
+    } ],
+    "sentences" : [ "The athletes had a rest because the training was finished." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344994"
+  },
+  "id" : "67fab6d59930102295344994",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d49a"
+  },
+  "title" : "Linking Words Practice",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Ella tomó un autobús porque perdió el tren.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She took a bus",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(as / as a result of) she missed the train.",
+      "options" : null
+    } ],
+    "sentences" : [ "She took a bus as she missed the train." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344995"
+  },
+  "id" : "67fab6d59930102295344995",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d49a"
+  },
+  "title" : "Linking Words Practice",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Estaba emocionado porque comí pizza.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I was excited",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "because" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) I ate pizza.",
+      "options" : null
+    } ],
+    "sentences" : [ "I was excited because I ate pizza." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344996"
+  },
+  "id" : "67fab6d59930102295344996",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d49a"
+  },
+  "title" : "Linking Words Practice",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Él estaba preocupado por el vuelo.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He was worried",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "because of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) the flight.",
+      "options" : null
+    } ],
+    "sentences" : [ "He was worried because of the flight." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344997"
+  },
+  "id" : "67fab6d59930102295344997",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d49a"
+  },
+  "title" : "Linking Words Practice",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Susan se despertó porque la molestaron.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Susan woke up",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(as / as a result of) she was disturbed.",
+      "options" : null
+    } ],
+    "sentences" : [ "Susan woke up as she was disturbed." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344998"
+  },
+  "id" : "67fab6d59930102295344998",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d49a"
+  },
+  "title" : "Linking Words Practice",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Él está furioso a causa del correo electrónico.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's furious",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on account of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(since / on account of) the email.",
+      "options" : null
+    } ],
+    "sentences" : [ "He's furious on account of the email." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344999"
+  },
+  "id" : "67fab6d59930102295344999",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d49a"
+  },
+  "title" : "Linking Words Practice",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Las cosechas fracasaron como resultado de la sequía.",
+  "theoryId" : "",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The crops failed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as a result of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(as / as a result of) the drought.",
+      "options" : null
+    } ],
+    "sentences" : [ "The crops failed as a result of the drought." ]
+  }
+} ]

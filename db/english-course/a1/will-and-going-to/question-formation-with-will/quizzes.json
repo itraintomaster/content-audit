@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342125"
-    },
-    "id": "67fab6d59930102295342125",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3aa"
-    },
-    "title": "Question Formation with 'Will'",
-    "instructions": "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-    "translation": "¿Completarás el proyecto?",
-    "theoryId": "a1.03.Will_Forms",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.03.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Will you complete"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(you / complete) the project?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Will you complete the project?"
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342125"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342126"
-    },
-    "id": "67fab6d59930102295342126",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3aa"
-    },
-    "title": "Question Formation with 'Will'",
-    "instructions": "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-    "translation": "¿Se quedarán mucho tiempo?",
-    "theoryId": "a1.03.Will_Forms",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.03.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Will they stay"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(they / stay) long?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Will they stay long?"
-      ]
-    }
+  "id" : "67fab6d59930102295342125",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3aa"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342127"
-    },
-    "id": "67fab6d59930102295342127",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3aa"
-    },
-    "title": "Question Formation with 'Will'",
-    "instructions": "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-    "translation": "¿Verá la película?",
-    "theoryId": "a1.03.Will_Forms",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.03.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Will he watch"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(he / watch) the movie?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Will he watch the movie?"
-      ]
-    }
+  "title" : "Question Formation with 'Will'",
+  "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
+  "translation" : "¿Completarás el proyecto?",
+  "theoryId" : "a1.03.Will_Forms",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342128"
-    },
-    "id": "67fab6d59930102295342128",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3aa"
-    },
-    "title": "Question Formation with 'Will'",
-    "instructions": "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-    "translation": "¿Qué cocinará?",
-    "theoryId": "a1.03.Will_Forms",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.03.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "What",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will he cook"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(he / cook)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "What will he cook?"
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342129"
-    },
-    "id": "67fab6d59930102295342129",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3aa"
-    },
-    "title": "Question Formation with 'Will'",
-    "instructions": "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-    "translation": "¿Los visitará?",
-    "theoryId": "a1.03.Will_Forms",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.03.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Will she visit"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(she / visit) them?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Will she visit them?"
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534212a"
-    },
-    "id": "67fab6d5993010229534212a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3aa"
-    },
-    "title": "Question Formation with 'Will'",
-    "instructions": "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-    "translation": "¿Jugarán al fútbol?",
-    "theoryId": "a1.03.Will_Forms",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.03.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Will they play"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(they / play) football?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Will they play football?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534212b"
-    },
-    "id": "67fab6d5993010229534212b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3aa"
-    },
-    "title": "Question Formation with 'Will'",
-    "instructions": "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-    "translation": "¿Cuándo viajarás?",
-    "theoryId": "a1.03.Will_Forms",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.03.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "When",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will you travel"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(you / travel)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "When will you travel?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534212c"
-    },
-    "id": "67fab6d5993010229534212c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3aa"
-    },
-    "title": "Question Formation with 'Will'",
-    "instructions": "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-    "translation": "¿Cuándo empezarán?",
-    "theoryId": "a1.03.Will_Forms",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.03.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "When",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will they start"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(they / start)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "When will they start?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534212d"
-    },
-    "id": "67fab6d5993010229534212d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3aa"
-    },
-    "title": "Question Formation with 'Will'",
-    "instructions": "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-    "translation": "¿A quién invitarás?",
-    "theoryId": "a1.03.Will_Forms",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.03.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Who",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will you invite"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(you / invite)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Who will you invite?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534212e"
-    },
-    "id": "67fab6d5993010229534212e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3aa"
-    },
-    "title": "Question Formation with 'Will'",
-    "instructions": "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-    "translation": "¿Comprará un coche?",
-    "theoryId": "a1.03.Will_Forms",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.03.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Will she buy"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(she / buy) a car?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Will she buy a car?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534212f"
-    },
-    "id": "67fab6d5993010229534212f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3aa"
-    },
-    "title": "Question Formation with 'Will'",
-    "instructions": "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-    "translation": "¿Se unirá a nosotros mañana?",
-    "theoryId": "a1.03.Will_Forms",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.03.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Will he join"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(he / join) us tomorrow?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Will he join us tomorrow?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342130"
-    },
-    "id": "67fab6d59930102295342130",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3aa"
-    },
-    "title": "Question Formation with 'Will'",
-    "instructions": "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-    "translation": "¿Dónde se alojará?",
-    "theoryId": "a1.03.Will_Forms",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.03.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Where",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will he stay"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(he / stay)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Where will he stay?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342131"
-    },
-    "id": "67fab6d59930102295342131",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3aa"
-    },
-    "title": "Question Formation with 'Will'",
-    "instructions": "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-    "translation": "¿Qué elegirá ella?",
-    "theoryId": "a1.03.Will_Forms",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.03.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "What",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will she choose"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(she / choose)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "What will she choose?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342132"
-    },
-    "id": "67fab6d59930102295342132",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3aa"
-    },
-    "title": "Question Formation with 'Will'",
-    "instructions": "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-    "translation": "¿Escucharán música?",
-    "theoryId": "a1.03.Will_Forms",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.03.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Will they listen"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(they / listen) to music?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Will they listen to music?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342133"
-    },
-    "id": "67fab6d59930102295342133",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3aa"
-    },
-    "title": "Question Formation with 'Will'",
-    "instructions": "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-    "translation": "¿A qué hora se despertará?",
-    "theoryId": "a1.03.Will_Forms",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.03.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "What time",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will he wake"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(he / wake) up?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "What time will he wake up?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342134"
-    },
-    "id": "67fab6d59930102295342134",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3aa"
-    },
-    "title": "Question Formation with 'Will'",
-    "instructions": "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-    "translation": "¿Cuánto costará?",
-    "theoryId": "a1.03.Will_Forms",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.03.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "How much",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will it cost"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(it / cost)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "How much will it cost?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342135"
-    },
-    "id": "67fab6d59930102295342135",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3aa"
-    },
-    "title": "Question Formation with 'Will'",
-    "instructions": "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-    "translation": "¿Nevará pronto?",
-    "theoryId": "a1.03.Will_Forms",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.03.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Will it snow"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(it / snow) soon?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Will it snow soon?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342136"
-    },
-    "id": "67fab6d59930102295342136",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3aa"
-    },
-    "title": "Question Formation with 'Will'",
-    "instructions": "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-    "translation": "¿Cómo conducirá ella?",
-    "theoryId": "a1.03.Will_Forms",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.03.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "How",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will she drive"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(she / drive)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "How will she drive?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342137"
-    },
-    "id": "67fab6d59930102295342137",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3aa"
-    },
-    "title": "Question Formation with 'Will'",
-    "instructions": "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-    "translation": "¿Verá a Mary mañana?",
-    "theoryId": "a1.03.Will_Forms",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.03.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Will she see"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(she / see) Mary tomorrow?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Will she see Mary tomorrow?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342138"
-    },
-    "id": "67fab6d59930102295342138",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3aa"
-    },
-    "title": "Question Formation with 'Will'",
-    "instructions": "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-    "translation": "¿Cuándo estará ella aquí?",
-    "theoryId": "a1.03.Will_Forms",
-    "topicName": "'Will' and 'Going to'",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.03.03.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "When",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "will she be"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(she / be) here?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "When will she be here?"
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Will you complete" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / complete) the project?",
+      "options" : null
+    } ],
+    "sentences" : [ "Will you complete the project?" ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342126"
+  },
+  "id" : "67fab6d59930102295342126",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3aa"
+  },
+  "title" : "Question Formation with 'Will'",
+  "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
+  "translation" : "¿Se quedarán mucho tiempo?",
+  "theoryId" : "a1.03.Will_Forms",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Will they stay" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / stay) long?",
+      "options" : null
+    } ],
+    "sentences" : [ "Will they stay long?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342127"
+  },
+  "id" : "67fab6d59930102295342127",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3aa"
+  },
+  "title" : "Question Formation with 'Will'",
+  "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
+  "translation" : "¿Verá la película?",
+  "theoryId" : "a1.03.Will_Forms",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Will he watch" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / watch) the movie?",
+      "options" : null
+    } ],
+    "sentences" : [ "Will he watch the movie?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342128"
+  },
+  "id" : "67fab6d59930102295342128",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3aa"
+  },
+  "title" : "Question Formation with 'Will'",
+  "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
+  "translation" : "¿Qué cocinará?",
+  "theoryId" : "a1.03.Will_Forms",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will he cook" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / cook)?",
+      "options" : null
+    } ],
+    "sentences" : [ "What will he cook?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342129"
+  },
+  "id" : "67fab6d59930102295342129",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3aa"
+  },
+  "title" : "Question Formation with 'Will'",
+  "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
+  "translation" : "¿Los visitará?",
+  "theoryId" : "a1.03.Will_Forms",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Will she visit" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / visit) them?",
+      "options" : null
+    } ],
+    "sentences" : [ "Will she visit them?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534212a"
+  },
+  "id" : "67fab6d5993010229534212a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3aa"
+  },
+  "title" : "Question Formation with 'Will'",
+  "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
+  "translation" : "¿Jugarán al fútbol?",
+  "theoryId" : "a1.03.Will_Forms",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Will they play" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / play) football?",
+      "options" : null
+    } ],
+    "sentences" : [ "Will they play football?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534212b"
+  },
+  "id" : "67fab6d5993010229534212b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3aa"
+  },
+  "title" : "Question Formation with 'Will'",
+  "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
+  "translation" : "¿Cuándo viajarás?",
+  "theoryId" : "a1.03.Will_Forms",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "When",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will you travel" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / travel)?",
+      "options" : null
+    } ],
+    "sentences" : [ "When will you travel?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534212c"
+  },
+  "id" : "67fab6d5993010229534212c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3aa"
+  },
+  "title" : "Question Formation with 'Will'",
+  "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
+  "translation" : "¿Cuándo empezarán?",
+  "theoryId" : "a1.03.Will_Forms",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "When",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will they start" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / start)?",
+      "options" : null
+    } ],
+    "sentences" : [ "When will they start?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534212d"
+  },
+  "id" : "67fab6d5993010229534212d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3aa"
+  },
+  "title" : "Question Formation with 'Will'",
+  "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
+  "translation" : "¿A quién invitarás?",
+  "theoryId" : "a1.03.Will_Forms",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Who",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will you invite" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / invite)?",
+      "options" : null
+    } ],
+    "sentences" : [ "Who will you invite?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534212e"
+  },
+  "id" : "67fab6d5993010229534212e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3aa"
+  },
+  "title" : "Question Formation with 'Will'",
+  "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
+  "translation" : "¿Comprará un coche?",
+  "theoryId" : "a1.03.Will_Forms",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Will she buy" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / buy) a car?",
+      "options" : null
+    } ],
+    "sentences" : [ "Will she buy a car?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534212f"
+  },
+  "id" : "67fab6d5993010229534212f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3aa"
+  },
+  "title" : "Question Formation with 'Will'",
+  "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
+  "translation" : "¿Se unirá a nosotros mañana?",
+  "theoryId" : "a1.03.Will_Forms",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Will he join" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / join) us tomorrow?",
+      "options" : null
+    } ],
+    "sentences" : [ "Will he join us tomorrow?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342130"
+  },
+  "id" : "67fab6d59930102295342130",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3aa"
+  },
+  "title" : "Question Formation with 'Will'",
+  "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
+  "translation" : "¿Dónde se alojará?",
+  "theoryId" : "a1.03.Will_Forms",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will he stay" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / stay)?",
+      "options" : null
+    } ],
+    "sentences" : [ "Where will he stay?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342131"
+  },
+  "id" : "67fab6d59930102295342131",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3aa"
+  },
+  "title" : "Question Formation with 'Will'",
+  "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
+  "translation" : "¿Qué elegirá ella?",
+  "theoryId" : "a1.03.Will_Forms",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will she choose" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / choose)?",
+      "options" : null
+    } ],
+    "sentences" : [ "What will she choose?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342132"
+  },
+  "id" : "67fab6d59930102295342132",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3aa"
+  },
+  "title" : "Question Formation with 'Will'",
+  "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
+  "translation" : "¿Escucharán música?",
+  "theoryId" : "a1.03.Will_Forms",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Will they listen" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / listen) to music?",
+      "options" : null
+    } ],
+    "sentences" : [ "Will they listen to music?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342133"
+  },
+  "id" : "67fab6d59930102295342133",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3aa"
+  },
+  "title" : "Question Formation with 'Will'",
+  "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
+  "translation" : "¿A qué hora se despertará?",
+  "theoryId" : "a1.03.Will_Forms",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What time",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will he wake" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / wake) up?",
+      "options" : null
+    } ],
+    "sentences" : [ "What time will he wake up?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342134"
+  },
+  "id" : "67fab6d59930102295342134",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3aa"
+  },
+  "title" : "Question Formation with 'Will'",
+  "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
+  "translation" : "¿Cuánto costará?",
+  "theoryId" : "a1.03.Will_Forms",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "How much",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will it cost" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(it / cost)?",
+      "options" : null
+    } ],
+    "sentences" : [ "How much will it cost?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342135"
+  },
+  "id" : "67fab6d59930102295342135",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3aa"
+  },
+  "title" : "Question Formation with 'Will'",
+  "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
+  "translation" : "¿Nevará pronto?",
+  "theoryId" : "a1.03.Will_Forms",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Will it snow" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(it / snow) soon?",
+      "options" : null
+    } ],
+    "sentences" : [ "Will it snow soon?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342136"
+  },
+  "id" : "67fab6d59930102295342136",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3aa"
+  },
+  "title" : "Question Formation with 'Will'",
+  "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
+  "translation" : "¿Cómo conducirá ella?",
+  "theoryId" : "a1.03.Will_Forms",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "How",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will she drive" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / drive)?",
+      "options" : null
+    } ],
+    "sentences" : [ "How will she drive?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342137"
+  },
+  "id" : "67fab6d59930102295342137",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3aa"
+  },
+  "title" : "Question Formation with 'Will'",
+  "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
+  "translation" : "¿Verá a Mary mañana?",
+  "theoryId" : "a1.03.Will_Forms",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Will she see" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / see) Mary tomorrow?",
+      "options" : null
+    } ],
+    "sentences" : [ "Will she see Mary tomorrow?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342138"
+  },
+  "id" : "67fab6d59930102295342138",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3aa"
+  },
+  "title" : "Question Formation with 'Will'",
+  "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
+  "translation" : "¿Cuándo estará ella aquí?",
+  "theoryId" : "a1.03.Will_Forms",
+  "topicName" : "'Will' and 'Going to'",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.03.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "When",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "will she be" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / be) here?",
+      "options" : null
+    } ],
+    "sentences" : [ "When will she be here?" ]
+  }
+} ]

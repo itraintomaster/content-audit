@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534232b"
-    },
-    "id": "67fab6d5993010229534232b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c7"
-    },
-    "title": "Uncountable Nouns and Quantity Words",
-    "instructions": "Elige 'a' o 'some'.",
-    "translation": "¿Puedo comer algo de carne?",
-    "theoryId": "a1.06.Quantity_Words_with_Uncountable_Nouns",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.04.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Can I have",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "some"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "meat?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Can I have some meat?"
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534232b"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534232c"
-    },
-    "id": "67fab6d5993010229534232c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c7"
-    },
-    "title": "Uncountable Nouns and Quantity Words",
-    "instructions": "Elige 'a' o 'some'.",
-    "translation": "Hay una rebanada de pastel en el mostrador para ti.",
-    "theoryId": "a1.06.Quantity_Words_with_Uncountable_Nouns",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.04.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "There's",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "slice of pie on the counter for you.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "There's a slice of pie on the counter for you."
-      ]
-    }
+  "id" : "67fab6d5993010229534232b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c7"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534232d"
-    },
-    "id": "67fab6d5993010229534232d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c7"
-    },
-    "title": "Uncountable Nouns and Quantity Words",
-    "instructions": "Elige 'a' o 'some'.",
-    "translation": "¿Te gustaría un poco de leche?",
-    "theoryId": "a1.06.Quantity_Words_with_Uncountable_Nouns",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.04.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Would you like",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "some"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "milk?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Would you like some milk?"
-      ]
-    }
+  "title" : "Uncountable Nouns and Quantity Words",
+  "instructions" : "Elige 'a' o 'some'.",
+  "translation" : "¿Puedo comer algo de carne?",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534232e"
-    },
-    "id": "67fab6d5993010229534232e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c7"
-    },
-    "title": "Uncountable Nouns and Quantity Words",
-    "instructions": "Elige 'a' o 'some'.",
-    "translation": "Ella quiere un poco de té caliente.",
-    "theoryId": "a1.06.Quantity_Words_with_Uncountable_Nouns",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.04.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She wants",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "some"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "hot tea.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She wants some hot tea."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534232f"
-    },
-    "id": "67fab6d5993010229534232f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c7"
-    },
-    "title": "Uncountable Nouns and Quantity Words",
-    "instructions": "Elige 'a' o 'some'.",
-    "translation": "Él solicitó una hoja de papel.",
-    "theoryId": "a1.06.Quantity_Words_with_Uncountable_Nouns",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.04.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He requested",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "sheet of paper.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He requested a sheet of paper."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342330"
-    },
-    "id": "67fab6d59930102295342330",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c7"
-    },
-    "title": "Uncountable Nouns and Quantity Words",
-    "instructions": "Elige 'a' o 'some'.",
-    "translation": "Él cocinó un poco de espagueti.",
-    "theoryId": "a1.06.Quantity_Words_with_Uncountable_Nouns",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.04.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He cooked",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "some"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "spaghetti.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He cooked some spaghetti."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342331"
-    },
-    "id": "67fab6d59930102295342331",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c7"
-    },
-    "title": "Uncountable Nouns and Quantity Words",
-    "instructions": "Elige 'a' o 'some'.",
-    "translation": "Él solicitó algo de información.",
-    "theoryId": "a1.06.Quantity_Words_with_Uncountable_Nouns",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.04.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He requested",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "some"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "information.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He requested some information."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342332"
-    },
-    "id": "67fab6d59930102295342332",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c7"
-    },
-    "title": "Uncountable Nouns and Quantity Words",
-    "instructions": "Elige 'a' o 'some'.",
-    "translation": "¿Podría tomar un poco de refresco?",
-    "theoryId": "a1.06.Quantity_Words_with_Uncountable_Nouns",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.04.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Could I have",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "some"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "soda?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Could I have some soda?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342333"
-    },
-    "id": "67fab6d59930102295342333",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c7"
-    },
-    "title": "Uncountable Nouns and Quantity Words",
-    "instructions": "Elige 'a' o 'some'.",
-    "translation": "Necesito un poco de azúcar.",
-    "theoryId": "a1.06.Quantity_Words_with_Uncountable_Nouns",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.04.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I require",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "some"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "sugar.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I require some sugar."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342334"
-    },
-    "id": "67fab6d59930102295342334",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c7"
-    },
-    "title": "Uncountable Nouns and Quantity Words",
-    "instructions": "Elige 'a' o 'some'.",
-    "translation": "Ella quiere una taza de té caliente.",
-    "theoryId": "a1.06.Quantity_Words_with_Uncountable_Nouns",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.04.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She wants",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "mug of hot tea.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She wants a mug of hot tea."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342335"
-    },
-    "id": "67fab6d59930102295342335",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c7"
-    },
-    "title": "Uncountable Nouns and Quantity Words",
-    "instructions": "Elige 'a' o 'some'.",
-    "translation": "¿Puedo comer una porción de carne?",
-    "theoryId": "a1.06.Quantity_Words_with_Uncountable_Nouns",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.04.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Can I have",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "portion of meat?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Can I have a portion of meat?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342336"
-    },
-    "id": "67fab6d59930102295342336",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c7"
-    },
-    "title": "Uncountable Nouns and Quantity Words",
-    "instructions": "Elige 'a' o 'some'.",
-    "translation": "¿Te gustaría un vaso de leche?",
-    "theoryId": "a1.06.Quantity_Words_with_Uncountable_Nouns",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.04.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Would you like",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "glass of milk?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Would you like a glass of milk?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342337"
-    },
-    "id": "67fab6d59930102295342337",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c7"
-    },
-    "title": "Uncountable Nouns and Quantity Words",
-    "instructions": "Elige 'a' o 'some'.",
-    "translation": "¿Podrías darme una taza de té?",
-    "theoryId": "a1.06.Quantity_Words_with_Uncountable_Nouns",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.04.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Could you give me",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "cup of tea?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Could you give me a cup of tea?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342338"
-    },
-    "id": "67fab6d59930102295342338",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c7"
-    },
-    "title": "Uncountable Nouns and Quantity Words",
-    "instructions": "Elige 'a' o 'some'.",
-    "translation": "Él quiere una rebanada de pan.",
-    "theoryId": "a1.06.Quantity_Words_with_Uncountable_Nouns",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.04.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He wants",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "slice of bread.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He wants a slice of bread."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342339"
-    },
-    "id": "67fab6d59930102295342339",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c7"
-    },
-    "title": "Uncountable Nouns and Quantity Words",
-    "instructions": "Elige 'a' o 'some'.",
-    "translation": "Hay un poco de pastel en el mostrador para ti.",
-    "theoryId": "a1.06.Quantity_Words_with_Uncountable_Nouns",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.04.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "There's",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "some"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "pie on the counter for you.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "There's some pie on the counter for you."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534233a"
-    },
-    "id": "67fab6d5993010229534233a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c7"
-    },
-    "title": "Uncountable Nouns and Quantity Words",
-    "instructions": "Elige 'a' o 'some'.",
-    "translation": "Él quiere un poco de azúcar.",
-    "theoryId": "a1.06.Quantity_Words_with_Uncountable_Nouns",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.04.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He wants",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "some"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "sugar.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He wants some sugar."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534233b"
-    },
-    "id": "67fab6d5993010229534233b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c7"
-    },
-    "title": "Uncountable Nouns and Quantity Words",
-    "instructions": "Elige 'a' o 'some'.",
-    "translation": "Él cocinó una olla de espagueti.",
-    "theoryId": "a1.06.Quantity_Words_with_Uncountable_Nouns",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.04.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He cooked",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "pot of spaghetti.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He cooked a pot of spaghetti."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534233c"
-    },
-    "id": "67fab6d5993010229534233c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c7"
-    },
-    "title": "Uncountable Nouns and Quantity Words",
-    "instructions": "Elige 'a' o 'some'.",
-    "translation": "¿Podría tomar una botella de refresco?",
-    "theoryId": "a1.06.Quantity_Words_with_Uncountable_Nouns",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.04.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Could I have",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "bottle of soda?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Could I have a bottle of soda?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534233d"
-    },
-    "id": "67fab6d5993010229534233d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c7"
-    },
-    "title": "Uncountable Nouns and Quantity Words",
-    "instructions": "Elige 'a' o 'some'.",
-    "translation": "¿Podrías darme un poco de azúcar?",
-    "theoryId": "a1.06.Quantity_Words_with_Uncountable_Nouns",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.04.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Could you give me",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "some"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "sugar?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Could you give me some sugar?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534233e"
-    },
-    "id": "67fab6d5993010229534233e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3c7"
-    },
-    "title": "Uncountable Nouns and Quantity Words",
-    "instructions": "Elige 'a' o 'some'.",
-    "translation": "Necesito una bolsa de té.",
-    "theoryId": "a1.06.Quantity_Words_with_Uncountable_Nouns",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.06.04.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I require",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "bag of tea.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I require a bag of tea."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.04.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can I have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "some" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "meat?",
+      "options" : null
+    } ],
+    "sentences" : [ "Can I have some meat?" ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534232c"
+  },
+  "id" : "67fab6d5993010229534232c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c7"
+  },
+  "title" : "Uncountable Nouns and Quantity Words",
+  "instructions" : "Elige 'a' o 'some'.",
+  "translation" : "Hay una rebanada de pastel en el mostrador para ti.",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.04.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "slice of pie on the counter for you.",
+      "options" : null
+    } ],
+    "sentences" : [ "There's a slice of pie on the counter for you." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534232d"
+  },
+  "id" : "67fab6d5993010229534232d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c7"
+  },
+  "title" : "Uncountable Nouns and Quantity Words",
+  "instructions" : "Elige 'a' o 'some'.",
+  "translation" : "¿Te gustaría un poco de leche?",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.04.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Would you like",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "some" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "milk?",
+      "options" : null
+    } ],
+    "sentences" : [ "Would you like some milk?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534232e"
+  },
+  "id" : "67fab6d5993010229534232e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c7"
+  },
+  "title" : "Uncountable Nouns and Quantity Words",
+  "instructions" : "Elige 'a' o 'some'.",
+  "translation" : "Ella quiere un poco de té caliente.",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.04.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She wants",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "some" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "hot tea.",
+      "options" : null
+    } ],
+    "sentences" : [ "She wants some hot tea." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534232f"
+  },
+  "id" : "67fab6d5993010229534232f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c7"
+  },
+  "title" : "Uncountable Nouns and Quantity Words",
+  "instructions" : "Elige 'a' o 'some'.",
+  "translation" : "Él solicitó una hoja de papel.",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.04.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He requested",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "sheet of paper.",
+      "options" : null
+    } ],
+    "sentences" : [ "He requested a sheet of paper." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342330"
+  },
+  "id" : "67fab6d59930102295342330",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c7"
+  },
+  "title" : "Uncountable Nouns and Quantity Words",
+  "instructions" : "Elige 'a' o 'some'.",
+  "translation" : "Él cocinó un poco de espagueti.",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.04.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He cooked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "some" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "spaghetti.",
+      "options" : null
+    } ],
+    "sentences" : [ "He cooked some spaghetti." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342331"
+  },
+  "id" : "67fab6d59930102295342331",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c7"
+  },
+  "title" : "Uncountable Nouns and Quantity Words",
+  "instructions" : "Elige 'a' o 'some'.",
+  "translation" : "Él solicitó algo de información.",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.04.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He requested",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "some" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "information.",
+      "options" : null
+    } ],
+    "sentences" : [ "He requested some information." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342332"
+  },
+  "id" : "67fab6d59930102295342332",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c7"
+  },
+  "title" : "Uncountable Nouns and Quantity Words",
+  "instructions" : "Elige 'a' o 'some'.",
+  "translation" : "¿Podría tomar un poco de refresco?",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.04.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could I have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "some" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "soda?",
+      "options" : null
+    } ],
+    "sentences" : [ "Could I have some soda?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342333"
+  },
+  "id" : "67fab6d59930102295342333",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c7"
+  },
+  "title" : "Uncountable Nouns and Quantity Words",
+  "instructions" : "Elige 'a' o 'some'.",
+  "translation" : "Necesito un poco de azúcar.",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.04.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I require",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "some" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "sugar.",
+      "options" : null
+    } ],
+    "sentences" : [ "I require some sugar." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342334"
+  },
+  "id" : "67fab6d59930102295342334",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c7"
+  },
+  "title" : "Uncountable Nouns and Quantity Words",
+  "instructions" : "Elige 'a' o 'some'.",
+  "translation" : "Ella quiere una taza de té caliente.",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.04.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She wants",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "mug of hot tea.",
+      "options" : null
+    } ],
+    "sentences" : [ "She wants a mug of hot tea." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342335"
+  },
+  "id" : "67fab6d59930102295342335",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c7"
+  },
+  "title" : "Uncountable Nouns and Quantity Words",
+  "instructions" : "Elige 'a' o 'some'.",
+  "translation" : "¿Puedo comer una porción de carne?",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.04.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can I have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "portion of meat?",
+      "options" : null
+    } ],
+    "sentences" : [ "Can I have a portion of meat?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342336"
+  },
+  "id" : "67fab6d59930102295342336",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c7"
+  },
+  "title" : "Uncountable Nouns and Quantity Words",
+  "instructions" : "Elige 'a' o 'some'.",
+  "translation" : "¿Te gustaría un vaso de leche?",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.04.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Would you like",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "glass of milk?",
+      "options" : null
+    } ],
+    "sentences" : [ "Would you like a glass of milk?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342337"
+  },
+  "id" : "67fab6d59930102295342337",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c7"
+  },
+  "title" : "Uncountable Nouns and Quantity Words",
+  "instructions" : "Elige 'a' o 'some'.",
+  "translation" : "¿Podrías darme una taza de té?",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.04.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could you give me",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "cup of tea?",
+      "options" : null
+    } ],
+    "sentences" : [ "Could you give me a cup of tea?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342338"
+  },
+  "id" : "67fab6d59930102295342338",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c7"
+  },
+  "title" : "Uncountable Nouns and Quantity Words",
+  "instructions" : "Elige 'a' o 'some'.",
+  "translation" : "Él quiere una rebanada de pan.",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.04.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He wants",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "slice of bread.",
+      "options" : null
+    } ],
+    "sentences" : [ "He wants a slice of bread." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342339"
+  },
+  "id" : "67fab6d59930102295342339",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c7"
+  },
+  "title" : "Uncountable Nouns and Quantity Words",
+  "instructions" : "Elige 'a' o 'some'.",
+  "translation" : "Hay un poco de pastel en el mostrador para ti.",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.04.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "some" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "pie on the counter for you.",
+      "options" : null
+    } ],
+    "sentences" : [ "There's some pie on the counter for you." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534233a"
+  },
+  "id" : "67fab6d5993010229534233a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c7"
+  },
+  "title" : "Uncountable Nouns and Quantity Words",
+  "instructions" : "Elige 'a' o 'some'.",
+  "translation" : "Él quiere un poco de azúcar.",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.04.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He wants",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "some" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "sugar.",
+      "options" : null
+    } ],
+    "sentences" : [ "He wants some sugar." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534233b"
+  },
+  "id" : "67fab6d5993010229534233b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c7"
+  },
+  "title" : "Uncountable Nouns and Quantity Words",
+  "instructions" : "Elige 'a' o 'some'.",
+  "translation" : "Él cocinó una olla de espagueti.",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.04.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He cooked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "pot of spaghetti.",
+      "options" : null
+    } ],
+    "sentences" : [ "He cooked a pot of spaghetti." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534233c"
+  },
+  "id" : "67fab6d5993010229534233c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c7"
+  },
+  "title" : "Uncountable Nouns and Quantity Words",
+  "instructions" : "Elige 'a' o 'some'.",
+  "translation" : "¿Podría tomar una botella de refresco?",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.04.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could I have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "bottle of soda?",
+      "options" : null
+    } ],
+    "sentences" : [ "Could I have a bottle of soda?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534233d"
+  },
+  "id" : "67fab6d5993010229534233d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c7"
+  },
+  "title" : "Uncountable Nouns and Quantity Words",
+  "instructions" : "Elige 'a' o 'some'.",
+  "translation" : "¿Podrías darme un poco de azúcar?",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.04.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could you give me",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "some" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "sugar?",
+      "options" : null
+    } ],
+    "sentences" : [ "Could you give me some sugar?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534233e"
+  },
+  "id" : "67fab6d5993010229534233e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c7"
+  },
+  "title" : "Uncountable Nouns and Quantity Words",
+  "instructions" : "Elige 'a' o 'some'.",
+  "translation" : "Necesito una bolsa de té.",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.06.04.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I require",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "bag of tea.",
+      "options" : null
+    } ],
+    "sentences" : [ "I require a bag of tea." ]
+  }
+} ]

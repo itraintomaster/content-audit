@@ -1,1223 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c7c"
-    },
-    "id": "67fab6d59930102295342c7c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d282"
-    },
-    "title": "Time Prepositions: In, On, At",
-    "instructions": "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
-    "translation": "Me gusta leer libros por la noche.",
-    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.01.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I like to read books",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "in"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the evening.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I like to read books in the evening."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c7c"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c7d"
-    },
-    "id": "67fab6d59930102295342c7d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d282"
-    },
-    "title": "Time Prepositions: In, On, At",
-    "instructions": "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
-    "translation": "Ella nació en el siglo XX.",
-    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.01.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She was born",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "in"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the 20th century.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She was born in the 20th century."
-      ]
-    }
+  "id" : "67fab6d59930102295342c7c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d282"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c7e"
-    },
-    "id": "67fab6d59930102295342c7e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d282"
-    },
-    "title": "Time Prepositions: In, On, At",
-    "instructions": "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
-    "translation": "¿Puedes llamarme a las 8:00?",
-    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.01.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Can you call me",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "8:00?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Can you call me at 8:00?"
-      ]
-    }
+  "title" : "Time Prepositions: In, On, At",
+  "instructions" : "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "translation" : "Me gusta leer libros por la noche.",
+  "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c7f"
-    },
-    "id": "67fab6d59930102295342c7f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d282"
-    },
-    "title": "Time Prepositions: In, On, At",
-    "instructions": "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
-    "translation": "Normalmente comen pizza el fin de semana.",
-    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.01.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They usually eat pizza",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at|on"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the weekend.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They usually eat pizza at the weekend.",
-        "They usually eat pizza on the weekend."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c80"
-    },
-    "id": "67fab6d59930102295342c80",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d282"
-    },
-    "title": "Time Prepositions: In, On, At",
-    "instructions": "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
-    "translation": "Llegamos el 1 de enero.",
-    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.01.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We arrive",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "on"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the 1st of January.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We arrive on the 1st of January."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c81"
-    },
-    "id": "67fab6d59930102295342c81",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d282"
-    },
-    "title": "Time Prepositions: In, On, At",
-    "instructions": "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
-    "translation": "Se divorciaron en mayo.",
-    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.01.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They divorced",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "in"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "May.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They divorced in May."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c82"
-    },
-    "id": "67fab6d59930102295342c82",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d282"
-    },
-    "title": "Time Prepositions: In, On, At",
-    "instructions": "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
-    "translation": "Se acostó al mediodía.",
-    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.01.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He went to bed",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "noon.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He went to bed at noon."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c83"
-    },
-    "id": "67fab6d59930102295342c83",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d282"
-    },
-    "title": "Time Prepositions: In, On, At",
-    "instructions": "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
-    "translation": "Solemos ir a la montaña en invierno.",
-    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.01.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We usually go to the mountain",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "in"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "winter.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We usually go to the mountain in winter."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c84"
-    },
-    "id": "67fab6d59930102295342c84",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d282"
-    },
-    "title": "Time Prepositions: In, On, At",
-    "instructions": "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
-    "translation": "Ella come una ensalada todos los jueves.",
-    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.01.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She eats a salad",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "every Thursday.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She eats a salad - every Thursday."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c85"
-    },
-    "id": "67fab6d59930102295342c85",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d282"
-    },
-    "title": "Time Prepositions: In, On, At",
-    "instructions": "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
-    "translation": "¿Te gustaría ver una película el viernes por la noche?",
-    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.01.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Would you like to watch a movie",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "on"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "Friday night?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Would you like to watch a movie on Friday night?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c86"
-    },
-    "id": "67fab6d59930102295342c86",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d282"
-    },
-    "title": "Time Prepositions: In, On, At",
-    "instructions": "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
-    "translation": "A ella no le gusta caminar sola por la noche.",
-    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.01.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She doesn't like walking alone",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "night.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She doesn't like walking alone at night."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c87"
-    },
-    "id": "67fab6d59930102295342c87",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d282"
-    },
-    "title": "Time Prepositions: In, On, At",
-    "instructions": "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
-    "translation": "Él visitará a su tío el domingo.",
-    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.01.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He is visiting his uncle",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "on"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "Sunday.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He is visiting his uncle on Sunday."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c88"
-    },
-    "id": "67fab6d59930102295342c88",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d282"
-    },
-    "title": "Time Prepositions: In, On, At",
-    "instructions": "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
-    "translation": "Empecé la escuela en la década de 2000.",
-    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.01.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I started school",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "in"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the 2000s.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I started school in the 2000s."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c89"
-    },
-    "id": "67fab6d59930102295342c89",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d282"
-    },
-    "title": "Time Prepositions: In, On, At",
-    "instructions": "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
-    "translation": "¿Adónde fuiste la semana pasada?",
-    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.01.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Where did you go",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "last week?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Where did you go - last week?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c8a"
-    },
-    "id": "67fab6d59930102295342c8a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d282"
-    },
-    "title": "Time Prepositions: In, On, At",
-    "instructions": "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
-    "translation": "Llegó a las 6 de la mañana.",
-    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.01.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He arrived",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "6 am.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He arrived at 6 am."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c8b"
-    },
-    "id": "67fab6d59930102295342c8b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d282"
-    },
-    "title": "Time Prepositions: In, On, At",
-    "instructions": "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
-    "translation": "Los visitamos en su aniversario.",
-    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.01.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We visited them",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "on"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "their anniversary.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We visited them on their anniversary."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c8c"
-    },
-    "id": "67fab6d59930102295342c8c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d282"
-    },
-    "title": "Time Prepositions: In, On, At",
-    "instructions": "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
-    "translation": "Mi clase comienza el 4 de julio.",
-    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.01.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "My class starts",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "on"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the 4th of July.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "My class starts on the 4th of July."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c8d"
-    },
-    "id": "67fab6d59930102295342c8d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d282"
-    },
-    "title": "Time Prepositions: In, On, At",
-    "instructions": "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
-    "translation": "Ella viajará a España en agosto.",
-    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.01.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She's travelling to Spain",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "in"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "August.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She's travelling to Spain in August."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c8e"
-    },
-    "id": "67fab6d59930102295342c8e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d282"
-    },
-    "title": "Time Prepositions: In, On, At",
-    "instructions": "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
-    "translation": "Te enviaré un mensaje de texto esta tarde.",
-    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.01.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I'll text you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "this afternoon.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'll text you - this afternoon."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342c8f"
-    },
-    "id": "67fab6d59930102295342c8f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d282"
-    },
-    "title": "Time Prepositions: In, On, At",
-    "instructions": "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
-    "translation": "Él nació en 1998.",
-    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.09.01.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He was born",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "in"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "1998.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He was born in 1998."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I like to read books",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the evening.",
+      "options" : null
+    } ],
+    "sentences" : [ "I like to read books in the evening." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c7d"
+  },
+  "id" : "67fab6d59930102295342c7d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d282"
+  },
+  "title" : "Time Prepositions: In, On, At",
+  "instructions" : "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "translation" : "Ella nació en el siglo XX.",
+  "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She was born",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the 20th century.",
+      "options" : null
+    } ],
+    "sentences" : [ "She was born in the 20th century." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c7e"
+  },
+  "id" : "67fab6d59930102295342c7e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d282"
+  },
+  "title" : "Time Prepositions: In, On, At",
+  "instructions" : "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "translation" : "¿Puedes llamarme a las 8:00?",
+  "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can you call me",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "8:00?",
+      "options" : null
+    } ],
+    "sentences" : [ "Can you call me at 8:00?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c7f"
+  },
+  "id" : "67fab6d59930102295342c7f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d282"
+  },
+  "title" : "Time Prepositions: In, On, At",
+  "instructions" : "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "translation" : "Normalmente comen pizza el fin de semana.",
+  "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They usually eat pizza",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at|on" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the weekend.",
+      "options" : null
+    } ],
+    "sentences" : [ "They usually eat pizza at the weekend.", "They usually eat pizza on the weekend." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c80"
+  },
+  "id" : "67fab6d59930102295342c80",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d282"
+  },
+  "title" : "Time Prepositions: In, On, At",
+  "instructions" : "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "translation" : "Llegamos el 1 de enero.",
+  "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We arrive",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the 1st of January.",
+      "options" : null
+    } ],
+    "sentences" : [ "We arrive on the 1st of January." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c81"
+  },
+  "id" : "67fab6d59930102295342c81",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d282"
+  },
+  "title" : "Time Prepositions: In, On, At",
+  "instructions" : "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "translation" : "Se divorciaron en mayo.",
+  "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They divorced",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "May.",
+      "options" : null
+    } ],
+    "sentences" : [ "They divorced in May." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c82"
+  },
+  "id" : "67fab6d59930102295342c82",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d282"
+  },
+  "title" : "Time Prepositions: In, On, At",
+  "instructions" : "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "translation" : "Se acostó al mediodía.",
+  "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He went to bed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "noon.",
+      "options" : null
+    } ],
+    "sentences" : [ "He went to bed at noon." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c83"
+  },
+  "id" : "67fab6d59930102295342c83",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d282"
+  },
+  "title" : "Time Prepositions: In, On, At",
+  "instructions" : "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "translation" : "Solemos ir a la montaña en invierno.",
+  "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We usually go to the mountain",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "winter.",
+      "options" : null
+    } ],
+    "sentences" : [ "We usually go to the mountain in winter." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c84"
+  },
+  "id" : "67fab6d59930102295342c84",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d282"
+  },
+  "title" : "Time Prepositions: In, On, At",
+  "instructions" : "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "translation" : "Ella come una ensalada todos los jueves.",
+  "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She eats a salad",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "every Thursday.",
+      "options" : null
+    } ],
+    "sentences" : [ "She eats a salad - every Thursday." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c85"
+  },
+  "id" : "67fab6d59930102295342c85",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d282"
+  },
+  "title" : "Time Prepositions: In, On, At",
+  "instructions" : "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "translation" : "¿Te gustaría ver una película el viernes por la noche?",
+  "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Would you like to watch a movie",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Friday night?",
+      "options" : null
+    } ],
+    "sentences" : [ "Would you like to watch a movie on Friday night?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c86"
+  },
+  "id" : "67fab6d59930102295342c86",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d282"
+  },
+  "title" : "Time Prepositions: In, On, At",
+  "instructions" : "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "translation" : "A ella no le gusta caminar sola por la noche.",
+  "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She doesn't like walking alone",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "night.",
+      "options" : null
+    } ],
+    "sentences" : [ "She doesn't like walking alone at night." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c87"
+  },
+  "id" : "67fab6d59930102295342c87",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d282"
+  },
+  "title" : "Time Prepositions: In, On, At",
+  "instructions" : "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "translation" : "Él visitará a su tío el domingo.",
+  "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is visiting his uncle",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Sunday.",
+      "options" : null
+    } ],
+    "sentences" : [ "He is visiting his uncle on Sunday." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c88"
+  },
+  "id" : "67fab6d59930102295342c88",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d282"
+  },
+  "title" : "Time Prepositions: In, On, At",
+  "instructions" : "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "translation" : "Empecé la escuela en la década de 2000.",
+  "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I started school",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the 2000s.",
+      "options" : null
+    } ],
+    "sentences" : [ "I started school in the 2000s." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c89"
+  },
+  "id" : "67fab6d59930102295342c89",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d282"
+  },
+  "title" : "Time Prepositions: In, On, At",
+  "instructions" : "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "translation" : "¿Adónde fuiste la semana pasada?",
+  "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where did you go",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "last week?",
+      "options" : null
+    } ],
+    "sentences" : [ "Where did you go - last week?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c8a"
+  },
+  "id" : "67fab6d59930102295342c8a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d282"
+  },
+  "title" : "Time Prepositions: In, On, At",
+  "instructions" : "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "translation" : "Llegó a las 6 de la mañana.",
+  "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He arrived",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "6 am.",
+      "options" : null
+    } ],
+    "sentences" : [ "He arrived at 6 am." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c8b"
+  },
+  "id" : "67fab6d59930102295342c8b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d282"
+  },
+  "title" : "Time Prepositions: In, On, At",
+  "instructions" : "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "translation" : "Los visitamos en su aniversario.",
+  "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We visited them",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "their anniversary.",
+      "options" : null
+    } ],
+    "sentences" : [ "We visited them on their anniversary." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c8c"
+  },
+  "id" : "67fab6d59930102295342c8c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d282"
+  },
+  "title" : "Time Prepositions: In, On, At",
+  "instructions" : "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "translation" : "Mi clase comienza el 4 de julio.",
+  "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My class starts",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the 4th of July.",
+      "options" : null
+    } ],
+    "sentences" : [ "My class starts on the 4th of July." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c8d"
+  },
+  "id" : "67fab6d59930102295342c8d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d282"
+  },
+  "title" : "Time Prepositions: In, On, At",
+  "instructions" : "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "translation" : "Ella viajará a España en agosto.",
+  "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's travelling to Spain",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "August.",
+      "options" : null
+    } ],
+    "sentences" : [ "She's travelling to Spain in August." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c8e"
+  },
+  "id" : "67fab6d59930102295342c8e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d282"
+  },
+  "title" : "Time Prepositions: In, On, At",
+  "instructions" : "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "translation" : "Te enviaré un mensaje de texto esta tarde.",
+  "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'll text you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "this afternoon.",
+      "options" : null
+    } ],
+    "sentences" : [ "I'll text you - this afternoon." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c8f"
+  },
+  "id" : "67fab6d59930102295342c8f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d282"
+  },
+  "title" : "Time Prepositions: In, On, At",
+  "instructions" : "Escribe 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "translation" : "Él nació en 1998.",
+  "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He was born",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "1998.",
+      "options" : null
+    } ],
+    "sentences" : [ "He was born in 1998." ]
+  }
+} ]

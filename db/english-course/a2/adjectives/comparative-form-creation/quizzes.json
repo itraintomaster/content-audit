@@ -1,1832 +1,1561 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e5c"
-    },
-    "id": "67fab6d59930102295342e5c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "El examen que hizo fue más difícil.",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The exam that he did was",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "more difficult"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(difficult).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The exam that he did was more difficult."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e5c"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e5d"
-    },
-    "id": "67fab6d59930102295342e5d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "Creo que ella está más enojada que su padre.",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I believe she is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "angrier"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(angry) than her father.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I believe she is angrier than her father."
-      ]
-    }
+  "id" : "67fab6d59930102295342e5c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e5e"
-    },
-    "id": "67fab6d59930102295342e5e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "Este jardín es más verde que aquel.",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "This garden is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "greener"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(green) than that one.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "This garden is greener than that one."
-      ]
-    }
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "El examen que hizo fue más difícil.",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e5f"
-    },
-    "id": "67fab6d59930102295342e5f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "Estas manzanas son más dulces que esas.",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "These apples are",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "sweeter"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(sweet) than those.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "These apples are sweeter than those."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e60"
-    },
-    "id": "67fab6d59930102295342e60",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "Ella es mejor en matemáticas que yo.",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "better"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(good) at Maths than I am.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She is better at Maths than I am."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e61"
-    },
-    "id": "67fab6d59930102295342e61",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "Esta tarea es demasiado compleja. ¿Tienes algo más fácil?",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "This task is too complex. Do you have anything",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "easier"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(easy)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "This task is too complex. Do you have anything easier?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e62"
-    },
-    "id": "67fab6d59930102295342e62",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "Él es más ruidoso que su hermana.",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "louder"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(loud) than his sister.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He is louder than his sister."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e63"
-    },
-    "id": "67fab6d59930102295342e63",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "Mi casa es más grande que la tuya.",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "My house is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "bigger"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(big) than yours.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "My house is bigger than yours."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e64"
-    },
-    "id": "67fab6d59930102295342e64",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "El jardín está mucho más ordenado que la casa.",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The garden is a lot",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "tidier"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(tidy) than the house.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The garden is a lot tidier than the house."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e65"
-    },
-    "id": "67fab6d59930102295342e65",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "Creo que esta película es más emocionante que la anterior.",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think this movie is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "more exciting"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(exciting) than the last one.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I think this movie is more exciting than the last one."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e66"
-    },
-    "id": "67fab6d59930102295342e66",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "La sopa está más salada que el pan.",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The soup is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "saltier"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(salty) than the bread.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The soup is saltier than the bread."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e67"
-    },
-    "id": "67fab6d59930102295342e67",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "Me gustaría una historia más apasionante.",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I'd like a",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "more gripping"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(gripping) story.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'd like a more gripping story."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e68"
-    },
-    "id": "67fab6d59930102295342e68",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "¿Estás más triste ahora que has perdido tu trabajo?",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Are you",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "sadder"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(sad) now that you have lost your job?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Are you sadder now that you have lost your job?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e69"
-    },
-    "id": "67fab6d59930102295342e69",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "El teatro está más cerca que el gimnasio.",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The theatre is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "nearer"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(near) than the gym.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The theatre is nearer than the gym."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e6a"
-    },
-    "id": "67fab6d59930102295342e6a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "Estaba más emocionado en el tren que en el avión.",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I was",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "more excited"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(excited) on the train than on the plane.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I was more excited on the train than on the plane."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e6b"
-    },
-    "id": "67fab6d59930102295342e6b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "Este coche es más lujoso que mi viejo coche.",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "This car is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "more luxurious"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(luxurious) than my old car.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "This car is more luxurious than my old car."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e6c"
-    },
-    "id": "67fab6d59930102295342e6c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "El ratón era más pequeño que la hormiga.",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The mouse was",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "smaller"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(small) than the ant.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The mouse was smaller than the ant."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e6d"
-    },
-    "id": "67fab6d59930102295342e6d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "¡Por favor, sé más paciente!",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Please be",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "more patient"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(patient)!",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Please be more patient!"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e6e"
-    },
-    "id": "67fab6d59930102295342e6e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "¡Tu idea es más original que la mía!",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Your idea is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "more original"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(original) than mine!",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Your idea is more original than mine!"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e6f"
-    },
-    "id": "67fab6d59930102295342e6f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "¿Cuál de estos es más pequeño?",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Which one of these is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "smaller"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(small)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Which one of these is smaller?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e70"
-    },
-    "id": "67fab6d59930102295342e70",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "Ella es más rápida que su amiga.",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.21",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "faster"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(fast) than her friend.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She is faster than her friend."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e71"
-    },
-    "id": "67fab6d59930102295342e71",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "¡Creo que esta ensalada es más saludable que aquella!",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.22",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think this salad is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "healthier"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(healthy) than that one!",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I think this salad is healthier than that one!"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e72"
-    },
-    "id": "67fab6d59930102295342e72",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "Esta respuesta es más precisa.",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.23",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "This response is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "more accurate"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(accurate).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "This response is more accurate."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e73"
-    },
-    "id": "67fab6d59930102295342e73",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "Creo que el verano es más cálido que el invierno.",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.24",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think summer is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "warmer"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(warm) than winter.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I think summer is warmer than winter."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e74"
-    },
-    "id": "67fab6d59930102295342e74",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "Canadá es más ancho que Bélgica.",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.25",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Canada is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "wider"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(wide) than Belgium.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Canada is wider than Belgium."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e75"
-    },
-    "id": "67fab6d59930102295342e75",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "Eres más delgado que yo.",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.26",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "You're",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "thinner"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(thin) than me.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "You're thinner than me."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e76"
-    },
-    "id": "67fab6d59930102295342e76",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "Su hermano es mayor que él.",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.27",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "His brother is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "older"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(old) than him.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "His brother is older than him."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e77"
-    },
-    "id": "67fab6d59930102295342e77",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "Este pastel es definitivamente mejor que aquel pastel.",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.28",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "This cake is definitely",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "better"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(good) than that cake.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "This cake is definitely better than that cake."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e78"
-    },
-    "id": "67fab6d59930102295342e78",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "¡La pesadilla parecía más aterradora que la realidad!",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.29",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The nightmare seemed",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "more scary"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(scary) than reality!",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The nightmare seemed more scary than reality!"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342e79"
-    },
-    "id": "67fab6d59930102295342e79",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2a2"
-    },
-    "title": "Comparative Form Creation",
-    "instructions": "Escribe la forma comparativa.",
-    "translation": "¡Creo que el perro es más amigable que la mayoría de los gatos!",
-    "theoryId": "a2.11.Form_the_Comparative",
-    "topicName": "Adjectives",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.11.03.30",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I think the dog is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "more friendly"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(friendly) than most cats!",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I think the dog is more friendly than most cats!"
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The exam that he did was",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "more difficult" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(difficult).",
+      "options" : null
+    } ],
+    "sentences" : [ "The exam that he did was more difficult." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e5d"
+  },
+  "id" : "67fab6d59930102295342e5d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "Creo que ella está más enojada que su padre.",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I believe she is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "angrier" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(angry) than her father.",
+      "options" : null
+    } ],
+    "sentences" : [ "I believe she is angrier than her father." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e5e"
+  },
+  "id" : "67fab6d59930102295342e5e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "Este jardín es más verde que aquel.",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This garden is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "greener" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(green) than that one.",
+      "options" : null
+    } ],
+    "sentences" : [ "This garden is greener than that one." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e5f"
+  },
+  "id" : "67fab6d59930102295342e5f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "Estas manzanas son más dulces que esas.",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "These apples are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "sweeter" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(sweet) than those.",
+      "options" : null
+    } ],
+    "sentences" : [ "These apples are sweeter than those." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e60"
+  },
+  "id" : "67fab6d59930102295342e60",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "Ella es mejor en matemáticas que yo.",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "better" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(good) at Maths than I am.",
+      "options" : null
+    } ],
+    "sentences" : [ "She is better at Maths than I am." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e61"
+  },
+  "id" : "67fab6d59930102295342e61",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "Esta tarea es demasiado compleja. ¿Tienes algo más fácil?",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This task is too complex. Do you have anything",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "easier" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(easy)?",
+      "options" : null
+    } ],
+    "sentences" : [ "This task is too complex. Do you have anything easier?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e62"
+  },
+  "id" : "67fab6d59930102295342e62",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "Él es más ruidoso que su hermana.",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "louder" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(loud) than his sister.",
+      "options" : null
+    } ],
+    "sentences" : [ "He is louder than his sister." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e63"
+  },
+  "id" : "67fab6d59930102295342e63",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "Mi casa es más grande que la tuya.",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My house is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "bigger" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(big) than yours.",
+      "options" : null
+    } ],
+    "sentences" : [ "My house is bigger than yours." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e64"
+  },
+  "id" : "67fab6d59930102295342e64",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "El jardín está mucho más ordenado que la casa.",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The garden is a lot",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "tidier" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(tidy) than the house.",
+      "options" : null
+    } ],
+    "sentences" : [ "The garden is a lot tidier than the house." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e65"
+  },
+  "id" : "67fab6d59930102295342e65",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "Creo que esta película es más emocionante que la anterior.",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think this movie is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "more exciting" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(exciting) than the last one.",
+      "options" : null
+    } ],
+    "sentences" : [ "I think this movie is more exciting than the last one." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e66"
+  },
+  "id" : "67fab6d59930102295342e66",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "La sopa está más salada que el pan.",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The soup is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "saltier" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(salty) than the bread.",
+      "options" : null
+    } ],
+    "sentences" : [ "The soup is saltier than the bread." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e67"
+  },
+  "id" : "67fab6d59930102295342e67",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "Me gustaría una historia más apasionante.",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'd like a",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "more gripping" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(gripping) story.",
+      "options" : null
+    } ],
+    "sentences" : [ "I'd like a more gripping story." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e68"
+  },
+  "id" : "67fab6d59930102295342e68",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "¿Estás más triste ahora que has perdido tu trabajo?",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "sadder" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(sad) now that you have lost your job?",
+      "options" : null
+    } ],
+    "sentences" : [ "Are you sadder now that you have lost your job?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e69"
+  },
+  "id" : "67fab6d59930102295342e69",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "El teatro está más cerca que el gimnasio.",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The theatre is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "nearer" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(near) than the gym.",
+      "options" : null
+    } ],
+    "sentences" : [ "The theatre is nearer than the gym." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e6a"
+  },
+  "id" : "67fab6d59930102295342e6a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "Estaba más emocionado en el tren que en el avión.",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I was",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "more excited" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(excited) on the train than on the plane.",
+      "options" : null
+    } ],
+    "sentences" : [ "I was more excited on the train than on the plane." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e6b"
+  },
+  "id" : "67fab6d59930102295342e6b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "Este coche es más lujoso que mi viejo coche.",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This car is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "more luxurious" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(luxurious) than my old car.",
+      "options" : null
+    } ],
+    "sentences" : [ "This car is more luxurious than my old car." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e6c"
+  },
+  "id" : "67fab6d59930102295342e6c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "El ratón era más pequeño que la hormiga.",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The mouse was",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "smaller" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(small) than the ant.",
+      "options" : null
+    } ],
+    "sentences" : [ "The mouse was smaller than the ant." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e6d"
+  },
+  "id" : "67fab6d59930102295342e6d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "¡Por favor, sé más paciente!",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Please be",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "more patient" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(patient)!",
+      "options" : null
+    } ],
+    "sentences" : [ "Please be more patient!" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e6e"
+  },
+  "id" : "67fab6d59930102295342e6e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "¡Tu idea es más original que la mía!",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Your idea is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "more original" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(original) than mine!",
+      "options" : null
+    } ],
+    "sentences" : [ "Your idea is more original than mine!" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e6f"
+  },
+  "id" : "67fab6d59930102295342e6f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "¿Cuál de estos es más pequeño?",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Which one of these is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "smaller" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(small)?",
+      "options" : null
+    } ],
+    "sentences" : [ "Which one of these is smaller?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e70"
+  },
+  "id" : "67fab6d59930102295342e70",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "Ella es más rápida que su amiga.",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.21",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "faster" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(fast) than her friend.",
+      "options" : null
+    } ],
+    "sentences" : [ "She is faster than her friend." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e71"
+  },
+  "id" : "67fab6d59930102295342e71",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "¡Creo que esta ensalada es más saludable que aquella!",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.22",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think this salad is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "healthier" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(healthy) than that one!",
+      "options" : null
+    } ],
+    "sentences" : [ "I think this salad is healthier than that one!" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e72"
+  },
+  "id" : "67fab6d59930102295342e72",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "Esta respuesta es más precisa.",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.23",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This response is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "more accurate" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(accurate).",
+      "options" : null
+    } ],
+    "sentences" : [ "This response is more accurate." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e73"
+  },
+  "id" : "67fab6d59930102295342e73",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "Creo que el verano es más cálido que el invierno.",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.24",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think summer is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "warmer" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(warm) than winter.",
+      "options" : null
+    } ],
+    "sentences" : [ "I think summer is warmer than winter." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e74"
+  },
+  "id" : "67fab6d59930102295342e74",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "Canadá es más ancho que Bélgica.",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.25",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Canada is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "wider" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(wide) than Belgium.",
+      "options" : null
+    } ],
+    "sentences" : [ "Canada is wider than Belgium." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e75"
+  },
+  "id" : "67fab6d59930102295342e75",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "Eres más delgado que yo.",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.26",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You're",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "thinner" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(thin) than me.",
+      "options" : null
+    } ],
+    "sentences" : [ "You're thinner than me." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e76"
+  },
+  "id" : "67fab6d59930102295342e76",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "Su hermano es mayor que él.",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.27",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "His brother is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "older" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(old) than him.",
+      "options" : null
+    } ],
+    "sentences" : [ "His brother is older than him." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e77"
+  },
+  "id" : "67fab6d59930102295342e77",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "Este pastel es definitivamente mejor que aquel pastel.",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.28",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This cake is definitely",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "better" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(good) than that cake.",
+      "options" : null
+    } ],
+    "sentences" : [ "This cake is definitely better than that cake." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e78"
+  },
+  "id" : "67fab6d59930102295342e78",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "¡La pesadilla parecía más aterradora que la realidad!",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.29",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The nightmare seemed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "more scary" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(scary) than reality!",
+      "options" : null
+    } ],
+    "sentences" : [ "The nightmare seemed more scary than reality!" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342e79"
+  },
+  "id" : "67fab6d59930102295342e79",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a2"
+  },
+  "title" : "Comparative Form Creation",
+  "instructions" : "Escribe la forma comparativa.",
+  "translation" : "¡Creo que el perro es más amigable que la mayoría de los gatos!",
+  "theoryId" : "a2.11.Form_the_Comparative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.11.03.30",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I think the dog is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "more friendly" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(friendly) than most cats!",
+      "options" : null
+    } ],
+    "sentences" : [ "I think the dog is more friendly than most cats!" ]
+  }
+} ]

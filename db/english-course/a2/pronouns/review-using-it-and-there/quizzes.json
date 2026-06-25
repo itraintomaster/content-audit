@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342bdc"
-    },
-    "id": "67fab6d59930102295342bdc",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d274"
-    },
-    "title": "Review: Using 'It' and 'There'",
-    "instructions": "Escribe 'it' o 'there'.",
-    "translation": "Hay un restaurante a la vuelta de la esquina.",
-    "theoryId": "a2.08.One_and_Ones",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.03.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "There"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "is a restaurant around the corner.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "There is a restaurant around the corner."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342bdc"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342bdd"
-    },
-    "id": "67fab6d59930102295342bdd",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d274"
-    },
-    "title": "Review: Using 'It' and 'There'",
-    "instructions": "Escribe 'it' o 'there'.",
-    "translation": "Es muy sencillo.",
-    "theoryId": "a2.08.One_and_Ones",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.03.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "It"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "is very simple.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "It is very simple."
-      ]
-    }
+  "id" : "67fab6d59930102295342bdc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d274"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342bde"
-    },
-    "id": "67fab6d59930102295342bde",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d274"
-    },
-    "title": "Review: Using 'It' and 'There'",
-    "instructions": "Escribe 'it' o 'there'.",
-    "translation": "Hoy hace sol.",
-    "theoryId": "a2.08.One_and_Ones",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.03.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "It"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "is sunny today.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "It is sunny today."
-      ]
-    }
+  "title" : "Review: Using 'It' and 'There'",
+  "instructions" : "Escribe 'it' o 'there'.",
+  "translation" : "Hay un restaurante a la vuelta de la esquina.",
+  "theoryId" : "a2.08.One_and_Ones",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342bdf"
-    },
-    "id": "67fab6d59930102295342bdf",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d274"
-    },
-    "title": "Review: Using 'It' and 'There'",
-    "instructions": "Escribe 'it' o 'there'.",
-    "translation": "Está lloviendo.",
-    "theoryId": "a2.08.One_and_Ones",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.03.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "It"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "is raining.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "It is raining."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342be0"
-    },
-    "id": "67fab6d59930102295342be0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d274"
-    },
-    "title": "Review: Using 'It' and 'There'",
-    "instructions": "Escribe 'it' o 'there'.",
-    "translation": "Hay un libro en el estante.",
-    "theoryId": "a2.08.One_and_Ones",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.03.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "There"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "is a book on the shelf.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "There is a book on the shelf."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342be1"
-    },
-    "id": "67fab6d59930102295342be1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d274"
-    },
-    "title": "Review: Using 'It' and 'There'",
-    "instructions": "Escribe 'it' o 'there'.",
-    "translation": "Hay tres chicas en el aula.",
-    "theoryId": "a2.08.One_and_Ones",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.03.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "There"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "are three girls in the classroom.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "There are three girls in the classroom."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342be2"
-    },
-    "id": "67fab6d59930102295342be2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d274"
-    },
-    "title": "Review: Using 'It' and 'There'",
-    "instructions": "Escribe 'it' o 'there'.",
-    "translation": "Hoy hace calor.",
-    "theoryId": "a2.08.One_and_Ones",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.03.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "It"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "is hot today.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "It is hot today."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342be3"
-    },
-    "id": "67fab6d59930102295342be3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d274"
-    },
-    "title": "Review: Using 'It' and 'There'",
-    "instructions": "Escribe 'it' o 'there'.",
-    "translation": "Hay cinco supermercados en esta ciudad.",
-    "theoryId": "a2.08.One_and_Ones",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.03.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "There"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "are five supermarkets in this town.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "There are five supermarkets in this town."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342be4"
-    },
-    "id": "67fab6d59930102295342be4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d274"
-    },
-    "title": "Review: Using 'It' and 'There'",
-    "instructions": "Escribe 'it' o 'there'.",
-    "translation": "Hay un perro en la calle.",
-    "theoryId": "a2.08.One_and_Ones",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.03.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "There"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "is a dog in the street.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "There is a dog in the street."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342be5"
-    },
-    "id": "67fab6d59930102295342be5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d274"
-    },
-    "title": "Review: Using 'It' and 'There'",
-    "instructions": "Escribe 'it' o 'there'.",
-    "translation": "Es lunes.",
-    "theoryId": "a2.08.One_and_Ones",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.03.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "It"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "is Monday.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "It is Monday."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342be6"
-    },
-    "id": "67fab6d59930102295342be6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d274"
-    },
-    "title": "Review: Using 'It' and 'There'",
-    "instructions": "Escribe 'it' o 'there'.",
-    "translation": "Hay algo en mi bolso.",
-    "theoryId": "a2.08.One_and_Ones",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.03.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "There"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "is something in my bag.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "There is something in my bag."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342be7"
-    },
-    "id": "67fab6d59930102295342be7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d274"
-    },
-    "title": "Review: Using 'It' and 'There'",
-    "instructions": "Escribe 'it' o 'there'.",
-    "translation": "Hay una araña en el baño.",
-    "theoryId": "a2.08.One_and_Ones",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.03.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "There"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "is a spider in the bathroom.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "There is a spider in the bathroom."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342be8"
-    },
-    "id": "67fab6d59930102295342be8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d274"
-    },
-    "title": "Review: Using 'It' and 'There'",
-    "instructions": "Escribe 'it' o 'there'.",
-    "translation": "Hay una panadería cerca de mi casa.",
-    "theoryId": "a2.08.One_and_Ones",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.03.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "There"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "is a bakery near my house.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "There is a bakery near my house."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342be9"
-    },
-    "id": "67fab6d59930102295342be9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d274"
-    },
-    "title": "Review: Using 'It' and 'There'",
-    "instructions": "Escribe 'it' o 'there'.",
-    "translation": "Es diciembre.",
-    "theoryId": "a2.08.One_and_Ones",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.03.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "It"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "is December.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "It is December."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342bea"
-    },
-    "id": "67fab6d59930102295342bea",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d274"
-    },
-    "title": "Review: Using 'It' and 'There'",
-    "instructions": "Escribe 'it' o 'there'.",
-    "translation": "Es miércoles.",
-    "theoryId": "a2.08.One_and_Ones",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.03.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "It"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "is Wednesday.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "It is Wednesday."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342beb"
-    },
-    "id": "67fab6d59930102295342beb",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d274"
-    },
-    "title": "Review: Using 'It' and 'There'",
-    "instructions": "Escribe 'it' o 'there'.",
-    "translation": "Hay un banco cerca de este lugar.",
-    "theoryId": "a2.08.One_and_Ones",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.03.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "There"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "is a bank near this place.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "There is a bank near this place."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342bec"
-    },
-    "id": "67fab6d59930102295342bec",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d274"
-    },
-    "title": "Review: Using 'It' and 'There'",
-    "instructions": "Escribe 'it' o 'there'.",
-    "translation": "Hay agujeros en mis calcetines.",
-    "theoryId": "a2.08.One_and_Ones",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.03.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "There"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "are holes in my socks.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "There are holes in my socks."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342bed"
-    },
-    "id": "67fab6d59930102295342bed",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d274"
-    },
-    "title": "Review: Using 'It' and 'There'",
-    "instructions": "Escribe 'it' o 'there'.",
-    "translation": "¡Es él!.",
-    "theoryId": "a2.08.One_and_Ones",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.03.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "It"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "is him! (When someone knocks at the door).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "It is him! ."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342bee"
-    },
-    "id": "67fab6d59930102295342bee",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d274"
-    },
-    "title": "Review: Using 'It' and 'There'",
-    "instructions": "Escribe 'it' o 'there'.",
-    "translation": "Son las cuatro.",
-    "theoryId": "a2.08.One_and_Ones",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.03.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "It"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "is four o'clock.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "It is four o'clock."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342bef"
-    },
-    "id": "67fab6d59930102295342bef",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d274"
-    },
-    "title": "Review: Using 'It' and 'There'",
-    "instructions": "Escribe 'it' o 'there'.",
-    "translation": "Hoy es muy tarde.",
-    "theoryId": "a2.08.One_and_Ones",
-    "topicName": "Pronouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.08.03.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "It"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "is very late today.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "It is very late today."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "There" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "is a restaurant around the corner.",
+      "options" : null
+    } ],
+    "sentences" : [ "There is a restaurant around the corner." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342bdd"
+  },
+  "id" : "67fab6d59930102295342bdd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d274"
+  },
+  "title" : "Review: Using 'It' and 'There'",
+  "instructions" : "Escribe 'it' o 'there'.",
+  "translation" : "Es muy sencillo.",
+  "theoryId" : "a2.08.One_and_Ones",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "It" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "is very simple.",
+      "options" : null
+    } ],
+    "sentences" : [ "It is very simple." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342bde"
+  },
+  "id" : "67fab6d59930102295342bde",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d274"
+  },
+  "title" : "Review: Using 'It' and 'There'",
+  "instructions" : "Escribe 'it' o 'there'.",
+  "translation" : "Hoy hace sol.",
+  "theoryId" : "a2.08.One_and_Ones",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "It" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "is sunny today.",
+      "options" : null
+    } ],
+    "sentences" : [ "It is sunny today." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342bdf"
+  },
+  "id" : "67fab6d59930102295342bdf",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d274"
+  },
+  "title" : "Review: Using 'It' and 'There'",
+  "instructions" : "Escribe 'it' o 'there'.",
+  "translation" : "Está lloviendo.",
+  "theoryId" : "a2.08.One_and_Ones",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "It" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "is raining.",
+      "options" : null
+    } ],
+    "sentences" : [ "It is raining." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342be0"
+  },
+  "id" : "67fab6d59930102295342be0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d274"
+  },
+  "title" : "Review: Using 'It' and 'There'",
+  "instructions" : "Escribe 'it' o 'there'.",
+  "translation" : "Hay un libro en el estante.",
+  "theoryId" : "a2.08.One_and_Ones",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "There" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "is a book on the shelf.",
+      "options" : null
+    } ],
+    "sentences" : [ "There is a book on the shelf." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342be1"
+  },
+  "id" : "67fab6d59930102295342be1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d274"
+  },
+  "title" : "Review: Using 'It' and 'There'",
+  "instructions" : "Escribe 'it' o 'there'.",
+  "translation" : "Hay tres chicas en el aula.",
+  "theoryId" : "a2.08.One_and_Ones",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "There" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "are three girls in the classroom.",
+      "options" : null
+    } ],
+    "sentences" : [ "There are three girls in the classroom." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342be2"
+  },
+  "id" : "67fab6d59930102295342be2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d274"
+  },
+  "title" : "Review: Using 'It' and 'There'",
+  "instructions" : "Escribe 'it' o 'there'.",
+  "translation" : "Hoy hace calor.",
+  "theoryId" : "a2.08.One_and_Ones",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "It" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "is hot today.",
+      "options" : null
+    } ],
+    "sentences" : [ "It is hot today." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342be3"
+  },
+  "id" : "67fab6d59930102295342be3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d274"
+  },
+  "title" : "Review: Using 'It' and 'There'",
+  "instructions" : "Escribe 'it' o 'there'.",
+  "translation" : "Hay cinco supermercados en esta ciudad.",
+  "theoryId" : "a2.08.One_and_Ones",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "There" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "are five supermarkets in this town.",
+      "options" : null
+    } ],
+    "sentences" : [ "There are five supermarkets in this town." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342be4"
+  },
+  "id" : "67fab6d59930102295342be4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d274"
+  },
+  "title" : "Review: Using 'It' and 'There'",
+  "instructions" : "Escribe 'it' o 'there'.",
+  "translation" : "Hay un perro en la calle.",
+  "theoryId" : "a2.08.One_and_Ones",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "There" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "is a dog in the street.",
+      "options" : null
+    } ],
+    "sentences" : [ "There is a dog in the street." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342be5"
+  },
+  "id" : "67fab6d59930102295342be5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d274"
+  },
+  "title" : "Review: Using 'It' and 'There'",
+  "instructions" : "Escribe 'it' o 'there'.",
+  "translation" : "Es lunes.",
+  "theoryId" : "a2.08.One_and_Ones",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "It" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "is Monday.",
+      "options" : null
+    } ],
+    "sentences" : [ "It is Monday." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342be6"
+  },
+  "id" : "67fab6d59930102295342be6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d274"
+  },
+  "title" : "Review: Using 'It' and 'There'",
+  "instructions" : "Escribe 'it' o 'there'.",
+  "translation" : "Hay algo en mi bolso.",
+  "theoryId" : "a2.08.One_and_Ones",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "There" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "is something in my bag.",
+      "options" : null
+    } ],
+    "sentences" : [ "There is something in my bag." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342be7"
+  },
+  "id" : "67fab6d59930102295342be7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d274"
+  },
+  "title" : "Review: Using 'It' and 'There'",
+  "instructions" : "Escribe 'it' o 'there'.",
+  "translation" : "Hay una araña en el baño.",
+  "theoryId" : "a2.08.One_and_Ones",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "There" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "is a spider in the bathroom.",
+      "options" : null
+    } ],
+    "sentences" : [ "There is a spider in the bathroom." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342be8"
+  },
+  "id" : "67fab6d59930102295342be8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d274"
+  },
+  "title" : "Review: Using 'It' and 'There'",
+  "instructions" : "Escribe 'it' o 'there'.",
+  "translation" : "Hay una panadería cerca de mi casa.",
+  "theoryId" : "a2.08.One_and_Ones",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "There" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "is a bakery near my house.",
+      "options" : null
+    } ],
+    "sentences" : [ "There is a bakery near my house." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342be9"
+  },
+  "id" : "67fab6d59930102295342be9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d274"
+  },
+  "title" : "Review: Using 'It' and 'There'",
+  "instructions" : "Escribe 'it' o 'there'.",
+  "translation" : "Es diciembre.",
+  "theoryId" : "a2.08.One_and_Ones",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "It" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "is December.",
+      "options" : null
+    } ],
+    "sentences" : [ "It is December." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342bea"
+  },
+  "id" : "67fab6d59930102295342bea",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d274"
+  },
+  "title" : "Review: Using 'It' and 'There'",
+  "instructions" : "Escribe 'it' o 'there'.",
+  "translation" : "Es miércoles.",
+  "theoryId" : "a2.08.One_and_Ones",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "It" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "is Wednesday.",
+      "options" : null
+    } ],
+    "sentences" : [ "It is Wednesday." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342beb"
+  },
+  "id" : "67fab6d59930102295342beb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d274"
+  },
+  "title" : "Review: Using 'It' and 'There'",
+  "instructions" : "Escribe 'it' o 'there'.",
+  "translation" : "Hay un banco cerca de este lugar.",
+  "theoryId" : "a2.08.One_and_Ones",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "There" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "is a bank near this place.",
+      "options" : null
+    } ],
+    "sentences" : [ "There is a bank near this place." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342bec"
+  },
+  "id" : "67fab6d59930102295342bec",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d274"
+  },
+  "title" : "Review: Using 'It' and 'There'",
+  "instructions" : "Escribe 'it' o 'there'.",
+  "translation" : "Hay agujeros en mis calcetines.",
+  "theoryId" : "a2.08.One_and_Ones",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "There" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "are holes in my socks.",
+      "options" : null
+    } ],
+    "sentences" : [ "There are holes in my socks." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342bed"
+  },
+  "id" : "67fab6d59930102295342bed",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d274"
+  },
+  "title" : "Review: Using 'It' and 'There'",
+  "instructions" : "Escribe 'it' o 'there'.",
+  "translation" : "¡Es él!.",
+  "theoryId" : "a2.08.One_and_Ones",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "It" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "is him! (When someone knocks at the door).",
+      "options" : null
+    } ],
+    "sentences" : [ "It is him! ." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342bee"
+  },
+  "id" : "67fab6d59930102295342bee",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d274"
+  },
+  "title" : "Review: Using 'It' and 'There'",
+  "instructions" : "Escribe 'it' o 'there'.",
+  "translation" : "Son las cuatro.",
+  "theoryId" : "a2.08.One_and_Ones",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "It" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "is four o'clock.",
+      "options" : null
+    } ],
+    "sentences" : [ "It is four o'clock." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342bef"
+  },
+  "id" : "67fab6d59930102295342bef",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d274"
+  },
+  "title" : "Review: Using 'It' and 'There'",
+  "instructions" : "Escribe 'it' o 'there'.",
+  "translation" : "Hoy es muy tarde.",
+  "theoryId" : "a2.08.One_and_Ones",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "It" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "is very late today.",
+      "options" : null
+    } ],
+    "sentences" : [ "It is very late today." ]
+  }
+} ]

@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343179"
-    },
-    "id": "67fab6d59930102295343179",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2d2"
-    },
-    "title": "Expressing past habits with the past continuous",
-    "instructions": "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
-    "translation": "A menudo comíamos pizza.",
-    "theoryId": "b1.03.Past_Continuous_Use_Habits_in_the_Past",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.05.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We / often / eat pizza.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "We often ate pizza."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We often ate pizza."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343179"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534317a"
-    },
-    "id": "67fab6d5993010229534317a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2d2"
-    },
-    "title": "Expressing past habits with the past continuous",
-    "instructions": "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
-    "translation": "Normalmente jugaban al fútbol los miércoles.",
-    "theoryId": "b1.03.Past_Continuous_Use_Habits_in_the_Past",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.05.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They / usually / play football on Wednesdays.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They usually played football on Wednesdays."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They usually played football on Wednesdays."
-      ]
-    }
+  "id" : "67fab6d59930102295343179",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d2"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534317b"
-    },
-    "id": "67fab6d5993010229534317b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2d2"
-    },
-    "title": "Expressing past habits with the past continuous",
-    "instructions": "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
-    "translation": "Siempre se reían en clase.",
-    "theoryId": "b1.03.Past_Continuous_Use_Habits_in_the_Past",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.05.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They / always / laugh in class.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They were always laughing in class."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They were always laughing in class."
-      ]
-    }
+  "title" : "Expressing past habits with the past continuous",
+  "instructions" : "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
+  "translation" : "A menudo comíamos pizza.",
+  "theoryId" : "b1.03.Past_Continuous_Use_Habits_in_the_Past",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534317c"
-    },
-    "id": "67fab6d5993010229534317c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2d2"
-    },
-    "title": "Expressing past habits with the past continuous",
-    "instructions": "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
-    "translation": "Siempre perdíamos la llave.",
-    "theoryId": "b1.03.Past_Continuous_Use_Habits_in_the_Past",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.05.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We / forever / lose the key.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "We were forever losing the key."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We were forever losing the key."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534317d"
-    },
-    "id": "67fab6d5993010229534317d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2d2"
-    },
-    "title": "Expressing past habits with the past continuous",
-    "instructions": "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
-    "translation": "Estudiaba inglés todas las noches.",
-    "theoryId": "b1.03.Past_Continuous_Use_Habits_in_the_Past",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.05.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I / study English / every night.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I studied English every night."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I studied English every night."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534317e"
-    },
-    "id": "67fab6d5993010229534317e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2d2"
-    },
-    "title": "Expressing past habits with the past continuous",
-    "instructions": "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
-    "translation": "Siempre estaba limpiando la habitación.",
-    "theoryId": "b1.03.Past_Continuous_Use_Habits_in_the_Past",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.05.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She / always / clean the room.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She was always cleaning the room."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She was always cleaning the room."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534317f"
-    },
-    "id": "67fab6d5993010229534317f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2d2"
-    },
-    "title": "Expressing past habits with the past continuous",
-    "instructions": "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
-    "translation": "Normalmente tomaba té por la noche.",
-    "theoryId": "b1.03.Past_Continuous_Use_Habits_in_the_Past",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.05.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She / normally / drink tea in the evening.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She normally drank tea in the evening."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She normally drank tea in the evening."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343180"
-    },
-    "id": "67fab6d59930102295343180",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2d2"
-    },
-    "title": "Expressing past habits with the past continuous",
-    "instructions": "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
-    "translation": "Nos llamaba todos los veranos.",
-    "theoryId": "b1.03.Past_Continuous_Use_Habits_in_the_Past",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.05.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She / call us / every summer.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She called us every summer."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She called us every summer."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343181"
-    },
-    "id": "67fab6d59930102295343181",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2d2"
-    },
-    "title": "Expressing past habits with the past continuous",
-    "instructions": "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
-    "translation": "James siempre estaba rompiendo cosas.",
-    "theoryId": "b1.03.Past_Continuous_Use_Habits_in_the_Past",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.05.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "James / forever / break things.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "James was forever breaking things."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "James was forever breaking things."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343182"
-    },
-    "id": "67fab6d59930102295343182",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2d2"
-    },
-    "title": "Expressing past habits with the past continuous",
-    "instructions": "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
-    "translation": "Siempre estaba soñando con nuevos lugares.",
-    "theoryId": "b1.03.Past_Continuous_Use_Habits_in_the_Past",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.05.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He / always / dream of new places.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He was always dreaming of new places."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He was always dreaming of new places."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343183"
-    },
-    "id": "67fab6d59930102295343183",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2d2"
-    },
-    "title": "Expressing past habits with the past continuous",
-    "instructions": "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
-    "translation": "Siempre venía de visita.",
-    "theoryId": "b1.03.Past_Continuous_Use_Habits_in_the_Past",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.05.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He / always / come over to visit.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He was always coming over to visit."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He was always coming over to visit."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343184"
-    },
-    "id": "67fab6d59930102295343184",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2d2"
-    },
-    "title": "Expressing past habits with the past continuous",
-    "instructions": "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
-    "translation": "Cantaba constantemente.",
-    "theoryId": "b1.03.Past_Continuous_Use_Habits_in_the_Past",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.05.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She / constantly / sing.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She was constantly singing."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She was constantly singing."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343185"
-    },
-    "id": "67fab6d59930102295343185",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2d2"
-    },
-    "title": "Expressing past habits with the past continuous",
-    "instructions": "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
-    "translation": "Nadaban tres veces a la semana.",
-    "theoryId": "b1.03.Past_Continuous_Use_Habits_in_the_Past",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.05.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They / swim / three times a week.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They swam three times a week."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They swam three times a week."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343186"
-    },
-    "id": "67fab6d59930102295343186",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2d2"
-    },
-    "title": "Expressing past habits with the past continuous",
-    "instructions": "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
-    "translation": "Siempre estábamos pintando paredes en esa casa.",
-    "theoryId": "b1.03.Past_Continuous_Use_Habits_in_the_Past",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.05.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We / forever / paint walls in that house.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "We were forever painting walls in that house."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We were forever painting walls in that house."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343187"
-    },
-    "id": "67fab6d59930102295343187",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2d2"
-    },
-    "title": "Expressing past habits with the past continuous",
-    "instructions": "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
-    "translation": "Iban en bicicleta al trabajo todos los días.",
-    "theoryId": "b1.03.Past_Continuous_Use_Habits_in_the_Past",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.05.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They / cycle to work / every day.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They cycled to work every day."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They cycled to work every day."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343188"
-    },
-    "id": "67fab6d59930102295343188",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2d2"
-    },
-    "title": "Expressing past habits with the past continuous",
-    "instructions": "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
-    "translation": "A menudo estudiaba hasta tarde.",
-    "theoryId": "b1.03.Past_Continuous_Use_Habits_in_the_Past",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.05.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He / often / study late.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He often studied late."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He often studied late."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343189"
-    },
-    "id": "67fab6d59930102295343189",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2d2"
-    },
-    "title": "Expressing past habits with the past continuous",
-    "instructions": "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
-    "translation": "A veces íbamos a patinar al parque.",
-    "theoryId": "b1.03.Past_Continuous_Use_Habits_in_the_Past",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.05.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We / sometimes / go skating at the park.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "We sometimes went skating at the park."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We sometimes went skating at the park."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534318a"
-    },
-    "id": "67fab6d5993010229534318a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2d2"
-    },
-    "title": "Expressing past habits with the past continuous",
-    "instructions": "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
-    "translation": "Estaba constantemente leyendo.",
-    "theoryId": "b1.03.Past_Continuous_Use_Habits_in_the_Past",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.05.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I / constantly / read.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "I was constantly reading."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I was constantly reading."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534318b"
-    },
-    "id": "67fab6d5993010229534318b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2d2"
-    },
-    "title": "Expressing past habits with the past continuous",
-    "instructions": "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
-    "translation": "Estaba constantemente bailando.",
-    "theoryId": "b1.03.Past_Continuous_Use_Habits_in_the_Past",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.05.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She / constantly / dance.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She was constantly dancing."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She was constantly dancing."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534318c"
-    },
-    "id": "67fab6d5993010229534318c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2d2"
-    },
-    "title": "Expressing past habits with the past continuous",
-    "instructions": "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
-    "translation": "Normalmente comía tostadas para el almuerzo.",
-    "theoryId": "b1.03.Past_Continuous_Use_Habits_in_the_Past",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.05.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She / usually / eat toast for lunch.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She usually ate toast for lunch."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She usually ate toast for lunch."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.05.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We / often / eat pizza.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We often ate pizza." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We often ate pizza." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534317a"
+  },
+  "id" : "67fab6d5993010229534317a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d2"
+  },
+  "title" : "Expressing past habits with the past continuous",
+  "instructions" : "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
+  "translation" : "Normalmente jugaban al fútbol los miércoles.",
+  "theoryId" : "b1.03.Past_Continuous_Use_Habits_in_the_Past",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.05.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They / usually / play football on Wednesdays.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They usually played football on Wednesdays." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They usually played football on Wednesdays." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534317b"
+  },
+  "id" : "67fab6d5993010229534317b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d2"
+  },
+  "title" : "Expressing past habits with the past continuous",
+  "instructions" : "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
+  "translation" : "Siempre se reían en clase.",
+  "theoryId" : "b1.03.Past_Continuous_Use_Habits_in_the_Past",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.05.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They / always / laugh in class.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They were always laughing in class." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They were always laughing in class." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534317c"
+  },
+  "id" : "67fab6d5993010229534317c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d2"
+  },
+  "title" : "Expressing past habits with the past continuous",
+  "instructions" : "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
+  "translation" : "Siempre perdíamos la llave.",
+  "theoryId" : "b1.03.Past_Continuous_Use_Habits_in_the_Past",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.05.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We / forever / lose the key.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We were forever losing the key." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We were forever losing the key." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534317d"
+  },
+  "id" : "67fab6d5993010229534317d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d2"
+  },
+  "title" : "Expressing past habits with the past continuous",
+  "instructions" : "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
+  "translation" : "Estudiaba inglés todas las noches.",
+  "theoryId" : "b1.03.Past_Continuous_Use_Habits_in_the_Past",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.05.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I / study English / every night.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I studied English every night." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I studied English every night." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534317e"
+  },
+  "id" : "67fab6d5993010229534317e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d2"
+  },
+  "title" : "Expressing past habits with the past continuous",
+  "instructions" : "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
+  "translation" : "Siempre estaba limpiando la habitación.",
+  "theoryId" : "b1.03.Past_Continuous_Use_Habits_in_the_Past",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.05.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She / always / clean the room.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She was always cleaning the room." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She was always cleaning the room." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534317f"
+  },
+  "id" : "67fab6d5993010229534317f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d2"
+  },
+  "title" : "Expressing past habits with the past continuous",
+  "instructions" : "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
+  "translation" : "Normalmente tomaba té por la noche.",
+  "theoryId" : "b1.03.Past_Continuous_Use_Habits_in_the_Past",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.05.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She / normally / drink tea in the evening.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She normally drank tea in the evening." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She normally drank tea in the evening." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343180"
+  },
+  "id" : "67fab6d59930102295343180",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d2"
+  },
+  "title" : "Expressing past habits with the past continuous",
+  "instructions" : "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
+  "translation" : "Nos llamaba todos los veranos.",
+  "theoryId" : "b1.03.Past_Continuous_Use_Habits_in_the_Past",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.05.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She / call us / every summer.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She called us every summer." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She called us every summer." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343181"
+  },
+  "id" : "67fab6d59930102295343181",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d2"
+  },
+  "title" : "Expressing past habits with the past continuous",
+  "instructions" : "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
+  "translation" : "James siempre estaba rompiendo cosas.",
+  "theoryId" : "b1.03.Past_Continuous_Use_Habits_in_the_Past",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.05.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "James / forever / break things.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "James was forever breaking things." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "James was forever breaking things." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343182"
+  },
+  "id" : "67fab6d59930102295343182",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d2"
+  },
+  "title" : "Expressing past habits with the past continuous",
+  "instructions" : "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
+  "translation" : "Siempre estaba soñando con nuevos lugares.",
+  "theoryId" : "b1.03.Past_Continuous_Use_Habits_in_the_Past",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.05.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He / always / dream of new places.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He was always dreaming of new places." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He was always dreaming of new places." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343183"
+  },
+  "id" : "67fab6d59930102295343183",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d2"
+  },
+  "title" : "Expressing past habits with the past continuous",
+  "instructions" : "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
+  "translation" : "Siempre venía de visita.",
+  "theoryId" : "b1.03.Past_Continuous_Use_Habits_in_the_Past",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.05.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He / always / come over to visit.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He was always coming over to visit." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He was always coming over to visit." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343184"
+  },
+  "id" : "67fab6d59930102295343184",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d2"
+  },
+  "title" : "Expressing past habits with the past continuous",
+  "instructions" : "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
+  "translation" : "Cantaba constantemente.",
+  "theoryId" : "b1.03.Past_Continuous_Use_Habits_in_the_Past",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.05.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She / constantly / sing.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She was constantly singing." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She was constantly singing." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343185"
+  },
+  "id" : "67fab6d59930102295343185",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d2"
+  },
+  "title" : "Expressing past habits with the past continuous",
+  "instructions" : "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
+  "translation" : "Nadaban tres veces a la semana.",
+  "theoryId" : "b1.03.Past_Continuous_Use_Habits_in_the_Past",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.05.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They / swim / three times a week.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They swam three times a week." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They swam three times a week." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343186"
+  },
+  "id" : "67fab6d59930102295343186",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d2"
+  },
+  "title" : "Expressing past habits with the past continuous",
+  "instructions" : "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
+  "translation" : "Siempre estábamos pintando paredes en esa casa.",
+  "theoryId" : "b1.03.Past_Continuous_Use_Habits_in_the_Past",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.05.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We / forever / paint walls in that house.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We were forever painting walls in that house." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We were forever painting walls in that house." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343187"
+  },
+  "id" : "67fab6d59930102295343187",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d2"
+  },
+  "title" : "Expressing past habits with the past continuous",
+  "instructions" : "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
+  "translation" : "Iban en bicicleta al trabajo todos los días.",
+  "theoryId" : "b1.03.Past_Continuous_Use_Habits_in_the_Past",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.05.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They / cycle to work / every day.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They cycled to work every day." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They cycled to work every day." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343188"
+  },
+  "id" : "67fab6d59930102295343188",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d2"
+  },
+  "title" : "Expressing past habits with the past continuous",
+  "instructions" : "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
+  "translation" : "A menudo estudiaba hasta tarde.",
+  "theoryId" : "b1.03.Past_Continuous_Use_Habits_in_the_Past",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.05.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He / often / study late.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He often studied late." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He often studied late." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343189"
+  },
+  "id" : "67fab6d59930102295343189",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d2"
+  },
+  "title" : "Expressing past habits with the past continuous",
+  "instructions" : "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
+  "translation" : "A veces íbamos a patinar al parque.",
+  "theoryId" : "b1.03.Past_Continuous_Use_Habits_in_the_Past",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.05.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We / sometimes / go skating at the park.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We sometimes went skating at the park." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We sometimes went skating at the park." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534318a"
+  },
+  "id" : "67fab6d5993010229534318a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d2"
+  },
+  "title" : "Expressing past habits with the past continuous",
+  "instructions" : "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
+  "translation" : "Estaba constantemente leyendo.",
+  "theoryId" : "b1.03.Past_Continuous_Use_Habits_in_the_Past",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.05.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I / constantly / read.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I was constantly reading." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I was constantly reading." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534318b"
+  },
+  "id" : "67fab6d5993010229534318b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d2"
+  },
+  "title" : "Expressing past habits with the past continuous",
+  "instructions" : "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
+  "translation" : "Estaba constantemente bailando.",
+  "theoryId" : "b1.03.Past_Continuous_Use_Habits_in_the_Past",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.05.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She / constantly / dance.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She was constantly dancing." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She was constantly dancing." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534318c"
+  },
+  "id" : "67fab6d5993010229534318c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d2"
+  },
+  "title" : "Expressing past habits with the past continuous",
+  "instructions" : "Crea oraciones usando el *past continuous* o el *past simple*. En este caso, usa el *past continuous* con 'always / forever / constantly'.",
+  "translation" : "Normalmente comía tostadas para el almuerzo.",
+  "theoryId" : "b1.03.Past_Continuous_Use_Habits_in_the_Past",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.05.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She / usually / eat toast for lunch.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She usually ate toast for lunch." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She usually ate toast for lunch." ]
+  }
+} ]

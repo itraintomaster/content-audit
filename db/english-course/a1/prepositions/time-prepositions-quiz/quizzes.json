@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534244d"
-    },
-    "id": "67fab6d5993010229534244d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3d9"
-    },
-    "title": "Time Prepositions Quiz",
-    "instructions": "Completa con: at / in / on / -",
-    "translation": "Su graduación es en julio.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.03.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Her graduation is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "in"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "July.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Her graduation is in July."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534244d"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534244e"
-    },
-    "id": "67fab6d5993010229534244e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3d9"
-    },
-    "title": "Time Prepositions Quiz",
-    "instructions": "Completa con: at / in / on / -",
-    "translation": "Conocí a Sarah ayer por la tarde.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.03.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I met Sarah",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "yesterday evening.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I met Sarah - yesterday evening."
-      ]
-    }
+  "id" : "67fab6d5993010229534244d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d9"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534244f"
-    },
-    "id": "67fab6d5993010229534244f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3d9"
-    },
-    "title": "Time Prepositions Quiz",
-    "instructions": "Completa con: at / in / on / -",
-    "translation": "Veo la televisión todas las tardes.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.03.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I watch TV",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "every evening.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I watch TV - every evening."
-      ]
-    }
+  "title" : "Time Prepositions Quiz",
+  "instructions" : "Completa con: at / in / on / -",
+  "translation" : "Su graduación es en julio.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342450"
-    },
-    "id": "67fab6d59930102295342450",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3d9"
-    },
-    "title": "Time Prepositions Quiz",
-    "instructions": "Completa con: at / in / on / -",
-    "translation": "Él juega al golf el miércoles.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.03.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He is playing golf",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "on"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "Wednesday.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He is playing golf on Wednesday."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342451"
-    },
-    "id": "67fab6d59930102295342451",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3d9"
-    },
-    "title": "Time Prepositions Quiz",
-    "instructions": "Completa con: at / in / on / -",
-    "translation": "La tienda cierra a las nueve en punto.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.03.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The shop closes",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "nine o'clock.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The shop closes at nine o'clock."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342452"
-    },
-    "id": "67fab6d59930102295342452",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3d9"
-    },
-    "title": "Time Prepositions Quiz",
-    "instructions": "Completa con: at / in / on / -",
-    "translation": "El banco abre a las nueve en punto.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.03.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The bank opens",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "nine o'clock.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The bank opens at nine o'clock."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342453"
-    },
-    "id": "67fab6d59930102295342453",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3d9"
-    },
-    "title": "Time Prepositions Quiz",
-    "instructions": "Completa con: at / in / on / -",
-    "translation": "Almuerzan todos los lunes.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.03.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They have lunch",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "every Monday.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They have lunch - every Monday."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342454"
-    },
-    "id": "67fab6d59930102295342454",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3d9"
-    },
-    "title": "Time Prepositions Quiz",
-    "instructions": "Completa con: at / in / on / -",
-    "translation": "El día de su boda todos fuimos a un hotel elegante.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.03.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "On"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "her wedding day we all went to a fancy hotel.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "On her wedding day we all went to a fancy hotel."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342455"
-    },
-    "id": "67fab6d59930102295342455",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3d9"
-    },
-    "title": "Time Prepositions Quiz",
-    "instructions": "Completa con: at / in / on / -",
-    "translation": "Vamos a Italia en agosto.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.03.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Let's go to Italy",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "in"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "August.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Let's go to Italy in August."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342456"
-    },
-    "id": "67fab6d59930102295342456",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3d9"
-    },
-    "title": "Time Prepositions Quiz",
-    "instructions": "Completa con: at / in / on / -",
-    "translation": "Soy tan afortunado de estar vivo en el siglo XX.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.03.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I'm so lucky to be alive",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "in"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "the 20th century.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I'm so lucky to be alive in the 20th century."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342457"
-    },
-    "id": "67fab6d59930102295342457",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3d9"
-    },
-    "title": "Time Prepositions Quiz",
-    "instructions": "Completa con: at / in / on / -",
-    "translation": "¡A las 3 de la mañana, estaba soñando!",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.03.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "At"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "3 am, I was dreaming!",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "At 3 am, I was dreaming!"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342458"
-    },
-    "id": "67fab6d59930102295342458",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3d9"
-    },
-    "title": "Time Prepositions Quiz",
-    "instructions": "Completa con: at / in / on / -",
-    "translation": "Normalmente hace frío en diciembre.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.03.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "It's usually cold",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "in"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "December.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "It's usually cold in December."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342459"
-    },
-    "id": "67fab6d59930102295342459",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3d9"
-    },
-    "title": "Time Prepositions Quiz",
-    "instructions": "Completa con: at / in / on / -",
-    "translation": "En verano, los días son más largos.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.03.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "In"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "summer, the days are longer.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "In summer, the days are longer."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534245a"
-    },
-    "id": "67fab6d5993010229534245a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3d9"
-    },
-    "title": "Time Prepositions Quiz",
-    "instructions": "Completa con: at / in / on / -",
-    "translation": "El domingo por la mañana vamos a visitar a unos familiares.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.03.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "On"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "Sunday morning we are visiting some relatives.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "On Sunday morning we are visiting some relatives."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534245b"
-    },
-    "id": "67fab6d5993010229534245b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3d9"
-    },
-    "title": "Time Prepositions Quiz",
-    "instructions": "Completa con: at / in / on / -",
-    "translation": "El tren sale a las 3:15.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.03.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The train is",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "3:15.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The train is at 3:15."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534245c"
-    },
-    "id": "67fab6d5993010229534245c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3d9"
-    },
-    "title": "Time Prepositions Quiz",
-    "instructions": "Completa con: at / in / on / -",
-    "translation": "¿Qué vas a cocinar esta noche?",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.03.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "What are you cooking",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "tonight?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "What are you cooking - tonight?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534245d"
-    },
-    "id": "67fab6d5993010229534245d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3d9"
-    },
-    "title": "Time Prepositions Quiz",
-    "instructions": "Completa con: at / in / on / -",
-    "translation": "Se acuesta tarde todas las noches.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.03.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He goes to bed late",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "every night.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He goes to bed late - every night."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534245e"
-    },
-    "id": "67fab6d5993010229534245e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3d9"
-    },
-    "title": "Time Prepositions Quiz",
-    "instructions": "Completa con: at / in / on / -",
-    "translation": "Necesito escribir un informe esta semana.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.03.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I need to write a report",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "this week.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I need to write a report - this week."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534245f"
-    },
-    "id": "67fab6d5993010229534245f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3d9"
-    },
-    "title": "Time Prepositions Quiz",
-    "instructions": "Completa con: at / in / on / -",
-    "translation": "Hacía mucho calor esta tarde.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.03.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "It was really hot",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "this afternoon.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "It was really hot - this afternoon."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342460"
-    },
-    "id": "67fab6d59930102295342460",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3d9"
-    },
-    "title": "Time Prepositions Quiz",
-    "instructions": "Completa con: at / in / on / -",
-    "translation": "En noviembre, las hojas son naranjas.",
-    "theoryId": "a1.09.Prepositions_of_Time_3_before_and_after_",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.03.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "In"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "November, the leaves are orange.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "In November, the leaves are orange."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Her graduation is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "July.",
+      "options" : null
+    } ],
+    "sentences" : [ "Her graduation is in July." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534244e"
+  },
+  "id" : "67fab6d5993010229534244e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d9"
+  },
+  "title" : "Time Prepositions Quiz",
+  "instructions" : "Completa con: at / in / on / -",
+  "translation" : "Conocí a Sarah ayer por la tarde.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I met Sarah",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "yesterday evening.",
+      "options" : null
+    } ],
+    "sentences" : [ "I met Sarah - yesterday evening." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534244f"
+  },
+  "id" : "67fab6d5993010229534244f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d9"
+  },
+  "title" : "Time Prepositions Quiz",
+  "instructions" : "Completa con: at / in / on / -",
+  "translation" : "Veo la televisión todas las tardes.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I watch TV",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "every evening.",
+      "options" : null
+    } ],
+    "sentences" : [ "I watch TV - every evening." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342450"
+  },
+  "id" : "67fab6d59930102295342450",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d9"
+  },
+  "title" : "Time Prepositions Quiz",
+  "instructions" : "Completa con: at / in / on / -",
+  "translation" : "Él juega al golf el miércoles.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is playing golf",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Wednesday.",
+      "options" : null
+    } ],
+    "sentences" : [ "He is playing golf on Wednesday." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342451"
+  },
+  "id" : "67fab6d59930102295342451",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d9"
+  },
+  "title" : "Time Prepositions Quiz",
+  "instructions" : "Completa con: at / in / on / -",
+  "translation" : "La tienda cierra a las nueve en punto.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The shop closes",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "nine o'clock.",
+      "options" : null
+    } ],
+    "sentences" : [ "The shop closes at nine o'clock." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342452"
+  },
+  "id" : "67fab6d59930102295342452",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d9"
+  },
+  "title" : "Time Prepositions Quiz",
+  "instructions" : "Completa con: at / in / on / -",
+  "translation" : "El banco abre a las nueve en punto.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The bank opens",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "nine o'clock.",
+      "options" : null
+    } ],
+    "sentences" : [ "The bank opens at nine o'clock." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342453"
+  },
+  "id" : "67fab6d59930102295342453",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d9"
+  },
+  "title" : "Time Prepositions Quiz",
+  "instructions" : "Completa con: at / in / on / -",
+  "translation" : "Almuerzan todos los lunes.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They have lunch",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "every Monday.",
+      "options" : null
+    } ],
+    "sentences" : [ "They have lunch - every Monday." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342454"
+  },
+  "id" : "67fab6d59930102295342454",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d9"
+  },
+  "title" : "Time Prepositions Quiz",
+  "instructions" : "Completa con: at / in / on / -",
+  "translation" : "El día de su boda todos fuimos a un hotel elegante.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "On" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "her wedding day we all went to a fancy hotel.",
+      "options" : null
+    } ],
+    "sentences" : [ "On her wedding day we all went to a fancy hotel." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342455"
+  },
+  "id" : "67fab6d59930102295342455",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d9"
+  },
+  "title" : "Time Prepositions Quiz",
+  "instructions" : "Completa con: at / in / on / -",
+  "translation" : "Vamos a Italia en agosto.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Let's go to Italy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "August.",
+      "options" : null
+    } ],
+    "sentences" : [ "Let's go to Italy in August." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342456"
+  },
+  "id" : "67fab6d59930102295342456",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d9"
+  },
+  "title" : "Time Prepositions Quiz",
+  "instructions" : "Completa con: at / in / on / -",
+  "translation" : "Soy tan afortunado de estar vivo en el siglo XX.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm so lucky to be alive",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the 20th century.",
+      "options" : null
+    } ],
+    "sentences" : [ "I'm so lucky to be alive in the 20th century." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342457"
+  },
+  "id" : "67fab6d59930102295342457",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d9"
+  },
+  "title" : "Time Prepositions Quiz",
+  "instructions" : "Completa con: at / in / on / -",
+  "translation" : "¡A las 3 de la mañana, estaba soñando!",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "At" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "3 am, I was dreaming!",
+      "options" : null
+    } ],
+    "sentences" : [ "At 3 am, I was dreaming!" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342458"
+  },
+  "id" : "67fab6d59930102295342458",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d9"
+  },
+  "title" : "Time Prepositions Quiz",
+  "instructions" : "Completa con: at / in / on / -",
+  "translation" : "Normalmente hace frío en diciembre.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It's usually cold",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "December.",
+      "options" : null
+    } ],
+    "sentences" : [ "It's usually cold in December." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342459"
+  },
+  "id" : "67fab6d59930102295342459",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d9"
+  },
+  "title" : "Time Prepositions Quiz",
+  "instructions" : "Completa con: at / in / on / -",
+  "translation" : "En verano, los días son más largos.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "In" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "summer, the days are longer.",
+      "options" : null
+    } ],
+    "sentences" : [ "In summer, the days are longer." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534245a"
+  },
+  "id" : "67fab6d5993010229534245a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d9"
+  },
+  "title" : "Time Prepositions Quiz",
+  "instructions" : "Completa con: at / in / on / -",
+  "translation" : "El domingo por la mañana vamos a visitar a unos familiares.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "On" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Sunday morning we are visiting some relatives.",
+      "options" : null
+    } ],
+    "sentences" : [ "On Sunday morning we are visiting some relatives." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534245b"
+  },
+  "id" : "67fab6d5993010229534245b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d9"
+  },
+  "title" : "Time Prepositions Quiz",
+  "instructions" : "Completa con: at / in / on / -",
+  "translation" : "El tren sale a las 3:15.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The train is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "3:15.",
+      "options" : null
+    } ],
+    "sentences" : [ "The train is at 3:15." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534245c"
+  },
+  "id" : "67fab6d5993010229534245c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d9"
+  },
+  "title" : "Time Prepositions Quiz",
+  "instructions" : "Completa con: at / in / on / -",
+  "translation" : "¿Qué vas a cocinar esta noche?",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What are you cooking",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "tonight?",
+      "options" : null
+    } ],
+    "sentences" : [ "What are you cooking - tonight?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534245d"
+  },
+  "id" : "67fab6d5993010229534245d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d9"
+  },
+  "title" : "Time Prepositions Quiz",
+  "instructions" : "Completa con: at / in / on / -",
+  "translation" : "Se acuesta tarde todas las noches.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He goes to bed late",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "every night.",
+      "options" : null
+    } ],
+    "sentences" : [ "He goes to bed late - every night." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534245e"
+  },
+  "id" : "67fab6d5993010229534245e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d9"
+  },
+  "title" : "Time Prepositions Quiz",
+  "instructions" : "Completa con: at / in / on / -",
+  "translation" : "Necesito escribir un informe esta semana.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I need to write a report",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "this week.",
+      "options" : null
+    } ],
+    "sentences" : [ "I need to write a report - this week." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534245f"
+  },
+  "id" : "67fab6d5993010229534245f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d9"
+  },
+  "title" : "Time Prepositions Quiz",
+  "instructions" : "Completa con: at / in / on / -",
+  "translation" : "Hacía mucho calor esta tarde.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It was really hot",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "this afternoon.",
+      "options" : null
+    } ],
+    "sentences" : [ "It was really hot - this afternoon." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342460"
+  },
+  "id" : "67fab6d59930102295342460",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d9"
+  },
+  "title" : "Time Prepositions Quiz",
+  "instructions" : "Completa con: at / in / on / -",
+  "translation" : "En noviembre, las hojas son naranjas.",
+  "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "In" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "November, the leaves are orange.",
+      "options" : null
+    } ],
+    "sentences" : [ "In November, the leaves are orange." ]
+  }
+} ]

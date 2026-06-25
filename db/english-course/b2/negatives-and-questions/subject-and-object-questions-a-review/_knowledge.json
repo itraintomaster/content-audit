@@ -10,5 +10,6 @@
   "parentId" : {
     "$oid" : "6814dafa7d73e7209a13d41b"
   },
-  "instructions" : "Crea una pregunta de 'subject' o 'object' a partir de la oración. La respuesta a la pregunta debe estar entre paréntesis ('brackets')."
+  "instructions" : "Crea una pregunta de 'subject' o 'object' a partir de la oración. La respuesta a la pregunta debe estar entre paréntesis ('brackets').",
+  "sentenceMode" : "REWRITE"
 }

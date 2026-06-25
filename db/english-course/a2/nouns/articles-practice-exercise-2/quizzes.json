@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342ab0"
-    },
-    "id": "67fab6d59930102295342ab0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d262"
-    },
-    "title": "Articles Practice Exercise 2",
-    "instructions": "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
-    "translation": "¿Podrías pasarme el libro?",
-    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.14.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Could you hand me",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "the"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "book (the listener knows which book)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Could you hand me the book ?"
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ab0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342ab1"
-    },
-    "id": "67fab6d59930102295342ab1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d262"
-    },
-    "title": "Articles Practice Exercise 2",
-    "instructions": "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
-    "translation": "París está en Francia.",
-    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.14.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Paris is in",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "the"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "France.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Paris is in the France."
-      ]
-    }
+  "id" : "67fab6d59930102295342ab0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d262"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342ab2"
-    },
-    "id": "67fab6d59930102295342ab2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d262"
-    },
-    "title": "Articles Practice Exercise 2",
-    "instructions": "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
-    "translation": "Me encantan las fresas.",
-    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.14.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I love",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "strawberries (in general).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I love - strawberries ."
-      ]
-    }
+  "title" : "Articles Practice Exercise 2",
+  "instructions" : "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "translation" : "¿Podrías pasarme el libro?",
+  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342ab3"
-    },
-    "id": "67fab6d59930102295342ab3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d262"
-    },
-    "title": "Articles Practice Exercise 2",
-    "instructions": "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
-    "translation": "Él comió manzanas.",
-    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.14.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He ate",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "apples (the listener doesn't know which apples).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He ate - apples ."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342ab4"
-    },
-    "id": "67fab6d59930102295342ab4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d262"
-    },
-    "title": "Articles Practice Exercise 2",
-    "instructions": "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
-    "translation": "Bebí un vaso de leche y un vaso de jugo. La leche estaba deliciosa.",
-    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.14.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I drank a glass of milk and",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "a"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "glass of juice. The milk was delicious.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I drank a glass of milk and a glass of juice. The milk was delicious."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342ab5"
-    },
-    "id": "67fab6d59930102295342ab5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d262"
-    },
-    "title": "Articles Practice Exercise 2",
-    "instructions": "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
-    "translation": "Él disfruta del helado.",
-    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.14.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He enjoys",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "ice cream (in general).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He enjoys - ice cream ."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342ab6"
-    },
-    "id": "67fab6d59930102295342ab6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d262"
-    },
-    "title": "Articles Practice Exercise 2",
-    "instructions": "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
-    "translation": "Viajamos a España.",
-    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.14.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We traveled to",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "Spain.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We traveled to - Spain."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342ab7"
-    },
-    "id": "67fab6d59930102295342ab7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d262"
-    },
-    "title": "Articles Practice Exercise 2",
-    "instructions": "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
-    "translation": "Ella es del Reino Unido.",
-    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.14.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She's from",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "the"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "United Kingdom.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She's from the United Kingdom."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342ab8"
-    },
-    "id": "67fab6d59930102295342ab8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d262"
-    },
-    "title": "Articles Practice Exercise 2",
-    "instructions": "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
-    "translation": "Vendieron la casa que nos mostraron.",
-    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.14.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They sold",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "the"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "house that they showed us (the listener knows which house).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They sold the house that they showed us ."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342ab9"
-    },
-    "id": "67fab6d59930102295342ab9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d262"
-    },
-    "title": "Articles Practice Exercise 2",
-    "instructions": "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
-    "translation": "Él se comió las manzanas que ella cocinó.",
-    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.14.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He ate",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "the"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "apples that she cooked (the listener knows which apples).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He ate the apples that she cooked ."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342aba"
-    },
-    "id": "67fab6d59930102295342aba",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d262"
-    },
-    "title": "Articles Practice Exercise 2",
-    "instructions": "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
-    "translation": "Ella tiene una falda y un vestido. Ella usa la falda a menudo.",
-    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.14.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She has a skirt and a dress. She wears",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "the"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "skirt often.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She has a skirt and a dress. She wears the skirt often."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342abb"
-    },
-    "id": "67fab6d59930102295342abb",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d262"
-    },
-    "title": "Articles Practice Exercise 2",
-    "instructions": "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
-    "translation": "Comimos pan y mantequilla. Sin embargo, la mantequilla estaba demasiado salada.",
-    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.14.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We ate",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "bread and butter. The butter was too salty though.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We ate - bread and butter. The butter was too salty though."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342abc"
-    },
-    "id": "67fab6d59930102295342abc",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d262"
-    },
-    "title": "Articles Practice Exercise 2",
-    "instructions": "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
-    "translation": "Él adora las flores.",
-    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.14.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He adores",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "flowers (in general).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He adores - flowers ."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342abd"
-    },
-    "id": "67fab6d59930102295342abd",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d262"
-    },
-    "title": "Articles Practice Exercise 2",
-    "instructions": "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
-    "translation": "Ella tuvo una clase de matemáticas y una clase de inglés. La clase de inglés fue más fácil.",
-    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.14.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She had a math class and an English class.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "English class was easier.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She had a math class and an English class. The English class was easier."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342abe"
-    },
-    "id": "67fab6d59930102295342abe",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d262"
-    },
-    "title": "Articles Practice Exercise 2",
-    "instructions": "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
-    "translation": "Ellos viven en Nueva Zelanda.",
-    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.14.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They live in",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "New Zealand.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They live in - New Zealand."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342abf"
-    },
-    "id": "67fab6d59930102295342abf",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d262"
-    },
-    "title": "Articles Practice Exercise 2",
-    "instructions": "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
-    "translation": "Compré huevos y leche. Los huevos estaban frescos.",
-    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.14.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I bought eggs and",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "milk. The eggs were fresh.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I bought eggs and - milk. The eggs were fresh."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342ac0"
-    },
-    "id": "67fab6d59930102295342ac0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d262"
-    },
-    "title": "Articles Practice Exercise 2",
-    "instructions": "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
-    "translation": "Ella me ofreció galletas",
-    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.14.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She offered me",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "cookies (the listener doesn't know which cookies)",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She offered me - cookies"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342ac1"
-    },
-    "id": "67fab6d59930102295342ac1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d262"
-    },
-    "title": "Articles Practice Exercise 2",
-    "instructions": "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
-    "translation": "Ella come carne y pescado. ¡El pescado es más sabroso!",
-    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.14.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She eats meat and fish.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "fish is tastier!",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She eats meat and fish. The fish is tastier!"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342ac2"
-    },
-    "id": "67fab6d59930102295342ac2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d262"
-    },
-    "title": "Articles Practice Exercise 2",
-    "instructions": "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
-    "translation": "Ella tiene miedo de las arañas.",
-    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.14.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She is afraid of",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "spiders (in general).",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She is afraid of - spiders ."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295342ac3"
-    },
-    "id": "67fab6d59930102295342ac3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d262"
-    },
-    "title": "Articles Practice Exercise 2",
-    "instructions": "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
-    "translation": "Ella lleva una camiseta y jeans. Los jeans son nuevos.",
-    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A2.06.14.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She is wearing a t-shirt and",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "jeans. The jeans are new.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She is wearing a t-shirt and - jeans. The jeans are new."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could you hand me",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "book (the listener knows which book)?",
+      "options" : null
+    } ],
+    "sentences" : [ "Could you hand me the book ?" ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ab1"
+  },
+  "id" : "67fab6d59930102295342ab1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d262"
+  },
+  "title" : "Articles Practice Exercise 2",
+  "instructions" : "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "translation" : "París está en Francia.",
+  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Paris is in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "France.",
+      "options" : null
+    } ],
+    "sentences" : [ "Paris is in the France." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ab2"
+  },
+  "id" : "67fab6d59930102295342ab2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d262"
+  },
+  "title" : "Articles Practice Exercise 2",
+  "instructions" : "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "translation" : "Me encantan las fresas.",
+  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I love",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "strawberries (in general).",
+      "options" : null
+    } ],
+    "sentences" : [ "I love - strawberries ." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ab3"
+  },
+  "id" : "67fab6d59930102295342ab3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d262"
+  },
+  "title" : "Articles Practice Exercise 2",
+  "instructions" : "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "translation" : "Él comió manzanas.",
+  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He ate",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "apples (the listener doesn't know which apples).",
+      "options" : null
+    } ],
+    "sentences" : [ "He ate - apples ." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ab4"
+  },
+  "id" : "67fab6d59930102295342ab4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d262"
+  },
+  "title" : "Articles Practice Exercise 2",
+  "instructions" : "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "translation" : "Bebí un vaso de leche y un vaso de jugo. La leche estaba deliciosa.",
+  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I drank a glass of milk and",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "glass of juice. The milk was delicious.",
+      "options" : null
+    } ],
+    "sentences" : [ "I drank a glass of milk and a glass of juice. The milk was delicious." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ab5"
+  },
+  "id" : "67fab6d59930102295342ab5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d262"
+  },
+  "title" : "Articles Practice Exercise 2",
+  "instructions" : "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "translation" : "Él disfruta del helado.",
+  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He enjoys",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "ice cream (in general).",
+      "options" : null
+    } ],
+    "sentences" : [ "He enjoys - ice cream ." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ab6"
+  },
+  "id" : "67fab6d59930102295342ab6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d262"
+  },
+  "title" : "Articles Practice Exercise 2",
+  "instructions" : "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "translation" : "Viajamos a España.",
+  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We traveled to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Spain.",
+      "options" : null
+    } ],
+    "sentences" : [ "We traveled to - Spain." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ab7"
+  },
+  "id" : "67fab6d59930102295342ab7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d262"
+  },
+  "title" : "Articles Practice Exercise 2",
+  "instructions" : "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "translation" : "Ella es del Reino Unido.",
+  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's from",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "United Kingdom.",
+      "options" : null
+    } ],
+    "sentences" : [ "She's from the United Kingdom." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ab8"
+  },
+  "id" : "67fab6d59930102295342ab8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d262"
+  },
+  "title" : "Articles Practice Exercise 2",
+  "instructions" : "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "translation" : "Vendieron la casa que nos mostraron.",
+  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They sold",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "house that they showed us (the listener knows which house).",
+      "options" : null
+    } ],
+    "sentences" : [ "They sold the house that they showed us ." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ab9"
+  },
+  "id" : "67fab6d59930102295342ab9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d262"
+  },
+  "title" : "Articles Practice Exercise 2",
+  "instructions" : "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "translation" : "Él se comió las manzanas que ella cocinó.",
+  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He ate",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "apples that she cooked (the listener knows which apples).",
+      "options" : null
+    } ],
+    "sentences" : [ "He ate the apples that she cooked ." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342aba"
+  },
+  "id" : "67fab6d59930102295342aba",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d262"
+  },
+  "title" : "Articles Practice Exercise 2",
+  "instructions" : "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "translation" : "Ella tiene una falda y un vestido. Ella usa la falda a menudo.",
+  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She has a skirt and a dress. She wears",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "skirt often.",
+      "options" : null
+    } ],
+    "sentences" : [ "She has a skirt and a dress. She wears the skirt often." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342abb"
+  },
+  "id" : "67fab6d59930102295342abb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d262"
+  },
+  "title" : "Articles Practice Exercise 2",
+  "instructions" : "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "translation" : "Comimos pan y mantequilla. Sin embargo, la mantequilla estaba demasiado salada.",
+  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We ate",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "bread and butter. The butter was too salty though.",
+      "options" : null
+    } ],
+    "sentences" : [ "We ate - bread and butter. The butter was too salty though." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342abc"
+  },
+  "id" : "67fab6d59930102295342abc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d262"
+  },
+  "title" : "Articles Practice Exercise 2",
+  "instructions" : "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "translation" : "Él adora las flores.",
+  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He adores",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "flowers (in general).",
+      "options" : null
+    } ],
+    "sentences" : [ "He adores - flowers ." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342abd"
+  },
+  "id" : "67fab6d59930102295342abd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d262"
+  },
+  "title" : "Articles Practice Exercise 2",
+  "instructions" : "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "translation" : "Ella tuvo una clase de matemáticas y una clase de inglés. La clase de inglés fue más fácil.",
+  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She had a math class and an English class.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "English class was easier.",
+      "options" : null
+    } ],
+    "sentences" : [ "She had a math class and an English class. The English class was easier." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342abe"
+  },
+  "id" : "67fab6d59930102295342abe",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d262"
+  },
+  "title" : "Articles Practice Exercise 2",
+  "instructions" : "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "translation" : "Ellos viven en Nueva Zelanda.",
+  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They live in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "New Zealand.",
+      "options" : null
+    } ],
+    "sentences" : [ "They live in - New Zealand." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342abf"
+  },
+  "id" : "67fab6d59930102295342abf",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d262"
+  },
+  "title" : "Articles Practice Exercise 2",
+  "instructions" : "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "translation" : "Compré huevos y leche. Los huevos estaban frescos.",
+  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I bought eggs and",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "milk. The eggs were fresh.",
+      "options" : null
+    } ],
+    "sentences" : [ "I bought eggs and - milk. The eggs were fresh." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ac0"
+  },
+  "id" : "67fab6d59930102295342ac0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d262"
+  },
+  "title" : "Articles Practice Exercise 2",
+  "instructions" : "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "translation" : "Ella me ofreció galletas",
+  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She offered me",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "cookies (the listener doesn't know which cookies)",
+      "options" : null
+    } ],
+    "sentences" : [ "She offered me - cookies" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ac1"
+  },
+  "id" : "67fab6d59930102295342ac1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d262"
+  },
+  "title" : "Articles Practice Exercise 2",
+  "instructions" : "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "translation" : "Ella come carne y pescado. ¡El pescado es más sabroso!",
+  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She eats meat and fish.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "fish is tastier!",
+      "options" : null
+    } ],
+    "sentences" : [ "She eats meat and fish. The fish is tastier!" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ac2"
+  },
+  "id" : "67fab6d59930102295342ac2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d262"
+  },
+  "title" : "Articles Practice Exercise 2",
+  "instructions" : "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "translation" : "Ella tiene miedo de las arañas.",
+  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is afraid of",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "spiders (in general).",
+      "options" : null
+    } ],
+    "sentences" : [ "She is afraid of - spiders ." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ac3"
+  },
+  "id" : "67fab6d59930102295342ac3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d262"
+  },
+  "title" : "Articles Practice Exercise 2",
+  "instructions" : "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "translation" : "Ella lleva una camiseta y jeans. Los jeans son nuevos.",
+  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is wearing a t-shirt and",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "jeans. The jeans are new.",
+      "options" : null
+    } ],
+    "sentences" : [ "She is wearing a t-shirt and - jeans. The jeans are new." ]
+  }
+} ]

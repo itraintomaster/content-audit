@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953449fe"
-    },
-    "id": "67fab6d599301022953449fe",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a2"
-    },
-    "title": "Test your knowledge: 'As' vs 'like'",
-    "instructions": "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
-    "translation": "¿Trabajaba ella como chef?",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.01.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Did she work",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "as"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "a chef?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Did she work as a chef?"
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d599301022953449fe"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953449ff"
-    },
-    "id": "67fab6d599301022953449ff",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a2"
-    },
-    "title": "Test your knowledge: 'As' vs 'like'",
-    "instructions": "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
-    "translation": "Los pájaros cantaban como sirenas.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.01.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The birds sang",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "like"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "sirens.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The birds sang like sirens."
-      ]
-    }
+  "id" : "67fab6d599301022953449fe",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a2"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a00"
-    },
-    "id": "67fab6d59930102295344a00",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a2"
-    },
-    "title": "Test your knowledge: 'As' vs 'like'",
-    "instructions": "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
-    "translation": "Esto huele a rosas.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.01.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "This smells",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "like"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "roses.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "This smells like roses."
-      ]
-    }
+  "title" : "Test your knowledge: 'As' vs 'like'",
+  "instructions" : "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "¿Trabajaba ella como chef?",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a01"
-    },
-    "id": "67fab6d59930102295344a01",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a2"
-    },
-    "title": "Test your knowledge: 'As' vs 'like'",
-    "instructions": "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
-    "translation": "Se sintió como una reina cuando ganó el premio.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.01.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She felt",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "like"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "a queen when she won the prize.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She felt like a queen when she won the prize."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a02"
-    },
-    "id": "67fab6d59930102295344a02",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a2"
-    },
-    "title": "Test your knowledge: 'As' vs 'like'",
-    "instructions": "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
-    "translation": "El trueno sonaba como rocas cayendo.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.01.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The thunder sounded",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "like"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "falling rocks.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The thunder sounded like falling rocks."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a03"
-    },
-    "id": "67fab6d59930102295344a03",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a2"
-    },
-    "title": "Test your knowledge: 'As' vs 'like'",
-    "instructions": "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
-    "translation": "Mi padre trabajaba como constructor.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.01.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "My father worked",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "as"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "a builder.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "My father worked as a builder."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a04"
-    },
-    "id": "67fab6d59930102295344a04",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a2"
-    },
-    "title": "Test your knowledge: 'As' vs 'like'",
-    "instructions": "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
-    "translation": "La tarta sabía como las tartas de mi madre.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.01.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The pie tasted",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "like"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "my mother's pies.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The pie tasted like my mother's pies."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a05"
-    },
-    "id": "67fab6d59930102295344a05",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a2"
-    },
-    "title": "Test your knowledge: 'As' vs 'like'",
-    "instructions": "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
-    "translation": "Ella durmió como un tronco.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.01.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She slept",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "like"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "a log.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She slept like a log."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a06"
-    },
-    "id": "67fab6d59930102295344a06",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a2"
-    },
-    "title": "Test your knowledge: 'As' vs 'like'",
-    "instructions": "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
-    "translation": "Te pareces a mi hermana.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.01.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "You seem",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "like"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "my sister.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "You seem like my sister."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a07"
-    },
-    "id": "67fab6d59930102295344a07",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a2"
-    },
-    "title": "Test your knowledge: 'As' vs 'like'",
-    "instructions": "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
-    "translation": "Trabajo como conductor.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.01.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I work",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "as"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "a driver.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I work as a driver."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a08"
-    },
-    "id": "67fab6d59930102295344a08",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a2"
-    },
-    "title": "Test your knowledge: 'As' vs 'like'",
-    "instructions": "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
-    "translation": "Daniel solía trabajar como desarrollador web.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.01.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Daniel used to work",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "as"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "a web developer.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Daniel used to work as a web developer."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a09"
-    },
-    "id": "67fab6d59930102295344a09",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a2"
-    },
-    "title": "Test your knowledge: 'As' vs 'like'",
-    "instructions": "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
-    "translation": "Él trabaja como dentista.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.01.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He works",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "as"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "a dentist.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He works as a dentist."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a0a"
-    },
-    "id": "67fab6d59930102295344a0a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a2"
-    },
-    "title": "Test your knowledge: 'As' vs 'like'",
-    "instructions": "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
-    "translation": "Ellos trabajan como ingenieros.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.01.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They work",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "as"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "engineers.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They work as engineers."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a0b"
-    },
-    "id": "67fab6d59930102295344a0b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a2"
-    },
-    "title": "Test your knowledge: 'As' vs 'like'",
-    "instructions": "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
-    "translation": "Ella trabaja como músico.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.01.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She works",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "as"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "a musician.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She works as a musician."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a0c"
-    },
-    "id": "67fab6d59930102295344a0c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a2"
-    },
-    "title": "Test your knowledge: 'As' vs 'like'",
-    "instructions": "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
-    "translation": "El baño olía a lavanda.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.01.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The bathroom smelled",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "like"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "lavender.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The bathroom smelled like lavender."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a0d"
-    },
-    "id": "67fab6d59930102295344a0d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a2"
-    },
-    "title": "Test your knowledge: 'As' vs 'like'",
-    "instructions": "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
-    "translation": "Él quiere trabajar como escritor.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.01.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He wants to work",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "as"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "a writer.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He wants to work as a writer."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a0e"
-    },
-    "id": "67fab6d59930102295344a0e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a2"
-    },
-    "title": "Test your knowledge: 'As' vs 'like'",
-    "instructions": "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
-    "translation": "Él se parece a su padre.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.01.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He looks",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "like"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "his father.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He looks like his father."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a0f"
-    },
-    "id": "67fab6d59930102295344a0f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a2"
-    },
-    "title": "Test your knowledge: 'As' vs 'like'",
-    "instructions": "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
-    "translation": "El bosque huele a pino.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.01.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The forest smells",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "like"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "pine.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The forest smells like pine."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a10"
-    },
-    "id": "67fab6d59930102295344a10",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a2"
-    },
-    "title": "Test your knowledge: 'As' vs 'like'",
-    "instructions": "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
-    "translation": "Él trabaja como vendedor.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.01.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He works",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "as"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "a salesman.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He works as a salesman."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295344a11"
-    },
-    "id": "67fab6d59930102295344a11",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d4a2"
-    },
-    "title": "Test your knowledge: 'As' vs 'like'",
-    "instructions": "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
-    "translation": "Ellos trabajarán como salvavidas durante las vacaciones.",
-    "theoryId": "b2.15.Adjectives_and_Prepositions",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B2.15.01.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They'll work",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "as"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "lifeguards during the vacation.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They'll work as lifeguards during the vacation."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did she work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "a chef?",
+      "options" : null
+    } ],
+    "sentences" : [ "Did she work as a chef?" ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953449ff"
+  },
+  "id" : "67fab6d599301022953449ff",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a2"
+  },
+  "title" : "Test your knowledge: 'As' vs 'like'",
+  "instructions" : "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Los pájaros cantaban como sirenas.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The birds sang",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "sirens.",
+      "options" : null
+    } ],
+    "sentences" : [ "The birds sang like sirens." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a00"
+  },
+  "id" : "67fab6d59930102295344a00",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a2"
+  },
+  "title" : "Test your knowledge: 'As' vs 'like'",
+  "instructions" : "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Esto huele a rosas.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This smells",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "roses.",
+      "options" : null
+    } ],
+    "sentences" : [ "This smells like roses." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a01"
+  },
+  "id" : "67fab6d59930102295344a01",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a2"
+  },
+  "title" : "Test your knowledge: 'As' vs 'like'",
+  "instructions" : "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Se sintió como una reina cuando ganó el premio.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She felt",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "a queen when she won the prize.",
+      "options" : null
+    } ],
+    "sentences" : [ "She felt like a queen when she won the prize." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a02"
+  },
+  "id" : "67fab6d59930102295344a02",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a2"
+  },
+  "title" : "Test your knowledge: 'As' vs 'like'",
+  "instructions" : "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "El trueno sonaba como rocas cayendo.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The thunder sounded",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "falling rocks.",
+      "options" : null
+    } ],
+    "sentences" : [ "The thunder sounded like falling rocks." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a03"
+  },
+  "id" : "67fab6d59930102295344a03",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a2"
+  },
+  "title" : "Test your knowledge: 'As' vs 'like'",
+  "instructions" : "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Mi padre trabajaba como constructor.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My father worked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "a builder.",
+      "options" : null
+    } ],
+    "sentences" : [ "My father worked as a builder." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a04"
+  },
+  "id" : "67fab6d59930102295344a04",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a2"
+  },
+  "title" : "Test your knowledge: 'As' vs 'like'",
+  "instructions" : "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "La tarta sabía como las tartas de mi madre.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The pie tasted",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "my mother's pies.",
+      "options" : null
+    } ],
+    "sentences" : [ "The pie tasted like my mother's pies." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a05"
+  },
+  "id" : "67fab6d59930102295344a05",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a2"
+  },
+  "title" : "Test your knowledge: 'As' vs 'like'",
+  "instructions" : "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Ella durmió como un tronco.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She slept",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "a log.",
+      "options" : null
+    } ],
+    "sentences" : [ "She slept like a log." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a06"
+  },
+  "id" : "67fab6d59930102295344a06",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a2"
+  },
+  "title" : "Test your knowledge: 'As' vs 'like'",
+  "instructions" : "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Te pareces a mi hermana.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You seem",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "my sister.",
+      "options" : null
+    } ],
+    "sentences" : [ "You seem like my sister." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a07"
+  },
+  "id" : "67fab6d59930102295344a07",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a2"
+  },
+  "title" : "Test your knowledge: 'As' vs 'like'",
+  "instructions" : "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Trabajo como conductor.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "a driver.",
+      "options" : null
+    } ],
+    "sentences" : [ "I work as a driver." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a08"
+  },
+  "id" : "67fab6d59930102295344a08",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a2"
+  },
+  "title" : "Test your knowledge: 'As' vs 'like'",
+  "instructions" : "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Daniel solía trabajar como desarrollador web.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Daniel used to work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "a web developer.",
+      "options" : null
+    } ],
+    "sentences" : [ "Daniel used to work as a web developer." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a09"
+  },
+  "id" : "67fab6d59930102295344a09",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a2"
+  },
+  "title" : "Test your knowledge: 'As' vs 'like'",
+  "instructions" : "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Él trabaja como dentista.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He works",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "a dentist.",
+      "options" : null
+    } ],
+    "sentences" : [ "He works as a dentist." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a0a"
+  },
+  "id" : "67fab6d59930102295344a0a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a2"
+  },
+  "title" : "Test your knowledge: 'As' vs 'like'",
+  "instructions" : "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Ellos trabajan como ingenieros.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "engineers.",
+      "options" : null
+    } ],
+    "sentences" : [ "They work as engineers." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a0b"
+  },
+  "id" : "67fab6d59930102295344a0b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a2"
+  },
+  "title" : "Test your knowledge: 'As' vs 'like'",
+  "instructions" : "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Ella trabaja como músico.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She works",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "a musician.",
+      "options" : null
+    } ],
+    "sentences" : [ "She works as a musician." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a0c"
+  },
+  "id" : "67fab6d59930102295344a0c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a2"
+  },
+  "title" : "Test your knowledge: 'As' vs 'like'",
+  "instructions" : "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "El baño olía a lavanda.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The bathroom smelled",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "lavender.",
+      "options" : null
+    } ],
+    "sentences" : [ "The bathroom smelled like lavender." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a0d"
+  },
+  "id" : "67fab6d59930102295344a0d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a2"
+  },
+  "title" : "Test your knowledge: 'As' vs 'like'",
+  "instructions" : "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Él quiere trabajar como escritor.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He wants to work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "a writer.",
+      "options" : null
+    } ],
+    "sentences" : [ "He wants to work as a writer." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a0e"
+  },
+  "id" : "67fab6d59930102295344a0e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a2"
+  },
+  "title" : "Test your knowledge: 'As' vs 'like'",
+  "instructions" : "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Él se parece a su padre.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He looks",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "his father.",
+      "options" : null
+    } ],
+    "sentences" : [ "He looks like his father." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a0f"
+  },
+  "id" : "67fab6d59930102295344a0f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a2"
+  },
+  "title" : "Test your knowledge: 'As' vs 'like'",
+  "instructions" : "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "El bosque huele a pino.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The forest smells",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "pine.",
+      "options" : null
+    } ],
+    "sentences" : [ "The forest smells like pine." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a10"
+  },
+  "id" : "67fab6d59930102295344a10",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a2"
+  },
+  "title" : "Test your knowledge: 'As' vs 'like'",
+  "instructions" : "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Él trabaja como vendedor.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He works",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "a salesman.",
+      "options" : null
+    } ],
+    "sentences" : [ "He works as a salesman." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a11"
+  },
+  "id" : "67fab6d59930102295344a11",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d4a2"
+  },
+  "title" : "Test your knowledge: 'As' vs 'like'",
+  "instructions" : "Escribe 'as' si estamos hablando de la profesión de alguien. Escribe 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Ellos trabajarán como salvavidas durante las vacaciones.",
+  "theoryId" : "b2.15.Adjectives_and_Prepositions",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They'll work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "lifeguards during the vacation.",
+      "options" : null
+    } ],
+    "sentences" : [ "They'll work as lifeguards during the vacation." ]
+  }
+} ]

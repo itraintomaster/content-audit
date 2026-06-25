@@ -1,612 +1,521 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534249d"
-    },
-    "id": "67fab6d5993010229534249d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3de"
-    },
-    "title": "Using Prepositions with 'Home'",
-    "instructions": "Completa con: at / -",
-    "translation": "¿Están caminando a casa ahora mismo?",
-    "theoryId": "a1.09.Prepositions_with_Home",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.08.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Are they walking",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "home right now?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Are they walking - home right now?"
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534249d"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534249e"
-    },
-    "id": "67fab6d5993010229534249e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3de"
-    },
-    "title": "Using Prepositions with 'Home'",
-    "instructions": "Completa con: at / -",
-    "translation": "Él disfruta estar en casa.",
-    "theoryId": "a1.09.Prepositions_with_Home",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.08.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He enjoys being",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "home.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He enjoys being at home."
-      ]
-    }
+  "id" : "67fab6d5993010229534249d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3de"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534249f"
-    },
-    "id": "67fab6d5993010229534249f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3de"
-    },
-    "title": "Using Prepositions with 'Home'",
-    "instructions": "Completa con: at / -",
-    "translation": "¿A qué hora vas a casa normalmente?",
-    "theoryId": "a1.09.Prepositions_with_Home",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.08.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "What time do you go",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "home usually?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "What time do you go - home usually?"
-      ]
-    }
+  "title" : "Using Prepositions with 'Home'",
+  "instructions" : "Completa con: at / -",
+  "translation" : "¿Están caminando a casa ahora mismo?",
+  "theoryId" : "a1.09.Prepositions_with_Home",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424a0"
-    },
-    "id": "67fab6d599301022953424a0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3de"
-    },
-    "title": "Using Prepositions with 'Home'",
-    "instructions": "Completa con: at / -",
-    "translation": "La semana pasada, Mary se quedó en casa.",
-    "theoryId": "a1.09.Prepositions_with_Home",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.08.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Last week, Mary stayed",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "home.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Last week, Mary stayed at home."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424a1"
-    },
-    "id": "67fab6d599301022953424a1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3de"
-    },
-    "title": "Using Prepositions with 'Home'",
-    "instructions": "Completa con: at / -",
-    "translation": "Ella estudió en casa.",
-    "theoryId": "a1.09.Prepositions_with_Home",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.08.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She studied",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "home.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She studied at home."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424a2"
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.08.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
     },
-    "id": "67fab6d599301022953424a2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3de"
-    },
-    "title": "Using Prepositions with 'Home'",
-    "instructions": "Completa con: at / -",
-    "translation": "¿A qué hora llegaste a casa?",
-    "theoryId": "a1.09.Prepositions_with_Home",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.08.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "What time did you get",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "home?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "What time did you get at home?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424a3"
-    },
-    "id": "67fab6d599301022953424a3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3de"
-    },
-    "title": "Using Prepositions with 'Home'",
-    "instructions": "Completa con: at / -",
-    "translation": "Nos quedamos en casa anoche.",
-    "theoryId": "a1.09.Prepositions_with_Home",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.08.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We remained",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "home last night.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We remained at home last night."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424a4"
-    },
-    "id": "67fab6d599301022953424a4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3de"
-    },
-    "title": "Using Prepositions with 'Home'",
-    "instructions": "Completa con: at / -",
-    "translation": "Él conduce a casa alrededor de las cinco.",
-    "theoryId": "a1.09.Prepositions_with_Home",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.08.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He's driving",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "home around five.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He's driving - home around five."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424a5"
-    },
-    "id": "67fab6d599301022953424a5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3de"
-    },
-    "title": "Using Prepositions with 'Home'",
-    "instructions": "Completa con: at / -",
-    "translation": "Nos quedamos mucho en casa en verano.",
-    "theoryId": "a1.09.Prepositions_with_Home",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.08.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We stay",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "at"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "home a lot in summer.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We stay at home a lot in summer."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953424a6"
-    },
-    "id": "67fab6d599301022953424a6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d3de"
-    },
-    "title": "Using Prepositions with 'Home'",
-    "instructions": "Completa con: at / -",
-    "translation": "Regresaron a casa muy tarde anoche.",
-    "theoryId": "a1.09.Prepositions_with_Home",
-    "topicName": "Prepositions",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "A1.09.08.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They returned",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "-"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "home very late last night.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They returned - home very late last night."
-      ]
-    }
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are they walking",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "home right now?",
+      "options" : null
+    } ],
+    "sentences" : [ "Are they walking - home right now?" ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534249e"
+  },
+  "id" : "67fab6d5993010229534249e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3de"
+  },
+  "title" : "Using Prepositions with 'Home'",
+  "instructions" : "Completa con: at / -",
+  "translation" : "Él disfruta estar en casa.",
+  "theoryId" : "a1.09.Prepositions_with_Home",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.08.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He enjoys being",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "home.",
+      "options" : null
+    } ],
+    "sentences" : [ "He enjoys being at home." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534249f"
+  },
+  "id" : "67fab6d5993010229534249f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3de"
+  },
+  "title" : "Using Prepositions with 'Home'",
+  "instructions" : "Completa con: at / -",
+  "translation" : "¿A qué hora vas a casa normalmente?",
+  "theoryId" : "a1.09.Prepositions_with_Home",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.08.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What time do you go",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "home usually?",
+      "options" : null
+    } ],
+    "sentences" : [ "What time do you go - home usually?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424a0"
+  },
+  "id" : "67fab6d599301022953424a0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3de"
+  },
+  "title" : "Using Prepositions with 'Home'",
+  "instructions" : "Completa con: at / -",
+  "translation" : "La semana pasada, Mary se quedó en casa.",
+  "theoryId" : "a1.09.Prepositions_with_Home",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.08.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Last week, Mary stayed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "home.",
+      "options" : null
+    } ],
+    "sentences" : [ "Last week, Mary stayed at home." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424a1"
+  },
+  "id" : "67fab6d599301022953424a1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3de"
+  },
+  "title" : "Using Prepositions with 'Home'",
+  "instructions" : "Completa con: at / -",
+  "translation" : "Ella estudió en casa.",
+  "theoryId" : "a1.09.Prepositions_with_Home",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.08.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She studied",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "home.",
+      "options" : null
+    } ],
+    "sentences" : [ "She studied at home." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424a2"
+  },
+  "id" : "67fab6d599301022953424a2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3de"
+  },
+  "title" : "Using Prepositions with 'Home'",
+  "instructions" : "Completa con: at / -",
+  "translation" : "¿A qué hora llegaste a casa?",
+  "theoryId" : "a1.09.Prepositions_with_Home",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.08.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What time did you get",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "home?",
+      "options" : null
+    } ],
+    "sentences" : [ "What time did you get at home?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424a3"
+  },
+  "id" : "67fab6d599301022953424a3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3de"
+  },
+  "title" : "Using Prepositions with 'Home'",
+  "instructions" : "Completa con: at / -",
+  "translation" : "Nos quedamos en casa anoche.",
+  "theoryId" : "a1.09.Prepositions_with_Home",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.08.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We remained",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "home last night.",
+      "options" : null
+    } ],
+    "sentences" : [ "We remained at home last night." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424a4"
+  },
+  "id" : "67fab6d599301022953424a4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3de"
+  },
+  "title" : "Using Prepositions with 'Home'",
+  "instructions" : "Completa con: at / -",
+  "translation" : "Él conduce a casa alrededor de las cinco.",
+  "theoryId" : "a1.09.Prepositions_with_Home",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.08.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's driving",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "home around five.",
+      "options" : null
+    } ],
+    "sentences" : [ "He's driving - home around five." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424a5"
+  },
+  "id" : "67fab6d599301022953424a5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3de"
+  },
+  "title" : "Using Prepositions with 'Home'",
+  "instructions" : "Completa con: at / -",
+  "translation" : "Nos quedamos mucho en casa en verano.",
+  "theoryId" : "a1.09.Prepositions_with_Home",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.08.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We stay",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "home a lot in summer.",
+      "options" : null
+    } ],
+    "sentences" : [ "We stay at home a lot in summer." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953424a6"
+  },
+  "id" : "67fab6d599301022953424a6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3de"
+  },
+  "title" : "Using Prepositions with 'Home'",
+  "instructions" : "Completa con: at / -",
+  "translation" : "Regresaron a casa muy tarde anoche.",
+  "theoryId" : "a1.09.Prepositions_with_Home",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.08.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They returned",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "home very late last night.",
+      "options" : null
+    } ],
+    "sentences" : [ "They returned - home very late last night." ]
+  }
+} ]

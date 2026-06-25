@@ -1,612 +1,521 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c21"
-    },
-    "id": "67fab6d59930102295343c21",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d36d"
-    },
-    "title": "Using 'So' and 'Therefore'",
-    "instructions": "Modifica las oraciones para que incluyan 'so' o 'therefore' y no 'because'.",
-    "translation": "Se sintió mal, así que visitó al médico de inmediato.",
-    "theoryId": "b1.16.Adverbs_for_Linking_So_Therefore",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.09.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Because he felt unwell, he visited the doctor immediately.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He felt unwell so he visited the doctor immediately."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He felt unwell so he visited the doctor immediately."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c21"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c22"
-    },
-    "id": "67fab6d59930102295343c22",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d36d"
-    },
-    "title": "Using 'So' and 'Therefore'",
-    "instructions": "Modifica las oraciones para que incluyan 'so' o 'therefore' y no 'because'.",
-    "translation": "La habitación estaba muy oscura. Por lo tanto, encendieron la luz.",
-    "theoryId": "b1.16.Adverbs_for_Linking_So_Therefore",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.09.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Because the room was very dark, they switched on the light.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The room was very dark. Therefore, they switched on the light."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The room was very dark. Therefore, they switched on the light."
-      ]
-    }
+  "id" : "67fab6d59930102295343c21",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36d"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c23"
-    },
-    "id": "67fab6d59930102295343c23",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d36d"
-    },
-    "title": "Using 'So' and 'Therefore'",
-    "instructions": "Modifica las oraciones para que incluyan 'so' o 'therefore' y no 'because'.",
-    "translation": "La comida sabía deliciosa, así que ella se la comió toda.",
-    "theoryId": "b1.16.Adverbs_for_Linking_So_Therefore",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.09.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Because the food tasted delicious, she ate it all.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The food tasted delicious so she ate it all."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The food tasted delicious so she ate it all."
-      ]
-    }
+  "title" : "Using 'So' and 'Therefore'",
+  "instructions" : "Modifica las oraciones para que incluyan 'so' o 'therefore' y no 'because'.",
+  "translation" : "Se sintió mal, así que visitó al médico de inmediato.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_So_Therefore",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c24"
-    },
-    "id": "67fab6d59930102295343c24",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d36d"
-    },
-    "title": "Using 'So' and 'Therefore'",
-    "instructions": "Modifica las oraciones para que incluyan 'so' o 'therefore' y no 'because'.",
-    "translation": "La película era increíblemente larga. Por lo tanto, nos fuimos temprano.",
-    "theoryId": "b1.16.Adverbs_for_Linking_So_Therefore",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.09.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Because the film was incredibly long, we left early.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The film was incredibly long. Therefore, we left early."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The film was incredibly long. Therefore, we left early."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c25"
-    },
-    "id": "67fab6d59930102295343c25",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d36d"
-    },
-    "title": "Using 'So' and 'Therefore'",
-    "instructions": "Modifica las oraciones para que incluyan 'so' o 'therefore' y no 'because'.",
-    "translation": "El sol brillaba, así que se pusieron gafas de sol.",
-    "theoryId": "b1.16.Adverbs_for_Linking_So_Therefore",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.09.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Because the sun was shining, they wore sunglasses.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "The sun was shining so they wore sunglasses."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The sun was shining so they wore sunglasses."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c26"
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.09.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
     },
-    "id": "67fab6d59930102295343c26",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d36d"
-    },
-    "title": "Using 'So' and 'Therefore'",
-    "instructions": "Modifica las oraciones para que incluyan 'so' o 'therefore' y no 'because'.",
-    "translation": "Practicó a diario. Por lo tanto, se volvió experto en el piano.",
-    "theoryId": "b1.16.Adverbs_for_Linking_So_Therefore",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.09.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Because he practiced daily, he became proficient at the piano.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "He practiced daily. Therefore, he became proficient at the piano."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He practiced daily. Therefore, he became proficient at the piano."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c27"
-    },
-    "id": "67fab6d59930102295343c27",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d36d"
-    },
-    "title": "Using 'So' and 'Therefore'",
-    "instructions": "Modifica las oraciones para que incluyan 'so' o 'therefore' y no 'because'.",
-    "translation": "Perdimos el autobús, así que llegamos tarde a la escuela.",
-    "theoryId": "b1.16.Adverbs_for_Linking_So_Therefore",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.09.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Because we missed the bus, we were late for school.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "We missed the bus so we were late for school."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We missed the bus so we were late for school."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c28"
-    },
-    "id": "67fab6d59930102295343c28",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d36d"
-    },
-    "title": "Using 'So' and 'Therefore'",
-    "instructions": "Modifica las oraciones para que incluyan 'so' o 'therefore' y no 'because'.",
-    "translation": "Regaba las plantas con regularidad, así que crecieron hermosamente.",
-    "theoryId": "b1.16.Adverbs_for_Linking_So_Therefore",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.09.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Because she watered the plants regularly, they grew beautifully.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She watered the plants regularly so they grew beautifully."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She watered the plants regularly so they grew beautifully."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c29"
-    },
-    "id": "67fab6d59930102295343c29",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d36d"
-    },
-    "title": "Using 'So' and 'Therefore'",
-    "instructions": "Modifica las oraciones para que incluyan 'so' o 'therefore' y no 'because'.",
-    "translation": "Entrenaron muy duro. Por lo tanto, lograron ganar el partido.",
-    "theoryId": "b1.16.Adverbs_for_Linking_So_Therefore",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.09.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Because they trained very hard, they managed to win the match.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "They trained very hard. Therefore, they managed to win the match."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They trained very hard. Therefore, they managed to win the match."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343c2a"
-    },
-    "id": "67fab6d59930102295343c2a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d36d"
-    },
-    "title": "Using 'So' and 'Therefore'",
-    "instructions": "Modifica las oraciones para que incluyan 'so' o 'therefore' y no 'because'.",
-    "translation": "Le dolía la cabeza, así que tomó una medicina.",
-    "theoryId": "b1.16.Adverbs_for_Linking_So_Therefore",
-    "topicName": "Adverbs",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.16.09.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Because she had a headache, she took some medicine.",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "She had a headache so she took some medicine."
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She had a headache so she took some medicine."
-      ]
-    }
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Because he felt unwell, he visited the doctor immediately.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He felt unwell so he visited the doctor immediately." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He felt unwell so he visited the doctor immediately." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c22"
+  },
+  "id" : "67fab6d59930102295343c22",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36d"
+  },
+  "title" : "Using 'So' and 'Therefore'",
+  "instructions" : "Modifica las oraciones para que incluyan 'so' o 'therefore' y no 'because'.",
+  "translation" : "La habitación estaba muy oscura. Por lo tanto, encendieron la luz.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_So_Therefore",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.09.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Because the room was very dark, they switched on the light.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The room was very dark. Therefore, they switched on the light." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The room was very dark. Therefore, they switched on the light." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c23"
+  },
+  "id" : "67fab6d59930102295343c23",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36d"
+  },
+  "title" : "Using 'So' and 'Therefore'",
+  "instructions" : "Modifica las oraciones para que incluyan 'so' o 'therefore' y no 'because'.",
+  "translation" : "La comida sabía deliciosa, así que ella se la comió toda.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_So_Therefore",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.09.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Because the food tasted delicious, she ate it all.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The food tasted delicious so she ate it all." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The food tasted delicious so she ate it all." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c24"
+  },
+  "id" : "67fab6d59930102295343c24",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36d"
+  },
+  "title" : "Using 'So' and 'Therefore'",
+  "instructions" : "Modifica las oraciones para que incluyan 'so' o 'therefore' y no 'because'.",
+  "translation" : "La película era increíblemente larga. Por lo tanto, nos fuimos temprano.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_So_Therefore",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.09.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Because the film was incredibly long, we left early.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The film was incredibly long. Therefore, we left early." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The film was incredibly long. Therefore, we left early." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c25"
+  },
+  "id" : "67fab6d59930102295343c25",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36d"
+  },
+  "title" : "Using 'So' and 'Therefore'",
+  "instructions" : "Modifica las oraciones para que incluyan 'so' o 'therefore' y no 'because'.",
+  "translation" : "El sol brillaba, así que se pusieron gafas de sol.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_So_Therefore",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.09.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Because the sun was shining, they wore sunglasses.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The sun was shining so they wore sunglasses." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The sun was shining so they wore sunglasses." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c26"
+  },
+  "id" : "67fab6d59930102295343c26",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36d"
+  },
+  "title" : "Using 'So' and 'Therefore'",
+  "instructions" : "Modifica las oraciones para que incluyan 'so' o 'therefore' y no 'because'.",
+  "translation" : "Practicó a diario. Por lo tanto, se volvió experto en el piano.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_So_Therefore",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.09.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Because he practiced daily, he became proficient at the piano.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He practiced daily. Therefore, he became proficient at the piano." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He practiced daily. Therefore, he became proficient at the piano." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c27"
+  },
+  "id" : "67fab6d59930102295343c27",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36d"
+  },
+  "title" : "Using 'So' and 'Therefore'",
+  "instructions" : "Modifica las oraciones para que incluyan 'so' o 'therefore' y no 'because'.",
+  "translation" : "Perdimos el autobús, así que llegamos tarde a la escuela.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_So_Therefore",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.09.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Because we missed the bus, we were late for school.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We missed the bus so we were late for school." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We missed the bus so we were late for school." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c28"
+  },
+  "id" : "67fab6d59930102295343c28",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36d"
+  },
+  "title" : "Using 'So' and 'Therefore'",
+  "instructions" : "Modifica las oraciones para que incluyan 'so' o 'therefore' y no 'because'.",
+  "translation" : "Regaba las plantas con regularidad, así que crecieron hermosamente.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_So_Therefore",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.09.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Because she watered the plants regularly, they grew beautifully.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She watered the plants regularly so they grew beautifully." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She watered the plants regularly so they grew beautifully." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c29"
+  },
+  "id" : "67fab6d59930102295343c29",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36d"
+  },
+  "title" : "Using 'So' and 'Therefore'",
+  "instructions" : "Modifica las oraciones para que incluyan 'so' o 'therefore' y no 'because'.",
+  "translation" : "Entrenaron muy duro. Por lo tanto, lograron ganar el partido.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_So_Therefore",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.09.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Because they trained very hard, they managed to win the match.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They trained very hard. Therefore, they managed to win the match." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They trained very hard. Therefore, they managed to win the match." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c2a"
+  },
+  "id" : "67fab6d59930102295343c2a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36d"
+  },
+  "title" : "Using 'So' and 'Therefore'",
+  "instructions" : "Modifica las oraciones para que incluyan 'so' o 'therefore' y no 'because'.",
+  "translation" : "Le dolía la cabeza, así que tomó una medicina.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_So_Therefore",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.16.09.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Because she had a headache, she took some medicine.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She had a headache so she took some medicine." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She had a headache so she took some medicine." ]
+  }
+} ]

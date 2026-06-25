@@ -1,1235 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953430bb"
-    },
-    "id": "67fab6d599301022953430bb",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2c6"
-    },
-    "title": "Life Experiences with Present Perfect: 'Ever' and 'Never'",
-    "instructions": "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
-    "translation": "Hemos visitado Italia.",
-    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
-    "topicName": "Present perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.02.05.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'ve visited|have visited"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(visit) Italy.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We've visited Italy.",
-        "We have visited Italy."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430bb"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953430bc"
-    },
-    "id": "67fab6d599301022953430bc",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2c6"
-    },
-    "title": "Life Experiences with Present Perfect: 'Ever' and 'Never'",
-    "instructions": "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
-    "translation": "¿Alguna vez has usado una tableta?",
-    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
-    "topicName": "Present perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.02.05.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Have you ever used"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(you / ever / use) a tablet?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Have you ever used a tablet?"
-      ]
-    }
+  "id" : "67fab6d599301022953430bb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c6"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953430bd"
-    },
-    "id": "67fab6d599301022953430bd",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2c6"
-    },
-    "title": "Life Experiences with Present Perfect: 'Ever' and 'Never'",
-    "instructions": "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
-    "translation": "Nunca le he escrito a Peter.",
-    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
-    "topicName": "Present perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.02.05.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'ve never written|have never written"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(never / write) to Peter.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I've never written to Peter.",
-        "I have never written to Peter."
-      ]
-    }
+  "title" : "Life Experiences with Present Perfect: 'Ever' and 'Never'",
+  "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
+  "translation" : "Hemos visitado Italia.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953430be"
-    },
-    "id": "67fab6d599301022953430be",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2c6"
-    },
-    "title": "Life Experiences with Present Perfect: 'Ever' and 'Never'",
-    "instructions": "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
-    "translation": "He visitado la Torre de Londres.",
-    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
-    "topicName": "Present perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.02.05.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'ve visited|have visited"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(visit) the Tower of London.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I've visited the Tower of London.",
-        "I have visited the Tower of London."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953430bf"
-    },
-    "id": "67fab6d599301022953430bf",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2c6"
-    },
-    "title": "Life Experiences with Present Perfect: 'Ever' and 'Never'",
-    "instructions": "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
-    "translation": "¿Alguna vez han caminado en el bosque?",
-    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
-    "topicName": "Present perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.02.05.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Have they ever hiked"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(they / ever / hike) in the forest?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Have they ever hiked in the forest?"
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953430c0"
-    },
-    "id": "67fab6d599301022953430c0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2c6"
-    },
-    "title": "Life Experiences with Present Perfect: 'Ever' and 'Never'",
-    "instructions": "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
-    "translation": "¿Alguna vez has llegado temprano a la escuela?",
-    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
-    "topicName": "Present perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.02.05.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Have you ever arrived"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(you / ever / arrive) early to school?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Have you ever arrived early to school?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953430c1"
-    },
-    "id": "67fab6d599301022953430c1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2c6"
-    },
-    "title": "Life Experiences with Present Perfect: 'Ever' and 'Never'",
-    "instructions": "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
-    "translation": "Él nunca ha leído a Tolstoi.",
-    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
-    "topicName": "Present perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.02.05.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'s never read|has never read"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(never / read) Tolstoy.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He's never read Tolstoy.",
-        "He has never read Tolstoy."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953430c2"
-    },
-    "id": "67fab6d599301022953430c2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2c6"
-    },
-    "title": "Life Experiences with Present Perfect: 'Ever' and 'Never'",
-    "instructions": "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
-    "translation": "Ella nunca ha sostenido una serpiente.",
-    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
-    "topicName": "Present perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.02.05.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'s never held|has never held"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(never / hold) a snake.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She's never held a snake.",
-        "She has never held a snake."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953430c3"
-    },
-    "id": "67fab6d599301022953430c3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2c6"
-    },
-    "title": "Life Experiences with Present Perfect: 'Ever' and 'Never'",
-    "instructions": "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
-    "translation": "Nunca hemos visto ballet.",
-    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
-    "topicName": "Present perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.02.05.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'ve never watched|have never watched"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(never / watch) ballet.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We've never watched ballet.",
-        "We have never watched ballet."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953430c4"
-    },
-    "id": "67fab6d599301022953430c4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2c6"
-    },
-    "title": "Life Experiences with Present Perfect: 'Ever' and 'Never'",
-    "instructions": "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
-    "translation": "¿Alguna vez has presenciado una lluvia de meteoritos?",
-    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
-    "topicName": "Present perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.02.05.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Have you ever witnessed"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(you / ever / witness) a meteor shower?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Have you ever witnessed a meteor shower?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953430c5"
-    },
-    "id": "67fab6d599301022953430c5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2c6"
-    },
-    "title": "Life Experiences with Present Perfect: 'Ever' and 'Never'",
-    "instructions": "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
-    "translation": "Ella ha completado un triatlón.",
-    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
-    "topicName": "Present perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.02.05.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'s completed|has completed"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(complete) a triathlon.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She's completed a triathlon.",
-        "She has completed a triathlon."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953430c6"
-    },
-    "id": "67fab6d599301022953430c6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2c6"
-    },
-    "title": "Life Experiences with Present Perfect: 'Ever' and 'Never'",
-    "instructions": "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
-    "translation": "¿Alguna vez has montado a caballo?",
-    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
-    "topicName": "Present perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.02.05.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Have you ever ridden"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(you / ever / ride) a horse?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Have you ever ridden a horse?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953430c7"
-    },
-    "id": "67fab6d599301022953430c7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2c6"
-    },
-    "title": "Life Experiences with Present Perfect: 'Ever' and 'Never'",
-    "instructions": "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
-    "translation": "Nunca he pilotado un helicóptero.",
-    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
-    "topicName": "Present perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.02.05.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'ve never piloted|have never piloted"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(never / pilot) a helicopter.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I've never piloted a helicopter.",
-        "I have never piloted a helicopter."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953430c8"
-    },
-    "id": "67fab6d599301022953430c8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2c6"
-    },
-    "title": "Life Experiences with Present Perfect: 'Ever' and 'Never'",
-    "instructions": "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
-    "translation": "¿Alguna vez has probado caracoles?",
-    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
-    "topicName": "Present perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.02.05.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Have you ever tasted"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(you / ever / taste) snails?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Have you ever tasted snails?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953430c9"
-    },
-    "id": "67fab6d599301022953430c9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2c6"
-    },
-    "title": "Life Experiences with Present Perfect: 'Ever' and 'Never'",
-    "instructions": "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
-    "translation": "Él ha saltado de un avión.",
-    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
-    "topicName": "Present perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.02.05.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'s jumped|has jumped"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(jump) from a plane.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He's jumped from a plane.",
-        "He has jumped from a plane."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953430ca"
-    },
-    "id": "67fab6d599301022953430ca",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2c6"
-    },
-    "title": "Life Experiences with Present Perfect: 'Ever' and 'Never'",
-    "instructions": "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
-    "translation": "He horneado un pastel.",
-    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
-    "topicName": "Present perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.02.05.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'ve baked|have baked"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(bake) a cake.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I've baked a cake.",
-        "I have baked a cake."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953430cb"
-    },
-    "id": "67fab6d599301022953430cb",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2c6"
-    },
-    "title": "Life Experiences with Present Perfect: 'Ever' and 'Never'",
-    "instructions": "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
-    "translation": "¿Ella alguna vez ha probado el café?",
-    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
-    "topicName": "Present perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.02.05.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Has she ever tasted"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(she / ever / taste) coffee?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Has she ever tasted coffee?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953430cc"
-    },
-    "id": "67fab6d599301022953430cc",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2c6"
-    },
-    "title": "Life Experiences with Present Perfect: 'Ever' and 'Never'",
-    "instructions": "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
-    "translation": "Nunca he conocido a Michael.",
-    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
-    "topicName": "Present perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.02.05.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'ve never known|have never known"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(never / know) Michael.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I've never known Michael.",
-        "I have never known Michael."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953430cd"
-    },
-    "id": "67fab6d599301022953430cd",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2c6"
-    },
-    "title": "Life Experiences with Present Perfect: 'Ever' and 'Never'",
-    "instructions": "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
-    "translation": "He conducido un Ferrari.",
-    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
-    "topicName": "Present perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.02.05.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'ve driven|have driven"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(drive) a Ferrari.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I've driven a Ferrari.",
-        "I have driven a Ferrari."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953430ce"
-    },
-    "id": "67fab6d599301022953430ce",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2c6"
-    },
-    "title": "Life Experiences with Present Perfect: 'Ever' and 'Never'",
-    "instructions": "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
-    "translation": "Nunca me he encontrado con un oso.",
-    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
-    "topicName": "Present perfect",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.02.05.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "'ve never encountered|have never encountered"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(never / encounter) a bear.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I've never encountered a bear.",
-        "I have never encountered a bear."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.05.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'ve visited|have visited" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(visit) Italy.",
+      "options" : null
+    } ],
+    "sentences" : [ "We've visited Italy.", "We have visited Italy." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430bc"
+  },
+  "id" : "67fab6d599301022953430bc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c6"
+  },
+  "title" : "Life Experiences with Present Perfect: 'Ever' and 'Never'",
+  "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
+  "translation" : "¿Alguna vez has usado una tableta?",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.05.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Have you ever used" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / ever / use) a tablet?",
+      "options" : null
+    } ],
+    "sentences" : [ "Have you ever used a tablet?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430bd"
+  },
+  "id" : "67fab6d599301022953430bd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c6"
+  },
+  "title" : "Life Experiences with Present Perfect: 'Ever' and 'Never'",
+  "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
+  "translation" : "Nunca le he escrito a Peter.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.05.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'ve never written|have never written" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(never / write) to Peter.",
+      "options" : null
+    } ],
+    "sentences" : [ "I've never written to Peter.", "I have never written to Peter." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430be"
+  },
+  "id" : "67fab6d599301022953430be",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c6"
+  },
+  "title" : "Life Experiences with Present Perfect: 'Ever' and 'Never'",
+  "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
+  "translation" : "He visitado la Torre de Londres.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.05.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'ve visited|have visited" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(visit) the Tower of London.",
+      "options" : null
+    } ],
+    "sentences" : [ "I've visited the Tower of London.", "I have visited the Tower of London." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430bf"
+  },
+  "id" : "67fab6d599301022953430bf",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c6"
+  },
+  "title" : "Life Experiences with Present Perfect: 'Ever' and 'Never'",
+  "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
+  "translation" : "¿Alguna vez han caminado en el bosque?",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.05.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Have they ever hiked" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / ever / hike) in the forest?",
+      "options" : null
+    } ],
+    "sentences" : [ "Have they ever hiked in the forest?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430c0"
+  },
+  "id" : "67fab6d599301022953430c0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c6"
+  },
+  "title" : "Life Experiences with Present Perfect: 'Ever' and 'Never'",
+  "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
+  "translation" : "¿Alguna vez has llegado temprano a la escuela?",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.05.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Have you ever arrived" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / ever / arrive) early to school?",
+      "options" : null
+    } ],
+    "sentences" : [ "Have you ever arrived early to school?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430c1"
+  },
+  "id" : "67fab6d599301022953430c1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c6"
+  },
+  "title" : "Life Experiences with Present Perfect: 'Ever' and 'Never'",
+  "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
+  "translation" : "Él nunca ha leído a Tolstoi.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.05.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s never read|has never read" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(never / read) Tolstoy.",
+      "options" : null
+    } ],
+    "sentences" : [ "He's never read Tolstoy.", "He has never read Tolstoy." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430c2"
+  },
+  "id" : "67fab6d599301022953430c2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c6"
+  },
+  "title" : "Life Experiences with Present Perfect: 'Ever' and 'Never'",
+  "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
+  "translation" : "Ella nunca ha sostenido una serpiente.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.05.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s never held|has never held" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(never / hold) a snake.",
+      "options" : null
+    } ],
+    "sentences" : [ "She's never held a snake.", "She has never held a snake." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430c3"
+  },
+  "id" : "67fab6d599301022953430c3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c6"
+  },
+  "title" : "Life Experiences with Present Perfect: 'Ever' and 'Never'",
+  "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
+  "translation" : "Nunca hemos visto ballet.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.05.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'ve never watched|have never watched" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(never / watch) ballet.",
+      "options" : null
+    } ],
+    "sentences" : [ "We've never watched ballet.", "We have never watched ballet." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430c4"
+  },
+  "id" : "67fab6d599301022953430c4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c6"
+  },
+  "title" : "Life Experiences with Present Perfect: 'Ever' and 'Never'",
+  "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
+  "translation" : "¿Alguna vez has presenciado una lluvia de meteoritos?",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.05.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Have you ever witnessed" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / ever / witness) a meteor shower?",
+      "options" : null
+    } ],
+    "sentences" : [ "Have you ever witnessed a meteor shower?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430c5"
+  },
+  "id" : "67fab6d599301022953430c5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c6"
+  },
+  "title" : "Life Experiences with Present Perfect: 'Ever' and 'Never'",
+  "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
+  "translation" : "Ella ha completado un triatlón.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.05.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s completed|has completed" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(complete) a triathlon.",
+      "options" : null
+    } ],
+    "sentences" : [ "She's completed a triathlon.", "She has completed a triathlon." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430c6"
+  },
+  "id" : "67fab6d599301022953430c6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c6"
+  },
+  "title" : "Life Experiences with Present Perfect: 'Ever' and 'Never'",
+  "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
+  "translation" : "¿Alguna vez has montado a caballo?",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.05.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Have you ever ridden" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / ever / ride) a horse?",
+      "options" : null
+    } ],
+    "sentences" : [ "Have you ever ridden a horse?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430c7"
+  },
+  "id" : "67fab6d599301022953430c7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c6"
+  },
+  "title" : "Life Experiences with Present Perfect: 'Ever' and 'Never'",
+  "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
+  "translation" : "Nunca he pilotado un helicóptero.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.05.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'ve never piloted|have never piloted" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(never / pilot) a helicopter.",
+      "options" : null
+    } ],
+    "sentences" : [ "I've never piloted a helicopter.", "I have never piloted a helicopter." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430c8"
+  },
+  "id" : "67fab6d599301022953430c8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c6"
+  },
+  "title" : "Life Experiences with Present Perfect: 'Ever' and 'Never'",
+  "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
+  "translation" : "¿Alguna vez has probado caracoles?",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.05.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Have you ever tasted" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / ever / taste) snails?",
+      "options" : null
+    } ],
+    "sentences" : [ "Have you ever tasted snails?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430c9"
+  },
+  "id" : "67fab6d599301022953430c9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c6"
+  },
+  "title" : "Life Experiences with Present Perfect: 'Ever' and 'Never'",
+  "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
+  "translation" : "Él ha saltado de un avión.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.05.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s jumped|has jumped" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(jump) from a plane.",
+      "options" : null
+    } ],
+    "sentences" : [ "He's jumped from a plane.", "He has jumped from a plane." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430ca"
+  },
+  "id" : "67fab6d599301022953430ca",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c6"
+  },
+  "title" : "Life Experiences with Present Perfect: 'Ever' and 'Never'",
+  "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
+  "translation" : "He horneado un pastel.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.05.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'ve baked|have baked" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(bake) a cake.",
+      "options" : null
+    } ],
+    "sentences" : [ "I've baked a cake.", "I have baked a cake." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430cb"
+  },
+  "id" : "67fab6d599301022953430cb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c6"
+  },
+  "title" : "Life Experiences with Present Perfect: 'Ever' and 'Never'",
+  "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
+  "translation" : "¿Ella alguna vez ha probado el café?",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.05.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Has she ever tasted" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / ever / taste) coffee?",
+      "options" : null
+    } ],
+    "sentences" : [ "Has she ever tasted coffee?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430cc"
+  },
+  "id" : "67fab6d599301022953430cc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c6"
+  },
+  "title" : "Life Experiences with Present Perfect: 'Ever' and 'Never'",
+  "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
+  "translation" : "Nunca he conocido a Michael.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.05.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'ve never known|have never known" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(never / know) Michael.",
+      "options" : null
+    } ],
+    "sentences" : [ "I've never known Michael.", "I have never known Michael." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430cd"
+  },
+  "id" : "67fab6d599301022953430cd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c6"
+  },
+  "title" : "Life Experiences with Present Perfect: 'Ever' and 'Never'",
+  "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
+  "translation" : "He conducido un Ferrari.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.05.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'ve driven|have driven" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(drive) a Ferrari.",
+      "options" : null
+    } ],
+    "sentences" : [ "I've driven a Ferrari.", "I have driven a Ferrari." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430ce"
+  },
+  "id" : "67fab6d599301022953430ce",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c6"
+  },
+  "title" : "Life Experiences with Present Perfect: 'Ever' and 'Never'",
+  "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
+  "translation" : "Nunca me he encontrado con un oso.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.05.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'ve never encountered|have never encountered" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(never / encounter) a bear.",
+      "options" : null
+    } ],
+    "sentences" : [ "I've never encountered a bear.", "I have never encountered a bear." ]
+  }
+} ]

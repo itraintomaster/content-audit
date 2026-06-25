@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435a6"
-    },
-    "id": "67fab6d599301022953435a6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30d"
-    },
-    "title": "'Every', 'Each' and 'All' - Review",
-    "instructions": "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-    "translation": "Contactamos a todos los abogados del estado.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.03.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We contacted",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "every"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "lawyer in the state.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We contacted every lawyer in the state."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435a6"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435a7"
-    },
-    "id": "67fab6d599301022953435a7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30d"
-    },
-    "title": "'Every', 'Each' and 'All' - Review",
-    "instructions": "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-    "translation": "Quiero a cada uno de mis parientes por igual.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.03.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I like",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "each"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "of my relatives the same.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I like each of my relatives the same."
-      ]
-    }
+  "id" : "67fab6d599301022953435a6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30d"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435a8"
-    },
-    "id": "67fab6d599301022953435a8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30d"
-    },
-    "title": "'Every', 'Each' and 'All' - Review",
-    "instructions": "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-    "translation": "Recibí una tarjeta de cada uno de los miembros de mi familia.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.03.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I received a card from",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "each"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "of my family members.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I received a card from each of my family members."
-      ]
-    }
+  "title" : "'Every', 'Each' and 'All' - Review",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Contactamos a todos los abogados del estado.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435a9"
-    },
-    "id": "67fab6d599301022953435a9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30d"
-    },
-    "title": "'Every', 'Each' and 'All' - Review",
-    "instructions": "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-    "translation": "Tenía un guante en cada mano.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.03.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He had a glove on",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "each"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "hand.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He had a glove on each hand."
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435aa"
-    },
-    "id": "67fab6d599301022953435aa",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30d"
-    },
-    "title": "'Every', 'Each' and 'All' - Review",
-    "instructions": "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-    "translation": "Todos los profesores llegaron temprano.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.03.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Every"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "teacher was early.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Every teacher was early."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435ab"
-    },
-    "id": "67fab6d599301022953435ab",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30d"
-    },
-    "title": "'Every', 'Each' and 'All' - Review",
-    "instructions": "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-    "translation": "Disfruto cada canción.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.03.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I enjoy",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "every"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "song.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I enjoy every song."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435ac"
-    },
-    "id": "67fab6d599301022953435ac",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30d"
-    },
-    "title": "'Every', 'Each' and 'All' - Review",
-    "instructions": "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-    "translation": "Cada animal llevaba un hueso.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.03.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Every"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "animal was carrying a bone.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Every animal was carrying a bone."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435ad"
-    },
-    "id": "67fab6d599301022953435ad",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30d"
-    },
-    "title": "'Every', 'Each' and 'All' - Review",
-    "instructions": "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-    "translation": "Ella disfruta cada juego.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.03.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She enjoys",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "every"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "game.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She enjoys every game."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435ae"
-    },
-    "id": "67fab6d599301022953435ae",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30d"
-    },
-    "title": "'Every', 'Each' and 'All' - Review",
-    "instructions": "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-    "translation": "Cada uno de nosotros reprobó el examen.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.03.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Each"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "of us failed the test.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Each of us failed the test."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435af"
-    },
-    "id": "67fab6d599301022953435af",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30d"
-    },
-    "title": "'Every', 'Each' and 'All' - Review",
-    "instructions": "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-    "translation": "Ella tenía pulseras en cada muñeca.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.03.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She had bracelets on",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "each"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "wrist.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She had bracelets on each wrist."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435b0"
-    },
-    "id": "67fab6d599301022953435b0",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30d"
-    },
-    "title": "'Every', 'Each' and 'All' - Review",
-    "instructions": "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-    "translation": "Ella rompió todos los platos.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.03.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She smashed",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "every"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "plate.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She smashed every plate."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435b1"
-    },
-    "id": "67fab6d599301022953435b1",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30d"
-    },
-    "title": "'Every', 'Each' and 'All' - Review",
-    "instructions": "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-    "translation": "Limpiaron cada una de las mesas.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.03.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They cleaned",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "each"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "of the tables.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They cleaned each of the tables."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435b2"
-    },
-    "id": "67fab6d599301022953435b2",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30d"
-    },
-    "title": "'Every', 'Each' and 'All' - Review",
-    "instructions": "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-    "translation": "Ella bebió todos los batidos.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.03.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She drank",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "every"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "smoothie.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She drank every smoothie."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435b3"
-    },
-    "id": "67fab6d599301022953435b3",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30d"
-    },
-    "title": "'Every', 'Each' and 'All' - Review",
-    "instructions": "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-    "translation": "Él guardó cada uno de los discos cuidadosamente.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.03.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He stored",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "each"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "of the records carefully.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He stored each of the records carefully."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435b4"
-    },
-    "id": "67fab6d599301022953435b4",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30d"
-    },
-    "title": "'Every', 'Each' and 'All' - Review",
-    "instructions": "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-    "translation": "Vimos todos los programas.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.03.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We watched",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "every"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "show.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We watched every show."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435b5"
-    },
-    "id": "67fab6d599301022953435b5",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30d"
-    },
-    "title": "'Every', 'Each' and 'All' - Review",
-    "instructions": "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-    "translation": "Él entregó dulces a cada una de las niñas.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.03.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He handed sweets to",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "each"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "of the girls.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He handed sweets to each of the girls."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435b6"
-    },
-    "id": "67fab6d599301022953435b6",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30d"
-    },
-    "title": "'Every', 'Each' and 'All' - Review",
-    "instructions": "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-    "translation": "Ellos escucharon a todos los cantantes.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.03.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They listened to",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "every"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "singer.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They listened to every singer."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435b7"
-    },
-    "id": "67fab6d599301022953435b7",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30d"
-    },
-    "title": "'Every', 'Each' and 'All' - Review",
-    "instructions": "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-    "translation": "Cada uno de los chicos sostenía una pelota de baloncesto.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.03.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Each"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "of the boys was holding a basketball.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Each of the boys was holding a basketball."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435b8"
-    },
-    "id": "67fab6d599301022953435b8",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30d"
-    },
-    "title": "'Every', 'Each' and 'All' - Review",
-    "instructions": "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-    "translation": "Estudiaron todos los documentos.",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.03.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They studied",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "every"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "document.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They studied every document."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d599301022953435b9"
-    },
-    "id": "67fab6d599301022953435b9",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d30d"
-    },
-    "title": "'Every', 'Each' and 'All' - Review",
-    "instructions": "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-    "translation": "¿Saludaste a cada uno de los participantes?",
-    "theoryId": "b1.08.Either",
-    "topicName": "Determiners",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.08.03.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Did you greet",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "each"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "of the participants?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Did you greet each of the participants?"
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We contacted",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "every" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "lawyer in the state.",
+      "options" : null
+    } ],
+    "sentences" : [ "We contacted every lawyer in the state." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435a7"
+  },
+  "id" : "67fab6d599301022953435a7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30d"
+  },
+  "title" : "'Every', 'Each' and 'All' - Review",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Quiero a cada uno de mis parientes por igual.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I like",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "each" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "of my relatives the same.",
+      "options" : null
+    } ],
+    "sentences" : [ "I like each of my relatives the same." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435a8"
+  },
+  "id" : "67fab6d599301022953435a8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30d"
+  },
+  "title" : "'Every', 'Each' and 'All' - Review",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Recibí una tarjeta de cada uno de los miembros de mi familia.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I received a card from",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "each" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "of my family members.",
+      "options" : null
+    } ],
+    "sentences" : [ "I received a card from each of my family members." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435a9"
+  },
+  "id" : "67fab6d599301022953435a9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30d"
+  },
+  "title" : "'Every', 'Each' and 'All' - Review",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Tenía un guante en cada mano.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He had a glove on",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "each" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "hand.",
+      "options" : null
+    } ],
+    "sentences" : [ "He had a glove on each hand." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435aa"
+  },
+  "id" : "67fab6d599301022953435aa",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30d"
+  },
+  "title" : "'Every', 'Each' and 'All' - Review",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Todos los profesores llegaron temprano.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Every" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "teacher was early.",
+      "options" : null
+    } ],
+    "sentences" : [ "Every teacher was early." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435ab"
+  },
+  "id" : "67fab6d599301022953435ab",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30d"
+  },
+  "title" : "'Every', 'Each' and 'All' - Review",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Disfruto cada canción.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I enjoy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "every" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "song.",
+      "options" : null
+    } ],
+    "sentences" : [ "I enjoy every song." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435ac"
+  },
+  "id" : "67fab6d599301022953435ac",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30d"
+  },
+  "title" : "'Every', 'Each' and 'All' - Review",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Cada animal llevaba un hueso.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Every" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "animal was carrying a bone.",
+      "options" : null
+    } ],
+    "sentences" : [ "Every animal was carrying a bone." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435ad"
+  },
+  "id" : "67fab6d599301022953435ad",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30d"
+  },
+  "title" : "'Every', 'Each' and 'All' - Review",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Ella disfruta cada juego.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She enjoys",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "every" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "game.",
+      "options" : null
+    } ],
+    "sentences" : [ "She enjoys every game." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435ae"
+  },
+  "id" : "67fab6d599301022953435ae",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30d"
+  },
+  "title" : "'Every', 'Each' and 'All' - Review",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Cada uno de nosotros reprobó el examen.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Each" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "of us failed the test.",
+      "options" : null
+    } ],
+    "sentences" : [ "Each of us failed the test." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435af"
+  },
+  "id" : "67fab6d599301022953435af",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30d"
+  },
+  "title" : "'Every', 'Each' and 'All' - Review",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Ella tenía pulseras en cada muñeca.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She had bracelets on",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "each" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "wrist.",
+      "options" : null
+    } ],
+    "sentences" : [ "She had bracelets on each wrist." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435b0"
+  },
+  "id" : "67fab6d599301022953435b0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30d"
+  },
+  "title" : "'Every', 'Each' and 'All' - Review",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Ella rompió todos los platos.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She smashed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "every" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "plate.",
+      "options" : null
+    } ],
+    "sentences" : [ "She smashed every plate." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435b1"
+  },
+  "id" : "67fab6d599301022953435b1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30d"
+  },
+  "title" : "'Every', 'Each' and 'All' - Review",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Limpiaron cada una de las mesas.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They cleaned",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "each" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "of the tables.",
+      "options" : null
+    } ],
+    "sentences" : [ "They cleaned each of the tables." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435b2"
+  },
+  "id" : "67fab6d599301022953435b2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30d"
+  },
+  "title" : "'Every', 'Each' and 'All' - Review",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Ella bebió todos los batidos.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She drank",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "every" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "smoothie.",
+      "options" : null
+    } ],
+    "sentences" : [ "She drank every smoothie." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435b3"
+  },
+  "id" : "67fab6d599301022953435b3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30d"
+  },
+  "title" : "'Every', 'Each' and 'All' - Review",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Él guardó cada uno de los discos cuidadosamente.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He stored",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "each" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "of the records carefully.",
+      "options" : null
+    } ],
+    "sentences" : [ "He stored each of the records carefully." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435b4"
+  },
+  "id" : "67fab6d599301022953435b4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30d"
+  },
+  "title" : "'Every', 'Each' and 'All' - Review",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Vimos todos los programas.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We watched",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "every" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "show.",
+      "options" : null
+    } ],
+    "sentences" : [ "We watched every show." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435b5"
+  },
+  "id" : "67fab6d599301022953435b5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30d"
+  },
+  "title" : "'Every', 'Each' and 'All' - Review",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Él entregó dulces a cada una de las niñas.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He handed sweets to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "each" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "of the girls.",
+      "options" : null
+    } ],
+    "sentences" : [ "He handed sweets to each of the girls." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435b6"
+  },
+  "id" : "67fab6d599301022953435b6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30d"
+  },
+  "title" : "'Every', 'Each' and 'All' - Review",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Ellos escucharon a todos los cantantes.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They listened to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "every" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "singer.",
+      "options" : null
+    } ],
+    "sentences" : [ "They listened to every singer." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435b7"
+  },
+  "id" : "67fab6d599301022953435b7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30d"
+  },
+  "title" : "'Every', 'Each' and 'All' - Review",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Cada uno de los chicos sostenía una pelota de baloncesto.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Each" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "of the boys was holding a basketball.",
+      "options" : null
+    } ],
+    "sentences" : [ "Each of the boys was holding a basketball." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435b8"
+  },
+  "id" : "67fab6d599301022953435b8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30d"
+  },
+  "title" : "'Every', 'Each' and 'All' - Review",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Estudiaron todos los documentos.",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They studied",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "every" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "document.",
+      "options" : null
+    } ],
+    "sentences" : [ "They studied every document." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435b9"
+  },
+  "id" : "67fab6d599301022953435b9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d30d"
+  },
+  "title" : "'Every', 'Each' and 'All' - Review",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "¿Saludaste a cada uno de los participantes?",
+  "theoryId" : "b1.08.Either",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did you greet",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "each" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "of the participants?",
+      "options" : null
+    } ],
+    "sentences" : [ "Did you greet each of the participants?" ]
+  }
+} ]

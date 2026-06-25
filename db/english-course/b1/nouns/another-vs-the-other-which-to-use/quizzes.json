@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343542"
-    },
-    "id": "67fab6d59930102295343542",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d307"
-    },
-    "title": "'Another' vs. 'The Other': Which to Use?",
-    "instructions": "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
-    "translation": "Condujimos a otra ciudad.",
-    "theoryId": "b1.07.Other_The_Other_Another",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.08.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We drove to",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "another"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "city.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We drove to another city."
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343542"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343543"
-    },
-    "id": "67fab6d59930102295343543",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d307"
-    },
-    "title": "'Another' vs. 'The Other': Which to Use?",
-    "instructions": "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
-    "translation": "Él prefiere las otras opciones.",
-    "theoryId": "b1.07.Other_The_Other_Another",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.08.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He prefers",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "the other"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "options.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He prefers the other options."
-      ]
-    }
+  "id" : "67fab6d59930102295343542",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d307"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343544"
-    },
-    "id": "67fab6d59930102295343544",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d307"
-    },
-    "title": "'Another' vs. 'The Other': Which to Use?",
-    "instructions": "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
-    "translation": "Los profesores se saltaron los otros seminarios.",
-    "theoryId": "b1.07.Other_The_Other_Another",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.08.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The professors skipped",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "the other"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "seminars.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The professors skipped the other seminars."
-      ]
-    }
+  "title" : "'Another' vs. 'The Other': Which to Use?",
+  "instructions" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
+  "translation" : "Condujimos a otra ciudad.",
+  "theoryId" : "b1.07.Other_The_Other_Another",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343545"
-    },
-    "id": "67fab6d59930102295343545",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d307"
-    },
-    "title": "'Another' vs. 'The Other': Which to Use?",
-    "instructions": "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
-    "translation": "¿Quieres otra galleta?",
-    "theoryId": "b1.07.Other_The_Other_Another",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.08.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Would you like",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "another"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "cookie?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Would you like another cookie?"
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343546"
-    },
-    "id": "67fab6d59930102295343546",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d307"
-    },
-    "title": "'Another' vs. 'The Other': Which to Use?",
-    "instructions": "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
-    "translation": "Prefiero las otras frutas.",
-    "theoryId": "b1.07.Other_The_Other_Another",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.08.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I prefer",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "the other"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "fruits.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "I prefer the other fruits."
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343547"
-    },
-    "id": "67fab6d59930102295343547",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d307"
-    },
-    "title": "'Another' vs. 'The Other': Which to Use?",
-    "instructions": "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
-    "translation": "Ella leyó otra historia.",
-    "theoryId": "b1.07.Other_The_Other_Another",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.08.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She read",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "another"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "story.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She read another story."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343548"
-    },
-    "id": "67fab6d59930102295343548",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d307"
-    },
-    "title": "'Another' vs. 'The Other': Which to Use?",
-    "instructions": "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
-    "translation": "Ella me envió los otros calcetines.",
-    "theoryId": "b1.07.Other_The_Other_Another",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.08.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She sent me",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "the other"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "socks.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She sent me the other socks."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343549"
-    },
-    "id": "67fab6d59930102295343549",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d307"
-    },
-    "title": "'Another' vs. 'The Other': Which to Use?",
-    "instructions": "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
-    "translation": "Ellos bebieron otro vaso de jugo.",
-    "theoryId": "b1.07.Other_The_Other_Another",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.08.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They drank",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "another"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "glass of juice.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They drank another glass of juice."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534354a"
-    },
-    "id": "67fab6d5993010229534354a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d307"
-    },
-    "title": "'Another' vs. 'The Other': Which to Use?",
-    "instructions": "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
-    "translation": "Ella desea otro gato.",
-    "theoryId": "b1.07.Other_The_Other_Another",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.08.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She desires",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "another"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "cat.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She desires another cat."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534354b"
-    },
-    "id": "67fab6d5993010229534354b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d307"
-    },
-    "title": "'Another' vs. 'The Other': Which to Use?",
-    "instructions": "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
-    "translation": "Cenamos en otro pub.",
-    "theoryId": "b1.07.Other_The_Other_Another",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.08.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We dined at",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "another"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "pub.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We dined at another pub."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534354c"
-    },
-    "id": "67fab6d5993010229534354c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d307"
-    },
-    "title": "'Another' vs. 'The Other': Which to Use?",
-    "instructions": "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
-    "translation": "Ellos eligieron otro coche.",
-    "theoryId": "b1.07.Other_The_Other_Another",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.08.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They chose",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "another"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "car.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They chose another car."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534354d"
-    },
-    "id": "67fab6d5993010229534354d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d307"
-    },
-    "title": "'Another' vs. 'The Other': Which to Use?",
-    "instructions": "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
-    "translation": "Probamos las otras tartas.",
-    "theoryId": "b1.07.Other_The_Other_Another",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.08.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "We tasted",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "the other"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "pies.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "We tasted the other pies."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534354e"
-    },
-    "id": "67fab6d5993010229534354e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d307"
-    },
-    "title": "'Another' vs. 'The Other': Which to Use?",
-    "instructions": "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
-    "translation": "Ella eligió las otras bolsas.",
-    "theoryId": "b1.07.Other_The_Other_Another",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.08.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She chose",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "the other"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "bags.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She chose the other bags."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534354f"
-    },
-    "id": "67fab6d5993010229534354f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d307"
-    },
-    "title": "'Another' vs. 'The Other': Which to Use?",
-    "instructions": "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
-    "translation": "¿Tienes los otros bolígrafos?",
-    "theoryId": "b1.07.Other_The_Other_Another",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.08.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Do you have",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "the other"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "pens?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Do you have the other pens?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343550"
-    },
-    "id": "67fab6d59930102295343550",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d307"
-    },
-    "title": "'Another' vs. 'The Other': Which to Use?",
-    "instructions": "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
-    "translation": "Sirvieron las otras cervezas.",
-    "theoryId": "b1.07.Other_The_Other_Another",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.08.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They served",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "the other"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "beers.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They served the other beers."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343551"
-    },
-    "id": "67fab6d59930102295343551",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d307"
-    },
-    "title": "'Another' vs. 'The Other': Which to Use?",
-    "instructions": "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
-    "translation": "Él rompió los otros platos.",
-    "theoryId": "b1.07.Other_The_Other_Another",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.08.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "He broke",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "the other"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "plates.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "He broke the other plates."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343552"
-    },
-    "id": "67fab6d59930102295343552",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d307"
-    },
-    "title": "'Another' vs. 'The Other': Which to Use?",
-    "instructions": "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
-    "translation": "Los adultos disfrutaron de otra obra de teatro.",
-    "theoryId": "b1.07.Other_The_Other_Another",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.08.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "The adults enjoyed",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "another"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "play.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "The adults enjoyed another play."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343553"
-    },
-    "id": "67fab6d59930102295343553",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d307"
-    },
-    "title": "'Another' vs. 'The Other': Which to Use?",
-    "instructions": "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
-    "translation": "¿Puedes esperar otro minuto?",
-    "theoryId": "b1.07.Other_The_Other_Another",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.08.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Can you wait",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "another"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "minute?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Can you wait another minute?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343554"
-    },
-    "id": "67fab6d59930102295343554",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d307"
-    },
-    "title": "'Another' vs. 'The Other': Which to Use?",
-    "instructions": "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
-    "translation": "Ellos requieren otro mes.",
-    "theoryId": "b1.07.Other_The_Other_Another",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.08.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "They require",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "another"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "month.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "They require another month."
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343555"
-    },
-    "id": "67fab6d59930102295343555",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d307"
-    },
-    "title": "'Another' vs. 'The Other': Which to Use?",
-    "instructions": "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
-    "translation": "Ella cubrió los otros gastos.",
-    "theoryId": "b1.07.Other_The_Other_Another",
-    "topicName": "Nouns",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.07.08.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She covered",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "the other"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "expenses.",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "She covered the other expenses."
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.08.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We drove to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "another" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "city.",
+      "options" : null
+    } ],
+    "sentences" : [ "We drove to another city." ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343543"
+  },
+  "id" : "67fab6d59930102295343543",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d307"
+  },
+  "title" : "'Another' vs. 'The Other': Which to Use?",
+  "instructions" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
+  "translation" : "Él prefiere las otras opciones.",
+  "theoryId" : "b1.07.Other_The_Other_Another",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.08.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He prefers",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the other" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "options.",
+      "options" : null
+    } ],
+    "sentences" : [ "He prefers the other options." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343544"
+  },
+  "id" : "67fab6d59930102295343544",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d307"
+  },
+  "title" : "'Another' vs. 'The Other': Which to Use?",
+  "instructions" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
+  "translation" : "Los profesores se saltaron los otros seminarios.",
+  "theoryId" : "b1.07.Other_The_Other_Another",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.08.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The professors skipped",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the other" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "seminars.",
+      "options" : null
+    } ],
+    "sentences" : [ "The professors skipped the other seminars." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343545"
+  },
+  "id" : "67fab6d59930102295343545",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d307"
+  },
+  "title" : "'Another' vs. 'The Other': Which to Use?",
+  "instructions" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
+  "translation" : "¿Quieres otra galleta?",
+  "theoryId" : "b1.07.Other_The_Other_Another",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.08.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Would you like",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "another" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "cookie?",
+      "options" : null
+    } ],
+    "sentences" : [ "Would you like another cookie?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343546"
+  },
+  "id" : "67fab6d59930102295343546",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d307"
+  },
+  "title" : "'Another' vs. 'The Other': Which to Use?",
+  "instructions" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
+  "translation" : "Prefiero las otras frutas.",
+  "theoryId" : "b1.07.Other_The_Other_Another",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.08.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I prefer",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the other" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "fruits.",
+      "options" : null
+    } ],
+    "sentences" : [ "I prefer the other fruits." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343547"
+  },
+  "id" : "67fab6d59930102295343547",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d307"
+  },
+  "title" : "'Another' vs. 'The Other': Which to Use?",
+  "instructions" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
+  "translation" : "Ella leyó otra historia.",
+  "theoryId" : "b1.07.Other_The_Other_Another",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.08.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She read",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "another" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "story.",
+      "options" : null
+    } ],
+    "sentences" : [ "She read another story." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343548"
+  },
+  "id" : "67fab6d59930102295343548",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d307"
+  },
+  "title" : "'Another' vs. 'The Other': Which to Use?",
+  "instructions" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
+  "translation" : "Ella me envió los otros calcetines.",
+  "theoryId" : "b1.07.Other_The_Other_Another",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.08.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She sent me",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the other" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "socks.",
+      "options" : null
+    } ],
+    "sentences" : [ "She sent me the other socks." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343549"
+  },
+  "id" : "67fab6d59930102295343549",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d307"
+  },
+  "title" : "'Another' vs. 'The Other': Which to Use?",
+  "instructions" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
+  "translation" : "Ellos bebieron otro vaso de jugo.",
+  "theoryId" : "b1.07.Other_The_Other_Another",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.08.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They drank",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "another" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "glass of juice.",
+      "options" : null
+    } ],
+    "sentences" : [ "They drank another glass of juice." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534354a"
+  },
+  "id" : "67fab6d5993010229534354a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d307"
+  },
+  "title" : "'Another' vs. 'The Other': Which to Use?",
+  "instructions" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
+  "translation" : "Ella desea otro gato.",
+  "theoryId" : "b1.07.Other_The_Other_Another",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.08.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She desires",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "another" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "cat.",
+      "options" : null
+    } ],
+    "sentences" : [ "She desires another cat." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534354b"
+  },
+  "id" : "67fab6d5993010229534354b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d307"
+  },
+  "title" : "'Another' vs. 'The Other': Which to Use?",
+  "instructions" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
+  "translation" : "Cenamos en otro pub.",
+  "theoryId" : "b1.07.Other_The_Other_Another",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.08.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We dined at",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "another" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "pub.",
+      "options" : null
+    } ],
+    "sentences" : [ "We dined at another pub." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534354c"
+  },
+  "id" : "67fab6d5993010229534354c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d307"
+  },
+  "title" : "'Another' vs. 'The Other': Which to Use?",
+  "instructions" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
+  "translation" : "Ellos eligieron otro coche.",
+  "theoryId" : "b1.07.Other_The_Other_Another",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.08.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They chose",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "another" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "car.",
+      "options" : null
+    } ],
+    "sentences" : [ "They chose another car." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534354d"
+  },
+  "id" : "67fab6d5993010229534354d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d307"
+  },
+  "title" : "'Another' vs. 'The Other': Which to Use?",
+  "instructions" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
+  "translation" : "Probamos las otras tartas.",
+  "theoryId" : "b1.07.Other_The_Other_Another",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.08.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We tasted",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the other" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "pies.",
+      "options" : null
+    } ],
+    "sentences" : [ "We tasted the other pies." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534354e"
+  },
+  "id" : "67fab6d5993010229534354e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d307"
+  },
+  "title" : "'Another' vs. 'The Other': Which to Use?",
+  "instructions" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
+  "translation" : "Ella eligió las otras bolsas.",
+  "theoryId" : "b1.07.Other_The_Other_Another",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.08.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She chose",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the other" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "bags.",
+      "options" : null
+    } ],
+    "sentences" : [ "She chose the other bags." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534354f"
+  },
+  "id" : "67fab6d5993010229534354f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d307"
+  },
+  "title" : "'Another' vs. 'The Other': Which to Use?",
+  "instructions" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
+  "translation" : "¿Tienes los otros bolígrafos?",
+  "theoryId" : "b1.07.Other_The_Other_Another",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.08.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the other" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "pens?",
+      "options" : null
+    } ],
+    "sentences" : [ "Do you have the other pens?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343550"
+  },
+  "id" : "67fab6d59930102295343550",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d307"
+  },
+  "title" : "'Another' vs. 'The Other': Which to Use?",
+  "instructions" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
+  "translation" : "Sirvieron las otras cervezas.",
+  "theoryId" : "b1.07.Other_The_Other_Another",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.08.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They served",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the other" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "beers.",
+      "options" : null
+    } ],
+    "sentences" : [ "They served the other beers." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343551"
+  },
+  "id" : "67fab6d59930102295343551",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d307"
+  },
+  "title" : "'Another' vs. 'The Other': Which to Use?",
+  "instructions" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
+  "translation" : "Él rompió los otros platos.",
+  "theoryId" : "b1.07.Other_The_Other_Another",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.08.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He broke",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the other" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "plates.",
+      "options" : null
+    } ],
+    "sentences" : [ "He broke the other plates." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343552"
+  },
+  "id" : "67fab6d59930102295343552",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d307"
+  },
+  "title" : "'Another' vs. 'The Other': Which to Use?",
+  "instructions" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
+  "translation" : "Los adultos disfrutaron de otra obra de teatro.",
+  "theoryId" : "b1.07.Other_The_Other_Another",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.08.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The adults enjoyed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "another" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "play.",
+      "options" : null
+    } ],
+    "sentences" : [ "The adults enjoyed another play." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343553"
+  },
+  "id" : "67fab6d59930102295343553",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d307"
+  },
+  "title" : "'Another' vs. 'The Other': Which to Use?",
+  "instructions" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
+  "translation" : "¿Puedes esperar otro minuto?",
+  "theoryId" : "b1.07.Other_The_Other_Another",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.08.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can you wait",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "another" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "minute?",
+      "options" : null
+    } ],
+    "sentences" : [ "Can you wait another minute?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343554"
+  },
+  "id" : "67fab6d59930102295343554",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d307"
+  },
+  "title" : "'Another' vs. 'The Other': Which to Use?",
+  "instructions" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
+  "translation" : "Ellos requieren otro mes.",
+  "theoryId" : "b1.07.Other_The_Other_Another",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.08.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They require",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "another" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "month.",
+      "options" : null
+    } ],
+    "sentences" : [ "They require another month." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343555"
+  },
+  "id" : "67fab6d59930102295343555",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d307"
+  },
+  "title" : "'Another' vs. 'The Other': Which to Use?",
+  "instructions" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
+  "translation" : "Ella cubrió los otros gastos.",
+  "theoryId" : "b1.07.Other_The_Other_Another",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.08.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She covered",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the other" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "expenses.",
+      "options" : null
+    } ],
+    "sentences" : [ "She covered the other expenses." ]
+  }
+} ]

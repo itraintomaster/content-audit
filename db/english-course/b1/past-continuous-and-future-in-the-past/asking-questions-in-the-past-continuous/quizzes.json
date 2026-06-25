@@ -1,1222 +1,1041 @@
-[
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343151"
-    },
-    "id": "67fab6d59930102295343151",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2cf"
-    },
-    "title": "Asking questions in the past continuous",
-    "instructions": "Formula preguntas usando el *past continuous*.",
-    "translation": "¿Por qué estaba corriendo?",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.02.01",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Why",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "was he running"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(he / run)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Why was he running?"
-      ]
-    }
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343151"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343152"
-    },
-    "id": "67fab6d59930102295343152",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2cf"
-    },
-    "title": "Asking questions in the past continuous",
-    "instructions": "Formula preguntas usando el *past continuous*.",
-    "translation": "¿Estaban cerrando las puertas?",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.02.02",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Were they closing"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(they / close) the doors?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Were they closing the doors?"
-      ]
-    }
+  "id" : "67fab6d59930102295343151",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2cf"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343153"
-    },
-    "id": "67fab6d59930102295343153",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2cf"
-    },
-    "title": "Asking questions in the past continuous",
-    "instructions": "Formula preguntas usando el *past continuous*.",
-    "translation": "¿A quién le estabas enviando mensajes de texto?",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.02.03",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Who",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were you texting"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(you / text)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Who were you texting?"
-      ]
-    }
+  "title" : "Asking questions in the past continuous",
+  "instructions" : "Formula preguntas usando el *past continuous*.",
+  "translation" : "¿Por qué estaba corriendo?",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343154"
-    },
-    "id": "67fab6d59930102295343154",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2cf"
-    },
-    "title": "Asking questions in the past continuous",
-    "instructions": "Formula preguntas usando el *past continuous*.",
-    "translation": "¿Dónde estábamos caminando?",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.02.04",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Where",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were we walking"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(we / walk)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Where were we walking?"
-      ]
-    }
+  "retries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343155"
-    },
-    "id": "67fab6d59930102295343155",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2cf"
-    },
-    "title": "Asking questions in the past continuous",
-    "instructions": "Formula preguntas usando el *past continuous*.",
-    "translation": "¿Los estábamos visitando?",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.02.05",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Were we visiting"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(we / visit) them?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Were we visiting them?"
-      ]
-    }
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
   },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343156"
-    },
-    "id": "67fab6d59930102295343156",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2cf"
-    },
-    "title": "Asking questions in the past continuous",
-    "instructions": "Formula preguntas usando el *past continuous*.",
-    "translation": "¿Estaba soñando?",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.02.06",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Was I dreaming"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(I / dream)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Was I dreaming?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343157"
-    },
-    "id": "67fab6d59930102295343157",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2cf"
-    },
-    "title": "Asking questions in the past continuous",
-    "instructions": "Formula preguntas usando el *past continuous*.",
-    "translation": "¿Estabas comprando un coche?",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.02.07",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Were you buying"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(you / buy) a car?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Were you buying a car?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343158"
-    },
-    "id": "67fab6d59930102295343158",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2cf"
-    },
-    "title": "Asking questions in the past continuous",
-    "instructions": "Formula preguntas usando el *past continuous*.",
-    "translation": "¿Qué estaba bebiendo ella?",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.02.08",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "What",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "was she drinking"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(she / drink)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "What was she drinking?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343159"
-    },
-    "id": "67fab6d59930102295343159",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2cf"
-    },
-    "title": "Asking questions in the past continuous",
-    "instructions": "Formula preguntas usando el *past continuous*.",
-    "translation": "¿Qué estaba leyendo?",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.02.09",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "What",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "was I reading"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(I / read)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "What was I reading?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534315a"
-    },
-    "id": "67fab6d5993010229534315a",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2cf"
-    },
-    "title": "Asking questions in the past continuous",
-    "instructions": "Formula preguntas usando el *past continuous*.",
-    "translation": "¿Cuándo estaba brillando?",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.02.10",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "When",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "was it shining"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(it / shine)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "When was it shining?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534315b"
-    },
-    "id": "67fab6d5993010229534315b",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2cf"
-    },
-    "title": "Asking questions in the past continuous",
-    "instructions": "Formula preguntas usando el *past continuous*.",
-    "translation": "¿Estaba conduciendo su camioneta?",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.02.11",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Was he driving"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(he / drive) his truck?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Was he driving his truck?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534315c"
-    },
-    "id": "67fab6d5993010229534315c",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2cf"
-    },
-    "title": "Asking questions in the past continuous",
-    "instructions": "Formula preguntas usando el *past continuous*.",
-    "translation": "¿Estaba cantando una canción?",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.02.12",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Was he singing"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(he / sing) a song?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Was he singing a song?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534315d"
-    },
-    "id": "67fab6d5993010229534315d",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2cf"
-    },
-    "title": "Asking questions in the past continuous",
-    "instructions": "Formula preguntas usando el *past continuous*.",
-    "translation": "¿Qué estaban mirando?",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.02.13",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "What",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were they watching"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(they / watch)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "What were they watching?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534315e"
-    },
-    "id": "67fab6d5993010229534315e",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2cf"
-    },
-    "title": "Asking questions in the past continuous",
-    "instructions": "Formula preguntas usando el *past continuous*.",
-    "translation": "¿Ella lo estaba esperando?",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.02.14",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Was she waiting"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(she / wait) for him?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Was she waiting for him?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d5993010229534315f"
-    },
-    "id": "67fab6d5993010229534315f",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2cf"
-    },
-    "title": "Asking questions in the past continuous",
-    "instructions": "Formula preguntas usando el *past continuous*.",
-    "translation": "¿Estaba cocinando la cena?",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.02.15",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Was I cooking"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(I / cook) dinner?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Was I cooking dinner?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343160"
-    },
-    "id": "67fab6d59930102295343160",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2cf"
-    },
-    "title": "Asking questions in the past continuous",
-    "instructions": "Formula preguntas usando el *past continuous*.",
-    "translation": "¿Estabas consumiendo refresco?",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.02.16",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Were you consuming"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(you / consume) soda?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Were you consuming soda?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343161"
-    },
-    "id": "67fab6d59930102295343161",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2cf"
-    },
-    "title": "Asking questions in the past continuous",
-    "instructions": "Formula preguntas usando el *past continuous*.",
-    "translation": "¿Dónde estaba viviendo?",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.02.17",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Where",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "was he living"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(he / live)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Where was he living?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343162"
-    },
-    "id": "67fab6d59930102295343162",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2cf"
-    },
-    "title": "Asking questions in the past continuous",
-    "instructions": "Formula preguntas usando el *past continuous*.",
-    "translation": "¿Por qué estaban gritando?",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.02.18",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Why",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were they screaming"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(they / scream)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Why were they screaming?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343163"
-    },
-    "id": "67fab6d59930102295343163",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2cf"
-    },
-    "title": "Asking questions in the past continuous",
-    "instructions": "Formula preguntas usando el *past continuous*.",
-    "translation": "¿A quién estábamos viendo?",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.02.19",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "Who",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "were we seeing"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(we / see)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Who were we seeing?"
-      ]
-    }
-  },
-  {
-    "_id": {
-      "$oid": "67fab6d59930102295343164"
-    },
-    "id": "67fab6d59930102295343164",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "6814dafa7d73e7209a13d2cf"
-    },
-    "title": "Asking questions in the past continuous",
-    "instructions": "Formula preguntas usando el *past continuous*.",
-    "translation": "¿Estaba granizando?",
-    "theoryId": "b1.03.Past_Continuous_Forms",
-    "topicName": "Past Continuous and Future in the Past",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "code": "",
-    "audioUrl": "",
-    "imageUrl": "",
-    "answerAudioUrl": "B1.03.02.20",
-    "answerImageUrl": "",
-    "miniTheory": "",
-    "successMessage": "",
-    "form": {
-      "kind": "CLOZE",
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "Was it hailing"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(it / hail)?",
-          "options": null
-        }
-      ],
-      "sentences": [
-        "Was it hailing?"
-      ]
-    }
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.02.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Why",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was he running" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / run)?",
+      "options" : null
+    } ],
+    "sentences" : [ "Why was he running?" ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343152"
+  },
+  "id" : "67fab6d59930102295343152",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2cf"
+  },
+  "title" : "Asking questions in the past continuous",
+  "instructions" : "Formula preguntas usando el *past continuous*.",
+  "translation" : "¿Estaban cerrando las puertas?",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.02.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Were they closing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / close) the doors?",
+      "options" : null
+    } ],
+    "sentences" : [ "Were they closing the doors?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343153"
+  },
+  "id" : "67fab6d59930102295343153",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2cf"
+  },
+  "title" : "Asking questions in the past continuous",
+  "instructions" : "Formula preguntas usando el *past continuous*.",
+  "translation" : "¿A quién le estabas enviando mensajes de texto?",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.02.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Who",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were you texting" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / text)?",
+      "options" : null
+    } ],
+    "sentences" : [ "Who were you texting?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343154"
+  },
+  "id" : "67fab6d59930102295343154",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2cf"
+  },
+  "title" : "Asking questions in the past continuous",
+  "instructions" : "Formula preguntas usando el *past continuous*.",
+  "translation" : "¿Dónde estábamos caminando?",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.02.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were we walking" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(we / walk)?",
+      "options" : null
+    } ],
+    "sentences" : [ "Where were we walking?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343155"
+  },
+  "id" : "67fab6d59930102295343155",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2cf"
+  },
+  "title" : "Asking questions in the past continuous",
+  "instructions" : "Formula preguntas usando el *past continuous*.",
+  "translation" : "¿Los estábamos visitando?",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.02.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Were we visiting" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(we / visit) them?",
+      "options" : null
+    } ],
+    "sentences" : [ "Were we visiting them?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343156"
+  },
+  "id" : "67fab6d59930102295343156",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2cf"
+  },
+  "title" : "Asking questions in the past continuous",
+  "instructions" : "Formula preguntas usando el *past continuous*.",
+  "translation" : "¿Estaba soñando?",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.02.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Was I dreaming" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(I / dream)?",
+      "options" : null
+    } ],
+    "sentences" : [ "Was I dreaming?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343157"
+  },
+  "id" : "67fab6d59930102295343157",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2cf"
+  },
+  "title" : "Asking questions in the past continuous",
+  "instructions" : "Formula preguntas usando el *past continuous*.",
+  "translation" : "¿Estabas comprando un coche?",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.02.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Were you buying" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / buy) a car?",
+      "options" : null
+    } ],
+    "sentences" : [ "Were you buying a car?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343158"
+  },
+  "id" : "67fab6d59930102295343158",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2cf"
+  },
+  "title" : "Asking questions in the past continuous",
+  "instructions" : "Formula preguntas usando el *past continuous*.",
+  "translation" : "¿Qué estaba bebiendo ella?",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.02.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was she drinking" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / drink)?",
+      "options" : null
+    } ],
+    "sentences" : [ "What was she drinking?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343159"
+  },
+  "id" : "67fab6d59930102295343159",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2cf"
+  },
+  "title" : "Asking questions in the past continuous",
+  "instructions" : "Formula preguntas usando el *past continuous*.",
+  "translation" : "¿Qué estaba leyendo?",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.02.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was I reading" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(I / read)?",
+      "options" : null
+    } ],
+    "sentences" : [ "What was I reading?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534315a"
+  },
+  "id" : "67fab6d5993010229534315a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2cf"
+  },
+  "title" : "Asking questions in the past continuous",
+  "instructions" : "Formula preguntas usando el *past continuous*.",
+  "translation" : "¿Cuándo estaba brillando?",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.02.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "When",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was it shining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(it / shine)?",
+      "options" : null
+    } ],
+    "sentences" : [ "When was it shining?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534315b"
+  },
+  "id" : "67fab6d5993010229534315b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2cf"
+  },
+  "title" : "Asking questions in the past continuous",
+  "instructions" : "Formula preguntas usando el *past continuous*.",
+  "translation" : "¿Estaba conduciendo su camioneta?",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.02.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Was he driving" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / drive) his truck?",
+      "options" : null
+    } ],
+    "sentences" : [ "Was he driving his truck?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534315c"
+  },
+  "id" : "67fab6d5993010229534315c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2cf"
+  },
+  "title" : "Asking questions in the past continuous",
+  "instructions" : "Formula preguntas usando el *past continuous*.",
+  "translation" : "¿Estaba cantando una canción?",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.02.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Was he singing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / sing) a song?",
+      "options" : null
+    } ],
+    "sentences" : [ "Was he singing a song?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534315d"
+  },
+  "id" : "67fab6d5993010229534315d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2cf"
+  },
+  "title" : "Asking questions in the past continuous",
+  "instructions" : "Formula preguntas usando el *past continuous*.",
+  "translation" : "¿Qué estaban mirando?",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.02.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were they watching" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / watch)?",
+      "options" : null
+    } ],
+    "sentences" : [ "What were they watching?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534315e"
+  },
+  "id" : "67fab6d5993010229534315e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2cf"
+  },
+  "title" : "Asking questions in the past continuous",
+  "instructions" : "Formula preguntas usando el *past continuous*.",
+  "translation" : "¿Ella lo estaba esperando?",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.02.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Was she waiting" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / wait) for him?",
+      "options" : null
+    } ],
+    "sentences" : [ "Was she waiting for him?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534315f"
+  },
+  "id" : "67fab6d5993010229534315f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2cf"
+  },
+  "title" : "Asking questions in the past continuous",
+  "instructions" : "Formula preguntas usando el *past continuous*.",
+  "translation" : "¿Estaba cocinando la cena?",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.02.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Was I cooking" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(I / cook) dinner?",
+      "options" : null
+    } ],
+    "sentences" : [ "Was I cooking dinner?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343160"
+  },
+  "id" : "67fab6d59930102295343160",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2cf"
+  },
+  "title" : "Asking questions in the past continuous",
+  "instructions" : "Formula preguntas usando el *past continuous*.",
+  "translation" : "¿Estabas consumiendo refresco?",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.02.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Were you consuming" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / consume) soda?",
+      "options" : null
+    } ],
+    "sentences" : [ "Were you consuming soda?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343161"
+  },
+  "id" : "67fab6d59930102295343161",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2cf"
+  },
+  "title" : "Asking questions in the past continuous",
+  "instructions" : "Formula preguntas usando el *past continuous*.",
+  "translation" : "¿Dónde estaba viviendo?",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.02.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was he living" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / live)?",
+      "options" : null
+    } ],
+    "sentences" : [ "Where was he living?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343162"
+  },
+  "id" : "67fab6d59930102295343162",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2cf"
+  },
+  "title" : "Asking questions in the past continuous",
+  "instructions" : "Formula preguntas usando el *past continuous*.",
+  "translation" : "¿Por qué estaban gritando?",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.02.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Why",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were they screaming" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / scream)?",
+      "options" : null
+    } ],
+    "sentences" : [ "Why were they screaming?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343163"
+  },
+  "id" : "67fab6d59930102295343163",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2cf"
+  },
+  "title" : "Asking questions in the past continuous",
+  "instructions" : "Formula preguntas usando el *past continuous*.",
+  "translation" : "¿A quién estábamos viendo?",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.02.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Who",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were we seeing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(we / see)?",
+      "options" : null
+    } ],
+    "sentences" : [ "Who were we seeing?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343164"
+  },
+  "id" : "67fab6d59930102295343164",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2cf"
+  },
+  "title" : "Asking questions in the past continuous",
+  "instructions" : "Formula preguntas usando el *past continuous*.",
+  "translation" : "¿Estaba granizando?",
+  "theoryId" : "b1.03.Past_Continuous_Forms",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.03.02.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Was it hailing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(it / hail)?",
+      "options" : null
+    } ],
+    "sentences" : [ "Was it hailing?" ]
+  }
+} ]
