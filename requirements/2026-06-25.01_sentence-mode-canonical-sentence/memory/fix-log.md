@@ -42,3 +42,15 @@ Implementation/test fixes that worked, with a short why. Newest on top.
   unico chequeo posible seria un paso de validacion/siembra de datos, EXPLICITAMENTE fuera de
   alcance. No se fuerza tag a la regla mas cercana. Pendiente: reformular/retirar con @analyst,
   test estructural, o gate de journey (J001 ya gate-ea R001/R002 en leer_modo).
+
+2026-06-25 — qa-tester — Gap R006 en el path de aplicación: handwrittenTest sobre DefaultCourseElementLocator
+  R006 estaba [covered] solo a nivel deriver. El replace() del locator reconstruye el KnowledgeEntity
+  afectado y descarta sentenceMode (línea 104: pasa null como 12vo arg, en vez de knowledge.getSentenceMode()).
+  Test propuesto (TDD, hoy FALLA): course con knowledge REWRITE + quiz; replace(course, snapshot) reemplaza
+  el quiz; el knowledge resultante en el course devuelto conserva REWRITE (no null). Trazabilidad DIRECTA a R006.
+  Impl destino: DefaultCourseElementLocator (revision-domain, paquete engine, package-private). Sin clase de
+  test previa (NO TESTS) → el stub DefaultCourseElementLocatorTest se crea al generar, en el paquete engine.
+  Patch: requirements/2026-06-25.01_sentence-mode-canonical-sentence/architectural_patch.yaml (1 modification).
+  Gotcha del patch: el impl vive en package 'engine'; hay que anidar bajo modules[].packages[name=engine], no
+  en module root (el validador rechaza module-root con "declared at (module root) ... but ... at package engine").
+  arreglo lo hace developer (pasar knowledge.getSentenceMode() en vez de null).

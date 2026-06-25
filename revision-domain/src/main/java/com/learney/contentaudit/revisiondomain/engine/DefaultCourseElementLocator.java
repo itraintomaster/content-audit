@@ -101,7 +101,7 @@ class DefaultCourseElementLocator implements CourseElementLocator {
                                 knowledge.getId(), knowledge.getCode(), knowledge.getKind(),
                                 knowledge.getLabel(), knowledge.getOldId(), knowledge.getParentId(),
                                 knowledge.isIsRule(), knowledge.getInstructions(),
-                                knowledge.getOrder(), knowledge.getSlug(), updatedQuizzes, null);
+                                knowledge.getOrder(), knowledge.getSlug(), updatedQuizzes, knowledge.getSentenceMode());
                         updatedKnowledges.add(updatedKnowledge);
                         knowledgeChanged = true;
                     } else {

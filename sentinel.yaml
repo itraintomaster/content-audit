@@ -8568,6 +8568,13 @@ modules:
     - name: DefaultCourseElementLocator
       types:
       - Component
+      handwrittenTests:
+      - name: "Given a course whose knowledge declares a REWRITE sentenceMode, when\
+          \ replace swaps a quiz inside that knowledge, then the resulting knowledge\
+          \ in the returned course keeps its REWRITE sentenceMode"
+        traceability:
+          feature: FEAT-SMODE
+          rule: F-SMODE-R006
       implements:
       - CourseElementLocator
     - name: DefaultRevisionEngine

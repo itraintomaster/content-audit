@@ -50,6 +50,13 @@ Current state, last action, next step.
   BLOQUEANTE: DefaultLemmaAbsenceProposalDeriver no implementa derive(before, candidate, SentenceMode).
   Siguiente paso: @developer implementa la firma de 3 args en DefaultLemmaAbsenceProposalDeriver.
 
+2026-06-25 — test-writer — DefaultCourseElementLocatorTest implementado (F-SMODE-R006)
+  Fixture: course con hierarchy root/milestone/topic/knowledge/quiz donde knowledge.sentenceMode=REWRITE.
+  elementAfter: snapshot del quiz revisado (mismo nodeId). Act: locator.replace(course, elementAfter).
+  Assert: resultKnowledge.getSentenceMode() == REWRITE. Falla como esperado: expected REWRITE but was null.
+  Fallo correcto: producción pasa null en linea ~104 en vez de knowledge.getSentenceMode().
+  Developer debe corregir DefaultCourseElementLocator.replace() para propagar sentenceMode.
+
 2026-06-25 — developer — Implementacion FEAT-SMODE completa: 2404 tests pasan (BUILD SUCCESS)
   Modulos implementados en orden:
   1. course-domain: DefaultQuizSentenceConverter.toPlainSentences(FormEntity, SentenceMode) + PlainSentenceDeriver
