@@ -74,12 +74,15 @@ def passed(key):
     v = verdicts.get(key) or {}
     return bool(v.get("pass", False))
 
-# Bloqueantes: #1 sense, #2 solvable, #3 length, #5 translation. (#4 deseable.)
+# Bloqueantes: #1 sense, #2 solvable, #3 length, #5 translation, #6 finite-reuse.
+# (#4 deseable.) #6 auto-pasa (N/A) cuando la respuesta no es de conjunto finito
+# o reutilizarla no daría un ejercicio válido — el juez lo emite como pass:true.
 blocking = {
-    "eval1_sense":       passed("eval1_sense"),
-    "eval2_solvable":    passed("eval2_solvable"),
-    "eval3_length":      length_ok,
-    "eval5_translation": passed("eval5_translation"),
+    "eval1_sense":        passed("eval1_sense"),
+    "eval2_solvable":     passed("eval2_solvable"),
+    "eval3_length":       length_ok,
+    "eval5_translation":  passed("eval5_translation"),
+    "eval6_finite_reuse": passed("eval6_finite_reuse"),
 }
 all_blocking_pass = all(blocking.values())
 blocking_passed_count = sum(1 for ok in blocking.values() if ok)
@@ -88,8 +91,8 @@ blocking_passed_count = sum(1 for ok in blocking.values() if ok)
 # tener que bucear events.jsonl. Lista qué bloqueantes reprobaron.
 _failed = [k for k, ok in blocking.items() if not ok]
 sys.stderr.write(
-    "[eval] blocking passed %d/4%s\n" % (
-        blocking_passed_count,
+    "[eval] blocking passed %d/%d%s\n" % (
+        blocking_passed_count, len(blocking),
         ("" if all_blocking_pass else " — FAILED: " + ", ".join(_failed)),
     )
 )
@@ -169,7 +172,8 @@ if not all_blocking_pass:
         else:
             lines.append(f"- ❌ #3 longitud: el candidato ({_cw} palabras) no cumple la longitud esperada. Ajustá.")
     for key, label in [("eval1_sense","#1 sentido"),("eval2_solvable","#2 resoluble"),
-                       ("eval5_translation","#5 traducción")]:
+                       ("eval5_translation","#5 traducción"),
+                       ("eval6_finite_reuse","#6 reutilizar respuesta finita")]:
         v = verdicts.get(key) or {}
         if not v.get("pass", False):
             lines.append(f"- ❌ {label}: {v.get('reason','(sin detalle)')}")

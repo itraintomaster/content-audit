@@ -417,7 +417,7 @@ terms:
 
   - name: Catálogo de evals de calidad
     technicalName: QualityEvalCatalog
-    definition: Conjunto fijo de evaluaciones de calidad —corrección y buena formación del candidato para el tipo de ejercicio original, resolubilidad, longitud dentro del rango esperado del nivel, pragmatismo y fidelidad de la traducción— al que se somete el candidato tras pasar el gate estructural, cada una con su propio veredicto e independientemente testeable.
+    definition: Conjunto fijo de evaluaciones de calidad —corrección y buena formación del candidato para el tipo de ejercicio original, resolubilidad, longitud dentro del rango esperado del nivel, pragmatismo, fidelidad de la traducción y reutilización de la respuesta finita del original cuando el ejercicio lo admite— al que se somete el candidato tras pasar el gate estructural, cada una con su propio veredicto e independientemente testeable.
     aliases:
       - catálogo de evals
       - evals de calidad
@@ -462,6 +462,15 @@ terms:
     aliases:
       - eval #4
       - eval deseable #4
+
+  - name: Reutilización de la respuesta finita
+    technicalName: FiniteAnswerReuseEval
+    definition: Eval bloqueante cuando aplica que exige que, si la respuesta del hueco del quiz original pertenece a un conjunto cerrado/finito (formas de to be, clases de contabilidad, existenciales, artículos, demostrativos, auxiliares, cuantificadores cerrados) y el ejercicio admite seguir usando esa respuesta, el candidato conserve la misma respuesta —misma categoría— del original; es N/A y no bloquea cuando la respuesta del original es de vocabulario abierto o cuando reutilizarla no daría un ejercicio válido o natural. Al agotar los reintentos de eval pesa solo como preferencia en la elección del mejor candidato, no como gate duro.
+    aliases:
+      - eval #6
+      - reutilización de la respuesta finita
+      - reutilización de la respuesta
+      - eval de reutilización
 
   - name: Reintento de generación por evals
     technicalName: EvalDrivenRegeneration
