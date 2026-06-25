@@ -12,6 +12,7 @@ import com.learney.contentaudit.coursedomain.MilestoneEntity;
 import com.learney.contentaudit.coursedomain.NodeKind;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.coursedomain.RootNodeEntity;
+import com.learney.contentaudit.coursedomain.SentenceMode;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
 import com.learney.contentaudit.coursedomain.TopicEntity;
@@ -267,6 +268,17 @@ public class FileSystemCourseRepository implements CourseRepository {
         String instructions = (String) knowledgeJson.get("instructions");
         String slug = knowledgeDir.getFileName().toString();
 
+        // F-SMODE: read sentenceMode from _knowledge.json (nullable — absent means null)
+        String sentenceModeStr = (String) knowledgeJson.get("sentenceMode");
+        SentenceMode sentenceMode = null;
+        if (sentenceModeStr != null && !sentenceModeStr.isBlank()) {
+            try {
+                sentenceMode = SentenceMode.valueOf(sentenceModeStr);
+            } catch (IllegalArgumentException ignored) {
+                // unrecognized value → treat as absent
+            }
+        }
+
         // Load quizzes
         Path quizzesFile = knowledgeDir.resolve(QUIZZES_FILE);
         List<QuizTemplateEntity> quizTemplates = new ArrayList<>();
@@ -286,6 +298,7 @@ public class FileSystemCourseRepository implements CourseRepository {
         knowledge.setOrder(0); // will be set by caller
         knowledge.setSlug(slug);
         knowledge.setQuizTemplates(quizTemplates);
+        knowledge.setSentenceMode(sentenceMode);
         return knowledge;
     }
 
@@ -523,6 +536,10 @@ public class FileSystemCourseRepository implements CourseRepository {
         json.put("oldId", knowledge.getOldId());
         json.put("parentId", oidWrapper(knowledge.getParentId()));
         json.put("instructions", knowledge.getInstructions());
+        // F-SMODE: serialize sentenceMode only when non-null
+        if (knowledge.getSentenceMode() != null) {
+            json.put("sentenceMode", knowledge.getSentenceMode().name());
+        }
 
         Path knowledgeFile = knowledgeDir.resolve(KNOWLEDGE_FILE);
         objectMapper.writerWithDefaultPrettyPrinter().writeValue(knowledgeFile.toFile(), json);
@@ -557,7 +574,15 @@ public class FileSystemCourseRepository implements CourseRepository {
             q.put("answerImageUrl", quiz.getAnswerImageUrl());
             q.put("miniTheory", quiz.getMiniTheory());
             q.put("successMessage", quiz.getSuccessMessage());
-            q.put("form", formToJson(quiz.getForm()));
+            // F-DBSENT-R004: serialize sentences symmetrically to how they are read.
+            // The loader reads sentences from form.sentences (primary) so we inject
+            // them into the form map here. Only emit when the list is non-null and
+            // non-empty to avoid writing empty arrays that the loader would treat as absent.
+            Map<String, Object> formJson = formToJson(quiz.getForm());
+            if (formJson != null && quiz.getSentences() != null && !quiz.getSentences().isEmpty()) {
+                formJson.put("sentences", quiz.getSentences());
+            }
+            q.put("form", formJson);
             jsonArray.add(q);
         }
 

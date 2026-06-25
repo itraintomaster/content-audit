@@ -866,7 +866,7 @@ class FileSystemCourseRepositoryIntegrationTest {
 
         var knowledge = new KnowledgeEntity(K1_ID, K1_ID, NodeKind.KNOWLEDGE,
                 "Affirmative Sentences", K1_OLD_ID, T1_ID, true,
-                "Escribe la forma afirmativa.", 1, null, List.of(quiz));
+                "Escribe la forma afirmativa.", 1, null, List.of(quiz), null);
 
         var topic = new TopicEntity(T1_ID, T1_ID, NodeKind.TOPIC,
                 "Present Simple", T1_OLD_ID, M1_ID,

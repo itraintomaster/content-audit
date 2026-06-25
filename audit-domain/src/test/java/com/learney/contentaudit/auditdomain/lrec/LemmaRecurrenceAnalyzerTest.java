@@ -62,7 +62,7 @@ public class LemmaRecurrenceAnalyzerTest {
     @Test
     @DisplayName("Given an AuditableKnowledge, when onKnowledge is called, then completes without error")
     public void givenAnAuditableKnowledgeWhenOnKnowledgeIsCalledThenCompletesWithoutError() {
-        AuditableKnowledge k = new AuditableKnowledge(null, "t", "i", true, "k1", "l", "c");
+        AuditableKnowledge k = new AuditableKnowledge(null, "t", "i", true, "k1", "l", "c", null);
         assertDoesNotThrow(() -> sut.onKnowledge(makeNode(AuditTarget.KNOWLEDGE, k)));
     }
 

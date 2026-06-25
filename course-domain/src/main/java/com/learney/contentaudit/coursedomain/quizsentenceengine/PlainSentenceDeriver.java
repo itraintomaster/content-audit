@@ -1,6 +1,7 @@
 package com.learney.contentaudit.coursedomain.quizsentenceengine;
 
 import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.SentenceMode;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
 import com.learney.contentaudit.coursedomain.quizsentence.QuizSentenceSerializationException;
@@ -41,6 +42,110 @@ public PlainSentenceDeriver(WhitespaceNormalizer whitespaceNormalizer) {
     this.whitespaceNormalizer = whitespaceNormalizer;
 }
 
+
+    /** Pattern that matches a sentence-terminal punctuation at end of a string. */
+    private static final Pattern SENTENCE_END_PATTERN = Pattern.compile(".*[.?!]\\s*$");
+
+    /**
+     * Post-processes a derived sentence list by removing spurious spaces that appear
+     * immediately before sentence-ending punctuation ({@code .?!}) left over after
+     * hint-stripping (e.g. {@code "She dances well ."} → {@code "She dances well."}).
+     */
+    private List<String> removeSpaceBeforePunctuation(List<String> sentences) {
+        if (sentences == null || sentences.isEmpty()) {
+            return sentences;
+        }
+        List<String> result = new ArrayList<>(sentences.size());
+        for (String s : sentences) {
+            result.add(s == null ? null : s.replaceAll("\\s+([.?!])", "$1"));
+        }
+        return result;
+    }
+
+    /**
+     * Derives all plain sentences from {@code form.sentenceParts} using the given mode
+     * (F-SMODE-R003, R004).
+     *
+     * <ul>
+     *   <li>FILL or null — delegates to {@link #derive(FormEntity)} (full-sentence, mode-blind),
+     *       then removes any space that appears immediately before sentence-ending punctuation
+     *       (artifact of hint-stripping inside TEXT parts).</li>
+     *   <li>REWRITE — derives only the segment(s) that contain at least one CLOZE part,
+     *       excluding any TEXT-only scaffold sentence that precedes the first CLOZE and ends
+     *       with sentence-terminal punctuation ({@code .?!}).</li>
+     * </ul>
+     *
+     * @param form the form to derive sentences from
+     * @param mode the sentence mode; null is treated as FILL
+     * @return ordered list; index 0 is the canonical variant
+     */
+    List<String> derive(FormEntity form, SentenceMode mode) {
+        if (mode != SentenceMode.REWRITE) {
+            // FILL or null → full-sentence, mode-blind derivation (legacy behaviour)
+            // Apply post-processing to remove spaces before punctuation that arise from hint-stripping
+            return removeSpaceBeforePunctuation(derive(form));
+        }
+
+        // REWRITE: exclude TEXT-andamio scaffold sentences that precede the first CLOZE
+        // and end with sentence-terminal punctuation.
+        if (form == null || form.getSentenceParts() == null || form.getSentenceParts().isEmpty()) {
+            return List.of();
+        }
+
+        List<SentencePartEntity> original = form.getSentenceParts();
+
+        // Identify the index of the first CLOZE part
+        int firstClozeIndex = -1;
+        for (int i = 0; i < original.size(); i++) {
+            if (original.get(i).getKind() == SentencePartKind.CLOZE) {
+                firstClozeIndex = i;
+                break;
+            }
+        }
+
+        if (firstClozeIndex < 0) {
+            // No CLOZE at all — nothing to exclude; derive as normal (degenerate case)
+            return derive(form);
+        }
+
+        // Build filtered parts: skip TEXT-scaffold parts that precede the first CLOZE
+        // and form a complete sentence (end with . ? !)
+        List<SentencePartEntity> filtered = new ArrayList<>();
+        for (int i = 0; i < original.size(); i++) {
+            SentencePartEntity part = original.get(i);
+            if (i < firstClozeIndex
+                    && part.getKind() == SentencePartKind.TEXT
+                    && isScaffoldSentence(part.getText())) {
+                // Skip: this is the source/prompt scaffold TEXT sentence
+                continue;
+            }
+            filtered.add(part);
+        }
+
+        if (filtered.isEmpty()) {
+            return List.of();
+        }
+
+        // Derive from the filtered parts using a temporary FormEntity
+        FormEntity rewriteForm = new FormEntity(
+                form.getKind(),
+                form.getIncidence(),
+                form.getLabel(),
+                form.getName(),
+                filtered);
+        return removeSpaceBeforePunctuation(derive(rewriteForm));
+    }
+
+    /**
+     * Returns true when {@code text} is a scaffold sentence: non-blank text that ends with
+     * sentence-terminal punctuation (., ?, !), possibly followed by whitespace.
+     */
+    private boolean isScaffoldSentence(String text) {
+        if (text == null || text.isBlank()) {
+            return false;
+        }
+        return SENTENCE_END_PATTERN.matcher(text).matches();
+    }
 
     /**
      * Derives all plain sentences from {@code form.sentenceParts}.

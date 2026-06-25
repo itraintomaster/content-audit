@@ -148,7 +148,7 @@ public class FRcslJ003JourneyTest {
         // Step: solicitar_tarea — User requests a SENTENCE_LENGTH task
         AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-j003-p1", null, null, "El perro corre rapido.", List.of("The dog runs fast."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "Animals in Motion", "Complete the sentence.", true, "know-j003-p1", null, null);
+                List.of(), "Animals in Motion", "Complete the sentence.", true, "know-j003-p1", null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-j003-p1", "Animals", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-j003-p1", "A1", null);
 
@@ -188,7 +188,7 @@ public class FRcslJ003JourneyTest {
         // Step: solicitar_tarea — User requests a SENTENCE_LENGTH task
         AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-j003-p2", null, null, "Ella lee un libro.", List.of("She reads a book."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "Daily Activities", "Complete the sentence.", true, "know-j003-p2", null, null);
+                List.of(), "Daily Activities", "Complete the sentence.", true, "know-j003-p2", null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-j003-p2", "Routines", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-j003-p2", "A1", null);
 
@@ -244,7 +244,7 @@ public class FRcslJ003JourneyTest {
         // Step: solicitar_tarea — User requests a SENTENCE_LENGTH task
         AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-j003-p3", null, null, "El juega al futbol.", List.of("He plays football."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "Sports", "Complete the sentence.", true, "know-j003-p3", null, null);
+                List.of(), "Sports", "Complete the sentence.", true, "know-j003-p3", null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-j003-p3", "Leisure", null);
 
         // Step: localizar_quiz (gate: F-RCSL-R002) — build tree WITHOUT milestone: COURSE→TOPIC→KNOWLEDGE→QUIZ

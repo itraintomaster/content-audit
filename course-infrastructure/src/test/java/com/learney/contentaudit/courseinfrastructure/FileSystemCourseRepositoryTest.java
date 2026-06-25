@@ -294,4 +294,208 @@ public class FileSystemCourseRepositoryTest {
         assertNotNull(knowledge.getQuizTemplates(), "el knowledge debe tener quizzes");
         return knowledge.getQuizTemplates().get(0);
     }
+
+    @Test
+    @DisplayName("should preserve each quiz plain sentences identically after a load save load round-trip")
+    @Tag("FEAT-DBSENT")
+    @Tag("F-DBSENT-R004")
+    public void shouldPreserveEachQuizPlainSentencesIdenticallyAfterALoadSaveLoadRoundtrip(
+            @TempDir Path sourceDir, @TempDir Path targetDir) throws IOException {
+        // Arrange — un quiz con sentences pre-computadas escritas en el JSON de origen
+        var textPart = new java.util.LinkedHashMap<String, Object>();
+        textPart.put("kind", "TEXT");
+        textPart.put("text", "She ");
+        textPart.put("options", null);
+
+        var clozePart = new java.util.LinkedHashMap<String, Object>();
+        clozePart.put("kind", "CLOZE");
+        clozePart.put("text", "");
+        clozePart.put("options", List.of("watches the DVD."));
+
+        List<String> originalSentences = List.of("Watch the DVD.");
+        writeCourseWithQuiz(sourceDir, List.of(textPart, clozePart), originalSentences);
+
+        FileSystemCourseRepository sut = new FileSystemCourseRepository(new CourseValidatorImpl());
+
+        // Act — ciclo load -> save -> load (round-trip)
+        var courseAntesSave = sut.load(sourceDir);
+        sut.save(courseAntesSave, targetDir);
+        var courseDespuesSave = sut.load(targetDir);
+
+        // Assert — las sentences del quiz deben ser identicas a las originales
+        // (misma cantidad, mismos textos, mismo orden) — R004 criterio de aceptacion
+        QuizTemplateEntity quiz = firstQuiz(courseDespuesSave.getRoot().getMilestones()
+                .get(0).getTopics().get(0).getKnowledges().get(0));
+        assertEquals(originalSentences.size(), quiz.getSentences().size(),
+                "la cantidad de sentences debe ser identica tras el round-trip");
+        assertEquals(originalSentences.get(0), quiz.getSentences().get(0),
+                "el texto de la sentence debe ser identico tras el round-trip");
+    }
+
+    @Test
+    @DisplayName("should preserve the plain sentences of every quiz in a multi-quiz course after a whole-course save without dropping or cross-contaminating any list")
+    @Tag("FEAT-DBSENT")
+    @Tag("F-DBSENT-R004")
+    public void shouldPreserveThePlainSentencesOfEveryQuizInAMultiquizCourseAfterAWholecourseSaveWithoutDroppingOrCrosscontaminatingAnyList(
+            @TempDir Path sourceDir, @TempDir Path targetDir) throws IOException {
+        // Arrange — curso con DOS quizzes en distintos knowledges, cada uno con
+        // una lista de sentences diferente. Esto reproduce el vector de perdida masiva
+        // descripto en R004: al reescribir el curso completo, si save omite sentences
+        // las pierde en TODOS los quizzes, no solo en uno.
+        //
+        // Quiz 1 (knowledge: affirmative-sentences):  ["Watch the DVD."]
+        // Quiz 2 (knowledge: dances-well):            ["She dances well.", "She dances good."]
+
+        // Reutilizamos las IDs de la clase para el quiz 1 y definimos nuevas para el quiz 2
+        final String Q2_ID_LOCAL  = "500000000000000000000002";
+        final String K2_ID_LOCAL  = "400000000000000000000002";
+        final String T2_ID_LOCAL  = "300000000000000000000002";
+        final String M2_ID_LOCAL  = "200000000000000000000002";
+        final String M2_OLD_ID    = "22222222-2222-2222-2222-222222222222";
+        final String T2_OLD_ID    = "44444444-4444-4444-4444-444444444444";
+        final String K2_OLD_ID    = "66666666-6666-6666-6666-666666666666";
+
+        // --- Quiz 1 ---
+        var text1 = new java.util.LinkedHashMap<String, Object>();
+        text1.put("kind", "TEXT");
+        text1.put("text", "She ");
+        text1.put("options", null);
+        var cloze1 = new java.util.LinkedHashMap<String, Object>();
+        cloze1.put("kind", "CLOZE");
+        cloze1.put("text", "");
+        cloze1.put("options", List.of("watches the DVD."));
+        List<String> sentencesQuiz1 = List.of("Watch the DVD.");
+
+        // Escribimos el curso base con el quiz 1 usando el helper existente
+        writeCourseWithQuiz(sourceDir, List.of(text1, cloze1), sentencesQuiz1);
+
+        // --- Quiz 2 — segundo milestone con su propio knowledge y quizzes.json ---
+        // Actualizamos _course.json para que ROOT apunte a [M1, M2] y
+        // knowledgeIds incluya K2. Sobreescribimos con el JSON correcto.
+        var courseJson = new java.util.LinkedHashMap<String, Object>();
+        courseJson.put("_id", Map.of("$oid", COURSE_ID));
+        courseJson.put("title", "test-course");
+        courseJson.put("knowledgeIds", List.of(
+                Map.of("$oid", K1_ID),
+                Map.of("$oid", K2_ID_LOCAL)));
+        var rootJson = new java.util.LinkedHashMap<String, Object>();
+        rootJson.put("_id", Map.of("$oid", ROOT_ID));
+        rootJson.put("code", "root");
+        rootJson.put("kind", "ROOT");
+        rootJson.put("label", null);
+        rootJson.put("children", List.of(
+                Map.of("$oid", M1_ID),
+                Map.of("$oid", M2_ID_LOCAL)));
+        courseJson.put("root", rootJson);
+        writeJson(sourceDir.resolve("_course.json"), courseJson);
+
+        // Milestone 2
+        Path m2Dir = sourceDir.resolve("a2");
+        Files.createDirectories(m2Dir);
+        var m2Json = new java.util.LinkedHashMap<String, Object>();
+        m2Json.put("_id", Map.of("$oid", M2_ID_LOCAL));
+        m2Json.put("children", List.of(Map.of("$oid", T2_ID_LOCAL)));
+        m2Json.put("code", M2_ID_LOCAL);
+        m2Json.put("kind", "MILESTONE");
+        m2Json.put("label", "A2");
+        m2Json.put("oldId", M2_OLD_ID);
+        m2Json.put("parentId", Map.of("$oid", ROOT_ID));
+        writeJson(m2Dir.resolve("_milestone.json"), m2Json);
+
+        // Topic 2
+        Path t2Dir = m2Dir.resolve("dances-well");
+        Files.createDirectories(t2Dir);
+        var t2Json = new java.util.LinkedHashMap<String, Object>();
+        t2Json.put("_id", Map.of("$oid", T2_ID_LOCAL));
+        t2Json.put("children", null);
+        t2Json.put("code", T2_ID_LOCAL);
+        t2Json.put("kind", "TOPIC");
+        t2Json.put("label", "Dances Well");
+        t2Json.put("oldId", T2_OLD_ID);
+        t2Json.put("parentId", Map.of("$oid", M2_ID_LOCAL));
+        t2Json.put("ruleIds", List.of(Map.of("$oid", K2_ID_LOCAL)));
+        writeJson(t2Dir.resolve("_topic.json"), t2Json);
+
+        // Knowledge 2
+        Path k2Dir = t2Dir.resolve("adverbs-of-manner");
+        Files.createDirectories(k2Dir);
+        var k2Json = new java.util.LinkedHashMap<String, Object>();
+        k2Json.put("_id", Map.of("$oid", K2_ID_LOCAL));
+        k2Json.put("code", K2_ID_LOCAL);
+        k2Json.put("isRule", true);
+        k2Json.put("kind", "KNOWLEDGE");
+        k2Json.put("label", "Adverbs of Manner");
+        k2Json.put("oldId", K2_OLD_ID);
+        k2Json.put("parentId", Map.of("$oid", T2_ID_LOCAL));
+        k2Json.put("instructions", "Usa el adverbio correcto.");
+        writeJson(k2Dir.resolve("_knowledge.json"), k2Json);
+
+        // Quiz 2 — dos sentences distintas a las del quiz 1
+        List<String> sentencesQuiz2 = List.of("She dances well.", "She dances good.");
+        var text2 = new java.util.LinkedHashMap<String, Object>();
+        text2.put("kind", "TEXT");
+        text2.put("text", "She dances ");
+        text2.put("options", null);
+        var cloze2 = new java.util.LinkedHashMap<String, Object>();
+        cloze2.put("kind", "CLOZE");
+        cloze2.put("text", "");
+        cloze2.put("options", List.of("well.", "good."));
+
+        var form2 = new java.util.LinkedHashMap<String, Object>();
+        form2.put("kind", "CLOZE");
+        form2.put("incidence", Map.of("$numberDouble", "1.0"));
+        form2.put("label", "");
+        form2.put("name", "");
+        form2.put("sentenceParts", List.of(text2, cloze2));
+        form2.put("sentences", sentencesQuiz2);
+
+        var quiz2 = new java.util.LinkedHashMap<String, Object>();
+        quiz2.put("_id", Map.of("$oid", Q2_ID_LOCAL));
+        quiz2.put("id", Q2_ID_LOCAL);
+        quiz2.put("kind", "CLOZE");
+        quiz2.put("knowledgeId", Map.of("$oid", K2_ID_LOCAL));
+        quiz2.put("title", "Adverbs of Manner");
+        quiz2.put("instructions", "Usa el adverbio correcto.");
+        quiz2.put("translation", "Ella baila bien.");
+        quiz2.put("theoryId", "a2.01.Adverbs");
+        quiz2.put("topicName", "Dances Well");
+        quiz2.put("difficulty", Map.of("$numberDouble", "0.0"));
+        quiz2.put("retries", Map.of("$numberDouble", "0.0"));
+        quiz2.put("noScoreRetries", Map.of("$numberDouble", "0.0"));
+        quiz2.put("code", "");
+        quiz2.put("audioUrl", "");
+        quiz2.put("imageUrl", "");
+        quiz2.put("answerAudioUrl", "A2.01.01.01");
+        quiz2.put("answerImageUrl", "");
+        quiz2.put("miniTheory", "");
+        quiz2.put("successMessage", "");
+        quiz2.put("form", form2);
+        writeJson(k2Dir.resolve("quizzes.json"), List.of(quiz2));
+
+        FileSystemCourseRepository sut = new FileSystemCourseRepository(new CourseValidatorImpl());
+
+        // Act — ciclo load -> save (curso completo) -> load
+        var courseOriginal = sut.load(sourceDir);
+        sut.save(courseOriginal, targetDir);
+        var courseRecargado = sut.load(targetDir);
+
+        // Assert — ninguna lista de sentences se pierde ni se cruza entre quizzes
+        // Milestone 1 -> Topic 1 -> Knowledge 1 -> Quiz 1
+        QuizTemplateEntity quizRecargado1 = firstQuiz(courseRecargado.getRoot().getMilestones()
+                .get(0).getTopics().get(0).getKnowledges().get(0));
+        assertEquals(sentencesQuiz1.size(), quizRecargado1.getSentences().size(),
+                "quiz1: la cantidad de sentences no debe cambiar tras el save del curso completo");
+        assertEquals(sentencesQuiz1.get(0), quizRecargado1.getSentences().get(0),
+                "quiz1: el texto de la sentence debe conservarse identico");
+
+        // Milestone 2 -> Topic 2 -> Knowledge 2 -> Quiz 2
+        QuizTemplateEntity quizRecargado2 = firstQuiz(courseRecargado.getRoot().getMilestones()
+                .get(1).getTopics().get(0).getKnowledges().get(0));
+        assertEquals(sentencesQuiz2.size(), quizRecargado2.getSentences().size(),
+                "quiz2: deben conservarse las 2 sentences sin perderse ni mezclarse con quiz1");
+        assertEquals(sentencesQuiz2.get(0), quizRecargado2.getSentences().get(0),
+                "quiz2: posicion 0 debe ser 'She dances well.'");
+        assertEquals(sentencesQuiz2.get(1), quizRecargado2.getSentences().get(1),
+                "quiz2: posicion 1 debe ser 'She dances good.'");
+    }
 }

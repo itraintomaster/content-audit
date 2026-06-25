@@ -1,0 +1,89 @@
+code: FEAT-SMODE
+description: "FEAT-SMODE: modo de frase del knowledge (REWRITE/FILL) y frase canonica\
+  \ puntuable consciente del modo. Agrega el enum SentenceMode y el campo sentenceMode\
+  \ en KnowledgeEntity, una sobrecarga toPlainSentences(form, mode) en QuizSentenceConverter,\
+  \ propaga el modo via AuditableKnowledge y LemmaAbsenceCorrectionContext, y cambia\
+  \ la firma de LemmaAbsenceProposalDeriver.derive para recibir el modo.; FEAT-SMODE:\
+  \ refiner-domain depende de course-domain para resolver el tipo SentenceMode en\
+  \ LemmaAbsenceCorrectionContext.; FEAT-SMODE: reafirma sealed:true en LemmaAbsenceProposalDeriver\
+  \ tras el cambio de firma."
+modules:
+- name: course-domain
+  models:
+  - name: SentenceMode
+    type: enum
+    fields:
+    - name: REWRITE
+      description: "Ejercicio de reescritura/transformacion: la frase canonica puntuable\
+        \ es SOLO la oracion respuesta (segmento(s) con CLOZE), excluyendo la oracion\
+        \ fuente/prompt de TEXT-andamio (F-SMODE-R003, R004)."
+    - name: FILL
+      description: "Ejercicio de relleno/gap-fill: la frase canonica puntuable es\
+        \ la oracion completa con el hueco relleno (todas las partes), comportamiento\
+        \ historico (F-SMODE-R003)."
+    _change: add
+  - name: KnowledgeEntity
+    type: record
+    fields:
+    - name: sentenceMode
+      type: SentenceMode
+      description: "Modo de frase declarado del knowledge basado en sentencias (F-SMODE-R001,\
+        \ R002): REWRITE o FILL. Propiedad del knowledge, uniforme para todos sus\
+        \ quizzes; nunca por quiz. Nullable: ausente para knowledges no-oracion (excluidos\
+        \ del analisis por F-SLEN-R001) y para cursos previos a la siembra. En datos\
+        \ reales TODOS los knowledges basados en sentencias se siembran (~211 REWRITE\
+        \ / ~397 FILL), por lo que F-SMODE-R001 se cumple; el nullable es solo red\
+        \ de seguridad para datos no sembrados. Cargado/persistido desde _knowledge.json\
+        \ por FileSystemCourseRepository."
+      _change: add
+    _change: modify
+  packages:
+  - name: quizsentence
+    interfaces:
+    - name: QuizSentenceConverter
+      sealed: false
+      exposes:
+      - signature: "toPlainSentences(FormEntity form, SentenceMode mode): List<String>"
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-domain
+  models:
+  - name: AuditableKnowledge
+    type: record
+    fields:
+    - name: sentenceMode
+      type: SentenceMode
+      description: "Modo de frase del knowledge (F-SMODE-R001), copiado verbatim desde\
+        \ KnowledgeEntity.sentenceMode por CourseToAuditableMapper. Lo lee LemmaAbsenceContextResolver\
+        \ del knowledge ancestro para estampar LemmaAbsenceCorrectionContext.sentenceMode.\
+        \ Nullable cuando el knowledge no declara modo (no-oracion / no sembrado)."
+      _change: add
+    _change: modify
+  _change: modify
+- name: refiner-domain
+  dependsOn:
+  - course-domain
+  models:
+  - name: LemmaAbsenceCorrectionContext
+    type: record
+    fields:
+    - name: sentenceMode
+      type: SentenceMode
+      description: "Modo de frase del knowledge del quiz (F-SMODE-R003, R006). Estampado\
+        \ por LemmaAbsenceContextResolver desde AuditableKnowledge.sentenceMode del\
+        \ knowledge ancestro, igual que knowledgeTitle/knowledgeInstructions. Lo consume\
+        \ DispatchingReviser para pasarselo al deriver y construir la frase canonica\
+        \ del quiz revisado con el mismo modo del original (F-SMODE-R006). Nullable:\
+        \ el deriver/converter aplica fallback a FILL (comportamiento historico) cuando\
+        \ es null."
+      _change: add
+    _change: modify
+  _change: modify
+- name: revision-domain
+  interfaces:
+  - name: LemmaAbsenceProposalDeriver
+    sealed: true
+    _change: modify
+  _change: modify

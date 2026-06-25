@@ -194,7 +194,7 @@ public class FRclaqsJ001JourneyTest {
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Affirmative sentences in the present simple",
                 "Escribe la forma afirmativa", true,
-                "knowledge-j001-001", "Knowledge 1", "K001");
+                "knowledge-j001-001", "Knowledge 1", "K001", null);
 
         AuditableTopic topic = new AuditableTopic(
                 List.of(), "topic-j001-001", "Present Simple", "T001");
@@ -282,7 +282,7 @@ public class FRclaqsJ001JourneyTest {
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Music",
                 "Complete.", true,
-                "knowledge-j001-002", "Knowledge 2", "K002");
+                "knowledge-j001-002", "Knowledge 2", "K002", null);
 
         AuditableTopic topic = new AuditableTopic(
                 List.of(), "topic-j001-002", "Arts", "T002");
@@ -340,7 +340,7 @@ public class FRclaqsJ001JourneyTest {
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Grammar",
                 "Complete.", true,
-                "knowledge-j001-003", "Knowledge 3", "K003");
+                "knowledge-j001-003", "Knowledge 3", "K003", null);
 
         AuditableTopic topic = new AuditableTopic(
                 List.of(), "topic-j001-003", "Grammar", "T003");

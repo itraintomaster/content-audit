@@ -8,3 +8,6 @@
 
 2026-05-20 — architect — Skip de @analyst registrado. Dos gaps documentados en TECH_SPEC y REQUIREMENT (Notas): (1) ausencia de invariante "sentences no-null" en QuizTemplateEntity cargado; (2) discriminador pattern A/B vive solo como heuristica offline, no esta modelado en codigo.
   why: el usuario lo decidio explicitamente; quedan registrados para futura reapertura por @analyst.
+
+2026-06-25 — analyst — Agregada R004 (critical): el lado de ESCRITURA es espejo de R001. Persistir un curso debe preservar las plain sentences de cada quiz; round-trip cargar->guardar->cargar idempotente respecto de sentences.
+  why: bug detectado — al persistir un curso las plain sentences se omitian; como aplicar una revision reescribe el CURSO COMPLETO (no quirurgico), un solo guardado borraba sentences de TODOS los quizzes -> sentence-length scoring en cero -> perdida de datos masiva. `feature list` confirma 4 reglas; validate [OK]; sync sin cambios (0 journeys, reglas se leen de REQUIREMENT.md).

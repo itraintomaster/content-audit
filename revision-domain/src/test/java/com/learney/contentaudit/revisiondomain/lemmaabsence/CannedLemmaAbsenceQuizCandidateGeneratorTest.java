@@ -43,7 +43,7 @@ public class CannedLemmaAbsenceQuizCandidateGeneratorTest {
                 quizSentence,
                 0, 0, 0, 0,
                 com.learney.contentaudit.refinerdomain.LengthDirection.UNKNOWN,
-                null
+                null, null
         );
     }
 
@@ -114,7 +114,7 @@ public class CannedLemmaAbsenceQuizCandidateGeneratorTest {
                 "I ____[study|learn] English.",
                 0, 0, 0, 0,
                 com.learney.contentaudit.refinerdomain.LengthDirection.UNKNOWN,
-                null
+                null, null
         );
 
         LemmaAbsenceGeneratorResponse forA1 = generator.generate(contextA1);

@@ -143,7 +143,7 @@ public class FSlemJ002JourneyTest {
                 List.of(), "quiz-j002", null, null,
                 "El pájaro vuela.", List.of("The bird flies."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "Animals", "Complete.", true, "know-j002", null, null);
+                List.of(), "Animals", "Complete.", true, "know-j002", null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-j002", "Nature", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-j002", "A1", null);
 

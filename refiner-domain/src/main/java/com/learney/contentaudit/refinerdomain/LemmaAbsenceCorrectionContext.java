@@ -1,6 +1,7 @@
 package com.learney.contentaudit.refinerdomain;
 
 import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.coursedomain.SentenceMode;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
@@ -42,6 +43,8 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
 
     private String sourceAuditId;
 
+    private SentenceMode sentenceMode;
+
     public LemmaAbsenceCorrectionContext() {
     }
 
@@ -50,7 +53,7 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
             CefrLevel cefrLevel, List<MisplacedLemmaContext> misplacedLemmas,
             List<SuggestedLemma> suggestedLemmas, String quizSentence, Integer tokenCount,
             Integer targetMin, Integer targetMax, Integer delta, LengthDirection lengthDirection,
-            String sourceAuditId) {
+            String sourceAuditId, SentenceMode sentenceMode) {
         this.taskId = taskId;
         this.sentence = sentence;
         this.translation = translation;
@@ -67,6 +70,7 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
         this.delta = delta;
         this.lengthDirection = lengthDirection;
         this.sourceAuditId = sourceAuditId;
+        this.sentenceMode = sentenceMode;
     }
 
     public String getTaskId() {
@@ -197,6 +201,14 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
         this.sourceAuditId = sourceAuditId;
     }
 
+    public SentenceMode getSentenceMode() {
+        return this.sentenceMode;
+    }
+
+    public void setSentenceMode(SentenceMode sentenceMode) {
+        this.sentenceMode = sentenceMode;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -217,11 +229,12 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
                     && Objects.equals(this.targetMax, that.targetMax)
                     && Objects.equals(this.delta, that.delta)
                     && Objects.equals(this.lengthDirection, that.lengthDirection)
-                    && Objects.equals(this.sourceAuditId, that.sourceAuditId);
+                    && Objects.equals(this.sourceAuditId, that.sourceAuditId)
+                    && Objects.equals(this.sentenceMode, that.sentenceMode);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(taskId, sentence, translation, knowledgeTitle, knowledgeInstructions, topicLabel, cefrLevel, misplacedLemmas, suggestedLemmas, quizSentence, tokenCount, targetMin, targetMax, delta, lengthDirection, sourceAuditId);
+        return Objects.hash(taskId, sentence, translation, knowledgeTitle, knowledgeInstructions, topicLabel, cefrLevel, misplacedLemmas, suggestedLemmas, quizSentence, tokenCount, targetMin, targetMax, delta, lengthDirection, sourceAuditId, sentenceMode);
     }
 }

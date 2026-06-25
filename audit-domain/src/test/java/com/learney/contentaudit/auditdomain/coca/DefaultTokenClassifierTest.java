@@ -108,7 +108,7 @@ public class DefaultTokenClassifierTest {
 
         AuditableQuiz quiz = new AuditableQuiz(tokens, "q1", "Q", null, null, List.of("s"), null);
         AuditableKnowledge k = new AuditableKnowledge(
-                List.of(quiz), "K", "C", true, "k1", "K", "K");
+                List.of(quiz), "K", "C", true, "k1", "K", "K", null);
         AuditableTopic t = new AuditableTopic(List.of(k), "t1", "T", "T");
         AuditableMilestone m = new AuditableMilestone(List.of(t), "A1", "A1", null);
         AuditableCourse course = new AuditableCourse(List.of(m));

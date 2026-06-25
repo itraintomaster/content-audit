@@ -1,4 +1,5 @@
 package com.learney.contentaudit.revisiondomain.engine;
+import com.learney.contentaudit.coursedomain.SentenceMode;
 
 import com.learney.contentaudit.coursedomain.FormEntity;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
@@ -24,7 +25,7 @@ public final class DefaultLemmaAbsenceProposalDeriver implements LemmaAbsencePro
 
     @Override
     public CourseElementSnapshot derive(CourseElementSnapshot before,
-            LemmaAbsenceQuizCandidate candidate) {
+            LemmaAbsenceQuizCandidate candidate, SentenceMode mode) {
         QuizTemplateEntity beforeQuiz = before.getQuiz();
         if (beforeQuiz == null) {
             throw new ProposalDerivationException(
@@ -49,11 +50,12 @@ public final class DefaultLemmaAbsenceProposalDeriver implements LemmaAbsencePro
                     "unexpected error parsing quizSentence: " + e.getMessage());
         }
 
-        // Derive canonical plain sentence — index 0 of toPlainSentences (R012)
+        // Derive canonical plain sentence — index 0 of toPlainSentences (R012, F-SMODE-R003/R006)
+        // Use the mode-aware overload so REWRITE knowledge yields only the answer sentence.
         String newTitle;
         List<String> plainSentences;
         try {
-            plainSentences = quizSentenceConverter.toPlainSentences(newForm);
+            plainSentences = quizSentenceConverter.toPlainSentences(newForm, mode);
             if (plainSentences == null || plainSentences.isEmpty()) {
                 throw new ProposalDerivationException(
                         "lemma-absence-mvp",

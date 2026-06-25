@@ -77,7 +77,7 @@ public class FRcslJ001JourneyTest {
                 true,
                 "knowledge-001",
                 "Knowledge 1",
-                "K001");
+                "K001", null);
 
         DefaultKnowledgeDiagnoses knowledgeDiagnoses = new DefaultKnowledgeDiagnoses();
 

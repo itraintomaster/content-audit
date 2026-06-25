@@ -62,7 +62,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
     private AuditableCourse courseWithQuiz(int miIdx, String quizId, List<NlpToken> tokens) {
         AuditableQuiz quiz = new AuditableQuiz(tokens, quizId, "label", "code", null, List.of("sentence"), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(quiz), "title", "instructions", true, "k1", "label", "code");
+                List.of(quiz), "title", "instructions", true, "k1", "label", "code", null);
         AuditableTopic topic = new AuditableTopic(List.of(knowledge), "t1", "label", "code");
         AuditableMilestone milestone = new AuditableMilestone(
                 List.of(topic), "m" + miIdx, "label", "code");
@@ -110,7 +110,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
                 AuditableTopic topic = new AuditableTopic(List.of(), "t1", "label", "code");
                 AuditNode topicNode = makeNode(AuditTarget.TOPIC, topic, milestoneNode);
                 AuditableKnowledge knowledge = new AuditableKnowledge(
-                        List.of(), "title", "instructions", true, "k1", "label", "code");
+                        List.of(), "title", "instructions", true, "k1", "label", "code", null);
                 AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
                 AuditableQuiz quiz = new AuditableQuiz(tokens, quizId, "label", "code", null, List.of("sentence"), null);
                 makeNode(AuditTarget.QUIZ, quiz, knowledgeNode);
@@ -131,7 +131,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
                 AuditableTopic topic = new AuditableTopic(List.of(), "t1", "label", "code");
                 AuditNode topicNode = makeNode(AuditTarget.TOPIC, topic, milestoneNode);
                 AuditableKnowledge knowledge = new AuditableKnowledge(
-                        List.of(), "title", "instructions", true, "k1", "label", "code");
+                        List.of(), "title", "instructions", true, "k1", "label", "code", null);
                 AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
                 AuditableQuiz quiz = new AuditableQuiz(tokens, "q" + i, "label", "code", null, List.of("sentence"), null);
                 makeNode(AuditTarget.QUIZ, quiz, knowledgeNode);
@@ -1174,7 +1174,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
     private AuditableCourse buildCourseForQuizScoring(NlpToken token) {
         AuditableQuiz quiz = new AuditableQuiz(List.of(token), "q1", "label", "code", null, List.of("sentence"), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(quiz), "t", "i", true, "k1", "l", "c");
+                List.of(quiz), "t", "i", true, "k1", "l", "c", null);
         AuditableTopic topic = new AuditableTopic(List.of(knowledge), "t1", "l", "c");
         AuditableMilestone milestone = new AuditableMilestone(List.of(topic), "m1", "l", "c");
         return new AuditableCourse(List.of(milestone));
@@ -2359,7 +2359,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
     @org.junit.jupiter.api.Tag("F-LABS-R031")
     public void shouldCompleteWithoutErrorWhenOnKnowledgeIsCalled() {
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "title", "instructions", true, "k1", "label", "code");
+                List.of(), "title", "instructions", true, "k1", "label", "code", null);
         assertDoesNotThrow(() -> sut.onKnowledge(makeNode(AuditTarget.KNOWLEDGE, knowledge, null)));
     }
 
@@ -2653,7 +2653,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         AuditNode topicNode = makeNode(AuditTarget.TOPIC, topic, milestoneNode);
         topicNode.setDiagnoses(new DefaultTopicDiagnoses());
 
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "label", "code");
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "label", "code", null);
         AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
         knowledgeNode.setDiagnoses(new DefaultKnowledgeDiagnoses());
 
@@ -2715,7 +2715,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         AuditableTopic topic = new AuditableTopic(List.of(), "t1", "label", "code");
         AuditNode topicNode = makeNode(AuditTarget.TOPIC, topic, milestoneNode);
         topicNode.setDiagnoses(new DefaultTopicDiagnoses());
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "label", "code");
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "label", "code", null);
         AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
         knowledgeNode.setDiagnoses(new DefaultKnowledgeDiagnoses());
         AuditableQuiz quiz = new AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null);
@@ -2747,7 +2747,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         AuditNode milestoneNode = makeNode(AuditTarget.MILESTONE, ms, root);
         AuditableTopic topic = new AuditableTopic(List.of(), "t1", "label", "code");
         AuditNode topicNode = makeNode(AuditTarget.TOPIC, topic, milestoneNode);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "label", "code");
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "label", "code", null);
         AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
         AuditableQuiz quiz = new AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null);
         AuditNode quizNode = makeNode(AuditTarget.QUIZ, quiz, knowledgeNode);
@@ -2781,7 +2781,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         AuditableTopic topic = new AuditableTopic(List.of(), "t1", "label", "code");
         AuditNode topicNode = makeNode(AuditTarget.TOPIC, topic, milestoneNode);
         topicNode.setDiagnoses(new DefaultTopicDiagnoses());
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "label", "code");
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "label", "code", null);
         AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
         knowledgeNode.setDiagnoses(new DefaultKnowledgeDiagnoses());
         AuditableQuiz quiz = new AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null);

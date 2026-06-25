@@ -1,0 +1,75 @@
+code: FEAT-SMODE
+modules:
+- name: course-domain
+  packages:
+  - name: quizsentenceengine
+    implementations:
+    - name: DefaultQuizSentenceConverter
+      handwrittenTests:
+      - name: should build the canonical phrase as the complete sentence with the
+          blank filled when the knowledge mode is FILL
+        traceability:
+          feature: FEAT-SMODE
+          rule: F-SMODE-R003
+      - name: should build the canonical phrase as only the answer sentence excluding
+          the source sentence when the knowledge mode is REWRITE
+        traceability:
+          feature: FEAT-SMODE
+          rule: F-SMODE-R003
+      - name: should fall back to FILL behavior building the complete sentence when
+          the mode is null
+        traceability:
+          feature: FEAT-SMODE
+          rule: F-SMODE-R003
+      - name: should exclude the source TEXT scaffold so the REWRITE canonical phrase
+          is You should watch the DVD reduced to Watch the DVD only
+        traceability:
+          feature: FEAT-SMODE
+          rule: F-SMODE-R004
+      - name: should never carry any token of the source sentence into the REWRITE
+          canonical phrase token count
+        traceability:
+          feature: FEAT-SMODE
+          rule: F-SMODE-R004
+- name: audit-domain
+  implementations:
+  - name: SentenceLengthAnalyzer
+    handwrittenTests:
+    - name: should compute the length score over the mode-determined canonical phrase
+        token count and not over a blind concatenation of all quiz parts
+      traceability:
+        feature: FEAT-SMODE
+        rule: F-SMODE-R005
+    - name: should score a REWRITE quiz answer Watch the DVD at 100 percent on 4 tokens
+        for A1 instead of 60 percent on the 10-token source-plus-answer concatenation
+      traceability:
+        feature: FEAT-SMODE
+        rule: F-SMODE-R007
+- name: revision-domain
+  packages:
+  - name: engine
+    implementations:
+    - name: DefaultLemmaAbsenceProposalDeriver
+      handwrittenTests:
+      - name: should derive the revised quiz canonical phrase using the REWRITE mode
+          it received so the revised phrase is the new answer only without the source
+          sentence
+        traceability:
+          feature: FEAT-SMODE
+          rule: F-SMODE-R006
+      - name: should keep the length score of a REWRITE revision identical to the
+          original when the revised answer conserves its token count
+        traceability:
+          feature: FEAT-SMODE
+          rule: F-SMODE-R007
+features:
+- id: FEAT-SMODE
+  journeys:
+  - id: F-SMODE-J001
+    validation: AUTO_VALIDATED
+    testModule: course-domain
+    testPackage: com.learney.contentaudit.coursedomain.quizsentenceengine
+  - id: F-SMODE-J002
+    validation: AUTO_VALIDATED
+    testModule: revision-domain
+    testPackage: com.learney.contentaudit.revisiondomain.engine

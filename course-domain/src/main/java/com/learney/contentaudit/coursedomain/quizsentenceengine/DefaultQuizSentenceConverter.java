@@ -1,4 +1,5 @@
 package com.learney.contentaudit.coursedomain.quizsentenceengine;
+import com.learney.contentaudit.coursedomain.SentenceMode;
 
 import com.learney.contentaudit.coursedomain.FormEntity;
 import com.learney.contentaudit.coursedomain.quizsentence.QuizSentenceConverter;
@@ -69,5 +70,23 @@ public class DefaultQuizSentenceConverter implements QuizSentenceConverter {
     @Override
     public List<String> toPlainSentences(FormEntity form) {
         return plainDeriver.derive(form);
+    }
+
+    /**
+     * Derives the ordered list of plain sentences from a {@link FormEntity} using the given
+     * {@link SentenceMode} (F-SMODE-R003, R004).
+     *
+     * <ul>
+     *   <li>FILL or null — full-sentence derivation (same as {@link #toPlainSentences(FormEntity)}).</li>
+     *   <li>REWRITE — only the segment(s) containing CLOZE; TEXT-only scaffolding is excluded.</li>
+     * </ul>
+     *
+     * @param form the form to derive sentences from
+     * @param mode the sentence mode; null is treated as FILL (legacy fallback)
+     * @return ordered list of plain sentences; index 0 is canonical
+     */
+    @Override
+    public List<String> toPlainSentences(FormEntity form, SentenceMode mode) {
+        return plainDeriver.derive(form, mode);
     }
 }

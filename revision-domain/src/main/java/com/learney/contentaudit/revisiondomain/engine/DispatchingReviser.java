@@ -117,7 +117,7 @@ class DispatchingReviser implements Reviser {
         // R012: deterministic derivation of elementAfter
         CourseElementSnapshot elementAfter;
         try {
-            elementAfter = deriver.derive(before, candidate);
+            elementAfter = deriver.derive(before, candidate, lemmaContext.getSentenceMode());
         } catch (ProposalDerivationException e) {
             // Derivation failure maps to STRATEGY_FAILED (R015)
             throw new ProposalStrategyFailedException(

@@ -181,7 +181,7 @@ public class CocaBucketsAnalyzerTest {
         // Add a knowledge and quiz under a topic
         AuditNode milestone = root.getChildren().get(0);
         AuditNode topic = milestone.getChildren().get(0);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "l", "c");
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "l", "c", null);
         AuditNode knowledgeNode = buildNode(AuditTarget.KNOWLEDGE, knowledge, topic);
         AuditableQuiz quiz = new AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null);
         AuditNode quizNode = buildNode(AuditTarget.QUIZ, quiz, knowledgeNode);
@@ -267,7 +267,7 @@ public class CocaBucketsAnalyzerTest {
 
         AuditableQuiz quiz = new AuditableQuiz(tokens, "q1", "Q", null, null, List.of("s"), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(quiz), "K", "Complete", true, "k1", "K", "K");
+                List.of(quiz), "K", "Complete", true, "k1", "K", "K", null);
         AuditableTopic topic = new AuditableTopic(List.of(knowledge), "t1", "T", "T");
         AuditableMilestone ms = new AuditableMilestone(List.of(topic), "A1", "A1", null);
         AuditableCourse course = new AuditableCourse(List.of(ms));
@@ -638,7 +638,7 @@ public class CocaBucketsAnalyzerTest {
         for (int i = 0; i < topicCount; i++) {
             AuditableQuiz quiz = new AuditableQuiz(tokens, "q" + i, "Q", null, null, List.of("s"), null);
             AuditableKnowledge k = new AuditableKnowledge(
-                    List.of(quiz), "K" + i, "C", true, "k" + i, "K" + i, null);
+                    List.of(quiz), "K" + i, "C", true, "k" + i, "K" + i, null, null);
             topics.add(new AuditableTopic(List.of(k), "t" + i, "T" + i, "T" + i));
         }
         AuditableMilestone ms = new AuditableMilestone(topics, "A1", "A1", null);

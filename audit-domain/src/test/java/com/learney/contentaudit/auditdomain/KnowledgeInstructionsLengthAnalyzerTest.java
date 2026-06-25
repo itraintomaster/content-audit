@@ -34,7 +34,7 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
 
     private AuditableKnowledge knowledgeWithInstructions(String instructions) {
         return new AuditableKnowledge(List.of(), "Some Title", instructions, false,
-                "k-id", "knowledge label", "K001");
+                "k-id", "knowledge label", "K001", null);
     }
 
     // -- name / target --

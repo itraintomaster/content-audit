@@ -34,7 +34,26 @@ feature:
 
 > `QuizSentenceConverter.toPlainSentences` permanece en el contrato del converter como fallback util para consumidores que necesiten derivacion en runtime (ej. un cargador alternativo sin campo persistido, o herramientas de migracion). Los tests existentes de FEAT-QSENT que ejercen sus invariantes siguen activos.
 
+<a id="F-DBSENT-R004"></a>
+### Rule[F-DBSENT-R004] - Persistir un curso preserva las plain sentences de cada quiz (round-trip idempotente)
+**Severity**: critical
+
+> Cuando el sistema persiste un curso de vuelta a la fuente de datos, escribe la lista de plain sentences de cada quiz de forma **simetrica** a como la lee ([F-DBSENT-R001](#F-DBSENT-R001)): un ciclo cargar -> guardar -> cargar deja la lista de plain sentences de cada quiz **identica** a la original. No se pierden, no se rederivan y no se reordenan.
+
+<details><summary>Detalle</summary>
+
+R001 describe el lado de **lectura** (la fuente de datos puebla las plain sentences al cargar el curso). Esta regla es su **espejo en escritura**: garantiza que el camino de persistencia conserve exactamente la misma informacion.
+
+Sin esta garantia, al persistir un curso la lista de plain sentences de cada quiz se omite y se pierde. Como el flujo de aplicacion de revisiones reescribe el **curso completo** (no es una escritura quirurgica sobre el quiz revisado), un solo guardado borraria las plain sentences de **todos** los quizzes del curso, dejando el scoring de longitud de oracion en cero para el curso entero. Es perdida de datos masiva.
+
+**Criterio de aceptacion**: dado un curso cuyos quizzes ya tienen plain sentences pre-computadas, tras un ciclo guardar + recargar, cada quiz conserva su lista de plain sentences identica a la que tenia antes del ciclo (misma cantidad, mismos textos, mismo orden).
+
+**Simetria con R001**: la lista que se escribe es la misma que R001 leyo; no se invoca derivacion alguna ni se transforma el contenido. Lo escrito y lo releido coinciden elemento a elemento.
+
+</details>
+
 ## Notas
 
 - **Gap requirement vs arquitectura**: el discriminador pattern A / pattern B no se modela en codigo Java; vive como heuristica aplicada offline al pre-computar los datos. Si en el futuro hay quizzes sin el campo persistido (DB legacy o nueva fuente), habra que decidir si reintroducir el discriminador en runtime o exigir el campo como invariante.
+- **Reescritura de curso completo en aplicacion de revisiones**: el flujo que aplica/aprueba una revision reescribe el **curso entero** de vuelta a la fuente de datos, no solo el quiz revisado. Por eso el round-trip de [F-DBSENT-R004](#F-DBSENT-R004) importa: cualquier omision en la escritura de plain sentences se propaga a todos los quizzes del curso, no a uno.
 - **Fuera de alcance**: invariante "todo QuizTemplateEntity cargado tiene sentences no-null"; estrategia de fallback ante ausencia del campo en la DB; cambios al contrato de `QuizSentenceConverter`.

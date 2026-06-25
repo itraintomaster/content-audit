@@ -1,0 +1,16 @@
+code: FEAT-DBSENT
+modules:
+- name: course-infrastructure
+  implementations:
+  - name: FileSystemCourseRepository
+    handwrittenTests:
+    - name: should preserve each quiz plain sentences identically after a load save
+        load round-trip
+      traceability:
+        feature: FEAT-DBSENT
+        rule: F-DBSENT-R004
+    - name: should preserve the plain sentences of every quiz in a multi-quiz course
+        after a whole-course save without dropping or cross-contaminating any list
+      traceability:
+        feature: FEAT-DBSENT
+        rule: F-DBSENT-R004

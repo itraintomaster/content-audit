@@ -115,7 +115,7 @@ public class DispatchingReviserTest {
                 "She ____ [reads] (read) books.",
                 0, 0, 0, 0,
                 com.learney.contentaudit.refinerdomain.LengthDirection.UNKNOWN,
-                null
+                null, null
         );
     }
 
@@ -154,7 +154,7 @@ public class DispatchingReviserTest {
         CourseElementSnapshot afterSnapshot = mock(CourseElementSnapshot.class);
         when(afterSnapshot.getNodeTarget()).thenReturn(com.learney.contentaudit.auditdomain.AuditTarget.QUIZ);
         when(afterSnapshot.getNodeId()).thenReturn("quiz-id-001");
-        when(deriver.derive(Mockito.eq(before), Mockito.eq(candidate))).thenReturn(afterSnapshot);
+        when(deriver.derive(Mockito.eq(before), Mockito.eq(candidate), Mockito.any())).thenReturn(afterSnapshot);
 
         IdentityReviser fallback = mock(IdentityReviser.class);
         DispatchingReviser dispatcher = new DispatchingReviser(
@@ -208,7 +208,7 @@ public class DispatchingReviserTest {
         // Fallback must NOT have been invoked (R002)
         verify(fallback, Mockito.never()).propose(Mockito.any(), Mockito.any(), Mockito.any());
         // Deriver must NOT have been invoked
-        verify(deriver, Mockito.never()).derive(Mockito.any(), Mockito.any());
+        verify(deriver, Mockito.never()).derive(Mockito.any(), Mockito.any(), Mockito.any());
     }
 
     @Test
@@ -254,7 +254,7 @@ public class DispatchingReviserTest {
         org.junit.jupiter.api.Assertions.assertEquals("lemma-absence-mvp", thrown.getStrategyName());
 
         // Deriver must NOT have been invoked (no candidate was returned)
-        verify(deriver, Mockito.never()).derive(Mockito.any(), Mockito.any());
+        verify(deriver, Mockito.never()).derive(Mockito.any(), Mockito.any(), Mockito.any());
     }
 
     @Test
@@ -283,7 +283,7 @@ public class DispatchingReviserTest {
         com.learney.contentaudit.revisiondomain.ProposalDerivationException derivError =
                 new com.learney.contentaudit.revisiondomain.ProposalDerivationException(
                         "lemma-absence-mvp", "task-001", "malformed quizSentence");
-        when(deriver.derive(Mockito.any(), Mockito.eq(candidate))).thenThrow(derivError);
+        when(deriver.derive(Mockito.any(), Mockito.eq(candidate), Mockito.any())).thenThrow(derivError);
 
         RefinementTask task = mock(RefinementTask.class);
         when(task.getDiagnosisKind()).thenReturn(DiagnosisKind.LEMMA_ABSENCE);
@@ -304,7 +304,7 @@ public class DispatchingReviserTest {
         );
 
         // Deriver was invoked (it was the one that threw)
-        verify(deriver).derive(Mockito.any(), Mockito.eq(candidate));
+        verify(deriver).derive(Mockito.any(), Mockito.eq(candidate), Mockito.any());
     }
 
     @Test
@@ -412,7 +412,7 @@ public class DispatchingReviserTest {
         CourseElementSnapshot after = mock(CourseElementSnapshot.class);
         when(after.getNodeTarget()).thenReturn(com.learney.contentaudit.auditdomain.AuditTarget.QUIZ);
         when(after.getNodeId()).thenReturn("quiz-id-001");
-        when(deriver.derive(Mockito.any(), Mockito.eq(candidate))).thenReturn(after);
+        when(deriver.derive(Mockito.any(), Mockito.eq(candidate), Mockito.any())).thenReturn(after);
 
         RefinementTask task = mock(RefinementTask.class);
         when(task.getDiagnosisKind()).thenReturn(DiagnosisKind.LEMMA_ABSENCE);
@@ -464,7 +464,7 @@ public class DispatchingReviserTest {
         CourseElementSnapshot after = mock(CourseElementSnapshot.class);
         when(after.getNodeTarget()).thenReturn(com.learney.contentaudit.auditdomain.AuditTarget.QUIZ);
         when(after.getNodeId()).thenReturn("quiz-id-001");
-        when(deriver.derive(Mockito.any(), Mockito.eq(candidate))).thenReturn(after);
+        when(deriver.derive(Mockito.any(), Mockito.eq(candidate), Mockito.any())).thenReturn(after);
 
         RefinementTask task = mock(RefinementTask.class);
         when(task.getDiagnosisKind()).thenReturn(DiagnosisKind.LEMMA_ABSENCE);

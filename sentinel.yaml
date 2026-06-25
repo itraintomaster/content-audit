@@ -42,6 +42,12 @@ modules:
     - name: code
       type: String
       description: Knowledge short code
+    - name: sentenceMode
+      type: SentenceMode
+      description: "Modo de frase del knowledge (F-SMODE-R001), copiado verbatim desde\
+        \ KnowledgeEntity.sentenceMode por CourseToAuditableMapper. Lo lee LemmaAbsenceContextResolver\
+        \ del knowledge ancestro para estampar LemmaAbsenceCorrectionContext.sentenceMode.\
+        \ Nullable cuando el knowledge no declara modo (no-oracion / no sembrado)."
     extends: AuditableEntity
   - name: AuditableTopic
     type: record
@@ -882,6 +888,16 @@ modules:
       traceability:
         feature: FEAT-SLEN
         rule: F-SLEN-R013
+    - name: should compute the length score over the mode-determined canonical phrase
+        token count and not over a blind concatenation of all quiz parts
+      traceability:
+        feature: FEAT-SMODE
+        rule: F-SMODE-R005
+    - name: should score a REWRITE quiz answer Watch the DVD at 100 percent on 4 tokens
+        for A1 instead of 60 percent on the 10-token source-plus-answer concatenation
+      traceability:
+        feature: FEAT-SMODE
+        rule: F-SMODE-R007
     implements:
     - ContentAnalyzer
   - name: IScoreAggregator
@@ -2890,6 +2906,16 @@ modules:
     - name: quizTemplates
       type: List<QuizTemplateEntity>
       description: "Associated quiz templates, at least 1 required (R004)"
+    - name: sentenceMode
+      type: SentenceMode
+      description: "Modo de frase declarado del knowledge basado en sentencias (F-SMODE-R001,\
+        \ R002): REWRITE o FILL. Propiedad del knowledge, uniforme para todos sus\
+        \ quizzes; nunca por quiz. Nullable: ausente para knowledges no-oracion (excluidos\
+        \ del analisis por F-SLEN-R001) y para cursos previos a la siembra. En datos\
+        \ reales TODOS los knowledges basados en sentencias se siembran (~211 REWRITE\
+        \ / ~397 FILL), por lo que F-SMODE-R001 se cumple; el nullable es solo red\
+        \ de seguridad para datos no sembrados. Cargado/persistido desde _knowledge.json\
+        \ por FileSystemCourseRepository."
   - name: QuizTemplateEntity
     type: record
     fields:
@@ -2999,6 +3025,17 @@ modules:
       type: String
     message: "Error al cargar el curso desde '%s': %s. La carga fue abortada."
     extends: RuntimeException
+  - name: SentenceMode
+    type: enum
+    fields:
+    - name: REWRITE
+      description: "Ejercicio de reescritura/transformacion: la frase canonica puntuable\
+        \ es SOLO la oracion respuesta (segmento(s) con CLOZE), excluyendo la oracion\
+        \ fuente/prompt de TEXT-andamio (F-SMODE-R003, R004)."
+    - name: FILL
+      description: "Ejercicio de relleno/gap-fill: la frase canonica puntuable es\
+        \ la oracion completa con el hueco relleno (todas las partes), comportamiento\
+        \ historico (F-SMODE-R003)."
   interfaces:
   - name: CourseRepository
     stereotype: port
@@ -3051,6 +3088,7 @@ modules:
       - signature: "serialize(FormEntity form): String"
       - signature: "parse(String quizSentence): FormEntity"
       - signature: "toPlainSentences(FormEntity form): List<String>"
+      - signature: "toPlainSentences(FormEntity form, SentenceMode mode): List<String>"
       visibility: public
   - name: quizsentenceengine
     description: "Internal engine implementing the quizSentence DSL conversions. The\
@@ -3207,6 +3245,31 @@ modules:
         traceability:
           feature: FEAT-DBSENT
           rule: F-DBSENT-R003
+      - name: should build the canonical phrase as the complete sentence with the
+          blank filled when the knowledge mode is FILL
+        traceability:
+          feature: FEAT-SMODE
+          rule: F-SMODE-R003
+      - name: should build the canonical phrase as only the answer sentence excluding
+          the source sentence when the knowledge mode is REWRITE
+        traceability:
+          feature: FEAT-SMODE
+          rule: F-SMODE-R003
+      - name: should fall back to FILL behavior building the complete sentence when
+          the mode is null
+        traceability:
+          feature: FEAT-SMODE
+          rule: F-SMODE-R003
+      - name: should exclude the source TEXT scaffold so the REWRITE canonical phrase
+          is You should watch the DVD reduced to Watch the DVD only
+        traceability:
+          feature: FEAT-SMODE
+          rule: F-SMODE-R004
+      - name: should never carry any token of the source sentence into the REWRITE
+          canonical phrase token count
+        traceability:
+          feature: FEAT-SMODE
+          rule: F-SMODE-R004
       implements:
       - QuizSentenceConverter
     - name: QuizSentenceSerializer
@@ -3223,6 +3286,7 @@ modules:
   description: Refinement engine
   dependsOn:
   - audit-domain
+  - course-domain
   models:
   - name: DiagnosisKind
     type: enum
@@ -3420,6 +3484,15 @@ modules:
         \ el mas reciente por su cuenta (F-CSLATDC-R015). Liviano (String): identifica\
         \ el analisis sin transportar el AuditReport entero por el carrier que cruza\
         \ a JSON en revise --correction-context."
+    - name: sentenceMode
+      type: SentenceMode
+      description: "Modo de frase del knowledge del quiz (F-SMODE-R003, R006). Estampado\
+        \ por LemmaAbsenceContextResolver desde AuditableKnowledge.sentenceMode del\
+        \ knowledge ancestro, igual que knowledgeTitle/knowledgeInstructions. Lo consume\
+        \ DispatchingReviser para pasarselo al deriver y construir la frase canonica\
+        \ del quiz revisado con el mismo modo del original (F-SMODE-R006). Nullable:\
+        \ el deriver/converter aplica fallback a FILL (comportamiento historico) cuando\
+        \ es null."
     implements:
     - CorrectionContext
   - name: LengthDirection
@@ -5315,6 +5388,16 @@ modules:
       traceability:
         feature: FEAT-DBSENT
         rule: F-DBSENT-R001
+    - name: should preserve each quiz plain sentences identically after a load save
+        load round-trip
+      traceability:
+        feature: FEAT-DBSENT
+        rule: F-DBSENT-R004
+    - name: should preserve the plain sentences of every quiz in a multi-quiz course
+        after a whole-course save without dropping or cross-contaminating any list
+      traceability:
+        feature: FEAT-DBSENT
+        rule: F-DBSENT-R004
     implements:
     - CourseRepository
   scope: internal
@@ -8281,8 +8364,8 @@ modules:
     stereotype: service
     sealed: true
     exposes:
-    - signature: "derive(CourseElementSnapshot before, LemmaAbsenceQuizCandidate candidate):\
-        \ CourseElementSnapshot"
+    - signature: "derive(CourseElementSnapshot before, LemmaAbsenceQuizCandidate candidate,\
+        \ SentenceMode mode): CourseElementSnapshot"
   - name: ImpactPreviewStore
     stereotype: port
     sealed: false
@@ -8865,6 +8948,17 @@ modules:
         traceability:
           feature: FEAT-LAPS
           rule: F-LAPS-R019
+      - name: should derive the revised quiz canonical phrase using the REWRITE mode
+          it received so the revised phrase is the new answer only without the source
+          sentence
+        traceability:
+          feature: FEAT-SMODE
+          rule: F-SMODE-R006
+      - name: should keep the length score of a REWRITE revision identical to the
+          original when the revised answer conserves its token count
+        traceability:
+          feature: FEAT-SMODE
+          rule: F-SMODE-R007
       implements:
       - LemmaAbsenceProposalDeriver
     - name: DefaultImpactPreviewComputer
@@ -10857,6 +10951,17 @@ features:
     validation: AUTO_VALIDATED
     testModule: audit-cli
     testPackage: com.learney.contentaudit.journeys
+- id: FEAT-SMODE
+  code: F-SMODE
+  journeys:
+  - id: F-SMODE-J001
+    validation: AUTO_VALIDATED
+    testModule: course-domain
+    testPackage: com.learney.contentaudit.coursedomain.quizsentenceengine
+  - id: F-SMODE-J002
+    validation: AUTO_VALIDATED
+    testModule: revision-domain
+    testPackage: com.learney.contentaudit.revisiondomain.engine
 dependencies:
 - alias: langchain4j-openai
   artifact: dev.langchain4j:langchain4j-open-ai:1.13.0

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.coursedomain.quizsentenceengine;
 
 import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.SentenceMode;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
 import com.learney.contentaudit.coursedomain.quizsentence.QuizSentenceConverter;
@@ -690,10 +691,11 @@ public class DefaultQuizSentenceConverterTest {
     @Tag("F-QSENT-R023")
     public void shouldExposeOnlyTheThreeForwardConversionsAndNoInverseReconstructionFromAPlainSentence(
             ) {
-        // R023: QuizSentenceConverter interface must declare exactly 3 methods:
+        // R023: QuizSentenceConverter interface must declare only forward conversions:
         //   serialize(FormEntity): String
         //   parse(String): FormEntity
         //   toPlainSentences(FormEntity): List<String>
+        //   toPlainSentences(FormEntity, SentenceMode): List<String>  [added in FEAT-SMODE]
         // No fromPlainSentence or any inverse reconstruction method.
         Method[] methods = QuizSentenceConverter.class.getDeclaredMethods();
         // Filter to non-default, non-static methods declared on the interface
@@ -703,8 +705,9 @@ public class DefaultQuizSentenceConverterTest {
                 .sorted()
                 .collect(Collectors.toList());
 
-        assertEquals(3, methodNames.size(),
-                "QuizSentenceConverter must expose exactly 3 methods, found: " + methodNames);
+        // Interface has 4 methods: serialize, parse, toPlainSentences (mode-blind), toPlainSentences (mode-aware FEAT-SMODE)
+        assertEquals(4, methodNames.size(),
+                "QuizSentenceConverter must expose exactly 4 methods (including the FEAT-SMODE overload), found: " + methodNames);
 
         assertTrue(methodNames.contains("serialize"), "must have serialize method");
         assertTrue(methodNames.contains("parse"), "must have parse method");
@@ -852,5 +855,128 @@ public class DefaultQuizSentenceConverterTest {
                 "canonical plain sentence (index 0) must be a non-blank string");
         assertTrue(normalize(result.get(0)).contains("She") && normalize(result.get(0)).contains("English"),
                 "canonical plain sentence must be semantically equivalent to 'She is English.': " + result.get(0));
+    }
+
+    @Test
+    @DisplayName("should build the canonical phrase as the complete sentence with the blank filled when the knowledge mode is FILL")
+    @Tag("FEAT-SMODE")
+    @Tag("F-SMODE-R003")
+    public void shouldBuildTheCanonicalPhraseAsTheCompleteSentenceWithTheBlankFilledWhenTheKnowledgeModeIsFILL() {
+        // R003 (FILL): la frase canonica puntuable es la oracion completa con el hueco relleno.
+        // Fixture: "She dances ____ (good / well)." con respuesta "well" → "She dances well."
+        FormEntity form = form(
+                text("She dances"),
+                cloze("well"),
+                text(" (good / well).")
+        );
+
+        List<String> result = converter.toPlainSentences(form, SentenceMode.FILL);
+
+        assertNotNull(result, "el resultado no debe ser null en modo FILL");
+        assertFalse(result.isEmpty(), "el resultado no debe estar vacio en modo FILL");
+        // La frase canonica (indice 0) es la oracion completa con el hueco relleno y sin hints
+        assertEquals("She dances well.", normalize(result.get(0)),
+                "en FILL la frase canonica debe ser la oracion completa con el hueco relleno: " + result.get(0));
+    }
+
+    @Test
+    @DisplayName("should build the canonical phrase as only the answer sentence excluding the source sentence when the knowledge mode is REWRITE")
+    @Tag("FEAT-SMODE")
+    @Tag("F-SMODE-R003")
+    public void shouldBuildTheCanonicalPhraseAsOnlyTheAnswerSentenceExcludingTheSourceSentenceWhenTheKnowledgeModeIsREWRITE() {
+        // R003 (REWRITE): la frase canonica puntuable es SOLO la oracion respuesta,
+        // sin incluir la oracion fuente/prompt (el TEXT-andamio fuente se excluye).
+        // Fixture real del bug: fuente "You should watch the DVD.", respuesta "Watch the DVD."
+        // En REWRITE el resultado debe ser ["Watch the DVD."], NUNCA la concatenacion.
+        FormEntity form = form(
+                text("You should watch the DVD."),
+                cloze("Watch the DVD.")
+        );
+
+        List<String> result = converter.toPlainSentences(form, SentenceMode.REWRITE);
+
+        assertNotNull(result, "el resultado no debe ser null en modo REWRITE");
+        assertFalse(result.isEmpty(), "el resultado no debe estar vacio en modo REWRITE");
+        // La frase canonica es solo la respuesta, no la concatenacion con la fuente
+        assertEquals("Watch the DVD.", normalize(result.get(0)),
+                "en REWRITE la frase canonica debe ser solo la respuesta: " + result.get(0));
+    }
+
+    @Test
+    @DisplayName("should fall back to FILL behavior building the complete sentence when the mode is null")
+    @Tag("FEAT-SMODE")
+    @Tag("F-SMODE-R003")
+    public void shouldFallBackToFILLBehaviorBuildingTheCompleteSentenceWhenTheModeIsNull() {
+        // R003 (fallback): mode == null debe comportarse identico a FILL
+        // (la frase canonica es la oracion completa con el hueco relleno).
+        FormEntity form = form(
+                text("She dances"),
+                cloze("well"),
+                text(" (good / well).")
+        );
+
+        List<String> resultNull = converter.toPlainSentences(form, null);
+        List<String> resultFill = converter.toPlainSentences(form, SentenceMode.FILL);
+
+        assertNotNull(resultNull, "el resultado con mode=null no debe ser null");
+        assertFalse(resultNull.isEmpty(), "el resultado con mode=null no debe estar vacio");
+        // El fallback produce la misma frase canonica que FILL
+        assertEquals(normalize(resultFill.get(0)), normalize(resultNull.get(0)),
+                "mode=null debe producir la misma frase canonica que FILL: null=" + resultNull.get(0) + ", fill=" + resultFill.get(0));
+    }
+
+    @Test
+    @DisplayName("should exclude the source TEXT scaffold so the REWRITE canonical phrase is You should watch the DVD reduced to Watch the DVD only")
+    @Tag("FEAT-SMODE")
+    @Tag("F-SMODE-R004")
+    public void shouldExcludeTheSourceTEXTScaffoldSoTheREWRITECanonicalPhraseIsYouShouldWatchTheDVDReducedToWatchTheDVDOnly() {
+        // R004: caso real del bug — la frase medida era "You should watch the DVD. Watch the DVD."
+        // (10 tokens) en lugar de "Watch the DVD." (4 tokens).
+        // La oracion fuente (TEXT-andamio) queda excluida de la frase canonica REWRITE.
+        FormEntity form = form(
+                text("You should watch the DVD."),
+                cloze("Watch the DVD.")
+        );
+
+        List<String> result = converter.toPlainSentences(form, SentenceMode.REWRITE);
+
+        assertNotNull(result, "el resultado no debe ser null");
+        assertFalse(result.isEmpty(), "el resultado no debe estar vacio");
+        String canonical = normalize(result.get(0));
+
+        // La frase canonica REWRITE es EXACTAMENTE la respuesta, sin la fuente
+        assertEquals("Watch the DVD.", canonical,
+                "la frase canonica REWRITE debe ser 'Watch the DVD.', no la concatenacion con la fuente");
+
+        // Verificacion negativa explícita: la frase canonica NO contiene la oracion fuente
+        assertFalse(canonical.contains("You should"),
+                "la frase canonica REWRITE no debe contener la oracion fuente 'You should...': " + canonical);
+    }
+
+    @Test
+    @DisplayName("should never carry any token of the source sentence into the REWRITE canonical phrase token count")
+    @Tag("FEAT-SMODE")
+    @Tag("F-SMODE-R004")
+    public void shouldNeverCarryAnyTokenOfTheSourceSentenceIntoTheREWRITECanonicalPhraseTokenCount() {
+        // R004: la exclusion es total — la oracion fuente no aporta tokens.
+        // Se verifican explicitamente los tokens de la oracion fuente ("You", "should")
+        // para confirmar que no aparecen en la frase canonica REWRITE.
+        FormEntity form = form(
+                text("You should watch the DVD."),
+                cloze("Watch the DVD.")
+        );
+
+        List<String> result = converter.toPlainSentences(form, SentenceMode.REWRITE);
+
+        assertNotNull(result, "el resultado no debe ser null");
+        assertFalse(result.isEmpty(), "el resultado no debe estar vacio");
+        String canonical = normalize(result.get(0));
+
+        // Tokens de la oracion fuente que jamas deben aparecer en la frase canonica REWRITE
+        // ("You" y "should" son exclusivos del TEXT-andamio fuente, no estan en la respuesta)
+        assertFalse(canonical.toLowerCase().contains("you"),
+                "el token 'You' de la oracion fuente no debe aparecer en la frase canonica REWRITE: " + canonical);
+        assertFalse(canonical.toLowerCase().contains("should"),
+                "el token 'should' de la oracion fuente no debe aparecer en la frase canonica REWRITE: " + canonical);
     }
 }

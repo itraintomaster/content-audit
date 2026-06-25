@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain;
 
+import com.learney.contentaudit.coursedomain.SentenceMode;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
@@ -23,11 +24,13 @@ public class AuditableKnowledge implements AuditableEntity {
 
     private String code;
 
+    private SentenceMode sentenceMode;
+
     public AuditableKnowledge() {
     }
 
     public AuditableKnowledge(List<AuditableQuiz> quizzes, String title, String instructions,
-            boolean isSentence, String id, String label, String code) {
+            boolean isSentence, String id, String label, String code, SentenceMode sentenceMode) {
         this.quizzes = quizzes;
         this.title = title;
         this.instructions = instructions;
@@ -35,6 +38,7 @@ public class AuditableKnowledge implements AuditableEntity {
         this.id = id;
         this.label = label;
         this.code = code;
+        this.sentenceMode = sentenceMode;
     }
 
     public List<AuditableQuiz> getQuizzes() {
@@ -93,6 +97,14 @@ public class AuditableKnowledge implements AuditableEntity {
         this.code = code;
     }
 
+    public SentenceMode getSentenceMode() {
+        return this.sentenceMode;
+    }
+
+    public void setSentenceMode(SentenceMode sentenceMode) {
+        this.sentenceMode = sentenceMode;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -104,11 +116,12 @@ public class AuditableKnowledge implements AuditableEntity {
                     && Objects.equals(this.isSentence, that.isSentence)
                     && Objects.equals(this.id, that.id)
                     && Objects.equals(this.label, that.label)
-                    && Objects.equals(this.code, that.code);
+                    && Objects.equals(this.code, that.code)
+                    && Objects.equals(this.sentenceMode, that.sentenceMode);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(quizzes, title, instructions, isSentence, id, label, code);
+        return Objects.hash(quizzes, title, instructions, isSentence, id, label, code, sentenceMode);
     }
 }

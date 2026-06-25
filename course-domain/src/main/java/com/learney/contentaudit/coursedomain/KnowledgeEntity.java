@@ -31,12 +31,14 @@ public class KnowledgeEntity {
 
     private List<QuizTemplateEntity> quizTemplates;
 
+    private SentenceMode sentenceMode;
+
     public KnowledgeEntity() {
     }
 
     public KnowledgeEntity(String id, String code, NodeKind kind, String label, String oldId,
             String parentId, boolean isRule, String instructions, int order, String slug,
-            List<QuizTemplateEntity> quizTemplates) {
+            List<QuizTemplateEntity> quizTemplates, SentenceMode sentenceMode) {
         this.id = id;
         this.code = code;
         this.kind = kind;
@@ -48,6 +50,7 @@ public class KnowledgeEntity {
         this.order = order;
         this.slug = slug;
         this.quizTemplates = quizTemplates;
+        this.sentenceMode = sentenceMode;
     }
 
     public String getId() {
@@ -138,6 +141,14 @@ public class KnowledgeEntity {
         this.quizTemplates = quizTemplates;
     }
 
+    public SentenceMode getSentenceMode() {
+        return this.sentenceMode;
+    }
+
+    public void setSentenceMode(SentenceMode sentenceMode) {
+        this.sentenceMode = sentenceMode;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -153,11 +164,12 @@ public class KnowledgeEntity {
                     && Objects.equals(this.instructions, that.instructions)
                     && Objects.equals(this.order, that.order)
                     && Objects.equals(this.slug, that.slug)
-                    && Objects.equals(this.quizTemplates, that.quizTemplates);
+                    && Objects.equals(this.quizTemplates, that.quizTemplates)
+                    && Objects.equals(this.sentenceMode, that.sentenceMode);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, code, kind, label, oldId, parentId, isRule, instructions, order, slug, quizTemplates);
+        return Objects.hash(id, code, kind, label, oldId, parentId, isRule, instructions, order, slug, quizTemplates, sentenceMode);
     }
 }

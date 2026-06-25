@@ -77,7 +77,7 @@ class FileSystemAuditReportStoreTest {
                 "know-1",
                 "Knowledge One",
                 "K1"
-        );
+        , null);
 
         DefaultKnowledgeDiagnoses knowledgeDiagnoses = new DefaultKnowledgeDiagnoses();
         LemmaPlacementDiagnosis knowledgeLemmaDiagnosis = new LemmaPlacementDiagnosis(1, List.of());

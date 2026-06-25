@@ -102,7 +102,7 @@ public class CourseToAuditableMapper implements CourseMapper {
         List<AuditableQuiz> quizzes = quizTemplates.stream()
                 .map(this::mapQuiz)
                 .collect(Collectors.toList());
-        return new AuditableKnowledge(quizzes, ke.getLabel(), ke.getInstructions(), isSentence, ke.getId(), ke.getLabel(), ke.getCode());
+        return new AuditableKnowledge(quizzes, ke.getLabel(), ke.getInstructions(), isSentence, ke.getId(), ke.getLabel(), ke.getCode(), ke.getSentenceMode());
     }
 
     private boolean hasSentenceParts(QuizTemplateEntity qt) {

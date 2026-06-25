@@ -1,6 +1,7 @@
 package com.learney.contentaudit.coursedomain.quizsentence;
 
 import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.SentenceMode;
 import java.util.List;
 import javax.annotation.processing.Generated;
 
@@ -14,4 +15,6 @@ public interface QuizSentenceConverter {
     FormEntity parse(String quizSentence);
 
     List<String> toPlainSentences(FormEntity form);
+
+    List<String> toPlainSentences(FormEntity form, SentenceMode mode);
 }

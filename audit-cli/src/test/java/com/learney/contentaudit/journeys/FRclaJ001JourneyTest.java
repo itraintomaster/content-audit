@@ -194,7 +194,7 @@ public class FRclaJ001JourneyTest {
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Affirmative sentences in the present simple",
                 "Escribe la forma afirmativa", true,
-                "knowledge-001", "Knowledge 1", "K001");
+                "knowledge-001", "Knowledge 1", "K001", null);
 
         AuditableTopic topic = new AuditableTopic(
                 List.of(), "topic-001", "Present Simple", "T001");
@@ -272,7 +272,7 @@ public class FRclaJ001JourneyTest {
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Modal verbs in context",
                 "Complete with the correct modal", true,
-                "knowledge-002", "Knowledge 2", "K002");
+                "knowledge-002", "Knowledge 2", "K002", null);
 
         AuditableTopic topic = new AuditableTopic(
                 List.of(), "topic-002", "Modal Verbs", "T002");
@@ -325,7 +325,7 @@ public class FRclaJ001JourneyTest {
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Present habits",
                 "Describe habits", true,
-                "knowledge-003", "Knowledge 3", "K003");
+                "knowledge-003", "Knowledge 3", "K003", null);
 
         AuditableTopic topic = new AuditableTopic(
                 List.of(), "topic-003", "Daily Routines", "T003");
@@ -368,7 +368,7 @@ public class FRclaJ001JourneyTest {
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Hobbies",
                 "Describe your hobbies", true,
-                "knowledge-004", "Knowledge 4", "K004");
+                "knowledge-004", "Knowledge 4", "K004", null);
 
         AuditableTopic topic = new AuditableTopic(
                 List.of(), "topic-004", "Free Time", "T004");

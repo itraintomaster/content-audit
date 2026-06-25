@@ -14,3 +14,9 @@
 
 2026-05-21 — developer — Extraer sentences de formMap con cast @SuppressWarnings("unchecked") retorna null cuando ausente. Pasar al constructor en posicion 21.
   why: patron identico a extractOidListNullable; null es el comportamiento correcto segun REQUIREMENT (no-null out-of-scope).
+
+2026-06-25 — qa-tester — Propuesto patch con 2 handwrittenTests para F-DBSENT-R004 sobre FileSystemCourseRepository (round-trip load->save->load). Validado [OK] (0 add, 1 mod). Sin apply (lo gestiona el usuario).
+  why: R004 es el espejo de escritura de R001; superficie observable directa = round-trip del repositorio. Test 1 = preservacion identica (count+textos+orden) por quiz; Test 2 = curso multi-quiz para pinear el vector de perdida masiva ("todos los quizzes" al reescribir curso completo). Falla hoy: save no escribe sentences (TDD correcto).
+
+2026-06-25 — developer — Fix en writeQuizzes: capturar formJson = formToJson(...), luego formJson.put("sentences", quiz.getSentences()) cuando ambos son no-null y lista no-vacia, finalmente q.put("form", formJson). Solo 6 lineas de cambio en FileSystemCourseRepository.java ~linea 575-585.
+  why: simetria con el loader (lee form.sentences como primario, linea 340). La lista vive en QuizTemplateEntity.getSentences(), no en FormEntity, por eso no puede ir en formToJson directamente.

@@ -163,7 +163,7 @@ public class FRcslJ002JourneyTest {
         // tokenCount(3) - targetMin(5) = delta(-2): sentence needs 2 more tokens
         AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-j002-1", null, null, "Yo corro.", List.of("I run."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "Daily Actions", "Complete the sentence.", true, "know-j002-1", null, null);
+                List.of(), "Daily Actions", "Complete the sentence.", true, "know-j002-1", null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-j002-1", "Everyday Verbs", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-j002-1", "A1", null);
 
@@ -213,7 +213,7 @@ public class FRcslJ002JourneyTest {
         // Step: solicitar_tarea — quiz with tokenCount=3, targetMin=5, targetMax=8 (too short)
         AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-j002-2", null, null, "Ella canta.", List.of("She sings."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "Music Basics", "Fill in the blank.", true, "know-j002-2", null, null);
+                List.of(), "Music Basics", "Fill in the blank.", true, "know-j002-2", null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-j002-2", "Arts", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-j002-2", "A1", null);
 
@@ -252,7 +252,7 @@ public class FRcslJ002JourneyTest {
         // Step: solicitar_tarea — task references a quiz that does not exist in the tree
         AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-j002-3", null, null, "El camina.", List.of("He walks."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "Basic Verbs", "Complete.", true, "know-j002-3", null, null);
+                List.of(), "Basic Verbs", "Complete.", true, "know-j002-3", null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-j002-3", "Actions", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-j002-3", "A1", null);
 

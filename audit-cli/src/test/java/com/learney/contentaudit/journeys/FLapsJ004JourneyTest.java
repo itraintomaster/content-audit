@@ -111,7 +111,7 @@ public class FLapsJ004JourneyTest {
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-laps-j004", "Vocabulary", "T001");
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Advanced Vocabulary", "Write the correct word.", true,
-                "knowledge-laps-j004", "Knowledge 1", "K001");
+                "knowledge-laps-j004", "Knowledge 1", "K001", null);
         AuditableQuiz quiz = new AuditableQuiz(
                 List.of(), QUIZ_ID, "Quiz 1", "Q001",
                 "Ella utiliza vocabulario avanzado.",

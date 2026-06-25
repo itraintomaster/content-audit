@@ -194,7 +194,7 @@ public class FCslatdcJ004JourneyTest {
                 "El gato come.", List.of("The cat eats."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "A1 Nouns", "Fill in the blank.", true,
-                "know-j004", "Knowledge 1", null);
+                "know-j004", "Knowledge 1", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-j004", "Vocabulary", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-j004", "A1", null);
 

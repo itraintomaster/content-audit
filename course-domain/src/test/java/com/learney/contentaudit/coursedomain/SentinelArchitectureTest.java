@@ -98,6 +98,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: CourseValidationException - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.coursedomain.SentenceMode");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SentenceMode - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.coursedomain.CourseRepository");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: CourseRepository - " + e.getMessage());

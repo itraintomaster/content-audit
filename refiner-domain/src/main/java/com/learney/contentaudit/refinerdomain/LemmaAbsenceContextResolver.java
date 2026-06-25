@@ -95,9 +95,10 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
             quizSentence = quiz.getQuizSentence();
         }
 
-        // Step 4: Navigate ancestors for knowledge title/instructions and topic label
+        // Step 4: Navigate ancestors for knowledge title/instructions, sentenceMode and topic label
         String knowledgeTitle = null;
         String knowledgeInstructions = null;
+        com.learney.contentaudit.coursedomain.SentenceMode sentenceMode = null;
         Optional<AuditNode> knowledgeAncestor = quizNode.ancestor(AuditTarget.KNOWLEDGE);
         if (knowledgeAncestor.isPresent()) {
             AuditableEntity knowledgeEntity = knowledgeAncestor.get().getEntity();
@@ -105,6 +106,7 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
                 AuditableKnowledge knowledge = (AuditableKnowledge) knowledgeEntity;
                 knowledgeTitle = knowledge.getTitle();
                 knowledgeInstructions = knowledge.getInstructions();
+                sentenceMode = knowledge.getSentenceMode();
             }
         }
 
@@ -219,7 +221,7 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
                 targetMin,
                 targetMax,
                 delta,
-                lengthDirection, null);
+                lengthDirection, null, sentenceMode);
 
         return Optional.of(context);
     }
@@ -593,9 +595,10 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
             quizSentence = quiz.getQuizSentence();
         }
 
-        // Step 4: Navigate ancestors for knowledge title/instructions and topic label
+        // Step 4: Navigate ancestors for knowledge title/instructions, sentenceMode and topic label
         String knowledgeTitle = null;
         String knowledgeInstructions = null;
+        com.learney.contentaudit.coursedomain.SentenceMode sentenceMode = null;
         Optional<AuditNode> knowledgeAncestor = quizNode.ancestor(AuditTarget.KNOWLEDGE);
         if (knowledgeAncestor.isPresent()) {
             AuditableEntity knowledgeEntity = knowledgeAncestor.get().getEntity();
@@ -603,6 +606,7 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
                 AuditableKnowledge knowledge = (AuditableKnowledge) knowledgeEntity;
                 knowledgeTitle = knowledge.getTitle();
                 knowledgeInstructions = knowledge.getInstructions();
+                sentenceMode = knowledge.getSentenceMode();
             }
         }
 
@@ -711,7 +715,7 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
                 targetMin,
                 targetMax,
                 delta,
-                lengthDirection, null);
+                lengthDirection, null, sentenceMode);
 
         return Optional.of(context);
     }

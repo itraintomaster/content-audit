@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.coursedomain.FormEntity;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.coursedomain.SentenceMode;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
 import com.learney.contentaudit.coursedomain.quizsentence.QuizSentenceConverter;
@@ -106,7 +107,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
         LemmaAbsenceQuizCandidate candidate = buildCandidateWithDifferentAnswer();
 
         // Act — deriver parses candidate.quizSentence via QuizSentenceConverter (R012)
-        CourseElementSnapshot after = deriver.derive(before, candidate);
+        CourseElementSnapshot after = deriver.derive(before, candidate, null);
 
         // Assert — elementAfter has a new title (plain sentence) and a new form from the candidate DSL
         QuizTemplateEntity afterQuiz = after.getQuiz();
@@ -135,7 +136,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
         LemmaAbsenceQuizCandidate candidate = buildCandidateWithDifferentAnswer();
 
         // Act
-        CourseElementSnapshot after = deriver.derive(before, candidate);
+        CourseElementSnapshot after = deriver.derive(before, candidate, null);
 
         // Assert — elementAfter differs from elementBefore: at minimum the form or translation changed (R001)
         assertNotEquals(before, after,
@@ -159,7 +160,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
         );
 
         // Act
-        CourseElementSnapshot after = deriver.derive(before, candidate);
+        CourseElementSnapshot after = deriver.derive(before, candidate, null);
 
         // Assert — the new form is entirely derived from the candidate's quizSentence, not a partial patch
         // The before form had "reads" in CLOZE; the after form must have "walk|go" (from candidate)
@@ -191,7 +192,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
         LemmaAbsenceQuizCandidate candidate = buildCandidateWithDifferentAnswer();
 
         // Act
-        CourseElementSnapshot after = deriver.derive(before, candidate);
+        CourseElementSnapshot after = deriver.derive(before, candidate, null);
 
         // Assert — structural invariants from R014: identifiers, instructions, nodeIds preserved
         QuizTemplateEntity beforeQuiz = before.getQuiz();
@@ -232,7 +233,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
         );
 
         // Act
-        CourseElementSnapshot after = deriver.derive(before, candidate);
+        CourseElementSnapshot after = deriver.derive(before, candidate, null);
 
         // Assert — translation must be verbatim from the candidate (R013)
         assertEquals(newTranslation, after.getQuiz().getTranslation(),
@@ -256,7 +257,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
         );
 
         // Act
-        CourseElementSnapshot after = deriver.derive(before, candidate);
+        CourseElementSnapshot after = deriver.derive(before, candidate, null);
 
         // Assert — the CLOZE in elementAfter must have both "studies" and "learns" as options (R013)
         FormEntity afterForm = after.getQuiz().getForm();
@@ -285,8 +286,8 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
         LemmaAbsenceQuizCandidate candidate = buildCandidateWithDifferentAnswer();
 
         // Act — call derive twice with the same inputs
-        CourseElementSnapshot after1 = deriver.derive(before, candidate);
-        CourseElementSnapshot after2 = deriver.derive(before, candidate);
+        CourseElementSnapshot after1 = deriver.derive(before, candidate, null);
+        CourseElementSnapshot after2 = deriver.derive(before, candidate, null);
 
         // Assert — both results must be equal (R012: derivation is deterministic)
         assertEquals(after1, after2,
@@ -308,7 +309,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
 
         // Act + Assert — derive must throw ProposalDerivationException atomically (R012, FEAT-QSENT R016)
         assertThrows(ProposalDerivationException.class,
-                () -> deriver.derive(before, malformedCandidate),
+                () -> deriver.derive(before, malformedCandidate, null),
                 "derive() must throw ProposalDerivationException when the candidate's quizSentence is malformed (R012)");
     }
 
@@ -339,7 +340,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
 
         // Verify derive() can construct the elementAfter entirely from these two pieces
         CourseElementSnapshot before = buildElementBefore();
-        CourseElementSnapshot after = deriver.derive(before, candidate);
+        CourseElementSnapshot after = deriver.derive(before, candidate, null);
 
         // The elementAfter's quiz form must have been derived from quizSentence (not from a field the
         // candidate doesn't have). "run" must appear as the CLOZE answer.
@@ -348,5 +349,138 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
                 .anyMatch(p -> p.getOptions().contains("run"));
         assertEquals(true, hasRun,
                 "derive() must build the quizForm from candidate.quizSentence; the strategy only emits the two pieces (R019)");
+    }
+
+    @Test
+    @DisplayName("should derive the revised quiz canonical phrase using the REWRITE mode it received so the revised phrase is the new answer only without the source sentence")
+    @Tag("FEAT-SMODE")
+    @Tag("F-SMODE-R006")
+    public void shouldDeriveTheRevisedQuizCanonicalPhraseUsingTheREWRITEModeItReceivedSoTheRevisedPhraseIsTheNewAnswerOnlyWithoutTheSourceSentence() {
+        // Arrange — quiz REWRITE: TEXT-andamio "You should watch the DVD." + CLOZE-respuesta "Watch the DVD."
+        // El candidato propone "Watch the film." como nueva respuesta (misma estructura, vocabulario revisado).
+        // DSL: el texto fuente precede al hueco; la respuesta está en el bloque de opciones.
+        FormEntity originalForm = new FormEntity("CLOZE", 1.0, "", "", Arrays.asList(
+                new SentencePartEntity(SentencePartKind.TEXT, "You should watch the DVD.", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("Watch the DVD."))
+        ));
+        QuizTemplateEntity originalQuiz = new QuizTemplateEntity(
+                "quiz-dvd-001",
+                "quiz-dvd-001",
+                "CLOZE",
+                "knowledge-imperatives-001",
+                "Watch the DVD.",                    // title: solo la respuesta (frase canonica original)
+                "Write the imperative form.",
+                "Mira el DVD.",
+                "basics.02.Imperatives",
+                "Imperatives",
+                originalForm,
+                0.0, 0.0, 0.0,
+                "", "", "", "", "", "", "",
+                List.of("Watch the DVD.")            // sentences[0]: frase canonica original (4 tokens)
+        );
+        CourseElementSnapshot before = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-dvd-001", originalQuiz);
+
+        // Candidato: nueva respuesta "Watch the film." (mismo numero de tokens que "Watch the DVD.")
+        // DSL: "You should watch the film. ____ [Watch the film.]"
+        LemmaAbsenceQuizCandidate candidate = new LemmaAbsenceQuizCandidate(
+                "You should watch the film. ____ [Watch the film.]",
+                "Mira la pelicula."
+        );
+
+        // Act — el deriver recibe mode=REWRITE y debe usarlo para construir la frase canonica del revisado
+        CourseElementSnapshot after = deriver.derive(before, candidate, SentenceMode.REWRITE);
+
+        // Assert — R006: con mode=REWRITE la frase canonica del quiz revisado es SOLO la respuesta,
+        // sin la oracion fuente/prompt. "sentences[0]" debe ser "Watch the film.", no la concatenacion.
+        List<String> afterSentences = after.getQuiz().getSentences();
+        assertNotEquals(null, afterSentences,
+                "elementAfter.sentences no debe ser null (R006)");
+        assertNotEquals(0, afterSentences.size(),
+                "elementAfter.sentences no debe estar vacio (R006)");
+
+        String canonicalAfter = afterSentences.get(0).trim().replaceAll("\\s+", " ");
+
+        // La frase canonica REWRITE del revisado es solo la respuesta
+        assertEquals("Watch the film.", canonicalAfter,
+                "con mode=REWRITE la frase canonica del quiz revisado debe ser solo la nueva respuesta, " +
+                "sin la oracion fuente/prompt (R006): obtenida=" + canonicalAfter);
+
+        // Verificacion negativa: la oracion fuente NO debe aparecer en la frase canonica
+        assertNotEquals(true, canonicalAfter.contains("You should"),
+                "la frase canonica REWRITE del revisado no debe incluir la oracion fuente 'You should...' (R006): " + canonicalAfter);
+    }
+
+    @Test
+    @DisplayName("should keep the length score of a REWRITE revision identical to the original when the revised answer conserves its token count")
+    @Tag("FEAT-SMODE")
+    @Tag("F-SMODE-R007")
+    public void shouldKeepTheLengthScoreOfAREWRITERevisionIdenticalToTheOriginalWhenTheRevisedAnswerConservesItsTokenCount() {
+        // Arrange — caso real del bug (F-SMODE-R007, detalle):
+        // Quiz original REWRITE: fuente "You should watch the DVD." + respuesta "Watch the DVD." (4 tokens).
+        // La revision propone "Watch the film." (4 tokens tambien — conserva la longitud).
+        // Con mode=REWRITE, la frase canonica del revisado debe ser "Watch the film." (4 tokens),
+        // NUNCA la concatenacion "You should watch the film. Watch the film." (10 tokens).
+        // Si la frase canonica tiene 4 tokens (igual que el original), el score de longitud no se degrada.
+        FormEntity originalForm = new FormEntity("CLOZE", 1.0, "", "", Arrays.asList(
+                new SentencePartEntity(SentencePartKind.TEXT, "You should watch the DVD.", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("Watch the DVD."))
+        ));
+        QuizTemplateEntity originalQuiz = new QuizTemplateEntity(
+                "quiz-dvd-002",
+                "quiz-dvd-002",
+                "CLOZE",
+                "knowledge-imperatives-001",
+                "Watch the DVD.",                        // title: solo la respuesta
+                "Write the imperative form.",
+                "Mira el DVD.",
+                "basics.02.Imperatives",
+                "Imperatives",
+                originalForm,
+                0.0, 0.0, 0.0,
+                "", "", "", "", "", "", "",
+                List.of("Watch the DVD.")                // sentences[0] original: 4 tokens
+        );
+        CourseElementSnapshot before = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-dvd-002", originalQuiz);
+
+        // Candidato: "Watch the film." — 4 tokens, igual longitud que la respuesta original "Watch the DVD."
+        // DSL: nueva oracion fuente + hueco + nueva respuesta de 4 tokens
+        LemmaAbsenceQuizCandidate candidate = new LemmaAbsenceQuizCandidate(
+                "You should watch the film. ____ [Watch the film.]",
+                "Mira la pelicula."
+        );
+
+        // Act — mode=REWRITE para que la frase canonica del revisado sea solo la respuesta
+        CourseElementSnapshot after = deriver.derive(before, candidate, SentenceMode.REWRITE);
+
+        // Assert R007: la frase canonica del quiz revisado tiene la misma cantidad de tokens
+        // que la del original (ambas son 4 tokens), porque la oracion fuente no participa en ninguno.
+        List<String> afterSentences = after.getQuiz().getSentences();
+        assertNotEquals(null, afterSentences,
+                "elementAfter.sentences no debe ser null (R007)");
+        assertNotEquals(0, afterSentences.size(),
+                "elementAfter.sentences no debe estar vacio (R007)");
+
+        String canonicalAfter = afterSentences.get(0).trim().replaceAll("\\s+", " ");
+
+        // La frase canonica del revisado es "Watch the film." (4 tokens), no la concatenacion (10 tokens)
+        assertEquals("Watch the film.", canonicalAfter,
+                "con mode=REWRITE y respuesta de 4 tokens la frase canonica revisada debe tener 4 tokens " +
+                "(igual que el original), sin arrastre de la oracion fuente (R007): obtenida=" + canonicalAfter);
+
+        // Verificacion explícita de la no-concatenacion: la frase canonica NO debe ser las 10 tokens
+        assertNotEquals("You should watch the film. Watch the film.", canonicalAfter,
+                "la frase canonica revisada NUNCA debe ser la concatenacion oracion-fuente + respuesta (R007)");
+
+        // La longitud de tokens del original y del revisado coinciden (ambas 4 tokens):
+        // original: "Watch the DVD." -> ["Watch", "the", "DVD", "."] = 4 tokens
+        // revisado: "Watch the film." -> ["Watch", "the", "film", "."] = 4 tokens
+        // Como la frase canonica del original es sentences[0] del before, verificamos igualdad de conteo.
+        String canonicalBefore = before.getQuiz().getSentences().get(0).trim().replaceAll("\\s+", " ");
+        String[] tokensBefore = canonicalBefore.split("\\s+");
+        String[] tokensAfter = canonicalAfter.split("\\s+");
+        assertEquals(tokensBefore.length, tokensAfter.length,
+                "la revision conserva la longitud de la respuesta: original=" + tokensBefore.length +
+                " tokens, revisado=" + tokensAfter.length + " tokens (R007). " +
+                "Si el conteo difiere, la frase canonica del revisado cargo tokens de la oracion fuente.");
     }
 }

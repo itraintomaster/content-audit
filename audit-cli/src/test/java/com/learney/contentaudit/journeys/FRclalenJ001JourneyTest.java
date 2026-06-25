@@ -132,7 +132,7 @@ public class FRclalenJ001JourneyTest {
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Affirmative sentences in the present simple",
                 "Escribe la forma afirmativa", true,
-                "knowledge-014", "Knowledge 14", "K014");
+                "knowledge-014", "Knowledge 14", "K014", null);
 
         AuditableTopic topic = new AuditableTopic(
                 List.of(), "topic-001", "Present Simple", "T001");

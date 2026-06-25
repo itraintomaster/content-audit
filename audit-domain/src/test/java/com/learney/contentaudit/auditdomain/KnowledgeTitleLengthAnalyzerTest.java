@@ -16,7 +16,7 @@ public class KnowledgeTitleLengthAnalyzerTest {
     // ---------------------------------------------------------------------------
 
     private static AuditableKnowledge knowledge(String title) {
-        return new AuditableKnowledge(List.of(), title, null, false, "k1", "label", "CODE");
+        return new AuditableKnowledge(List.of(), title, null, false, "k1", "label", "CODE", null);
     }
 
     /** Builds a title string composed entirely of 'a' characters (weight 1.0 each). */
@@ -277,12 +277,12 @@ public class KnowledgeTitleLengthAnalyzerTest {
         KnowledgeTitleLengthAnalyzer analyzer = new KnowledgeTitleLengthAnalyzer();
 
         // First knowledge: short title within limit → score 1.0
-        AuditableKnowledge k1 = new AuditableKnowledge(List.of(), "hello", null, false, "k1", "l1", "C1");
+        AuditableKnowledge k1 = new AuditableKnowledge(List.of(), "hello", null, false, "k1", "l1", "C1", null);
         AuditNode node1 = buildKnowledgeNode(k1);
         analyzer.onKnowledge(node1);
 
         // Second knowledge: 29 'a' chars → weighted length 29 → score 0.0
-        AuditableKnowledge k2 = new AuditableKnowledge(List.of(), titleOfWeight(29), null, false, "k2", "l2", "C2");
+        AuditableKnowledge k2 = new AuditableKnowledge(List.of(), titleOfWeight(29), null, false, "k2", "l2", "C2", null);
         AuditNode node2 = buildKnowledgeNode(k2);
         analyzer.onKnowledge(node2);
 
@@ -306,7 +306,7 @@ public class KnowledgeTitleLengthAnalyzerTest {
     @Tag("F-KTLEN-R003")
     public void shouldScore075ForTitleOfWeightedLength35() {
         KnowledgeTitleLengthAnalyzer analyzer = new KnowledgeTitleLengthAnalyzer();
-        AuditableKnowledge k = new AuditableKnowledge(List.of(), titleOfWeight(35), null, false, "k1", "l", "C");
+        AuditableKnowledge k = new AuditableKnowledge(List.of(), titleOfWeight(35), null, false, "k1", "l", "C", null);
         AuditNode node = buildKnowledgeNode(k);
         analyzer.onKnowledge(node);
         // Current formula: max(0, 1 - (35-28)/1) = 0.0
@@ -319,7 +319,7 @@ public class KnowledgeTitleLengthAnalyzerTest {
     @Tag("F-KTLEN-R003")
     public void shouldScore05ForTitleOfWeightedLength42() {
         KnowledgeTitleLengthAnalyzer analyzer = new KnowledgeTitleLengthAnalyzer();
-        AuditableKnowledge k = new AuditableKnowledge(List.of(), titleOfWeight(42), null, false, "k1", "l", "C");
+        AuditableKnowledge k = new AuditableKnowledge(List.of(), titleOfWeight(42), null, false, "k1", "l", "C", null);
         AuditNode node = buildKnowledgeNode(k);
         analyzer.onKnowledge(node);
         // Current formula: max(0, 1 - (42-28)/1) = 0.0
@@ -332,7 +332,7 @@ public class KnowledgeTitleLengthAnalyzerTest {
     @Tag("F-KTLEN-R003")
     public void shouldScore00ForTitleOfWeightedLength56() {
         KnowledgeTitleLengthAnalyzer analyzer = new KnowledgeTitleLengthAnalyzer();
-        AuditableKnowledge k = new AuditableKnowledge(List.of(), titleOfWeight(56), null, false, "k1", "l", "C");
+        AuditableKnowledge k = new AuditableKnowledge(List.of(), titleOfWeight(56), null, false, "k1", "l", "C", null);
         AuditNode node = buildKnowledgeNode(k);
         analyzer.onKnowledge(node);
         assertEquals(0.0, node.getScores().get("knowledge-title-length"), 0.001);
@@ -344,7 +344,7 @@ public class KnowledgeTitleLengthAnalyzerTest {
     @Tag("F-KTLEN-R003")
     public void shouldScore00ForTitleOfWeightedLength70() {
         KnowledgeTitleLengthAnalyzer analyzer = new KnowledgeTitleLengthAnalyzer();
-        AuditableKnowledge k = new AuditableKnowledge(List.of(), titleOfWeight(70), null, false, "k1", "l", "C");
+        AuditableKnowledge k = new AuditableKnowledge(List.of(), titleOfWeight(70), null, false, "k1", "l", "C", null);
         AuditNode node = buildKnowledgeNode(k);
         analyzer.onKnowledge(node);
         assertEquals(0.0, node.getScores().get("knowledge-title-length"), 0.001);

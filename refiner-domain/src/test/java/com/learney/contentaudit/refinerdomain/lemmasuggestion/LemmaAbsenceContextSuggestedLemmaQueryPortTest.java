@@ -141,7 +141,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
         AuditNode topicNode = buildTopicNode(milestoneNode,
                 new AuditableTopic(List.of(), "topic-1", "Topic", null));
         AuditNode knowledgeNode = buildKnowledgeNode(topicNode,
-                new AuditableKnowledge(List.of(), "Knowledge", "Instructions", true, "know-1", null, null));
+                new AuditableKnowledge(List.of(), "Knowledge", "Instructions", true, "know-1", null, null, null));
         buildQuizNode(knowledgeNode, quiz, quizDiagnoses);
         return new AuditReport(courseNode);
     }
