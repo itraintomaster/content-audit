@@ -7,7 +7,7 @@ set -euo pipefail
 INPUT="$(cat)"
 
 python3 - "$INPUT" <<'PY'
-import json, sys, os
+import json, sys, os, re
 
 d = json.loads(sys.argv[1])
 inputs = d.get("inputs", {}) or {}
@@ -16,12 +16,53 @@ node   = d.get("node", {}) or {}
 run_dir = (d.get("run_dir") or inputs.get("run_dir") or data.get("run_dir")
            or node.get("run_dir") or os.environ.get("SENTINEL_RUN_DIR") or ".")
 
+def _parse_json_lenient(raw):
+    """Parsea JSON tolerando ```fences``` y prosa alrededor (mismo criterio que
+    gate_candidate.sh para candidate.json). El juez (eval_quality) a veces
+    envuelve el veredicto en ```json pese a que el prompt lo prohíbe; sin esto,
+    json.load falla, read_json devuelve {} y TODOS los evals LLM se cuentan como
+    reprobados → retry espurio aunque el juez los haya aprobado."""
+    text = (raw or "").strip()
+    if not text:
+        return None
+    # 1) intento directo (caso normal: JSON limpio).
+    try:
+        return json.loads(text)
+    except Exception:
+        pass
+    # 2) sacar code fences ```lang ... ```.
+    if text.startswith("```"):
+        text = re.sub(r"^```[a-zA-Z0-9]*\s*", "", text)
+        text = re.sub(r"\s*```$", "", text).strip()
+        try:
+            return json.loads(text)
+        except Exception:
+            pass
+    # 3) extraer el primer objeto {...} balanceado (tolera prosa alrededor).
+    start = text.find("{")
+    if start != -1:
+        depth = 0
+        for i in range(start, len(text)):
+            c = text[i]
+            if c == "{":
+                depth += 1
+            elif c == "}":
+                depth -= 1
+                if depth == 0:
+                    try:
+                        return json.loads(text[start:i + 1])
+                    except Exception:
+                        return None
+    return None
+
 def read_json(name, default=None):
     try:
         with open(os.path.join(run_dir, name), "r", encoding="utf-8") as f:
-            return json.load(f)
+            raw = f.read()
     except Exception:
         return default
+    parsed = _parse_json_lenient(raw)
+    return parsed if parsed is not None else default
 
 candidate = read_json("candidate.json", {}) or {}
 verdicts  = read_json("verdicts.json", {}) or {}
